@@ -5,6 +5,19 @@ class Carrito {
         this.initEventos();
         this.actualizarUI();
     }
+    constructor() {
+    this.items = JSON.parse(localStorage.getItem('carrito')) || [];
+    this.initEventos();
+    this.actualizarUI();
+    
+    // Escuchar cambios en localStorage (para múltiples pestañas)
+    window.addEventListener('storage', (e) => {
+        if (e.key === 'carrito') {
+            this.items = JSON.parse(e.newValue) || [];
+            this.actualizarUI();
+        }
+    });
+}
 
     initEventos() {
         // Eventos globales para botones dinámicos
