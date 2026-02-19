@@ -1,0 +1,32 @@
+backend:
+  name: github
+  repo: TU_USUARIO/bara-co  # Cambiar por tu usuario/repositorio
+  branch: main
+  base_url: https://tu-worker.workers.dev  # Lo configuraremos después
+
+media_folder: "assets/uploads"
+public_folder: "/assets/uploads"
+
+collections:
+  - name: "productos"
+    label: "Productos"
+    label_singular: "Producto"
+    folder: "_data/productos"
+    create: true
+    format: "json"
+    slug: "{{slug}}"
+    fields:
+      - {label: "ID", name: "id", widget: "string"}
+      - {label: "Nombre", name: "nombre", widget: "string"}
+      - {label: "Precio", name: "precio", widget: "number", valueType: "int"}
+      - {label: "Precio original (si aplica)", name: "precioOriginal", widget: "number", required: false, valueType: "int"}
+      - {label: "Descripción", name: "descripcion", widget: "text"}
+      - {label: "Composición", name: "composicion", widget: "string"}
+      - {label: "Cuidado", name: "cuidado", widget: "string"}
+      - {label: "Imagen principal", name: "imagen", widget: "image"}
+      - {label: "Galería de imágenes", name: "imagenes", widget: "list", field: {label: "URL", name: "url", widget: "image"}}
+      - {label: "Categoría", name: "categoria", widget: "select", options: ["mujer", "hombre", "accesorios", "unisex"]}
+      - {label: "Etiqueta", name: "etiqueta", widget: "select", required: false, options: ["nuevo", "sale", "destacado"]}
+      - {label: "Talles disponibles", name: "tallesDisponibles", widget: "list", field: {label: "Talle", name: "talle", widget: "string"}}
+      - {label: "Stock", name: "stock", widget: "number", valueType: "int"}
+      - {label: "Destacado en home", name: "destacado", widget: "boolean", required: false}
