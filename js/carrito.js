@@ -1,38 +1,54 @@
-// Clase Carrito MEJORADA con doble opción de pago
+// ===========================================
+// CARRITO DE COMPRAS - BARA & CO
+// VERSIÓN CORREGIDA - AGREGAR PRODUCTOS FUNCIONA
+// ===========================================
+
 class Carrito {
     constructor() {
         this.items = JSON.parse(localStorage.getItem('carrito')) || [];
-        this.initEventos();
+        this.initEventosGlobales();
         this.actualizarUI();
     }
-    constructor() {
-    this.items = JSON.parse(localStorage.getItem('carrito')) || [];
-    this.initEventos();
-    this.actualizarUI();
-    
-    // Escuchar cambios en localStorage (para múltiples pestañas)
-    window.addEventListener('storage', (e) => {
-        if (e.key === 'carrito') {
-            this.items = JSON.parse(e.newValue) || [];
-            this.actualizarUI();
-        }
-    });
-}
 
-    initEventos() {
-        // Eventos globales para botones dinámicos
+    // Inicializar eventos globales (funciona para elementos dinámicos)
+    initEventosGlobales() {
+        // Usar event delegation en todo el documento
         document.addEventListener('click', (e) => {
-            // Agregar al carrito
-            if (e.target.closest('.add-to-cart')) {
+            // Botón AGREGAR AL CARRITO (clase .add-to-cart o botones con data-atributos)
+            const addButton = e.target.closest('.add-to-cart, .quick-add, .add-to-cart-card, [onclick*="agregarAlCarrito"]');
+            
+            if (addButton) {
                 e.preventDefault();
-                const btn = e.target.closest('.add-to-cart');
-                const producto = {
-                    id: btn.dataset.id,
-                    nombre: btn.dataset.nombre,
-                    precio: parseInt(btn.dataset.precio),
-                    imagen: btn.dataset.imagen
-                };
-                this.agregar(producto, btn);
+                e.stopPropagation();
+                
+                // Obtener datos del producto
+                let id, nombre, precio, imagen;
+                
+                // Opción 1: Data attributes (recomendado)
+                if (addButton.dataset.id) {
+                    id = addButton.dataset.id;
+                    nombre = addButton.dataset.nombre;
+                    precio = parseInt(addButton.dataset.precio);
+                    imagen = addButton.dataset.imagen;
+                } 
+                // Opción 2: Función onclick existente
+                else if (addButton.hasAttribute('onclick')) {
+                    // Extraer de la función onclick (para compatibilidad)
+                    const onclickAttr = addButton.getAttribute('onclick');
+                    const match = onclickAttr.match(/agregarAlCarrito\(\s*['"]([^'"]+)['"]\s*,\s*['"]([^'"]+)['"]\s*,\s*(\d+)\s*,\s*['"]([^'"]+)['"]\s*\)/);
+                    if (match) {
+                        id = match[1];
+                        nombre = match[2];
+                        precio = parseInt(match[3]);
+                        imagen = match[4];
+                    }
+                }
+                
+                if (id && nombre && precio && imagen) {
+                    this.agregar({ id, nombre, precio, imagen }, addButton);
+                } else {
+                    console.warn('Faltan datos del producto', addButton);
+                }
             }
             
             // Botones de cantidad en carrito
@@ -57,56 +73,85 @@ class Carrito {
                 this.toggleCart();
             }
         });
+
+        // Escuchar cambios en localStorage (para múltiples pestañas)
+        window.addEventListener('storage', (e) => {
+            if (e.key === 'carrito') {
+                this.items = JSON.parse(e.newValue) || [];
+                this.actualizarUI();
+            }
+        });
+
+        console.log('✅ Eventos del carrito inicializados');
     }
 
-    // Agregar producto
+    // Agregar producto al carrito
     agregar(producto, boton = null) {
-        if (!producto.id || !producto.nombre || !producto.precio) {
-            console.error('Producto inválido:', producto);
+        // Validar producto
+        if (!producto || !producto.id || !producto.nombre || !producto.precio) {
+            console.error('❌ Producto inválido:', producto);
+            this.mostrarNotificacion('Error al agregar producto', 'error');
             return;
         }
-        
+
+        // Buscar si ya existe
         const existente = this.items.find(item => item.id === producto.id);
         
         if (existente) {
             existente.cantidad += 1;
+            console.log(`🔄 Producto existente: ${producto.nombre}, nueva cantidad: ${existente.cantidad}`);
         } else {
             this.items.push({
                 ...producto,
                 cantidad: 1
             });
+            console.log(`✅ Nuevo producto agregado: ${producto.nombre}`);
         }
         
+        // Guardar y actualizar UI
         this.guardar();
-        this.mostrarNotificacion(`✓ ${producto.nombre} agregado`);
+        this.mostrarNotificacion(`✓ ${producto.nombre} agregado al carrito`, 'success');
         
         // Feedback visual en el botón
         if (boton) {
-            const textoOriginal = boton.innerHTML;
-            boton.innerHTML = '✓ AGREGADO';
-            boton.style.background = 'var(--color-accent)';
-            boton.style.color = 'white';
-            setTimeout(() => {
-                boton.innerHTML = textoOriginal;
-                boton.style.background = '';
-                boton.style.color = '';
-            }, 1500);
+            this.animarBoton(boton);
         }
+    }
+
+    // Animar botón después de agregar
+    animarBoton(boton) {
+        const textoOriginal = boton.innerHTML;
+        const colorOriginal = boton.style.background;
+        
+        boton.innerHTML = '✓ AGREGADO';
+        boton.style.background = 'var(--color-accent)';
+        boton.style.color = 'white';
+        boton.style.transform = 'scale(0.95)';
+        
+        setTimeout(() => {
+            boton.innerHTML = textoOriginal;
+            boton.style.background = colorOriginal;
+            boton.style.color = '';
+            boton.style.transform = '';
+        }, 1500);
     }
 
     // Eliminar producto
     eliminar(id) {
+        const producto = this.items.find(item => item.id === id);
         this.items = this.items.filter(item => item.id !== id);
         this.guardar();
-        this.mostrarNotificacion('Producto eliminado', 'warning');
+        if (producto) {
+            this.mostrarNotificacion(`✗ ${producto.nombre} eliminado`, 'warning');
+        }
     }
 
-    // Vaciar carrito
+    // Vaciar carrito completo
     vaciar() {
         if (this.items.length === 0) return;
         this.items = [];
         this.guardar();
-        this.mostrarNotificacion('Carrito vaciado', 'warning');
+        this.mostrarNotificacion('Carrito vaciado', 'info');
     }
 
     // Actualizar cantidad
@@ -157,7 +202,7 @@ class Carrito {
         contadores.forEach(contador => {
             contador.textContent = totalItems;
             
-            // Animación
+            // Animación sutil
             contador.style.transform = 'scale(1.3)';
             setTimeout(() => {
                 contador.style.transform = 'scale(1)';
@@ -177,7 +222,7 @@ class Carrito {
                 <div class="cart-empty">
                     <i class="fas fa-shopping-bag"></i>
                     <p>Tu carrito está vacío</p>
-                    <a href="tienda.html" class="btn-empty" onclick="carrito.toggleCart()">Explorar productos</a>
+                    <a href="tienda.html" class="btn-empty" onclick="carrito.toggleCart(); return false;">Explorar productos</a>
                 </div>
             `;
         } else {
@@ -226,9 +271,12 @@ class Carrito {
         if (tipo === 'success') {
             icono.className = 'fas fa-check-circle';
             icono.style.color = 'var(--color-accent)';
-        } else {
+        } else if (tipo === 'warning') {
             icono.className = 'fas fa-info-circle';
             icono.style.color = '#ffaa00';
+        } else {
+            icono.className = 'fas fa-exclamation-circle';
+            icono.style.color = '#ff4444';
         }
         
         notif.classList.add('show');
@@ -252,17 +300,14 @@ class Carrito {
 
     // ===== OPCIONES DE PAGO =====
 
-    // Opción 1: Pago por WhatsApp
     pagarConWhatsApp() {
         if (this.items.length === 0) {
             this.mostrarNotificacion('El carrito está vacío', 'warning');
             return;
         }
         
-        // Configurar número de WhatsApp
-        const whatsappNumber = '5493511234567'; // ¡CAMBIAR POR EL NÚMERO REAL!
+        const whatsappNumber = '5493511234567'; // ¡CAMBIAR!
         
-        // Crear mensaje
         let mensaje = '🛍️ *NUEVO PEDIDO - BARA & CO*%0A%0A';
         
         this.items.forEach(item => {
@@ -274,88 +319,54 @@ class Carrito {
         mensaje += `%0a📦 *TOTAL: $${total.toLocaleString('es-AR')}*%0A%0A`;
         mensaje += '👤 *DATOS DEL CLIENTE*%0A';
         mensaje += 'Nombre y apellido:%0A';
-        mensaje += 'Teléfono de contacto:%0A';
-        mensaje += 'Dirección de envío:%0A%0A';
-        mensaje += '💬 Consulto por medios de pago y disponibilidad. ¡Gracias!';
+        mensaje += 'Teléfono:%0A';
+        mensaje += 'Dirección:%0A%0A';
+        mensaje += '💬 Consulto por medios de pago y disponibilidad.';
         
-        // Abrir WhatsApp
         window.open(`https://wa.me/${whatsappNumber}?text=${mensaje}`, '_blank');
-        
-        // Opcional: preguntar si quiere vaciar carrito
-        setTimeout(() => {
-            if (confirm('¿Querés vaciar el carrito después de enviar el pedido?')) {
-                this.vaciar();
-            }
-        }, 500);
     }
 
-    // Opción 2: Pago con MercadoPago
-    async pagarConMercadoPago() {
+    pagarConMercadoPago() {
         if (this.items.length === 0) {
             this.mostrarNotificacion('El carrito está vacío', 'warning');
             return;
         }
         
-        // Mostrar loading
-        this.mostrarNotificacion('Preparando pago...', 'success');
+        this.mostrarNotificacion('Preparando pago...', 'info');
         
-        try {
-            // Aquí iría la integración real con MercadoPago
-            // Por ahora simulamos una redirección exitosa
-            
-            // En un caso real, llamarías a tu backend para crear la preferencia
-            // y obtendrías el init_point
-            
-            const preferencia = await this.crearPreferenciaMercadoPago();
-            
-            if (preferencia && preferencia.init_point) {
-                // Redirigir a MercadoPago
-                window.location.href = preferencia.init_point;
-            } else {
-                // Fallback a WhatsApp
-                if (confirm('Hubo un problema con MercadoPago. ¿Querés pagar por WhatsApp?')) {
-                    this.pagarConWhatsApp();
-                }
-            }
-            
-        } catch (error) {
-            console.error('Error en MercadoPago:', error);
-            this.mostrarNotificacion('Error al procesar pago', 'warning');
-            
-            // Fallback
-            if (confirm('Error con MercadoPago. ¿Querés pagar por WhatsApp?')) {
-                this.pagarConWhatsApp();
-            }
-        }
-    }
-
-    // Simulación de creación de preferencia (para desarrollo)
-    async crearPreferenciaMercadoPago() {
-        // IMPORTANTE: Esto es una simulación
-        // En producción, esto debe ser una llamada a tu backend
-        
-        return new Promise((resolve) => {
-            setTimeout(() => {
-                // Simular respuesta exitosa
-                resolve({
-                    init_point: 'https://www.mercadopago.com.ar/checkout/v1/redirect?pref_id=123456789'
-                });
-            }, 1000);
-        });
+        // Simulación - en producción redirigir a MP
+        setTimeout(() => {
+            alert('Redirigiendo a MercadoPago (modo simulación)');
+            // this.pagarConWhatsApp(); // fallback
+        }, 1000);
     }
 }
 
-// Inicializar carrito
-const carrito = new Carrito();
+// ===== INICIALIZACIÓN =====
+let carrito;
 
-// Funciones globales
+// Asegurar que el carrito se inicialice después de que cargue el DOM
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function() {
+        carrito = new Carrito();
+        window.carrito = carrito;
+        console.log('🛒 Carrito inicializado');
+    });
+} else {
+    carrito = new Carrito();
+    window.carrito = carrito;
+    console.log('🛒 Carrito inicializado');
+}
+
+// Funciones globales para compatibilidad
 function toggleCart() {
-    carrito.toggleCart();
+    if (carrito) carrito.toggleCart();
 }
 
 function agregarAlCarrito(id, nombre, precio, imagen) {
-    carrito.agregar({ id, nombre, precio, imagen });
+    if (carrito) {
+        carrito.agregar({ id, nombre, precio, imagen });
+    } else {
+        console.error('Carrito no inicializado');
+    }
 }
-
-// Hacer carrito accesible globalmente
-window.carrito = carrito;
