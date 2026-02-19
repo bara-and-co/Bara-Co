@@ -237,6 +237,34 @@
     .toast.err  { background:#3a1515; color:#e06060; border:1px solid rgba(224,96,96,.2); }
     .toast.info { background:#1a1a17; color:var(--accent); border:1px solid rgba(201,169,110,.2); }
 
+    /* ── LOGIN SCREEN ── */
+    #loginScreen {
+      position:fixed; inset:0; background:var(--bg);
+      display:flex; align-items:center; justify-content:center;
+      z-index:9999; flex-direction:column; gap:0;
+    }
+    #loginScreen.hidden { display:none; }
+    .login-box {
+      background:var(--surface); border:1px solid var(--border);
+      border-radius:12px; padding:44px 40px; width:min(380px,92vw);
+      box-shadow:0 8px 40px rgba(0,0,0,.10);
+      display:flex; flex-direction:column; gap:20px;
+    }
+    .login-logo { font-family:var(--serif); font-size:28px; font-weight:500; text-align:center; letter-spacing:.02em; }
+    .login-sub { text-align:center; font-size:13px; color:var(--muted); margin-top:-12px; }
+    .login-field { display:flex; flex-direction:column; gap:6px; }
+    .login-field label { font-size:12px; font-weight:500; color:var(--muted); letter-spacing:.05em; text-transform:uppercase; }
+    .login-field input {
+      padding:12px 14px; border:1.5px solid var(--border); border-radius:var(--radius);
+      font-family:var(--sans); font-size:15px; outline:none; transition:border-color .2s;
+      background:var(--bg);
+    }
+    .login-field input:focus { border-color:var(--accent); }
+    .login-err { color:var(--red); font-size:13px; text-align:center; min-height:18px; }
+    .login-btn { background:var(--accent); color:#fff; border:none; border-radius:var(--radius); padding:13px; font-family:var(--sans); font-size:14px; font-weight:600; cursor:pointer; transition:background .2s; letter-spacing:.04em; }
+    .login-btn:hover { background:var(--adk); }
+    .login-hint { text-align:center; font-size:11px; color:var(--muted); }
+
     /* SPINNER */
     .spinner { width:15px; height:15px; border:2px solid rgba(255,255,255,.3); border-top-color:#fff; border-radius:50%; animation:spin .7s linear infinite; display:inline-block; }
     @keyframes spin { to { transform:rotate(360deg); } }
@@ -252,6 +280,21 @@
 </head>
 <body>
 
+<!-- ══ LOGIN SCREEN ══ -->
+<div id="loginScreen">
+  <div class="login-box">
+    <div class="login-logo">Bara &amp; Co</div>
+    <p class="login-sub">Panel de administración</p>
+    <div class="login-field">
+      <label>Contraseña</label>
+      <input type="password" id="loginPass" placeholder="••••••••" onkeydown="if(event.key==='Enter')doLogin()"/>
+    </div>
+    <p class="login-err" id="loginErr"></p>
+    <button class="login-btn" onclick="doLogin()">Ingresar</button>
+    <p class="login-hint"><i class="fas fa-lock"></i> &nbsp;Acceso exclusivo para administradores</p>
+  </div>
+</div>
+
 <!-- TOPBAR -->
 <div class="topbar">
   <div class="topbar-left">
@@ -264,6 +307,9 @@
     </a>
     <button class="btn btn-ghost btn-sm" onclick="openConfig()">
       <i class="fas fa-cog"></i> Configurar
+    </button>
+    <button class="btn btn-ghost btn-sm" onclick="logout()" title="Cerrar sesión">
+      <i class="fas fa-sign-out-alt"></i>
     </button>
   </div>
 </div>
@@ -416,6 +462,40 @@
 <div class="toast" id="toast"></div>
 
 <script>
+/* ─── LOGIN ─── */
+// Cambiá esta contraseña por la que quieras
+const ADMIN_PASS = 'baraadmin2026';
+const SESSION_KEY = 'bc_admin_auth';
+
+function checkAuth() {
+  const ok = sessionStorage.getItem(SESSION_KEY) === '1';
+  if (ok) {
+    document.getElementById('loginScreen').classList.add('hidden');
+  } else {
+    document.getElementById('loginScreen').classList.remove('hidden');
+  }
+  return ok;
+}
+
+function doLogin() {
+  const pass = document.getElementById('loginPass').value;
+  if (pass === ADMIN_PASS) {
+    sessionStorage.setItem(SESSION_KEY, '1');
+    document.getElementById('loginScreen').classList.add('hidden');
+    document.getElementById('loginErr').textContent = '';
+    init();
+  } else {
+    document.getElementById('loginErr').textContent = 'Contraseña incorrecta';
+    document.getElementById('loginPass').value = '';
+    document.getElementById('loginPass').focus();
+  }
+}
+
+function logout() {
+  sessionStorage.removeItem(SESSION_KEY);
+  location.reload();
+}
+
 /* ─── ESTADO ─── */
 let products = [];
 let filterCat = '';
@@ -680,7 +760,8 @@ function toast(msg, type='ok') {
 }
 document.addEventListener('keydown', e => { if(e.key==='Escape'){ closeModal(); document.getElementById('mCfg').classList.remove('open'); } });
 
-init();
+// Verificar autenticación al cargar
+if (checkAuth()) init();
 </script>
 </body>
 </html>
