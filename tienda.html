@@ -1,1 +1,358 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda · Bara & Co</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <!-- Estilos -->
+    <link rel="stylesheet" href="css/global.css">
+    
+    <style>
+        /* Estilos específicos de tienda */
+        .shop-header {
+            height: 40vh;
+            background: linear-gradient(135deg, #000 0%, #1a1a1a 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-top: 80px;
+        }
+        
+        .shop-header h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+        
+        .shop-header p {
+            font-size: 1.2rem;
+            opacity: 0.8;
+        }
+        
+        .shop-controls {
+            padding: 2rem 0;
+            border-bottom: 1px solid var(--color-border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .filters {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            padding: 0.5rem 1.5rem;
+            background: none;
+            border: 1px solid var(--color-border);
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+        
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--color-text-primary);
+            color: white;
+            border-color: var(--color-text-primary);
+        }
+        
+        .sort-select {
+            padding: 0.5rem 2rem 0.5rem 1rem;
+            border: 1px solid var(--color-border);
+            background: white;
+            cursor: pointer;
+            font-family: var(--font-sans);
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            padding: 3rem 0;
+        }
+        
+        .product-card {
+            cursor: pointer;
+            animation: fadeUp 0.6s forwards;
+            opacity: 0;
+        }
+        
+        .product-card:nth-child(1) { animation-delay: 0.1s; }
+        .product-card:nth-child(2) { animation-delay: 0.2s; }
+        .product-card:nth-child(3) { animation-delay: 0.3s; }
+        .product-card:nth-child(4) { animation-delay: 0.4s; }
+        .product-card:nth-child(5) { animation-delay: 0.5s; }
+        .product-card:nth-child(6) { animation-delay: 0.6s; }
+        .product-card:nth-child(7) { animation-delay: 0.7s; }
+        .product-card:nth-child(8) { animation-delay: 0.8s; }
+        
+        .product-image {
+            aspect-ratio: 3/4;
+            overflow: hidden;
+            position: relative;
+            margin-bottom: 1rem;
+        }
+        
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s;
+        }
+        
+        .product-card:hover .product-image img {
+            transform: scale(1.05);
+        }
+        
+        .product-actions {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.4s;
+        }
+        
+        .product-card:hover .product-actions {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .quick-add {
+            flex: 2;
+            padding: 12px;
+            background: white;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+        }
+        
+        .quick-view {
+            flex: 1;
+            padding: 12px;
+            background: var(--color-text-primary);
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .quick-add:hover {
+            background: var(--color-accent);
+            color: white;
+        }
+        
+        .quick-view:hover {
+            background: var(--color-accent);
+        }
+        
+        .product-info {
+            text-align: center;
+        }
+        
+        .product-title {
+            font-family: var(--font-serif);
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+        }
+        
+        .product-price {
+            color: var(--color-text-secondary);
+        }
+        
+        .product-price s {
+            color: #999;
+            margin-right: 5px;
+            font-size: 0.9rem;
+        }
+        
+        .badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--color-text-primary);
+            color: white;
+            padding: 4px 12px;
+            font-size: 0.75rem;
+            z-index: 2;
+        }
+        
+        .badge.sale {
+            background: var(--color-accent);
+        }
+        
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            padding: 3rem 0;
+        }
+        
+        .page-link {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--color-border);
+            transition: all 0.3s;
+        }
+        
+        .page-link:hover,
+        .page-link.active {
+            background: var(--color-text-primary);
+            color: white;
+            border-color: var(--color-text-primary);
+        }
+        
+        @media (max-width: 1024px) {
+            .products-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .shop-header h1 {
+                font-size: 3rem;
+            }
+            
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+            
+            .shop-controls {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .filter-btn {
+                padding: 0.5rem 1rem;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Cursor Personalizado -->
+    <div class="custom-cursor"></div>
+    <div class="cursor-dot"></div>
 
+    <!-- Header (igual que index) -->
+    <header id="header">
+        <div class="header-container">
+            <a href="index.html" class="logo">Bara & Co</a>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-link">Inicio</a></li>
+                    <li><a href="tienda.html" class="nav-link active">Tienda</a></li>
+                    <li><a href="lookbook.html" class="nav-link">Lookbook</a></li>
+                    <li><a href="#contacto" class="nav-link">Contacto</a></li>
+                </ul>
+                <div class="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+            <div class="header-icons">
+                <i class="fas fa-search"></i>
+                <a href="tienda.html"><i class="fas fa-user"></i></a>
+                <div class="cart-icon-wrapper" onclick="toggleCart()">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="cart-count">0</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Shop Header -->
+    <div class="shop-header">
+        <div>
+            <h1>Nuestra Tienda</h1>
+            <p>Descubrí las últimas tendencias</p>
+        </div>
+    </div>
+
+    <!-- Shop Controls -->
+    <div class="container">
+        <div class="shop-controls">
+            <div class="filters">
+                <button class="filter-btn active">Todos</button>
+                <button class="filter-btn">Mujer</button>
+                <button class="filter-btn">Hombre</button>
+                <button class="filter-btn">Accesorios</button>
+                <button class="filter-btn">Sale</button>
+            </div>
+            <select class="sort-select">
+                <option>Ordenar por: Relevancia</option>
+                <option>Precio: menor a mayor</option>
+                <option>Precio: mayor a menor</option>
+                <option>Más nuevos</option>
+            </select>
+        </div>
+
+        <!-- Productos Grid -->
+        <div class="products-grid">
+            <!-- Producto 1 -->
+            <div class="product-card" onclick="window.location.href='producto.html?id=1'">
+                <div class="product-image">
+                    <span class="badge">Nuevo</span>
+                    <img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Remera Oversize">
+                    <div class="product-actions">
+                        <button class="quick-add" onclick="event.stopPropagation(); agregarAlCarrito('1', 'Remera Oversize', 7999, 'https://images.unsplash.com/photo-1523381210434-271e8be1f52b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')">Agregar</button>
+                        <button class="quick-view" onclick="event.stopPropagation(); window.location.href='producto.html?id=1'"><i class="fas fa-eye"></i></button>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Remera Oversize</h3>
+                    <p class="product-price">$7.999</p>
+                </div>
+            </div>
+
+            <!-- Producto 2 -->
+            <div class="product-card" onclick="window.location.href='producto.html?id=2'">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Jean Holgado">
+                    <div class="product-actions">
+                        <button class="quick-add" onclick="event.stopPropagation(); agregarAlCarrito('2', 'Jean Holgado', 15999, 'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')">Agregar</button>
+                        <button class="quick-view" onclick="event.stopPropagation(); window.location.href='producto.html?id=2'"><i class="fas fa-eye"></i></button>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Jean Holgado</h3>
+                    <p class="product-price">$15.999</p>
+                </div>
+            </div>
+
+            <!-- Producto 3 -->
+            <div class="product-card" onclick="window.location.href='producto.html?id=3'">
+                <div class="product-image">
+                    <span class="badge sale">-20%</span>
+                    <img src="https://images.unsplash.com/photo-1524592001865-b32997a13083?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Campera Jean">
+                    <div class="product-actions">
+                        <button class="quick-add" onclick="event.stopPropagation(); agregarAlCarrito('3', 'Campera Jean', 22999, 'https://images.unsplash.com/photo-1524592001865-b32997a13083?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')">Agregar</button>
+                        <button class="quick-view" onclick="event.stopPropagation(); window.location.h
