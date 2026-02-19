@@ -1812,3 +1812,9 @@ body.interior .logo-img {
     color: #999;
     padding: 1rem;
 }
+@media (max-width: 768px) {
+  .hero-half img {
+    object-fit: cover; /* En móvil sí puede cubrir porque es más angosto */
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
