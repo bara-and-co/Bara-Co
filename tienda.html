@@ -11,30 +11,48 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
-    <!-- Estilos -->
+    <!-- Estilos Globales -->
     <link rel="stylesheet" href="css/global.css">
     
     <style>
         /* Estilos específicos de tienda */
         .shop-header {
             height: 40vh;
-            background: linear-gradient(135deg, #000 0%, #1a1a1a 100%);
+            background: linear-gradient(135deg, #0A0A0A 0%, #1A1A1A 100%);
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
             color: white;
             margin-top: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .shop-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80') center/cover;
+            opacity: 0.1;
+            pointer-events: none;
         }
         
         .shop-header h1 {
-            font-size: 4rem;
+            font-size: clamp(2.5rem, 5vw, 4rem);
             margin-bottom: 1rem;
+            position: relative;
+            z-index: 2;
         }
         
         .shop-header p {
-            font-size: 1.2rem;
+            font-size: clamp(1rem, 2vw, 1.2rem);
             opacity: 0.8;
+            position: relative;
+            z-index: 2;
         }
         
         .shop-controls {
@@ -44,25 +62,32 @@
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
-            gap: 1rem;
+            gap: 1.5rem;
         }
         
         .filters {
             display: flex;
-            gap: 1rem;
+            gap: 0.8rem;
             flex-wrap: wrap;
         }
         
         .filter-btn {
-            padding: 0.5rem 1.5rem;
+            padding: 0.7rem 1.8rem;
             background: none;
             border: 1px solid var(--color-border);
             cursor: pointer;
             transition: all 0.3s;
             font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            border-radius: 0;
         }
         
-        .filter-btn:hover,
+        .filter-btn:hover {
+            border-color: var(--color-text-primary);
+            background: var(--color-bg-secondary);
+        }
+        
         .filter-btn.active {
             background: var(--color-text-primary);
             color: white;
@@ -70,11 +95,53 @@
         }
         
         .sort-select {
-            padding: 0.5rem 2rem 0.5rem 1rem;
+            padding: 0.7rem 2.5rem 0.7rem 1.5rem;
             border: 1px solid var(--color-border);
             background: white;
             cursor: pointer;
             font-family: var(--font-sans);
+            font-size: 0.9rem;
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            background-size: 1em;
+            min-width: 200px;
+        }
+        
+        .sort-select:focus {
+            outline: none;
+            border-color: var(--color-accent);
+        }
+        
+        .active-filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin: 1rem 0;
+            min-height: 40px;
+        }
+        
+        .active-filter-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.4rem 1rem;
+            background: var(--color-accent-light);
+            border: 1px solid var(--color-accent);
+            font-size: 0.85rem;
+            color: var(--color-text-primary);
+        }
+        
+        .active-filter-tag i {
+            cursor: pointer;
+            font-size: 0.8rem;
+            color: var(--color-text-secondary);
+            transition: color 0.2s;
+        }
+        
+        .active-filter-tag i:hover {
+            color: #ff4444;
         }
         
         .products-grid {
@@ -82,28 +149,37 @@
             grid-template-columns: repeat(4, 1fr);
             gap: 2rem;
             padding: 3rem 0;
+            min-height: 400px;
         }
         
         .product-card {
             cursor: pointer;
-            animation: fadeUp 0.6s forwards;
+            animation: fadeIn 0.5s ease forwards;
             opacity: 0;
+            transition: all 0.3s;
         }
         
-        .product-card:nth-child(1) { animation-delay: 0.1s; }
-        .product-card:nth-child(2) { animation-delay: 0.2s; }
-        .product-card:nth-child(3) { animation-delay: 0.3s; }
-        .product-card:nth-child(4) { animation-delay: 0.4s; }
-        .product-card:nth-child(5) { animation-delay: 0.5s; }
-        .product-card:nth-child(6) { animation-delay: 0.6s; }
-        .product-card:nth-child(7) { animation-delay: 0.7s; }
-        .product-card:nth-child(8) { animation-delay: 0.8s; }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .product-card.hidden {
+            display: none;
+        }
         
         .product-image {
             aspect-ratio: 3/4;
             overflow: hidden;
             position: relative;
             margin-bottom: 1rem;
+            background: #f5f5f5;
         }
         
         .product-image img {
@@ -144,6 +220,7 @@
             transition: all 0.3s;
             font-size: 0.8rem;
             letter-spacing: 1px;
+            text-transform: uppercase;
         }
         
         .quick-view {
@@ -175,8 +252,17 @@
             margin-bottom: 0.3rem;
         }
         
+        .product-category-tag {
+            font-size: 0.8rem;
+            color: var(--color-accent);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.3rem;
+        }
+        
         .product-price {
             color: var(--color-text-secondary);
+            font-weight: 500;
         }
         
         .product-price s {
@@ -194,9 +280,47 @@
             padding: 4px 12px;
             font-size: 0.75rem;
             z-index: 2;
+            letter-spacing: 1px;
         }
         
         .badge.sale {
+            background: var(--color-accent);
+        }
+        
+        .badge.new {
+            background: var(--color-text-primary);
+        }
+        
+        .no-products {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 60px 20px;
+            color: #999;
+        }
+        
+        .no-products i {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            opacity: 0.2;
+        }
+        
+        .no-products p {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .no-products .reset-btn {
+            padding: 12px 30px;
+            background: var(--color-text-primary);
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+        }
+        
+        .no-products .reset-btn:hover {
             background: var(--color-accent);
         }
         
@@ -204,17 +328,19 @@
             display: flex;
             justify-content: center;
             gap: 10px;
-            padding: 3rem 0;
+            padding: 3rem 0 4rem;
         }
         
         .page-link {
-            width: 40px;
-            height: 40px;
+            width: 45px;
+            height: 45px;
             display: flex;
             align-items: center;
             justify-content: center;
             border: 1px solid var(--color-border);
             transition: all 0.3s;
+            cursor: pointer;
+            font-weight: 500;
         }
         
         .page-link:hover,
@@ -224,15 +350,31 @@
             border-color: var(--color-text-primary);
         }
         
+        .results-count {
+            font-size: 0.9rem;
+            color: var(--color-text-secondary);
+            margin-top: 0.5rem;
+        }
+        
         @media (max-width: 1024px) {
             .products-grid {
                 grid-template-columns: repeat(3, 1fr);
+                gap: 1.5rem;
             }
         }
         
         @media (max-width: 768px) {
-            .shop-header h1 {
-                font-size: 3rem;
+            .shop-controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .filters {
+                justify-content: center;
+            }
+            
+            .sort-select {
+                width: 100%;
             }
             
             .products-grid {
@@ -240,9 +382,17 @@
                 gap: 1rem;
             }
             
-            .shop-controls {
-                flex-direction: column;
-                align-items: flex-start;
+            .product-actions {
+                opacity: 1;
+                transform: translateY(0);
+                bottom: 10px;
+                left: 10px;
+                right: 10px;
+            }
+            
+            .quick-add, .quick-view {
+                padding: 8px;
+                font-size: 0.7rem;
             }
         }
         
@@ -252,7 +402,7 @@
             }
             
             .filter-btn {
-                padding: 0.5rem 1rem;
+                padding: 0.6rem 1.2rem;
                 font-size: 0.8rem;
             }
         }
@@ -263,10 +413,13 @@
     <div class="custom-cursor"></div>
     <div class="cursor-dot"></div>
 
-    <!-- Header (igual que index) -->
+    <!-- Header -->
     <header id="header">
         <div class="header-container">
-            <a href="index.html" class="logo">Bara & Co</a>
+            <a href="index.html" class="logo">
+                <!-- Logo: texto o imagen -->
+                Bara & Co
+            </a>
             <nav>
                 <ul class="nav-menu">
                     <li><a href="index.html" class="nav-link">Inicio</a></li>
@@ -279,7 +432,7 @@
                 </div>
             </nav>
             <div class="header-icons">
-                <i class="fas fa-search"></i>
+                <i class="fas fa-search" onclick="buscador?.abrirModal()"></i>
                 <a href="tienda.html"><i class="fas fa-user"></i></a>
                 <div class="cart-icon-wrapper" onclick="toggleCart()">
                     <i class="fas fa-shopping-bag"></i>
@@ -300,158 +453,38 @@
     <!-- Shop Controls -->
     <div class="container">
         <div class="shop-controls">
-            <div class="filters">
-                <button class="filter-btn active">Todos</button>
-                <button class="filter-btn">Mujer</button>
-                <button class="filter-btn">Hombre</button>
-                <button class="filter-btn">Accesorios</button>
-                <button class="filter-btn">Sale</button>
+            <div class="filters" id="filterContainer">
+                <button class="filter-btn active" data-filter="todos">Todos</button>
+                <button class="filter-btn" data-filter="mujer">Mujer</button>
+                <button class="filter-btn" data-filter="hombre">Hombre</button>
+                <button class="filter-btn" data-filter="accesorios">Accesorios</button>
+                <button class="filter-btn" data-filter="sale">Sale</button>
             </div>
-            <select class="sort-select">
-                <option>Ordenar por: Relevancia</option>
-                <option>Precio: menor a mayor</option>
-                <option>Precio: mayor a menor</option>
-                <option>Más nuevos</option>
+            
+            <select class="sort-select" id="sortSelect">
+                <option value="relevancia">Ordenar por: Relevancia</option>
+                <option value="precio-asc">Precio: menor a mayor</option>
+                <option value="precio-desc">Precio: mayor a menor</option>
+                <option value="nuevos">Más nuevos</option>
             </select>
         </div>
+        
+        <!-- Filtros activos -->
+        <div class="active-filters" id="activeFilters"></div>
+        
+        <!-- Contador de resultados -->
+        <div class="results-count" id="resultsCount"></div>
 
         <!-- Productos Grid -->
-        <div class="products-grid">
-            <!-- Producto 1 -->
-            <div class="product-card" onclick="window.location.href='producto.html?id=1'">
-                <div class="product-image">
-                    <span class="badge">Nuevo</span>
-                    <img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Remera Oversize">
-                    <div class="product-actions">
-                        <button class="quick-add" onclick="event.stopPropagation(); agregarAlCarrito('1', 'Remera Oversize', 7999, 'https://images.unsplash.com/photo-1523381210434-271e8be1f52b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')">Agregar</button>
-                        <button class="quick-view" onclick="event.stopPropagation(); window.location.href='producto.html?id=1'"><i class="fas fa-eye"></i></button>
-                    </div>
-                </div>
-                <div class="product-info">
-                    <h3 class="product-title">Remera Oversize</h3>
-                    <p class="product-price">$7.999</p>
-                </div>
-            </div>
-
-            <!-- Producto 2 -->
-            <div class="product-card" onclick="window.location.href='producto.html?id=2'">
-                <div class="product-image">
-                    <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Jean Holgado">
-                    <div class="product-actions">
-                        <button class="quick-add" onclick="event.stopPropagation(); agregarAlCarrito('2', 'Jean Holgado', 15999, 'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')">Agregar</button>
-                        <button class="quick-view" onclick="event.stopPropagation(); window.location.href='producto.html?id=2'"><i class="fas fa-eye"></i></button>
-                    </div>
-                </div>
-                <div class="product-info">
-                    <h3 class="product-title">Jean Holgado</h3>
-                    <p class="product-price">$15.999</p>
-                </div>
-            </div>
-
-            <!-- Producto 3 -->
-            <div class="product-card" onclick="window.location.href='producto.html?id=3'">
-                <div class="product-image">
-                    <span class="badge sale">-20%</span>
-                    <img src="https://images.unsplash.com/photo-1524592001865-b32997a13083?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Campera Jean">
-                    <div class="product-actions">
-                        <button class="quick-add" onclick="event.stopPropagation(); agregarAlCarrito('3', 'Campera Jean', 22999, 'https://images.unsplash.com/photo-1524592001865-b32997a13083?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')">Agregar</button>
-                        <button class="quick-view" onclick="event.stopPropagation(); window.location.href='producto.html?id=3'"><i class="fas fa-eye"></i></button>
-                    </div>
-                </div>
-                <div class="product-info">
-                    <h3 class="product-title">Campera Jean</h3>
-                    <p class="product-price"><s>$28.999</s> $22.999</p>
-                </div>
-            </div>
-
-            <!-- Producto 4 -->
-            <div class="product-card" onclick="window.location.href='producto.html?id=4'">
-                <div class="product-image">
-                    <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Vestido Negro">
-                    <div class="product-actions">
-                        <button class="quick-add" onclick="event.stopPropagation(); agregarAlCarrito('4', 'Vestido Negro', 18999, 'https://images.unsplash.com/photo-1469334031218-e382a71b716b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')">Agregar</button>
-                        <button class="quick-view" onclick="event.stopPropagation(); window.location.href='producto.html?id=4'"><i class="fas fa-eye"></i></button>
-                    </div>
-                </div>
-                <div class="product-info">
-                    <h3 class="product-title">Vestido Negro</h3>
-                    <p class="product-price">$18.999</p>
-                </div>
-            </div>
-
-            <!-- Producto 5 -->
-            <div class="product-card" onclick="window.location.href='producto.html?id=5'">
-                <div class="product-image">
-                    <span class="badge">Nuevo</span>
-                    <img src="https://images.unsplash.com/photo-1556905055-8f358a7a47b2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Buzo Oversize">
-                    <div class="product-actions">
-                        <button class="quick-add" onclick="event.stopPropagation(); agregarAlCarrito('5', 'Buzo Oversize', 12999, 'https://images.unsplash.com/photo-1556905055-8f358a7a47b2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')">Agregar</button>
-                        <button class="quick-view" onclick="event.stopPropagation(); window.location.href='producto.html?id=5'"><i class="fas fa-eye"></i></button>
-                    </div>
-                </div>
-                <div class="product-info">
-                    <h3 class="product-title">Buzo Oversize</h3>
-                    <p class="product-price">$12.999</p>
-                </div>
-            </div>
-
-            <!-- Producto 6 -->
-            <div class="product-card" onclick="window.location.href='producto.html?id=6'">
-                <div class="product-image">
-                    <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Camisa Oversize">
-                    <div class="product-actions">
-                        <button class="quick-add" onclick="event.stopPropagation(); agregarAlCarrito('6', 'Camisa Oversize', 9999, 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')">Agregar</button>
-                        <button class="quick-view" onclick="event.stopPropagation(); window.location.href='producto.html?id=6'"><i class="fas fa-eye"></i></button>
-                    </div>
-                </div>
-                <div class="product-info">
-                    <h3 class="product-title">Camisa Oversize</h3>
-                    <p class="product-price">$9.999</p>
-                </div>
-            </div>
-
-            <!-- Producto 7 -->
-            <div class="product-card" onclick="window.location.href='producto.html?id=7'">
-                <div class="product-image">
-                    <img src="https://images.unsplash.com/photo-1434389677669-e08b4cac3105?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Pollera">
-                    <div class="product-actions">
-                        <button class="quick-add" onclick="event.stopPropagation(); agregarAlCarrito('7', 'Pollera', 11999, 'https://images.unsplash.com/photo-1434389677669-e08b4cac3105?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')">Agregar</button>
-                        <button class="quick-view" onclick="event.stopPropagation(); window.location.href='producto.html?id=7'"><i class="fas fa-eye"></i></button>
-                    </div>
-                </div>
-                <div class="product-info">
-                    <h3 class="product-title">Pollera</h3>
-                    <p class="product-price">$11.999</p>
-                </div>
-            </div>
-
-            <!-- Producto 8 -->
-            <div class="product-card" onclick="window.location.href='producto.html?id=8'">
-                <div class="product-image">
-                    <span class="badge sale">-15%</span>
-                    <img src="https://images.unsplash.com/photo-1525450824786-227cbef70703?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Accesorios">
-                    <div class="product-actions">
-                        <button class="quick-add" onclick="event.stopPropagation(); agregarAlCarrito('8', 'Gorro Lana', 3999, 'https://images.unsplash.com/photo-1525450824786-227cbef70703?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')">Agregar</button>
-                        <button class="quick-view" onclick="event.stopPropagation(); window.location.href='producto.html?id=8'"><i class="fas fa-eye"></i></button>
-                    </div>
-                </div>
-                <div class="product-info">
-                    <h3 class="product-title">Gorro de Lana</h3>
-                    <p class="product-price"><s>$4.999</s> $3.999</p>
-                </div>
-            </div>
+        <div class="products-grid" id="productsGrid">
+            <!-- Los productos se cargan dinámicamente con JS -->
         </div>
 
         <!-- Paginación -->
-        <div class="pagination">
-            <a href="#" class="page-link active">1</a>
-            <a href="#" class="page-link">2</a>
-            <a href="#" class="page-link">3</a>
-            <a href="#" class="page-link"><i class="fas fa-chevron-right"></i></a>
-        </div>
+        <div class="pagination" id="pagination"></div>
     </div>
 
-    <!-- Footer (igual que index) -->
+    <!-- Footer -->
     <footer id="contacto">
         <div class="container">
             <div class="footer-grid">
@@ -459,18 +492,18 @@
                     <div class="footer-logo">Bara & Co</div>
                     <p class="footer-text">Indumentaria urbana con personalidad. Diseño y confort para tu día a día.</p>
                     <div class="social-icons">
-                        <i class="fab fa-instagram"></i>
-                        <i class="fab fa-facebook-f"></i>
-                        <i class="fab fa-tiktok"></i>
+                        <i class="fab fa-instagram" onclick="window.open('https://instagram.com/bara.co', '_blank')"></i>
+                        <i class="fab fa-facebook-f" onclick="window.open('https://facebook.com', '_blank')"></i>
+                        <i class="fab fa-tiktok" onclick="window.open('https://tiktok.com', '_blank')"></i>
                     </div>
                 </div>
                 <div>
                     <h4 class="footer-title">Categorías</h4>
                     <ul class="footer-links">
-                        <li><a href="tienda.html?categoria=mujer">Mujer</a></li>
-                        <li><a href="tienda.html?categoria=hombre">Hombre</a></li>
-                        <li><a href="tienda.html?categoria=accesorios">Accesorios</a></li>
-                        <li><a href="tienda.html?categoria=sale">Sale</a></li>
+                        <li><a href="#" onclick="aplicarFiltro('mujer'); return false;">Mujer</a></li>
+                        <li><a href="#" onclick="aplicarFiltro('hombre'); return false;">Hombre</a></li>
+                        <li><a href="#" onclick="aplicarFiltro('accesorios'); return false;">Accesorios</a></li>
+                        <li><a href="#" onclick="aplicarFiltro('sale'); return false;">Sale</a></li>
                     </ul>
                 </div>
                 <div>
@@ -486,8 +519,8 @@
                     <h4 class="footer-title">Newsletter</h4>
                     <p class="footer-text">Sumate. 10% OFF en tu primera compra.</p>
                     <div class="newsletter-input">
-                        <input type="email" placeholder="Tu email">
-                        <button><i class="fas fa-arrow-right"></i></button>
+                        <input type="email" id="newsletterEmail" placeholder="Tu email">
+                        <button onclick="suscribirNewsletter()"><i class="fas fa-arrow-right"></i></button>
                     </div>
                 </div>
             </div>
@@ -498,78 +531,347 @@
                     <span>Ing. Olmos 139 – Jesús María</span>
                 </div>
                 <div class="legal-info">
-                    <span>Términos y condiciones</span>
-                    <span>Política de privacidad</span>
+                    <span onclick="window.location.href='terminos.html'">Términos y condiciones</span>
+                    <span onclick="window.location.href='privacidad.html'">Política de privacidad</span>
                 </div>
             </div>
         </div>
     </footer>
 
-    <!-- CARRITO FLOTANTE CON DOBLE OPCIÓN DE PAGO -->
-<div class="cart-icon" onclick="toggleCart()">
-    <i class="fas fa-shopping-bag"></i>
-    <span class="cart-count">0</span>
-</div>
-
-<div class="cart-notification" id="cartNotification">
-    <i class="fas fa-check-circle"></i>
-    <span>Producto agregado</span>
-</div>
-
-<div class="cart-panel" id="cartPanel">
-    <div class="cart-header">
-        <h2 class="cart-title">Carrito</h2>
-        <i class="fas fa-times close-cart" onclick="toggleCart()"></i>
+    <!-- CARRITO FLOTANTE -->
+    <div class="cart-icon" onclick="toggleCart()">
+        <i class="fas fa-shopping-bag"></i>
+        <span class="cart-count">0</span>
     </div>
-    
-    <div class="cart-items">
-        <!-- Contenido dinámico -->
+
+    <div class="cart-notification" id="cartNotification">
+        <i class="fas fa-check-circle"></i>
+        <span>Producto agregado</span>
     </div>
-    
-    <div class="cart-footer">
-        <div class="subtotal">
-            <span>Subtotal</span>
-            <span id="subtotal">$0</span>
+
+    <div class="cart-panel" id="cartPanel">
+        <div class="cart-header">
+            <h2 class="cart-title">Carrito</h2>
+            <i class="fas fa-times close-cart" onclick="toggleCart()"></i>
         </div>
-        
-        <!-- DOBLE OPCIÓN DE PAGO -->
-        <div class="payment-options">
-            <button class="payment-btn mercadopago-btn" onclick="carrito.pagarConMercadoPago()">
-                <i class="fab fa-mercadopago"></i>
-                Pagar con MercadoPago
-            </button>
-            
-            <button class="payment-btn whatsapp-btn" onclick="carrito.pagarConWhatsApp()">
-                <i class="fab fa-whatsapp"></i>
-                Solicitar por WhatsApp
-            </button>
+        <div class="cart-items"></div>
+        <div class="cart-footer">
+            <div class="subtotal">
+                <span>Subtotal</span>
+                <span id="subtotal">$0</span>
+            </div>
+            <div class="payment-options">
+                <button class="payment-btn mercadopago-btn" onclick="carrito?.pagarConMercadoPago()">
+                    <i class="fab fa-mercadopago"></i>
+                    Pagar con MercadoPago
+                </button>
+                <button class="payment-btn whatsapp-btn" onclick="carrito?.pagarConWhatsApp()">
+                    <i class="fab fa-whatsapp"></i>
+                    Solicitar por WhatsApp
+                </button>
+            </div>
+            <p class="payment-info">
+                <i class="fas fa-lock"></i>
+                Pago seguro. Sin comisiones adicionales.
+            </p>
         </div>
-        
-        <p class="payment-info">
-            <i class="fas fa-lock"></i>
-            Pago seguro. Sin comisiones adicionales.
-        </p>
     </div>
-</div>
 
-<div class="overlay" id="overlay" onclick="toggleCart()"></div>
+    <div class="overlay" id="overlay" onclick="toggleCart()"></div>
 
     <!-- Scripts -->
     <script src="js/carrito.js"></script>
     <script src="js/search.js"></script>
     <script src="js/main.js"></script>
+    
     <script>
-        function finalizarCompra() {
-            if (carrito.items.length === 0) {
-                alert('Tu carrito está vacío');
-                return;
+        // ===========================================
+        // FILTROS DE TIENDA - COMPLETAMENTE FUNCIONALES
+        // ===========================================
+        
+        // Base de datos de productos (simulada)
+        const productos = [
+            {
+                id: '1',
+                nombre: 'Remera Oversize',
+                precio: 7999,
+                precioOriginal: null,
+                imagen: 'https://images.unsplash.com/photo-1523381210434-271e8be1f52b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                categoria: 'mujer',
+                etiqueta: 'nuevo',
+                fecha: '2026-02-01'
+            },
+            {
+                id: '2',
+                nombre: 'Jean Holgado',
+                precio: 15999,
+                precioOriginal: null,
+                imagen: 'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                categoria: 'mujer',
+                etiqueta: null,
+                fecha: '2026-01-15'
+            },
+            {
+                id: '3',
+                nombre: 'Campera Jean',
+                precio: 22999,
+                precioOriginal: 28999,
+                imagen: 'https://images.unsplash.com/photo-1524592001865-b32997a13083?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                categoria: 'unisex',
+                etiqueta: 'sale',
+                fecha: '2026-01-10'
+            },
+            {
+                id: '4',
+                nombre: 'Vestido Negro',
+                precio: 18999,
+                precioOriginal: null,
+                imagen: 'https://images.unsplash.com/photo-1469334031218-e382a71b716b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                categoria: 'mujer',
+                etiqueta: null,
+                fecha: '2026-01-20'
+            },
+            {
+                id: '5',
+                nombre: 'Buzo Oversize',
+                precio: 12999,
+                precioOriginal: null,
+                imagen: 'https://images.unsplash.com/photo-1556905055-8f358a7a47b2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                categoria: 'hombre',
+                etiqueta: 'nuevo',
+                fecha: '2026-02-05'
+            },
+            {
+                id: '6',
+                nombre: 'Camisa Oversize',
+                precio: 9999,
+                precioOriginal: null,
+                imagen: 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                categoria: 'hombre',
+                etiqueta: null,
+                fecha: '2026-01-25'
+            },
+            {
+                id: '7',
+                nombre: 'Pollera',
+                precio: 11999,
+                precioOriginal: null,
+                imagen: 'https://images.unsplash.com/photo-1434389677669-e08b4cac3105?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                categoria: 'mujer',
+                etiqueta: null,
+                fecha: '2026-01-18'
+            },
+            {
+                id: '8',
+                nombre: 'Gorro de Lana',
+                precio: 3999,
+                precioOriginal: 4999,
+                imagen: 'https://images.unsplash.com/photo-1525450824786-227cbef70703?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                categoria: 'accesorios',
+                etiqueta: 'sale',
+                fecha: '2026-01-05'
+            },
+            {
+                id: '9',
+                nombre: 'Cinto Cuero',
+                precio: 5999,
+                precioOriginal: null,
+                imagen: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                categoria: 'accesorios',
+                etiqueta: null,
+                fecha: '2026-01-12'
+            },
+            {
+                id: '10',
+                nombre: 'Campera de Cuero',
+                precio: 45999,
+                precioOriginal: null,
+                imagen: 'https://images.unsplash.com/photo-1521225601567-2b66c30817cd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                categoria: 'hombre',
+                etiqueta: 'nuevo',
+                fecha: '2026-02-10'
+            },
+            {
+                id: '11',
+                nombre: 'Jogging Oversize',
+                precio: 8999,
+                precioOriginal: null,
+                imagen: 'https://images.unsplash.com/photo-1552902865-b72c031ac5ea?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                categoria: 'unisex',
+                etiqueta: null,
+                fecha: '2026-01-22'
+            },
+            {
+                id: '12',
+                nombre: 'Bufanda',
+                precio: 3499,
+                precioOriginal: 4999,
+                imagen: 'https://images.unsplash.com/photo-1520903920245-00a872816fda?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                categoria: 'accesorios',
+                etiqueta: 'sale',
+                fecha: '2026-01-08'
+            }
+        ];
+
+        // Estado actual
+        let filtroActual = 'todos';
+        let sortActual = 'relevancia';
+        let productosFiltrados = [...productos];
+
+        // Inicializar
+        document.addEventListener('DOMContentLoaded', function() {
+            cargarProductos();
+            initEventListeners();
+        });
+
+        function initEventListeners() {
+            // Filtros por categoría
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const filtro = this.dataset.filter;
+                    aplicarFiltro(filtro);
+                });
+            });
+
+            // Ordenamiento
+            document.getElementById('sortSelect').addEventListener('change', function() {
+                sortActual = this.value;
+                aplicarOrdenamiento();
+                renderizarProductos();
+            });
+        }
+
+        // Función para aplicar filtro (accesible globalmente)
+        window.aplicarFiltro = function(filtro) {
+            filtroActual = filtro;
+            
+            // Actualizar botones activos
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                if (btn.dataset.filter === filtro) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+            
+            // Filtrar productos
+            productosFiltrados = productos.filter(producto => {
+                if (filtro === 'todos') return true;
+                if (filtro === 'sale') return producto.etiqueta === 'sale';
+                if (filtro === 'mujer') return producto.categoria === 'mujer';
+                if (filtro === 'hombre') return producto.categoria === 'hombre';
+                if (filtro === 'accesorios') return producto.categoria === 'accesorios';
+                return true;
+            });
+            
+            aplicarOrdenamiento();
+            renderizarProductos();
+            actualizarFiltrosActivos();
+        };
+
+        function aplicarOrdenamiento() {
+            switch(sortActual) {
+                case 'precio-asc':
+                    productosFiltrados.sort((a, b) => (a.precio) - (b.precio));
+                    break;
+                case 'precio-desc':
+                    productosFiltrados.sort((a, b) => (b.precio) - (a.precio));
+                    break;
+                case 'nuevos':
+                    productosFiltrados.sort((a, b) => new Date(b.fecha) - new Date(a.fecha));
+                    break;
+                default: // relevancia
+                    productosFiltrados.sort((a, b) => a.nombre.localeCompare(b.nombre));
+            }
+        }
+
+        function renderizarProductos() {
+            const grid = document.getElementById('productsGrid');
+            
+            if (productosFiltrados.length === 0) {
+                grid.innerHTML = `
+                    <div class="no-products">
+                        <i class="fas fa-search"></i>
+                        <p>No encontramos productos que coincidan con tu búsqueda</p>
+                        <button class="reset-btn" onclick="aplicarFiltro('todos')">Ver todos los productos</button>
+                    </div>
+                `;
+            } else {
+                let html = '';
+                productosFiltrados.forEach(producto => {
+                    const precioFinal = producto.precioOriginal ? producto.precio : producto.precio;
+                    const descuento = producto.precioOriginal ? Math.round((1 - producto.precio / producto.precioOriginal) * 100) : 0;
+                    
+                    html += `
+                        <div class="product-card" onclick="window.location.href='producto.html?id=${producto.id}'">
+                            <div class="product-image">
+                                ${producto.etiqueta === 'nuevo' ? '<span class="badge new">Nuevo</span>' : ''}
+                                ${producto.etiqueta === 'sale' ? `<span class="badge sale">-${descuento}%</span>` : ''}
+                                <img src="${producto.imagen}" alt="${producto.nombre}" loading="lazy">
+                                <div class="product-actions">
+                                    <button class="quick-add" 
+                                            onclick="event.stopPropagation(); agregarAlCarrito('${producto.id}', '${producto.nombre}', ${precioFinal}, '${producto.imagen}')">
+                                        <i class="fas fa-shopping-bag"></i> Agregar
+                                    </button>
+                                    <button class="quick-view" onclick="event.stopPropagation(); window.location.href='producto.html?id=${producto.id}'">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="product-info">
+                                <div class="product-category-tag">${producto.categoria}</div>
+                                <h3 class="product-title">${producto.nombre}</h3>
+                                <p class="product-price">
+                                    ${producto.precioOriginal ? `<s>$${producto.precioOriginal.toLocaleString('es-AR')}</s>` : ''}
+                                    $${producto.precio.toLocaleString('es-AR')}
+                                </p>
+                            </div>
+                        </div>
+                    `;
+                });
+                grid.innerHTML = html;
             }
             
-            // Opción 1: WhatsApp
-            carrito.finalizarWhatsApp();
+            // Actualizar contador
+            const countEl = document.getElementById('resultsCount');
+            countEl.textContent = `Mostrando ${productosFiltrados.length} ${productosFiltrados.length === 1 ? 'producto' : 'productos'}`;
+        }
+
+        function actualizarFiltrosActivos() {
+            const container = document.getElementById('activeFilters');
             
-            // Opción 2: MercadoPago (descomentar si usan MP)
-            // pagarConMercadoPago();
+            if (filtroActual !== 'todos') {
+                let nombreFiltro = {
+                    'mujer': 'Mujer',
+                    'hombre': 'Hombre',
+                    'accesorios': 'Accesorios',
+                    'sale': 'Sale'
+                }[filtroActual] || filtroActual;
+                
+                container.innerHTML = `
+                    <div class="active-filter-tag">
+                        ${nombreFiltro}
+                        <i class="fas fa-times" onclick="aplicarFiltro('todos')"></i>
+                    </div>
+                `;
+            } else {
+                container.innerHTML = '';
+            }
+        }
+
+        function cargarProductos() {
+            aplicarFiltro('todos');
+        }
+
+        // Función para suscribir newsletter
+        function suscribirNewsletter() {
+            const email = document.getElementById('newsletterEmail').value;
+            if (email && email.includes('@')) {
+                alert('¡Gracias por suscribirte! Pronto recibirás novedades.');
+                document.getElementById('newsletterEmail').value = '';
+            } else {
+                alert('Por favor ingresá un email válido');
+            }
         }
     </script>
 </body>
