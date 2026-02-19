@@ -1,6 +1,6 @@
 // ===========================================
 // CARRITO DE COMPRAS - BARA & CO
-// VERSIÓN MEJORADA - DETALLES + OPCIONES DE ENVÍO
+// VERSIÓN MEJORADA - DETALLES + OPCIONES DE ENVÍO + MERCADO PAGO
 // ===========================================
 
 class Carrito {
@@ -440,25 +440,23 @@ class Carrito {
                         <button class="edit-shipping btn-link">Editar datos de envío</button>
                     </div>
                     
-                    <// Función para pagar con Mercado Pago
-pagarConMercadoPago() {
-  if (this.items.length === 0) {
-    this.mostrarNotificacion('El carrito está vacío', 'warning');
-    return;
-  }
-
-  // Calcular el total de la compra
-  const total = this.getTotal(); // Asegurate que esta función sume productos + envío
-
-  // Crear el link con el monto (reemplaza las comas de los miles si es necesario)
-  const montoParaLink = total.toString().replace('.', ''); 
-  const linkMP = `https://link.mercadopago.com.ar/baraandco?amount=${montoParaLink}`;
-
-  // Abrir el link en una nueva pestaña
-  window.open(linkMP, '_blank');
-
-  this.mostrarNotificacion('Serás redirigido a Mercado Pago', 'info');
-}
+                    <div class="payment-options">
+                        <button class="payment-btn mercadopago-btn" onclick="carrito.pagarConMercadoPago()">
+                            <i class="fab fa-mercadopago"></i>
+                            Pagar con Mercado Pago
+                        </button>
+                        
+                        <button class="payment-btn whatsapp-btn" onclick="carrito.pagarConWhatsApp()">
+                            <i class="fab fa-whatsapp"></i>
+                            Consultar por WhatsApp
+                        </button>
+                    </div>
+                    
+                    <p class="payment-info">
+                        <i class="fas fa-lock"></i>
+                        Pago seguro con Mercado Pago
+                    </p>
+                </div>
             `;
         } else {
             // Mostrar botón para agregar envío
@@ -528,7 +526,7 @@ pagarConMercadoPago() {
         }
     }
 
-    // ===== OPCIONES DE PAGO CON DATOS DE ENVÍO =====
+    // ===== OPCIONES DE PAGO =====
 
     pagarConWhatsApp() {
         if (this.items.length === 0) {
@@ -542,7 +540,7 @@ pagarConMercadoPago() {
             return;
         }
         
-        const whatsappNumber = '5493511234567'; // ¡CAMBIAR!
+        const whatsappNumber = '5493511234567'; // ¡CAMBIAR POR EL NÚMERO REAL!
         
         let mensaje = '🛍️ *NUEVO PEDIDO - BARA & CO*%0A%0A';
         mensaje += '📦 *PRODUCTOS*%0A';
@@ -572,27 +570,46 @@ pagarConMercadoPago() {
         window.open(`https://wa.me/${whatsappNumber}?text=${mensaje}`, '_blank');
     }
 
+    // ===== NUEVA FUNCIÓN DE PAGO CON MERCADO PAGO =====
     pagarConMercadoPago() {
+        // 1. Validar que el carrito no esté vacío
         if (this.items.length === 0) {
             this.mostrarNotificacion('El carrito está vacío', 'warning');
             return;
         }
 
+        // 2. Validar que tenga los datos de envío (opcional - podés comentar estas líneas si no querés pedirlo)
         if (!this.envio.nombre || !this.envio.direccion) {
             this.mostrarFormularioEnvio();
-            this.mostrarNotificacion('Completá tus datos de envío', 'warning');
+            this.mostrarNotificacion('Completá tus datos de envío para generar el pago', 'warning');
             return;
         }
-        
-        this.mostrarNotificacion('Preparando pago...', 'info');
-        
-        // Simulación - en producción redirigir a MP
-        setTimeout(() => {
-            alert('✅ Redirigiendo a MercadoPago con los siguientes datos:\n\n' +
-                  `Total: $${this.getTotal().toLocaleString('es-AR')}\n` +
-                  `Productos: ${this.items.length}\n` +
-                  `Envío a: ${this.envio.direccion}, ${this.envio.ciudad}`);
-        }, 1000);
+
+        // 3. Calcular el total final (productos + envío)
+        const total = this.getTotal();
+
+        // 4. Formatear el monto para el link de MP:
+        //    - Convertimos el número a string
+        //    - Eliminamos el separador de miles (el punto) si existe
+        //    - Ejemplo: "$15.999" se convierte en "15999"
+        const montoParaLink = total.toString().replace(/\./g, '');
+
+        // 5. Construir el link de pago con el monto
+        //    IMPORTANTE: Verificá que 'baraandco' sea el identificador correcto de tu link
+        const linkMP = `https://link.mercadopago.com.ar/baraandco?amount=${montoParaLink}`;
+
+        // 6. Abrir el link en una nueva pestaña
+        window.open(linkMP, '_blank');
+
+        // 7. Mensaje de confirmación
+        this.mostrarNotificacion('Serás redirigido a Mercado Pago', 'info');
+
+        // 8. Opcional: Preguntar si quiere vaciar el carrito después del pago
+        // setTimeout(() => {
+        //     if (confirm('¿Querés vaciar el carrito?')) {
+        //         this.vaciar();
+        //     }
+        // }, 1000);
     }
 }
 
@@ -603,12 +620,12 @@ if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', function() {
         carrito = new Carrito();
         window.carrito = carrito;
-        console.log('🛒 Carrito inicializado con envío');
+        console.log('🛒 Carrito inicializado con envío y Mercado Pago');
     });
 } else {
     carrito = new Carrito();
     window.carrito = carrito;
-    console.log('🛒 Carrito inicializado con envío');
+    console.log('🛒 Carrito inicializado con envío y Mercado Pago');
 }
 
 // Funciones globales
