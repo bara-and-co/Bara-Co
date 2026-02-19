@@ -440,22 +440,25 @@ class Carrito {
                         <button class="edit-shipping btn-link">Editar datos de envío</button>
                     </div>
                     
-                    <div class="payment-options">
-                        <button class="payment-btn mercadopago-btn" onclick="carrito.pagarConMercadoPago()">
-                            <i class="fab fa-mercadopago"></i>
-                            Pagar con MercadoPago
-                        </button>
-                        <button class="payment-btn whatsapp-btn" onclick="carrito.pagarConWhatsApp()">
-                            <i class="fab fa-whatsapp"></i>
-                            Solicitar por WhatsApp
-                        </button>
-                    </div>
-                    
-                    <p class="payment-info">
-                        <i class="fas fa-lock"></i>
-                        Pago seguro. Hasta 6 cuotas sin interés.
-                    </p>
-                </div>
+                    <// Función para pagar con Mercado Pago
+pagarConMercadoPago() {
+  if (this.items.length === 0) {
+    this.mostrarNotificacion('El carrito está vacío', 'warning');
+    return;
+  }
+
+  // Calcular el total de la compra
+  const total = this.getTotal(); // Asegurate que esta función sume productos + envío
+
+  // Crear el link con el monto (reemplaza las comas de los miles si es necesario)
+  const montoParaLink = total.toString().replace('.', ''); 
+  const linkMP = `https://link.mercadopago.com.ar/baraandco?amount=${montoParaLink}`;
+
+  // Abrir el link en una nueva pestaña
+  window.open(linkMP, '_blank');
+
+  this.mostrarNotificacion('Serás redirigido a Mercado Pago', 'info');
+}
             `;
         } else {
             // Mostrar botón para agregar envío
