@@ -1177,48 +1177,129 @@
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="js/carrito.js"></script>
 
 <script>
+/* ══ CARGA DINÁMICA DESDE productos.json ══ */
+(async function loadProductos() {
+  try {
+    const res = await fetch('productos.json?t=' + Date.now());
+    if (!res.ok) return; // Si no existe el JSON, usa los productos hardcodeados
+    const prods = await res.json();
+    if (!Array.isArray(prods) || !prods.length) return;
+
+    // Limpiar el grid y reconstruirlo con los datos del JSON
+    const grid = document.getElementById('prodGrid');
+    grid.innerHTML = '';
+
+    // Agrupar por categoría para los headings
+    const cats = ['new', 'hombre', 'mujer', 'accesorios'];
+    const catLabels = { new: 'New Collection 2026', hombre: 'Hombre', mujer: 'Mujer', accesorios: 'Accesorios' };
+
+    // Heading y productos por sección
+    cats.forEach(cat => {
+      const list = prods.filter(p => p.activo !== false && p.categoria === cat);
+      if (!list.length) return;
+
+      // Heading
+      const h = document.createElement('div');
+      h.className = 'cat-heading';
+      h.dataset.ch = cat;
+      h.innerHTML = `<h2>${catLabels[cat]}</h2>`;
+      grid.appendChild(h);
+
+      list.forEach(p => {
+        const disc = p.precioAnterior && p.precioAnterior > p.precio
+          ? Math.round((1 - p.precio / p.precioAnterior) * 100) : 0;
+        const badgeCat = cat === 'new' ? 'hombre' : cat; // para el data-cat
+        const extraCat = p.precioAnterior ? ' sale' : '';
+        const newBadge = cat === 'new' ? '<span class="badge badge-new">New</span>' : '';
+        const saleBadge = disc ? `<span class="badge badge-sale">−${disc}%</span>` : '';
+        const priceHtml = p.precioAnterior
+          ? `<del>$${p.precioAnterior.toLocaleString('es-AR')}</del> $${p.precio.toLocaleString('es-AR')}`
+          : `$${p.precio.toLocaleString('es-AR')}`;
+        const subCat = p.subcategoria ? ` · ${p.subcategoria}` : '';
+
+        const card = document.createElement('div');
+        card.className = 'prod-card';
+        card.dataset.cat = (cat === 'new' ? 'new hombre' : cat) + extraCat;
+        card.dataset.name  = p.nombre;
+        card.dataset.price = p.precio;
+        card.dataset.img   = p.imagen;
+        if (p.precioAnterior) card.dataset.oldprice = p.precioAnterior;
+        card.innerHTML = `
+          <div class="prod-img">
+            ${newBadge}${saleBadge}
+            <img src="${p.imagen}" alt="${p.nombre}" loading="lazy"/>
+            <div class="prod-overlay">
+              <button class="ov-btn ov-add" onclick="event.stopPropagation();addCart(this)"><i class="fas fa-shopping-bag"></i> Agregar</button>
+              <button class="ov-btn ov-view" onclick="event.stopPropagation();openQV(this)">Ver detalle</button>
+            </div>
+          </div>
+          <div class="prod-info">
+            <p class="prod-cat">${catLabels[cat]}${subCat}</p>
+            <h3 class="prod-name">${p.nombre}</h3>
+            <p class="prod-price">${priceHtml}</p>
+          </div>`;
+        grid.appendChild(card);
+      });
+    });
+
+    // Empty msg al final
+    const empty = document.createElement('div');
+    empty.className = 'empty-msg';
+    empty.id = 'emptyMsg';
+    empty.innerHTML = '<i class="fas fa-search"></i> No hay productos en esta categoría';
+    grid.appendChild(empty);
+
+    // Actualizar contador
+    const visible = prods.filter(p => p.activo !== false).length;
+    document.getElementById('prodCount').textContent = visible + ' producto' + (visible !== 1 ? 's' : '');
+
+    // Re-asignar referencias para el filtrado
+    window._reInitFilters && window._reInitFilters();
+
+  } catch(e) {
+    console.log('productos.json no encontrado, usando productos hardcodeados.');
+  }
+})();
+
 /* ══ FILTROS ══ */
 const tabs   = document.querySelectorAll('.filter-tab');
-const cards  = document.querySelectorAll('.prod-card');
-const heads  = document.querySelectorAll('.cat-heading');
 const empty  = document.getElementById('emptyMsg');
 const count  = document.getElementById('prodCount');
 
+function getCards()  { return document.querySelectorAll('.prod-card'); }
+function getHeads()  { return document.querySelectorAll('.cat-heading'); }
+
 function filterBy(f) {
-  // activate tab
   tabs.forEach(t => t.classList.toggle('active', t.dataset.f === f));
   let visible = 0;
-
-  cards.forEach(c => {
+  getCards().forEach(c => {
     const cats = c.dataset.cat || '';
     const show = f === 'all' || cats.split(' ').includes(f);
     c.classList.toggle('hidden', !show);
     if (show) visible++;
   });
-
-  // category headings
-  heads.forEach(h => {
-    const ch = h.dataset.ch;
+  getHeads().forEach(h => {
     if (f === 'all') { h.classList.remove('hidden'); return; }
-    // show heading only if at least one card below it is visible
-    const nextCards = [];
     let el = h.nextElementSibling;
+    const nextCards = [];
     while (el && !el.classList.contains('cat-heading')) {
       if (el.classList.contains('prod-card')) nextCards.push(el);
       el = el.nextElementSibling;
     }
-    const anyVisible = nextCards.some(c => !c.classList.contains('hidden'));
-    h.classList.toggle('hidden', !anyVisible);
+    h.classList.toggle('hidden', !nextCards.some(c => !c.classList.contains('hidden')));
   });
-
-  empty.style.display = visible === 0 ? 'block' : 'none';
-  count.textContent = visible + ' producto' + (visible !== 1 ? 's' : '');
-
-  // scroll to top of grid
+  const emptyEl = document.getElementById('emptyMsg');
+  if (emptyEl) emptyEl.style.display = visible === 0 ? 'block' : 'none';
+  document.getElementById('prodCount').textContent = visible + ' producto' + (visible !== 1 ? 's' : '');
   document.querySelector('.filters').scrollIntoView({ behavior:'smooth', block:'start' });
 }
 
 tabs.forEach(t => t.addEventListener('click', () => filterBy(t.dataset.f)));
+
+// Permite re-inicializar tras carga dinámica
+window._reInitFilters = () => {
+  tabs.forEach(t => t.addEventListener('click', () => filterBy(t.dataset.f)));
+};
 
 /* ══ CART ══ */
 let cart = JSON.parse(localStorage.getItem('bc_cart') || '[]');
