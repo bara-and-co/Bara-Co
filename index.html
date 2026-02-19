@@ -393,7 +393,7 @@
         }
     </style>
 </head>
-<body>
+<body class="inicio">
     <!-- Cursor Personalizado -->
     <div class="custom-cursor"></div>
     <div class="cursor-dot"></div>
@@ -401,10 +401,10 @@
     <!-- Header -->
     <header id="header">
         <div class="header-container">
-            <!-- LOGO: Cambiar según cliente -->
             <a href="index.html" class="logo">
-                
-           <img src="images/logo-bara-co.png" alt="Bara & Co"> 
+                <!-- LOGO: Usar imagen o texto según prefieras -->
+                <img src="images/logo-bara-co.png" alt="Bara & Co" class="logo-img">
+                <!-- <span class="logo-text">Bara & Co</span> -->
             </a>
             <nav>
                 <ul class="nav-menu">
@@ -418,7 +418,7 @@
                 </div>
             </nav>
             <div class="header-icons">
-                <i class="fas fa-search" onclick="buscador.abrirModal()"></i>
+                <i class="fas fa-search" onclick="window.buscador?.abrirModal()"></i>
                 <a href="tienda.html"><i class="fas fa-user"></i></a>
                 <div class="cart-icon-wrapper" onclick="toggleCart()">
                     <i class="fas fa-shopping-bag"></i>
@@ -471,7 +471,11 @@
                     <div class="featured-image">
                         <span class="badge">Nuevo</span>
                         <img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Remera Oversize" loading="lazy">
-                        <button class="add-to-cart-card" 
+                        <button class="add-to-cart-card add-to-cart" 
+                                data-id="1"
+                                data-nombre="Remera Oversize"
+                                data-precio="7999"
+                                data-imagen="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
                                 onclick="event.stopPropagation(); agregarAlCarrito('1', 'Remera Oversize', 7999, 'https://images.unsplash.com/photo-1523381210434-271e8be1f52b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')">
                             <i class="fas fa-shopping-bag"></i> AGREGAR
                         </button>
@@ -486,7 +490,11 @@
                 <div class="featured-card" onclick="window.location.href='producto.html?id=2'">
                     <div class="featured-image">
                         <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Jean Holgado" loading="lazy">
-                        <button class="add-to-cart-card" 
+                        <button class="add-to-cart-card add-to-cart"
+                                data-id="2"
+                                data-nombre="Jean Holgado"
+                                data-precio="15999"
+                                data-imagen="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
                                 onclick="event.stopPropagation(); agregarAlCarrito('2', 'Jean Holgado', 15999, 'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')">
                             <i class="fas fa-shopping-bag"></i> AGREGAR
                         </button>
@@ -502,7 +510,11 @@
                     <div class="featured-image">
                         <span class="badge sale">-20%</span>
                         <img src="https://images.unsplash.com/photo-1524592001865-b32997a13083?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Campera Jean" loading="lazy">
-                        <button class="add-to-cart-card" 
+                        <button class="add-to-cart-card add-to-cart"
+                                data-id="3"
+                                data-nombre="Campera Jean"
+                                data-precio="22999"
+                                data-imagen="https://images.unsplash.com/photo-1524592001865-b32997a13083?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
                                 onclick="event.stopPropagation(); agregarAlCarrito('3', 'Campera Jean', 22999, 'https://images.unsplash.com/photo-1524592001865-b32997a13083?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')">
                             <i class="fas fa-shopping-bag"></i> AGREGAR
                         </button>
@@ -526,8 +538,7 @@
             <div class="footer-grid">
                 <div>
                     <div class="footer-logo">
-                        <!-- Mismo logo que header -->
-                        Bara & Co
+                        <img src="images/logo-bara-co-blanco.png" alt="Bara & Co" style="height: 40px; width: auto; filter: brightness(0) invert(1);">
                     </div>
                     <p class="footer-text">Indumentaria urbana con personalidad. Diseño y confort para tu día a día.</p>
                     <div class="social-icons">
@@ -578,53 +589,53 @@
     </footer>
 
     <!-- CARRITO FLOTANTE CON DOBLE OPCIÓN DE PAGO -->
-<div class="cart-icon" onclick="toggleCart()">
-    <i class="fas fa-shopping-bag"></i>
-    <span class="cart-count">0</span>
-</div>
-
-<div class="cart-notification" id="cartNotification">
-    <i class="fas fa-check-circle"></i>
-    <span>Producto agregado</span>
-</div>
-
-<div class="cart-panel" id="cartPanel">
-    <div class="cart-header">
-        <h2 class="cart-title">Carrito</h2>
-        <i class="fas fa-times close-cart" onclick="toggleCart()"></i>
+    <div class="cart-icon" onclick="toggleCart()">
+        <i class="fas fa-shopping-bag"></i>
+        <span class="cart-count">0</span>
     </div>
-    
-    <div class="cart-items">
-        <!-- Contenido dinámico -->
+
+    <div class="cart-notification" id="cartNotification">
+        <i class="fas fa-check-circle"></i>
+        <span>Producto agregado</span>
     </div>
-    
-    <div class="cart-footer">
-        <div class="subtotal">
-            <span>Subtotal</span>
-            <span id="subtotal">$0</span>
+
+    <div class="cart-panel" id="cartPanel">
+        <div class="cart-header">
+            <h2 class="cart-title">Carrito</h2>
+            <i class="fas fa-times close-cart" onclick="toggleCart()"></i>
         </div>
         
-        <!-- DOBLE OPCIÓN DE PAGO -->
-        <div class="payment-options">
-            <button class="payment-btn mercadopago-btn" onclick="carrito.pagarConMercadoPago()">
-                <i class="fab fa-mercadopago"></i>
-                Pagar con MercadoPago
-            </button>
+        <div class="cart-items">
+            <!-- Contenido dinámico -->
+        </div>
+        
+        <div class="cart-footer">
+            <div class="subtotal">
+                <span>Subtotal</span>
+                <span id="subtotal">$0</span>
+            </div>
             
-            <button class="payment-btn whatsapp-btn" onclick="carrito.pagarConWhatsApp()">
-                <i class="fab fa-whatsapp"></i>
-                Solicitar por WhatsApp
-            </button>
+            <!-- DOBLE OPCIÓN DE PAGO -->
+            <div class="payment-options">
+                <button class="payment-btn mercadopago-btn" onclick="window.carrito?.pagarConMercadoPago()">
+                    <i class="fab fa-mercadopago"></i>
+                    Pagar con MercadoPago
+                </button>
+                
+                <button class="payment-btn whatsapp-btn" onclick="window.carrito?.pagarConWhatsApp()">
+                    <i class="fab fa-whatsapp"></i>
+                    Solicitar por WhatsApp
+                </button>
+            </div>
+            
+            <p class="payment-info">
+                <i class="fas fa-lock"></i>
+                Pago seguro. Sin comisiones adicionales.
+            </p>
         </div>
-        
-        <p class="payment-info">
-            <i class="fas fa-lock"></i>
-            Pago seguro. Sin comisiones adicionales.
-        </p>
     </div>
-</div>
 
-<div class="overlay" id="overlay" onclick="toggleCart()"></div>
+    <div class="overlay" id="overlay" onclick="toggleCart()"></div>
 
     <!-- Scripts -->
     <script src="js/carrito.js"></script>
