@@ -96,7 +96,263 @@ header {
     color: white;
     mix-blend-mode: difference;
 }
+/* ===== HERO PARALLAX - VERSIÓN CORREGIDA ===== */
+.hero {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  background: #000;
+  will-change: transform;
+}
 
+.hero-half {
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+  will-change: transform;
+  transition: transform 0.1s linear; /* Suave pero responsive al scroll */
+}
+
+.hero-half-left {
+  left: 0;
+}
+
+.hero-half-right {
+  right: 0;
+}
+
+/* IMPORTANTE: Contenedor que permite que la imagen se desborde */
+.hero-image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.hero-half img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  transform: translate(-50%, -50%) scale(1.1); /* Escala inicial para evitar bordes */
+  object-fit: cover;
+  transition: transform 1.2s var(--ease);
+  will-change: transform;
+}
+
+/* Hover effect */
+.hero-half:hover img {
+  transform: translate(-50%, -50%) scale(1.15);
+}
+
+/* Dark tint */
+.hero-half::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: rgba(0,0,0,.38);
+  transition: background .6s;
+}
+
+.hero-half:hover::before {
+  background: rgba(0,0,0,.18);
+}
+
+/* Vertical divider */
+.hero-divider {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 1px;
+  height: 100%;
+  background: rgba(255,255,255,.15);
+  z-index: 5;
+  transform: scaleY(0);
+  transform-origin: top;
+  animation: dividerGrow 1.2s var(--ease) .4s forwards;
+}
+
+@keyframes dividerGrow {
+  to { transform: scaleY(1); }
+}
+
+/* Labels */
+.hero-label {
+  position: absolute;
+  bottom: 52px;
+  z-index: 4;
+  font-size: 9px;
+  letter-spacing: .35em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.7);
+  font-family: var(--sans);
+  font-weight: 400;
+  opacity: 0;
+  animation: fadeUp .8s var(--ease) 1s forwards;
+}
+
+.hero-half-left .hero-label {
+  left: 44px;
+}
+
+.hero-half-right .hero-label {
+  right: 44px;
+}
+
+/* Center content */
+.hero-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  text-align: center;
+  color: var(--white);
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.hero-pre {
+  font-size: 9px;
+  letter-spacing: .45em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 18px;
+  font-family: var(--sans);
+  opacity: 0;
+  animation: fadeUp .8s var(--ease) .5s forwards;
+}
+
+.hero-h1 {
+  font-family: var(--serif);
+  font-size: clamp(64px, 9vw, 130px);
+  font-weight: 300;
+  line-height: .95;
+  letter-spacing: -.01em;
+  opacity: 0;
+  animation: fadeUp .9s var(--ease) .65s forwards;
+}
+
+.hero-h1 em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.hero-sub {
+  margin-top: 22px;
+  font-size: 11px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.55);
+  opacity: 0;
+  animation: fadeUp .8s var(--ease) .8s forwards;
+}
+
+.hero-cta {
+  margin-top: 40px;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 10px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--white);
+  border-bottom: 1px solid rgba(255,255,255,.4);
+  padding-bottom: 4px;
+  cursor: pointer;
+  pointer-events: all;
+  opacity: 0;
+  animation: fadeUp .8s var(--ease) .95s forwards;
+  transition: border-color .3s, color .3s;
+}
+
+.hero-cta:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.hero-cta i {
+  font-size: 10px;
+}
+
+/* Scroll indicator */
+.scroll-hint {
+  position: absolute;
+  bottom: 36px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  color: rgba(255,255,255,.4);
+  font-size: 8px;
+  letter-spacing: .3em;
+  text-transform: uppercase;
+  opacity: 0;
+  animation: fadeIn 1s .5s var(--ease) forwards;
+  transition: opacity 0.3s ease;
+}
+
+.scroll-hint-line {
+  width: 1px;
+  height: 52px;
+  background: rgba(255,255,255,.15);
+  position: relative;
+  overflow: hidden;
+}
+
+.scroll-hint-line::after {
+  content: '';
+  position: absolute;
+  top: -100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--accent);
+  animation: scrollDrop 2s 1.5s infinite;
+}
+
+@keyframes scrollDrop {
+  0% { top: -100%; }
+  100% { top: 100%; }
+}
+
+/* Responsive para móviles */
+@media (max-width: 768px) {
+  .hero-half {
+    width: 100%;
+    height: 50%;
+    transition: transform 0.2s linear; /* Más rápido en móvil */
+  }
+  
+  .hero-half-left {
+    top: 0;
+  }
+  
+  .hero-half-right {
+    top: 50%;
+  }
+  
+  .hero-label {
+    bottom: 30px;
+  }
+  
+  .hero-half-left .hero-label {
+    left: 30px;
+  }
+  
+  .hero-half-right .hero-label {
+    right: 30px;
+  }
+}
 header.scrolled {
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
