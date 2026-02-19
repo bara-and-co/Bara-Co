@@ -1,640 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<<<<<<< HEAD
-    <!-- PWA Manifest -->
-<link rel="manifest" href="manifest.json">
-
-<!-- Meta tags para PWA -->
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Bara & Co">
-<meta name="theme-color" content="#0A0A0A">
-
-<!-- Iconos para iOS -->
-<link rel="apple-touch-icon" href="assets/icons/icon-152x152.png">
-<link rel="apple-touch-icon" sizes="152x152" href="assets/icons/icon-152x152.png">
-<link rel="apple-touch-icon" sizes="180x180" href="assets/icons/icon-192x192.png">
-<link rel="apple-touch-icon" sizes="167x167" href="assets/icons/icon-192x192.png">
-
-<!-- Service Worker -->
-<script>
-    if ('serviceWorker' in navigator) {
-        window.addEventListener('load', function() {
-            navigator.serviceWorker.register('/service-worker.js').then(function(registration) {
-                console.log('Service Worker registrado con éxito:', registration.scope);
-            }).catch(function(error) {
-                console.log('Error al registrar Service Worker:', error);
-            });
-            
-            // Solicitar permisos de notificaciones (opcional)
-            if (Notification.permission === 'default') {
-                Notification.requestPermission();
-            }
-        });
-    }
-</script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>Bara & Co · Indumentaria Urbana</title>
-    
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    
-    <!-- Estilos Globales -->
-    <link rel="stylesheet" href="css/global.css">
-    
-    <style>
-        /* Estilos específicos para el hero cinematográfico */
-        .hero-container {
-            position: relative;
-            width: 100%;
-            height: 100vh;
-            overflow: hidden;
-            background: #000;
-        }
-
-        .hero-sticky {
-            position: sticky;
-            top: 0;
-            width: 100%;
-            height: 100vh;
-            overflow: hidden;
-            z-index: 10;
-        }
-
-        .hero-panel-left,
-        .hero-panel-right {
-            position: absolute;
-            top: 0;
-            width: 50%;
-            height: 100vh;
-            overflow: hidden;
-            will-change: transform;
-            transition: transform 0.1s linear;
-        }
-
-        .hero-panel-left {
-            left: 0;
-            background: linear-gradient(90deg, #000 0%, transparent 100%);
-        }
-
-        .hero-panel-right {
-            right: 0;
-            background: linear-gradient(270deg, #000 0%, transparent 100%);
-        }
-
-        .hero-panel-left img,
-        .hero-panel-right img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            position: absolute;
-            top: 0;
-            transition: transform 1.2s cubic-bezier(0.65, 0, 0.35, 1);
-            will-change: transform;
-        }
-
-        .hero-panel-left img {
-            left: 0;
-            object-position: 70% center;
-        }
-
-        .hero-panel-right img {
-            right: 0;
-            object-position: 30% center;
-        }
-
-        .hero-panel-left:hover img,
-        .hero-panel-right:hover img {
-            transform: scale(1.05);
-        }
-
-        .hero-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at center, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.4) 100%);
-            z-index: 5;
-            pointer-events: none;
-        }
-
-        .hero-content {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 20;
-            text-align: center;
-            color: white;
-            width: 100%;
-            max-width: 1000px;
-            padding: 0 2rem;
-            pointer-events: none;
-        }
-
-        .hero-pre-title {
-            font-size: 0.9rem;
-            letter-spacing: 6px;
-            text-transform: uppercase;
-            margin-bottom: 1rem;
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeUpReveal 1s forwards 0.3s;
-            font-weight: 300;
-            color: rgba(255,255,255,0.9);
-        }
-
-        .hero-title {
-            font-family: var(--font-serif);
-            font-size: 6.5rem;
-            font-weight: 700;
-            line-height: 1;
-            margin-bottom: 1.5rem;
-            text-shadow: 0 4px 30px rgba(0,0,0,0.3);
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeUpReveal 1s forwards 0.6s;
-            letter-spacing: -0.02em;
-        }
-
-        .hero-title span {
-            color: var(--color-accent);
-            font-style: italic;
-        }
-
-        .hero-subtitle {
-            font-size: 1.4rem;
-            font-weight: 300;
-            margin-bottom: 2.5rem;
-            text-shadow: 0 2px 15px rgba(0,0,0,0.2);
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeUpReveal 1s forwards 0.9s;
-            color: rgba(255,255,255,0.95);
-        }
-
-        .hero-btn {
-            display: inline-block;
-            padding: 18px 54px;
-            background: white;
-            color: var(--color-text-primary);
-            font-weight: 600;
-            letter-spacing: 2px;
-            border: none;
-            cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.65, 0, 0.35, 1);
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            pointer-events: auto;
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeUpReveal 1s forwards 1.2s;
-            position: relative;
-            overflow: hidden;
-            border-radius: 0;
-            text-decoration: none;
-        }
-
-        .hero-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: var(--color-accent);
-            transition: left 0.4s cubic-bezier(0.65, 0, 0.35, 1);
-            z-index: -1;
-        }
-
-        .hero-btn:hover {
-            color: white;
-            transform: translateY(-3px);
-            box-shadow: 0 20px 30px -10px rgba(0,0,0,0.3);
-        }
-
-        .hero-btn:hover::before {
-            left: 0;
-        }
-
-        .scroll-indicator {
-            position: absolute;
-            bottom: 3rem;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 30;
-            color: white;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.8rem;
-            opacity: 0;
-            animation: fadeIn 1s forwards 1.8s;
-            cursor: pointer;
-        }
-
-        .scroll-line {
-            width: 2px;
-            height: 60px;
-            background: rgba(255,255,255,0.3);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .scroll-line::after {
-            content: '';
-            position: absolute;
-            top: -100%;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: white;
-            animation: scrollLine 2s infinite;
-        }
-
-        @keyframes scrollLine {
-            0% { top: -100%; }
-            100% { top: 100%; }
-        }
-
-        .scroll-indicator span {
-            font-size: 0.8rem;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            font-weight: 300;
-        }
-
-        @keyframes fadeUpReveal {
-            0% {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Featured Products */
-        .featured-section {
-            padding: var(--spacing-xl) 0;
-        }
-
-        .featured-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: var(--spacing-md);
-            margin-top: var(--spacing-lg);
-        }
-
-        .featured-card {
-            cursor: pointer;
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeUp 0.8s forwards;
-        }
-
-        .featured-card:nth-child(1) { animation-delay: 0.2s; }
-        .featured-card:nth-child(2) { animation-delay: 0.4s; }
-        .featured-card:nth-child(3) { animation-delay: 0.6s; }
-
-        .featured-image {
-            aspect-ratio: 3/4;
-            overflow: hidden;
-            margin-bottom: var(--spacing-sm);
-            position: relative;
-        }
-
-        .featured-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.8s;
-        }
-
-        .featured-card:hover .featured-image img {
-            transform: scale(1.05);
-        }
-
-        .featured-info {
-            text-align: center;
-        }
-
-        .featured-title {
-            font-family: var(--font-serif);
-            font-size: 1.3rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .featured-price {
-            color: var(--color-text-secondary);
-        }
-
-        @media (max-width: 1024px) {
-            .hero-title {
-                font-size: 5rem;
-            }
-            
-            .featured-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .hero-title {
-                font-size: 3.5rem;
-            }
-            
-            .hero-subtitle {
-                font-size: 1.1rem;
-            }
-            
-            .hero-pre-title {
-                font-size: 0.8rem;
-            }
-            
-            .hero-panel-left,
-            .hero-panel-right {
-                width: 100%;
-                height: 50%;
-            }
-            
-            .hero-panel-left {
-                top: 0;
-            }
-            
-            .hero-panel-right {
-                top: 50%;
-            }
-            
-            .featured-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero-title {
-                font-size: 2.5rem;
-            }
-            
-            .hero-btn {
-                padding: 16px 40px;
-            }
-        }
-    </style>
-</head>
-<body>
-    <!-- Cursor Personalizado -->
-    <div class="custom-cursor"></div>
-    <div class="cursor-dot"></div>
-
-    <!-- Header -->
-    <header id="header">
-        <div class="header-container">
-            <a href="index.html" class="logo">Bara & Co</a>
-            <nav>
-                <ul class="nav-menu">
-                    <li><a href="index.html" class="nav-link active">Inicio</a></li>
-                    <li><a href="tienda.html" class="nav-link">Tienda</a></li>
-                    <li><a href="lookbook.html" class="nav-link">Lookbook</a></li>
-                    <li><a href="#contacto" class="nav-link">Contacto</a></li>
-                </ul>
-                <div class="menu-toggle">
-                    <i class="fas fa-bars"></i>
-                </div>
-            </nav>
-            <div class="header-icons">
-                <i class="fas fa-search"></i>
-                <a href="tienda.html"><i class="fas fa-user"></i></a>
-                <div class="cart-icon-wrapper" onclick="toggleCart()">
-                    <i class="fas fa-shopping-bag"></i>
-                    <span class="cart-count">0</span>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <!-- Hero Cinematográfico -->
-    <div class="hero-container">
-        <div class="hero-sticky" id="heroSticky">
-            <!-- Panel izquierdo -->
-            <div class="hero-panel-left" id="panelLeft">
-                <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Bara & Co mujer">
-            </div>
-            <!-- Panel derecho -->
-            <div class="hero-panel-right" id="panelRight">
-                <img src="https://images.unsplash.com/photo-1504593811423-6dd665756598?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Bara & Co hombre">
-            </div>
-            
-            <!-- Overlay -->
-            <div class="hero-overlay"></div>
-            
-            <!-- Contenido central -->
-            <div class="hero-content">
-                <div class="hero-pre-title">Colección Otoño 2026</div>
-                <h1 class="hero-title">Armá tu <span>estilo</span></h1>
-                <p class="hero-subtitle">Esencia urbana. Confort atemporal.</p>
-                <a href="tienda.html" class="hero-btn">Descubrir colección</a>
-            </div>
-            
-            <!-- Scroll indicator -->
-            <div class="scroll-indicator" onclick="window.scrollTo({top: window.innerHeight, behavior: 'smooth'})">
-                <span>Descubrir</span>
-                <div class="scroll-line"></div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Productos Destacados -->
-    <section class="featured-section">
-        <div class="container">
-            <h2 class="section-title text-center" style="font-size: 2.8rem; margin-bottom: 1rem;">Novedades</h2>
-            <p class="text-center" style="color: var(--color-text-secondary); margin-bottom: 3rem;">Lo más nuevo de la temporada</p>
-            
-            <div class="featured-grid">
-                <div class="featured-card" onclick="window.location.href='producto.html?id=1'">
-                    <div class="featured-image">
-                        <span class="badge" style="position: absolute; top: 15px; right: 15px; background: var(--color-text-primary); color: white; padding: 4px 12px; font-size: 0.75rem;">Nuevo</span>
-                        <img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Remera Oversize">
-                    </div>
-                    <div class="featured-info">
-                        <h3 class="featured-title">Remera Oversize</h3>
-                        <p class="featured-price">$7.999</p>
-                    </div>
-                </div>
-                
-                <div class="featured-card" onclick="window.location.href='producto.html?id=2'">
-                    <div class="featured-image">
-                        <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Jean Holgado">
-                    </div>
-                    <div class="featured-info">
-                        <h3 class="featured-title">Jean Holgado</h3>
-                        <p class="featured-price">$15.999</p>
-                    </div>
-                </div>
-                
-                <div class="featured-card" onclick="window.location.href='producto.html?id=3'">
-                    <div class="featured-image">
-                        <span class="badge" style="position: absolute; top: 15px; right: 15px; background: var(--color-accent); color: white; padding: 4px 12px; font-size: 0.75rem;">-20%</span>
-                        <img src="https://images.unsplash.com/photo-1524592001865-b32997a13083?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Campera Jean">
-                    </div>
-                    <div class="featured-info">
-                        <h3 class="featured-title">Campera Jean</h3>
-                        <p class="featured-price"><s style="color: #999; margin-right: 5px;">$28.999</s> $22.999</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="text-center" style="margin-top: 3rem;">
-                <a href="tienda.html" class="btn">Ver todos los productos</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer id="contacto">
-        <div class="container">
-            <div class="footer-grid">
-                <div>
-                    <div class="footer-logo">Bara & Co</div>
-                    <p class="footer-text">Indumentaria urbana con personalidad. Diseño y confort para tu día a día.</p>
-                    <div class="social-icons">
-                        <i class="fab fa-instagram"></i>
-                        <i class="fab fa-facebook-f"></i>
-                        <i class="fab fa-tiktok"></i>
-                    </div>
-                </div>
-                <div>
-                    <h4 class="footer-title">Categorías</h4>
-                    <ul class="footer-links">
-                        <li><a href="tienda.html?categoria=mujer">Mujer</a></li>
-                        <li><a href="tienda.html?categoria=hombre">Hombre</a></li>
-                        <li><a href="tienda.html?categoria=accesorios">Accesorios</a></li>
-                        <li><a href="tienda.html?categoria=sale">Sale</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="footer-title">Ayuda</h4>
-                    <ul class="footer-links">
-                        <li><a href="#">Envíos</a></li>
-                        <li><a href="#">Cambios y devoluciones</a></li>
-                        <li><a href="#">Preguntas frecuentes</a></li>
-                        <li><a href="#">Contacto</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="footer-title">Newsletter</h4>
-                    <p class="footer-text">Sumate. 10% OFF en tu primera compra.</p>
-                    <div class="newsletter-input">
-                        <input type="email" placeholder="Tu email">
-                        <button><i class="fas fa-arrow-right"></i></button>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <div class="legal-info">
-                    <span>© 2026 Bara & Co</span>
-                    <span>CUIT 30-71234567-8</span>
-                    <span>Ing. Olmos 139 – Jesús María</span>
-                </div>
-                <div class="legal-info">
-                    <span>Términos y condiciones</span>
-                    <span>Política de privacidad</span>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- CARRITO FLOTANTE (GLOBAL) -->
-    <div class="cart-icon" onclick="toggleCart()">
-        <i class="fas fa-shopping-bag"></i>
-        <span class="cart-count">0</span>
-    </div>
-
-    <div class="cart-notification" id="cartNotification">
-        <i class="fas fa-check-circle"></i>
-        <span>Producto agregado</span>
-    </div>
-
-    <div class="cart-panel" id="cartPanel">
-        <div class="cart-header">
-            <h2 class="cart-title">Carrito</h2>
-            <i class="fas fa-times close-cart" onclick="toggleCart()"></i>
-        </div>
-        <div class="cart-items">
-            <!-- Se llena dinámicamente con JS -->
-        </div>
-        <div class="cart-footer">
-            <div class="subtotal">
-                <span>Subtotal</span>
-                <span id="subtotal">$0</span>
-            </div>
-            <button class="checkout-btn" onclick="window.location.href='checkout.html'">
-                <span>Finalizar compra</span>
-                <i class="fas fa-arrow-right"></i>
-            </button>
-        </div>
-    </div>
-
-    <div class="overlay" id="overlay" onclick="toggleCart()"></div>
-
-    <!-- Scripts -->
-    <script src="js/carrito.js"></script>
-    <script src="js/auth.js"></script>
-<script src="js/mercadopago.js"></script>
-<script src="js/search.js"></script>
-<script src="js/admin-productos.js"></script>
-    <script>
-        // Hero cinematográfico - Efecto puertas corredizas
-        document.addEventListener('DOMContentLoaded', function() {
-            const panelLeft = document.getElementById('panelLeft');
-            const panelRight = document.getElementById('panelRight');
-            const heroSticky = document.getElementById('heroSticky');
-            
-            const MAX_TRANSLATE = 48;
-            
-            function updateHeroPanels() {
-                const rect = heroSticky.getBoundingClientRect();
-                let progress = -rect.top / (window.innerHeight * 0.8);
-                progress = Math.max(0, Math.min(1, progress));
-                
-                const easedProgress = progress < 0.5 
-                    ? 2 * progress * progress 
-                    : 1 - Math.pow(-2 * progress + 2, 2) / 2;
-                
-                const leftTranslate = - (easedProgress * MAX_TRANSLATE);
-                const rightTranslate = easedProgress * MAX_TRANSLATE;
-                
-                if (panelLeft) panelLeft.style.transform = `translateX(${leftTranslate}%)`;
-                if (panelRight) panelRight.style.transform = `translateX(${rightTranslate}%)`;
-                
-                const heroContent = document.querySelector('.hero-content');
-                const scrollIndicator = document.querySelector('.scroll-indicator');
-                
-                if (heroContent) {
-                    heroContent.style.opacity = Math.max(0, 1 - progress * 1.2);
-                }
-                if (scrollIndicator) {
-                    scrollIndicator.style.opacity = Math.max(0, 1 - progress * 1.5);
-                }
-            }
-            
-            window.addEventListener('scroll', updateHeroPanels);
-            window.addEventListener('resize', updateHeroPanels);
-            updateHeroPanels();
-        });
-    </script>
-</body>
-
-</html>
-
-=======
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Bara & Co · Indumentaria Urbana</title>
@@ -780,6 +146,25 @@
       will-change: transform;
     }
 
+    .hero-background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      opacity: 1;
+      transition: opacity 0.5s ease;
+      pointer-events: none;
+    }
+
+    .hero-background img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.7);
+    }
+
     .hero-half {
       position: absolute;
       top: 0;
@@ -788,6 +173,8 @@
       overflow: hidden;
       will-change: transform;
       transition: transform 0.1s linear;
+      z-index: 2;
+      background: transparent;
     }
 
     .hero-half-left {
@@ -806,27 +193,27 @@
     }
 
     .hero-half img {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;  /* ← CAMBIO CLAVE: contain en lugar de cover */
-  transform: translate(-50%, -50%) scale(1.1);
-  transition: transform 1.2s var(--ease);
-  will-change: transform;
-  background-color: #000; /* Fondo negro para las bandas */
-}
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      transform: translate(-50%, -50%) scale(1.1);
+      transition: transform 1.2s var(--ease);
+      will-change: transform;
+      z-index: 1;
+    }
 
-.hero-half:hover img {
-  transform: translate(-50%, -50%) scale(1.05);
-}
+    .hero-half:hover img {
+      transform: translate(-50%, -50%) scale(1.05);
+    }
 
     .hero-half::before {
       content: '';
       position: absolute;
       inset: 0;
-      z-index: 1;
+      z-index: 3;
       background: rgba(0,0,0,.38);
       transition: background .6s;
     }
@@ -855,7 +242,7 @@
     .hero-label {
       position: absolute;
       bottom: 52px;
-      z-index: 4;
+      z-index: 10;
       font-size: 9px;
       letter-spacing: .35em;
       text-transform: uppercase;
@@ -948,49 +335,6 @@
     .hero-cta i {
       font-size: 10px;
     }
-    /* ===== FONDO DEL HERO ===== */
-.hero-background {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0; /* Detrás de los paneles */
-  opacity: 1;
-  transition: opacity 0.5s ease;
-  pointer-events: none; /* Para que no interfiera con clicks */
-}
-
-.hero-background img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: brightness(0.7); /* Oscurecer un poco para que resalte el texto */
-}
-
-/* Ajustar z-index de los paneles para que estén sobre el fondo */
-.hero-half {
-  z-index: 2;
-  background: transparent; /* Fondo transparente para ver la imagen detrás */
-}
-
-.hero-half::before {
-  z-index: 3; /* El tint va sobre la imagen pero debajo del texto */
-}
-
-.hero-half img {
-  z-index: 1;
-}
-
-/* El texto y elementos deben estar sobre todo */
-.hero-center, .hero-label, .hero-divider, .scroll-hint {
-  z-index: 10;
-}
-
-/* Cuando los paneles se abren, se ve el fondo */
-.hero-half-left[style*="translateX"] {
-  /* El fondo ya está visible por defecto */
-}
 
     .scroll-hint {
       position: absolute;
@@ -1101,7 +445,7 @@
       margin-bottom:56px; gap:20px;
     }
     .section-eyebrow {
-      font-size:9px; letter-spacing:.35em; text-transform:uppercase; color:var(--accent); margin-bottom:10px;
+      font-size:8px; letter-spacing:.35em; text-transform:uppercase; color:var(--accent); margin-bottom:10px;
     }
     .section-title {
       font-family:var(--serif); font-size:clamp(32px,4vw,56px);
@@ -1463,7 +807,6 @@
   Envíos a todo el país &nbsp;·&nbsp; Retiro en local · Ing. Olmos 139, Jesús María &nbsp;·&nbsp; Compra segura
 </div>
 
-<!-- ══ HERO CON PARALLAX - VERSIÓN CORREGIDA ══ -->
 <!-- ══ HERO CON PARALLAX Y FONDO ══ -->
 <section class="hero" id="hero">
   <!-- Imagen de fondo (se ve cuando los paneles se abren) -->
@@ -1553,7 +896,7 @@
   </div>
 </div>
 
-<!-- ══ DESTACADOS ══ -->
+<!-- ══ DESTACADOS (CARGADOS DESDE JSON) ══ -->
 <section class="section" id="featured">
   <div class="section-header">
     <div>
@@ -1563,85 +906,8 @@
     <a class="section-link" href="tienda.html">Ver todos <i class="fas fa-arrow-right" style="font-size:9px"></i></a>
   </div>
 
-  <div class="prod-grid">
-    <!-- Campera JEAN clásica -->
-    <div class="prod-card"
-         data-name="Campera JEAN clásica" data-price="75000"
-         data-img="https://d22fxaf9t8d39k.cloudfront.net/d96714644466596d09ed9ffb84226e2b318859a866be9604788cf4154aa52650404368.jpg"
-         onclick="location.href='tienda.html'">
-      <div class="prod-img">
-        <span class="prod-badge badge-new">New</span>
-        <img src="https://d22fxaf9t8d39k.cloudfront.net/d96714644466596d09ed9ffb84226e2b318859a866be9604788cf4154aa52650404368.jpg" alt="Campera JEAN clásica" loading="lazy"/>
-        <div class="prod-overlay">
-          <button class="ov-btn ov-add" onclick="event.stopPropagation();addCart(this)"><i class="fas fa-shopping-bag"></i> Agregar</button>
-          <button class="ov-btn ov-view" onclick="event.stopPropagation();location.href='tienda.html'">Ver en tienda</button>
-        </div>
-      </div>
-      <div class="prod-info">
-        <p class="prod-cat">New Collection · Hombre</p>
-        <h3 class="prod-name">Campera JEAN clásica</h3>
-        <p class="prod-price">$75.000</p>
-      </div>
-    </div>
-
-    <!-- Sastrero RIALTO -->
-    <div class="prod-card"
-         data-name="Sastrero RIALTO" data-price="70000"
-         data-img="https://d22fxaf9t8d39k.cloudfront.net/82f0a5682cfeff36ae17af15cd408edaedc84e200eed095f5d3ac7d84b92d4ab404368.jpg"
-         onclick="location.href='tienda.html'">
-      <div class="prod-img">
-        <span class="prod-badge badge-new">New</span>
-        <img src="https://d22fxaf9t8d39k.cloudfront.net/82f0a5682cfeff36ae17af15cd408edaedc84e200eed095f5d3ac7d84b92d4ab404368.jpg" alt="Sastrero RIALTO" loading="lazy"/>
-        <div class="prod-overlay">
-          <button class="ov-btn ov-add" onclick="event.stopPropagation();addCart(this)"><i class="fas fa-shopping-bag"></i> Agregar</button>
-          <button class="ov-btn ov-view" onclick="event.stopPropagation();location.href='tienda.html'">Ver en tienda</button>
-        </div>
-      </div>
-      <div class="prod-info">
-        <p class="prod-cat">New Collection · Hombre</p>
-        <h3 class="prod-name">Sastrero RIALTO</h3>
-        <p class="prod-price">$70.000</p>
-      </div>
-    </div>
-
-    <!-- Jean Ancho -->
-    <div class="prod-card"
-         data-name="Jean Ancho" data-price="50000"
-         data-img="https://d22fxaf9t8d39k.cloudfront.net/dd90a394af234d838d3d5ae4d59f16dd819614b3a74c2e8354a0c11be282fd64404368.jpg"
-         onclick="location.href='tienda.html'">
-      <div class="prod-img">
-        <span class="prod-badge badge-sale">−28%</span>
-        <img src="https://d22fxaf9t8d39k.cloudfront.net/dd90a394af234d838d3d5ae4d59f16dd819614b3a74c2e8354a0c11be282fd64404368.jpg" alt="Jean Ancho" loading="lazy"/>
-        <div class="prod-overlay">
-          <button class="ov-btn ov-add" onclick="event.stopPropagation();addCart(this)"><i class="fas fa-shopping-bag"></i> Agregar</button>
-          <button class="ov-btn ov-view" onclick="event.stopPropagation();location.href='tienda.html'">Ver en tienda</button>
-        </div>
-      </div>
-      <div class="prod-info">
-        <p class="prod-cat">Mujer · Pantalones</p>
-        <h3 class="prod-name">Jean Ancho</h3>
-        <p class="prod-price"><del>$70.000</del> $50.000</p>
-      </div>
-    </div>
-
-    <!-- Kimono -->
-    <div class="prod-card"
-         data-name="Kimono" data-price="43000"
-         data-img="https://d22fxaf9t8d39k.cloudfront.net/e8526f0a99c44d29f26b1476822de55159e0bb4794692d6b9be03218e8dcbcd5404368.jpg"
-         onclick="location.href='tienda.html'">
-      <div class="prod-img">
-        <img src="https://d22fxaf9t8d39k.cloudfront.net/e8526f0a99c44d29f26b1476822de55159e0bb4794692d6b9be03218e8dcbcd5404368.jpg" alt="Kimono" loading="lazy"/>
-        <div class="prod-overlay">
-          <button class="ov-btn ov-add" onclick="event.stopPropagation();addCart(this)"><i class="fas fa-shopping-bag"></i> Agregar</button>
-          <button class="ov-btn ov-view" onclick="event.stopPropagation();location.href='tienda.html'">Ver en tienda</button>
-        </div>
-      </div>
-      <div class="prod-info">
-        <p class="prod-cat">Mujer · Remeras</p>
-        <h3 class="prod-name">Kimono</h3>
-        <p class="prod-price">$43.000</p>
-      </div>
-    </div>
+  <div class="prod-grid" id="productosDestacados">
+    <!-- Se carga dinámicamente con JS -->
   </div>
 </section>
 
@@ -1793,7 +1059,7 @@
       <span>Subtotal</span>
       <span class="cd-subtotal-amt" id="cdTotal">$0</span>
     </div>
-    <button class="pay-btn pay-mp"><i class="fab fa-cc-visa"></i> Pagar con MercadoPago</button>
+    <button class="pay-btn pay-mp" onclick="pagarConMercadoPago()"><i class="fab fa-cc-visa"></i> Pagar con MercadoPago</button>
     <button class="pay-btn pay-wa" onclick="pagarWA()"><i class="fab fa-whatsapp"></i> Solicitar por WhatsApp</button>
     <p class="pay-note"><i class="fas fa-lock"></i> &nbsp;Pago seguro. Sin comisiones adicionales.</p>
   </div>
@@ -1813,12 +1079,6 @@ const hdr = document.getElementById('header');
 window.addEventListener('scroll', () => {
   hdr.classList.toggle('scrolled', window.scrollY > 40);
 }, {passive:true});
-
-/* ── SCROLL REVEAL ── */
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
-}, { threshold:.12 });
-document.querySelectorAll('.prod-card').forEach(c => observer.observe(c));
 
 /* ===== HERO PARALLAX - PANELES QUE SE ABREN ===== */
 document.addEventListener('DOMContentLoaded', function() {
@@ -1865,6 +1125,70 @@ document.addEventListener('DOMContentLoaded', function() {
   updateHeroPanels();
 });
 
+/* ===== CARGAR PRODUCTOS DESTACADOS DESDE JSON ===== */
+document.addEventListener('DOMContentLoaded', async function() {
+  await cargarDestacados();
+});
+
+async function cargarDestacados() {
+  try {
+    const response = await fetch('productos.json?t=' + Date.now());
+    const todos = await response.json();
+    
+    // Tomar los primeros 4 productos activos como destacados
+    const destacados = todos.filter(p => p.activo === true).slice(0, 4);
+    
+    const grid = document.getElementById('productosDestacados');
+    if (!grid) return;
+    
+    let html = '';
+    destacados.forEach(producto => {
+      const descuento = producto.precioAnterior ? 
+        Math.round((1 - producto.precio / producto.precioAnterior) * 100) : 0;
+      
+      html += `
+        <div class="prod-card" onclick="window.location.href='producto.html?id=${producto.id}'">
+          <div class="prod-img">
+            ${producto.categoria === 'new' ? '<span class="prod-badge badge-new">New</span>' : ''}
+            ${producto.precioAnterior ? `<span class="prod-badge badge-sale">-${descuento}%</span>` : ''}
+            <img src="${producto.imagen}" alt="${producto.nombre}" loading="lazy" 
+                 onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'300\' height=\'400\'%3E%3Crect fill=\'%23f0ede8\' width=\'300\' height=\'400\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%23c9a96e\' font-size=\'14\'%3ESin imagen%3C/text%3E%3C/svg%3E'"/>
+            <div class="prod-overlay">
+              <button class="ov-btn ov-add" onclick="event.stopPropagation(); agregarAlCarrito('${producto.id}', '${producto.nombre}', ${producto.precio}, '${producto.imagen}')">
+                <i class="fas fa-shopping-bag"></i> Agregar
+              </button>
+              <button class="ov-btn ov-view" onclick="event.stopPropagation(); window.location.href='producto.html?id=${producto.id}'">
+                <i class="fas fa-eye"></i>
+              </button>
+            </div>
+          </div>
+          <div class="prod-info">
+            <p class="prod-cat">${producto.categoria}</p>
+            <h3 class="prod-name">${producto.nombre}</h3>
+            <p class="prod-price">
+              ${producto.precioAnterior ? `<del>$${producto.precioAnterior.toLocaleString('es-AR')}</del>` : ''}
+              $${producto.precio.toLocaleString('es-AR')}
+            </p>
+          </div>
+        </div>
+      `;
+    });
+    
+    grid.innerHTML = html;
+    
+    // Activar animaciones de aparición
+    document.querySelectorAll('.prod-card').forEach(c => c.classList.add('visible'));
+    
+  } catch (error) {
+    console.error('Error cargando destacados:', error);
+    document.getElementById('productosDestacados').innerHTML = `
+      <div class="no-products" style="grid-column:1/-1; text-align:center; padding:40px;">
+        <p>Error al cargar productos</p>
+      </div>
+    `;
+  }
+}
+
 /* ── CART ── */
 let cart = JSON.parse(localStorage.getItem('bc_cart')||'[]');
 function saveCart(){ localStorage.setItem('bc_cart', JSON.stringify(cart)); }
@@ -1874,13 +1198,9 @@ function toggleCart(){
   document.getElementById('cartBackdrop').classList.toggle('open');
 }
 
-function addCart(btn){
-  const card = btn.closest('.prod-card');
-  const name = card.dataset.name;
-  const price = parseInt(card.dataset.price);
-  const img   = card.dataset.img;
-  const found = cart.find(i=>i.name===name);
-  if(found) found.qty++; else cart.push({name,price,img,qty:1});
+function agregarAlCarrito(id, nombre, precio, imagen) {
+  const found = cart.find(i=>i.id===id);
+  if(found) found.qty++; else cart.push({id, name:nombre, precio, img:imagen, qty:1});
   saveCart(); renderCart();
   const t = document.getElementById('toast');
   t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),2400);
@@ -1898,7 +1218,7 @@ function renderCart(){
   const dot   = document.getElementById('cartDot');
   const total = document.getElementById('cdTotal');
   const cnt   = cart.reduce((s,i)=>s+i.qty,0);
-  const sum   = cart.reduce((s,i)=>s+i.price*i.qty,0);
+  const sum   = cart.reduce((s,i)=>s+i.precio*i.qty,0);
   dot.textContent = cnt; dot.classList.toggle('on', cnt>0);
   total.textContent = '$'+sum.toLocaleString('es-AR');
   body.querySelectorAll('.cd-item').forEach(e=>e.remove());
@@ -1910,7 +1230,7 @@ function renderCart(){
       <img src="${item.img}" alt="${item.name}"/>
       <div style="flex:1">
         <div class="cd-item-name">${item.name}${item.qty>1?' ×'+item.qty:''}</div>
-        <div class="cd-item-price">$${(item.price*item.qty).toLocaleString('es-AR')}</div>
+        <div class="cd-item-price">$${(item.precio*item.qty).toLocaleString('es-AR')}</div>
       </div>
       <button class="cd-item-rm" onclick="removeCart('${item.name.replace(/'/g,"\\'")}')">×</button>`;
     body.appendChild(el);
@@ -1919,9 +1239,17 @@ function renderCart(){
 
 function pagarWA(){
   if(!cart.length) return;
-  const lines = cart.map(i=>`• ${i.name}${i.qty>1?' x'+i.qty:''} — $${(i.price*i.qty).toLocaleString('es-AR')}`).join('%0A');
-  const total = cart.reduce((s,i)=>s+i.price*i.qty,0);
+  const lines = cart.map(i=>`• ${i.name}${i.qty>1?' x'+i.qty:''} — $${(i.precio*i.qty).toLocaleString('es-AR')}`).join('%0A');
+  const total = cart.reduce((s,i)=>s+i.precio*i.qty,0);
   window.open(`https://wa.me/549TUNUMERO?text=Hola%20Bara%20%26%20Co!%20Quiero%20hacer%20el%20siguiente%20pedido:%0A${lines}%0A%0ATotal:%20$${total.toLocaleString('es-AR')}`,'_blank');
+}
+
+function pagarConMercadoPago() {
+  if(!cart.length) return;
+  const total = cart.reduce((s,i)=>s+i.precio*i.qty,0);
+  const montoParaLink = total.toString().replace(/\./g, '');
+  const linkMP = `https://link.mercadopago.com.ar/baraandco?amount=${montoParaLink}`;
+  window.open(linkMP, '_blank');
 }
 
 function subscribe(){
@@ -1936,4 +1264,3 @@ renderCart();
 </script>
 </body>
 </html>
->>>>>>> 1cb007c424ee01c290e9c60298ddba046187d189
