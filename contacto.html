@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contacto · Bara & Co</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <style>
+    :root {
+      --bg:     #0b0b09;
+      --surf:   #131310;
+      --card:   #1a1a17;
+      --border: rgba(255,255,255,.06);
+      --text:   #ede9e1;
+      --muted:  #6b6760;
+      --accent: #c9a96e;
+      --adk:    #a07e48;
+      --serif:  'Cormorant Garamond', Georgia, serif;
+      --sans:   'DM Sans', sans-serif;
+      --ease:   cubic-bezier(.16,1,.3,1);
+    }
+    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+    html { scroll-behavior:smooth; }
+    body { background:var(--bg); color:var(--text); font-family:var(--sans); -webkit-font-smoothing:antialiased; cursor:none; }
+    a { color:inherit; text-decoration:none; }
+    img { display:block; }
+
+    /* CURSOR */
+    .cur      { position:fixed; width:9px; height:9px; background:var(--accent); border-radius:50%; pointer-events:none; z-index:9999; transform:translate(-50%,-50%); }
+    .cur-ring { position:fixed; width:34px; height:34px; border:1px solid rgba(201,169,110,.45); border-radius:50%; pointer-events:none; z-index:9998; transform:translate(-50%,-50%); transition:width .35s var(--ease),height .35s var(--ease); }
+
+    /* HEADER */
+    #header { position:fixed; top:0; left:0; right:0; z-index:500; height:80px; display:flex; align-items:center; padding:0 52px; background:rgba(11,11,9,0); transition:background .5s,border-color .5s; border-bottom:1px solid transparent; }
+    #header.scrolled { background:rgba(11,11,9,.96); backdrop-filter:blur(24px); border-color:var(--border); }
+    .hdr-logo { position:absolute; left:50%; transform:translateX(-50%); transition:all .5s var(--ease); }
+    #header.scrolled .hdr-logo { position:static; transform:none; }
+    .hdr-logo img { height:64px !important; width:auto !important; max-width:none !important; object-fit:contain; filter:brightness(0) invert(1); transition:height .5s var(--ease); }
+    #header.scrolled .hdr-logo img { height:48px !important; }
+    .hdr-nav { flex:1; }
+    .hdr-nav ul { display:flex; gap:38px; }
+    .hdr-nav a { font-size:10px; font-weight:500; letter-spacing:.18em; text-transform:uppercase; color:rgba(255,255,255,.6); position:relative; transition:color .25s; }
+    .hdr-nav a::after { content:''; position:absolute; bottom:-3px; left:0; right:0; height:1px; background:var(--accent); transform:scaleX(0); transform-origin:left; transition:transform .3s var(--ease); }
+    .hdr-nav a:hover, .hdr-nav a.active { color:#fff; }
+    .hdr-nav a:hover::after, .hdr-nav a.active::after { transform:scaleX(1); }
+    .hdr-right { margin-left:auto; display:flex; align-items:center; gap:22px; }
+    .hdr-right i { font-size:16px; color:rgba(255,255,255,.6); cursor:pointer; transition:color .25s; }
+    .hdr-right i:hover { color:var(--accent); }
+    .cart-w { position:relative; cursor:pointer; }
+    .cart-dot { position:absolute; top:-6px; right:-7px; width:16px; height:16px; border-radius:50%; background:var(--accent); color:var(--bg); font-size:8px; font-weight:700; display:none; place-items:center; }
+    .cart-dot.on { display:grid; }
+
+    /* HERO */
+    .ct-hero {
+      margin-top:80px; height:42vh; position:relative; overflow:hidden;
+      display:flex; align-items:center; justify-content:center; background:var(--surf);
+    }
+    .ct-hero-bg { position:absolute; inset:0; background:linear-gradient(135deg, #0b0b09 0%, #1f1e1a 100%); }
+    .ct-hero-content { position:relative; z-index:2; text-align:center; }
+    .ct-pre   { font-size:9px; letter-spacing:.45em; text-transform:uppercase; color:var(--accent); margin-bottom:14px; opacity:0; animation:fadeUp .8s var(--ease) .2s forwards; }
+    .ct-title { font-family:var(--serif); font-size:clamp(52px,7vw,100px); font-weight:300; line-height:.95; opacity:0; animation:fadeUp .9s var(--ease) .4s forwards; }
+    .ct-title em { font-style:italic; color:var(--accent); }
+    .ct-sub   { margin-top:18px; font-size:11px; letter-spacing:.22em; text-transform:uppercase; color:var(--muted); opacity:0; animation:fadeUp .8s var(--ease) .6s forwards; }
+
+    /* CONTACT LAYOUT */
+    .ct-page { max-width:1100px; margin:0 auto; padding:96px 52px; display:grid; grid-template-columns:1fr 1.5fr; gap:96px; align-items:start; }
+
+    /* LEFT — INFO */
+    .ct-info-eyebrow { font-size:9px; letter-spacing:.35em; text-transform:uppercase; color:var(--accent); margin-bottom:18px; }
+    .ct-info-title { font-family:var(--serif); font-size:clamp(28px,3.5vw,48px); font-weight:300; line-height:1.1; margin-bottom:28px; }
+    .ct-info-body { font-size:14px; color:var(--muted); line-height:1.9; margin-bottom:48px; }
+
+    /* Canal buttons */
+    .ct-channels { display:flex; flex-direction:column; gap:14px; margin-bottom:52px; }
+    .ct-channel {
+      display:flex; align-items:center; gap:16px;
+      padding:18px 22px; border:1px solid var(--border);
+      background:var(--card); transition:all .3s var(--ease); cursor:pointer;
+      text-decoration:none; position:relative; overflow:hidden;
+    }
+    .ct-channel::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; background:var(--accent); transform:scaleY(0); transform-origin:bottom; transition:transform .3s var(--ease); }
+    .ct-channel:hover { border-color:rgba(201,169,110,.3); background:rgba(201,169,110,.04); transform:translateX(4px); }
+    .ct-channel:hover::before { transform:scaleY(1); }
+    .ct-ch-icon { width:44px; height:44px; border-radius:50%; display:grid; place-items:center; font-size:18px; flex-shrink:0; }
+    .ch-wa   .ct-ch-icon { background:rgba(37,211,102,.12); color:#25d366; }
+    .ch-mail .ct-ch-icon { background:rgba(201,169,110,.1); color:var(--accent); }
+    .ch-ig   .ct-ch-icon { background:rgba(225,48,108,.1); color:#e1306c; }
+    .ct-ch-label { font-size:9px; letter-spacing:.2em; text-transform:uppercase; color:var(--muted); margin-bottom:2px; }
+    .ct-ch-val   { font-size:15px; font-weight:400; color:var(--text); }
+    .ct-ch-arr   { margin-left:auto; color:var(--muted); font-size:12px; transition:transform .3s var(--ease), color .25s; }
+    .ct-channel:hover .ct-ch-arr { transform:translateX(4px); color:var(--accent); }
+
+    /* Horario */
+    .ct-hours { padding:22px; border:1px solid var(--border); background:var(--card); }
+    .ct-hours-title { font-size:9px; letter-spacing:.2em; text-transform:uppercase; color:var(--muted); margin-bottom:14px; }
+    .ct-hours-row { display:flex; justify-content:space-between; font-size:13px; padding:7px 0; border-bottom:1px solid var(--border); }
+    .ct-hours-row:last-child { border-bottom:none; }
+    .ct-hours-day { color:var(--muted); }
+    .ct-hours-time { color:var(--text); }
+
+    /* RIGHT — FORM */
+    .ct-form-wrap { background:var(--card); border:1px solid var(--border); padding:48px; }
+    .ct-form-title { font-family:var(--serif); font-size:28px; font-weight:300; margin-bottom:6px; }
+    .ct-form-sub   { font-size:13px; color:var(--muted); margin-bottom:36px; line-height:1.7; }
+
+    /* Selector de motivo */
+    .reason-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:28px; }
+    .reason-btn {
+      padding:11px 14px; border:1px solid var(--border); background:transparent;
+      color:var(--muted); font-family:var(--sans); font-size:12px; cursor:pointer;
+      transition:all .25s; text-align:left; display:flex; align-items:center; gap:8px;
+    }
+    .reason-btn:hover { border-color:rgba(201,169,110,.4); color:var(--text); }
+    .reason-btn.active { border-color:var(--accent); color:var(--accent); background:rgba(201,169,110,.06); }
+    .reason-btn i { font-size:13px; }
+
+    /* Fields */
+    .form-row { margin-bottom:20px; }
+    .form-row-2 { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:20px; }
+    .form-label { display:block; font-size:9px; letter-spacing:.2em; text-transform:uppercase; color:var(--muted); margin-bottom:8px; }
+    .form-input, .form-textarea {
+      width:100%; background:rgba(255,255,255,.04); border:1px solid var(--border);
+      color:var(--text); font-family:var(--sans); font-size:14px; padding:13px 16px; outline:none;
+      transition:border-color .25s, background .25s;
+    }
+    .form-input:focus, .form-textarea:focus { border-color:var(--accent); background:rgba(255,255,255,.06); }
+    .form-input::placeholder, .form-textarea::placeholder { color:var(--muted); }
+    .form-textarea { resize:vertical; min-height:130px; }
+
+    /* Send options */
+    .send-section { margin-top:28px; }
+    .send-label { font-size:9px; letter-spacing:.2em; text-transform:uppercase; color:var(--muted); margin-bottom:12px; display:block; }
+    .send-options { display:flex; gap:10px; flex-wrap:wrap; }
+    .send-btn {
+      flex:1; padding:14px 20px; border:none; cursor:pointer; font-family:var(--sans);
+      font-size:11px; font-weight:500; letter-spacing:.12em; text-transform:uppercase;
+      display:flex; align-items:center; justify-content:center; gap:8px; transition:all .25s;
+      min-width:140px;
+    }
+    .send-email { background:var(--accent); color:var(--bg); }
+    .send-email:hover { background:var(--adk); }
+    .send-wa    { background:#25d366; color:#fff; }
+    .send-wa:hover { background:#1dbd5c; }
+    .send-btn:disabled { opacity:.5; cursor:not-allowed; }
+
+    /* Success */
+    .form-success {
+      display:none; text-align:center; padding:40px 20px;
+    }
+    .form-success.show { display:block; }
+    .form-success i { font-size:48px; color:var(--accent); margin-bottom:16px; display:block; }
+    .form-success h3 { font-family:var(--serif); font-size:28px; font-weight:300; margin-bottom:8px; }
+    .form-success p { font-size:14px; color:var(--muted); }
+
+    /* MAPA / INFO STRIP */
+    .ct-strip {
+      background:var(--surf); border-top:1px solid var(--border);
+      display:grid; grid-template-columns:repeat(3,1fr);
+    }
+    .ct-strip-item {
+      padding:52px 40px; text-align:center; border-right:1px solid var(--border);
+      display:flex; flex-direction:column; align-items:center; gap:14px;
+    }
+    .ct-strip-item:last-child { border-right:none; }
+    .ct-strip-icon { width:52px; height:52px; border:1px solid var(--border); border-radius:50%; display:grid; place-items:center; font-size:18px; color:var(--accent); }
+    .ct-strip-label { font-size:9px; letter-spacing:.2em; text-transform:uppercase; color:var(--muted); }
+    .ct-strip-val   { font-family:var(--serif); font-size:18px; font-weight:300; color:var(--text); line-height:1.3; }
+
+    /* FOOTER */
+    footer { background:var(--surf); border-top:1px solid var(--border); padding:80px 52px 40px; display:grid; grid-template-columns:1.6fr 1fr 1fr 1.2fr; gap:52px; }
+    .foot-logo img { height:56px !important; width:auto !important; object-fit:contain; filter:brightness(0) invert(1); }
+    .foot-tag  { margin-top:14px; font-size:13px; color:var(--muted); line-height:1.8; max-width:200px; }
+    .foot-soc  { display:flex; gap:16px; margin-top:20px; }
+    .foot-soc i { font-size:16px; color:var(--muted); cursor:pointer; transition:color .25s; }
+    .foot-soc i:hover { color:var(--accent); }
+    .foot-col h4 { font-size:8px; letter-spacing:.25em; text-transform:uppercase; color:var(--muted); margin-bottom:20px; padding-bottom:10px; border-bottom:1px solid var(--border); }
+    .foot-col li + li { margin-top:10px; }
+    .foot-col a, .foot-col li { font-size:13px; color:rgba(237,233,225,.45); transition:color .25s; list-style:none; }
+    .foot-col a:hover { color:var(--accent); }
+    .foot-bottom { padding:22px 52px; border-top:1px solid var(--border); display:flex; align-items:center; justify-content:space-between; font-size:10px; color:var(--muted); flex-wrap:wrap; gap:8px; }
+    .foot-links { display:flex; gap:20px; }
+    .foot-links a { color:var(--muted); transition:color .2s; }
+    .foot-links a:hover { color:var(--text); }
+
+    /* CART */
+    .cart-backdrop { position:fixed; inset:0; background:rgba(0,0,0,.6); z-index:597; opacity:0; pointer-events:none; transition:opacity .35s; }
+    .cart-backdrop.open { opacity:1; pointer-events:all; }
+    .cart-drawer { position:fixed; top:0; right:0; bottom:0; width:min(400px,100vw); background:var(--surf); border-left:1px solid var(--border); z-index:598; display:flex; flex-direction:column; transform:translateX(101%); transition:transform .42s var(--ease); }
+    .cart-drawer.open { transform:translateX(0); }
+    .cd-head { padding:22px 24px; border-bottom:1px solid var(--border); display:flex; align-items:center; justify-content:space-between; }
+    .cd-title { font-family:var(--serif); font-size:24px; font-weight:300; }
+    .cd-close { background:none; border:1px solid var(--border); color:var(--text); cursor:pointer; width:34px; height:34px; border-radius:50%; display:grid; place-items:center; font-size:18px; }
+    .cd-body { flex:1; overflow-y:auto; padding:16px 24px; }
+    .cd-empty { text-align:center; padding:60px 0; color:var(--muted); font-size:13px; }
+    .cd-foot  { padding:16px 24px; border-top:1px solid var(--border); }
+    .cd-sub   { display:flex; justify-content:space-between; margin-bottom:16px; font-size:13px; }
+    .cd-sub-amt { font-family:var(--serif); font-size:22px; color:var(--accent); }
+    .pay-btn  { width:100%; padding:14px; border:none; cursor:pointer; font-family:var(--sans); font-size:9px; font-weight:500; letter-spacing:.2em; text-transform:uppercase; display:flex; align-items:center; justify-content:center; gap:8px; margin-bottom:9px; }
+    .pay-mp   { background:var(--accent); color:var(--bg); }
+    .pay-wa   { background:#25d366; color:#fff; }
+    .pay-note { text-align:center; font-size:10px; color:var(--muted); }
+
+    /* WA FLOAT */
+    .wa-btn { position:fixed; bottom:28px; right:28px; z-index:400; width:52px; height:52px; border-radius:50%; background:#25d366; border:none; cursor:pointer; display:grid; place-items:center; box-shadow:0 4px 20px rgba(37,211,102,.35); transition:transform .3s var(--ease); }
+    .wa-btn:hover { transform:scale(1.1); }
+    .wa-btn i { font-size:22px; color:#fff; }
+
+    /* Toast */
+    .toast { position:fixed; bottom:24px; left:50%; transform:translateX(-50%) translateY(50px); background:var(--card); border:1px solid var(--accent); color:var(--text); padding:12px 24px; font-size:13px; display:flex; align-items:center; gap:10px; z-index:700; opacity:0; pointer-events:none; transition:all .4s var(--ease); white-space:nowrap; }
+    .toast.show { transform:translateX(-50%) translateY(0); opacity:1; }
+    .toast i { color:var(--accent); }
+
+    @keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:none} }
+    @keyframes fadeIn { from{opacity:0} to{opacity:1} }
+
+    @media(max-width:900px) {
+      #header { padding:0 22px; height:68px; }
+      .hdr-nav { display:none; }
+      .hdr-logo img { height:52px !important; }
+      .ct-page { grid-template-columns:1fr; padding:56px 22px; gap:52px; }
+      .ct-strip { grid-template-columns:1fr; }
+      .ct-strip-item { border-right:none; border-bottom:1px solid var(--border); padding:36px 22px; }
+      footer { grid-template-columns:1fr 1fr; padding:56px 22px 32px; }
+      .foot-bottom { padding:16px 22px; flex-direction:column; }
+      .ct-form-wrap { padding:28px 22px; }
+      .form-row-2 { grid-template-columns:1fr; }
+      .reason-grid { grid-template-columns:1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="cur" id="cur"></div>
+<div class="cur-ring" id="curRing"></div>
+
+<!-- HEADER -->
+<header id="header">
+  <nav class="hdr-nav">
+    <ul>
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="tienda.html">Tienda</a></li>
+      <li><a href="lookbook.html">Lookbook</a></li>
+      <li><a href="contacto.html" class="active">Contacto</a></li>
+    </ul>
+  </nav>
+  <div class="hdr-logo"><a href="index.html"><img src="images/logo-bara-co.png" alt="Bara & Co"/></a></div>
+  <div class="hdr-right">
+    <div class="cart-w" onclick="toggleCart()">
+      <i class="fas fa-shopping-bag"></i>
+      <span class="cart-dot" id="cartDot">0</span>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="ct-hero">
+  <div class="ct-hero-bg"></div>
+  <div class="ct-hero-content">
+    <p class="ct-pre">Bara & Co · Jesús María</p>
+    <h1 class="ct-title">Con<em>tacto</em></h1>
+    <p class="ct-sub">Estamos para ayudarte</p>
+  </div>
+</section>
+
+<!-- MAIN CONTENT -->
+<div class="ct-page">
+
+  <!-- LEFT — INFO -->
+  <div>
+    <p class="ct-info-eyebrow">Hablemos</p>
+    <h2 class="ct-info-title">¿Tenés alguna<br/>consulta?</h2>
+    <p class="ct-info-body">Podés escribirnos por el formulario, mandarnos un WhatsApp directo, o enviarnos un mail. Respondemos dentro de las 24 horas hábiles.</p>
+
+    <!-- Canales -->
+    <div class="ct-channels">
+      <a href="https://wa.me/549TUNUMERO" target="_blank" class="ct-channel ch-wa">
+        <div class="ct-ch-icon"><i class="fab fa-whatsapp"></i></div>
+        <div>
+          <div class="ct-ch-label">WhatsApp</div>
+          <div class="ct-ch-val">+54 9 XXX XXX-XXXX</div>
+        </div>
+        <i class="fas fa-arrow-right ct-ch-arr"></i>
+      </a>
+      <a href="mailto:bara.and.co.jm@gmail.com" class="ct-channel ch-mail">
+        <div class="ct-ch-icon"><i class="fas fa-envelope"></i></div>
+        <div>
+          <div class="ct-ch-label">Email</div>
+          <div class="ct-ch-val">bara.and.co.jm@gmail.com</div>
+        </div>
+        <i class="fas fa-arrow-right ct-ch-arr"></i>
+      </a>
+      <a href="https://instagram.com/bara.and.co" target="_blank" class="ct-channel ch-ig">
+        <div class="ct-ch-icon"><i class="fab fa-instagram"></i></div>
+        <div>
+          <div class="ct-ch-label">Instagram</div>
+          <div class="ct-ch-val">@bara.and.co</div>
+        </div>
+        <i class="fas fa-arrow-right ct-ch-arr"></i>
+      </a>
+    </div>
+
+    <!-- Horario -->
+    <div class="ct-hours">
+      <div class="ct-hours-title">Horario de atención</div>
+      <div class="ct-hours-row">
+        <span class="ct-hours-day">Lunes a viernes</span>
+        <span class="ct-hours-time">10:00 – 19:00</span>
+      </div>
+      <div class="ct-hours-row">
+        <span class="ct-hours-day">Sábados</span>
+        <span class="ct-hours-time">10:00 – 14:00</span>
+      </div>
+      <div class="ct-hours-row">
+        <span class="ct-hours-day">Domingos</span>
+        <span class="ct-hours-time">Cerrado</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT — FORMULARIO -->
+  <div class="ct-form-wrap">
+
+    <!-- FORM visible -->
+    <div id="formContent">
+      <h2 class="ct-form-title">Envianos un mensaje</h2>
+      <p class="ct-form-sub">Seleccioná el motivo y completá el formulario. Te respondemos a la brevedad.</p>
+
+      <!-- Motivo -->
+      <div class="reason-grid">
+        <button class="reason-btn active" data-reason="Consulta sobre un producto" onclick="selReason(this)">
+          <i class="fas fa-tshirt"></i> Producto
+        </button>
+        <button class="reason-btn" data-reason="Consulta sobre un pedido" onclick="selReason(this)">
+          <i class="fas fa-box"></i> Mi pedido
+        </button>
+        <button class="reason-btn" data-reason="Consulta sobre envíos" onclick="selReason(this)">
+          <i class="fas fa-truck"></i> Envíos
+        </button>
+        <button class="reason-btn" data-reason="Otro motivo" onclick="selReason(this)">
+          <i class="fas fa-comment"></i> Otro
+        </button>
+      </div>
+
+      <!-- Datos -->
+      <div class="form-row-2">
+        <div>
+          <label class="form-label">Nombre *</label>
+          <input type="text" class="form-input" id="fNombre" placeholder="Tu nombre"/>
+        </div>
+        <div>
+          <label class="form-label">Apellido *</label>
+          <input type="text" class="form-input" id="fApellido" placeholder="Tu apellido"/>
+        </div>
+      </div>
+      <div class="form-row">
+        <label class="form-label">Email *</label>
+        <input type="email" class="form-input" id="fEmail" placeholder="tu@email.com"/>
+      </div>
+      <div class="form-row">
+        <label class="form-label">Teléfono (opcional)</label>
+        <input type="tel" class="form-input" id="fTel" placeholder="+54 9 ..."/>
+      </div>
+      <div class="form-row">
+        <label class="form-label">Mensaje *</label>
+        <textarea class="form-textarea" id="fMsg" placeholder="Contanos tu consulta con el mayor detalle posible..."></textarea>
+      </div>
+
+      <!-- Enviar -->
+      <div class="send-section">
+        <span class="send-label">¿Cómo preferís que te respondamos?</span>
+        <div class="send-options">
+          <button class="send-btn send-email" onclick="enviarEmail()">
+            <i class="fas fa-envelope"></i> Enviar por email
+          </button>
+          <button class="send-btn send-wa" onclick="enviarWA()">
+            <i class="fab fa-whatsapp"></i> Enviar por WhatsApp
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- SUCCESS STATE -->
+    <div class="form-success" id="formSuccess">
+      <i class="fas fa-check-circle"></i>
+      <h3>¡Mensaje enviado!</h3>
+      <p>Gracias por escribirnos.<br/>Te respondemos dentro de las próximas 24 horas hábiles.</p>
+      <br/>
+      <button onclick="resetForm()" style="background:none;border:1px solid var(--border);color:var(--muted);cursor:pointer;padding:10px 20px;font-family:var(--sans);font-size:12px;letter-spacing:.1em;text-transform:uppercase;margin-top:12px;transition:border-color .25s" onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--border)'">
+        Enviar otro mensaje
+      </button>
+    </div>
+
+  </div>
+</div>
+
+<!-- INFO STRIP -->
+<div class="ct-strip">
+  <div class="ct-strip-item">
+    <div class="ct-strip-icon"><i class="fas fa-map-marker-alt"></i></div>
+    <div class="ct-strip-label">Local</div>
+    <div class="ct-strip-val">Ing. Olmos 139<br/>Jesús María, Córdoba</div>
+  </div>
+  <div class="ct-strip-item">
+    <div class="ct-strip-icon"><i class="fas fa-truck"></i></div>
+    <div class="ct-strip-label">Envíos</div>
+    <div class="ct-strip-val">Todo el país<br/>vía correo y moto</div>
+  </div>
+  <div class="ct-strip-item">
+    <div class="ct-strip-icon"><i class="fas fa-undo"></i></div>
+    <div class="ct-strip-label">Cambios</div>
+    <div class="ct-strip-val">30 días<br/>sin preguntas</div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="foot-logo"><img src="images/logo-bara-co.png" alt="Bara & Co"/></div>
+    <p class="foot-tag">Indumentaria urbana con personalidad. Diseño y confort para tu día a día.</p>
+    <div class="foot-soc">
+      <i class="fab fa-instagram" onclick="window.open('https://instagram.com/bara.and.co','_blank')"></i>
+      <i class="fab fa-facebook-f"></i>
+      <i class="fab fa-tiktok"></i>
+    </div>
+  </div>
+  <div class="foot-col">
+    <h4>Categorías</h4>
+    <ul>
+      <li><a href="tienda.html">Hombre</a></li>
+      <li><a href="tienda.html">Mujer</a></li>
+      <li><a href="tienda.html">Accesorios</a></li>
+      <li><a href="tienda.html">Sale</a></li>
+    </ul>
+  </div>
+  <div class="foot-col">
+    <h4>Ayuda</h4>
+    <ul>
+      <li><a href="#">Envíos</a></li>
+      <li><a href="#">Cambios y devoluciones</a></li>
+      <li><a href="contacto.html">Contacto</a></li>
+    </ul>
+  </div>
+  <div class="foot-col">
+    <h4>Newsletter</h4>
+    <p style="font-size:13px;color:var(--muted);margin-bottom:12px;line-height:1.8">10% OFF en tu primera compra</p>
+    <div style="display:flex">
+      <input type="email" id="nlEmail" placeholder="tu@email.com" style="flex:1;background:rgba(255,255,255,.05);border:1px solid var(--border);border-right:none;color:var(--text);padding:10px 13px;font-size:13px;font-family:var(--sans);outline:none"/>
+      <button onclick="nl()" style="background:var(--accent);border:none;cursor:pointer;padding:10px 14px;color:var(--bg);font-size:11px">→</button>
+    </div>
+  </div>
+</footer>
+<div class="foot-bottom">
+  <span>© 2026 Bara & Co &nbsp;·&nbsp; Ing. Olmos 139 – Jesús María &nbsp;·&nbsp; bara.and.co.jm@gmail.com</span>
+  <div class="foot-links">
+    <a href="#">Términos y condiciones</a>
+    <a href="#">Política de privacidad</a>
+  </div>
+</div>
+
+<!-- WA FLOAT -->
+<button class="wa-btn" onclick="window.open('https://wa.me/549TUNUMERO','_blank')"><i class="fab fa-whatsapp"></i></button>
+
+<!-- CART -->
+<div class="cart-backdrop" id="cartBackdrop" onclick="toggleCart()"></div>
+<div class="cart-drawer" id="cartDrawer">
+  <div class="cd-head"><h2 class="cd-title">Carrito</h2><button class="cd-close" onclick="toggleCart()">×</button></div>
+  <div class="cd-body" id="cdBody"><div class="cd-empty" id="cdEmpty">Tu carrito está vacío</div></div>
+  <div class="cd-foot">
+    <div class="cd-sub"><span>Subtotal</span><span class="cd-sub-amt" id="cdTotal">$0</span></div>
+    <button class="pay-btn pay-mp"><i class="fas fa-lock"></i> Pagar con MercadoPago</button>
+    <button class="pay-btn pay-wa" onclick="pagarWA()"><i class="fab fa-whatsapp"></i> Pedir por WhatsApp</button>
+    <p class="pay-note"><i class="fas fa-lock"></i> Pago seguro</p>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"><i class="fas fa-check-circle"></i> <span id="toastMsg"></span></div>
+
+<script>
+/* CURSOR */
+const cur=document.getElementById('cur'), ring=document.getElementById('curRing');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
+(function t(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(t);})();
+
+/* HEADER */
+window.addEventListener('scroll',()=>document.getElementById('header').classList.toggle('scrolled',scrollY>40),{passive:true});
+
+/* REASON SELECTOR */
+let activeReason = 'Consulta sobre un producto';
+function selReason(btn) {
+  document.querySelectorAll('.reason-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  activeReason = btn.dataset.reason;
+}
+
+/* VALIDACIÓN */
+function getFormData() {
+  const nombre  = document.getElementById('fNombre').value.trim();
+  const apellido= document.getElementById('fApellido').value.trim();
+  const email   = document.getElementById('fEmail').value.trim();
+  const tel     = document.getElementById('fTel').value.trim();
+  const msg     = document.getElementById('fMsg').value.trim();
+  return { nombre, apellido, email, tel, msg };
+}
+function validate() {
+  const d = getFormData();
+  if (!d.nombre)  { showToast('Ingresá tu nombre'); return false; }
+  if (!d.apellido){ showToast('Ingresá tu apellido'); return false; }
+  if (!d.email || !d.email.includes('@')) { showToast('Ingresá un email válido'); return false; }
+  if (!d.msg)     { showToast('Escribí tu mensaje'); return false; }
+  return true;
+}
+
+/* ENVIAR POR EMAIL — abre cliente de mail */
+function enviarEmail() {
+  if (!validate()) return;
+  const d = getFormData();
+  const subj = encodeURIComponent(`[Bara & Co] ${activeReason} — ${d.nombre} ${d.apellido}`);
+  const body = encodeURIComponent(
+    `Motivo: ${activeReason}\n` +
+    `Nombre: ${d.nombre} ${d.apellido}\n` +
+    `Email: ${d.email}\n` +
+    `Teléfono: ${d.tel || '—'}\n\n` +
+    `Mensaje:\n${d.msg}`
+  );
+  window.location.href = `mailto:bara.and.co.jm@gmail.com?subject=${subj}&body=${body}`;
+  showSuccess();
+}
+
+/* ENVIAR POR WHATSAPP */
+function enviarWA() {
+  if (!validate()) return;
+  const d = getFormData();
+  const txt = encodeURIComponent(
+    `Hola Bara & Co! 👋\n\n` +
+    `*Motivo:* ${activeReason}\n` +
+    `*Nombre:* ${d.nombre} ${d.apellido}\n` +
+    `*Email:* ${d.email}\n\n` +
+    `*Mensaje:*\n${d.msg}`
+  );
+  window.open(`https://wa.me/549TUNUMERO?text=${txt}`, '_blank');
+  showSuccess();
+}
+
+function showSuccess() {
+  document.getElementById('formContent').style.display = 'none';
+  document.getElementById('formSuccess').classList.add('show');
+}
+function resetForm() {
+  document.getElementById('formContent').style.display = 'block';
+  document.getElementById('formSuccess').classList.remove('show');
+  ['fNombre','fApellido','fEmail','fTel','fMsg'].forEach(f => document.getElementById(f).value = '');
+  document.querySelectorAll('.reason-btn').forEach((b,i) => b.classList.toggle('active', i===0));
+  activeReason = 'Consulta sobre un producto';
+}
+
+/* CART */
+let cart = JSON.parse(localStorage.getItem('bc_cart')||'[]');
+function toggleCart() { document.getElementById('cartDrawer').classList.toggle('open'); document.getElementById('cartBackdrop').classList.toggle('open'); }
+function renderCart() {
+  const dot=document.getElementById('cartDot'), tot=document.getElementById('cdTotal'), body=document.getElementById('cdBody'), emp=document.getElementById('cdEmpty');
+  const cnt=cart.reduce((s,i)=>s+i.qty,0), sum=cart.reduce((s,i)=>s+i.price*i.qty,0);
+  dot.textContent=cnt; dot.classList.toggle('on',cnt>0);
+  tot.textContent='$'+sum.toLocaleString('es-AR');
+  body.querySelectorAll('.cd-item').forEach(e=>e.remove());
+  emp.style.display=cart.length?'none':'block';
+}
+function pagarWA() {
+  if(!cart.length) return;
+  const lines=cart.map(i=>`• ${i.name} — $${(i.price*i.qty).toLocaleString('es-AR')}`).join('%0A');
+  const tot=cart.reduce((s,i)=>s+i.price*i.qty,0);
+  window.open(`https://wa.me/549TUNUMERO?text=Hola!%20Quiero%20pedir:%0A${lines}%0ATotal:%20$${tot.toLocaleString('es-AR')}`,'_blank');
+}
+
+/* TOAST */
+let tt;
+function showToast(msg) {
+  document.getElementById('toastMsg').textContent = msg;
+  document.getElementById('toast').classList.add('show');
+  clearTimeout(tt); tt = setTimeout(() => document.getElementById('toast').classList.remove('show'), 3000);
+}
+
+/* NEWSLETTER */
+function nl() { const v=document.getElementById('nlEmail').value; if(v&&v.includes('@')){alert('¡Gracias! Te enviamos tu 10% OFF.');document.getElementById('nlEmail').value='';}else{alert('Ingresá un email válido');} }
+
+renderCart();
+</script>
+</body>
+</html>
