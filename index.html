@@ -314,6 +314,49 @@
     .hero-cta i {
       font-size: 10px;
     }
+    /* ===== FONDO DEL HERO ===== */
+.hero-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0; /* Detrás de los paneles */
+  opacity: 1;
+  transition: opacity 0.5s ease;
+  pointer-events: none; /* Para que no interfiera con clicks */
+}
+
+.hero-background img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.7); /* Oscurecer un poco para que resalte el texto */
+}
+
+/* Ajustar z-index de los paneles para que estén sobre el fondo */
+.hero-half {
+  z-index: 2;
+  background: transparent; /* Fondo transparente para ver la imagen detrás */
+}
+
+.hero-half::before {
+  z-index: 3; /* El tint va sobre la imagen pero debajo del texto */
+}
+
+.hero-half img {
+  z-index: 1;
+}
+
+/* El texto y elementos deben estar sobre todo */
+.hero-center, .hero-label, .hero-divider, .scroll-hint {
+  z-index: 10;
+}
+
+/* Cuando los paneles se abren, se ve el fondo */
+.hero-half-left[style*="translateX"] {
+  /* El fondo ya está visible por defecto */
+}
 
     .scroll-hint {
       position: absolute;
@@ -787,8 +830,14 @@
 </div>
 
 <!-- ══ HERO CON PARALLAX - VERSIÓN CORREGIDA ══ -->
+<!-- ══ HERO CON PARALLAX Y FONDO ══ -->
 <section class="hero" id="hero">
-  <!-- Left panel — Mujer (se mueve hacia la izquierda) -->
+  <!-- Imagen de fondo (se ve cuando los paneles se abren) -->
+  <div class="hero-background">
+    <img src="images/fondo%20hero.png" alt="Fondo Bara & Co">
+  </div>
+  
+  <!-- Left panel — Mujer -->
   <div class="hero-half hero-half-left" id="panelLeft" onclick="location.href='tienda.html'">
     <div class="hero-image-wrapper">
       <img src="images/modeloportizq.png" alt="Mujer"/>
@@ -796,7 +845,7 @@
     <span class="hero-label">Mujer</span>
   </div>
 
-  <!-- Right panel — Hombre (se mueve hacia la derecha) -->
+  <!-- Right panel — Hombre -->
   <div class="hero-half hero-half-right" id="panelRight" onclick="location.href='tienda.html'">
     <div class="hero-image-wrapper">
       <img src="images/modeloderecha.png" alt="Hombre"/>
@@ -807,7 +856,7 @@
   <!-- Divider -->
   <div class="hero-divider"></div>
 
-  <!-- Center text (se desvanece al scrollear) -->
+  <!-- Center text -->
   <div class="hero-center" id="heroContent">
     <p class="hero-pre">New Collection 2026</p>
     <h1 class="hero-h1">Bara<br/><em>&amp; Co</em></h1>
@@ -815,7 +864,7 @@
     <a class="hero-cta" href="tienda.html">Descubrir colección <i class="fas fa-arrow-right"></i></a>
   </div>
 
-  <!-- Scroll (se desvanece al scrollear) -->
+  <!-- Scroll hint -->
   <div class="scroll-hint" id="scrollHint">
     <span>Scroll</span>
     <div class="scroll-hint-line"></div>
