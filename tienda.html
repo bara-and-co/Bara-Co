@@ -299,6 +299,64 @@
     .foot-bot a:hover { color:var(--text); }
     .foot-links { display:flex; gap:18px; }
 
+    /* ── QUICK VIEW MODAL ── */
+    .qv-backdrop {
+      position:fixed; inset:0; background:rgba(0,0,0,.72);
+      z-index:600; opacity:0; pointer-events:none; transition:opacity .3s;
+    }
+    .qv-backdrop.open { opacity:1; pointer-events:all; }
+
+    .qv-modal {
+      position:fixed; top:50%; left:50%; z-index:601;
+      width:min(860px,95vw); max-height:90vh; overflow-y:auto;
+      background:var(--surface); border:1px solid var(--border);
+      transform:translate(-50%,-52%) scale(.97);
+      opacity:0; pointer-events:none;
+      transition:transform .35s var(--ease), opacity .3s;
+      display:flex; flex-wrap:wrap;
+    }
+    .qv-modal.open { transform:translate(-50%,-50%) scale(1); opacity:1; pointer-events:all; }
+
+    .qv-img {
+      flex:0 0 46%; min-height:420px; overflow:hidden; position:relative;
+    }
+    .qv-img img { width:100%; height:100%; object-fit:cover; }
+
+    .qv-info {
+      flex:1; padding:36px 32px; display:flex; flex-direction:column; justify-content:center; gap:14px;
+    }
+    .qv-cat  { font-size:9px; letter-spacing:.2em; text-transform:uppercase; color:var(--muted); }
+    .qv-name { font-family:var(--serif); font-size:26px; font-weight:400; line-height:1.15; }
+    .qv-price { font-size:22px; color:var(--accent); }
+    .qv-price del { font-size:14px; color:var(--muted); margin-right:6px; }
+    .qv-desc { font-size:13px; color:var(--muted); line-height:1.7; border-top:1px solid var(--border); padding-top:14px; }
+
+    .qv-actions { display:flex; flex-direction:column; gap:9px; margin-top:4px; }
+    .qv-btn {
+      width:100%; padding:13px; border:none; cursor:pointer;
+      font-family:var(--sans); font-size:10px; font-weight:700;
+      letter-spacing:.18em; text-transform:uppercase;
+      display:flex; align-items:center; justify-content:center; gap:8px;
+      transition:background .22s, color .22s;
+    }
+    .qv-btn-add  { background:var(--accent); color:var(--bg); }
+    .qv-btn-add:hover { background:var(--adk); }
+    .qv-btn-wa   { background:#25d366; color:#fff; }
+    .qv-btn-wa:hover { background:#1dbd5c; }
+
+    .qv-close {
+      position:absolute; top:14px; right:16px; z-index:2;
+      background:rgba(14,14,12,.7); border:1px solid var(--border); color:var(--text);
+      width:32px; height:32px; border-radius:50%; display:grid; place-items:center;
+      font-size:17px; cursor:pointer; transition:border-color .2s;
+    }
+    .qv-close:hover { border-color:var(--accent); color:var(--accent); }
+
+    @media (max-width:600px) {
+      .qv-img { flex:0 0 100%; min-height:260px; }
+      .qv-info { padding:22px 18px; }
+    }
+
     /* ── KEYFRAMES ── */
     @keyframes fadeUp {
       from { opacity:0; transform:translateY(20px); }
@@ -384,7 +442,7 @@
       <img src="https://d22fxaf9t8d39k.cloudfront.net/d96714644466596d09ed9ffb84226e2b318859a866be9604788cf4154aa52650404368.jpg" alt="Campera JEAN clásica" loading="lazy"/>
       <div class="prod-overlay">
         <button class="ov-btn ov-add" onclick="event.stopPropagation();addCart(this)"><i class="fas fa-shopping-bag"></i> Agregar</button>
-        <button class="ov-btn ov-view">Ver detalle</button>
+        <button class="ov-btn ov-view" onclick="event.stopPropagation();openQV(this)">Ver detalle</button>
       </div>
     </div>
     <div class="prod-info">
@@ -402,7 +460,7 @@
       <img src="https://d22fxaf9t8d39k.cloudfront.net/82f0a5682cfeff36ae17af15cd408edaedc84e200eed095f5d3ac7d84b92d4ab404368.jpg" alt="Sastrero RIALTO" loading="lazy"/>
       <div class="prod-overlay">
         <button class="ov-btn ov-add" onclick="event.stopPropagation();addCart(this)"><i class="fas fa-shopping-bag"></i> Agregar</button>
-        <button class="ov-btn ov-view">Ver detalle</button>
+        <button class="ov-btn ov-view" onclick="event.stopPropagation();openQV(this)">Ver detalle</button>
       </div>
     </div>
     <div class="prod-info">
@@ -422,7 +480,7 @@
       <img src="https://d22fxaf9t8d39k.cloudfront.net/b8b0947140bff5c58341de81bac796e1e3e639975958ea29e976f4be63aa4b63404368.jpg" alt="Campera LAMPARD" loading="lazy"/>
       <div class="prod-overlay">
         <button class="ov-btn ov-add" onclick="event.stopPropagation();addCart(this)"><i class="fas fa-shopping-bag"></i> Agregar</button>
-        <button class="ov-btn ov-view">Ver detalle</button>
+        <button class="ov-btn ov-view" onclick="event.stopPropagation();openQV(this)">Ver detalle</button>
       </div>
     </div>
     <div class="prod-info">
@@ -439,7 +497,7 @@
       <img src="https://d22fxaf9t8d39k.cloudfront.net/63916cc7ca35026ef56aa0ca267d1043c9ca7fb0513e69e535a82aeea68bf7fa404368.jpg" alt="Sweater ARRAIAL" loading="lazy"/>
       <div class="prod-overlay">
         <button class="ov-btn ov-add" onclick="event.stopPropagation();addCart(this)"><i class="fas fa-shopping-bag"></i> Agregar</button>
-        <button class="ov-btn ov-view">Ver detalle</button>
+        <button class="ov-btn ov-view" onclick="event.stopPropagation();openQV(this)">Ver detalle</button>
       </div>
     </div>
     <div class="prod-info">
@@ -457,7 +515,7 @@
       <img src="https://d22fxaf9t8d39k.cloudfront.net/4ac16ce84da0f1bf02e8a3154fb71ac7e6118d0d13da170f3534dcfbad531801404368.jpg" alt="Remera INTER tejida" loading="lazy"/>
       <div class="prod-overlay">
         <button class="ov-btn ov-add" onclick="event.stopPropagation();addCart(this)"><i class="fas fa-shopping-bag"></i> Agregar</button>
-        <button class="ov-btn ov-view">Ver detalle</button>
+        <button class="ov-btn ov-view" onclick="event.stopPropagation();openQV(this)">Ver detalle</button>
       </div>
     </div>
     <div class="prod-info">
@@ -475,7 +533,7 @@
       <img src="https://d22fxaf9t8d39k.cloudfront.net/99817bd6bf6e9fd396141d1523a7dfd5d4f3b696e0ae3e6a9390dfa9f4a05071404368.jpg" alt="Conjunto LINO" loading="lazy"/>
       <div class="prod-overlay">
         <button class="ov-btn ov-add" onclick="event.stopPropagation();addCart(this)"><i class="fas fa-shopping-bag"></i> Agregar</button>
-        <button class="ov-btn ov-view">Ver detalle</button>
+        <button class="ov-btn ov-view" onclick="event.stopPropagation();openQV(this)">Ver detalle</button>
       </div>
     </div>
     <div class="prod-info">
@@ -493,7 +551,7 @@
       <img src="https://d22fxaf9t8d39k.cloudfront.net/fa693e785f22af48e6822e56319cf73a27c346b8426073564ae246e592af33b9404368.jpg" alt="Bermuda REAL TREE baggy" loading="lazy"/>
       <div class="prod-overlay">
         <button class="ov-btn ov-add" onclick="event.stopPropagation();addCart(this)"><i class="fas fa-shopping-bag"></i> Agregar</button>
-        <button class="ov-btn ov-view">Ver detalle</button>
+        <button class="ov-btn ov-view" onclick="event.stopPropagation();openQV(this)">Ver detalle</button>
       </div>
     </div>
     <div class="prod-info">
@@ -511,7 +569,7 @@
       <img src="https://d22fxaf9t8d39k.cloudfront.net/904e176b85becfa3e907cae30e6dc5fb50758bc2d11d86c2bebe9827d06a0440404368.jpg" alt="Bermuda WONDER lino" loading="lazy"/>
       <div class="prod-overlay">
         <button class="ov-btn ov-add" onclick="event.stopPropagation();addCart(this)"><i class="fas fa-shopping-bag"></i> Agregar</button>
-        <button class="ov-btn ov-view">Ver detalle</button>
+        <button class="ov-btn ov-view" onclick="event.stopPropagation();openQV(this)">Ver detalle</button>
       </div>
     </div>
     <div class="prod-info">
@@ -529,7 +587,7 @@
       <img src="https://d22fxaf9t8d39k.cloudfront.net/c036d7168c84ffb9b023141749287d09fef41c6623b904c7f813d8687822f98b404368.jpg" alt="Bermuda LIVIANA elastizada" loading="lazy"/>
       <div class="prod-overlay">
         <button class="ov-btn ov-add" onclick="event.stopPropagation();addCart(this)"><i class="fas fa-shopping-bag"></i> Agregar</button>
-        <button class="ov-btn ov-view">Ver detalle</button>
+        <button class="ov-btn ov-view" onclick="event.stopPropagation();openQV(this)">Ver detalle</button>
       </div>
     </div>
     <div class="prod-info">
@@ -547,7 +605,7 @@
       <img src="https://d22fxaf9t8d39k.cloudfront.net/d4dea3af0623e9063f446478fb6e8a3d3d2bc68b32bf3a70a8f9d4fd4d741b03404368.jpg" alt="Short de baño ELASTIZADO SOFT" loading="lazy"/>
       <div class="prod-overlay">
         <button class="ov-btn ov-add" onclick="event.stopPropagation();addCart(this)"><i class="fas fa-shopping-bag"></i> Agregar</button>
-        <button class="ov-btn ov-view">Ver detalle</button>
+        <button class="ov-btn ov-view" onclick="event.stopPropagation();openQV(this)">Ver detalle</button>
       </div>
     </div>
     <div class="prod-info">
@@ -565,7 +623,7 @@
       <img src="https://d22fxaf9t8d39k.cloudfront.net/40e42a49e6d64a8e79edcd9e3f127153e929ede0037a9c8dfa8aa029212e635e404368.jpg" alt="Short de baño ELASTIZADO" loading="lazy"/>
       <div class="prod-overlay">
         <button class="ov-btn ov-add" onclick="event.stopPropagation();addCart(this)"><i class="fas fa-shopping-bag"></i> Agregar</button>
-        <button class="ov-btn ov-view">Ver detalle</button>
+        <button class="ov-btn ov-view" onclick="event.stopPropagation();openQV(this)">Ver detalle</button>
       </div>
     </div>
     <div class="prod-info">
@@ -583,7 +641,7 @@
       <img src="https://d22fxaf9t8d39k.cloudfront.net/06a77b40ecdc626f4daad492e24aa3d3da0b7345e488022a7fb4472e8a5e3803404368.jpg" alt="Short de baño MULTIRAYAS" loading="lazy"/>
       <div class="prod-overlay">
         <button class="ov-btn ov-add" onclick="event.stopPropagation();addCart(this)"><i class="fas fa-shopping-bag"></i> Agregar</button>
-        <button class="ov-btn ov-view">Ver detalle</button>
+        <button class="ov-btn ov-view" onclick="event.stopPropagation();openQV(this)">Ver detalle</button>
       </div>
     </div>
     <div class="prod-info">
@@ -601,7 +659,7 @@
       <img src="https://d22fxaf9t8d39k.cloudfront.net/caf6ca6d1cefa9ed71dcbcc79d7a2724e9bf37bdb8780a69f6566351b85351fe404368.jpg" alt="Short de baño RAYADO" loading="lazy"/>
       <div class="prod-overlay">
         <button class="ov-btn ov-add" onclick="event.stopPropagation();addCart(this)"><i class="fas fa-shopping-bag"></i> Agregar</button>
-        <button class="ov-btn ov-view">Ver detalle</button>
+        <button class="ov-btn ov-view" onclick="event.stopPropagation();openQV(this)">Ver detalle</button>
       </div>
     </div>
     <div class="prod-info">
@@ -619,7 +677,7 @@
       <img src="https://d22fxaf9t8d39k.cloudfront.net/23d625d545c1e155e70543e48cb442af745c07e825bcc83ccbeda4b481a2dc73404368.jpg" alt="Short de baño ESTAMPADOS" loading="lazy"/>
       <div class="prod-overlay">
         <button class="ov-btn ov-add" onclick="event.stopPropagation();addCart(this)"><i class="fas fa-shopping-bag"></i> Agregar</button>
-        <button class="ov-btn ov-view">Ver detalle</button>
+        <button class="ov-btn ov-view" onclick="event.stopPropagation();openQV(this)">Ver detalle</button>
       </div>
     </div>
     <div class="prod-info">
@@ -639,7 +697,7 @@
       <img src="https://d22fxaf9t8d39k.cloudfront.net/9bfff86519b2b7b55d0d29918e5af12482e446721dee3e4251193f59b8e8c17e404368.jpg" alt="Musculosa tejida Venecia" loading="lazy"/>
       <div class="prod-overlay">
         <button class="ov-btn ov-add" onclick="event.stopPropagation();addCart(this)"><i class="fas fa-shopping-bag"></i> Agregar</button>
-        <button class="ov-btn ov-view">Ver detalle</button>
+        <button class="ov-btn ov-view" onclick="event.stopPropagation();openQV(this)">Ver detalle</button>
       </div>
     </div>
     <div class="prod-info">
@@ -656,7 +714,7 @@
       <img src="https://d22fxaf9t8d39k.cloudfront.net/e8526f0a99c44d29f26b1476822de55159e0bb4794692d6b9be03218e8dcbcd5404368.jpg" alt="Kimono" loading="lazy"/>
       <div class="prod-overlay">
         <button class="ov-btn ov-add" onclick="event.stopPropagation();addCart(this)"><i class="fas fa-shopping-bag"></i> Agregar</button>
-        <button class="ov-btn ov-view">Ver detalle</button>
+        <button class="ov-btn ov-view" onclick="event.stopPropagation();openQV(this)">Ver detalle</button>
       </div>
     </div>
     <div class="prod-info">
@@ -673,7 +731,7 @@
       <img src="https://d22fxaf9t8d39k.cloudfront.net/5758461c98122bfce36356c5a0be0108fd023d57c24f4b604d6b8438c243972f404368.jpg" alt="Remeron tejido 86" loading="lazy"/>
       <div class="prod-overlay">
         <button class="ov-btn ov-add" onclick="event.stopPropagation();addCart(this)"><i class="fas fa-shopping-bag"></i> Agregar</button>
-        <button class="ov-btn ov-view">Ver detalle</button>
+        <button class="ov-btn ov-view" onclick="event.stopPropagation();openQV(this)">Ver detalle</button>
       </div>
     </div>
     <div class="prod-info">
@@ -690,7 +748,7 @@
       <img src="https://d22fxaf9t8d39k.cloudfront.net/41bcc8a83d38eb40760aa0bc7c9191debc4d38e07c741958b6892462108f6644404368.jpg" alt="Crop tejido Kendi" loading="lazy"/>
       <div class="prod-overlay">
         <button class="ov-btn ov-add" onclick="event.stopPropagation();addCart(this)"><i class="fas fa-shopping-bag"></i> Agregar</button>
-        <button class="ov-btn ov-view">Ver detalle</button>
+        <button class="ov-btn ov-view" onclick="event.stopPropagation();openQV(this)">Ver detalle</button>
       </div>
     </div>
     <div class="prod-info">
@@ -707,7 +765,7 @@
       <img src="https://d22fxaf9t8d39k.cloudfront.net/bedfef39950f4610f0c85df6710b0ca0c8a00a6daadba4e57234036417b5ccf2404368.jpg" alt="Body" loading="lazy"/>
       <div class="prod-overlay">
         <button class="ov-btn ov-add" onclick="event.stopPropagation();addCart(this)"><i class="fas fa-shopping-bag"></i> Agregar</button>
-        <button class="ov-btn ov-view">Ver detalle</button>
+        <button class="ov-btn ov-view" onclick="event.stopPropagation();openQV(this)">Ver detalle</button>
       </div>
     </div>
     <div class="prod-info">
@@ -725,7 +783,7 @@
       <img src="https://d22fxaf9t8d39k.cloudfront.net/dd90a394af234d838d3d5ae4d59f16dd819614b3a74c2e8354a0c11be282fd64404368.jpg" alt="Jean Ancho" loading="lazy"/>
       <div class="prod-overlay">
         <button class="ov-btn ov-add" onclick="event.stopPropagation();addCart(this)"><i class="fas fa-shopping-bag"></i> Agregar</button>
-        <button class="ov-btn ov-view">Ver detalle</button>
+        <button class="ov-btn ov-view" onclick="event.stopPropagation();openQV(this)">Ver detalle</button>
       </div>
     </div>
     <div class="prod-info">
@@ -743,7 +801,7 @@
       <img src="https://d22fxaf9t8d39k.cloudfront.net/23cd8555c955f6c941e822edc5e0106e217b34584c01292fec7946f714b871c5404368.jpg" alt="Pantalon Mujer" loading="lazy"/>
       <div class="prod-overlay">
         <button class="ov-btn ov-add" onclick="event.stopPropagation();addCart(this)"><i class="fas fa-shopping-bag"></i> Agregar</button>
-        <button class="ov-btn ov-view">Ver detalle</button>
+        <button class="ov-btn ov-view" onclick="event.stopPropagation();openQV(this)">Ver detalle</button>
       </div>
     </div>
     <div class="prod-info">
@@ -761,7 +819,7 @@
       <img src="https://d22fxaf9t8d39k.cloudfront.net/e1ced99735f95039982ce3dd6ffe72a2f0b82b2e6e60497f8d2567731f5224a0404368.jpg" alt="Remera Crop Top" loading="lazy"/>
       <div class="prod-overlay">
         <button class="ov-btn ov-add" onclick="event.stopPropagation();addCart(this)"><i class="fas fa-shopping-bag"></i> Agregar</button>
-        <button class="ov-btn ov-view">Ver detalle</button>
+        <button class="ov-btn ov-view" onclick="event.stopPropagation();openQV(this)">Ver detalle</button>
       </div>
     </div>
     <div class="prod-info">
@@ -779,7 +837,7 @@
       <img src="https://d22fxaf9t8d39k.cloudfront.net/9ed84011c0f7f607432c187f40ec36f82b414e84b3d28269fc42305dd6efed95404368.jpg" alt="Top Verde" loading="lazy"/>
       <div class="prod-overlay">
         <button class="ov-btn ov-add" onclick="event.stopPropagation();addCart(this)"><i class="fas fa-shopping-bag"></i> Agregar</button>
-        <button class="ov-btn ov-view">Ver detalle</button>
+        <button class="ov-btn ov-view" onclick="event.stopPropagation();openQV(this)">Ver detalle</button>
       </div>
     </div>
     <div class="prod-info">
@@ -797,7 +855,7 @@
       <img src="https://d22fxaf9t8d39k.cloudfront.net/61b3e9431a237af50d1fa63f7068428871a2386de0fde482ec3600e6adfbbdec404368.jpg" alt="Short HOJAS" loading="lazy"/>
       <div class="prod-overlay">
         <button class="ov-btn ov-add" onclick="event.stopPropagation();addCart(this)"><i class="fas fa-shopping-bag"></i> Agregar</button>
-        <button class="ov-btn ov-view">Ver detalle</button>
+        <button class="ov-btn ov-view" onclick="event.stopPropagation();openQV(this)">Ver detalle</button>
       </div>
     </div>
     <div class="prod-info">
@@ -815,7 +873,7 @@
       <img src="https://d22fxaf9t8d39k.cloudfront.net/dbf00d91308b96b6c71d0c8f6726ce7901b0520cd4813222db616da53ee83966404368.jpg" alt="Short BRICK" loading="lazy"/>
       <div class="prod-overlay">
         <button class="ov-btn ov-add" onclick="event.stopPropagation();addCart(this)"><i class="fas fa-shopping-bag"></i> Agregar</button>
-        <button class="ov-btn ov-view">Ver detalle</button>
+        <button class="ov-btn ov-view" onclick="event.stopPropagation();openQV(this)">Ver detalle</button>
       </div>
     </div>
     <div class="prod-info">
@@ -833,7 +891,7 @@
       <img src="https://d22fxaf9t8d39k.cloudfront.net/11eb585d8ea84f6f172125795b54363a9ce9eb1be22ab65cee3579ca43c07cdd404368.jpg" alt="Short BLANCO" loading="lazy"/>
       <div class="prod-overlay">
         <button class="ov-btn ov-add" onclick="event.stopPropagation();addCart(this)"><i class="fas fa-shopping-bag"></i> Agregar</button>
-        <button class="ov-btn ov-view">Ver detalle</button>
+        <button class="ov-btn ov-view" onclick="event.stopPropagation();openQV(this)">Ver detalle</button>
       </div>
     </div>
     <div class="prod-info">
@@ -853,7 +911,7 @@
       <img src="https://d22fxaf9t8d39k.cloudfront.net/4685374b45b479cfd58e9da55c51fd9889b25c8240a765e91d1d62b8873d0386404368.jpg" alt="Cinto TEJIDO ELASTIZADO" loading="lazy"/>
       <div class="prod-overlay">
         <button class="ov-btn ov-add" onclick="event.stopPropagation();addCart(this)"><i class="fas fa-shopping-bag"></i> Agregar</button>
-        <button class="ov-btn ov-view">Ver detalle</button>
+        <button class="ov-btn ov-view" onclick="event.stopPropagation();openQV(this)">Ver detalle</button>
       </div>
     </div>
     <div class="prod-info">
@@ -870,7 +928,7 @@
       <img src="https://d22fxaf9t8d39k.cloudfront.net/04f404fb2c2c189df4aabe4a97bff9aa96f2bd5b3783d41e222f89c28bc0ee2d404368.png" alt="Pilusos prelavados" loading="lazy"/>
       <div class="prod-overlay">
         <button class="ov-btn ov-add" onclick="event.stopPropagation();addCart(this)"><i class="fas fa-shopping-bag"></i> Agregar</button>
-        <button class="ov-btn ov-view">Ver detalle</button>
+        <button class="ov-btn ov-view" onclick="event.stopPropagation();openQV(this)">Ver detalle</button>
       </div>
     </div>
     <div class="prod-info">
@@ -887,7 +945,7 @@
       <img src="https://d22fxaf9t8d39k.cloudfront.net/375cc7ff5b765aef3317f2c7e3644ca98c4c2e0143f743fa61ae63e643ad60fb404368.png" alt="Gorras prelavadas" loading="lazy"/>
       <div class="prod-overlay">
         <button class="ov-btn ov-add" onclick="event.stopPropagation();addCart(this)"><i class="fas fa-shopping-bag"></i> Agregar</button>
-        <button class="ov-btn ov-view">Ver detalle</button>
+        <button class="ov-btn ov-view" onclick="event.stopPropagation();openQV(this)">Ver detalle</button>
       </div>
     </div>
     <div class="prod-info">
@@ -903,7 +961,7 @@
       <img src="https://d22fxaf9t8d39k.cloudfront.net/d7bb9acf8f5ca09e741eac41c71f65a1a789da46d32346dbcc8da085b6888a8b404368.jpg" alt="Abanico ORGULLO" loading="lazy"/>
       <div class="prod-overlay">
         <button class="ov-btn ov-add" onclick="event.stopPropagation();addCart(this)"><i class="fas fa-shopping-bag"></i> Agregar</button>
-        <button class="ov-btn ov-view">Ver detalle</button>
+        <button class="ov-btn ov-view" onclick="event.stopPropagation();openQV(this)">Ver detalle</button>
       </div>
     </div>
     <div class="prod-info"><p class="prod-cat">Accesorios · Abanicos</p><h3 class="prod-name">Abanico ORGULLO</h3><p class="prod-price">$20.000</p></div>
@@ -915,7 +973,7 @@
       <img src="https://d22fxaf9t8d39k.cloudfront.net/eed069dcbb94dd317b2fec3eef483d8f2755eced6906f337408a75fb921645d7404368.png" alt="Abanico MUSIC" loading="lazy"/>
       <div class="prod-overlay">
         <button class="ov-btn ov-add" onclick="event.stopPropagation();addCart(this)"><i class="fas fa-shopping-bag"></i> Agregar</button>
-        <button class="ov-btn ov-view">Ver detalle</button>
+        <button class="ov-btn ov-view" onclick="event.stopPropagation();openQV(this)">Ver detalle</button>
       </div>
     </div>
     <div class="prod-info"><p class="prod-cat">Accesorios · Abanicos</p><h3 class="prod-name">Abanico MUSIC</h3><p class="prod-price">$20.000</p></div>
@@ -927,7 +985,7 @@
       <img src="https://d22fxaf9t8d39k.cloudfront.net/bf1a40912234085e30e0712306b486975b1a87d394e8c747e3ac36dc6bae03ae404368.png" alt="Abanico A MI AIRE" loading="lazy"/>
       <div class="prod-overlay">
         <button class="ov-btn ov-add" onclick="event.stopPropagation();addCart(this)"><i class="fas fa-shopping-bag"></i> Agregar</button>
-        <button class="ov-btn ov-view">Ver detalle</button>
+        <button class="ov-btn ov-view" onclick="event.stopPropagation();openQV(this)">Ver detalle</button>
       </div>
     </div>
     <div class="prod-info"><p class="prod-cat">Accesorios · Abanicos</p><h3 class="prod-name">Abanico A MI AIRE</h3><p class="prod-price">$20.000</p></div>
@@ -939,7 +997,7 @@
       <img src="https://d22fxaf9t8d39k.cloudfront.net/cfca7c5ddfaf88d6123e72fc5172f9261777138f76401fcec8fe176d15dbc8bf404368.png" alt="Abanico ALIEN" loading="lazy"/>
       <div class="prod-overlay">
         <button class="ov-btn ov-add" onclick="event.stopPropagation();addCart(this)"><i class="fas fa-shopping-bag"></i> Agregar</button>
-        <button class="ov-btn ov-view">Ver detalle</button>
+        <button class="ov-btn ov-view" onclick="event.stopPropagation();openQV(this)">Ver detalle</button>
       </div>
     </div>
     <div class="prod-info"><p class="prod-cat">Accesorios · Abanicos</p><h3 class="prod-name">Abanico ALIEN</h3><p class="prod-price">$20.000</p></div>
@@ -951,7 +1009,7 @@
       <img src="https://d22fxaf9t8d39k.cloudfront.net/1edcf80198e30639eb1bddab0a661bde5a9713728556ccf81c3df7b12a39068f404368.png" alt="Abanico ARCO IRIS" loading="lazy"/>
       <div class="prod-overlay">
         <button class="ov-btn ov-add" onclick="event.stopPropagation();addCart(this)"><i class="fas fa-shopping-bag"></i> Agregar</button>
-        <button class="ov-btn ov-view">Ver detalle</button>
+        <button class="ov-btn ov-view" onclick="event.stopPropagation();openQV(this)">Ver detalle</button>
       </div>
     </div>
     <div class="prod-info"><p class="prod-cat">Accesorios · Abanicos</p><h3 class="prod-name">Abanico ARCO IRIS</h3><p class="prod-price">$20.000</p></div>
@@ -963,7 +1021,7 @@
       <img src="https://d22fxaf9t8d39k.cloudfront.net/a06deeb3a1ab8a9e2ed2f4ca672a71d0967aea3913f163ba3d75e5bf2e3cfdae404368.png" alt="Abanico GO AWAY" loading="lazy"/>
       <div class="prod-overlay">
         <button class="ov-btn ov-add" onclick="event.stopPropagation();addCart(this)"><i class="fas fa-shopping-bag"></i> Agregar</button>
-        <button class="ov-btn ov-view">Ver detalle</button>
+        <button class="ov-btn ov-view" onclick="event.stopPropagation();openQV(this)">Ver detalle</button>
       </div>
     </div>
     <div class="prod-info"><p class="prod-cat">Accesorios · Abanicos</p><h3 class="prod-name">Abanico GO AWAY</h3><p class="prod-price">$20.000</p></div>
@@ -975,7 +1033,7 @@
       <img src="https://d22fxaf9t8d39k.cloudfront.net/58dd07e55d61f8ef6bfce53e625056e06146dd6880ca33e7666396b57397e407404368.png" alt="Abanico FLORAL" loading="lazy"/>
       <div class="prod-overlay">
         <button class="ov-btn ov-add" onclick="event.stopPropagation();addCart(this)"><i class="fas fa-shopping-bag"></i> Agregar</button>
-        <button class="ov-btn ov-view">Ver detalle</button>
+        <button class="ov-btn ov-view" onclick="event.stopPropagation();openQV(this)">Ver detalle</button>
       </div>
     </div>
     <div class="prod-info"><p class="prod-cat">Accesorios · Abanicos</p><h3 class="prod-name">Abanico FLORAL</h3><p class="prod-price">$20.000</p></div>
@@ -987,7 +1045,7 @@
       <img src="https://d22fxaf9t8d39k.cloudfront.net/ea809116f02307d347d5e34db61666ef1b2ae1e2392cd0f3c97661335a505a9d404368.png" alt="Abanico SOBRADOS" loading="lazy"/>
       <div class="prod-overlay">
         <button class="ov-btn ov-add" onclick="event.stopPropagation();addCart(this)"><i class="fas fa-shopping-bag"></i> Agregar</button>
-        <button class="ov-btn ov-view">Ver detalle</button>
+        <button class="ov-btn ov-view" onclick="event.stopPropagation();openQV(this)">Ver detalle</button>
       </div>
     </div>
     <div class="prod-info"><p class="prod-cat">Accesorios · Abanicos</p><h3 class="prod-name">Abanico SOBRADOS</h3><p class="prod-price">$20.000</p></div>
@@ -999,7 +1057,7 @@
       <img src="https://d22fxaf9t8d39k.cloudfront.net/d44f11a64a90f743bdd55e29fd5369263b6eb5f5924e845ffe614383f5b9ef88404368.png" alt="Abanico MAÑANA VOY A TENER RESACA" loading="lazy"/>
       <div class="prod-overlay">
         <button class="ov-btn ov-add" onclick="event.stopPropagation();addCart(this)"><i class="fas fa-shopping-bag"></i> Agregar</button>
-        <button class="ov-btn ov-view">Ver detalle</button>
+        <button class="ov-btn ov-view" onclick="event.stopPropagation();openQV(this)">Ver detalle</button>
       </div>
     </div>
     <div class="prod-info"><p class="prod-cat">Accesorios · Abanicos</p><h3 class="prod-name">Abanico MAÑANA VOY A TENER RESACA</h3><p class="prod-price">$20.000</p></div>
@@ -1040,7 +1098,7 @@
       <li><a href="#">Envíos</a></li>
       <li><a href="#">Cambios y devoluciones</a></li>
       <li><a href="#">Preguntas frecuentes</a></li>
-      <li><a href="mailto:bara.and.co.jm@gmail.com">Contacto</a></li>
+      <li><a href="/cdn-cgi/l/email-protection#22404350430c434c460c414d0c484f62454f434b4e0c414d4f">Contacto</a></li>
     </ul>
   </div>
   <div class="foot-col">
@@ -1062,7 +1120,7 @@
   </div>
 </footer>
 <div class="foot-bot">
-  <span>© 2026 Bara & Co · CUIT · Ing. Olmos 139 – Jesús María · <a href="mailto:bara.and.co.jm@gmail.com">bara.and.co.jm@gmail.com</a></span>
+  <span>© 2026 Bara & Co · CUIT · Ing. Olmos 139 – Jesús María · <a href="/cdn-cgi/l/email-protection#12707360733c737c763c717d3c787f52757f737b7e3c717d7f"><span class="__cf_email__" data-cfemail="3c5e5d4e5d125d5258125f531256517c5b515d5550125f5351">[email&#160;protected]</span></a></span>
   <div class="foot-links">
     <a href="#">Términos y condiciones</a>
     <a href="#">Política de privacidad</a>
@@ -1070,12 +1128,29 @@
 </div>
 
 <!-- ══ WA FLOAT ══ -->
-<button class="wa-float" onclick="window.open('https://wa.me/549TUNUMERO?text=Hola!%20Quiero%20consultar%20sobre%20un%20producto','_blank')" title="Consultar por WhatsApp">
+<button class="wa-float" onclick="window.open('https://wa.me/5493525614281?text=Hola!%20Quiero%20consultar%20sobre%20un%20producto','_blank')" title="Consultar por WhatsApp">
   <i class="fab fa-whatsapp"></i>
 </button>
 
 <!-- ══ CART TOAST ══ -->
 <div class="cart-toast" id="cartToast"><i class="fas fa-check-circle"></i> Producto agregado al carrito</div>
+
+<!-- ══ QUICK VIEW MODAL ══ -->
+<div class="qv-backdrop" id="qvBackdrop" onclick="closeQV()"></div>
+<div class="qv-modal" id="qvModal">
+  <button class="qv-close" onclick="closeQV()">×</button>
+  <div class="qv-img" id="qvImg"></div>
+  <div class="qv-info">
+    <p class="qv-cat"  id="qvCat"></p>
+    <h2 class="qv-name" id="qvName"></h2>
+    <p class="qv-price" id="qvPrice"></p>
+    <p class="qv-desc" id="qvDesc">Consultá disponibilidad de talles y colores por WhatsApp o agregá al carrito para reservar.</p>
+    <div class="qv-actions">
+      <button class="qv-btn qv-btn-add" id="qvAddBtn"><i class="fas fa-shopping-bag"></i> AGREGAR AL CARRITO</button>
+      <button class="qv-btn qv-btn-wa"  id="qvWaBtn"><i class="fab fa-whatsapp"></i> CONSULTAR POR WHATSAPP</button>
+    </div>
+  </div>
+</div>
 
 <!-- ══ CART BACKDROP & DRAWER ══ -->
 <div class="cart-backdrop" id="cartBackdrop" onclick="toggleCart()"></div>
@@ -1089,7 +1164,7 @@
   </div>
   <div class="cd-foot">
     <div class="cd-subtotal"><span>Subtotal</span><span id="cdTotal">$0</span></div>
-    <button class="pay-btn pay-mp" onclick="window.carrito?.pagarConMercadoPago()">
+    <button class="pay-btn pay-mp" onclick="pagarMP()">
       <i class="fab fa-cc-visa"></i> Pagar con MercadoPago
     </button>
     <button class="pay-btn pay-wa" onclick="pagarWA()">
@@ -1099,7 +1174,7 @@
   </div>
 </div>
 
-<script src="js/carrito.js"></script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="js/carrito.js"></script>
 
 <script>
 /* ══ FILTROS ══ */
@@ -1206,11 +1281,81 @@ function renderCart() {
 function pagarWA() {
   if (!cart.length) return;
   const lines = cart.map(i => `• ${i.name}${i.qty>1?' x'+i.qty:''} — $${(i.price*i.qty).toLocaleString('es-AR')}`).join('%0A');
-  const total = cart.reduce((s,i)=>s+i.price*i.qty,0);
-  const msg   = `Hola Bara %26 Co!%20Quiero%20realizar%20el%20siguiente%20pedido:%0A${lines}%0A%0ATotal:%20$${total.toLocaleString('es-AR')}`;
-  window.open(`https://wa.me/549TUNUMERO?text=${msg}`, '_blank');
+  const total = cart.reduce((s,i) => s+i.price*i.qty, 0);
+  const msg = `Hola! Quiero hacer el siguiente pedido:%0A%0A${lines}%0A%0A*Total: $${total.toLocaleString('es-AR')}*%0A%0AQuedo esperando confirmación de disponibilidad y datos de pago.`;
+  window.open(`https://wa.me/5493525614281?text=${msg}`, '_blank');
 }
 
+/* ══ MERCADOPAGO ══ */
+function pagarMP() {
+  if (!cart.length) { alert('Tu carrito está vacío'); return; }
+  // ─────────────────────────────────────────────────────────────
+  // TODO: Reemplazar esta URL con el link de pago de MercadoPago
+  // Podés crear un botón de pago en https://www.mercadopago.com.ar
+  // y pegar aquí la URL generada.
+  // ─────────────────────────────────────────────────────────────
+  const MP_LINK = 'https://link.mercadopago.com.ar/baraandco'; // <-- Cambiar por tu link real
+  const total = cart.reduce((s,i) => s+i.price*i.qty, 0);
+  const items = cart.map(i => `${i.name}${i.qty>1?' x'+i.qty:''}`).join(', ');
+  // Si aún no tenés el link configurado, envía por WA con el detalle
+  if (MP_LINK.includes('TU_LINK_AQUI')) {
+    const msg = `Hola! Quiero pagar con MercadoPago:%0A%0A${cart.map(i=>`• ${i.name}${i.qty>1?' x'+i.qty:''} — $${(i.price*i.qty).toLocaleString('es-AR')}`).join('%0A')}%0A%0A*Total: $${total.toLocaleString('es-AR')}*%0A%0APor favor enviame el link de pago de MercadoPago.`;
+    window.open(`https://wa.me/5493525614281?text=${msg}`, '_blank');
+    return;
+  }
+  window.open(MP_LINK, '_blank');
+}
+
+/* ══ QUICK VIEW ══ */
+function openQV(btn) {
+  const card = btn.closest('.prod-card');
+  const name  = card.dataset.name;
+  const price = parseInt(card.dataset.price);
+  const old   = card.dataset.oldprice ? parseInt(card.dataset.oldprice) : null;
+  const img   = card.dataset.img;
+  const cat   = card.querySelector('.prod-cat')?.textContent || '';
+
+  document.getElementById('qvImg').innerHTML   = `<img src="${img}" alt="${name}">`;
+  document.getElementById('qvCat').textContent  = cat;
+  document.getElementById('qvName').textContent = name;
+
+  const priceEl = document.getElementById('qvPrice');
+  if (old) {
+    const pct = Math.round((1 - price/old) * 100);
+    priceEl.innerHTML = `<del>$${old.toLocaleString('es-AR')}</del> $${price.toLocaleString('es-AR')} <span style="background:var(--red);color:#fff;font-size:10px;padding:2px 7px;margin-left:6px;">-${pct}%</span>`;
+  } else {
+    priceEl.textContent = '$' + price.toLocaleString('es-AR');
+  }
+
+  // Add-to-cart button
+  document.getElementById('qvAddBtn').onclick = () => {
+    const found = cart.find(i => i.name === name);
+    if (found) found.qty++;
+    else cart.push({ name, price, img, qty:1 });
+    saveCart(); renderCart(); showToast(); closeQV(); toggleCart();
+  };
+
+  // WhatsApp button
+  document.getElementById('qvWaBtn').onclick = () => {
+    const msg = `Hola! Quiero consultar por *${name}* ($${price.toLocaleString('es-AR')})`;
+    window.open(`https://wa.me/5493525614281?text=${encodeURIComponent(msg)}`, '_blank');
+  };
+
+  document.getElementById('qvModal').classList.add('open');
+  document.getElementById('qvBackdrop').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeQV() {
+  document.getElementById('qvModal').classList.remove('open');
+  document.getElementById('qvBackdrop').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+// close QV with Escape key
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeQV(); });
+
+// init cart render on load
 renderCart();
 </script>
 </body>
