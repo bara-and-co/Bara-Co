@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Envíos · Bara & Co</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <!-- Estilos -->
+    <link rel="stylesheet" href="css/global.css">
+    
+    <style>
+        .page-header {
+            height: 30vh;
+            background: linear-gradient(135deg, #0A0A0A 0%, #1A1A1A 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-top: 80px;
+        }
+        
+        .page-header h1 {
+            font-size: 3rem;
+            font-family: var(--font-serif);
+        }
+        
+        .page-content {
+            padding: 4rem 0;
+        }
+        
+        .shipping-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+        
+        .shipping-card {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+        
+        .shipping-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            background: var(--color-accent-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .shipping-icon i {
+            font-size: 2rem;
+            color: var(--color-accent);
+        }
+        
+        .shipping-card h3 {
+            font-family: var(--font-serif);
+            margin-bottom: 1rem;
+        }
+        
+        .shipping-card p {
+            color: var(--color-text-secondary);
+            line-height: 1.8;
+        }
+        
+        .info-section {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .info-block {
+            margin-bottom: 2rem;
+            padding: 2rem;
+            background: #f9f9f9;
+        }
+        
+        .info-block h3 {
+            font-family: var(--font-serif);
+            margin-bottom: 1rem;
+            color: var(--color-accent);
+        }
+        
+        .info-block ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .info-block li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .info-block li i {
+            color: var(--color-accent);
+            width: 20px;
+        }
+        
+        .info-block li:last-child {
+            border-bottom: none;
+        }
+        
+        .cta-section {
+            text-align: center;
+            padding: 4rem 0;
+        }
+        
+        .cta-section h2 {
+            font-family: var(--font-serif);
+            margin-bottom: 1rem;
+        }
+        
+        .cta-section p {
+            color: var(--color-text-secondary);
+            margin-bottom: 2rem;
+        }
+        
+        @media (max-width: 768px) {
+            .shipping-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body class="interior">
+    <!-- Cursor Personalizado -->
+    <div class="custom-cursor"></div>
+    <div class="cursor-dot"></div>
+
+    <!-- Header -->
+    <header id="header">
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <img src="images/logo-bara-co.png" alt="Bara & Co" class="logo-img">
+            </a>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-link">Inicio</a></li>
+                    <li><a href="tienda.html" class="nav-link">Tienda</a></li>
+                    <li><a href="lookbook.html" class="nav-link">Lookbook</a></li>
+                    <li><a href="#contacto" class="nav-link">Contacto</a></li>
+                </ul>
+                <div class="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+            <div class="header-icons">
+                <i class="fas fa-search" onclick="window.buscador?.abrirModal()"></i>
+                <a href="login.html"><i class="fas fa-user"></i></a>
+                <div class="cart-icon-wrapper" onclick="toggleCart()">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="cart-count">0</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <div class="page-header">
+        <div>
+            <h1>Envíos</h1>
+            <p>Toda la info que necesitás saber</p>
+        </div>
+    </div>
+
+    <!-- Page Content -->
+    <div class="page-content">
+        <div class="container">
+            <!-- Métodos de envío -->
+            <div class="shipping-grid">
+                <div class="shipping-card">
+                    <div class="shipping-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3>Envío Express</h3>
+                    <p>Recibí tu pedido en 24/48hs hábiles en CABA y GBA. Para el resto del país, consultá plazos.</p>
+                </div>
+                
+                <div class="shipping-card">
+                    <div class="shipping-icon">
+                        <i class="fas fa-truck"></i>
+                    </div>
+                    <h3>Envío Estándar</h3>
+                    <p>Envíos a todo el país a través de Correo Argentino. Plazo de entrega: 3-7 días hábiles.</p>
+                </div>
+                
+                <div class="shipping-card">
+                    <div class="shipping-icon">
+                        <i class="fas fa-gift"></i>
+                    </div>
+                    <h3>Envío Gratis</h3>
+                    <p>En compras superiores a $15.000. Válido para todos los destinos de Argentina.</p>
+                </div>
+            </div>
+
+            <!-- Información detallada -->
+            <div class="info-section">
+                <div class="info-block">
+                    <h3>📍 Zonas de entrega</h3>
+                    <ul>
+                        <li><i class="fas fa-check"></i> <strong>CABA y GBA:</strong> 24/48hs hábiles</li>
+                        <li><i class="fas fa-check"></i> <strong>Capitales de provincia:</strong> 3-5 días hábiles</li>
+                        <li><i class="fas fa-check"></i> <strong>Interior del país:</strong> 5-7 días hábiles</li>
+                    </ul>
+                </div>
+
+                <div class="info-block">
+                    <h3>💰 Costos de envío</h3>
+                    <ul>
+                        <li><i class="fas fa-tag"></i> <strong>CABA y GBA:</strong> $1.200</li>
+                        <li><i class="fas fa-tag"></i> <strong>Resto del país:</strong> $2.500</li>
+                        <li><i class="fas fa-tag"></i> <strong>Envío gratis:</strong> Compras > $15.000</li>
+                    </ul>
+                </div>
+
+                <div class="info-block">
+                    <h3>📦 Seguimiento</h3>
+                    <p>Una vez despachado tu pedido, te enviaremos el número de seguimiento por email y WhatsApp. Podés seguir tu envío en:</p>
+                    <ul style="margin-top: 1rem;">
+                        <li><i class="fas fa-link"></i> <a href="https://www.correoargentino.com.ar/seguimiento" target="_blank">Correo Argentino</a></li>
+                        <li><i class="fas fa-link"></i> <a href="https://www.andreani.com" target="_blank">Andreani</a> (para envíos express)</li>
+                    </ul>
+                </div>
+
+                <div class="info-block">
+                    <h3>⚠️ Consideraciones importantes</h3>
+                    <ul>
+                        <li><i class="fas fa-clock"></i> Los pedidos realizados antes de las 13hs se despachan el mismo día.</li>
+                        <li><i class="fas fa-calendar"></i> No realizamos envíos los fines de semana ni feriados.</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Es importante que la dirección de envío sea correcta. No nos hacemos responsables por direcciones incorrectas.</li>
+                        <li><i class="fas fa-phone"></i> Ante cualquier duda, contactanos por WhatsApp al 11 2233-4455.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- CTA -->
+            <div class="cta-section">
+                <h2>¿Listo para armar tu look?</h2>
+                <p>Descubrí nuestras últimas novedades</p>
+                <a href="tienda.html" class="btn">Ir a la tienda</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer id="contacto">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <div class="footer-logo">
+                        <img src="images/logo-bara-co-blanco.png" alt="Bara & Co" style="height: 40px; width: auto; filter: brightness(0) invert(1);">
+                    </div>
+                    <p class="footer-text">Indumentaria urbana con personalidad. Diseño y confort para tu día a día.</p>
+                    <div class="payment-methods">
+                        <img src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Visa/Pair/3D/visa_3d.png" alt="Visa" class="payment-icon">
+                        <img src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Mastercard/Pair/3D/mastercard_3d.png" alt="Mastercard" class="payment-icon">
+                        <img src="https://www.mercadopago.com.ar/wp-content/themes/mercadopago/images/mp-logo.png" alt="MercadoPago" class="payment-icon" style="height: 40px;">
+                    </div>
+                    <div class="social-icons">
+                        <i class="fab fa-instagram"></i>
+                        <i class="fab fa-facebook-f"></i>
+                        <i class="fab fa-tiktok"></i>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="footer-title">Categorías</h4>
+                    <ul class="footer-links">
+                        <li><a href="tienda.html?categoria=mujer">Mujer</a></li>
+                        <li><a href="tienda.html?categoria=hombre">Hombre</a></li>
+                        <li><a href="tienda.html?categoria=accesorios">Accesorios</a></li>
+                        <li><a href="tienda.html?categoria=sale">Sale</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-title">Ayuda</h4>
+                    <ul class="footer-links">
+                        <li><a href="envios.html">Envíos</a></li>
+                        <li><a href="cambios.html">Cambios y devoluciones</a></li>
+                        <li><a href="faq.html">Preguntas frecuentes</a></li>
+                        <li><a href="#contacto">Contacto</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-title">Newsletter</h4>
+                    <p class="footer-text">Sumate. 10% OFF en tu primera compra.</p>
+                    <div class="newsletter-input">
+                        <input type="email" placeholder="Tu email">
+                        <button><i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="legal-info">
+                    <span>© 2026 Bara & Co</span>
+                    <span>CUIT 30-71234567-8</span>
+                    <span>Ing. Olmos 139 – Jesús María</span>
+                </div>
+                <div class="legal-info">
+                    <span onclick="window.location.href='terminos.html'">Términos y condiciones</span>
+                    <span onclick="window.location.href='privacidad.html'">Política de privacidad</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Flotante -->
+    <div class="whatsapp-float" onclick="window.open('https://wa.me/5493511234567', '_blank')">
+        <i class="fab fa-whatsapp"></i>
+        <span class="whatsapp-tooltip">¿Necesitas ayuda?</span>
+    </div>
+
+    <!-- Carrito -->
+    <div class="cart-icon" onclick="toggleCart()">
+        <i class="fas fa-shopping-bag"></i>
+        <span class="cart-count">0</span>
+    </div>
+
+    <div class="cart-notification" id="cartNotification">
+        <i class="fas fa-check-circle"></i>
+        <span>Producto agregado</span>
+    </div>
+
+    <div class="cart-panel" id="cartPanel">
+        <div class="cart-header">
+            <h2 class="cart-title">Carrito</h2>
+            <i class="fas fa-times close-cart" onclick="toggleCart()"></i>
+        </div>
+        <div class="cart-items"></div>
+        <div class="cart-footer">
+            <div class="shipping-info-cart">
+                <i class="fas fa-truck"></i>
+                <span>Envíos gratis a partir de $15.000</span>
+            </div>
+            <div class="subtotal">
+                <span>Subtotal</span>
+                <span id="subtotal">$0</span>
+            </div>
+            <div class="payment-options">
+                <button class="payment-btn mercadopago-btn" onclick="window.carrito?.pagarConMercadoPago()">
+                    <i class="fab fa-mercadopago"></i>
+                    Pagar con MercadoPago
+                </button>
+                <button class="payment-btn whatsapp-btn" onclick="window.carrito?.pagarConWhatsApp()">
+                    <i class="fab fa-whatsapp"></i>
+                    Solicitar por WhatsApp
+                </button>
+            </div>
+            <p class="payment-info">
+                <i class="fas fa-lock"></i>
+                Pago seguro. Hasta 6 cuotas sin interés.
+            </p>
+        </div>
+    </div>
+
+    <div class="overlay" id="overlay" onclick="toggleCart()"></div>
+
+    <!-- Scripts -->
+    <script src="js/carrito.js"></script>
+    <script src="js/search.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/curtain-control.js"></script>
+</body>
+</html>

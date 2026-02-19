@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cambios y Devoluciones · Bara & Co</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <!-- Estilos -->
+    <link rel="stylesheet" href="css/global.css">
+    
+    <style>
+        .page-header {
+            height: 30vh;
+            background: linear-gradient(135deg, #0A0A0A 0%, #1A1A1A 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-top: 80px;
+        }
+        
+        .page-header h1 {
+            font-size: 3rem;
+            font-family: var(--font-serif);
+        }
+        
+        .page-content {
+            padding: 4rem 0;
+        }
+        
+        .policy-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+        
+        .policy-card {
+            padding: 3rem;
+            background: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border-top: 4px solid var(--color-accent);
+        }
+        
+        .policy-card h3 {
+            font-family: var(--font-serif);
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--color-text-primary);
+        }
+        
+        .policy-card .highlight {
+            font-size: 1.2rem;
+            color: var(--color-accent);
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+        
+        .policy-card ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .policy-card li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .policy-card li i {
+            color: var(--color-accent);
+            width: 20px;
+        }
+        
+        .steps-section {
+            background: #f9f9f9;
+            padding: 4rem 0;
+            margin: 2rem 0;
+        }
+        
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .step-item {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            position: relative;
+        }
+        
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: var(--color-accent);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 0 auto 1.5rem;
+        }
+        
+        .step-item h4 {
+            font-family: var(--font-serif);
+            margin-bottom: 1rem;
+        }
+        
+        .step-item p {
+            color: var(--color-text-secondary);
+        }
+        
+        .warning-box {
+            background: #fff3e0;
+            border-left: 4px solid #ff9800;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .warning-box i {
+            color: #ff9800;
+            margin-right: 1rem;
+        }
+        
+        @media (max-width: 768px) {
+            .policy-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .steps-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body class="interior">
+    <!-- Header (igual que en envios.html) -->
+    <header id="header">
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <img src="images/logo-bara-co.png" alt="Bara & Co" class="logo-img">
+            </a>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-link">Inicio</a></li>
+                    <li><a href="tienda.html" class="nav-link">Tienda</a></li>
+                    <li><a href="lookbook.html" class="nav-link">Lookbook</a></li>
+                    <li><a href="#contacto" class="nav-link">Contacto</a></li>
+                </ul>
+                <div class="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+            <div class="header-icons">
+                <i class="fas fa-search" onclick="window.buscador?.abrirModal()"></i>
+                <a href="login.html"><i class="fas fa-user"></i></a>
+                <div class="cart-icon-wrapper" onclick="toggleCart()">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="cart-count">0</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <div class="page-header">
+        <div>
+            <h1>Cambios y Devoluciones</h1>
+            <p>Tu satisfacción es nuestra prioridad</p>
+        </div>
+    </div>
+
+    <!-- Page Content -->
+    <div class="page-content">
+        <div class="container">
+            <!-- Políticas principales -->
+            <div class="policy-grid">
+                <div class="policy-card">
+                    <h3>Cambios</h3>
+                    <div class="highlight">Tenés 30 días para cambiar tu producto</div>
+                    <ul>
+                        <li><i class="fas fa-check"></i> Podés cambiar por otro talle, color o producto</li>
+                        <li><i class="fas fa-check"></i> El producto debe estar sin uso, con etiquetas y en su packaging original</li>
+                        <li><i class="fas fa-check"></i> Los cambios son gratuitos en nuestros locales</li>
+                        <li><i class="fas fa-check"></i> Para envíos, el costo de reenvío corre por cuenta del cliente</li>
+                        <li><i class="fas fa-check"></i> Si el cambio es por falla, cubrimos todos los costos</li>
+                    </ul>
+                </div>
+                
+                <div class="policy-card">
+                    <h3>Devoluciones</h3>
+                    <div class="highlight">Reembolso garantizado</div>
+                    <ul>
+                        <li><i class="fas fa-check"></i> Podés solicitar el reembolso dentro de los 10 días de recibido</li>
+                        <li><i class="fas fa-check"></i> El reembolso se realiza por el mismo medio de pago</li>
+                        <li><i class="fas fa-check"></i> Procesamos la devolución en un plazo de 5-7 días hábiles</li>
+                        <li><i class="fas fa-check"></i> El producto debe estar en perfectas condiciones</li>
+                        <li><i class="fas fa-check"></i> No realizamos devoluciones en productos de la categoría "Sale"</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Pasos para cambio/devolución -->
+            <div class="steps-section">
+                <div class="container">
+                    <h2 class="text-center" style="font-family: var(--font-serif);">¿Cómo gestionar un cambio o devolución?</h2>
+                    
+                    <div class="steps-grid">
+                        <div class="step-item">
+                            <div class="step-number">1</div>
+                            <h4>Contactanos</h4>
+                            <p>Escribinos por WhatsApp al 11 2233-4455 o email a cambios@bara.co con tu número de pedido.</p>
+                        </div>
+                        
+                        <div class="step-item">
+                            <div class="step-number">2</div>
+                            <h4>Coordinamos</h4>
+                            <p>Te indicaremos los pasos a seguir según tu ubicación y el motivo del cambio.</p>
+                        </div>
+                        
+                        <div class="step-item">
+                            <div class="step-number">3</div>
+                            <h4>Recibís la solución</h4>
+                            <p>Procesamos tu cambio o reembolso y te mantenemos informado en todo momento.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Advertencia importante -->
+            <div class="warning-box">
+                <i class="fas fa-exclamation-triangle"></i>
+                <strong>Importante:</strong> Para cambios por talle, asegurate de probar la prenda con cuidado, sin forzar costuras ni quitar etiquetas. No aceptamos cambios en prendas con signos de uso, lavado o daños causados por el cliente.
+            </div>
+
+            <!-- Excepciones -->
+            <div class="info-block" style="margin-top: 2rem;">
+                <h3 style="font-family: var(--font-serif);">Excepciones</h3>
+                <ul style="list-style: none; padding: 0;">
+                    <li style="padding: 0.5rem 0;"><i class="fas fa-times" style="color: #ff4444; margin-right: 1rem;"></i> Productos en la categoría "Sale" (descuentos superiores al 30%)</li>
+                    <li style="padding: 0.5rem 0;"><i class="fas fa-times" style="color: #ff4444; margin-right: 1rem;"></i> Accesorios como gorros, cintas, medias (por razones de higiene)</li>
+                    <li style="padding: 0.5rem 0;"><i class="fas fa-times" style="color: #ff4444; margin-right: 1rem;"></i> Productos personalizados</li>
+                    <li style="padding: 0.5rem 0;"><i class="fas fa-times" style="color: #ff4444; margin-right: 1rem;"></i> Compras con más de 30 días de antigüedad</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer y carrito (igual que en envios.html) -->
+    <footer id="contacto">
+        <!-- ... mismo footer que envios.html ... -->
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/carrito.js"></script>
+    <script src="js/search.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

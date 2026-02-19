@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preguntas Frecuentes · Bara & Co</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <!-- Estilos -->
+    <link rel="stylesheet" href="css/global.css">
+    
+    <style>
+        .page-header {
+            height: 30vh;
+            background: linear-gradient(135deg, #0A0A0A 0%, #1A1A1A 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-top: 80px;
+        }
+        
+        .page-header h1 {
+            font-size: 3rem;
+            font-family: var(--font-serif);
+        }
+        
+        .page-content {
+            padding: 4rem 0;
+        }
+        
+        .faq-categories {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+        
+        .faq-category-btn {
+            padding: 0.8rem 2rem;
+            background: none;
+            border: 1px solid var(--color-border);
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        .faq-category-btn:hover,
+        .faq-category-btn.active {
+            background: var(--color-text-primary);
+            color: white;
+            border-color: var(--color-text-primary);
+        }
+        
+        .faq-section {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            margin-bottom: 1rem;
+            border: 1px solid var(--color-border);
+            background: white;
+        }
+        
+        .faq-question {
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+        
+        .faq-question:hover {
+            background: #f9f9f9;
+        }
+        
+        .faq-question i {
+            transition: transform 0.3s;
+            color: var(--color-accent);
+        }
+        
+        .faq-question.active i {
+            transform: rotate(180deg);
+        }
+        
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s;
+            color: var(--color-text-secondary);
+            line-height: 1.8;
+        }
+        
+        .faq-answer.show {
+            padding: 1.5rem;
+            max-height: 500px;
+            border-top: 1px solid #eee;
+        }
+        
+        .contact-cta {
+            text-align: center;
+            padding: 4rem 0;
+            background: #f9f9f9;
+            margin-top: 3rem;
+        }
+        
+        .contact-cta h3 {
+            font-family: var(--font-serif);
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .contact-cta p {
+            color: var(--color-text-secondary);
+            margin-bottom: 2rem;
+        }
+        
+        .contact-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+        
+        .contact-btn {
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            color: white;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        
+        .contact-btn.whatsapp {
+            background: #25D366;
+        }
+        
+        .contact-btn.whatsapp:hover {
+            background: #128C7E;
+        }
+        
+        .contact-btn.email {
+            background: var(--color-text-primary);
+        }
+        
+        .contact-btn.email:hover {
+            background: var(--color-accent);
+        }
+        
+        @media (max-width: 768px) {
+            .faq-category-btn {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.8rem;
+            }
+            
+            .contact-buttons {
+                flex-direction: column;
+                padding: 0 2rem;
+            }
+        }
+    </style>
+</head>
+<body class="interior">
+    <!-- Header (igual que en envios.html) -->
+    <header id="header">
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <img src="images/logo-bara-co.png" alt="Bara & Co" class="logo-img">
+            </a>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-link">Inicio</a></li>
+                    <li><a href="tienda.html" class="nav-link">Tienda</a></li>
+                    <li><a href="lookbook.html" class="nav-link">Lookbook</a></li>
+                    <li><a href="#contacto" class="nav-link">Contacto</a></li>
+                </ul>
+                <div class="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+            <div class="header-icons">
+                <i class="fas fa-search" onclick="window.buscador?.abrirModal()"></i>
+                <a href="login.html"><i class="fas fa-user"></i></a>
+                <div class="cart-icon-wrapper" onclick="toggleCart()">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="cart-count">0</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <div class="page-header">
+        <div>
+            <h1>Preguntas Frecuentes</h1>
+            <p>Encontrá respuestas a tus dudas</p>
+        </div>
+    </div>
+
+    <!-- Page Content -->
+    <div class="page-content">
+        <div class="container">
+            <!-- Categorías -->
+            <div class="faq-categories">
+                <button class="faq-category-btn active" data-category="all">Todas</button>
+                <button class="faq-category-btn" data-category="compras">Compras</button>
+                <button class="faq-category-btn" data-category="envios">Envíos</button>
+                <button class="faq-category-btn" data-category="productos">Productos</button>
+                <button class="faq-category-btn" data-category="pagos">Pagos</button>
+                <button class="faq-category-btn" data-category="cambios">Cambios</button>
+            </div>
+
+            <!-- FAQ Items -->
+            <div class="faq-section">
+                <!-- Compras -->
+                <div class="faq-item" data-category="compras">
+                    <div class="faq-question">
+                        ¿Cómo realizo una compra?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        1. Navegá por nuestra tienda y seleccioná los productos que te gusten.<br>
+                        2. Elegí el talle y la cantidad, y hacé clic en "Agregar al carrito".<br>
+                        3. Cuando termines, andá al carrito y hacé clic en "Finalizar compra".<br>
+                        4. Elegí el método de pago (MercadoPago o WhatsApp) y seguí las instrucciones.
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="compras">
+                    <div class="faq-question">
+                        ¿Necesito registrarme para comprar?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        No es obligatorio, pero te recomendamos registrarte para poder hacer seguimiento de tus pedidos, guardar tus direcciones favoritas y acceder a promociones exclusivas.
+                    </div>
+                </div>
+
+                <!-- Envíos -->
+                <div class="faq-item" data-category="envios">
+                    <div class="faq-question">
+                        ¿Cuánto tarda el envío?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Los tiempos de entrega varían según tu ubicación:<br>
+                        • CABA y GBA: 24/48hs hábiles<br>
+                        • Capitales de provincia: 3-5 días hábiles<br>
+                        • Interior del país: 5-7 días hábiles
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="envios">
+                    <div class="faq-question">
+                        ¿Cuánto cuesta el envío?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        • CABA y GBA: $1.200<br>
+                        • Resto del país: $2.500<br>
+                        • Envío gratis en compras superiores a $15.000
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="envios">
+                    <div class="faq-question">
+                        ¿Puedo hacer seguimiento de mi pedido?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Sí, una vez despachado tu pedido te enviaremos el número de seguimiento por email y WhatsApp. Podés seguir tu envío en la web de Correo Argentino o Andreani.
+                    </div>
+                </div>
+
+                <!-- Productos -->
+                <div class="faq-item" data-category="productos">
+                    <div class="faq-question">
+                        ¿Cómo elijo el talle correcto?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        En cada producto encontrarás una guía de talles con medidas específicas. Si tenés dudas, podés consultarnos por WhatsApp y te ayudaremos a elegir el talle ideal.
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="productos">
+                    <div class="faq-question">
+                        ¿Los productos son iguales a las fotos?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Sí, trabajamos con fotografía real de nuestros productos. Puede haber mínimas variaciones de color según la configuración de tu pantalla, pero nos esforzamos por mostrar los colores más fieles posible.
+                    </div>
+                </div>
+
+                <!-- Pagos -->
+                <div class="faq-item" data-category="pagos">
+                    <div class="faq-question">
+                        ¿Qué medios de pago aceptan?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Aceptamos todos los medios de pago a través de MercadoPago:<br>
+                        • Tarjetas de crédito (hasta 6 cuotas sin interés)<br>
+                        • Tarjetas de débito<br>
+                        • Efectivo (Rapipago, Pago Fácil)<br>
+                        • Transferencia bancaria
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="pagos">
+                    <div class="faq-question">
+                        ¿Es seguro pagar con MercadoPago?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Totalmente. MercadoPago es la plataforma de pagos más confiable de Latinoamérica, con protección al comprador y encriptación de datos.
+                    </div>
+                </div>
+
+                <!-- Cambios -->
+                <div class="faq-item" data-category="cambios">
+                    <div class="faq-question">
+                        ¿Cómo hago un cambio?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Tenés 30 días para realizar cambios. Contactanos por WhatsApp o email con tu número de pedido y te indicaremos los pasos a seguir.
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="cambios">
+                    <div class="faq-question">
+                        ¿Los cambios tienen costo?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        • En nuestros locales: sin costo<br>
+                        • Por envío: el costo de reenvío corre por cuenta del cliente, excepto si es por falla del producto.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contacto CTA -->
+            <div class="contact-cta">
+                <h3>¿No encontraste lo que buscabas?</h3>
+                <p>Estamos acá para ayudarte</p>
+                <div class="contact-buttons">
+                    <a href="https://wa.me/5493511234567" class="contact-btn whatsapp" target="_blank">
+                        <i class="fab fa-whatsapp"></i>
+                        WhatsApp
+                    </a>
+                    <a href="mailto:hola@bara.co" class="contact-btn email">
+                        <i class="fas fa-envelope"></i>
+                        hola@bara.co
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer y carrito (igual que en envios.html) -->
+    <footer id="contacto">
+        <!-- ... mismo footer ... -->
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/carrito.js"></script>
+    <script src="js/search.js"></script>
+    <script src="js/main.js"></script>
+    
+    <script>
+        // FAQ functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Toggle answers
+            document.querySelectorAll('.faq-question').forEach(question => {
+                question.addEventListener('click', function() {
+                    const answer = this.nextElementSibling;
+                    const icon = this.querySelector('i');
+                    
+                    // Toggle current
+                    answer.classList.toggle('show');
+                    this.classList.toggle('active');
+                    
+                    // Rotate icon
+                    if (answer.classList.contains('show')) {
+                        icon.style.transform = 'rotate(180deg)';
+                    } else {
+                        icon.style.transform = 'rotate(0)';
+                    }
+                });
+            });
+            
+            // Category filters
+            document.querySelectorAll('.faq-category-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const category = this.dataset.category;
+                    
+                    // Update active button
+                    document.querySelectorAll('.faq-category-btn').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Filter items
+                    document.querySelectorAll('.faq-item').forEach(item => {
+                        if (category === 'all' || item.dataset.category === category) {
+                            item.style.display = 'block';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
