@@ -638,33 +638,38 @@
   Envíos a todo el país &nbsp;·&nbsp; Retiro en local · Ing. Olmos 139, Jesús María &nbsp;·&nbsp; Compra segura
 </div>
 
-<!-- ══ HERO ══ -->
-<section class="hero">
-  <!-- Left panel — Mujer -->
-  <div class="hero-half hero-half-left" onclick="location.href='tienda.html'">
-    <img src="https://d22fxaf9t8d39k.cloudfront.net/dd90a394af234d838d3d5ae4d59f16dd819614b3a74c2e8354a0c11be282fd64404368.jpg" alt="Mujer"/>
+
+<!-- ══ HERO CON PARALLAX ══ -->
+<section class="hero" id="hero">
+  <!-- Left panel — Mujer (se mueve hacia la izquierda) -->
+  <div class="hero-half hero-half-left" id="panelLeft" onclick="location.href='tienda.html'">
+    <div class="hero-image-container">
+      <img src="images/modeloportizq.png" alt="Mujer"/>
+    </div>
     <span class="hero-label">Mujer</span>
   </div>
 
-  <!-- Right panel — Hombre -->
-  <div class="hero-half hero-half-right" onclick="location.href='tienda.html'">
-    <img src="https://d22fxaf9t8d39k.cloudfront.net/b8b0947140bff5c58341de81bac796e1e3e639975958ea29e976f4be63aa4b63404368.jpg" alt="Hombre"/>
+  <!-- Right panel — Hombre (se mueve hacia la derecha) -->
+  <div class="hero-half hero-half-right" id="panelRight" onclick="location.href='tienda.html'">
+    <div class="hero-image-container">
+      <img src="images/modeloderecha.png" alt="Hombre"/>
+    </div>
     <span class="hero-label">Hombre</span>
   </div>
 
   <!-- Divider -->
   <div class="hero-divider"></div>
 
-  <!-- Center text -->
-  <div class="hero-center">
+  <!-- Center text (se desvanece al scrollear) -->
+  <div class="hero-center" id="heroContent">
     <p class="hero-pre">New Collection 2026</p>
     <h1 class="hero-h1">Bara<br/><em>&amp; Co</em></h1>
     <p class="hero-sub">Esencia urbana · Confort atemporal</p>
     <a class="hero-cta" href="tienda.html">Descubrir colección <i class="fas fa-arrow-right"></i></a>
   </div>
 
-  <!-- Scroll -->
-  <div class="scroll-hint">
+  <!-- Scroll (se desvanece al scrollear) -->
+  <div class="scroll-hint" id="scrollHint">
     <span>Scroll</span>
     <div class="scroll-hint-line"></div>
   </div>
