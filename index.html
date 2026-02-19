@@ -1,41 +1,12 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <!-- PWA Manifest -->
-<link rel="manifest" href="manifest.json">
-
-<!-- Meta tags para PWA -->
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Bara & Co">
-<meta name="theme-color" content="#0A0A0A">
-
-<!-- Iconos para iOS -->
-<link rel="apple-touch-icon" href="assets/icons/icon-152x152.png">
-<link rel="apple-touch-icon" sizes="152x152" href="assets/icons/icon-152x152.png">
-<link rel="apple-touch-icon" sizes="180x180" href="assets/icons/icon-192x192.png">
-<link rel="apple-touch-icon" sizes="167x167" href="assets/icons/icon-192x192.png">
-
-<!-- Service Worker -->
-<script>
-    if ('serviceWorker' in navigator) {
-        window.addEventListener('load', function() {
-            navigator.serviceWorker.register('/service-worker.js').then(function(registration) {
-                console.log('Service Worker registrado con éxito:', registration.scope);
-            }).catch(function(error) {
-                console.log('Error al registrar Service Worker:', error);
-            });
-            
-            // Solicitar permisos de notificaciones (opcional)
-            if (Notification.permission === 'default') {
-                Notification.requestPermission();
-            }
-        });
-    }
-</script>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>Bara & Co · Indumentaria Urbana</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/icons/favicon.png">
     
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -47,7 +18,7 @@
     <link rel="stylesheet" href="css/global.css">
     
     <style>
-        /* Estilos específicos para el hero cinematográfico */
+        /* Estilos del hero */
         .hero-container {
             position: relative;
             width: 100%;
@@ -78,12 +49,10 @@
 
         .hero-panel-left {
             left: 0;
-            background: linear-gradient(90deg, #000 0%, transparent 100%);
         }
 
         .hero-panel-right {
             right: 0;
-            background: linear-gradient(270deg, #000 0%, transparent 100%);
         }
 
         .hero-panel-left img,
@@ -118,7 +87,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle at center, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.4) 100%);
+            background: radial-gradient(circle at center, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.5) 100%);
             z-index: 5;
             pointer-events: none;
         }
@@ -151,7 +120,7 @@
 
         .hero-title {
             font-family: var(--font-serif);
-            font-size: 6.5rem;
+            font-size: clamp(3rem, 8vw, 6.5rem);
             font-weight: 700;
             line-height: 1;
             margin-bottom: 1.5rem;
@@ -168,7 +137,7 @@
         }
 
         .hero-subtitle {
-            font-size: 1.4rem;
+            font-size: clamp(1rem, 2vw, 1.4rem);
             font-weight: 300;
             margin-bottom: 2.5rem;
             text-shadow: 0 2px 15px rgba(0,0,0,0.2);
@@ -283,6 +252,13 @@
         /* Featured Products */
         .featured-section {
             padding: var(--spacing-xl) 0;
+            background: white;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            margin-bottom: 1rem;
+            font-family: var(--font-serif);
         }
 
         .featured-grid {
@@ -334,30 +310,65 @@
         .featured-price {
             color: var(--color-text-secondary);
         }
+        
+        .featured-price s {
+            color: #999;
+            margin-right: 5px;
+            font-size: 0.9rem;
+        }
+
+        .badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--color-text-primary);
+            color: white;
+            padding: 4px 12px;
+            font-size: 0.75rem;
+            z-index: 2;
+            letter-spacing: 1px;
+        }
+
+        .badge.sale {
+            background: var(--color-accent);
+        }
+        
+        .add-to-cart-card {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            padding: 12px;
+            background: white;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.4s;
+            text-transform: uppercase;
+        }
+        
+        .featured-card:hover .add-to-cart-card {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .add-to-cart-card:hover {
+            background: var(--color-accent);
+            color: white;
+        }
 
         @media (max-width: 1024px) {
-            .hero-title {
-                font-size: 5rem;
-            }
-            
             .featured-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
         }
 
         @media (max-width: 768px) {
-            .hero-title {
-                font-size: 3.5rem;
-            }
-            
-            .hero-subtitle {
-                font-size: 1.1rem;
-            }
-            
-            .hero-pre-title {
-                font-size: 0.8rem;
-            }
-            
             .hero-panel-left,
             .hero-panel-right {
                 width: 100%;
@@ -375,12 +386,6 @@
             .featured-grid {
                 grid-template-columns: 1fr;
             }
-        }
-
-        @media (max-width: 480px) {
-            .hero-title {
-                font-size: 2.5rem;
-            }
             
             .hero-btn {
                 padding: 16px 40px;
@@ -396,9 +401,13 @@
     <!-- Header -->
     <header id="header">
         <div class="header-container">
+            <!-- LOGO: Cambiar según cliente -->
             <a href="index.html" class="logo">
-    <img src="assets/images/logo-bara-co.png" alt="Bara & Co" style="height: 40px; width: auto;">
-</a>
+                <!-- Opción 1: Texto -->
+                Bara & Co
+                <!-- Opción 2: Imagen (descomentar y comentar opción 1) -->
+                <!-- <img src="assets/images/logo-bara-co.png" alt="Bara & Co"> -->
+            </a>
             <nav>
                 <ul class="nav-menu">
                     <li><a href="index.html" class="nav-link active">Inicio</a></li>
@@ -411,7 +420,7 @@
                 </div>
             </nav>
             <div class="header-icons">
-                <i class="fas fa-search"></i>
+                <i class="fas fa-search" onclick="buscador.abrirModal()"></i>
                 <a href="tienda.html"><i class="fas fa-user"></i></a>
                 <div class="cart-icon-wrapper" onclick="toggleCart()">
                     <i class="fas fa-shopping-bag"></i>
@@ -426,11 +435,11 @@
         <div class="hero-sticky" id="heroSticky">
             <!-- Panel izquierdo -->
             <div class="hero-panel-left" id="panelLeft">
-                <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Bara & Co mujer">
+                <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Bara & Co mujer" loading="eager">
             </div>
             <!-- Panel derecho -->
             <div class="hero-panel-right" id="panelRight">
-                <img src="https://images.unsplash.com/photo-1504593811423-6dd665756598?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Bara & Co hombre">
+                <img src="https://images.unsplash.com/photo-1504593811423-6dd665756598?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Bara & Co hombre" loading="eager">
             </div>
             
             <!-- Overlay -->
@@ -445,7 +454,7 @@
             </div>
             
             <!-- Scroll indicator -->
-            <div class="scroll-indicator" onclick="window.scrollTo({top: window.innerHeight, behavior: 'smooth'})">
+            <div class="scroll-indicator" onclick="document.getElementById('featured').scrollIntoView({behavior: 'smooth'})">
                 <span>Descubrir</span>
                 <div class="scroll-line"></div>
             </div>
@@ -453,16 +462,21 @@
     </div>
 
     <!-- Productos Destacados -->
-    <section class="featured-section">
+    <section class="featured-section" id="featured">
         <div class="container">
-            <h2 class="section-title text-center" style="font-size: 2.8rem; margin-bottom: 1rem;">Novedades</h2>
+            <h2 class="section-title text-center">Novedades</h2>
             <p class="text-center" style="color: var(--color-text-secondary); margin-bottom: 3rem;">Lo más nuevo de la temporada</p>
             
             <div class="featured-grid">
+                <!-- Producto 1 -->
                 <div class="featured-card" onclick="window.location.href='producto.html?id=1'">
                     <div class="featured-image">
-                        <span class="badge" style="position: absolute; top: 15px; right: 15px; background: var(--color-text-primary); color: white; padding: 4px 12px; font-size: 0.75rem;">Nuevo</span>
-                        <img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Remera Oversize">
+                        <span class="badge">Nuevo</span>
+                        <img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Remera Oversize" loading="lazy">
+                        <button class="add-to-cart-card" 
+                                onclick="event.stopPropagation(); agregarAlCarrito('1', 'Remera Oversize', 7999, 'https://images.unsplash.com/photo-1523381210434-271e8be1f52b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')">
+                            <i class="fas fa-shopping-bag"></i> AGREGAR
+                        </button>
                     </div>
                     <div class="featured-info">
                         <h3 class="featured-title">Remera Oversize</h3>
@@ -470,9 +484,14 @@
                     </div>
                 </div>
                 
+                <!-- Producto 2 -->
                 <div class="featured-card" onclick="window.location.href='producto.html?id=2'">
                     <div class="featured-image">
-                        <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Jean Holgado">
+                        <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Jean Holgado" loading="lazy">
+                        <button class="add-to-cart-card" 
+                                onclick="event.stopPropagation(); agregarAlCarrito('2', 'Jean Holgado', 15999, 'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')">
+                            <i class="fas fa-shopping-bag"></i> AGREGAR
+                        </button>
                     </div>
                     <div class="featured-info">
                         <h3 class="featured-title">Jean Holgado</h3>
@@ -480,14 +499,19 @@
                     </div>
                 </div>
                 
+                <!-- Producto 3 -->
                 <div class="featured-card" onclick="window.location.href='producto.html?id=3'">
                     <div class="featured-image">
-                        <span class="badge" style="position: absolute; top: 15px; right: 15px; background: var(--color-accent); color: white; padding: 4px 12px; font-size: 0.75rem;">-20%</span>
-                        <img src="https://images.unsplash.com/photo-1524592001865-b32997a13083?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Campera Jean">
+                        <span class="badge sale">-20%</span>
+                        <img src="https://images.unsplash.com/photo-1524592001865-b32997a13083?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Campera Jean" loading="lazy">
+                        <button class="add-to-cart-card" 
+                                onclick="event.stopPropagation(); agregarAlCarrito('3', 'Campera Jean', 22999, 'https://images.unsplash.com/photo-1524592001865-b32997a13083?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')">
+                            <i class="fas fa-shopping-bag"></i> AGREGAR
+                        </button>
                     </div>
                     <div class="featured-info">
                         <h3 class="featured-title">Campera Jean</h3>
-                        <p class="featured-price"><s style="color: #999; margin-right: 5px;">$28.999</s> $22.999</p>
+                        <p class="featured-price"><s>$28.999</s> $22.999</p>
                     </div>
                 </div>
             </div>
@@ -503,12 +527,15 @@
         <div class="container">
             <div class="footer-grid">
                 <div>
-                    <div class="footer-logo">Bara & Co</div>
+                    <div class="footer-logo">
+                        <!-- Mismo logo que header -->
+                        Bara & Co
+                    </div>
                     <p class="footer-text">Indumentaria urbana con personalidad. Diseño y confort para tu día a día.</p>
                     <div class="social-icons">
-                        <i class="fab fa-instagram"></i>
-                        <i class="fab fa-facebook-f"></i>
-                        <i class="fab fa-tiktok"></i>
+                        <i class="fab fa-instagram" onclick="window.open('https://instagram.com/bara.co', '_blank')"></i>
+                        <i class="fab fa-facebook-f" onclick="window.open('https://facebook.com', '_blank')"></i>
+                        <i class="fab fa-tiktok" onclick="window.open('https://tiktok.com', '_blank')"></i>
                     </div>
                 </div>
                 <div>
@@ -533,8 +560,8 @@
                     <h4 class="footer-title">Newsletter</h4>
                     <p class="footer-text">Sumate. 10% OFF en tu primera compra.</p>
                     <div class="newsletter-input">
-                        <input type="email" placeholder="Tu email">
-                        <button><i class="fas fa-arrow-right"></i></button>
+                        <input type="email" id="newsletterEmail" placeholder="Tu email">
+                        <button onclick="suscribirNewsletter()"><i class="fas fa-arrow-right"></i></button>
                     </div>
                 </div>
             </div>
@@ -545,14 +572,14 @@
                     <span>Ing. Olmos 139 – Jesús María</span>
                 </div>
                 <div class="legal-info">
-                    <span>Términos y condiciones</span>
-                    <span>Política de privacidad</span>
+                    <span onclick="window.location.href='terminos.html'">Términos y condiciones</span>
+                    <span onclick="window.location.href='privacidad.html'">Política de privacidad</span>
                 </div>
             </div>
         </div>
     </footer>
 
-    <!-- CARRITO FLOTANTE (GLOBAL) -->
+    <!-- CARRITO FLOTANTE -->
     <div class="cart-icon" onclick="toggleCart()">
         <i class="fas fa-shopping-bag"></i>
         <span class="cart-count">0</span>
@@ -569,16 +596,16 @@
             <i class="fas fa-times close-cart" onclick="toggleCart()"></i>
         </div>
         <div class="cart-items">
-            <!-- Se llena dinámicamente con JS -->
+            <!-- Se llena dinámicamente -->
         </div>
         <div class="cart-footer">
             <div class="subtotal">
                 <span>Subtotal</span>
                 <span id="subtotal">$0</span>
             </div>
-            <button class="checkout-btn" onclick="window.location.href='checkout.html'">
+            <button class="checkout-btn" onclick="carrito.finalizarWhatsApp()">
                 <span>Finalizar compra</span>
-                <i class="fas fa-arrow-right"></i>
+                <i class="fab fa-whatsapp"></i>
             </button>
         </div>
     </div>
@@ -587,12 +614,11 @@
 
     <!-- Scripts -->
     <script src="js/carrito.js"></script>
-    <script src="js/auth.js"></script>
-<script src="js/mercadopago.js"></script>
-<script src="js/search.js"></script>
-<script src="js/admin-productos.js"></script>
+    <script src="js/search.js"></script>
+    <script src="js/main.js"></script>
+    
     <script>
-        // Hero cinematográfico - Efecto puertas corredizas
+        // Hero cinematográfico
         document.addEventListener('DOMContentLoaded', function() {
             const panelLeft = document.getElementById('panelLeft');
             const panelRight = document.getElementById('panelRight');
@@ -601,6 +627,8 @@
             const MAX_TRANSLATE = 48;
             
             function updateHeroPanels() {
+                if (!heroSticky) return;
+                
                 const rect = heroSticky.getBoundingClientRect();
                 let progress = -rect.top / (window.innerHeight * 0.8);
                 progress = Math.max(0, Math.min(1, progress));
@@ -626,12 +654,21 @@
                 }
             }
             
-            window.addEventListener('scroll', updateHeroPanels);
+            window.addEventListener('scroll', updateHeroPanels, { passive: true });
             window.addEventListener('resize', updateHeroPanels);
             updateHeroPanels();
         });
+        
+        // Newsletter
+        function suscribirNewsletter() {
+            const email = document.getElementById('newsletterEmail').value;
+            if (email && email.includes('@')) {
+                alert('¡Gracias por suscribirte! Pronto recibirás novedades.');
+                document.getElementById('newsletterEmail').value = '';
+            } else {
+                alert('Por favor ingresá un email válido');
+            }
+        }
     </script>
 </body>
-
 </html>
-
