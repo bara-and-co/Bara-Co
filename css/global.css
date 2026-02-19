@@ -121,7 +121,11 @@ header.scrolled {
     letter-spacing: -0.02em;
     position: relative;
 }
-
+.logo img {
+    height: 40px;
+    width: auto;
+    display: block;
+}
 .logo::after {
     content: '';
     position: absolute;
