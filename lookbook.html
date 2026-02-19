@@ -344,37 +344,54 @@
         </div>
     </footer>
 
-    <!-- Carrito -->
-    <div class="cart-icon" onclick="toggleCart()">
-        <i class="fas fa-shopping-bag"></i>
-        <span class="cart-count">0</span>
-    </div>
+   <!-- CARRITO FLOTANTE CON DOBLE OPCIÓN DE PAGO -->
+<div class="cart-icon" onclick="toggleCart()">
+    <i class="fas fa-shopping-bag"></i>
+    <span class="cart-count">0</span>
+</div>
 
-    <div class="cart-notification" id="cartNotification">
-        <i class="fas fa-check-circle"></i>
-        <span>Producto agregado</span>
-    </div>
+<div class="cart-notification" id="cartNotification">
+    <i class="fas fa-check-circle"></i>
+    <span>Producto agregado</span>
+</div>
 
-    <div class="cart-panel" id="cartPanel">
-        <div class="cart-header">
-            <h2 class="cart-title">Carrito</h2>
-            <i class="fas fa-times close-cart" onclick="toggleCart()"></i>
+<div class="cart-panel" id="cartPanel">
+    <div class="cart-header">
+        <h2 class="cart-title">Carrito</h2>
+        <i class="fas fa-times close-cart" onclick="toggleCart()"></i>
+    </div>
+    
+    <div class="cart-items">
+        <!-- Contenido dinámico -->
+    </div>
+    
+    <div class="cart-footer">
+        <div class="subtotal">
+            <span>Subtotal</span>
+            <span id="subtotal">$0</span>
         </div>
-        <div class="cart-items"></div>
-        <div class="cart-footer">
-            <div class="subtotal">
-                <span>Subtotal</span>
-                <span id="subtotal">$0</span>
-            </div>
-            <button class="checkout-btn" onclick="carrito.finalizarWhatsApp()">
-                <span>Finalizar compra</span>
-                <i class="fas fa-arrow-right"></i>
+        
+        <!-- DOBLE OPCIÓN DE PAGO -->
+        <div class="payment-options">
+            <button class="payment-btn mercadopago-btn" onclick="carrito.pagarConMercadoPago()">
+                <i class="fab fa-mercadopago"></i>
+                Pagar con MercadoPago
+            </button>
+            
+            <button class="payment-btn whatsapp-btn" onclick="carrito.pagarConWhatsApp()">
+                <i class="fab fa-whatsapp"></i>
+                Solicitar por WhatsApp
             </button>
         </div>
+        
+        <p class="payment-info">
+            <i class="fas fa-lock"></i>
+            Pago seguro. Sin comisiones adicionales.
+        </p>
     </div>
+</div>
 
-    <div class="overlay" id="overlay" onclick="toggleCart()"></div>
-
+<div class="overlay" id="overlay" onclick="toggleCart()"></div>
     <!-- Scripts -->
     <script src="js/carrito.js"></script>
     <script src="js/search.js"></script>
