@@ -107,3 +107,34 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         }
     });
 });
+// ===========================================
+// HEADER ADAPTATIVO PARA TODAS LAS PÁGINAS
+// ===========================================
+
+document.addEventListener('DOMContentLoaded', function() {
+    const header = document.getElementById('header');
+    const body = document.body;
+    
+    // Detectar si es página de inicio
+    if (window.location.pathname.endsWith('index.html') || window.location.pathname === '/' || window.location.pathname === '') {
+        body.classList.add('inicio');
+        body.classList.remove('interior');
+    } else {
+        body.classList.add('interior');
+        body.classList.remove('inicio');
+    }
+    
+    // Manejar scroll
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 100) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    });
+    
+    // Trigger inicial
+    if (window.scrollY > 100) {
+        header.classList.add('scrolled');
+    }
+});
