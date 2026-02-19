@@ -19,177 +19,139 @@
     
     <style>
         /* Estilos del hero */
-        .hero-container {
-            position: relative;
-            width: 100%;
-            height: 100vh;
-            overflow: hidden;
-            background: #000;
-        }
+        /* ===== HERO MEJORADO - IMÁGENES COMPLETAS ===== */
+.hero-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    background: #000;
+}
 
-        .hero-sticky {
-            position: sticky;
-            top: 0;
-            width: 100%;
-            height: 100vh;
-            overflow: hidden;
-            z-index: 10;
-        }
+.hero-sticky {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    z-index: 10;
+}
 
-        .hero-panel-left,
-        .hero-panel-right {
-            position: absolute;
-            top: 0;
-            width: 50%;
-            height: 100vh;
-            overflow: hidden;
-            will-change: transform;
-            transition: transform 0.1s linear;
-        }
+.hero-panel-left,
+.hero-panel-right {
+    position: absolute;
+    top: 0;
+    width: 50%;
+    height: 100vh;
+    overflow: hidden;
+    will-change: transform;
+    transition: transform 0.1s linear;
+}
 
-        .hero-panel-left {
-            left: 0;
-        }
+.hero-panel-left {
+    left: 0;
+}
 
-        .hero-panel-right {
-            right: 0;
-        }
+.hero-panel-right {
+    right: 0;
+}
 
-        .hero-panel-left img,
-        .hero-panel-right img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            position: absolute;
-            top: 0;
-            transition: transform 1.2s cubic-bezier(0.65, 0, 0.35, 1);
-            will-change: transform;
-        }
+/* NUEVO: Contenedor para las imágenes */
+.panel-image-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
 
-        .hero-panel-left img {
-            left: 0;
-            object-position: 70% center;
-        }
+/* IMÁGENES COMPLETAS - centradas verticalmente */
+.hero-panel-left .panel-image-container img,
+.hero-panel-right .panel-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;  /* CAMBIO CLAVE: contain en lugar de cover */
+    object-position: center center; /* Centrado perfecto */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    transition: transform 1.2s cubic-bezier(0.65, 0, 0.35, 1);
+    will-change: transform;
+}
 
-        .hero-panel-right img {
-            right: 0;
-            object-position: 30% center;
-        }
+/* Mantener el efecto hover */
+.hero-panel-left:hover .panel-image-container img,
+.hero-panel-right:hover .panel-image-container img {
+    transform: translate(-50%, -50%) scale(1.05);
+}
 
-        .hero-panel-left:hover img,
-        .hero-panel-right:hover img {
-            transform: scale(1.05);
-        }
+/* Para pantallas muy anchas, ajustar */
+@media (min-aspect-ratio: 16/9) {
+    .hero-panel-left .panel-image-container img,
+    .hero-panel-right .panel-image-container img {
+        width: 100%;
+        height: auto;
+        min-height: 100%;
+    }
+}
 
-        .hero-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at center, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.5) 100%);
-            z-index: 5;
-            pointer-events: none;
-        }
+/* Para pantallas muy altas */
+@media (max-aspect-ratio: 9/16) {
+    .hero-panel-left .panel-image-container img,
+    .hero-panel-right .panel-image-container img {
+        width: auto;
+        height: 100%;
+        min-width: 100%;
+    }
+}
 
-        .hero-content {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 20;
-            text-align: center;
-            color: white;
-            width: 100%;
-            max-width: 1000px;
-            padding: 0 2rem;
-            pointer-events: none;
-        }
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.5) 100%);
+    z-index: 5;
+    pointer-events: none;
+}
 
-        .hero-pre-title {
-            font-size: 0.9rem;
-            letter-spacing: 6px;
-            text-transform: uppercase;
-            margin-bottom: 1rem;
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeUpReveal 1s forwards 0.3s;
-            font-weight: 300;
-            color: rgba(255,255,255,0.9);
-        }
+.hero-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 20;
+    text-align: center;
+    color: white;
+    width: 100%;
+    max-width: 1000px;
+    padding: 0 2rem;
+    pointer-events: none;
+}
 
-        .hero-title {
-            font-family: var(--font-serif);
-            font-size: clamp(3rem, 8vw, 6.5rem);
-            font-weight: 700;
-            line-height: 1;
-            margin-bottom: 1.5rem;
-            text-shadow: 0 4px 30px rgba(0,0,0,0.3);
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeUpReveal 1s forwards 0.6s;
-            letter-spacing: -0.02em;
-        }
-
-        .hero-title span {
-            color: var(--color-accent);
-            font-style: italic;
-        }
-
-        .hero-subtitle {
-            font-size: clamp(1rem, 2vw, 1.4rem);
-            font-weight: 300;
-            margin-bottom: 2.5rem;
-            text-shadow: 0 2px 15px rgba(0,0,0,0.2);
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeUpReveal 1s forwards 0.9s;
-            color: rgba(255,255,255,0.95);
-        }
-
-        .hero-btn {
-            display: inline-block;
-            padding: 18px 54px;
-            background: white;
-            color: var(--color-text-primary);
-            font-weight: 600;
-            letter-spacing: 2px;
-            border: none;
-            cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.65, 0, 0.35, 1);
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            pointer-events: auto;
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeUpReveal 1s forwards 1.2s;
-            position: relative;
-            overflow: hidden;
-            border-radius: 0;
-            text-decoration: none;
-        }
-
-        .hero-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: var(--color-accent);
-            transition: left 0.4s cubic-bezier(0.65, 0, 0.35, 1);
-            z-index: -1;
-        }
-
-        .hero-btn:hover {
-            color: white;
-            transform: translateY(-3px);
-            box-shadow: 0 20px 30px -10px rgba(0,0,0,0.3);
-        }
-
-        .hero-btn:hover::before {
-            left: 0;
-        }
+/* Responsive para móviles - apilado vertical */
+@media (max-width: 768px) {
+    .hero-panel-left,
+    .hero-panel-right {
+        width: 100%;
+        height: 50%;
+    }
+    
+    .hero-panel-left {
+        top: 0;
+    }
+    
+    .hero-panel-right {
+        top: 50%;
+    }
+    
+    /* Ajustar imágenes en móviles */
+    .hero-panel-left .panel-image-container img,
+    .hero-panel-right .panel-image-container img {
+        object-fit: cover; /* En móvil sí puede cubrir porque hay menos espacio */
+    }
+}
 
         .scroll-indicator {
             position: absolute;
