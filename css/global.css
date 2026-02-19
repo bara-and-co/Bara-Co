@@ -929,3 +929,65 @@ footer {
         font-size: 1.1rem;
     }
 }
+/* ---------- HEADER VARIACIONES POR PÁGINA ---------- */
+body.inicio header {
+    background: transparent;
+    color: white;
+    mix-blend-mode: difference;
+}
+
+body.inicio header.scrolled {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    color: var(--color-text-primary);
+    mix-blend-mode: normal;
+}
+
+/* Para páginas interiores (tienda, lookbook, producto) */
+body.interior header {
+    background: white;
+    color: var(--color-text-primary);
+    mix-blend-mode: normal;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.02);
+}
+
+body.interior header.scrolled {
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(10px);
+    padding: 1rem 2rem;
+}
+
+/* Logo imagen - versión para inicio (blanco) */
+body.inicio .logo-img {
+    filter: brightness(0) invert(1); /* Convierte el logo a blanco */
+}
+
+body.inicio header.scrolled .logo-img {
+    filter: brightness(1) invert(0); /* Vuelve a color normal cuando scrolleamos */
+}
+
+/* Logo imagen - versión para interior (color normal) */
+body.interior .logo-img {
+    filter: none; /* Color original */
+}
+
+/* Si usás logo texto en lugar de imagen */
+.logo-text {
+    font-family: var(--font-serif);
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    position: relative;
+    color: inherit;
+}
+
+.logo-text::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 30px;
+    height: 2px;
+    background: currentColor;
+    opacity: 0.5;
+}
