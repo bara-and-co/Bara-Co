@@ -798,8 +798,7 @@
                     <div class="no-products">
                         <i class="fas fa-search"></i>
                         <p>No encontramos productos que coincidan con tu búsqueda</p>
-                        <button class="reset-btn" onclick="aplicarFiltro('todos')">Ver todos los productos</button>
-                    </div>
+                        <button class="reset-btn" onclick="window.location.href='pages/producto.html'">Ver todos los productos</button>
                 `;
             } else {
                 let html = '';
@@ -807,7 +806,7 @@
                     const descuento = producto.precioOriginal ? Math.round((1 - producto.precio / producto.precioOriginal) * 100) : 0;
                     
                     html += `
-                        <div class="product-card" onclick="window.location.href='producto.html?id=${producto.id}'">
+                        <div class="product-card" onclick="window.location.href='pages/producto.html?id=${producto.id}'">
                             <div class="product-image">
                                 ${producto.etiqueta === 'nuevo' ? '<span class="badge new">Nuevo</span>' : ''}
                                 ${producto.etiqueta === 'sale' ? `<span class="badge sale">-${descuento}%</span>` : ''}
@@ -821,7 +820,7 @@
                                             onclick="event.stopPropagation(); agregarAlCarrito('${producto.id}', '${producto.nombre}', ${producto.precio}, '${producto.imagen}')">
                                         <i class="fas fa-shopping-bag"></i> Agregar
                                     </button>
-                                    <button class="quick-view" onclick="event.stopPropagation(); window.location.href='producto.html?id=${producto.id}'">
+                                    <button class="quick-view" onclick="window.location.href='pages/producto.html?id=${producto.id}'">
                                         <i class="fas fa-eye"></i>
                                     </button>
                                 </div>
