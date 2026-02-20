@@ -143,7 +143,15 @@
       height: 100vh;
       overflow: hidden;
       background: #000;
-      will-change: transform;
+    }
+
+    /* Wrapper extra para que los paneles puedan salir sin clippearse */
+    .hero-panels-wrap {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      z-index: 2;
+      pointer-events: none;
     }
 
     .hero-background {
@@ -1212,45 +1220,37 @@ window.addEventListener('scroll', () => {
   hdr.classList.toggle('scrolled', window.scrollY > 40);
 }, {passive:true});
 
-/* ===== INIT ÚNICO AL CARGAR ===== */
-document.addEventListener('DOMContentLoaded', function() {
-
-  /* ── HERO PARALLAX ── */
-  const panelLeft  = document.getElementById('panelLeft');
-  const panelRight = document.getElementById('panelRight');
+/* ===== HERO PARALLAX — ejecuta directo (script está al final del body) ===== */
+(function() {
+  const panelLeft   = document.getElementById('panelLeft');
+  const panelRight  = document.getElementById('panelRight');
   const heroContent = document.getElementById('heroContent');
   const scrollHint  = document.getElementById('scrollHint');
   
-  if (panelLeft && panelRight) {
-    const MAX_TRANSLATE = 55; /* % — suficiente para salir de pantalla */
-    let ticking = false;
-    
-    function updateHeroPanels() {
-      const scrollY      = window.scrollY;
-      const windowHeight = window.innerHeight;
-      /* progress: 0 = top, 1 = paneles completamente abiertos */
-      let progress = Math.min(scrollY / (windowHeight * 0.65), 1);
-      
-      panelLeft.style.transform  = `translateX(${-(progress * MAX_TRANSLATE)}%)`;
-      panelRight.style.transform = `translateX(${progress * MAX_TRANSLATE}%)`;
-      
-      if (heroContent) heroContent.style.opacity = Math.max(0, 1 - progress * 1.5);
-      if (scrollHint)  scrollHint.style.opacity  = Math.max(0, 1 - progress * 2);
-      
-      ticking = false;
-    }
-    
-    window.addEventListener('scroll', function() {
-      if (!ticking) { window.requestAnimationFrame(updateHeroPanels); ticking = true; }
-    }, { passive: true });
-    
-    window.addEventListener('resize', updateHeroPanels);
-    updateHeroPanels(); /* estado inicial */
+  if (!panelLeft || !panelRight) return;
+
+  let ticking = false;
+
+  function updateHeroPanels() {
+    const progress = Math.min(window.scrollY / (window.innerHeight * 0.6), 1);
+    const pct = progress * 100;
+    panelLeft.style.transform  = `translateX(${-pct}%)`;
+    panelRight.style.transform = `translateX(${pct}%)`;
+    if (heroContent) heroContent.style.opacity = Math.max(0, 1 - progress * 1.6);
+    if (scrollHint)  scrollHint.style.opacity  = Math.max(0, 1 - progress * 2);
+    ticking = false;
   }
 
-  /* ── PRODUCTOS DESTACADOS ── */
-  cargarDestacados();
-});
+  window.addEventListener('scroll', function() {
+    if (!ticking) { requestAnimationFrame(updateHeroPanels); ticking = true; }
+  }, { passive: true });
+
+  window.addEventListener('resize', updateHeroPanels);
+  updateHeroPanels();
+})();
+
+/* ── PRODUCTOS DESTACADOS ── */
+cargarDestacados();
 
 /* ===== FALLBACK: productos hardcodeados con imágenes reales ===== */
 const FALLBACK_PRODUCTOS = [
