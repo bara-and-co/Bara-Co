@@ -39,7 +39,7 @@
     "subcategoria": "Remeras",
     "imagen": "mujer/Croptop.png",
     "imagenes": [
-      "https://d22fxaf9t8d39k.cloudfront.net/e1ced99735f95039982ce3dd6ffe72a2f0b82b2e6e60497f8d2567731f5224a0404368.jpg",
+      "mujer/Croptop.png",
       "https://d22fxaf9t8d39k.cloudfront.net/e318b07cdc5138d9e0505283d8ee2427f86e111a8d3827d6bd90ed3cf18c44f1404368.jpg",
       "https://d22fxaf9t8d39k.cloudfront.net/2268cb8ba64041bdc4046e810ed7871b2927ab2b06089e74dbabf8b4cd1594b0404368.jpg",
       "https://d22fxaf9t8d39k.cloudfront.net/a55f9583582d647c80acc805b6df5392b530758b6982b57a2a74f32c1866ba3c404368.jpg"
@@ -63,7 +63,7 @@
     "sku": "REMERA-CROP-TOP",
     "stock": 10,
     "activo": true,
-    "url": "https://baraandco.empretienda.com.ar/mujer/remeras/remera-crop-top"
+    "url": "mujer/Croptop.png"
   },
   {
     "id": "campera-lampard",
