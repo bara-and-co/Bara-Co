@@ -6,9 +6,9 @@
     "precioAnterior": 70000,
     "categoria": "mujer",
     "subcategoria": "Pantalones",
-    "imagen": "https://d22fxaf9t8d39k.cloudfront.net/dd90a394af234d838d3d5ae4d59f16dd819614b3a74c2e8354a0c11be282fd64404368.jpg",
+    "imagen": "mujer/Jean Ancho.png",
     "imagenes": [
-      "https://d22fxaf9t8d39k.cloudfront.net/dd90a394af234d838d3d5ae4d59f16dd819614b3a74c2e8354a0c11be282fd64404368.jpg"
+      "mujer/Jean Ancho.png"
     ],
     "descripcion": "",
     "composicion": "",
@@ -36,9 +36,9 @@
     "precioAnterior": 25000,
     "categoria": "mujer",
     "subcategoria": "Remeras",
-    "imagen": "https://d22fxaf9t8d39k.cloudfront.net/e1ced99735f95039982ce3dd6ffe72a2f0b82b2e6e60497f8d2567731f5224a0404368.jpg",
+    "imagen": "mujer/Croptop.png",
     "imagenes": [
-      "https://d22fxaf9t8d39k.cloudfront.net/e1ced99735f95039982ce3dd6ffe72a2f0b82b2e6e60497f8d2567731f5224a0404368.jpg"
+      "mujer/Croptop.png"
     ],
     "descripcion": "",
     "composicion": "",
@@ -2346,9 +2346,9 @@
     "precioAnterior": null,
     "categoria": "mujer",
     "subcategoria": "Remeras",
-    "imagen": "https://d22fxaf9t8d39k.cloudfront.net/bedfef39950f4610f0c85df6710b0ca0c8a00a6daadba4e57234036417b5ccf2404368.jpg",
+    "imagen": "mujer/Body.png",
     "imagenes": [
-      "https://d22fxaf9t8d39k.cloudfront.net/bedfef39950f4610f0c85df6710b0ca0c8a00a6daadba4e57234036417b5ccf2404368.jpg"
+      "mujer/Body.png"
     ],
     "descripcion": "",
     "composicion": "",
@@ -2406,9 +2406,9 @@
     "precioAnterior": 40000,
     "categoria": "mujer",
     "subcategoria": "Pantalones",
-    "imagen": "https://d22fxaf9t8d39k.cloudfront.net/23cd8555c955f6c941e822edc5e0106e217b34584c01292fec7946f714b871c5404368.jpg",
+    "imagen": "mujer/pantalon.png",
     "imagenes": [
-      "https://d22fxaf9t8d39k.cloudfront.net/23cd8555c955f6c941e822edc5e0106e217b34584c01292fec7946f714b871c5404368.jpg"
+      "mujer/pantalon.png"
     ],
     "descripcion": "",
     "composicion": "",
@@ -2466,9 +2466,9 @@
     "precioAnterior": 18000,
     "categoria": "mujer",
     "subcategoria": "Polleras",
-    "imagen": "https://d22fxaf9t8d39k.cloudfront.net/260cb3188e02309233e221d86957f564524cbe28e60d2786108d4c8723b4d0db404368.jpg",
+    "imagen": "mujer/Shortengomado.png",
     "imagenes": [
-      "https://d22fxaf9t8d39k.cloudfront.net/260cb3188e02309233e221d86957f564524cbe28e60d2786108d4c8723b4d0db404368.jpg"
+      "mujer/Shortengomado.png"
     ],
     "descripcion": "",
     "composicion": "",
@@ -2496,9 +2496,9 @@
     "precioAnterior": 25000,
     "categoria": "mujer",
     "subcategoria": "Polleras",
-    "imagen": "https://d22fxaf9t8d39k.cloudfront.net/6b6b1644d83911af8fc7f5edd8dbd909b3e1633c17b803d755b5b3e5625666df404368.jpg",
+    "imagen": "mujer/Shortcinturon.png",
     "imagenes": [
-      "https://d22fxaf9t8d39k.cloudfront.net/6b6b1644d83911af8fc7f5edd8dbd909b3e1633c17b803d755b5b3e5625666df404368.jpg"
+      "mujer/Shortcinturon.png"
     ],
     "descripcion": "",
     "composicion": "",
@@ -2526,9 +2526,9 @@
     "precioAnterior": 20000,
     "categoria": "mujer",
     "subcategoria": "Polleras",
-    "imagen": "https://d22fxaf9t8d39k.cloudfront.net/a6f6d9cba484a798fd596e738a6ec2cc6cc6365f0ca7d2ee55afe0f9a5ca54bd404368.jpg",
+    "imagen": "mujer/ShortNova.png",
     "imagenes": [
-      "https://d22fxaf9t8d39k.cloudfront.net/a6f6d9cba484a798fd596e738a6ec2cc6cc6365f0ca7d2ee55afe0f9a5ca54bd404368.jpg"
+      "mujer/ShortNova.png"
     ],
     "descripcion": "",
     "composicion": "",
