@@ -39,6 +39,12 @@
       background:rgba(14,14,12,.93); backdrop-filter:blur(20px);
       border-bottom:1px solid var(--border);
     }
+    .logo-producto {
+  height: 70px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
     .logo-img { height:56px; width:auto; object-fit:contain; display:block; }
     .header-nav ul { display:flex; gap:36px; }
     .header-nav a {
@@ -441,7 +447,10 @@
 <body>
 
 <header id="header">
-  <a href="index.html"><img src="images/LogoB&D.png" alt="Bara & Co" class="logo-img"/></a>
+  <!-- Reemplaza el logo actual -->
+<a href="index.html">
+  <img src="images/LogoB&D.png" alt="Bara & Co" class="logo-producto"/>
+</a>
   <nav class="header-nav">
     <ul>
       <li><a href="index.html">Inicio</a></li>
@@ -569,6 +578,10 @@
     <div class="cd-empty" id="cdEmpty">Tu carrito está vacío</div>
   </div>
   <div class="cd-foot">
+    <!-- En el footer, usa el logo negro si el fondo es oscuro -->
+<div class="foot-logo">
+  <img src="images/logoN&D.png" alt="Bara & Co" class="logo-footer"/>
+</div>
     <div class="cd-subtotal"><span>Subtotal</span><span id="cdTotal">$0</span></div>
     <button class="pay-btn pay-mp" onclick="pagarMP()">
       <i class="fab fa-cc-visa"></i> Pagar con MercadoPago
