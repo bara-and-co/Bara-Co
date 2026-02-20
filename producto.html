@@ -1,1097 +1,593 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Producto · Bara & Co</title>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Producto · Bara & Co</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
+  <link rel="stylesheet" href="css/global.css"/>
+  <style>
+    /* (Copiar los mismos estilos de tienda.html para mantener consistencia) */
+    :root {
+      --bg:      #0e0e0c;
+      --surface: #161614;
+      --border:  rgba(255,255,255,.07);
+      --text:    #f0ece4;
+      --muted:   #7a7872;
+      --accent:  #c9a96e;
+      --adk:     #9e7a3e;
+      --red:     #b83030;
+      --white:   #fff;
+      --serif:   'Playfair Display', serif;
+      --sans:    'Inter', sans-serif;
+      --ease:    cubic-bezier(.16,1,.3,1);
+    }
     
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      background:var(--bg); color:var(--text);
+      font-family:var(--sans); font-size:15px; line-height:1.6;
+      padding-top:72px;
+    }
     
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    /* Header - mismo que tienda.html */
+    #header {
+      position:fixed; top:0; left:0; right:0; z-index:200;
+      display:flex; align-items:center; justify-content:space-between;
+      padding:0 48px; height:72px;
+      background:rgba(14,14,12,.93); backdrop-filter:blur(20px);
+      border-bottom:1px solid var(--border);
+    }
     
-    <!-- Estilos Globales -->
-    <link rel="stylesheet" href="css/global.css">
+    /* Breadcrumb */
+    .breadcrumb {
+      padding:24px 48px 0;
+      font-size:12px; color:var(--muted);
+    }
+    .breadcrumb a { color:var(--muted); }
+    .breadcrumb a:hover { color:var(--accent); }
     
-    <style>
-        /* ===== BREADCRUMB ===== */
-        .breadcrumb {
-            padding: 2rem 0 1rem;
-            font-size: 0.85rem;
-            color: var(--color-text-secondary);
-        }
-        
-        .breadcrumb a {
-            color: var(--color-text-secondary);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        
-        .breadcrumb a:hover {
-            color: var(--color-accent);
-        }
-        
-        .breadcrumb span {
-            color: var(--color-text-primary);
-            font-weight: 500;
-        }
-        
-        .breadcrumb i {
-            font-size: 0.6rem;
-            margin: 0 0.5rem;
-            color: #999;
-        }
-        
-        /* ===== PÁGINA DE PRODUCTO ===== */
-        .product-page {
-            padding: 2rem 0 4rem;
-            margin-top: 80px;
-        }
-        
-        .product-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            margin-bottom: 4rem;
-        }
-        
-        /* ----- GALERÍA ----- */
-        .product-gallery {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-        
-        .main-image {
-            aspect-ratio: 4/5;
-            overflow: hidden;
-            background: #f5f5f5;
-            position: relative;
-        }
-        
-        .main-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s;
-        }
-        
-        .main-image:hover img {
-            transform: scale(1.02);
-        }
-        
-        .thumbnail-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1rem;
-        }
-        
-        .thumbnail {
-            aspect-ratio: 1;
-            overflow: hidden;
-            cursor: pointer;
-            opacity: 0.6;
-            transition: all 0.3s;
-            background: #f5f5f5;
-            border: 2px solid transparent;
-        }
-        
-        .thumbnail:hover {
-            opacity: 0.8;
-        }
-        
-        .thumbnail.active {
-            opacity: 1;
-            border-color: var(--color-accent);
-        }
-        
-        .thumbnail img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        /* ----- INFO DEL PRODUCTO ----- */
-        .product-info {
-            padding-right: 2rem;
-        }
-        
-        .product-category {
-            color: var(--color-accent);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-size: 0.8rem;
-            margin-bottom: 1rem;
-        }
-        
-        .product-title {
-            font-family: var(--font-serif);
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            line-height: 1.2;
-        }
-        
-        /* Precios */
-        .price-container {
-            margin-bottom: 1.5rem;
-        }
-        
-        .price-row {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-        
-        .current-price {
-            font-size: 2.2rem;
-            font-weight: 600;
-            color: var(--color-text-primary);
-        }
-        
-        .old-price {
-            font-size: 1.3rem;
-            color: #999;
-            text-decoration: line-through;
-        }
-        
-        .discount-badge {
-            background: var(--color-accent);
-            color: white;
-            padding: 0.3rem 0.8rem;
-            font-size: 0.9rem;
-            font-weight: 600;
-        }
-        
-        .cuotas-link {
-            display: inline-block;
-            color: var(--color-accent);
-            text-decoration: underline;
-            font-size: 0.9rem;
-            margin-top: 0.5rem;
-            cursor: pointer;
-        }
-        
-        .cuotas-link i {
-            font-size: 0.8rem;
-            margin-left: 0.3rem;
-        }
-        
-        /* Selector de talle */
-        .size-section {
-            margin: 2rem 0;
-        }
-        
-        .size-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1rem;
-        }
-        
-        .size-label {
-            font-weight: 600;
-        }
-        
-        .size-guide {
-            color: var(--color-accent);
-            font-size: 0.85rem;
-            text-decoration: underline;
-            cursor: pointer;
-        }
-        
-        .size-options {
-            display: flex;
-            gap: 0.8rem;
-            flex-wrap: wrap;
-        }
-        
-        .size-btn {
-            width: 50px;
-            height: 50px;
-            border: 1px solid var(--color-border);
-            background: white;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-weight: 500;
-            font-size: 1rem;
-        }
-        
-        .size-btn:hover {
-            border-color: var(--color-text-primary);
-        }
-        
-        .size-btn.selected {
-            background: var(--color-text-primary);
-            color: white;
-            border-color: var(--color-text-primary);
-        }
-        
-        .size-btn.disabled {
-            opacity: 0.3;
-            cursor: not-allowed;
-            text-decoration: line-through;
-        }
-        
-        /* Selector de cantidad */
-        .quantity-section {
-            margin: 2rem 0;
-        }
-        
-        .quantity-label {
-            font-weight: 600;
-            margin-bottom: 1rem;
-        }
-        
-        .quantity-selector {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-        
-        .qty-control {
-            display: flex;
-            border: 1px solid var(--color-border);
-            width: fit-content;
-        }
-        
-        .qty-control button {
-            width: 45px;
-            height: 45px;
-            background: white;
-            border: none;
-            cursor: pointer;
-            font-size: 1.2rem;
-            transition: all 0.3s;
-        }
-        
-        .qty-control button:hover {
-            background: var(--color-text-primary);
-            color: white;
-        }
-        
-        .qty-control input {
-            width: 60px;
-            height: 45px;
-            text-align: center;
-            border: none;
-            border-left: 1px solid var(--color-border);
-            border-right: 1px solid var(--color-border);
-            font-weight: 500;
-            font-size: 1rem;
-        }
-        
-        .stock-info {
-            color: #28a745;
-            font-size: 0.9rem;
-            margin-left: 1rem;
-        }
-        
-        /* Botón de agregar al carrito */
-        .add-to-cart-btn {
-            width: 100%;
-            padding: 1.2rem;
-            background: var(--color-text-primary);
-            color: white;
-            border: none;
-            font-weight: 600;
-            letter-spacing: 2px;
-            cursor: pointer;
-            transition: all 0.3s;
-            margin: 2rem 0 1rem;
-            text-transform: uppercase;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 1rem;
-            font-size: 1rem;
-        }
-        
-        .add-to-cart-btn:hover {
-            background: var(--color-accent);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px -5px rgba(124, 140, 125, 0.3);
-        }
-        
-        .add-to-cart-btn i {
-            font-size: 1.2rem;
-        }
-        
-        /* Calculadora de envío */
-        .shipping-calculator {
-            background: #f9f9f9;
-            padding: 1.5rem;
-            margin: 2rem 0;
-            border-left: 4px solid var(--color-accent);
-        }
-        
-        .shipping-calculator h4 {
-            font-family: var(--font-serif);
-            font-size: 1.2rem;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        .shipping-calculator h4 i {
-            color: var(--color-accent);
-        }
-        
-        .calculator-row {
-            display: flex;
-            gap: 0.5rem;
-            margin-bottom: 1rem;
-        }
-        
-        .calculator-row input {
-            flex: 2;
-            padding: 0.8rem;
-            border: 1px solid var(--color-border);
-            font-family: var(--font-sans);
-        }
-        
-        .calculator-row button {
-            flex: 1;
-            padding: 0.8rem;
-            background: var(--color-text-primary);
-            color: white;
-            border: none;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        
-        .calculator-row button:hover {
-            background: var(--color-accent);
-        }
-        
-        .shipping-result {
-            font-size: 0.95rem;
-            color: var(--color-text-secondary);
-            min-height: 40px;
-        }
-        
-        .shipping-options {
-            margin-top: 1rem;
-            display: none;
-        }
-        
-        .shipping-options.show {
-            display: block;
-        }
-        
-        .shipping-option {
-            display: flex;
-            justify-content: space-between;
-            padding: 0.8rem;
-            background: white;
-            border: 1px solid #eee;
-            margin-bottom: 0.5rem;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        
-        .shipping-option:hover,
-        .shipping-option.selected {
-            border-color: var(--color-accent);
-            background: var(--color-accent-light);
-        }
-        
-        .shipping-option-name {
-            font-weight: 500;
-        }
-        
-        .shipping-option-price {
-            color: var(--color-accent);
-            font-weight: 600;
-        }
-        
-        .shipping-option-time {
-            font-size: 0.8rem;
-            color: #999;
-        }
-        
-        /* Metadatos del producto */
-        .product-meta {
-            margin-top: 2rem;
-            padding-top: 2rem;
-            border-top: 1px solid var(--color-border);
-        }
-        
-        .meta-item {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 0.8rem;
-            color: var(--color-text-secondary);
-            font-size: 0.95rem;
-        }
-        
-        .meta-item i {
-            width: 20px;
-            color: var(--color-accent);
-        }
-        
-        /* Productos relacionados */
-        .related-section {
-            padding: 4rem 0;
-            background: var(--color-bg-secondary);
-        }
-        
-        .section-title {
-            font-family: var(--font-serif);
-            font-size: 2.2rem;
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-        
-        .related-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-        }
-        
-        .related-card {
-            cursor: pointer;
-            background: white;
-            padding: 1rem;
-            transition: all 0.3s;
-        }
-        
-        .related-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-        
-        .related-image {
-            aspect-ratio: 1;
-            overflow: hidden;
-            margin-bottom: 1rem;
-        }
-        
-        .related-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .related-info {
-            text-align: center;
-        }
-        
-        .related-info h4 {
-            font-family: var(--font-serif);
-            margin-bottom: 0.5rem;
-            font-size: 1rem;
-        }
-        
-        .related-price {
-            color: var(--color-accent);
-            font-weight: 600;
-        }
-        
-        /* Responsive */
-        @media (max-width: 1024px) {
-            .product-grid {
-                gap: 2rem;
-            }
-            
-            .product-title {
-                font-size: 2rem;
-            }
-            
-            .current-price {
-                font-size: 1.8rem;
-            }
-            
-            .related-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .product-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .product-info {
-                padding-right: 0;
-            }
-            
-            .related-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .thumbnail-grid {
-                grid-template-columns: repeat(4, 1fr);
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .product-title {
-                font-size: 1.8rem;
-            }
-            
-            .related-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .calculator-row {
-                flex-direction: column;
-            }
-        }
-    </style>
+    /* Página de producto */
+    .product-page {
+      display:grid; grid-template-columns:1fr 1fr;
+      gap:40px; padding:40px 48px 80px;
+      max-width:1400px; margin:0 auto;
+    }
+    
+    /* Galería */
+    .gallery {
+      position:sticky; top:100px;
+    }
+    .main-image {
+      aspect-ratio:3/4; overflow:hidden; border:1px solid var(--border);
+      margin-bottom:16px;
+    }
+    .main-image img {
+      width:100%; height:100%; object-fit:cover;
+      transition:transform .3s;
+    }
+    .thumbnails {
+      display:flex; gap:8px; overflow-x:auto; padding-bottom:8px;
+    }
+    .thumb {
+      width:80px; height:100px; flex-shrink:0;
+      border:1px solid var(--border); cursor:pointer;
+      transition:border-color .2s;
+    }
+    .thumb:hover { border-color:var(--accent); }
+    .thumb img { width:100%; height:100%; object-fit:cover; }
+    
+    /* Info producto */
+    .product-info { padding:20px 0; }
+    .product-category {
+      font-size:10px; letter-spacing:.2em; text-transform:uppercase;
+      color:var(--accent); margin-bottom:10px;
+    }
+    .product-title {
+      font-family:var(--serif); font-size:42px; font-weight:400;
+      margin-bottom:20px; line-height:1.1;
+    }
+    .product-price {
+      font-size:32px; color:var(--accent); margin-bottom:20px;
+    }
+    .product-price del {
+      font-size:20px; color:var(--muted); margin-right:10px;
+    }
+    .product-description {
+      font-size:15px; color:var(--muted); line-height:1.8;
+      margin-bottom:30px; padding-bottom:30px;
+      border-bottom:1px solid var(--border);
+    }
+    
+    /* Selector de talle */
+    .size-label {
+      font-size:12px; font-weight:600; letter-spacing:.1em;
+      text-transform:uppercase; margin-bottom:12px;
+    }
+    .size-guide-link {
+      float:right; font-size:11px; color:var(--accent);
+      text-decoration:underline; cursor:pointer;
+    }
+    .size-options {
+      display:flex; flex-wrap:wrap; gap:8px; margin-bottom:24px;
+    }
+    .size-btn {
+      min-width:52px; padding:12px 18px;
+      border:1px solid var(--border); background:none;
+      color:var(--text); font-size:14px; cursor:pointer;
+      transition:all .2s;
+    }
+    .size-btn:hover { border-color:var(--accent); }
+    .size-btn.active {
+      background:var(--accent); border-color:var(--accent); color:var(--bg);
+    }
+    .size-btn.out-of-stock {
+      opacity:.3; cursor:not-allowed; text-decoration:line-through;
+    }
+    
+    /* Selector de color */
+    .color-options {
+      display:flex; gap:10px; margin-bottom:30px;
+    }
+    .color-btn {
+      width:36px; height:36px; border-radius:50%;
+      border:2px solid transparent; cursor:pointer;
+      transition:border-color .2s;
+    }
+    .color-btn:hover, .color-btn.active { border-color:var(--accent); }
+    
+    /* Botones de acción */
+    .action-buttons {
+      display:flex; gap:12px; margin-bottom:30px;
+    }
+    .btn {
+      flex:1; padding:15px; border:none; cursor:pointer;
+      font-family:var(--sans); font-size:12px; font-weight:600;
+      letter-spacing:.15em; text-transform:uppercase;
+      display:flex; align-items:center; justify-content:center; gap:8px;
+      transition:all .2s;
+    }
+    .btn-primary {
+      background:var(--accent); color:var(--bg);
+    }
+    .btn-primary:hover { background:var(--adk); }
+    .btn-secondary {
+      background:transparent; border:1px solid var(--border); color:var(--text);
+    }
+    .btn-secondary:hover { border-color:var(--accent); color:var(--accent); }
+    
+    /* Stock y envíos */
+    .stock-info {
+      display:flex; gap:24px; margin-bottom:30px;
+      padding:20px; background:var(--surface); border:1px solid var(--border);
+    }
+    .stock-item {
+      display:flex; align-items:center; gap:8px; font-size:13px;
+    }
+    .stock-item i { color:var(--accent); }
+    
+    /* Productos relacionados */
+    .related {
+      grid-column:1/-1;
+      padding:60px 0 0;
+      border-top:1px solid var(--border);
+    }
+    .related h3 {
+      font-family:var(--serif); font-size:28px; font-weight:400;
+      margin-bottom:30px;
+    }
+    .related-grid {
+      display:grid; grid-template-columns:repeat(4,1fr); gap:2px;
+    }
+    .related-card {
+      background:var(--surface); cursor:pointer;
+    }
+    .related-card img {
+      aspect-ratio:3/4; object-fit:cover; width:100%;
+    }
+    
+    @media (max-width:900px) {
+      .product-page { grid-template-columns:1fr; padding:20px; }
+      .gallery { position:static; }
+      .related-grid { grid-template-columns:repeat(2,1fr); }
+    }
+  </style>
 </head>
-<body class="interior">
-    <!-- Cursor Personalizado -->
-    <div class="custom-cursor"></div>
-    <div class="cursor-dot"></div>
+<body>
 
-    <!-- Header -->
-    <header id="header">
-        <div class="header-container">
-            <a href="index.html" class="logo">
-                <img src="images/logo-bara-co.png" alt="Bara & Co" class="logo-img">
-            </a>
-            <nav>
-                <ul class="nav-menu">
-                    <li><a href="index.html" class="nav-link">Inicio</a></li>
-                    <li><a href="tienda.html" class="nav-link active">Tienda</a></li>
-                    <li><a href="lookbook.html" class="nav-link">Lookbook</a></li>
-                    <li><a href="#contacto" class="nav-link">Contacto</a></li>
-                </ul>
-                <div class="menu-toggle">
-                    <i class="fas fa-bars"></i>
-                </div>
-            </nav>
-            <div class="header-icons">
-                <i class="fas fa-search" onclick="window.buscador?.abrirModal()"></i>
-                <a href="tienda.html"><i class="fas fa-user"></i></a>
-                <div class="cart-icon-wrapper" onclick="toggleCart()">
-                    <i class="fas fa-shopping-bag"></i>
-                    <span class="cart-count">0</span>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <!-- Breadcrumb -->
-    <div class="container">
-        <div class="breadcrumb" id="breadcrumb">
-            <!-- Se llena con JS -->
-        </div>
+<header id="header">
+  <a href="index.html"><img src="images/logo.png" alt="Bara & Co" style="height:52px;"/></a>
+  <nav class="header-nav">
+    <ul>
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="tienda.html" class="active">Tienda</a></li>
+      <li><a href="lookbook.html">Lookbook</a></li>
+      <li><a href="contacto.html">Contacto</a></li>
+    </ul>
+  </nav>
+  <div class="header-icons">
+    <i class="fas fa-search"></i>
+    <div class="cart-icon-wrap" onclick="toggleCart()">
+      <i class="fas fa-shopping-bag"></i>
+      <span class="cart-badge" id="cartBadge">0</span>
     </div>
+  </div>
+</header>
 
-    <!-- Product Page -->
-    <div class="product-page">
-        <div class="container">
-            <div class="product-grid" id="productGrid">
-                <!-- Se llena con JS -->
-            </div>
-        </div>
+<!-- Breadcrumb -->
+<div class="breadcrumb">
+  <a href="index.html">Inicio</a> / <a href="tienda.html">Tienda</a> / <span id="breadcrumbCat">Categoría</span> / <span id="breadcrumbName">Producto</span>
+</div>
+
+<!-- Página de producto -->
+<div class="product-page">
+  <!-- Galería -->
+  <div class="gallery">
+    <div class="main-image" id="mainImage">
+      <img src="" alt="" id="currentImage"/>
     </div>
-
-    <!-- Productos Relacionados -->
-    <section class="related-section">
-        <div class="container">
-            <h2 class="section-title">También te puede gustar</h2>
-            <div class="related-grid" id="relatedGrid">
-                <!-- Se llena con JS -->
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer id="contacto">
-        <div class="container">
-            <div class="footer-grid">
-                <div>
-                    <div class="footer-logo">
-                        <img src="images/logo-bara-co-blanco.png" alt="Bara & Co" style="height: 40px; width: auto; filter: brightness(0) invert(1);">
-                    </div>
-                    <p class="footer-text">Indumentaria urbana con personalidad. Diseño y confort para tu día a día.</p>
-                    <div class="social-icons">
-                        <i class="fab fa-instagram" onclick="window.open('https://instagram.com/bara.co', '_blank')"></i>
-                        <i class="fab fa-facebook-f" onclick="window.open('https://facebook.com', '_blank')"></i>
-                        <i class="fab fa-tiktok" onclick="window.open('https://tiktok.com', '_blank')"></i>
-                    </div>
-                </div>
-                <div>
-                    <h4 class="footer-title">Categorías</h4>
-                    <ul class="footer-links">
-                        <li><a href="tienda.html?categoria=mujer">Mujer</a></li>
-                        <li><a href="tienda.html?categoria=hombre">Hombre</a></li>
-                        <li><a href="tienda.html?categoria=accesorios">Accesorios</a></li>
-                        <li><a href="tienda.html?categoria=sale">Sale</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="footer-title">Ayuda</h4>
-                    <ul class="footer-links">
-                        <li><a href="envios.html">Envíos</a></li>
-                        <li><a href="cambios.html">Cambios y devoluciones</a></li>
-                        <li><a href="faq.html">Preguntas frecuentes</a></li>
-                        <li><a href="#contacto">Contacto</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="footer-title">Newsletter</h4>
-                    <p class="footer-text">Sumate. 10% OFF en tu primera compra.</p>
-                    <div class="newsletter-input">
-                        <input type="email" id="newsletterEmail" placeholder="Tu email">
-                        <button onclick="suscribirNewsletter()"><i class="fas fa-arrow-right"></i></button>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <div class="legal-info">
-                    <span>© 2026 Bara & Co</span>
-                    <span>CUIT 30-71234567-8</span>
-                    <span>Ing. Olmos 139 – Jesús María</span>
-                </div>
-                <div class="legal-info">
-                    <span onclick="window.location.href='terminos.html'">Términos y condiciones</span>
-                    <span onclick="window.location.href='privacidad.html'">Política de privacidad</span>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- WhatsApp Flotante -->
-    <div class="whatsapp-float" onclick="window.open('https://wa.me/5493511234567', '_blank')">
-        <i class="fab fa-whatsapp"></i>
-        <span class="whatsapp-tooltip">¿Necesitas ayuda?</span>
-    </div>
-
-    <!-- CARRITO FLOTANTE -->
-    <div class="cart-icon" onclick="toggleCart()">
-        <i class="fas fa-shopping-bag"></i>
-        <span class="cart-count">0</span>
-    </div>
-
-    <div class="cart-notification" id="cartNotification">
-        <i class="fas fa-check-circle"></i>
-        <span>Producto agregado</span>
-    </div>
-
-    <div class="cart-panel" id="cartPanel">
-        <div class="cart-header">
-            <h2 class="cart-title">Carrito</h2>
-            <i class="fas fa-times close-cart" onclick="toggleCart()"></i>
-        </div>
-        
-        <div class="cart-items">
-            <!-- Contenido dinámico -->
-        </div>
-        
-        <div class="cart-footer">
-            <div class="subtotal">
-                <span>Subtotal</span>
-                <span id="subtotal">$0</span>
-            </div>
-            
-            <div class="payment-options">
-                <button class="payment-btn credit-card-btn" onclick="window.carrito?.pagarConTarjeta()">
-                    <i class="fas fa-credit-card"></i>
-                    Pagar con tarjeta
-                </button>
-                <button class="payment-btn whatsapp-btn" onclick="window.carrito?.pagarConWhatsApp()">
-                    <i class="fab fa-whatsapp"></i>
-                    Consultar por WhatsApp
-                </button>
-            </div>
-            
-            <p class="payment-info">
-                <i class="fas fa-lock"></i>
-                Aceptamos Cordobesa, Visa, Mastercard. Te enviamos link de pago.
-            </p>
-        </div>
-    </div>
-
-    <div class="overlay" id="overlay" onclick="toggleCart()"></div>
-
-    <!-- Scripts -->
-    <script src="js/carrito.js"></script>
-    <script src="js/search.js"></script>
-    <script src="js/main.js"></script>
+    <div class="thumbnails" id="thumbnails"></div>
+  </div>
+  
+  <!-- Info producto -->
+  <div class="product-info">
+    <p class="product-category" id="productCategory"></p>
+    <h1 class="product-title" id="productName"></h1>
+    <div class="product-price" id="productPrice"></div>
+    <p class="product-description" id="productDescription">Prenda de alta calidad, diseño exclusivo Bara & Co. Consultá disponibilidad de talles.</p>
     
-    <script>
-        // ===========================================
-        // PÁGINA DE PRODUCTO - CARGA DINÁMICA DESDE productos.json
-        // ===========================================
+    <!-- Selector de talle -->
+    <div class="size-label">
+      TALLE
+      <span class="size-guide-link" onclick="openSizeGuide()">Guía de talles</span>
+    </div>
+    <div class="size-options" id="sizeOptions"></div>
+    
+    <!-- Selector de color (opcional) -->
+    <div class="size-label">COLOR</div>
+    <div class="color-options" id="colorOptions"></div>
+    
+    <!-- Botones -->
+    <div class="action-buttons">
+      <button class="btn btn-primary" id="addToCartBtn">
+        <i class="fas fa-shopping-bag"></i> AGREGAR AL CARRITO
+      </button>
+      <button class="btn btn-secondary" id="whatsappBtn">
+        <i class="fab fa-whatsapp"></i> CONSULTAR
+      </button>
+    </div>
+    
+    <!-- Stock info -->
+    <div class="stock-info">
+      <div class="stock-item"><i class="fas fa-truck"></i> Envío gratis +$80.000</div>
+      <div class="stock-item"><i class="fas fa-undo-alt"></i> Cambios y devoluciones</div>
+      <div class="stock-item"><i class="fas fa-shield-alt"></i> Compra segura</div>
+    </div>
+  </div>
+  
+  <!-- Productos relacionados -->
+  <div class="related">
+    <h3>También te puede gustar</h3>
+    <div class="related-grid" id="relatedProducts"></div>
+  </div>
+</div>
 
-        // Producto actual
-        let productoActual = null;
-        let talleSeleccionado = null;
-        let cantidad = 1;
-        let shippingSelected = null;
+<!-- Guía de talles modal -->
+<div class="qv-backdrop" id="sgBackdrop" onclick="closeSizeGuide()"></div>
+<div class="sg-modal" id="sgModal">
+  <button class="sg-close" onclick="closeSizeGuide()">×</button>
+  <h2>Guía de Talles</h2>
+  <p style="font-size:13px;color:var(--muted);margin-bottom:20px;">Medite el contorno de pecho, cintura y cadera para elegir el talle correcto.</p>
+  <h4 style="font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;">Ropa Hombre</h4>
+  <table class="sg-table">
+    <thead><tr><th>Talle</th><th>Pecho (cm)</th><th>Cintura (cm)</th><th>Cadera (cm)</th></tr></thead>
+    <tbody>
+      <tr><td>S</td><td>88–92</td><td>74–78</td><td>88–92</td></tr>
+      <tr><td>M</td><td>93–98</td><td>79–84</td><td>93–98</td></tr>
+      <tr><td>L</td><td>99–104</td><td>85–90</td><td>99–104</td></tr>
+      <tr><td>XL</td><td>105–112</td><td>91–98</td><td>105–112</td></tr>
+    </tbody>
+  </table>
+  <h4 style="font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;">Ropa Mujer</h4>
+  <table class="sg-table">
+    <thead><tr><th>Talle</th><th>Pecho (cm)</th><th>Cintura (cm)</th><th>Cadera (cm)</th></tr></thead>
+    <tbody>
+      <tr><td>XS</td><td>80–84</td><td>62–66</td><td>84–88</td></tr>
+      <tr><td>S</td><td>85–88</td><td>67–70</td><td>89–92</td></tr>
+      <tr><td>M</td><td>89–93</td><td>71–75</td><td>93–97</td></tr>
+      <tr><td>L</td><td>94–99</td><td>76–81</td><td>98–103</td></tr>
+    </tbody>
+  </table>
+</div>
 
-        // Inicializar — carga el producto desde productos.json según el ?id= de la URL
-        document.addEventListener('DOMContentLoaded', async function() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const id = urlParams.get('id');
+<!-- Carrito drawer (igual que en tienda) -->
+<div class="cart-backdrop" id="cartBackdrop" onclick="toggleCart()"></div>
+<div class="cart-drawer" id="cartDrawer">
+  <!-- ... mismo contenido que en tienda.html ... -->
+  <div class="cd-head">
+    <h2 class="cd-title">Carrito</h2>
+    <button class="cd-close" onclick="toggleCart()">×</button>
+  </div>
+  <div class="cd-body" id="cdBody">
+    <div class="cd-empty">Tu carrito está vacío</div>
+  </div>
+  <div class="cd-foot">
+    <div class="cd-subtotal"><span>Subtotal</span><span id="cdTotal">$0</span></div>
+    <button class="pay-btn pay-mp" onclick="pagarMP()">Pagar con MercadoPago</button>
+    <button class="pay-btn pay-wa" onclick="pagarWA()">Solicitar por WhatsApp</button>
+  </div>
+</div>
 
-            if (!id) {
-                window.location.href = 'tienda.html';
-                return;
-            }
+<script>
+// ========== CARGA DE DATOS DEL PRODUCTO ==========
+let currentProduct = null;
+let selectedSize = null;
+let selectedColor = null;
+let cart = JSON.parse(localStorage.getItem('bc_cart') || '[]');
 
-            try {
-                const res = await fetch('productos.json?t=' + Date.now());
-                if (!res.ok) throw new Error('No se pudo cargar productos.json');
-                const lista = await res.json();
+// Obtener ID del producto de la URL (?id=nombre-del-producto)
+const urlParams = new URLSearchParams(window.location.search);
+const productId = urlParams.get('id') || 'campera-jean-clasica';
 
-                // Buscar por id
-                const found = lista.find(p => p.id === id);
-                if (!found) {
-                    window.location.href = 'tienda.html';
-                    return;
-                }
+// Base de datos de productos (simulada - después podemos cargar desde JSON)
+const productDatabase = {
+  'campera-jean-clasica': {
+    id: 'campera-jean-clasica',
+    name: 'Campera JEAN clásica',
+    price: 75000,
+    oldPrice: null,
+    category: 'new hombre',
+    categoryLabel: 'New Collection · Hombre',
+    description: 'Campera de jean clásica, corte recto, lavado medio. Ideal para looks urbanos. Composición: 98% algodón, 2% elastano.',
+    images: [
+      'https://d22fxaf9t8d39k.cloudfront.net/d96714644466596d09ed9ffb84226e2b318859a866be9604788cf4154aa52650404368.jpg',
+      'https://d22fxaf9t8d39k.cloudfront.net/d96714644466596d09ed9ffb84226e2b318859a866be9604788cf4154aa52650404368.jpg'
+    ],
+    sizes: ['S', 'M', 'L', 'XL'],
+    colors: ['Azul', 'Negro'],
+    colorCodes: ['#0066cc', '#000000']
+  },
+  'sastrero-rialto': {
+    id: 'sastrero-rialto',
+    name: 'Sastrero RIALTO',
+    price: 70000,
+    oldPrice: null,
+    category: 'new hombre',
+    categoryLabel: 'New Collection · Hombre',
+    description: 'Sastrero de lino, corte moderno, ideal para ocasiones especiales o looks elegantes.',
+    images: ['https://d22fxaf9t8d39k.cloudfront.net/82f0a5682cfeff36ae17af15cd408edaedc84e200eed095f5d3ac7d84b92d4ab404368.jpg'],
+    sizes: ['S', 'M', 'L'],
+    colors: ['Beige', 'Gris'],
+    colorCodes: ['#f5f5dc', '#808080']
+  },
+  'abanico-orgullo': {
+    id: 'abanico-orgullo',
+    name: 'Abanico ORGULLO',
+    price: 20000,
+    oldPrice: null,
+    category: 'accesorios',
+    categoryLabel: 'Accesorios · Abanicos',
+    description: 'Abanico plegable con diseño exclusivo ORGULLO. Ideal para el verano.',
+    images: ['https://d22fxaf9t8d39k.cloudfront.net/d7bb9acf8f5ca09e741eac41c71f65a1a789da46d32346dbcc8da085b6888a8b404368.jpg'],
+    sizes: ['Único'],
+    colors: ['Multicolor'],
+    colorCodes: ['#ff69b4']
+  }
+};
 
-                // Normalizar campos para compatibilidad con el resto de la página
-                productoActual = {
-                    id:               found.id,
-                    nombre:           found.nombre,
-                    precio:           found.precio,
-                    precioOriginal:   found.precioAnterior || null,
-                    descripcion:      found.descripcion || '',
-                    composicion:      found.composicion || '—',
-                    cuidado:          found.cuidado || '—',
-                    imagenes:         found.imagenes && found.imagenes.length
-                                        ? found.imagenes
-                                        : [found.imagen],
-                    talles:           found.talles || ['S', 'M', 'L', 'XL'],
-                    tallesDisponibles: found.tallesDisponibles || found.talles || ['S', 'M', 'L', 'XL'],
-                    categoria:        [found.categoria, found.subcategoria].filter(Boolean).join(' · '),
-                    sku:              found.sku || found.id,
-                    stock:            found.stock || 10
-                };
+// Cargar producto
+function loadProduct() {
+  const product = productDatabase[productId];
+  if (!product) {
+    window.location.href = 'tienda.html';
+    return;
+  }
+  
+  currentProduct = product;
+  
+  // Actualizar breadcrumb
+  document.getElementById('breadcrumbCat').textContent = product.categoryLabel.split('·')[0].trim();
+  document.getElementById('breadcrumbName').textContent = product.name;
+  
+  // Imagen principal
+  document.getElementById('currentImage').src = product.images[0];
+  document.getElementById('currentImage').alt = product.name;
+  
+  // Thumbnails
+  const thumbs = document.getElementById('thumbnails');
+  thumbs.innerHTML = '';
+  product.images.forEach((img, index) => {
+    const thumb = document.createElement('div');
+    thumb.className = 'thumb';
+    thumb.innerHTML = `<img src="${img}" alt="${product.name}" onclick="changeImage(${index})">`;
+    thumbs.appendChild(thumb);
+  });
+  
+  // Info
+  document.getElementById('productCategory').textContent = product.categoryLabel;
+  document.getElementById('productName').textContent = product.name;
+  
+  const priceEl = document.getElementById('productPrice');
+  if (product.oldPrice) {
+    priceEl.innerHTML = `<del>$${product.oldPrice.toLocaleString('es-AR')}</del> $${product.price.toLocaleString('es-AR')}`;
+  } else {
+    priceEl.textContent = '$' + product.price.toLocaleString('es-AR');
+  }
+  
+  document.getElementById('productDescription').textContent = product.description;
+  
+  // Talles
+  const sizeOptions = document.getElementById('sizeOptions');
+  sizeOptions.innerHTML = '';
+  product.sizes.forEach(size => {
+    const btn = document.createElement('button');
+    btn.className = 'size-btn';
+    btn.textContent = size;
+    btn.onclick = () => selectSize(size, btn);
+    sizeOptions.appendChild(btn);
+  });
+  
+  // Colores
+  if (product.colors && product.colors.length > 0) {
+    const colorOptions = document.getElementById('colorOptions');
+    colorOptions.innerHTML = '';
+    product.colors.forEach((color, index) => {
+      const btn = document.createElement('button');
+      btn.className = 'color-btn';
+      btn.style.backgroundColor = product.colorCodes[index] || '#ccc';
+      btn.title = color;
+      btn.onclick = () => selectColor(color, btn);
+      colorOptions.appendChild(btn);
+    });
+  }
+  
+  // Productos relacionados (simulados)
+  loadRelatedProducts(product.category);
+}
 
-                cargarProducto();
-                cargarRelacionados();
+function changeImage(index) {
+  document.getElementById('currentImage').src = currentProduct.images[index];
+}
 
-            } catch(e) {
-                console.error(e);
-                window.location.href = 'tienda.html';
-            }
-        });
+function selectSize(size, btn) {
+  document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  selectedSize = size;
+}
 
-        function cargarProducto() {
-            // Actualizar breadcrumb
-            document.getElementById('breadcrumb').innerHTML = `
-                <a href="index.html">Inicio</a>
-                <i class="fas fa-chevron-right"></i>
-                <a href="tienda.html">Tienda</a>
-                <i class="fas fa-chevron-right"></i>
-                <span>${productoActual.nombre}</span>
-            `;
+function selectColor(color, btn) {
+  document.querySelectorAll('.color-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  selectedColor = color;
+}
 
-            // Calcular descuento
-            const descuento = productoActual.precioOriginal ? 
-                Math.round((1 - productoActual.precio / productoActual.precioOriginal) * 100) : 0;
+function loadRelatedProducts(category) {
+  const related = document.getElementById('relatedProducts');
+  const cat = category.split(' ')[0]; // 'new' o 'hombre' etc
+  
+  const relatedItems = Object.values(productDatabase)
+    .filter(p => p.category.includes(cat) && p.id !== productId)
+    .slice(0, 4);
+  
+  related.innerHTML = '';
+  relatedItems.forEach(p => {
+    const card = document.createElement('div');
+    card.className = 'related-card';
+    card.onclick = () => window.location.href = `producto.html?id=${p.id}`;
+    card.innerHTML = `
+      <img src="${p.images[0]}" alt="${p.name}"/>
+      <div style="padding:12px;">
+        <div style="font-size:13px;">${p.name}</div>
+        <div style="color:var(--accent);">$${p.price.toLocaleString('es-AR')}</div>
+      </div>
+    `;
+    related.appendChild(card);
+  });
+}
 
-            // Generar opciones de talle
-            let tallesHtml = '';
-            productoActual.talles.forEach(talle => {
-                const disponible = productoActual.tallesDisponibles.includes(talle);
-                tallesHtml += `
-                    <button class="size-btn ${!disponible ? 'disabled' : ''}" 
-                            onclick="seleccionarTalle('${talle}')"
-                            ${!disponible ? 'disabled' : ''}>
-                        ${talle}
-                    </button>
-                `;
-            });
+// ========== CARRITO ==========
+function saveCart() { localStorage.setItem('bc_cart', JSON.stringify(cart)); renderCart(); }
 
-            // Generar galería
-            let thumbnailsHtml = '';
-            productoActual.imagenes.forEach((img, index) => {
-                thumbnailsHtml += `
-                    <div class="thumbnail ${index === 0 ? 'active' : ''}" onclick="cambiarImagen('${img}', this)">
-                        <img src="${img}" alt="${productoActual.nombre} - vista ${index + 1}">
-                    </div>
-                `;
-            });
+function toggleCart() {
+  document.getElementById('cartDrawer').classList.toggle('open');
+  document.getElementById('cartBackdrop').classList.toggle('open');
+}
 
-            // HTML completo del producto
-            document.getElementById('productGrid').innerHTML = `
-                <!-- Galería -->
-                <div class="product-gallery">
-                    <div class="main-image" id="mainImage">
-                        <img src="${productoActual.imagenes[0]}" alt="${productoActual.nombre}">
-                    </div>
-                    <div class="thumbnail-grid" id="thumbnailGrid">
-                        ${thumbnailsHtml}
-                    </div>
-                </div>
-                
-                <!-- Info del producto -->
-                <div class="product-info">
-                    <div class="product-category">${productoActual.categoria}</div>
-                    <h1 class="product-title">${productoActual.nombre}</h1>
-                    
-                    <div class="price-container">
-                        <div class="price-row">
-                            <span class="current-price">$${productoActual.precio.toLocaleString('es-AR')}</span>
-                            ${productoActual.precioOriginal ? 
-                                `<span class="old-price">$${productoActual.precioOriginal.toLocaleString('es-AR')}</span>
-                                 <span class="discount-badge">-${descuento}% OFF</span>` 
-                                : ''}
-                        </div>
-                        <a href="#" class="cuotas-link" onclick="mostrarCuotas(); return false;">
-                            Ver cuotas y descuentos <i class="fas fa-chevron-right"></i>
-                        </a>
-                    </div>
-                    
-                    <div class="size-section">
-                        <div class="size-header">
-                            <span class="size-label">Talle</span>
-                            <span class="size-guide" onclick="mostrarGuiaTalles()">Guía de talles</span>
-                        </div>
-                        <div class="size-options" id="sizeOptions">
-                            ${tallesHtml}
-                        </div>
-                    </div>
-                    
-                    <div class="quantity-section">
-                        <div class="quantity-label">Cantidad</div>
-                        <div class="quantity-selector">
-                            <div class="qty-control">
-                                <button onclick="cambiarCantidad(-1)">−</button>
-                                <input type="text" id="quantity" value="1" readonly>
-                                <button onclick="cambiarCantidad(1)">+</button>
-                            </div>
-                            <span class="stock-info">${productoActual.stock} unidades disponibles</span>
-                        </div>
-                    </div>
-                    
-                    <!-- CALCULADORA DE ENVÍO -->
-                    <div class="shipping-calculator">
-                        <h4>
-                            <i class="fas fa-truck"></i>
-                            Calculá el costo de envío
-                        </h4>
-                        <div class="calculator-row">
-                            <input type="text" id="shipping-cp" placeholder="Código postal" maxlength="8">
-                            <button onclick="calcularEnvio()">CALCULAR</button>
-                        </div>
-                        <div class="shipping-result" id="shippingResult">
-                            Ingresá tu código postal para ver opciones de envío
-                        </div>
-                        <div class="shipping-options" id="shippingOptions"></div>
-                    </div>
-                    
-                    <button class="add-to-cart-btn" onclick="agregarAlCarrito()">
-                        <i class="fas fa-shopping-bag"></i>
-                        AGREGAR AL CARRITO
-                    </button>
-                    
-                    <div class="product-meta">
-                        <div class="meta-item">
-                            <i class="fas fa-tag"></i>
-                            <span>SKU: ${productoActual.sku}</span>
-                        </div>
-                        <div class="meta-item">
-                            <i class="fas fa-tshirt"></i>
-                            <span>Composición: ${productoActual.composicion}</span>
-                        </div>
-                        <div class="meta-item">
-                            <i class="fas fa-water"></i>
-                            <span>Cuidado: ${productoActual.cuidado}</span>
-                        </div>
-                        <div class="meta-item">
-                            <i class="fas fa-undo-alt"></i>
-                            <span>Cambios gratis dentro de los 30 días</span>
-                        </div>
-                    </div>
-                </div>
-            `;
-        }
+function addToCart() {
+  if (!selectedSize) {
+    alert('Por favor seleccioná un talle');
+    return;
+  }
+  
+  const item = {
+    id: currentProduct.id,
+    name: currentProduct.name,
+    price: currentProduct.price,
+    size: selectedSize,
+    color: selectedColor || null,
+    img: currentProduct.images[0],
+    qty: 1
+  };
+  
+  const found = cart.find(i => i.id === item.id && i.size === item.size);
+  if (found) found.qty++;
+  else cart.push(item);
+  
+  saveCart();
+  toggleCart();
+  showToast();
+}
 
-        async function cargarRelacionados() {
-            try {
-                const res = await fetch('productos.json?t=' + Date.now());
-                const lista = await res.json();
-                // Tomar hasta 4 productos de la misma categoría o simplemente otros productos
-                const catActual = productoActual ? productoActual.categoria.split(' · ')[0].toLowerCase() : '';
-                let relacionados = lista.filter(p =>
-                    p.activo !== false &&
-                    p.id !== productoActual.id &&
-                    (p.categoria === catActual || p.categoria === 'mujer' || p.categoria === 'new')
-                ).slice(0, 4);
-                if (!relacionados.length) relacionados = lista.filter(p => p.activo !== false && p.id !== productoActual.id).slice(0, 4);
+function showToast() {
+  const t = document.getElementById('cartToast');
+  if (!t) {
+    const toast = document.createElement('div');
+    toast.className = 'cart-toast';
+    toast.id = 'cartToast';
+    toast.innerHTML = '<i class="fas fa-check-circle"></i> Producto agregado al carrito';
+    document.body.appendChild(toast);
+    setTimeout(() => {
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 2400);
+    }, 10);
+  } else {
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2400);
+  }
+}
 
-                let html = '';
-                relacionados.forEach(p => {
-                    const img = (p.imagenes && p.imagenes[0]) || p.imagen || '';
-                    html += `
-                        <div class="related-card" onclick="window.location.href='producto.html?id=${p.id}'">
-                            <div class="related-image">
-                                <img src="${img}" alt="${p.nombre}">
-                            </div>
-                            <div class="related-info">
-                                <h4>${p.nombre}</h4>
-                                <span class="related-price">$${p.precio.toLocaleString('es-AR')}</span>
-                            </div>
-                        </div>
-                    `;
-                });
-                document.getElementById('relatedGrid').innerHTML = html;
-            } catch(e) {
-                document.getElementById('relatedGrid').innerHTML = '';
-            }
-        }
+function renderCart() {
+  const badge = document.getElementById('cartBadge');
+  const total = document.getElementById('cdTotal');
+  const cnt = cart.reduce((s,i) => s+i.qty, 0);
+  const sum = cart.reduce((s,i) => s+i.price*i.qty, 0);
+  badge.textContent = cnt;
+  badge.classList.toggle('on', cnt > 0);
+  total.textContent = '$' + sum.toLocaleString('es-AR');
+}
 
-        // Funciones de la página de producto
-        function cambiarImagen(src, thumbnail) {
-            document.getElementById('mainImage').innerHTML = `<img src="${src}" alt="${productoActual.nombre}">`;
-            
-            document.querySelectorAll('.thumbnail').forEach(t => t.classList.remove('active'));
-            thumbnail.classList.add('active');
-        }
+function pagarWA() {
+  if (!cart.length) return;
+  const lines = cart.map(i => `• ${i.name} (Talle ${i.size})${i.qty>1?' x'+i.qty:''} — $${(i.price*i.qty).toLocaleString('es-AR')}`).join('%0A');
+  const total = cart.reduce((s,i) => s+i.price*i.qty, 0);
+  window.open(`https://wa.me/5493525614281?text=Hola!%20Quiero%20hacer%20el%20siguiente%20pedido:%0A${lines}%0A%0ATotal:%20$${total.toLocaleString('es-AR')}`, '_blank');
+}
 
-        function seleccionarTalle(talle) {
-            if (!productoActual.tallesDisponibles.includes(talle)) return;
-            
-            talleSeleccionado = talle;
-            
-            document.querySelectorAll('.size-btn').forEach(btn => {
-                if (btn.textContent === talle) {
-                    btn.classList.add('selected');
-                } else if (!btn.disabled) {
-                    btn.classList.remove('selected');
-                }
-            });
-        }
+function pagarMP() {
+  if (!cart.length) return;
+  const total = cart.reduce((s,i) => s+i.price*i.qty, 0);
+  window.open(`https://link.mercadopago.com.ar/baraandco?amount=${total}`, '_blank');
+}
 
-        function cambiarCantidad(delta) {
-            const input = document.getElementById('quantity');
-            let nueva = parseInt(input.value) + delta;
-            if (nueva >= 1 && nueva <= productoActual.stock) {
-                input.value = nueva;
-                cantidad = nueva;
-            }
-        }
+// ========== GUÍA DE TALLES ==========
+function openSizeGuide() {
+  document.getElementById('sgModal').classList.add('open');
+  document.getElementById('sgBackdrop').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
 
-        function agregarAlCarrito() {
-            if (!talleSeleccionado) {
-                alert('Por favor seleccioná un talle');
-                return;
-            }
-            
-            const producto = {
-                id: `${productoActual.id}-${talleSeleccionado}`,
-                nombre: `${productoActual.nombre} (Talle ${talleSeleccionado})`,
-                precio: productoActual.precio,
-                imagen: productoActual.imagenes[0]
-            };
-            
-            // Agregar cantidad seleccionada
-            for (let i = 0; i < cantidad; i++) {
-                window.carrito?.agregar(producto);
-            }
-        }
+function closeSizeGuide() {
+  document.getElementById('sgModal').classList.remove('open');
+  document.getElementById('sgBackdrop').classList.remove('open');
+  document.body.style.overflow = '';
+}
 
-        // Calculadora de envío
-        function calcularEnvio() {
-            const cp = document.getElementById('shipping-cp').value.trim();
-            const result = document.getElementById('shippingResult');
-            const options = document.getElementById('shippingOptions');
-            
-            if (!cp || cp.length < 4) {
-                result.innerHTML = '<span style="color: #ff4444;">Ingresá un código postal válido</span>';
-                options.classList.remove('show');
-                return;
-            }
-            
-            // Simular cálculo de envío
-            result.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Calculando...';
-            
-            setTimeout(() => {
-                // Determinar costo según CP
-                let esCapital = cp.startsWith('5') || cp.startsWith('1');
-                let esGba = cp.startsWith('1') || cp.startsWith('2');
-                
-                let opciones = '';
-                
-                if (esCapital) {
-                    opciones = `
-                        <div class="shipping-option" onclick="seleccionarEnvio('estandar', 1200, this)">
-                            <div>
-                                <div class="shipping-option-name">Envío estándar</div>
-                                <div class="shipping-option-time">2-3 días hábiles</div>
-                            </div>
-                            <div class="shipping-option-price">$1.200</div>
-                        </div>
-                        <div class="shipping-option" onclick="seleccionarEnvio('express', 2500, this)">
-                            <div>
-                                <div class="shipping-option-name">Envío express</div>
-                                <div class="shipping-option-time">24 horas</div>
-                            </div>
-                            <div class="shipping-option-price">$2.500</div>
-                        </div>
-                    `;
-                    result.innerHTML = `✅ Envío disponible a ${cp}`;
-                } else if (esGba) {
-                    opciones = `
-                        <div class="shipping-option" onclick="seleccionarEnvio('estandar', 1800, this)">
-                            <div>
-                                <div class="shipping-option-name">Envío estándar</div>
-                                <div class="shipping-option-time">3-5 días hábiles</div>
-                            </div>
-                            <div class="shipping-option-price">$1.800</div>
-                        </div>
-                    `;
-                    result.innerHTML = `✅ Envío disponible a ${cp}`;
-                } else {
-                    opciones = `
-                        <div class="shipping-option" onclick="seleccionarEnvio('estandar', 2500, this)">
-                            <div>
-                                <div class="shipping-option-name">Envío estándar</div>
-                                <div class="shipping-option-time">5-7 días hábiles</div>
-                            </div>
-                            <div class="shipping-option-price">$2.500</div>
-                        </div>
-                    `;
-                    result.innerHTML = `✅ Envío disponible a ${cp}`;
-                }
-                
-                options.innerHTML = opciones;
-                options.classList.add('show');
-            }, 1000);
-        }
+// ========== INICIALIZACIÓN ==========
+document.addEventListener('DOMContentLoaded', () => {
+  loadProduct();
+  renderCart();
+  
+  document.getElementById('addToCartBtn').addEventListener('click', addToCart);
+  document.getElementById('whatsappBtn').addEventListener('click', () => {
+    const msg = `Hola! Quiero consultar por *${currentProduct?.name}*`;
+    window.open(`https://wa.me/5493525614281?text=${encodeURIComponent(msg)}`, '_blank');
+  });
+});
+</script>
 
-        function seleccionarEnvio(tipo, precio, element) {
-            shippingSelected = { tipo, precio };
-            
-            document.querySelectorAll('.shipping-option').forEach(opt => {
-                opt.classList.remove('selected');
-            });
-            element.classList.add('selected');
-            
-            document.getElementById('shippingResult').innerHTML = 
-                `✅ Envío seleccionado: ${tipo === 'estandar' ? 'Estándar' : 'Express'} - $${precio.toLocaleString('es-AR')}`;
-        }
+<!-- Toast -->
+<div class="cart-toast" id="cartToast" style="position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(60px);background:var(--surface);border:1px solid var(--accent);color:var(--text);padding:12px 22px;z-index:700;opacity:0;transition:all .4s;"><i class="fas fa-check-circle"></i> Producto agregado al carrito</div>
 
-        // Funciones auxiliares
-        function mostrarCuotas() {
-            alert('Podés pagar en hasta 6 cuotas sin interés con tarjetas Cordobesa, Visa y Mastercard.');
-        }
-
-        function mostrarGuiaTalles() {
-            alert('Talle S: 38-40\nTalle M: 42-44\nTalle L: 46-48\nTalle XL: 50-52');
-        }
-
-        function suscribirNewsletter() {
-            const email = document.getElementById('newsletterEmail').value;
-            if (email && email.includes('@')) {
-                alert('¡Gracias por suscribirte! Pronto recibirás novedades.');
-                document.getElementById('newsletterEmail').value = '';
-            } else {
-                alert('Por favor ingresá un email válido');
-            }
-        }
-    </script>
 </body>
 </html>
