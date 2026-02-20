@@ -150,18 +150,29 @@
       if (cart.length === 0) {
         footer.innerHTML = '';
       } else {
+        const ENVIO_GRATIS = 80000;
+        const faltaParaGratis = Math.max(0, ENVIO_GRATIS - subtotal);
+        const progreso = Math.min(100, (subtotal / ENVIO_GRATIS) * 100);
+        const envioMsg = faltaParaGratis > 0
+          ? `Te faltan <strong>$${faltaParaGratis.toLocaleString('es-AR')}</strong> para envío gratis`
+          : `🎉 <strong>¡Tenés envío gratis!</strong>`;
+
         footer.innerHTML = `
+          <div class="shipping-progress-wrap">
+            <p class="shipping-progress-msg">${envioMsg}</p>
+            <div class="shipping-progress-bar"><div style="width:${progreso}%"></div></div>
+          </div>
           <div class="subtotal">
             <span>Subtotal</span>
             <span>$${subtotal.toLocaleString('es-AR')}</span>
           </div>
           <button class="pay-btn pay-mp" onclick="pagarMP()">
-            <i class="fab fa-cc-visa"></i> Pagar con MercadoPago
+            <i class="fas fa-credit-card"></i> Pagar con MercadoPago
           </button>
           <button class="pay-btn pay-wa" onclick="pagarWA()">
-            <i class="fab fa-whatsapp"></i> Pedir por WhatsApp
+            <i class="fab fa-whatsapp"></i> Confirmar pedido por WhatsApp
           </button>
-          <p class="pay-note"><i class="fas fa-lock"></i> Pago 100% seguro</p>`;
+          <p class="pay-note"><i class="fas fa-lock"></i> Pago 100% seguro · Hasta 6 cuotas sin interés</p>`;
       }
     }
   }
@@ -240,20 +251,20 @@
     if (!cart.length) return;
     const lineas = cart.map(i => {
       const q = i.qty || 1;
-      return `• ${i.nombre}${q > 1 ? ' x' + q : ''} — $${((i.precio || 0) * q).toLocaleString('es-AR')}`;
+      const talle = i.talle ? ` · Talle: ${i.talle}` : '';
+      const color = i.color ? ` · Color: ${i.color}` : '';
+      return `• ${i.nombre}${talle}${color}${q > 1 ? ' x' + q : ''} — $${((i.precio || 0) * q).toLocaleString('es-AR')}`;
     }).join('%0A');
     const total = cart.reduce((s, i) => s + (i.precio || 0) * (i.qty || 1), 0);
-    window.open(
-      `https://wa.me/5493525614281?text=Hola!%20Quiero%20pedir:%0A${lineas}%0A%0ATotal:%20$${total.toLocaleString('es-AR')}`,
-      '_blank'
-    );
+    const msg = `Hola! Quiero realizar el siguiente pedido:%0A%0A${lineas}%0A%0A*Total: $${total.toLocaleString('es-AR')}*%0A%0A¿Cómo puedo continuar con la compra?`;
+    window.open(`https://wa.me/5493525614281?text=${msg}`, '_blank');
   };
 
   window.pagarMP = function () {
     const cart = getCart();
     if (!cart.length) { alert('Tu carrito está vacío'); return; }
-    const total = cart.reduce((s, i) => s + (i.precio || 0) * (i.qty || 1), 0);
-    window.open('https://link.mercadopago.com.ar/baraandco?amount=' + total, '_blank');
+    // El link de MP ya incluye la configuración de pago en la cuenta
+    window.open('https://link.mercadopago.com.ar/baraandco', '_blank');
   };
 
   /* ─────────────────────────────────────────
