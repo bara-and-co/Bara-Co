@@ -829,6 +829,15 @@
     .sg-close { position:absolute; top:14px; right:16px; background:none; border:1px solid var(--border); color:var(--text); cursor:pointer; width:30px; height:30px; border-radius:50%; display:grid; place-items:center; font-size:16px; transition:border-color .2s; }
     .sg-close:hover { border-color:var(--accent); }
 
+    /* Animación shake para selector de talle */
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      20% { transform: translateX(-6px); }
+      40% { transform: translateX(6px); }
+      60% { transform: translateX(-4px); }
+      80% { transform: translateX(4px); }
+    }
+
     /* Responsive */
     @media (max-width:900px) {
       #header { padding:0 22px; }
@@ -923,7 +932,7 @@
     <!-- Stock info -->
     <div class="stock-info">
       <div class="stock-item"><i class="fas fa-truck"></i> Envío gratis +$80.000</div>
-      <div class="stock-item"><i class="fas fa-undo-alt"></i> Cambios y devoluciones</div>
+      <div class="stock-item"><i class="fas fa-undo-alt"></i> <a href="pages/cambios.html" style="color:inherit;">Cambios 30 días</a></div>
       <div class="stock-item"><i class="fas fa-shield-alt"></i> Compra segura</div>
     </div>
   </div>
@@ -1170,12 +1179,39 @@ function getColorCode(color) {
 // ========== AGREGAR AL CARRITO ==========
 function handleAddToCart() {
   if (!currentProduct) return;
+
+  const talles = currentProduct.tallesDisponibles || currentProduct.talles || [];
+
+  // Si el producto tiene talles y no se seleccionó uno, avisar
+  if (talles.length > 0 && talles[0] !== 'Unico' && !selectedSize) {
+    // Resaltar visualmente el selector de talle
+    const sizeOptions = document.getElementById('sizeOptions');
+    sizeOptions.style.animation = 'none';
+    sizeOptions.offsetHeight; // reflow para reiniciar animación
+    sizeOptions.style.animation = 'shake 0.4s ease';
+
+    // Mensaje de error
+    let errorMsg = document.getElementById('sizeError');
+    if (!errorMsg) {
+      errorMsg = document.createElement('p');
+      errorMsg.id = 'sizeError';
+      errorMsg.style.cssText = 'color:#b83030;font-size:13px;margin-top:6px;';
+      sizeOptions.parentNode.insertBefore(errorMsg, sizeOptions.nextSibling);
+    }
+    errorMsg.textContent = '⚠ Por favor seleccioná un talle antes de agregar al carrito';
+    setTimeout(() => { if (errorMsg) errorMsg.textContent = ''; }, 3000);
+    return;
+  }
+
+  // Si talle único, asignarlo automáticamente
+  const talleParaCarrito = (talles.length > 0 && talles[0] === 'Unico') ? '' : (selectedSize || '');
+
   agregarAlCarrito(
     currentProduct.id,
     currentProduct.nombre,
     currentProduct.precio,
     currentProduct.imagen || (currentProduct.imagenes && currentProduct.imagenes[0]) || '',
-    selectedSize || '',
+    talleParaCarrito,
     selectedColor || ''
   );
 }
