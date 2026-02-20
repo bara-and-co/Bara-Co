@@ -1,167 +1,82 @@
 [
   {
-    "id": "campera-jean-clasica",
-    "nombre": "Campera JEAN clásica",
-    "precio": 75000,
+    "id": "short-nova",
+    "nombre": "Short NOVA",
+    "precio": 35000,
     "precioAnterior": null,
+    "imagen": "https://baraandco.empretienda.com.ar/mujer/polleras/short-nova",
     "categoria": "new",
-    "subcategoria": "Camperas",
-    "genero": "hombre",
-    "imagen": "https://d22fxaf9t8d39k.cloudfront.net/d96714644466596d09ed9ffb84226e2b318859a866be9604788cf4154aa52650404368.jpg",
+    "subcategoria": "Shorts",
+    "descripcion": "Short Nova de mujer con diseño moderno y corte limpio. Ideal para looks casuales de temporada.",
+    "composicion": "100% Algodón",
+    "cuidado": "Lavar a máquina máx. 30°C. No usar blanqueador.",
+    "talles": ["XS", "S", "M", "L"],
+    "tallesDisponibles": ["XS", "S", "M", "L"],
+    "imagenes": [
+      "https://d22fxaf9t8d39k.cloudfront.net/61b3e9431a237af50d1fa63f7068428871a2386de0fde482ec3600e6adfbbdec404368.jpg"
+    ],
+    "sku": "SH-NOVA-001",
+    "stock": 20,
     "activo": true
   },
   {
-    "id": "sastrero-rialto",
-    "nombre": "Sastrero RIALTO",
-    "precio": 70000,
+    "id": "short-cinturon",
+    "nombre": "Short CINTURÓN",
+    "precio": 38000,
     "precioAnterior": null,
+    "imagen": "https://d22fxaf9t8d39k.cloudfront.net/dbf00d91308b96b6c71d0c8f6726ce7901b0520cd4813222db616da53ee83966404368.jpg",
     "categoria": "new",
-    "subcategoria": "Sastreros",
-    "genero": "hombre",
-    "imagen": "https://d22fxaf9t8d39k.cloudfront.net/82f0a5682cfeff36ae17af15cd408edaedc84e200eed095f5d3ac7d84b92d4ab404368.jpg",
+    "subcategoria": "Shorts",
+    "descripcion": "Short con cinturón integrado, corte ajustado y tiro medio. Un básico con detalle que eleva cualquier look.",
+    "composicion": "97% Algodón, 3% Elastano",
+    "cuidado": "Lavar a máquina máx. 30°C. No planchar el cinturón.",
+    "talles": ["XS", "S", "M", "L"],
+    "tallesDisponibles": ["XS", "S", "M", "L"],
+    "imagenes": [
+      "https://d22fxaf9t8d39k.cloudfront.net/dbf00d91308b96b6c71d0c8f6726ce7901b0520cd4813222db616da53ee83966404368.jpg"
+    ],
+    "sku": "SH-CINT-001",
+    "stock": 18,
     "activo": true
   },
   {
-    "id": "campera-lampard",
-    "nombre": "Campera LAMPARD",
-    "precio": 75000,
-    "precioAnterior": null,
-    "categoria": "hombre",
-    "subcategoria": "Camperas",
-    "genero": "hombre",
-    "imagen": "https://d22fxaf9t8d39k.cloudfront.net/b8b0947140bff5c58341de81bac796e1e3e639975958ea29e976f4be63aa4b63404368.jpg",
-    "activo": true
-  },
-  {
-    "id": "sweater-arraial",
-    "nombre": "Sweater ARRAIAL",
-    "precio": 65000,
-    "precioAnterior": null,
-    "categoria": "hombre",
-    "subcategoria": "Buzos",
-    "genero": "hombre",
-    "imagen": "https://d22fxaf9t8d39k.cloudfront.net/63916cc7ca35026ef56aa0ca267d1043c9ca7fb0513e69e535a82aeea68bf7fa404368.jpg",
-    "activo": true
-  },
-  {
-    "id": "remera-inter-tejida",
-    "nombre": "Remera INTER tejida",
+    "id": "short-engomado",
+    "nombre": "Short ENGOMADO",
     "precio": 40000,
-    "precioAnterior": 60000,
-    "categoria": "hombre",
-    "subcategoria": "Remeras",
-    "genero": "hombre",
-    "imagen": "https://d22fxaf9t8d39k.cloudfront.net/4ac16ce84da0f1bf02e8a3154fb71ac7e6118d0d13da170f3534dcfbad531801404368.jpg",
+    "precioAnterior": null,
+    "imagen": "https://d22fxaf9t8d39k.cloudfront.net/11eb585d8ea84f6f172125795b54363a9ce9eb1be22ab65cee3579ca43c07cdd404368.jpg",
+    "categoria": "new",
+    "subcategoria": "Shorts",
+    "descripcion": "Short engomado con acabado premium. Tiro medio, corte entallado. Perfecto para looks nocturnos y urbanos.",
+    "composicion": "92% Poliéster, 8% Elastano",
+    "cuidado": "Lavar a mano con agua fría. No usar secadora.",
+    "talles": ["XS", "S", "M", "L"],
+    "tallesDisponibles": ["XS", "S", "M", "L"],
+    "imagenes": [
+      "https://d22fxaf9t8d39k.cloudfront.net/11eb585d8ea84f6f172125795b54363a9ce9eb1be22ab65cee3579ca43c07cdd404368.jpg"
+    ],
+    "sku": "SH-ENGOM-001",
+    "stock": 15,
     "activo": true
   },
   {
-    "id": "conjunto-lino",
-    "nombre": "Conjunto LINO",
-    "precio": 45000,
-    "precioAnterior": 70000,
-    "categoria": "hombre",
-    "subcategoria": "Conjuntos",
-    "genero": "hombre",
-    "imagen": "https://d22fxaf9t8d39k.cloudfront.net/99817bd6bf6e9fd396141d1523a7dfd5d4f3b696e0ae3e6a9390dfa9f4a05071404368.jpg",
-    "activo": true
-  },
-  {
-    "id": "bermuda-real-tree-baggy",
-    "nombre": "Bermuda REAL TREE baggy",
-    "precio": 45000,
-    "precioAnterior": 75000,
-    "categoria": "hombre",
-    "subcategoria": "Bermudas",
-    "genero": "hombre",
-    "imagen": "https://d22fxaf9t8d39k.cloudfront.net/fa693e785f22af48e6822e56319cf73a27c346b8426073564ae246e592af33b9404368.jpg",
-    "activo": true
-  },
-  {
-    "id": "bermuda-wonder-lino",
-    "nombre": "Bermuda WONDER lino",
-    "precio": 30000,
-    "precioAnterior": 45000,
-    "categoria": "hombre",
-    "subcategoria": "Bermudas",
-    "genero": "hombre",
-    "imagen": "https://d22fxaf9t8d39k.cloudfront.net/904e176b85becfa3e907cae30e6dc5fb50758bc2d11d86c2bebe9827d06a0440404368.jpg",
-    "activo": true
-  },
-  {
-    "id": "bermuda-liviana-elastizada",
-    "nombre": "Bermuda LIVIANA elastizada",
-    "precio": 18000,
-    "precioAnterior": 25000,
-    "categoria": "hombre",
-    "subcategoria": "Bermudas",
-    "genero": "hombre",
-    "imagen": "https://d22fxaf9t8d39k.cloudfront.net/c036d7168c84ffb9b023141749287d09fef41c6623b904c7f813d8687822f98b404368.jpg",
-    "activo": true
-  },
-  {
-    "id": "short-bano-elastizado-soft",
-    "nombre": "Short de baño ELASTIZADO SOFT",
-    "precio": 21000,
-    "precioAnterior": 30000,
-    "categoria": "hombre",
-    "subcategoria": "Short de baño",
-    "genero": "hombre",
-    "imagen": "https://d22fxaf9t8d39k.cloudfront.net/d4dea3af0623e9063f446478fb6e8a3d3d2bc68b32bf3a70a8f9d4fd4d741b03404368.jpg",
-    "activo": true
-  },
-  {
-    "id": "short-bano-elastizado",
-    "nombre": "Short de baño ELASTIZADO",
-    "precio": 21000,
-    "precioAnterior": 30000,
-    "categoria": "hombre",
-    "subcategoria": "Short de baño",
-    "genero": "hombre",
-    "imagen": "https://d22fxaf9t8d39k.cloudfront.net/40e42a49e6d64a8e79edcd9e3f127153e929ede0037a9c8dfa8aa029212e635e404368.jpg",
-    "activo": true
-  },
-  {
-    "id": "short-bano-multirayas",
-    "nombre": "Short de baño MULTIRAYAS",
-    "precio": 21000,
-    "precioAnterior": 30000,
-    "categoria": "hombre",
-    "subcategoria": "Short de baño",
-    "genero": "hombre",
-    "imagen": "https://d22fxaf9t8d39k.cloudfront.net/06a77b40ecdc626f4daad492e24aa3d3da0b7345e488022a7fb4472e8a5e3803404368.jpg",
-    "activo": true
-  },
-  {
-    "id": "short-bano-rayado",
-    "nombre": "Short de baño RAYADO",
-    "precio": 21000,
-    "precioAnterior": 30000,
-    "categoria": "hombre",
-    "subcategoria": "Short de baño",
-    "genero": "hombre",
-    "imagen": "https://d22fxaf9t8d39k.cloudfront.net/caf6ca6d1cefa9ed71dcbcc79d7a2724e9bf37bdb8780a69f6566351b85351fe404368.jpg",
-    "activo": true
-  },
-  {
-    "id": "short-bano-estampados",
-    "nombre": "Short de baño ESTAMPADOS",
-    "precio": 21000,
-    "precioAnterior": 30000,
-    "categoria": "hombre",
-    "subcategoria": "Short de baño",
-    "genero": "hombre",
-    "imagen": "https://d22fxaf9t8d39k.cloudfront.net/23d625d545c1e155e70543e48cb442af745c07e825bcc83ccbeda4b481a2dc73404368.jpg",
-    "activo": true
-  },
-  {
-    "id": "musculosa-tejida-venecia",
+    "id": "musculosa-venecia",
     "nombre": "Musculosa tejida Venecia",
     "precio": 45000,
     "precioAnterior": null,
+    "imagen": "https://d22fxaf9t8d39k.cloudfront.net/9bfff86519b2b7b55d0d29918e5af12482e446721dee3e4251193f59b8e8c17e404368.jpg",
     "categoria": "mujer",
     "subcategoria": "Remeras",
-    "genero": "mujer",
-    "imagen": "https://d22fxaf9t8d39k.cloudfront.net/9bfff86519b2b7b55d0d29918e5af12482e446721dee3e4251193f59b8e8c17e404368.jpg",
+    "descripcion": "Musculosa tejida con diseño Venecia, liviana y fresca. Ideal para la temporada de calor.",
+    "composicion": "100% Viscosa",
+    "cuidado": "Lavar a mano con agua fría.",
+    "talles": ["XS", "S", "M", "L"],
+    "tallesDisponibles": ["XS", "S", "M", "L"],
+    "imagenes": [
+      "https://d22fxaf9t8d39k.cloudfront.net/9bfff86519b2b7b55d0d29918e5af12482e446721dee3e4251193f59b8e8c17e404368.jpg"
+    ],
+    "sku": "MUJ-MUSC-001",
+    "stock": 25,
     "activo": true
   },
   {
@@ -169,10 +84,19 @@
     "nombre": "Kimono",
     "precio": 43000,
     "precioAnterior": null,
+    "imagen": "https://d22fxaf9t8d39k.cloudfront.net/e8526f0a99c44d29f26b1476822de55159e0bb4794692d6b9be03218e8dcbcd5404368.jpg",
     "categoria": "mujer",
     "subcategoria": "Remeras",
-    "genero": "mujer",
-    "imagen": "https://d22fxaf9t8d39k.cloudfront.net/e8526f0a99c44d29f26b1476822de55159e0bb4794692d6b9be03218e8dcbcd5404368.jpg",
+    "descripcion": "Kimono liviano con caída fluida. Versátil y elegante para cualquier ocasión.",
+    "composicion": "100% Viscosa",
+    "cuidado": "Lavar a mano con agua fría.",
+    "talles": ["XS", "S", "M", "L"],
+    "tallesDisponibles": ["XS", "S", "M", "L"],
+    "imagenes": [
+      "https://d22fxaf9t8d39k.cloudfront.net/e8526f0a99c44d29f26b1476822de55159e0bb4794692d6b9be03218e8dcbcd5404368.jpg"
+    ],
+    "sku": "MUJ-KIM-001",
+    "stock": 20,
     "activo": true
   },
   {
@@ -180,10 +104,19 @@
     "nombre": "Remeron tejido 86",
     "precio": 37000,
     "precioAnterior": null,
+    "imagen": "https://d22fxaf9t8d39k.cloudfront.net/5758461c98122bfce36356c5a0be0108fd023d57c24f4b604d6b8438c243972f404368.jpg",
     "categoria": "mujer",
     "subcategoria": "Remeras",
-    "genero": "mujer",
-    "imagen": "https://d22fxaf9t8d39k.cloudfront.net/5758461c98122bfce36356c5a0be0108fd023d57c24f4b604d6b8438c243972f404368.jpg",
+    "descripcion": "Remeron tejido con diseño 86, amplio y cómodo. Ideal para looks relajados.",
+    "composicion": "60% Algodón, 40% Poliéster",
+    "cuidado": "Lavar a máquina máx. 30°C.",
+    "talles": ["XS", "S", "M", "L"],
+    "tallesDisponibles": ["XS", "S", "M", "L"],
+    "imagenes": [
+      "https://d22fxaf9t8d39k.cloudfront.net/5758461c98122bfce36356c5a0be0108fd023d57c24f4b604d6b8438c243972f404368.jpg"
+    ],
+    "sku": "MUJ-REM86-001",
+    "stock": 18,
     "activo": true
   },
   {
@@ -191,10 +124,19 @@
     "nombre": "Crop tejido Kendi",
     "precio": 23000,
     "precioAnterior": null,
+    "imagen": "https://d22fxaf9t8d39k.cloudfront.net/41bcc8a83d38eb40760aa0bc7c9191debc4d38e07c741958b6892462108f6644404368.jpg",
     "categoria": "mujer",
     "subcategoria": "Remeras",
-    "genero": "mujer",
-    "imagen": "https://d22fxaf9t8d39k.cloudfront.net/41bcc8a83d38eb40760aa0bc7c9191debc4d38e07c741958b6892462108f6644404368.jpg",
+    "descripcion": "Crop top tejido Kendi, con escote sutil y tiro corto. Perfecto para combinar con high waist.",
+    "composicion": "100% Algodón",
+    "cuidado": "Lavar a mano con agua fría.",
+    "talles": ["XS", "S", "M", "L"],
+    "tallesDisponibles": ["XS", "S", "M", "L"],
+    "imagenes": [
+      "https://d22fxaf9t8d39k.cloudfront.net/41bcc8a83d38eb40760aa0bc7c9191debc4d38e07c741958b6892462108f6644404368.jpg"
+    ],
+    "sku": "MUJ-CROP-001",
+    "stock": 22,
     "activo": true
   },
   {
@@ -202,10 +144,19 @@
     "nombre": "Body",
     "precio": 15000,
     "precioAnterior": null,
+    "imagen": "https://d22fxaf9t8d39k.cloudfront.net/bedfef39950f4610f0c85df6710b0ca0c8a00a6daadba4e57234036417b5ccf2404368.jpg",
     "categoria": "mujer",
     "subcategoria": "Remeras",
-    "genero": "mujer",
-    "imagen": "https://d22fxaf9t8d39k.cloudfront.net/bedfef39950f4610f0c85df6710b0ca0c8a00a6daadba4e57234036417b5ccf2404368.jpg",
+    "descripcion": "Body ajustado de uso diario. Cómodo, versátil y fácil de combinar.",
+    "composicion": "95% Algodón, 5% Elastano",
+    "cuidado": "Lavar a máquina máx. 30°C.",
+    "talles": ["XS", "S", "M", "L"],
+    "tallesDisponibles": ["XS", "S", "M", "L"],
+    "imagenes": [
+      "https://d22fxaf9t8d39k.cloudfront.net/bedfef39950f4610f0c85df6710b0ca0c8a00a6daadba4e57234036417b5ccf2404368.jpg"
+    ],
+    "sku": "MUJ-BODY-001",
+    "stock": 30,
     "activo": true
   },
   {
@@ -213,10 +164,19 @@
     "nombre": "Jean Ancho",
     "precio": 50000,
     "precioAnterior": 70000,
+    "imagen": "https://d22fxaf9t8d39k.cloudfront.net/dd90a394af234d838d3d5ae4d59f16dd819614b3a74c2e8354a0c11be282fd64404368.jpg",
     "categoria": "mujer",
     "subcategoria": "Pantalones",
-    "genero": "mujer",
-    "imagen": "https://d22fxaf9t8d39k.cloudfront.net/dd90a394af234d838d3d5ae4d59f16dd819614b3a74c2e8354a0c11be282fd64404368.jpg",
+    "descripcion": "Jean ancho de mujer, corte baggy y tiro alto. Comodidad y estilo en uno.",
+    "composicion": "98% Algodón, 2% Elastano",
+    "cuidado": "Lavar del revés a máquina máx. 30°C.",
+    "talles": ["XS", "S", "M", "L"],
+    "tallesDisponibles": ["XS", "S", "M", "L"],
+    "imagenes": [
+      "https://d22fxaf9t8d39k.cloudfront.net/dd90a394af234d838d3d5ae4d59f16dd819614b3a74c2e8354a0c11be282fd64404368.jpg"
+    ],
+    "sku": "MUJ-JEAN-001",
+    "stock": 12,
     "activo": true
   },
   {
@@ -224,10 +184,19 @@
     "nombre": "Pantalon Mujer",
     "precio": 25000,
     "precioAnterior": 40000,
+    "imagen": "https://d22fxaf9t8d39k.cloudfront.net/23cd8555c955f6c941e822edc5e0106e217b34584c01292fec7946f714b871c5404368.jpg",
     "categoria": "mujer",
     "subcategoria": "Pantalones",
-    "genero": "mujer",
-    "imagen": "https://d22fxaf9t8d39k.cloudfront.net/23cd8555c955f6c941e822edc5e0106e217b34584c01292fec7946f714b871c5404368.jpg",
+    "descripcion": "Pantalón de mujer con corte recto y tiro medio. Cómodo para el día a día.",
+    "composicion": "100% Algodón",
+    "cuidado": "Lavar a máquina máx. 30°C.",
+    "talles": ["XS", "S", "M", "L"],
+    "tallesDisponibles": ["XS", "S", "M", "L"],
+    "imagenes": [
+      "https://d22fxaf9t8d39k.cloudfront.net/23cd8555c955f6c941e822edc5e0106e217b34584c01292fec7946f714b871c5404368.jpg"
+    ],
+    "sku": "MUJ-PANT-001",
+    "stock": 15,
     "activo": true
   },
   {
@@ -235,10 +204,19 @@
     "nombre": "Remera Crop Top",
     "precio": 15000,
     "precioAnterior": 25000,
+    "imagen": "https://d22fxaf9t8d39k.cloudfront.net/e1ced99735f95039982ce3dd6ffe72a2f0b82b2e6e60497f8d2567731f5224a0404368.jpg",
     "categoria": "mujer",
     "subcategoria": "Remeras",
-    "genero": "mujer",
-    "imagen": "https://d22fxaf9t8d39k.cloudfront.net/e1ced99735f95039982ce3dd6ffe72a2f0b82b2e6e60497f8d2567731f5224a0404368.jpg",
+    "descripcion": "Remera crop top de mujer, manga corta y tiro corto. Un básico imprescindible.",
+    "composicion": "100% Algodón",
+    "cuidado": "Lavar a máquina máx. 30°C.",
+    "talles": ["XS", "S", "M", "L"],
+    "tallesDisponibles": ["XS", "S", "M", "L"],
+    "imagenes": [
+      "https://d22fxaf9t8d39k.cloudfront.net/e1ced99735f95039982ce3dd6ffe72a2f0b82b2e6e60497f8d2567731f5224a0404368.jpg"
+    ],
+    "sku": "MUJ-CROPT-001",
+    "stock": 20,
     "activo": true
   },
   {
@@ -246,10 +224,19 @@
     "nombre": "Top Verde",
     "precio": 15000,
     "precioAnterior": 25000,
+    "imagen": "https://d22fxaf9t8d39k.cloudfront.net/9ed84011c0f7f607432c187f40ec36f82b414e84b3d28269fc42305dd6efed95404368.jpg",
     "categoria": "mujer",
     "subcategoria": "Remeras",
-    "genero": "mujer",
-    "imagen": "https://d22fxaf9t8d39k.cloudfront.net/9ed84011c0f7f607432c187f40ec36f82b414e84b3d28269fc42305dd6efed95404368.jpg",
+    "descripcion": "Top verde con corte moderno y tela liviana. Ideal para el verano.",
+    "composicion": "100% Viscosa",
+    "cuidado": "Lavar a mano con agua fría.",
+    "talles": ["XS", "S", "M", "L"],
+    "tallesDisponibles": ["XS", "S", "M", "L"],
+    "imagenes": [
+      "https://d22fxaf9t8d39k.cloudfront.net/9ed84011c0f7f607432c187f40ec36f82b414e84b3d28269fc42305dd6efed95404368.jpg"
+    ],
+    "sku": "MUJ-TOP-001",
+    "stock": 18,
     "activo": true
   },
   {
@@ -257,10 +244,19 @@
     "nombre": "Short HOJAS",
     "precio": 30000,
     "precioAnterior": 45000,
+    "imagen": "https://d22fxaf9t8d39k.cloudfront.net/61b3e9431a237af50d1fa63f7068428871a2386de0fde482ec3600e6adfbbdec404368.jpg",
     "categoria": "mujer",
     "subcategoria": "Shorts",
-    "genero": "mujer",
-    "imagen": "https://d22fxaf9t8d39k.cloudfront.net/61b3e9431a237af50d1fa63f7068428871a2386de0fde482ec3600e6adfbbdec404368.jpg",
+    "descripcion": "Short con estampado de hojas, tiro medio. Perfecto para looks frescos de temporada.",
+    "composicion": "100% Algodón",
+    "cuidado": "Lavar a máquina máx. 30°C.",
+    "talles": ["XS", "S", "M", "L"],
+    "tallesDisponibles": ["XS", "S", "M", "L"],
+    "imagenes": [
+      "https://d22fxaf9t8d39k.cloudfront.net/61b3e9431a237af50d1fa63f7068428871a2386de0fde482ec3600e6adfbbdec404368.jpg"
+    ],
+    "sku": "MUJ-SH-HOJAS",
+    "stock": 10,
     "activo": true
   },
   {
@@ -268,10 +264,19 @@
     "nombre": "Short BRICK",
     "precio": 25000,
     "precioAnterior": 35000,
+    "imagen": "https://d22fxaf9t8d39k.cloudfront.net/dbf00d91308b96b6c71d0c8f6726ce7901b0520cd4813222db616da53ee83966404368.jpg",
     "categoria": "mujer",
     "subcategoria": "Shorts",
-    "genero": "mujer",
-    "imagen": "https://d22fxaf9t8d39k.cloudfront.net/dbf00d91308b96b6c71d0c8f6726ce7901b0520cd4813222db616da53ee83966404368.jpg",
+    "descripcion": "Short en tono brick, corte recto y tiro alto. Un color tendencia para esta temporada.",
+    "composicion": "100% Algodón",
+    "cuidado": "Lavar a máquina máx. 30°C.",
+    "talles": ["XS", "S", "M", "L"],
+    "tallesDisponibles": ["XS", "S", "M", "L"],
+    "imagenes": [
+      "https://d22fxaf9t8d39k.cloudfront.net/dbf00d91308b96b6c71d0c8f6726ce7901b0520cd4813222db616da53ee83966404368.jpg"
+    ],
+    "sku": "MUJ-SH-BRICK",
+    "stock": 14,
     "activo": true
   },
   {
@@ -279,142 +284,39 @@
     "nombre": "Short BLANCO",
     "precio": 25000,
     "precioAnterior": 35000,
+    "imagen": "https://d22fxaf9t8d39k.cloudfront.net/11eb585d8ea84f6f172125795b54363a9ce9eb1be22ab65cee3579ca43c07cdd404368.jpg",
     "categoria": "mujer",
     "subcategoria": "Shorts",
-    "genero": "mujer",
-    "imagen": "https://d22fxaf9t8d39k.cloudfront.net/11eb585d8ea84f6f172125795b54363a9ce9eb1be22ab65cee3579ca43c07cdd404368.jpg",
+    "descripcion": "Short blanco clásico, tiro medio y corte recto. Básico infaltable de temporada.",
+    "composicion": "100% Algodón",
+    "cuidado": "Lavar a máquina máx. 30°C. Separar de colores.",
+    "talles": ["XS", "S", "M", "L"],
+    "tallesDisponibles": ["XS", "S", "M", "L"],
+    "imagenes": [
+      "https://d22fxaf9t8d39k.cloudfront.net/11eb585d8ea84f6f172125795b54363a9ce9eb1be22ab65cee3579ca43c07cdd404368.jpg"
+    ],
+    "sku": "MUJ-SH-BLANCO",
+    "stock": 16,
     "activo": true
   },
   {
-    "id": "cinto-tejido-elastizado",
+    "id": "cinto-tejido",
     "nombre": "Cinto TEJIDO ELASTIZADO",
     "precio": 25000,
     "precioAnterior": null,
+    "imagen": "https://d22fxaf9t8d39k.cloudfront.net/4685374b45b479cfd58e9da55c51fd9889b25c8240a765e91d1d62b8873d0386404368.jpg",
     "categoria": "accesorios",
     "subcategoria": "Cintos",
-    "genero": "unisex",
-    "imagen": "https://d22fxaf9t8d39k.cloudfront.net/4685374b45b479cfd58e9da55c51fd9889b25c8240a765e91d1d62b8873d0386404368.jpg",
-    "activo": true
-  },
-  {
-    "id": "pilusos-prelavados",
-    "nombre": "Pilusos prelavados",
-    "precio": 15000,
-    "precioAnterior": null,
-    "categoria": "accesorios",
-    "subcategoria": "Gorras",
-    "genero": "unisex",
-    "imagen": "https://d22fxaf9t8d39k.cloudfront.net/04f404fb2c2c189df4aabe4a97bff9aa96f2bd5b3783d41e222f89c28bc0ee2d404368.png",
-    "activo": true
-  },
-  {
-    "id": "gorras-prelavadas",
-    "nombre": "Gorras prelavadas",
-    "precio": 15000,
-    "precioAnterior": null,
-    "categoria": "accesorios",
-    "subcategoria": "Gorras",
-    "genero": "unisex",
-    "imagen": "https://d22fxaf9t8d39k.cloudfront.net/375cc7ff5b765aef3317f2c7e3644ca98c4c2e0143f743fa61ae63e643ad60fb404368.png",
-    "activo": true
-  },
-  {
-    "id": "abanico-orgullo",
-    "nombre": "Abanico ORGULLO",
-    "precio": 20000,
-    "precioAnterior": null,
-    "categoria": "accesorios",
-    "subcategoria": "Abanicos",
-    "genero": "unisex",
-    "imagen": "https://d22fxaf9t8d39k.cloudfront.net/d7bb9acf8f5ca09e741eac41c71f65a1a789da46d32346dbcc8da085b6888a8b404368.jpg",
-    "activo": true
-  },
-  {
-    "id": "abanico-music",
-    "nombre": "Abanico MUSIC",
-    "precio": 20000,
-    "precioAnterior": null,
-    "categoria": "accesorios",
-    "subcategoria": "Abanicos",
-    "genero": "unisex",
-    "imagen": "https://d22fxaf9t8d39k.cloudfront.net/eed069dcbb94dd317b2fec3eef483d8f2755eced6906f337408a75fb921645d7404368.png",
-    "activo": true
-  },
-  {
-    "id": "abanico-a-mi-aire",
-    "nombre": "Abanico A MI AIRE",
-    "precio": 20000,
-    "precioAnterior": null,
-    "categoria": "accesorios",
-    "subcategoria": "Abanicos",
-    "genero": "unisex",
-    "imagen": "https://d22fxaf9t8d39k.cloudfront.net/bf1a40912234085e30e0712306b486975b1a87d394e8c747e3ac36dc6bae03ae404368.png",
-    "activo": true
-  },
-  {
-    "id": "abanico-alien",
-    "nombre": "Abanico ALIEN",
-    "precio": 20000,
-    "precioAnterior": null,
-    "categoria": "accesorios",
-    "subcategoria": "Abanicos",
-    "genero": "unisex",
-    "imagen": "https://d22fxaf9t8d39k.cloudfront.net/cfca7c5ddfaf88d6123e72fc5172f9261777138f76401fcec8fe176d15dbc8bf404368.png",
-    "activo": true
-  },
-  {
-    "id": "abanico-arco-iris",
-    "nombre": "Abanico ARCO IRIS",
-    "precio": 20000,
-    "precioAnterior": null,
-    "categoria": "accesorios",
-    "subcategoria": "Abanicos",
-    "genero": "unisex",
-    "imagen": "https://d22fxaf9t8d39k.cloudfront.net/1edcf80198e30639eb1bddab0a661bde5a9713728556ccf81c3df7b12a39068f404368.png",
-    "activo": true
-  },
-  {
-    "id": "abanico-go-away",
-    "nombre": "Abanico GO AWAY",
-    "precio": 20000,
-    "precioAnterior": null,
-    "categoria": "accesorios",
-    "subcategoria": "Abanicos",
-    "genero": "unisex",
-    "imagen": "https://d22fxaf9t8d39k.cloudfront.net/a06deeb3a1ab8a9e2ed2f4ca672a71d0967aea3913f163ba3d75e5bf2e3cfdae404368.png",
-    "activo": true
-  },
-  {
-    "id": "abanico-floral",
-    "nombre": "Abanico FLORAL",
-    "precio": 20000,
-    "precioAnterior": null,
-    "categoria": "accesorios",
-    "subcategoria": "Abanicos",
-    "genero": "unisex",
-    "imagen": "https://d22fxaf9t8d39k.cloudfront.net/58dd07e55d61f8ef6bfce53e625056e06146dd6880ca33e7666396b57397e407404368.png",
-    "activo": true
-  },
-  {
-    "id": "abanico-sobrados",
-    "nombre": "Abanico SOBRADOS",
-    "precio": 20000,
-    "precioAnterior": null,
-    "categoria": "accesorios",
-    "subcategoria": "Abanicos",
-    "genero": "unisex",
-    "imagen": "https://d22fxaf9t8d39k.cloudfront.net/ea809116f02307d347d5e34db61666ef1b2ae1e2392cd0f3c97661335a505a9d404368.png",
-    "activo": true
-  },
-  {
-    "id": "abanico-resaca",
-    "nombre": "Abanico MAÑANA VOY A TENER RESACA",
-    "precio": 20000,
-    "precioAnterior": null,
-    "categoria": "accesorios",
-    "subcategoria": "Abanicos",
-    "genero": "unisex",
-    "imagen": "https://d22fxaf9t8d39k.cloudfront.net/d44f11a64a90f743bdd55e29fd5369263b6eb5f5924e845ffe614383f5b9ef88404368.png",
+    "descripcion": "Cinto tejido elastizado, ajustable y cómodo. Complementa cualquier look.",
+    "composicion": "Tela tejida elastizada",
+    "cuidado": "Limpieza a mano con paño húmedo.",
+    "talles": ["Único"],
+    "tallesDisponibles": ["Único"],
+    "imagenes": [
+      "https://d22fxaf9t8d39k.cloudfront.net/4685374b45b479cfd58e9da55c51fd9889b25c8240a765e91d1d62b8873d0386404368.jpg"
+    ],
+    "sku": "ACC-CINT-001",
+    "stock": 30,
     "activo": true
   }
 ]
