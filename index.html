@@ -745,6 +745,51 @@
       footer { grid-template-columns:1fr; gap:28px; }
       .section-header { flex-direction:column; align-items:flex-start; }
     }
+
+    /* ── HAMBURGER & MOBILE NAV ── */
+    .hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; padding:4px; background:none; border:none; }
+    .hamburger span { display:block; width:22px; height:1.5px; background:rgba(255,255,255,.6); transition:all .3s; }
+    .hamburger.open span:nth-child(1) { transform:translateY(6.5px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity:0; }
+    .hamburger.open span:nth-child(3) { transform:translateY(-6.5px) rotate(-45deg); }
+    .mobile-nav-idx {
+      display:none; position:fixed; top:68px; left:0; right:0; z-index:499;
+      background:rgba(11,11,9,.98); backdrop-filter:blur(20px);
+      border-bottom:1px solid var(--border);
+      padding:24px 22px; flex-direction:column; gap:4px;
+    }
+    .mobile-nav-idx.open { display:flex; }
+    .mobile-nav-idx a {
+      padding:13px 0; font-size:13px; font-weight:500; color:rgba(255,255,255,.55);
+      border-bottom:1px solid var(--border); display:block; transition:color .2s;
+    }
+    .mobile-nav-idx a:last-child { border-bottom:none; }
+    .mobile-nav-idx a:hover, .mobile-nav-idx a.active { color:var(--accent); }
+    @media (max-width:900px) {
+      .hamburger { display:flex; }
+    }
+
+    /* ── TESTIMONIOS ── */
+    .testimonios {
+      padding:80px 52px; background:var(--surface); border-top:1px solid var(--border);
+    }
+    .testimonios .section-header { margin-bottom:48px; }
+    .testi-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:2px; }
+    .testi-card {
+      background:rgba(255,255,255,.02); border:1px solid var(--border); padding:28px 24px;
+      display:flex; flex-direction:column; gap:14px; transition:border-color .25s;
+    }
+    .testi-card:hover { border-color:rgba(201,169,110,.25); }
+    .testi-stars { color:var(--accent); font-size:12px; letter-spacing:2px; }
+    .testi-text { font-size:13px; line-height:1.8; color:var(--text); font-style:italic; flex:1; }
+    .testi-author { font-size:11px; color:var(--muted); padding-top:12px; border-top:1px solid var(--border); }
+    @media (max-width:900px) {
+      .testi-grid { grid-template-columns:1fr 1fr; }
+      .testimonios { padding:64px 22px; }
+    }
+    @media (max-width:540px) {
+      .testi-grid { grid-template-columns:1fr; }
+    }
     
     /* Responsive para móviles - Hero */
     @media (max-width: 768px) {
@@ -801,8 +846,19 @@
       <i class="fas fa-shopping-bag"></i>
       <span class="cart-dot" id="cartDot">0</span>
     </div>
+    <button class="hamburger" id="hamburger" onclick="toggleIndexMenu()" aria-label="Menú">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </header>
+
+<!-- ══ MOBILE NAV ══ -->
+<nav class="mobile-nav-idx" id="mobileNavIdx">
+  <a href="index.html" class="active">Inicio</a>
+  <a href="tienda.html">Tienda</a>
+  <a href="lookbook.html">Lookbook</a>
+  <a href="contacto.html">Contacto</a>
+</nav>
 
 <!-- ══ ANNOUNCE BAR ══ -->
 <div class="announce-bar">
@@ -970,6 +1026,39 @@
   </div>
 </section>
 
+<!-- ══ TESTIMONIOS ══ -->
+<section class="testimonios">
+  <div class="section-header">
+    <div>
+      <p class="section-eyebrow">Lo que dicen</p>
+      <h2 class="section-title">Nuestros <em>clientes</em></h2>
+    </div>
+    <a class="section-link" href="tienda.html">Ver la tienda <i class="fas fa-arrow-right" style="font-size:9px"></i></a>
+  </div>
+  <div class="testi-grid">
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"La campera jean es una pasada. La calidad es excelente y llegó súper rápido. Ya la usé mil veces y siempre recibo comentarios."</p>
+      <p class="testi-author">Valentina M. — Córdoba Capital</p>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"Los abanicos son hermosos y únicos. Me llegaron perfectos y muy bien embalados. Servicio impecable, volvería a comprar sin dudarlo."</p>
+      <p class="testi-author">Lucía T. — Buenos Aires</p>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"Compré el conjunto de lino y quedé enamorado. El talle es perfecto, muy cómodo. 100% recomendable para el verano."</p>
+      <p class="testi-author">Matías R. — Jesús María</p>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"Me encantó la atención, respondieron rápido por WhatsApp y el envío fue puntual. Una experiencia de compra muy agradable."</p>
+      <p class="testi-author">Sofía G. — Villa María</p>
+    </div>
+  </div>
+</section>
+
 <!-- ══ NEWSLETTER ══ -->
 <section class="nl-section" id="contacto">
   <div>
@@ -1014,7 +1103,7 @@
       <li><a href="#">Envíos</a></li>
       <li><a href="#">Cambios y devoluciones</a></li>
       <li><a href="#">Preguntas frecuentes</a></li>
-      <li><a href="/cdn-cgi/l/email-protection#f290938093dc939c96dc919ddc989fb2959f939b9edc919d9f">Contacto</a></li>
+      <li><a href="contacto.html">Contacto</a></li>
     </ul>
   </div>
   <div class="foot-col">
@@ -1031,7 +1120,7 @@
   </div>
 </footer>
 <div class="foot-bottom">
-  <span>© 2026 Bara & Co &nbsp;·&nbsp; Ing. Olmos 139 – Jesús María &nbsp;·&nbsp; <a href="/cdn-cgi/l/email-protection#97f5f6e5f6b9f6f9f3b9f4f8b9fdfad7f0faf6fefbb9f4f8fa"><span class="__cf_email__" data-cfemail="b3d1d2c1d29dd2ddd79dd0dc9dd9def3d4ded2dadf9dd0dcde">[email&#160;protected]</span></a></span>
+  <span>© 2026 Bara & Co &nbsp;·&nbsp; Ing. Olmos 139 – Jesús María &nbsp;·&nbsp; <a href="mailto:bara.and.co.jm@gmail.com">bara.and.co.jm@gmail.com</a></span>
   <div class="foot-links">
     <a href="#">Términos y condiciones</a>
     <a href="#">Política de privacidad</a>
@@ -1039,7 +1128,7 @@
 </div>
 
 <!-- ══ WA BUTTON ══ -->
-<button class="wa-btn" onclick="window.open('https://wa.me/549TUNUMERO?text=Hola!%20Quiero%20consultar%20sobre%20un%20producto','_blank')">
+<button class="wa-btn" onclick="window.open('https://wa.me/5493525614281?text=Hola!%20Quiero%20consultar%20sobre%20un%20producto','_blank')">
   <i class="fab fa-whatsapp"></i>
 </button>
 
@@ -1243,7 +1332,7 @@ function pagarWA(){
   if(!cart.length) return;
   const lines = cart.map(i=>`• ${i.name}${i.qty>1?' x'+i.qty:''} — $${(i.precio*i.qty).toLocaleString('es-AR')}`).join('%0A');
   const total = cart.reduce((s,i)=>s+i.precio*i.qty,0);
-  window.open(`https://wa.me/549TUNUMERO?text=Hola%20Bara%20%26%20Co!%20Quiero%20hacer%20el%20siguiente%20pedido:%0A${lines}%0A%0ATotal:%20$${total.toLocaleString('es-AR')}`,'_blank');
+  window.open(`https://wa.me/5493525614281?text=Hola%20Bara%20%26%20Co!%20Quiero%20hacer%20el%20siguiente%20pedido:%0A${lines}%0A%0ATotal:%20$${total.toLocaleString('es-AR')}`,'_blank');
 }
 
 function pagarConMercadoPago() {
@@ -1255,4 +1344,17 @@ function pagarConMercadoPago() {
 }
 
 function subscribe(){
-  
+  const email = document.getElementById('nlEmail').value.trim();
+  if (!email || !email.includes('@')) { alert('Ingresá un email válido'); return; }
+  alert('¡Gracias! Te enviamos el 10% OFF a ' + email);
+  document.getElementById('nlEmail').value = '';
+}
+
+/* ── HAMBURGER MENU ── */
+function toggleIndexMenu() {
+  document.getElementById('hamburger').classList.toggle('open');
+  document.getElementById('mobileNavIdx').classList.toggle('open');
+}
+</script>
+</body>
+</html>
