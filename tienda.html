@@ -39,6 +39,18 @@
       transition:background .3s;
     }
     .logo-img { height:56px; width:auto; object-fit:contain; display:block; }
+    .logo-tienda {
+  height: 70px;  /* Antes era 56px */
+  width: auto;
+  object-fit: contain;
+  display: block;
+  transition: height .3s;
+}
+
+/* Cuando el header se achica con scroll (si tienes esa función) */
+#header.scrolled .logo-tienda {
+  height: 55px;
+}
 
     .header-nav ul { display:flex; gap:36px; }
     .header-nav a {
@@ -439,7 +451,10 @@
 
 <!-- ══ HEADER ══ -->
 <header id="header">
-  <a href="index.html"><img src="images/logo.png" alt="Bara & Co" class="logo-img"/></a>
+  <!-- Reemplaza el logo actual -->
+<a href="index.html">
+  <img src="images/LogoB&D.png" alt="Bara & Co" class="logo-tienda"/>
+</a>
   <nav class="header-nav">
     <ul>
       <li><a href="index.html">Inicio</a></li>
