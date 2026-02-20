@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Política de Privacidad · Bara & Co</title>
+  <link rel="stylesheet" href="../css/global.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <style>
+    .page-content {
+      max-width: 860px;
+      margin: 120px auto 80px;
+      padding: 0 20px;
+    }
+    .page-title {
+      font-family: var(--font-serif);
+      font-size: 42px;
+      font-weight: 400;
+      margin-bottom: 10px;
+      color: var(--color-text);
+    }
+    .page-updated {
+      font-size: 13px;
+      color: var(--color-text-secondary);
+      margin-bottom: 48px;
+    }
+    .legal-section {
+      margin-bottom: 40px;
+    }
+    .legal-section h2 {
+      font-family: var(--font-serif);
+      font-size: 22px;
+      font-weight: 400;
+      color: var(--color-accent);
+      margin-bottom: 14px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--color-border);
+    }
+    .legal-section p {
+      color: var(--color-text-secondary);
+      line-height: 1.85;
+      margin-bottom: 12px;
+      font-size: 15px;
+    }
+    .legal-section ul {
+      list-style: none;
+      padding: 0;
+      margin-bottom: 12px;
+    }
+    .legal-section li {
+      color: var(--color-text-secondary);
+      line-height: 1.85;
+      padding-left: 20px;
+      position: relative;
+      margin-bottom: 8px;
+      font-size: 15px;
+    }
+    .legal-section li::before {
+      content: '·';
+      position: absolute;
+      left: 0;
+      color: var(--color-accent);
+      font-size: 18px;
+      line-height: 1.6;
+    }
+    .legal-highlight {
+      background: var(--color-surface);
+      border-left: 3px solid var(--color-accent);
+      padding: 16px 20px;
+      margin: 20px 0;
+      font-size: 14px;
+      color: var(--color-text-secondary);
+      line-height: 1.8;
+    }
+    .rights-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin: 20px 0;
+    }
+    .right-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      padding: 20px;
+    }
+    .right-card i {
+      color: var(--color-accent);
+      font-size: 20px;
+      margin-bottom: 10px;
+      display: block;
+    }
+    .right-card h4 {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    .right-card p {
+      font-size: 13px;
+      color: var(--color-text-secondary);
+      line-height: 1.6;
+      margin: 0;
+    }
+    .contact-block {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      padding: 28px;
+      margin-top: 48px;
+      text-align: center;
+    }
+    .contact-block h3 {
+      font-family: var(--font-serif);
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+    .contact-block p {
+      color: var(--color-text-secondary);
+      margin-bottom: 16px;
+      font-size: 14px;
+    }
+    .contact-block a {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #25d366;
+      color: #fff;
+      padding: 12px 28px;
+      border-radius: 40px;
+      font-weight: 500;
+      font-size: 14px;
+      transition: background 0.2s;
+    }
+    .contact-block a:hover { background: #1da85c; }
+    @media (max-width: 600px) {
+      .rights-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body class="interior">
+
+<!-- HEADER -->
+<header id="header">
+  <a href="../index.html" class="logo">
+    <img src="../images/LogoB&D.png" alt="Bara & Co" class="logo-img"/>
+  </a>
+  <nav class="nav-menu">
+    <ul>
+      <li><a href="../index.html" class="nav-link">Inicio</a></li>
+      <li><a href="../tienda.html" class="nav-link">Tienda</a></li>
+      <li><a href="../lookbook.html" class="nav-link">Lookbook</a></li>
+      <li><a href="../contacto.html" class="nav-link">Contacto</a></li>
+    </ul>
+  </nav>
+  <div class="header-icons">
+    <i class="fas fa-search" id="searchIcon"></i>
+    <div class="cart-icon-wrap" onclick="toggleCart()">
+      <i class="fas fa-shopping-bag"></i>
+      <span class="cart-badge cart-count">0</span>
+    </div>
+    <button class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></button>
+  </div>
+</header>
+
+<!-- CONTENIDO -->
+<div class="page-content">
+  <h1 class="page-title">Política de Privacidad</h1>
+  <p class="page-updated">Última actualización: febrero de 2026</p>
+
+  <div class="legal-highlight">
+    En Bara & Co valoramos y respetamos tu privacidad. Esta política explica qué información recopilamos, cómo la usamos y qué derechos tenés sobre tus datos, de acuerdo con la Ley N° 25.326 de Protección de Datos Personales de la República Argentina.
+  </div>
+
+  <div class="legal-section">
+    <h2>1. Responsable del tratamiento</h2>
+    <p>El responsable del tratamiento de tus datos personales es <strong>Bara & Co</strong>, con domicilio en Ing. Olmos 139, Jesús María, Córdoba, Argentina. CUIT: 30-71234567-8.</p>
+    <p>Podés contactarnos en cualquier momento por WhatsApp al <strong>3525-614281</strong>.</p>
+  </div>
+
+  <div class="legal-section">
+    <h2>2. Qué datos recopilamos</h2>
+    <p>Recopilamos únicamente los datos necesarios para gestionar tus compras y brindarte una buena experiencia:</p>
+    <ul>
+      <li><strong>Datos de contacto:</strong> nombre, número de WhatsApp y/o email cuando nos escribís o realizás una compra.</li>
+      <li><strong>Datos de envío:</strong> dirección postal que nos proporcionás para coordinar la entrega de tu pedido.</li>
+      <li><strong>Datos de navegación:</strong> información técnica básica como el dispositivo y navegador que usás, mediante cookies propias del sitio.</li>
+      <li><strong>Email de newsletter:</strong> si te suscribís voluntariamente para recibir novedades y promociones.</li>
+    </ul>
+    <p>No recopilamos datos de tarjetas de crédito ni información bancaria. Los pagos son procesados de forma segura por MercadoPago, que tiene su propia política de privacidad.</p>
+  </div>
+
+  <div class="legal-section">
+    <h2>3. Para qué usamos tus datos</h2>
+    <p>Usamos tus datos exclusivamente para:</p>
+    <ul>
+      <li>Procesar y gestionar tus pedidos y coordinar el envío o retiro.</li>
+      <li>Responderte consultas enviadas por WhatsApp o email.</li>
+      <li>Enviarte el código de descuento de bienvenida y novedades de la tienda, si te suscribiste al newsletter (podés darte de baja en cualquier momento).</li>
+      <li>Mejorar el funcionamiento y la experiencia en nuestro sitio web.</li>
+    </ul>
+    <p>No usamos tus datos para publicidad de terceros ni los compartimos con empresas de marketing.</p>
+  </div>
+
+  <div class="legal-section">
+    <h2>4. Con quién compartimos tus datos</h2>
+    <p>Tus datos personales pueden ser compartidos únicamente con:</p>
+    <ul>
+      <li><strong>Servicios de correo y logística</strong> (Correo Argentino, Andreani u otros) para poder entregar tu pedido. Solo les proporcionamos nombre y dirección de envío.</li>
+      <li><strong>MercadoPago</strong> para procesar pagos de forma segura. Este proveedor tiene sus propias políticas de privacidad.</li>
+    </ul>
+    <p>No vendemos, alquilamos ni cedemos tus datos personales a terceros con fines comerciales.</p>
+  </div>
+
+  <div class="legal-section">
+    <h2>5. Cookies</h2>
+    <p>Nuestro sitio utiliza cookies propias para:</p>
+    <ul>
+      <li>Mantener el contenido de tu carrito de compras entre sesiones.</li>
+      <li>Recordar tus preferencias de navegación.</li>
+    </ul>
+    <p>No utilizamos cookies de seguimiento publicitario ni de terceros. Podés configurar tu navegador para rechazar cookies, aunque esto puede afectar el funcionamiento del carrito.</p>
+  </div>
+
+  <div class="legal-section">
+    <h2>6. Por cuánto tiempo guardamos tus datos</h2>
+    <p>Guardamos tus datos durante el tiempo necesario para cumplir con las finalidades descriptas en esta política:</p>
+    <ul>
+      <li>Datos de pedidos: hasta 5 años, por obligaciones contables y legales.</li>
+      <li>Datos de newsletter: hasta que solicites la baja.</li>
+      <li>Consultas por WhatsApp: el historial se conserva según la configuración de WhatsApp de cada parte.</li>
+    </ul>
+  </div>
+
+  <div class="legal-section">
+    <h2>7. Tus derechos</h2>
+    <p>De acuerdo con la Ley 25.326, tenés los siguientes derechos sobre tus datos personales:</p>
+    <div class="rights-grid">
+      <div class="right-card">
+        <i class="fas fa-eye"></i>
+        <h4>Acceso</h4>
+        <p>Podés solicitar en cualquier momento qué datos tuyos tenemos guardados.</p>
+      </div>
+      <div class="right-card">
+        <i class="fas fa-pen"></i>
+        <h4>Rectificación</h4>
+        <p>Si tus datos son inexactos o están desactualizados, podés pedirnos que los corrijamos.</p>
+      </div>
+      <div class="right-card">
+        <i class="fas fa-trash-alt"></i>
+        <h4>Supresión</h4>
+        <p>Podés solicitarnos que eliminemos tus datos cuando ya no sean necesarios.</p>
+      </div>
+      <div class="right-card">
+        <i class="fas fa-ban"></i>
+        <h4>Oposición</h4>
+        <p>Podés oponerte al uso de tus datos para envío de comunicaciones comerciales.</p>
+      </div>
+    </div>
+    <p>Para ejercer cualquiera de estos derechos, escribinos por WhatsApp al 3525-614281. Respondemos en un plazo máximo de 5 días hábiles.</p>
+    <p>Si considerás que tus derechos no fueron respetados, podés presentar una reclamación ante la <strong>Agencia de Acceso a la Información Pública</strong> (www.argentina.gob.ar/aaip).</p>
+  </div>
+
+  <div class="legal-section">
+    <h2>8. Seguridad</h2>
+    <p>Tomamos medidas técnicas y organizativas razonables para proteger tus datos contra acceso no autorizado, alteración o pérdida. El sitio opera bajo protocolo HTTPS y los pagos se procesan en entornos seguros de MercadoPago.</p>
+    <p>Sin embargo, ningún sistema de transmisión de datos por internet es 100% seguro. Si detectás alguna vulnerabilidad, por favor avisanos de inmediato.</p>
+  </div>
+
+  <div class="legal-section">
+    <h2>9. Menores de edad</h2>
+    <p>Nuestros servicios están dirigidos a personas mayores de 18 años. No recopilamos intencionalmente datos de menores. Si sos padre o tutor y creés que tu hijo nos proporcionó información, contactanos para eliminarla.</p>
+  </div>
+
+  <div class="legal-section">
+    <h2>10. Cambios en esta política</h2>
+    <p>Podemos actualizar esta política de privacidad cuando sea necesario. Te notificaremos de cambios significativos a través de un aviso destacado en nuestra tienda. La fecha de última actualización siempre estará visible al inicio de esta página.</p>
+  </div>
+
+  <div class="contact-block">
+    <h3>¿Preguntas sobre tu privacidad?</h3>
+    <p>Escribinos y te respondemos dentro de las 48 horas hábiles.</p>
+    <a href="https://wa.me/5493525614281?text=Hola!%20Tengo%20una%20consulta%20sobre%20la%20pol%C3%ADtica%20de%20privacidad" target="_blank">
+      <i class="fab fa-whatsapp"></i> Consultarnos por WhatsApp
+    </a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <img src="../images/logoN&D.png" alt="Bara & Co" class="footer-logo-img"/>
+    <p class="footer-text">Indumentaria urbana con personalidad. Diseño y confort para tu día a día.</p>
+    <div class="social-icons">
+      <i class="fab fa-instagram" onclick="window.open('https://instagram.com/bara.and.co','_blank')"></i>
+      <i class="fab fa-facebook-f"></i>
+      <i class="fab fa-tiktok"></i>
+    </div>
+  </div>
+  <div>
+    <h4 class="footer-title">Categorías</h4>
+    <ul class="footer-links">
+      <li><a href="../tienda.html?categoria=hombre">Hombre</a></li>
+      <li><a href="../tienda.html?categoria=mujer">Mujer</a></li>
+      <li><a href="../tienda.html?categoria=accesorios">Accesorios</a></li>
+      <li><a href="../tienda.html?categoria=new">New Collection</a></li>
+      <li><a href="../tienda.html?categoria=sale">Sale</a></li>
+    </ul>
+  </div>
+  <div>
+    <h4 class="footer-title">Ayuda</h4>
+    <ul class="footer-links">
+      <li><a href="envios.html">Envíos</a></li>
+      <li><a href="cambios.html">Cambios y devoluciones</a></li>
+      <li><a href="faq.html">Preguntas frecuentes</a></li>
+      <li><a href="../contacto.html">Contacto</a></li>
+    </ul>
+  </div>
+  <div>
+    <h4 class="footer-title">Newsletter</h4>
+    <p class="footer-text">10% OFF en tu primera compra</p>
+    <div class="newsletter-input">
+      <input type="email" placeholder="tu@email.com"/>
+      <button><i class="fas fa-arrow-right"></i></button>
+    </div>
+  </div>
+</footer>
+<div class="footer-bottom">
+  <span>© 2026 Bara & Co · Ing. Olmos 139 – Jesús María</span>
+  <div class="legal-info">
+    <a href="terminos.html">Términos y condiciones</a>
+    <a href="privacidad.html" class="active">Política de privacidad</a>
+  </div>
+</div>
+
+<!-- WHATSAPP FLOAT -->
+<div class="whatsapp-float" onclick="window.open('https://wa.me/5493525614281?text=Hola!%20Quiero%20consultar%20sobre%20un%20producto','_blank')">
+  <i class="fab fa-whatsapp"></i>
+  <span class="whatsapp-tooltip">Consultar por WhatsApp</span>
+</div>
+
+<!-- CART PANEL -->
+<div class="overlay" onclick="toggleCart()"></div>
+<div class="cart-panel">
+  <div class="cart-header">
+    <h2 class="cart-title">Carrito <span class="cart-count">0</span></h2>
+    <span class="close-cart" onclick="toggleCart()"><i class="fas fa-times"></i></span>
+  </div>
+  <div class="cart-items">
+    <div class="cart-empty">
+      <i class="fas fa-shopping-bag"></i>
+      <p>Tu carrito está vacío</p>
+      <button class="btn-empty" onclick="toggleCart(); window.location.href='../tienda.html'">Explorar productos</button>
+    </div>
+  </div>
+  <div class="cart-footer"></div>
+</div>
+<div id="cartNotification" class="cart-notification">
+  <i class="fas fa-check-circle"></i>
+  <span></span>
+</div>
+
+<script src="../js/main.js"></script>
+<script src="../js/carrito.js"></script>
+<script src="../js/search.js"></script>
+</body>
+</html>
