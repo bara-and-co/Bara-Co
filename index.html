@@ -173,7 +173,7 @@
       height: 100%;
       overflow: hidden;
       will-change: transform;
-      transition: transform 0.1s linear;
+      /* sin transition: el parallax de scroll es frame-by-frame con rAF */
       z-index: 2;
       background: transparent;
     }
@@ -199,15 +199,16 @@
       left: 50%;
       width: 100%;
       height: 100%;
-      object-fit: contain;
-      transform: translate(-50%, -50%) scale(1.1);
+      object-fit: cover;
+      object-position: center top;
+      transform: translate(-50%, -50%) scale(1.05);
       transition: transform 1.2s var(--ease);
       will-change: transform;
       z-index: 1;
     }
 
     .hero-half:hover img {
-      transform: translate(-50%, -50%) scale(1.05);
+      transform: translate(-50%, -50%) scale(1.0);
     }
 
     .hero-half::before {
@@ -1221,19 +1222,20 @@ document.addEventListener('DOMContentLoaded', function() {
   const scrollHint  = document.getElementById('scrollHint');
   
   if (panelLeft && panelRight) {
-    const MAX_TRANSLATE = 48;
+    const MAX_TRANSLATE = 55; /* % — suficiente para salir de pantalla */
     let ticking = false;
     
     function updateHeroPanels() {
       const scrollY      = window.scrollY;
       const windowHeight = window.innerHeight;
-      let progress = Math.min(scrollY / (windowHeight * 0.7), 1);
+      /* progress: 0 = top, 1 = paneles completamente abiertos */
+      let progress = Math.min(scrollY / (windowHeight * 0.65), 1);
       
       panelLeft.style.transform  = `translateX(${-(progress * MAX_TRANSLATE)}%)`;
       panelRight.style.transform = `translateX(${progress * MAX_TRANSLATE}%)`;
       
-      if (heroContent) heroContent.style.opacity = Math.max(0, 1 - progress * 1.3);
-      if (scrollHint)  scrollHint.style.opacity  = Math.max(0, 1 - progress * 1.5);
+      if (heroContent) heroContent.style.opacity = Math.max(0, 1 - progress * 1.5);
+      if (scrollHint)  scrollHint.style.opacity  = Math.max(0, 1 - progress * 2);
       
       ticking = false;
     }
@@ -1243,7 +1245,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }, { passive: true });
     
     window.addEventListener('resize', updateHeroPanels);
-    updateHeroPanels();
+    updateHeroPanels(); /* estado inicial */
   }
 
   /* ── PRODUCTOS DESTACADOS ── */
