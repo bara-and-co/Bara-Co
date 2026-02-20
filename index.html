@@ -1077,8 +1077,8 @@
 <div class="footer-bottom">
   <span>© 2026 Bara & Co · Ing. Olmos 139 – Jesús María</span>
   <div class="legal-info">
-    <a href="#">Términos y condiciones</a>
-    <a href="#">Política de privacidad</a>
+    <a href="pages/terminos.html">Términos y condiciones</a>
+    <a href="pages/privacidad.html">Política de privacidad</a>
   </div>
 </div>
 
@@ -1252,13 +1252,36 @@
   }
 
   function suscribirNewsletter() {
-    const email = document.getElementById('nlEmail').value.trim();
+    const emailInput = document.getElementById('nlEmail');
+    const email = emailInput.value.trim();
     if (!email || !email.includes('@')) {
-      alert('Ingresá un email válido');
+      emailInput.style.borderColor = '#b83030';
+      emailInput.placeholder = 'Ingresá un email válido';
+      setTimeout(() => {
+        emailInput.style.borderColor = '';
+        emailInput.placeholder = 'tu@email.com';
+      }, 2000);
       return;
     }
-    alert('¡Gracias! Te enviamos el 10% OFF a ' + email);
-    document.getElementById('nlEmail').value = '';
+    // Guardar en localStorage como referencia local
+    const suscriptores = JSON.parse(localStorage.getItem('bc_newsletter') || '[]');
+    if (suscriptores.includes(email)) {
+      emailInput.value = '';
+      showNlSuccess('¡Ya estás suscripto! Te avisamos de cada novedad.');
+      return;
+    }
+    suscriptores.push(email);
+    localStorage.setItem('bc_newsletter', JSON.stringify(suscriptores));
+    emailInput.value = '';
+    showNlSuccess('¡Gracias! Revisá tu email para recibir el 10% OFF 🎉');
+  }
+
+  function showNlSuccess(msg) {
+    const form = document.querySelector('.nl-form');
+    if (!form) return;
+    const original = form.innerHTML;
+    form.innerHTML = `<p style="color:var(--accent);font-size:15px;font-weight:500;">${msg}</p>`;
+    setTimeout(() => { form.innerHTML = original; }, 5000);
   }
 
   document.addEventListener('DOMContentLoaded', cargarDestacados);
