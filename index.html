@@ -124,6 +124,29 @@
       font-size:8px; font-weight:700; display:none; place-items:center;
     }
     .cart-dot.on { display:grid; }
+    /* Logo más grande */
+.logo-img-header {
+  height: 80px !important;  /* Antes era 64px */
+  width: auto !important;
+  max-width: none !important;
+  object-fit: contain;
+  display: block;
+  transition: height .5s var(--ease);
+}
+
+#header.scrolled .logo-img-header {
+  height: 60px !important;  /* Antes era 48px */
+}
+
+/* En móvil */
+@media (max-width: 900px) {
+  .logo-img-header {
+    height: 70px !important;
+  }
+  #header.scrolled .logo-img-header {
+    height: 50px !important;
+  }
+}
 
     /* ════════════════════════════════════
        ANNOUNCEMENT BAR
@@ -856,11 +879,12 @@
     </ul>
   </nav>
 
-  <div class="header-logo">
-    <a href="index.html">
-      <img src="images/LogoB&D.png" alt="Bara & Co"/>
-    </a>
-  </div>
+  <!-- En el header, reemplaza la sección del logo -->
+<div class="header-logo">
+  <a href="index.html">
+    <img src="images/LogoB&D.png" alt="Bara & Co" class="logo-img-header"/>
+  </a>
+</div>
 
   <div class="header-right">
     <i class="fas fa-search" onclick="window.location.href='tienda.html'"></i>
