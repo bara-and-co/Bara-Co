@@ -12,6 +12,7 @@ class Buscador {
             const response = await fetch('productos.json?t=' + Date.now());
             if (response.ok) {
                 this.productos = await response.json();
+                console.log('📦 Productos cargados para búsqueda:', this.productos.length);
             }
         } catch (error) {
             console.warn('No se pudieron cargar productos para búsqueda');
@@ -21,11 +22,14 @@ class Buscador {
     init() {
         if (!this.input) return;
         
-        this.input.addEventListener('click', () => this.abrirModal());
+        this.input.addEventListener('click', (e) => {
+            e.preventDefault();
+            this.abrirModal();
+        });
         
         // Cerrar con ESC
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && this.modal) {
+            if (e.key === 'Escape' && this.modal && this.modal.style.display === 'flex') {
                 this.cerrarModal();
             }
         });
@@ -97,15 +101,18 @@ class Buscador {
         const resultsDiv = document.getElementById('searchResults');
         
         if (resultados.length === 0) {
-            resultsDiv.innerHTML = '<p style="text-align: center; padding: 20px; color: #999;">No se encontraron productos</p>';
+            resultsDiv.innerHTML = '<p style="text-align: center; padding: 20px; color: var(--color-text-secondary);">No se encontraron productos</p>';
             return;
         }
         
         let html = '';
         resultados.forEach(p => {
+            // Determinar la URL base correcta (puede estar en / o en /producto.html)
+            const basePath = window.location.pathname.includes('/pages/') ? '../' : '';
+            
             html += `
-                <div class="search-result-item" onclick="window.location.href='producto.html?id=${p.id}'">
-                    <img src="${p.imagen}" alt="${p.nombre}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2250%22 height=%2250%22%3E%3Crect fill=%22%23f0ede8%22 width=%2250%22 height=%2250%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22%23c9a96e%22 font-size=%2212%22%3E%3C/text%3E%3C/svg%3E'">
+                <div class="search-result-item" onclick="window.location.href='${basePath}producto.html?id=${p.id}'">
+                    <img src="${p.imagen}" alt="${p.nombre}" onerror="this.src='${basePath}images/placeholder.jpg'">
                     <div class="search-result-info">
                         <h4>${p.nombre}</h4>
                         <p>$${p.precio.toLocaleString('es-AR')}</p>
