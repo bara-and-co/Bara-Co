@@ -671,6 +671,7 @@
     }
     .cd-item img { width:68px; height:82px; object-fit:cover; flex-shrink:0; }
     .cd-item-name  { font-family:var(--serif); font-size:15px; }
+    .cd-item-size  { font-size:11px; color:var(--muted); margin-top:2px; }
     .cd-item-price { font-size:12px; color:var(--accent); margin-top:4px; }
     .cd-item-rm {
       background:none; border:none; color:var(--muted); font-size:19px;
@@ -862,7 +863,7 @@
   </div>
 
   <div class="header-right">
-    <i class="fas fa-search"></i>
+    <i class="fas fa-search" onclick="window.location.href='tienda.html'"></i>
     <a href="contacto.html"><i class="fas fa-envelope" style="font-size:15px"></i></a>
     <div class="cart-wrap" onclick="toggleCart()">
       <i class="fas fa-shopping-bag"></i>
@@ -999,7 +1000,7 @@
   </div>
 
   <div class="prod-grid" id="productosDestacados">
-    <!-- productos cargados por JS — fallback hardcodeado si falla el JSON -->
+    <!-- productos cargados por JS desde productos.json -->
   </div>
 </section>
 
@@ -1287,10 +1288,10 @@ function toggleIndexMenu() {
   updateHeroPanels(); // Ejecutar una vez al inicio
 })();
 
-/* ── PRODUCTOS DESTACADOS ── */
+/* ── PRODUCTOS DESTACADOS DESDE JSON ── */
 const FALLBACK_PRODUCTOS = [
   {
-    id: 'f1',
+    id: 'campera-jean-clasica',
     nombre: 'Campera JEAN clásica',
     precio: 75000,
     precioAnterior: null,
@@ -1298,7 +1299,7 @@ const FALLBACK_PRODUCTOS = [
     categoria: 'new'
   },
   {
-    id: 'f2',
+    id: 'sastrero-rialto',
     nombre: 'Sastrero RIALTO',
     precio: 70000,
     precioAnterior: null,
@@ -1306,7 +1307,7 @@ const FALLBACK_PRODUCTOS = [
     categoria: 'new'
   },
   {
-    id: 'f3',
+    id: 'abanico-orgullo',
     nombre: 'Abanico ORGULLO',
     precio: 20000,
     precioAnterior: null,
@@ -1314,7 +1315,7 @@ const FALLBACK_PRODUCTOS = [
     categoria: 'accesorios'
   },
   {
-    id: 'f4',
+    id: 'bermuda-real-tree-baggy',
     nombre: 'Bermuda REAL TREE baggy',
     precio: 45000,
     precioAnterior: 75000,
@@ -1323,29 +1324,51 @@ const FALLBACK_PRODUCTOS = [
   }
 ];
 
-function cargarDestacados() {
+async function cargarDestacados() {
   const grid = document.getElementById('productosDestacados');
   if (!grid) return;
 
-  let destacados = FALLBACK_PRODUCTOS; // Usar fallback directamente
-  
+  try {
+    const response = await fetch('productos.json?t=' + Date.now());
+    if (!response.ok) throw new Error('No se pudo cargar');
+    
+    const todos = await response.json();
+    
+    // Tomar 4 productos como destacados (los primeros)
+    let destacados = todos
+      .filter(p => p.activo !== false)
+      .slice(0, 4);
+    
+    if (destacados.length === 0) {
+      destacados = FALLBACK_PRODUCTOS;
+    }
+    
+    renderizarDestacados(destacados, grid);
+    
+  } catch (error) {
+    console.warn('Error cargando productos.json, usando fallback:', error);
+    renderizarDestacados(FALLBACK_PRODUCTOS, grid);
+  }
+}
+
+function renderizarDestacados(productos, grid) {
   let html = '';
-  destacados.forEach(producto => {
+  productos.forEach(producto => {
     const descuento = producto.precioAnterior ? 
       Math.round((1 - producto.precio / producto.precioAnterior) * 100) : 0;
     
     html += `
-      <div class="prod-card visible" onclick="window.location.href='tienda.html'">
+      <div class="prod-card visible" onclick="window.location.href='producto.html?id=${producto.id}'">
         <div class="prod-img">
           ${producto.categoria === 'new' ? '<span class="prod-badge badge-new">New</span>' : ''}
           ${producto.precioAnterior ? `<span class="prod-badge badge-sale">-${descuento}%</span>` : ''}
           <img src="${producto.imagen}" alt="${producto.nombre}" loading="eager"/>
           <div class="prod-overlay">
-            <button class="ov-btn ov-add" onclick="event.stopPropagation(); agregarAlCarrito('${producto.id}', '${producto.nombre}', ${producto.precio}, '${producto.imagen}')">
-              <i class="fas fa-shopping-bag"></i> Agregar
+            <button class="ov-btn ov-add" onclick="event.stopPropagation(); irAProducto('${producto.id}')">
+              <i class="fas fa-shopping-bag"></i> Ver producto
             </button>
-            <button class="ov-btn ov-view" onclick="event.stopPropagation(); window.location.href='tienda.html'">
-              <i class="fas fa-eye"></i>
+            <button class="ov-btn ov-view" onclick="event.stopPropagation(); window.location.href='producto.html?id=${producto.id}'">
+              <i class="fas fa-eye"></i> Ver detalle
             </button>
           </div>
         </div>
@@ -1364,29 +1387,52 @@ function cargarDestacados() {
   grid.innerHTML = html;
 }
 
-cargarDestacados();
+function irAProducto(id) {
+  window.location.href = `producto.html?id=${id}`;
+}
 
 /* ── CART ── */
 let cart = JSON.parse(localStorage.getItem('bc_cart')||'[]');
-function saveCart(){ localStorage.setItem('bc_cart', JSON.stringify(cart)); }
+
+function saveCart(){ 
+  localStorage.setItem('bc_cart', JSON.stringify(cart)); 
+}
 
 function toggleCart(){
   document.getElementById('cartDrawer').classList.toggle('open');
   document.getElementById('cartBackdrop').classList.toggle('open');
 }
 
-function agregarAlCarrito(id, nombre, precio, imagen) {
-  const found = cart.find(i=>i.id===id);
-  if(found) found.qty++; else cart.push({id, name:nombre, precio, img:imagen, qty:1});
-  saveCart(); renderCart();
-  const t = document.getElementById('toast');
-  t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),2400);
+function agregarAlCarrito(id, nombre, precio, imagen, talle = 'Único') {
+  const found = cart.find(i => i.id === id && i.talle === talle);
+  if (found) {
+    found.qty++;
+  } else {
+    cart.push({
+      id, 
+      nombre, 
+      precio, 
+      imagen, 
+      talle,
+      qty: 1
+    });
+  }
+  saveCart(); 
+  renderCart();
+  showToast();
   toggleCart();
 }
 
-function removeCart(id){
-  cart = cart.filter(i=>i.id!==id);
-  saveCart(); renderCart();
+function showToast() {
+  const t = document.getElementById('toast');
+  t.classList.add('show'); 
+  setTimeout(() => t.classList.remove('show'), 2400);
+}
+
+function removeCart(id, talle){
+  cart = cart.filter(i => !(i.id === id && i.talle === talle));
+  saveCart(); 
+  renderCart();
 }
 
 function renderCart(){
@@ -1396,7 +1442,9 @@ function renderCart(){
   const total = document.getElementById('cdTotal');
   const cnt   = cart.reduce((s,i)=>s+i.qty,0);
   const sum   = cart.reduce((s,i)=>s+i.precio*i.qty,0);
-  dot.textContent = cnt; dot.classList.toggle('on', cnt>0);
+  
+  dot.textContent = cnt; 
+  dot.classList.toggle('on', cnt>0);
   total.textContent = '$'+sum.toLocaleString('es-AR');
   
   // Limpiar items anteriores
@@ -1430,19 +1478,21 @@ function renderCart(){
     const el = document.createElement('div');
     el.className='cd-item';
     el.innerHTML=`
-      <img src="${item.img}" alt="${item.name}"/>
+      <img src="${item.imagen}" alt="${item.nombre}"/>
       <div style="flex:1">
-        <div class="cd-item-name">${item.name}${item.qty>1?' ×'+item.qty:''}</div>
+        <div class="cd-item-name">${item.nombre}</div>
+        <div class="cd-item-size" style="font-size:11px;color:var(--muted);">Talle: ${item.talle || 'Único'}</div>
         <div class="cd-item-price">$${(item.precio*item.qty).toLocaleString('es-AR')}</div>
+        <div style="font-size:10px;color:var(--muted);">Cant: ${item.qty}</div>
       </div>
-      <button class="cd-item-rm" onclick="removeCart('${item.id}')">×</button>`;
+      <button class="cd-item-rm" onclick="removeCart('${item.id}', '${item.talle}')">×</button>`;
     body.appendChild(el);
   });
 }
 
 function pagarWA(){
   if(!cart.length) return;
-  const lines = cart.map(i=>`• ${i.name}${i.qty>1?' x'+i.qty:''} — $${(i.precio*i.qty).toLocaleString('es-AR')}`).join('%0A');
+  const lines = cart.map(i=>`• ${i.nombre} (Talle ${i.talle})${i.qty>1?' x'+i.qty:''} — $${(i.precio*i.qty).toLocaleString('es-AR')}`).join('%0A');
   const total = cart.reduce((s,i)=>s+i.precio*i.qty,0);
   window.open(`https://wa.me/5493525614281?text=Hola%20Bara%20%26%20Co!%20Quiero%20hacer%20el%20siguiente%20pedido:%0A${lines}%0A%0ATotal:%20$${total.toLocaleString('es-AR')}`,'_blank');
 }
@@ -1462,8 +1512,11 @@ function subscribe(){
   document.getElementById('nlEmail').value = '';
 }
 
-// Inicializar carrito al cargar la página
-renderCart();
+// Inicializar
+document.addEventListener('DOMContentLoaded', () => {
+  cargarDestacados();
+  renderCart();
+});
 </script>
 </body>
 </html>
