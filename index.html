@@ -145,7 +145,6 @@
       background: #000;
     }
 
-    /* Wrapper extra para que los paneles puedan salir sin clippearse */
     .hero-panels-wrap {
       position: absolute;
       inset: 0;
@@ -181,9 +180,9 @@
       height: 100%;
       overflow: hidden;
       will-change: transform;
-      /* sin transition: el parallax de scroll es frame-by-frame con rAF */
       z-index: 2;
       background: transparent;
+      transition: transform 0.1s linear;
     }
 
     .hero-half-left {
@@ -210,7 +209,7 @@
       object-fit: cover;
       object-position: center top;
       transform: translate(-50%, -50%) scale(1.05);
-      transition: transform 1.2s var(--ease);
+      transition: transform 0.1s linear;
       will-change: transform;
       z-index: 1;
     }
@@ -1205,7 +1204,6 @@
   </div>
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="js/carrito.js"></script>
 <script>
 /* ── CURSOR ── */
 const cur = document.getElementById('cur');
@@ -1220,39 +1218,76 @@ window.addEventListener('scroll', () => {
   hdr.classList.toggle('scrolled', window.scrollY > 40);
 }, {passive:true});
 
-/* ===== HERO PARALLAX — ejecuta directo (script está al final del body) ===== */
+/* ── MOBILE MENU ── */
+function toggleIndexMenu() {
+  const menu = document.getElementById('mobileNavIdx');
+  const ham = document.getElementById('hamburger');
+  menu.classList.toggle('open');
+  ham.classList.toggle('open');
+}
+
+/* ===== HERO PARALLAX CORREGIDO ===== */
 (function() {
-  const panelLeft   = document.getElementById('panelLeft');
-  const panelRight  = document.getElementById('panelRight');
+  const panelLeft = document.getElementById('panelLeft');
+  const panelRight = document.getElementById('panelRight');
   const heroContent = document.getElementById('heroContent');
-  const scrollHint  = document.getElementById('scrollHint');
+  const scrollHint = document.getElementById('scrollHint');
   
   if (!panelLeft || !panelRight) return;
 
   let ticking = false;
 
   function updateHeroPanels() {
-    const progress = Math.min(window.scrollY / (window.innerHeight * 0.6), 1);
-    const pct = progress * 100;
-    panelLeft.style.transform  = `translateX(${-pct}%)`;
-    panelRight.style.transform = `translateX(${pct}%)`;
-    if (heroContent) heroContent.style.opacity = Math.max(0, 1 - progress * 1.6);
-    if (scrollHint)  scrollHint.style.opacity  = Math.max(0, 1 - progress * 2);
+    const scrollY = window.scrollY;
+    const windowHeight = window.innerHeight;
+    
+    // Progreso del scroll (máximo 80% de la altura de la ventana)
+    const maxScroll = windowHeight * 0.8;
+    const progress = Math.min(scrollY / maxScroll, 1);
+    
+    // Mover los paneles lateralmente (efecto cortina)
+    const movePercent = progress * 85; // Se mueven 85% del ancho
+    panelLeft.style.transform = `translateX(-${movePercent}%)`;
+    panelRight.style.transform = `translateX(${movePercent}%)`;
+    
+    // Mover las imágenes dentro de los paneles (efecto parallax)
+    const imgLeft = panelLeft.querySelector('img');
+    const imgRight = panelRight.querySelector('img');
+    
+    if (imgLeft) {
+      const imgOffset = progress * 30;
+      imgLeft.style.transform = `translate(-50%, calc(-50% + ${imgOffset}px)) scale(1.05)`;
+    }
+    
+    if (imgRight) {
+      const imgOffset = progress * 30;
+      imgRight.style.transform = `translate(-50%, calc(-50% + ${imgOffset}px)) scale(1.05)`;
+    }
+    
+    // Opacidad del contenido central y scroll hint
+    if (heroContent) {
+      heroContent.style.opacity = Math.max(0, 1 - progress * 1.5);
+    }
+    
+    if (scrollHint) {
+      scrollHint.style.opacity = Math.max(0, 1 - progress * 2);
+    }
+    
     ticking = false;
   }
 
   window.addEventListener('scroll', function() {
-    if (!ticking) { requestAnimationFrame(updateHeroPanels); ticking = true; }
+    if (!ticking) { 
+      requestAnimationFrame(updateHeroPanels); 
+      ticking = true; 
+    }
   }, { passive: true });
 
   window.addEventListener('resize', updateHeroPanels);
-  updateHeroPanels();
+  updateHeroPanels(); // Ejecutar una vez al inicio
 })();
 
 /* ── PRODUCTOS DESTACADOS ── */
-cargarDestacados();
-
-/* ===== FALLBACK: productos hardcodeados con imágenes reales ===== */
 const FALLBACK_PRODUCTOS = [
   {
     id: 'f1',
@@ -1288,29 +1323,11 @@ const FALLBACK_PRODUCTOS = [
   }
 ];
 
-async function cargarDestacados() {
+function cargarDestacados() {
   const grid = document.getElementById('productosDestacados');
   if (!grid) return;
 
-  let destacados = [];
-
-  try {
-    const response = await fetch('productos.json?t=' + Date.now());
-    if (response.ok) {
-      const todos = await response.json();
-      // Filtro flexible: acepta activo===true, activo===1, o ausencia del campo
-      destacados = todos
-        .filter(p => p.activo !== false && p.activo !== 0)
-        .slice(0, 4);
-    }
-  } catch (error) {
-    console.warn('productos.json no disponible, usando fallback');
-  }
-
-  // Si el JSON no trajo nada, usar productos hardcodeados
-  if (!destacados.length) {
-    destacados = FALLBACK_PRODUCTOS;
-  }
+  let destacados = FALLBACK_PRODUCTOS; // Usar fallback directamente
   
   let html = '';
   destacados.forEach(producto => {
@@ -1347,6 +1364,8 @@ async function cargarDestacados() {
   grid.innerHTML = html;
 }
 
+cargarDestacados();
+
 /* ── CART ── */
 let cart = JSON.parse(localStorage.getItem('bc_cart')||'[]');
 function saveCart(){ localStorage.setItem('bc_cart', JSON.stringify(cart)); }
@@ -1365,8 +1384,8 @@ function agregarAlCarrito(id, nombre, precio, imagen) {
   toggleCart();
 }
 
-function removeCart(name){
-  cart = cart.filter(i=>i.name!==name);
+function removeCart(id){
+  cart = cart.filter(i=>i.id!==id);
   saveCart(); renderCart();
 }
 
@@ -1379,7 +1398,11 @@ function renderCart(){
   const sum   = cart.reduce((s,i)=>s+i.precio*i.qty,0);
   dot.textContent = cnt; dot.classList.toggle('on', cnt>0);
   total.textContent = '$'+sum.toLocaleString('es-AR');
-  body.querySelectorAll('.cd-item').forEach(e=>e.remove());
+  
+  // Limpiar items anteriores
+  const items = body.querySelectorAll('.cd-item');
+  items.forEach(item => item.remove());
+  
   empty.style.display = cart.length ? 'none' : 'block';
 
   // Barra de envío gratis
@@ -1412,7 +1435,7 @@ function renderCart(){
         <div class="cd-item-name">${item.name}${item.qty>1?' ×'+item.qty:''}</div>
         <div class="cd-item-price">$${(item.precio*item.qty).toLocaleString('es-AR')}</div>
       </div>
-      <button class="cd-item-rm" onclick="removeCart('${item.name.replace(/'/g,"\\'")}')">×</button>`;
+      <button class="cd-item-rm" onclick="removeCart('${item.id}')">×</button>`;
     body.appendChild(el);
   });
 }
@@ -1436,4 +1459,11 @@ function subscribe(){
   const email = document.getElementById('nlEmail').value.trim();
   if (!email || !email.includes('@')) { alert('Ingresá un email válido'); return; }
   alert('¡Gracias! Te enviamos el 10% OFF a ' + email);
-  document.getElementByI
+  document.getElementById('nlEmail').value = '';
+}
+
+// Inicializar carrito al cargar la página
+renderCart();
+</script>
+</body>
+</html>
