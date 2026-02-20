@@ -653,7 +653,7 @@
     "precioAnterior": 25000,
     "categoria": "hombre",
     "subcategoria": "Pantalones",
-    "imagen": "https://d22fxaf9t8d39k.cloudfront.net/c036d7168c84ffb9b023141749287d09fef41c6623b904c7f813d8687822f98b404368.jpg",
+    "imagen": "hombre/Bermuda LIVIANA elastizada.png",
     "imagenes": [
       "https://d22fxaf9t8d39k.cloudfront.net/c036d7168c84ffb9b023141749287d09fef41c6623b904c7f813d8687822f98b404368.jpg"
     ],
@@ -1549,9 +1549,9 @@
     "precioAnterior": 60000,
     "categoria": "hombre",
     "subcategoria": "Pantalones",
-    "imagen": "https://d22fxaf9t8d39k.cloudfront.net/9890271f5c7ff2f24fcc5de420f0c5b35e64cf5c1eb989fa336acf68cea9476c404368.jpg",
+    "imagen": "hombre/Pantalo Baggy Cielo.png",
     "imagenes": [
-      "https://d22fxaf9t8d39k.cloudfront.net/9890271f5c7ff2f24fcc5de420f0c5b35e64cf5c1eb989fa336acf68cea9476c404368.jpg"
+      "hombre/Pantalo Baggy Cielo.png"
     ],
     "descripcion": "",
     "colores": [],
@@ -1677,9 +1677,9 @@
     "precioAnterior": 45000,
     "categoria": "hombre",
     "subcategoria": "Remeras",
-    "imagen": "https://d22fxaf9t8d39k.cloudfront.net/6b1135d070f5e14b27a6c1a60000ac1a63d8202cc6d61e6df65cb8db1bf307cf404368.jpg",
+    "imagen": "hombre/Chomba VOGUE.png",
     "imagenes": [
-      "https://d22fxaf9t8d39k.cloudfront.net/6b1135d070f5e14b27a6c1a60000ac1a63d8202cc6d61e6df65cb8db1bf307cf404368.jpg"
+      "hombre/Chomba VOGUE.png"
     ],
     "descripcion": "",
     "colores": [],
@@ -1773,9 +1773,9 @@
     "precioAnterior": 110000,
     "categoria": "hombre",
     "subcategoria": "Pantalones",
-    "imagen": "https://d22fxaf9t8d39k.cloudfront.net/957fec0545984835082d08c8c78734678d120da6b2f676a959cfcc881b4f3ddf404368.png",
+    "imagen": "hombre/Pantalon CUSTOM FACE 2.png",
     "imagenes": [
-      "https://d22fxaf9t8d39k.cloudfront.net/957fec0545984835082d08c8c78734678d120da6b2f676a959cfcc881b4f3ddf404368.png"
+      "hombre/Pantalon CUSTOM FACE 2.png"
     ],
     "descripcion": "",
     "colores": [],
@@ -2733,9 +2733,9 @@
     "precioAnterior": 20000,
     "categoria": "hombre",
     "subcategoria": null,
-    "imagen": "https://d22fxaf9t8d39k.cloudfront.net/3bc3bad29befcca2766e36e29341def4a4245d9006ad858b813b47b516cfe649404368.jpg",
+    "imagen": "mujer/Remera Disco.png",
     "imagenes": [
-      "https://d22fxaf9t8d39k.cloudfront.net/3bc3bad29befcca2766e36e29341def4a4245d9006ad858b813b47b516cfe649404368.jpg"
+      "mujer/Remera Disco.png"
     ],
     "descripcion": "",
     "colores": [],
@@ -2765,9 +2765,9 @@
     "precioAnterior": 30000,
     "categoria": "mujer",
     "subcategoria": "Remeras",
-    "imagen": "https://d22fxaf9t8d39k.cloudfront.net/847a8dd429251009fb7e47b295f0f39bc4507f7bb69cbccc141a0bb15297e5bd404368.jpg",
+    "imagen": "mujer/Remera Love.png",
     "imagenes": [
-      "https://d22fxaf9t8d39k.cloudfront.net/847a8dd429251009fb7e47b295f0f39bc4507f7bb69cbccc141a0bb15297e5bd404368.jpg"
+      "mujer/Remera Love.png"
     ],
     "descripcion": "",
     "colores": [],
