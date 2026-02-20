@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Términos y Condiciones · Bara & Co</title>
+  <link rel="stylesheet" href="../css/global.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <style>
+    .page-content {
+      max-width: 860px;
+      margin: 120px auto 80px;
+      padding: 0 20px;
+    }
+    .page-title {
+      font-family: var(--font-serif);
+      font-size: 42px;
+      font-weight: 400;
+      margin-bottom: 10px;
+      color: var(--color-text);
+    }
+    .page-updated {
+      font-size: 13px;
+      color: var(--color-text-secondary);
+      margin-bottom: 48px;
+    }
+    .legal-section {
+      margin-bottom: 40px;
+    }
+    .legal-section h2 {
+      font-family: var(--font-serif);
+      font-size: 22px;
+      font-weight: 400;
+      color: var(--color-accent);
+      margin-bottom: 14px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--color-border);
+    }
+    .legal-section p {
+      color: var(--color-text-secondary);
+      line-height: 1.85;
+      margin-bottom: 12px;
+      font-size: 15px;
+    }
+    .legal-section ul {
+      list-style: none;
+      padding: 0;
+      margin-bottom: 12px;
+    }
+    .legal-section li {
+      color: var(--color-text-secondary);
+      line-height: 1.85;
+      padding-left: 20px;
+      position: relative;
+      margin-bottom: 8px;
+      font-size: 15px;
+    }
+    .legal-section li::before {
+      content: '·';
+      position: absolute;
+      left: 0;
+      color: var(--color-accent);
+      font-size: 18px;
+      line-height: 1.6;
+    }
+    .legal-highlight {
+      background: var(--color-surface);
+      border-left: 3px solid var(--color-accent);
+      padding: 16px 20px;
+      margin: 20px 0;
+      font-size: 14px;
+      color: var(--color-text-secondary);
+      line-height: 1.8;
+    }
+    .contact-block {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      padding: 28px;
+      margin-top: 48px;
+      text-align: center;
+    }
+    .contact-block h3 {
+      font-family: var(--font-serif);
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+    .contact-block p {
+      color: var(--color-text-secondary);
+      margin-bottom: 16px;
+      font-size: 14px;
+    }
+    .contact-block a {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #25d366;
+      color: #fff;
+      padding: 12px 28px;
+      border-radius: 40px;
+      font-weight: 500;
+      font-size: 14px;
+      transition: background 0.2s;
+    }
+    .contact-block a:hover { background: #1da85c; }
+  </style>
+</head>
+<body class="interior">
+
+<!-- HEADER -->
+<header id="header">
+  <a href="../index.html" class="logo">
+    <img src="../images/LogoB&D.png" alt="Bara & Co" class="logo-img"/>
+  </a>
+  <nav class="nav-menu">
+    <ul>
+      <li><a href="../index.html" class="nav-link">Inicio</a></li>
+      <li><a href="../tienda.html" class="nav-link">Tienda</a></li>
+      <li><a href="../lookbook.html" class="nav-link">Lookbook</a></li>
+      <li><a href="../contacto.html" class="nav-link">Contacto</a></li>
+    </ul>
+  </nav>
+  <div class="header-icons">
+    <i class="fas fa-search" id="searchIcon"></i>
+    <div class="cart-icon-wrap" onclick="toggleCart()">
+      <i class="fas fa-shopping-bag"></i>
+      <span class="cart-badge cart-count">0</span>
+    </div>
+    <button class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></button>
+  </div>
+</header>
+
+<!-- CONTENIDO -->
+<div class="page-content">
+  <h1 class="page-title">Términos y Condiciones</h1>
+  <p class="page-updated">Última actualización: febrero de 2026</p>
+
+  <div class="legal-highlight">
+    Al realizar una compra en Bara & Co, ya sea a través de nuestra tienda online o por WhatsApp, aceptás los presentes términos y condiciones. Te recomendamos leerlos antes de comprar.
+  </div>
+
+  <div class="legal-section">
+    <h2>1. Datos del vendedor</h2>
+    <p>Bara & Co es una marca de indumentaria urbana con domicilio comercial en Ing. Olmos 139, Jesús María, Córdoba, Argentina. CUIT: 30-71234567-8.</p>
+    <p>Para cualquier consulta podés contactarnos por WhatsApp al <strong>3525-614281</strong> o visitar nuestro local en el horario coordinado previamente.</p>
+  </div>
+
+  <div class="legal-section">
+    <h2>2. Productos y precios</h2>
+    <p>Todos los precios publicados están expresados en pesos argentinos (ARS) e incluyen IVA. Los precios pueden modificarse sin previo aviso, pero el precio vigente al momento de confirmar tu pedido es el que se aplica a tu compra.</p>
+    <p>Las imágenes de los productos son referenciales. Puede existir una leve variación en el color según la calibración de cada pantalla. La composición y características específicas de cada prenda están descriptas en la ficha del producto.</p>
+  </div>
+
+  <div class="legal-section">
+    <h2>3. Proceso de compra</h2>
+    <p>Podés comprar de dos formas:</p>
+    <ul>
+      <li><strong>A través del carrito online:</strong> elegís el producto, el talle y el color, y finalizás el pago por MercadoPago o coordinás el envío por WhatsApp.</li>
+      <li><strong>Por WhatsApp:</strong> enviando un mensaje con los productos que querés al número 3525-614281. Un asesor te confirma disponibilidad y te indica cómo proceder.</li>
+    </ul>
+    <p>La compra se considera confirmada una vez recibido el pago o la seña acordada.</p>
+  </div>
+
+  <div class="legal-section">
+    <h2>4. Medios de pago</h2>
+    <p>Aceptamos los siguientes medios de pago:</p>
+    <ul>
+      <li>Tarjeta de crédito y débito (Visa, Mastercard, American Express) a través de MercadoPago.</li>
+      <li>Transferencia bancaria / CBU.</li>
+      <li>Pago en efectivo mediante Rapipago o Pago Fácil a través de MercadoPago.</li>
+      <li>Hasta 6 cuotas sin interés con tarjetas seleccionadas (consultá vigencia).</li>
+    </ul>
+  </div>
+
+  <div class="legal-section">
+    <h2>5. Envíos</h2>
+    <p>Realizamos envíos a todo el país a través de Correo Argentino y empresas de courier. Los plazos estimados son:</p>
+    <ul>
+      <li>CABA y GBA: 24 a 48 horas hábiles.</li>
+      <li>Capitales de provincia: 3 a 5 días hábiles.</li>
+      <li>Interior del país: 5 a 7 días hábiles.</li>
+    </ul>
+    <p>El envío es gratuito para compras superiores a $80.000. Para compras menores, el costo es de $1.200 para CABA/GBA y $2.500 para el resto del país.</p>
+    <p>También ofrecemos retiro sin cargo en nuestro local de Jesús María, coordinado previamente por WhatsApp.</p>
+    <p>Los plazos de entrega son estimados y pueden verse afectados por demoras del servicio de correo, feriados o condiciones climáticas. Bara & Co no se responsabiliza por demoras externas una vez despachado el pedido.</p>
+  </div>
+
+  <div class="legal-section">
+    <h2>6. Cambios y devoluciones</h2>
+    <p>Aceptamos cambios y devoluciones dentro de los 30 días posteriores a la recepción del pedido, siempre que los productos estén sin uso, con etiquetas originales y en su empaque original.</p>
+    <p>No se aceptan cambios de productos en oferta (Sale) o de la sección Outlet.</p>
+    <p>Los gastos de envío del cambio corren por cuenta del cliente, excepto que el producto presente una falla de fabricación, en cuyo caso Bara & Co se hace cargo del costo.</p>
+    <p>Para iniciar un cambio o devolución, contactanos por WhatsApp indicando el número de pedido y el motivo.</p>
+  </div>
+
+  <div class="legal-section">
+    <h2>7. Derecho de arrepentimiento</h2>
+    <p>De acuerdo con la Ley de Defensa del Consumidor N° 24.240 y sus modificaciones, el comprador tiene derecho a revocar la aceptación de la compra dentro de los <strong>10 días corridos</strong> contados desde la recepción del producto, sin necesidad de indicar el motivo.</p>
+    <p>Para ejercer este derecho, el producto debe estar en condiciones originales (sin uso, con etiquetas y empaque). El reembolso se realizará por el mismo medio de pago utilizado en la compra, en un plazo de 5 a 10 días hábiles.</p>
+  </div>
+
+  <div class="legal-section">
+    <h2>8. Garantía</h2>
+    <p>Todos los productos cuentan con garantía de 3 meses contra defectos de fabricación, conforme a la Ley 24.240. La garantía no cubre deterioro por uso, lavado incorrecto u otras causas ajenas a un defecto de origen.</p>
+    <p>Para hacer válida la garantía, conservá el comprobante de compra.</p>
+  </div>
+
+  <div class="legal-section">
+    <h2>9. Propiedad intelectual</h2>
+    <p>Todo el contenido de este sitio web (textos, imágenes, logotipos, diseños) es propiedad de Bara & Co o cuenta con las licencias correspondientes. Queda prohibida su reproducción, distribución o uso sin autorización expresa.</p>
+  </div>
+
+  <div class="legal-section">
+    <h2>10. Limitación de responsabilidad</h2>
+    <p>Bara & Co no se responsabiliza por daños indirectos derivados del uso de los productos, por errores tipográficos en precios o descripciones (que serán corregidos a la brevedad), ni por interrupciones del servicio online por causas fuera de nuestro control.</p>
+  </div>
+
+  <div class="legal-section">
+    <h2>11. Ley aplicable y jurisdicción</h2>
+    <p>Estos términos se rigen por las leyes de la República Argentina. Ante cualquier disputa, las partes se someten a la jurisdicción de los tribunales ordinarios de la ciudad de Jesús María, provincia de Córdoba, renunciando a cualquier otro fuero.</p>
+  </div>
+
+  <div class="contact-block">
+    <h3>¿Tenés dudas sobre estos términos?</h3>
+    <p>Estamos para ayudarte. Escribinos y te respondemos a la brevedad.</p>
+    <a href="https://wa.me/5493525614281?text=Hola!%20Tengo%20una%20consulta%20sobre%20los%20t%C3%A9rminos%20y%20condiciones" target="_blank">
+      <i class="fab fa-whatsapp"></i> Consultarnos por WhatsApp
+    </a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <img src="../images/logoN&D.png" alt="Bara & Co" class="footer-logo-img"/>
+    <p class="footer-text">Indumentaria urbana con personalidad. Diseño y confort para tu día a día.</p>
+    <div class="social-icons">
+      <i class="fab fa-instagram" onclick="window.open('https://instagram.com/bara.and.co','_blank')"></i>
+      <i class="fab fa-facebook-f"></i>
+      <i class="fab fa-tiktok"></i>
+    </div>
+  </div>
+  <div>
+    <h4 class="footer-title">Categorías</h4>
+    <ul class="footer-links">
+      <li><a href="../tienda.html?categoria=hombre">Hombre</a></li>
+      <li><a href="../tienda.html?categoria=mujer">Mujer</a></li>
+      <li><a href="../tienda.html?categoria=accesorios">Accesorios</a></li>
+      <li><a href="../tienda.html?categoria=new">New Collection</a></li>
+      <li><a href="../tienda.html?categoria=sale">Sale</a></li>
+    </ul>
+  </div>
+  <div>
+    <h4 class="footer-title">Ayuda</h4>
+    <ul class="footer-links">
+      <li><a href="envios.html">Envíos</a></li>
+      <li><a href="cambios.html">Cambios y devoluciones</a></li>
+      <li><a href="faq.html">Preguntas frecuentes</a></li>
+      <li><a href="../contacto.html">Contacto</a></li>
+    </ul>
+  </div>
+  <div>
+    <h4 class="footer-title">Newsletter</h4>
+    <p class="footer-text">10% OFF en tu primera compra</p>
+    <div class="newsletter-input">
+      <input type="email" placeholder="tu@email.com"/>
+      <button><i class="fas fa-arrow-right"></i></button>
+    </div>
+  </div>
+</footer>
+<div class="footer-bottom">
+  <span>© 2026 Bara & Co · Ing. Olmos 139 – Jesús María</span>
+  <div class="legal-info">
+    <a href="terminos.html" class="active">Términos y condiciones</a>
+    <a href="privacidad.html">Política de privacidad</a>
+  </div>
+</div>
+
+<!-- WHATSAPP FLOAT -->
+<div class="whatsapp-float" onclick="window.open('https://wa.me/5493525614281?text=Hola!%20Quiero%20consultar%20sobre%20un%20producto','_blank')">
+  <i class="fab fa-whatsapp"></i>
+  <span class="whatsapp-tooltip">Consultar por WhatsApp</span>
+</div>
+
+<!-- CART PANEL -->
+<div class="overlay" onclick="toggleCart()"></div>
+<div class="cart-panel">
+  <div class="cart-header">
+    <h2 class="cart-title">Carrito <span class="cart-count">0</span></h2>
+    <span class="close-cart" onclick="toggleCart()"><i class="fas fa-times"></i></span>
+  </div>
+  <div class="cart-items">
+    <div class="cart-empty">
+      <i class="fas fa-shopping-bag"></i>
+      <p>Tu carrito está vacío</p>
+      <button class="btn-empty" onclick="toggleCart(); window.location.href='../tienda.html'">Explorar productos</button>
+    </div>
+  </div>
+  <div class="cart-footer"></div>
+</div>
+<div id="cartNotification" class="cart-notification">
+  <i class="fas fa-check-circle"></i>
+  <span></span>
+</div>
+
+<script src="../js/main.js"></script>
+<script src="../js/carrito.js"></script>
+<script src="../js/search.js"></script>
+</body>
+</html>
