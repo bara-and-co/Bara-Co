@@ -718,71 +718,8 @@
     
     <script>
         // ===========================================
-        // PÁGINA DE PRODUCTO - DETALLE COMPLETO
+        // PÁGINA DE PRODUCTO - CARGA DINÁMICA DESDE productos.json
         // ===========================================
-        
-        // Base de datos de productos
-        const productos = {
-            '1': {
-                id: '1',
-                nombre: 'Pantalon Jean Paint',
-                precio: 60000,
-                precioOriginal: 100000,
-                descripcion: 'Pantalón de jean con acabado paint efecto usado. Corte baggy, tiro medio. Ideal para looks urbanos con personalidad.',
-                composicion: '100% Algodón',
-                cuidado: 'Lavar a máquina max. 30°C. No usar blanqueador.',
-                imagenes: [
-                    'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-                    'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-                    'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-                    'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
-                ],
-                talles: ['38', '40', '42', '44'],
-                tallesDisponibles: ['38', '40', '42'],
-                categoria: 'Hombre / Pantalones / Baggy',
-                sku: 'JN-001-PAINT',
-                stock: 15,
-                destacado: true
-            },
-            '2': {
-                id: '2',
-                nombre: 'Jean Holgado',
-                precio: 15999,
-                precioOriginal: null,
-                descripcion: 'Jean de corte holgado en denim premium. Tiro medio, cintura ajustable con botones internos.',
-                composicion: '98% Algodón, 2% Elastano',
-                cuidado: 'Lavar del revés. No usar secadora.',
-                imagenes: [
-                    'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-                    'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-                    'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
-                ],
-                talles: ['S', 'M', 'L', 'XL'],
-                tallesDisponibles: ['S', 'M', 'L', 'XL'],
-                categoria: 'Mujer / Jeans',
-                sku: 'JN-002',
-                stock: 35
-            },
-            '3': {
-                id: '3',
-                nombre: 'Campera Jean',
-                precio: 22999,
-                precioOriginal: 28999,
-                descripcion: 'Campera de jean oversized con lavado stone. Botones metálicos, bolsillos delanteros y traseros.',
-                composicion: '100% Algodón',
-                cuidado: 'Lavar a máquina max. 30°C. No usar secadora.',
-                imagenes: [
-                    'https://images.unsplash.com/photo-1524592001865-b32997a13083?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-                    'https://images.unsplash.com/photo-1524592001865-b32997a13083?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-                    'https://images.unsplash.com/photo-1524592001865-b32997a13083?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
-                ],
-                talles: ['S', 'M', 'L'],
-                tallesDisponibles: ['S', 'L'],
-                categoria: 'Unisex / Camperas',
-                sku: 'CJ-003',
-                stock: 8
-            }
-        };
 
         // Producto actual
         let productoActual = null;
@@ -790,19 +727,54 @@
         let cantidad = 1;
         let shippingSelected = null;
 
-        // Inicializar
-        document.addEventListener('DOMContentLoaded', function() {
+        // Inicializar — carga el producto desde productos.json según el ?id= de la URL
+        document.addEventListener('DOMContentLoaded', async function() {
             const urlParams = new URLSearchParams(window.location.search);
             const id = urlParams.get('id');
-            
-            if (!id || !productos[id]) {
-                window.location.href = '404.html';
+
+            if (!id) {
+                window.location.href = 'tienda.html';
                 return;
             }
-            
-            productoActual = productos[id];
-            cargarProducto();
-            cargarRelacionados();
+
+            try {
+                const res = await fetch('productos.json?t=' + Date.now());
+                if (!res.ok) throw new Error('No se pudo cargar productos.json');
+                const lista = await res.json();
+
+                // Buscar por id
+                const found = lista.find(p => p.id === id);
+                if (!found) {
+                    window.location.href = 'tienda.html';
+                    return;
+                }
+
+                // Normalizar campos para compatibilidad con el resto de la página
+                productoActual = {
+                    id:               found.id,
+                    nombre:           found.nombre,
+                    precio:           found.precio,
+                    precioOriginal:   found.precioAnterior || null,
+                    descripcion:      found.descripcion || '',
+                    composicion:      found.composicion || '—',
+                    cuidado:          found.cuidado || '—',
+                    imagenes:         found.imagenes && found.imagenes.length
+                                        ? found.imagenes
+                                        : [found.imagen],
+                    talles:           found.talles || ['S', 'M', 'L', 'XL'],
+                    tallesDisponibles: found.tallesDisponibles || found.talles || ['S', 'M', 'L', 'XL'],
+                    categoria:        [found.categoria, found.subcategoria].filter(Boolean).join(' · '),
+                    sku:              found.sku || found.id,
+                    stock:            found.stock || 10
+                };
+
+                cargarProducto();
+                cargarRelacionados();
+
+            } catch(e) {
+                console.error(e);
+                window.location.href = 'tienda.html';
+            }
         });
 
         function cargarProducto() {
@@ -937,51 +909,38 @@
             `;
         }
 
-        function cargarRelacionados() {
-            // Productos relacionados (simulados)
-            const relacionados = [
-                {
-                    id: '1',
-                    nombre: 'Pantalon Jean Paint',
-                    precio: 60000,
-                    imagen: 'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
-                },
-                {
-                    id: '2',
-                    nombre: 'Jean Holgado',
-                    precio: 15999,
-                    imagen: 'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
-                },
-                {
-                    id: '3',
-                    nombre: 'Campera Jean',
-                    precio: 22999,
-                    imagen: 'https://images.unsplash.com/photo-1524592001865-b32997a13083?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
-                },
-                {
-                    id: '5',
-                    nombre: 'Buzo Oversize',
-                    precio: 12999,
-                    imagen: 'https://images.unsplash.com/photo-1556905055-8f358a7a47b2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
-                }
-            ];
+        async function cargarRelacionados() {
+            try {
+                const res = await fetch('productos.json?t=' + Date.now());
+                const lista = await res.json();
+                // Tomar hasta 4 productos de la misma categoría o simplemente otros productos
+                const catActual = productoActual ? productoActual.categoria.split(' · ')[0].toLowerCase() : '';
+                let relacionados = lista.filter(p =>
+                    p.activo !== false &&
+                    p.id !== productoActual.id &&
+                    (p.categoria === catActual || p.categoria === 'mujer' || p.categoria === 'new')
+                ).slice(0, 4);
+                if (!relacionados.length) relacionados = lista.filter(p => p.activo !== false && p.id !== productoActual.id).slice(0, 4);
 
-            let html = '';
-            relacionados.forEach(p => {
-                html += `
-                    <div class="related-card" onclick="window.location.href='producto.html?id=${p.id}'">
-                        <div class="related-image">
-                            <img src="${p.imagen}" alt="${p.nombre}">
+                let html = '';
+                relacionados.forEach(p => {
+                    const img = (p.imagenes && p.imagenes[0]) || p.imagen || '';
+                    html += `
+                        <div class="related-card" onclick="window.location.href='producto.html?id=${p.id}'">
+                            <div class="related-image">
+                                <img src="${img}" alt="${p.nombre}">
+                            </div>
+                            <div class="related-info">
+                                <h4>${p.nombre}</h4>
+                                <span class="related-price">$${p.precio.toLocaleString('es-AR')}</span>
+                            </div>
                         </div>
-                        <div class="related-info">
-                            <h4>${p.nombre}</h4>
-                            <span class="related-price">$${p.precio.toLocaleString('es-AR')}</span>
-                        </div>
-                    </div>
-                `;
-            });
-
-            document.getElementById('relatedGrid').innerHTML = html;
+                    `;
+                });
+                document.getElementById('relatedGrid').innerHTML = html;
+            } catch(e) {
+                document.getElementById('relatedGrid').innerHTML = '';
+            }
         }
 
         // Funciones de la página de producto
