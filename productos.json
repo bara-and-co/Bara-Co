@@ -4,7 +4,7 @@
     "nombre": "Short NOVA",
     "precio": 35000,
     "precioAnterior": null,
-    "imagen": "https://baraandco.empretienda.com.ar/mujer/polleras/short-nova",
+    "imagen": "images/image_474f37bf.png",
     "categoria": "new",
     "subcategoria": "Shorts",
     "descripcion": "Short Nova de mujer con diseño moderno y corte limpio. Ideal para looks casuales de temporada.",
@@ -13,7 +13,7 @@
     "talles": ["XS", "S", "M", "L"],
     "tallesDisponibles": ["XS", "S", "M", "L"],
     "imagenes": [
-      "https://d22fxaf9t8d39k.cloudfront.net/61b3e9431a237af50d1fa63f7068428871a2386de0fde482ec3600e6adfbbdec404368.jpg"
+      "images/image_474f37bf.png"
     ],
     "sku": "SH-NOVA-001",
     "stock": 20,
@@ -24,7 +24,7 @@
     "nombre": "Short CINTURÓN",
     "precio": 38000,
     "precioAnterior": null,
-    "imagen": "https://d22fxaf9t8d39k.cloudfront.net/dbf00d91308b96b6c71d0c8f6726ce7901b0520cd4813222db616da53ee83966404368.jpg",
+    "imagen": "images/Shortcinturon.png",
     "categoria": "new",
     "subcategoria": "Shorts",
     "descripcion": "Short con cinturón integrado, corte ajustado y tiro medio. Un básico con detalle que eleva cualquier look.",
@@ -33,7 +33,7 @@
     "talles": ["XS", "S", "M", "L"],
     "tallesDisponibles": ["XS", "S", "M", "L"],
     "imagenes": [
-      "https://d22fxaf9t8d39k.cloudfront.net/dbf00d91308b96b6c71d0c8f6726ce7901b0520cd4813222db616da53ee83966404368.jpg"
+      "images/Shortcinturon.png"
     ],
     "sku": "SH-CINT-001",
     "stock": 18,
@@ -44,7 +44,7 @@
     "nombre": "Short ENGOMADO",
     "precio": 40000,
     "precioAnterior": null,
-    "imagen": "https://d22fxaf9t8d39k.cloudfront.net/11eb585d8ea84f6f172125795b54363a9ce9eb1be22ab65cee3579ca43c07cdd404368.jpg",
+    "imagen": "images/Shortengomado.png",
     "categoria": "new",
     "subcategoria": "Shorts",
     "descripcion": "Short engomado con acabado premium. Tiro medio, corte entallado. Perfecto para looks nocturnos y urbanos.",
@@ -53,7 +53,7 @@
     "talles": ["XS", "S", "M", "L"],
     "tallesDisponibles": ["XS", "S", "M", "L"],
     "imagenes": [
-      "https://d22fxaf9t8d39k.cloudfront.net/11eb585d8ea84f6f172125795b54363a9ce9eb1be22ab65cee3579ca43c07cdd404368.jpg"
+      "images/Shortengomado.png"
     ],
     "sku": "SH-ENGOM-001",
     "stock": 15,
