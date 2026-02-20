@@ -6,7 +6,6 @@
   <title>Tienda · Bara & Co</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
-  <link rel="stylesheet" href="css/global.css"/>
 
   <style>
     :root {
@@ -352,152 +351,12 @@
     .foot-bot a:hover { color:var(--text); }
     .foot-links { display:flex; gap:18px; }
 
-    /* ── QUICK VIEW MODAL ── */
+    /* ── GUÍA DE TALLES MODAL ── */
     .qv-backdrop {
       position:fixed; inset:0; background:rgba(0,0,0,.72);
-      z-index:600; opacity:0; pointer-events:none; transition:opacity .3s;
+      z-index:501; opacity:0; pointer-events:none; transition:opacity .3s;
     }
     .qv-backdrop.open { opacity:1; pointer-events:all; }
-
-    .qv-modal {
-      position:fixed; top:50%; left:50%; z-index:601;
-      width:min(860px,95vw); max-height:90vh; overflow-y:auto;
-      background:var(--surface); border:1px solid var(--border);
-      transform:translate(-50%,-52%) scale(.97);
-      opacity:0; pointer-events:none;
-      transition:transform .35s var(--ease), opacity .3s;
-      display:flex; flex-wrap:wrap;
-    }
-    .qv-modal.open { transform:translate(-50%,-50%) scale(1); opacity:1; pointer-events:all; }
-
-    .qv-img {
-      flex:0 0 46%; min-height:420px; overflow:hidden; position:relative;
-    }
-    .qv-img img { width:100%; height:100%; object-fit:cover; }
-
-    .qv-info {
-      flex:1; padding:36px 32px; display:flex; flex-direction:column; justify-content:center; gap:14px;
-    }
-    .qv-cat  { font-size:9px; letter-spacing:.2em; text-transform:uppercase; color:var(--muted); }
-    .qv-name { font-family:var(--serif); font-size:26px; font-weight:400; line-height:1.15; }
-    .qv-price { font-size:22px; color:var(--accent); }
-    .qv-price del { font-size:14px; color:var(--muted); margin-right:6px; }
-    .qv-desc { font-size:13px; color:var(--muted); line-height:1.7; border-top:1px solid var(--border); padding-top:14px; }
-
-    .qv-actions { display:flex; flex-direction:column; gap:9px; margin-top:4px; }
-    .qv-btn {
-      width:100%; padding:13px; border:none; cursor:pointer;
-      font-family:var(--sans); font-size:10px; font-weight:700;
-      letter-spacing:.18em; text-transform:uppercase;
-      display:flex; align-items:center; justify-content:center; gap:8px;
-      transition:background .22s, color .22s;
-    }
-    .qv-btn-add  { background:var(--accent); color:var(--bg); }
-    .qv-btn-add:hover { background:var(--adk); }
-    .qv-btn-wa   { background:#25d366; color:#fff; }
-    .qv-btn-wa:hover { background:#1dbd5c; }
-
-    .qv-close {
-      position:absolute; top:14px; right:16px; z-index:2;
-      background:rgba(14,14,12,.7); border:1px solid var(--border); color:var(--text);
-      width:32px; height:32px; border-radius:50%; display:grid; place-items:center;
-      font-size:17px; cursor:pointer; transition:border-color .2s;
-    }
-    .qv-close:hover { border-color:var(--accent); color:var(--accent); }
-
-    @media (max-width:600px) {
-      .qv-img { flex:0 0 100%; min-height:260px; }
-      .qv-info { padding:22px 18px; }
-    }
-
-    /* ── SALE TAB DESTACADO ── */
-    .filter-tab[data-f="sale"] { color:var(--red); border-color:rgba(184,48,48,.3); }
-    .filter-tab[data-f="sale"]:hover, .filter-tab[data-f="sale"].active { background:var(--red); border-color:var(--red); color:var(--white); }
-    .sale-count {
-      background:var(--red); color:#fff; font-size:8px; font-weight:700;
-      padding:1px 5px; border-radius:20px; margin-left:4px; vertical-align:middle;
-    }
-
-    /* ── GUÍA DE TALLES LINK ── */
-    .size-guide-bar {
-      display:flex; align-items:center; justify-content:flex-end;
-      padding:10px 48px; border-bottom:1px solid var(--border);
-      font-size:11px; color:var(--muted); gap:6px;
-    }
-    .size-guide-bar a { color:var(--accent); text-decoration:underline; text-underline-offset:3px; cursor:pointer; }
-    .size-guide-bar a:hover { color:var(--adk); }
-
-    /* ── STOCK BADGE ── */
-    .badge-stock { background:#b85c00; color:#fff; }
-    .badge-nostock { background:#555; color:#ccc; }
-    .prod-card.out-of-stock { opacity:.6; }
-    .prod-card.out-of-stock .ov-add { opacity:.4; cursor:not-allowed; }
-
-    /* ── CARRITO: CONTROLES DE CANTIDAD ── */
-    .cd-item-qty {
-      display:flex; align-items:center; gap:8px; margin-top:6px;
-    }
-    .cd-item-qty button {
-      background:var(--border); border:none; color:var(--text); width:22px; height:22px;
-      display:grid; place-items:center; cursor:pointer; font-size:14px; border-radius:3px;
-      transition:background .2s;
-    }
-    .cd-item-qty button:hover { background:var(--accent); color:var(--bg); }
-    .cd-item-qty span { font-size:13px; min-width:16px; text-align:center; }
-
-    /* ── MODAL SELECTOR DE TALLE ── */
-    .sm-backdrop {
-      position:fixed; inset:0; background:rgba(0,0,0,.72);
-      z-index:500; opacity:0; pointer-events:none; transition:opacity .3s;
-    }
-    .sm-backdrop.open { opacity:1; pointer-events:all; }
-    .size-modal {
-      position:fixed; bottom:0; left:0; right:0; z-index:501;
-      background:var(--surface); border-top:1px solid var(--border);
-      padding:28px 24px 36px;
-      transform:translateY(100%); transition:transform .38s var(--ease);
-      max-width:480px; margin:0 auto;
-    }
-    .size-modal.open { transform:translateY(0); }
-    @media(min-width:600px){
-      .size-modal {
-        bottom:auto; top:50%; left:50%; right:auto;
-        transform:translate(-50%,-52%) scale(.97);
-        width:min(440px,95vw); border:1px solid var(--border); border-radius:2px;
-        opacity:0; transition:transform .35s var(--ease), opacity .3s;
-      }
-      .size-modal.open { transform:translate(-50%,-50%) scale(1); opacity:1; }
-    }
-    .sm-head { display:flex; align-items:center; gap:14px; margin-bottom:20px; }
-    .sm-head img { width:64px; height:80px; object-fit:cover; flex-shrink:0; }
-    .sm-head-info h3 { font-family:var(--serif); font-size:17px; font-weight:400; }
-    .sm-head-info p  { font-size:13px; color:var(--accent); margin-top:2px; }
-    .sm-label { font-size:10px; letter-spacing:.15em; text-transform:uppercase; color:var(--muted); margin-bottom:10px; }
-    .sm-talles { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:14px; }
-    .sm-talle-btn {
-      min-width:52px; padding:10px 14px; border:1px solid var(--border); background:none;
-      color:var(--text); font-family:var(--sans); font-size:13px; cursor:pointer;
-      transition:all .2s; text-align:center;
-    }
-    .sm-talle-btn:hover { border-color:var(--accent); }
-    .sm-talle-btn.active { background:var(--accent); border-color:var(--accent); color:var(--bg); }
-    .sm-error { font-size:12px; color:#e05555; margin-bottom:10px; display:none; }
-    .sm-confirm {
-      width:100%; padding:14px; background:var(--accent); border:none; color:var(--bg);
-      font-family:var(--sans); font-size:10px; font-weight:700; letter-spacing:.18em;
-      text-transform:uppercase; cursor:pointer; transition:background .22s;
-      display:flex; align-items:center; justify-content:center; gap:8px;
-    }
-    .sm-confirm:hover { background:var(--adk); }
-    .sm-close-btn {
-      position:absolute; top:14px; right:16px;
-      background:none; border:1px solid var(--border); color:var(--text); cursor:pointer;
-      width:30px; height:30px; border-radius:50%; display:grid; place-items:center;
-      font-size:16px; transition:border-color .2s;
-    }
-    .sm-close-btn:hover { border-color:var(--accent); }
-
-    /* ── GUÍA DE TALLES MODAL ── */
     .sg-modal {
       position:fixed; top:50%; left:50%; z-index:502;
       width:min(580px,96vw); max-height:90vh; overflow-y:auto;
@@ -512,8 +371,6 @@
     .sg-table { width:100%; border-collapse:collapse; font-size:13px; margin-bottom:20px; }
     .sg-table th { background:rgba(255,255,255,.05); padding:10px 14px; text-align:left; font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); border-bottom:1px solid var(--border); }
     .sg-table td { padding:10px 14px; border-bottom:1px solid var(--border); }
-    .sg-table tr:last-child td { border-bottom:none; }
-    .sg-note { font-size:12px; color:var(--muted); line-height:1.7; }
     .sg-close { position:absolute; top:14px; right:16px; background:none; border:1px solid var(--border); color:var(--text); cursor:pointer; width:30px; height:30px; border-radius:50%; display:grid; place-items:center; font-size:16px; transition:border-color .2s; }
     .sg-close:hover { border-color:var(--accent); }
 
@@ -543,6 +400,15 @@
     .trust-item:last-child { border-right:none; }
     .trust-item i { color:var(--accent); font-size:14px; flex-shrink:0; }
     @media(max-width:600px){ .trust-item span { display:none; } .trust-item { padding:12px; } }
+
+    /* ── SIZE GUIDE BAR ── */
+    .size-guide-bar {
+      display:flex; align-items:center; justify-content:flex-end;
+      padding:10px 48px; border-bottom:1px solid var(--border);
+      font-size:11px; color:var(--muted); gap:6px;
+    }
+    .size-guide-bar a { color:var(--accent); text-decoration:underline; text-underline-offset:3px; cursor:pointer; }
+    .size-guide-bar a:hover { color:var(--adk); }
 
     /* ── KEYFRAMES ── */
     @keyframes fadeUp {
@@ -627,9 +493,9 @@
     <button class="filter-tab" data-f="hombre">Hombre</button>
     <button class="filter-tab" data-f="mujer">Mujer</button>
     <button class="filter-tab" data-f="accesorios">Accesorios</button>
-    <button class="filter-tab" data-f="sale">Sale <span class="sale-count" id="saleCount"></span></button>
+    <button class="filter-tab" data-f="sale">Sale</button>
   </div>
-  <span class="prod-count" id="prodCount">38 productos</span>
+  <span class="prod-count" id="prodCount">Cargando...</span>
 </div>
 
 <!-- ══ SIZE GUIDE BAR ══ -->
@@ -646,650 +512,15 @@
   <div class="trust-item"><i class="fab fa-whatsapp"></i><span>Atención por WhatsApp</span></div>
 </div>
 
-<!-- ══ GRID ══ -->
+<!-- ══ GRID (SE LLENA CON JAVASCRIPT) ══ -->
 <div class="shop-body">
-<div class="prod-grid" id="prodGrid">
-
-  <!-- ▸▸ NEW COLLECTION 2026 ◂◂ -->
-  <div class="cat-heading" data-ch="new"><h2>New Collection 2026</h2></div>
-
-  <div class="prod-card" data-cat="new hombre"
-       data-name="Campera JEAN clásica" data-price="75000"
-       data-img="https://d22fxaf9t8d39k.cloudfront.net/d96714644466596d09ed9ffb84226e2b318859a866be9604788cf4154aa52650404368.jpg">
-    <div class="prod-img">
-      <span class="badge badge-new">New</span>
-      <img src="https://d22fxaf9t8d39k.cloudfront.net/d96714644466596d09ed9ffb84226e2b318859a866be9604788cf4154aa52650404368.jpg" alt="Campera JEAN clásica" loading="lazy"/>
-      <div class="prod-overlay">
-        <button class="ov-btn ov-add" onclick="event.stopPropagation();addCart(this)"><i class="fas fa-shopping-bag"></i> Agregar</button>
-        <button class="ov-btn ov-view" onclick="event.stopPropagation();openQV(this)">Ver detalle</button>
-      </div>
-    </div>
-    <div class="prod-info">
-      <p class="prod-cat">New Collection · Hombre</p>
-      <h3 class="prod-name">Campera JEAN clásica</h3>
-      <p class="prod-price">$75.000</p>
+  <div class="prod-grid" id="prodGrid">
+    <div class="empty-msg" id="emptyMsg">
+      <i class="fas fa-search"></i>
+      No hay productos en esta categoría
     </div>
   </div>
-
-  <div class="prod-card" data-cat="new hombre"
-       data-name="Sastrero RIALTO" data-price="70000"
-       data-img="hombre/Rialto.png">
-    <div class="prod-img">
-      <span class="badge badge-new">New</span>
-      <img src="hombre/Rialto.png" alt="Sastrero RIALTO" loading="lazy"/>
-      <div class="prod-overlay">
-        <button class="ov-btn ov-add" onclick="event.stopPropagation();addCart(this)"><i class="fas fa-shopping-bag"></i> Agregar</button>
-        <button class="ov-btn ov-view" onclick="event.stopPropagation();openQV(this)">Ver detalle</button>
-      </div>
-    </div>
-    <div class="prod-info">
-      <p class="prod-cat">New Collection · Hombre</p>
-      <h3 class="prod-name">Sastrero RIALTO</h3>
-      <p class="prod-price">$70.000</p>
-    </div>
-  </div>
-
-  <!-- ▸▸ HOMBRE ◂◂ -->
-  <div class="cat-heading" data-ch="hombre"><h2>Hombre</h2></div>
-
-  <div class="prod-card" data-cat="hombre"
-       data-name="Campera LAMPARD" data-price="75000"
-       data-img="https://d22fxaf9t8d39k.cloudfront.net/b8b0947140bff5c58341de81bac796e1e3e639975958ea29e976f4be63aa4b63404368.jpg">
-    <div class="prod-img">
-      <img src="https://d22fxaf9t8d39k.cloudfront.net/b8b0947140bff5c58341de81bac796e1e3e639975958ea29e976f4be63aa4b63404368.jpg" alt="Campera LAMPARD" loading="lazy"/>
-      <div class="prod-overlay">
-        <button class="ov-btn ov-add" onclick="event.stopPropagation();addCart(this)"><i class="fas fa-shopping-bag"></i> Agregar</button>
-        <button class="ov-btn ov-view" onclick="event.stopPropagation();openQV(this)">Ver detalle</button>
-      </div>
-    </div>
-    <div class="prod-info">
-      <p class="prod-cat">Hombre · Camperas</p>
-      <h3 class="prod-name">Campera LAMPARD</h3>
-      <p class="prod-price">$75.000</p>
-    </div>
-  </div>
-
-  <div class="prod-card" data-cat="hombre"
-       data-name="Sweater ARRAIAL" data-price="65000"
-       data-img="https://d22fxaf9t8d39k.cloudfront.net/63916cc7ca35026ef56aa0ca267d1043c9ca7fb0513e69e535a82aeea68bf7fa404368.jpg">
-    <div class="prod-img">
-      <img src="https://d22fxaf9t8d39k.cloudfront.net/63916cc7ca35026ef56aa0ca267d1043c9ca7fb0513e69e535a82aeea68bf7fa404368.jpg" alt="Sweater ARRAIAL" loading="lazy"/>
-      <div class="prod-overlay">
-        <button class="ov-btn ov-add" onclick="event.stopPropagation();addCart(this)"><i class="fas fa-shopping-bag"></i> Agregar</button>
-        <button class="ov-btn ov-view" onclick="event.stopPropagation();openQV(this)">Ver detalle</button>
-      </div>
-    </div>
-    <div class="prod-info">
-      <p class="prod-cat">Hombre · Buzos</p>
-      <h3 class="prod-name">Sweater ARRAIAL</h3>
-      <p class="prod-price">$65.000</p>
-    </div>
-  </div>
-
-  <div class="prod-card" data-cat="hombre sale"
-       data-name="Remera INTER tejida" data-price="40000" data-oldprice="60000"
-       data-img="https://d22fxaf9t8d39k.cloudfront.net/4ac16ce84da0f1bf02e8a3154fb71ac7e6118d0d13da170f3534dcfbad531801404368.jpg">
-    <div class="prod-img">
-      <span class="badge badge-sale">−33%</span>
-      <img src="https://d22fxaf9t8d39k.cloudfront.net/4ac16ce84da0f1bf02e8a3154fb71ac7e6118d0d13da170f3534dcfbad531801404368.jpg" alt="Remera INTER tejida" loading="lazy"/>
-      <div class="prod-overlay">
-        <button class="ov-btn ov-add" onclick="event.stopPropagation();addCart(this)"><i class="fas fa-shopping-bag"></i> Agregar</button>
-        <button class="ov-btn ov-view" onclick="event.stopPropagation();openQV(this)">Ver detalle</button>
-      </div>
-    </div>
-    <div class="prod-info">
-      <p class="prod-cat">Hombre · Remeras</p>
-      <h3 class="prod-name">Remera INTER tejida</h3>
-      <p class="prod-price"><del>$60.000</del> $40.000</p>
-    </div>
-  </div>
-
-  <div class="prod-card" data-cat="hombre sale"
-       data-name="Conjunto LINO" data-price="45000" data-oldprice="70000"
-       data-img="https://d22fxaf9t8d39k.cloudfront.net/99817bd6bf6e9fd396141d1523a7dfd5d4f3b696e0ae3e6a9390dfa9f4a05071404368.jpg">
-    <div class="prod-img">
-      <span class="badge badge-sale">−35%</span>
-      <img src="https://d22fxaf9t8d39k.cloudfront.net/99817bd6bf6e9fd396141d1523a7dfd5d4f3b696e0ae3e6a9390dfa9f4a05071404368.jpg" alt="Conjunto LINO" loading="lazy"/>
-      <div class="prod-overlay">
-        <button class="ov-btn ov-add" onclick="event.stopPropagation();addCart(this)"><i class="fas fa-shopping-bag"></i> Agregar</button>
-        <button class="ov-btn ov-view" onclick="event.stopPropagation();openQV(this)">Ver detalle</button>
-      </div>
-    </div>
-    <div class="prod-info">
-      <p class="prod-cat">Hombre · Conjuntos</p>
-      <h3 class="prod-name">Conjunto LINO</h3>
-      <p class="prod-price"><del>$70.000</del> $45.000</p>
-    </div>
-  </div>
-
-  <div class="prod-card" data-cat="hombre sale"
-       data-name="Bermuda REAL TREE baggy" data-price="45000" data-oldprice="75000"
-       data-img="https://d22fxaf9t8d39k.cloudfront.net/fa693e785f22af48e6822e56319cf73a27c346b8426073564ae246e592af33b9404368.jpg">
-    <div class="prod-img">
-      <span class="badge badge-sale">−40%</span>
-      <img src="https://d22fxaf9t8d39k.cloudfront.net/fa693e785f22af48e6822e56319cf73a27c346b8426073564ae246e592af33b9404368.jpg" alt="Bermuda REAL TREE baggy" loading="lazy"/>
-      <div class="prod-overlay">
-        <button class="ov-btn ov-add" onclick="event.stopPropagation();addCart(this)"><i class="fas fa-shopping-bag"></i> Agregar</button>
-        <button class="ov-btn ov-view" onclick="event.stopPropagation();openQV(this)">Ver detalle</button>
-      </div>
-    </div>
-    <div class="prod-info">
-      <p class="prod-cat">Hombre · Bermudas</p>
-      <h3 class="prod-name">Bermuda REAL TREE baggy</h3>
-      <p class="prod-price"><del>$75.000</del> $45.000</p>
-    </div>
-  </div>
-
-  <div class="prod-card" data-cat="hombre sale"
-       data-name="Bermuda WONDER lino" data-price="30000" data-oldprice="45000"
-       data-img="https://d22fxaf9t8d39k.cloudfront.net/904e176b85becfa3e907cae30e6dc5fb50758bc2d11d86c2bebe9827d06a0440404368.jpg">
-    <div class="prod-img">
-      <span class="badge badge-sale">−33%</span>
-      <img src="https://d22fxaf9t8d39k.cloudfront.net/904e176b85becfa3e907cae30e6dc5fb50758bc2d11d86c2bebe9827d06a0440404368.jpg" alt="Bermuda WONDER lino" loading="lazy"/>
-      <div class="prod-overlay">
-        <button class="ov-btn ov-add" onclick="event.stopPropagation();addCart(this)"><i class="fas fa-shopping-bag"></i> Agregar</button>
-        <button class="ov-btn ov-view" onclick="event.stopPropagation();openQV(this)">Ver detalle</button>
-      </div>
-    </div>
-    <div class="prod-info">
-      <p class="prod-cat">Hombre · Bermudas</p>
-      <h3 class="prod-name">Bermuda WONDER lino</h3>
-      <p class="prod-price"><del>$45.000</del> $30.000</p>
-    </div>
-  </div>
-
-  <div class="prod-card" data-cat="hombre sale"
-       data-name="Bermuda LIVIANA elastizada" data-price="18000" data-oldprice="25000"
-       data-img="https://d22fxaf9t8d39k.cloudfront.net/c036d7168c84ffb9b023141749287d09fef41c6623b904c7f813d8687822f98b404368.jpg">
-    <div class="prod-img">
-      <span class="badge badge-sale">−28%</span>
-      <img src="https://d22fxaf9t8d39k.cloudfront.net/c036d7168c84ffb9b023141749287d09fef41c6623b904c7f813d8687822f98b404368.jpg" alt="Bermuda LIVIANA elastizada" loading="lazy"/>
-      <div class="prod-overlay">
-        <button class="ov-btn ov-add" onclick="event.stopPropagation();addCart(this)"><i class="fas fa-shopping-bag"></i> Agregar</button>
-        <button class="ov-btn ov-view" onclick="event.stopPropagation();openQV(this)">Ver detalle</button>
-      </div>
-    </div>
-    <div class="prod-info">
-      <p class="prod-cat">Hombre · Bermudas</p>
-      <h3 class="prod-name">Bermuda LIVIANA elastizada</h3>
-      <p class="prod-price"><del>$25.000</del> $18.000</p>
-    </div>
-  </div>
-
-  <div class="prod-card" data-cat="hombre sale"
-       data-name="Short de baño ELASTIZADO SOFT" data-price="21000" data-oldprice="30000"
-       data-img="https://d22fxaf9t8d39k.cloudfront.net/d4dea3af0623e9063f446478fb6e8a3d3d2bc68b32bf3a70a8f9d4fd4d741b03404368.jpg">
-    <div class="prod-img">
-      <span class="badge badge-sale">−30%</span>
-      <img src="https://d22fxaf9t8d39k.cloudfront.net/d4dea3af0623e9063f446478fb6e8a3d3d2bc68b32bf3a70a8f9d4fd4d741b03404368.jpg" alt="Short de baño ELASTIZADO SOFT" loading="lazy"/>
-      <div class="prod-overlay">
-        <button class="ov-btn ov-add" onclick="event.stopPropagation();addCart(this)"><i class="fas fa-shopping-bag"></i> Agregar</button>
-        <button class="ov-btn ov-view" onclick="event.stopPropagation();openQV(this)">Ver detalle</button>
-      </div>
-    </div>
-    <div class="prod-info">
-      <p class="prod-cat">Hombre · Short de baño</p>
-      <h3 class="prod-name">Short de baño ELASTIZADO SOFT</h3>
-      <p class="prod-price"><del>$30.000</del> $21.000</p>
-    </div>
-  </div>
-
-  <div class="prod-card" data-cat="hombre sale"
-       data-name="Short de baño ELASTIZADO" data-price="21000" data-oldprice="30000"
-       data-img="https://d22fxaf9t8d39k.cloudfront.net/40e42a49e6d64a8e79edcd9e3f127153e929ede0037a9c8dfa8aa029212e635e404368.jpg">
-    <div class="prod-img">
-      <span class="badge badge-sale">−30%</span>
-      <img src="https://d22fxaf9t8d39k.cloudfront.net/40e42a49e6d64a8e79edcd9e3f127153e929ede0037a9c8dfa8aa029212e635e404368.jpg" alt="Short de baño ELASTIZADO" loading="lazy"/>
-      <div class="prod-overlay">
-        <button class="ov-btn ov-add" onclick="event.stopPropagation();addCart(this)"><i class="fas fa-shopping-bag"></i> Agregar</button>
-        <button class="ov-btn ov-view" onclick="event.stopPropagation();openQV(this)">Ver detalle</button>
-      </div>
-    </div>
-    <div class="prod-info">
-      <p class="prod-cat">Hombre · Short de baño</p>
-      <h3 class="prod-name">Short de baño ELASTIZADO</h3>
-      <p class="prod-price"><del>$30.000</del> $21.000</p>
-    </div>
-  </div>
-
-  <div class="prod-card" data-cat="hombre sale"
-       data-name="Short de baño MULTIRAYAS" data-price="21000" data-oldprice="30000"
-       data-img="https://d22fxaf9t8d39k.cloudfront.net/06a77b40ecdc626f4daad492e24aa3d3da0b7345e488022a7fb4472e8a5e3803404368.jpg">
-    <div class="prod-img">
-      <span class="badge badge-sale">−30%</span>
-      <img src="https://d22fxaf9t8d39k.cloudfront.net/06a77b40ecdc626f4daad492e24aa3d3da0b7345e488022a7fb4472e8a5e3803404368.jpg" alt="Short de baño MULTIRAYAS" loading="lazy"/>
-      <div class="prod-overlay">
-        <button class="ov-btn ov-add" onclick="event.stopPropagation();addCart(this)"><i class="fas fa-shopping-bag"></i> Agregar</button>
-        <button class="ov-btn ov-view" onclick="event.stopPropagation();openQV(this)">Ver detalle</button>
-      </div>
-    </div>
-    <div class="prod-info">
-      <p class="prod-cat">Hombre · Short de baño</p>
-      <h3 class="prod-name">Short de baño MULTIRAYAS</h3>
-      <p class="prod-price"><del>$30.000</del> $21.000</p>
-    </div>
-  </div>
-
-  <div class="prod-card" data-cat="hombre sale"
-       data-name="Short de baño RAYADO" data-price="21000" data-oldprice="30000"
-       data-img="https://d22fxaf9t8d39k.cloudfront.net/caf6ca6d1cefa9ed71dcbcc79d7a2724e9bf37bdb8780a69f6566351b85351fe404368.jpg">
-    <div class="prod-img">
-      <span class="badge badge-sale">−30%</span>
-      <img src="https://d22fxaf9t8d39k.cloudfront.net/caf6ca6d1cefa9ed71dcbcc79d7a2724e9bf37bdb8780a69f6566351b85351fe404368.jpg" alt="Short de baño RAYADO" loading="lazy"/>
-      <div class="prod-overlay">
-        <button class="ov-btn ov-add" onclick="event.stopPropagation();addCart(this)"><i class="fas fa-shopping-bag"></i> Agregar</button>
-        <button class="ov-btn ov-view" onclick="event.stopPropagation();openQV(this)">Ver detalle</button>
-      </div>
-    </div>
-    <div class="prod-info">
-      <p class="prod-cat">Hombre · Short de baño</p>
-      <h3 class="prod-name">Short de baño RAYADO</h3>
-      <p class="prod-price"><del>$30.000</del> $21.000</p>
-    </div>
-  </div>
-
-  <div class="prod-card" data-cat="hombre sale"
-       data-name="Short de baño ESTAMPADOS" data-price="21000" data-oldprice="30000"
-       data-img="https://d22fxaf9t8d39k.cloudfront.net/23d625d545c1e155e70543e48cb442af745c07e825bcc83ccbeda4b481a2dc73404368.jpg">
-    <div class="prod-img">
-      <span class="badge badge-sale">−30%</span>
-      <img src="https://d22fxaf9t8d39k.cloudfront.net/23d625d545c1e155e70543e48cb442af745c07e825bcc83ccbeda4b481a2dc73404368.jpg" alt="Short de baño ESTAMPADOS" loading="lazy"/>
-      <div class="prod-overlay">
-        <button class="ov-btn ov-add" onclick="event.stopPropagation();addCart(this)"><i class="fas fa-shopping-bag"></i> Agregar</button>
-        <button class="ov-btn ov-view" onclick="event.stopPropagation();openQV(this)">Ver detalle</button>
-      </div>
-    </div>
-    <div class="prod-info">
-      <p class="prod-cat">Hombre · Short de baño</p>
-      <h3 class="prod-name">Short de baño ESTAMPADOS</h3>
-      <p class="prod-price"><del>$30.000</del> $21.000</p>
-    </div>
-  </div>
-
-  <!-- ▸▸ MUJER ◂◂ -->
-  <div class="cat-heading" data-ch="mujer"><h2>Mujer</h2></div>
-
-  <div class="prod-card" data-cat="mujer"
-       data-name="Musculosa tejida Venecia" data-price="45000"
-       data-img="https://d22fxaf9t8d39k.cloudfront.net/9bfff86519b2b7b55d0d29918e5af12482e446721dee3e4251193f59b8e8c17e404368.jpg">
-    <div class="prod-img">
-      <img src="https://d22fxaf9t8d39k.cloudfront.net/9bfff86519b2b7b55d0d29918e5af12482e446721dee3e4251193f59b8e8c17e404368.jpg" alt="Musculosa tejida Venecia" loading="lazy"/>
-      <div class="prod-overlay">
-        <button class="ov-btn ov-add" onclick="event.stopPropagation();addCart(this)"><i class="fas fa-shopping-bag"></i> Agregar</button>
-        <button class="ov-btn ov-view" onclick="event.stopPropagation();openQV(this)">Ver detalle</button>
-      </div>
-    </div>
-    <div class="prod-info">
-      <p class="prod-cat">Mujer · Remeras</p>
-      <h3 class="prod-name">Musculosa tejida Venecia</h3>
-      <p class="prod-price">$45.000</p>
-    </div>
-  </div>
-
-  <div class="prod-card" data-cat="mujer"
-       data-name="Kimono" data-price="43000"
-       data-img="https://d22fxaf9t8d39k.cloudfront.net/e8526f0a99c44d29f26b1476822de55159e0bb4794692d6b9be03218e8dcbcd5404368.jpg">
-    <div class="prod-img">
-      <img src="https://d22fxaf9t8d39k.cloudfront.net/e8526f0a99c44d29f26b1476822de55159e0bb4794692d6b9be03218e8dcbcd5404368.jpg" alt="Kimono" loading="lazy"/>
-      <div class="prod-overlay">
-        <button class="ov-btn ov-add" onclick="event.stopPropagation();addCart(this)"><i class="fas fa-shopping-bag"></i> Agregar</button>
-        <button class="ov-btn ov-view" onclick="event.stopPropagation();openQV(this)">Ver detalle</button>
-      </div>
-    </div>
-    <div class="prod-info">
-      <p class="prod-cat">Mujer · Remeras</p>
-      <h3 class="prod-name">Kimono</h3>
-      <p class="prod-price">$43.000</p>
-    </div>
-  </div>
-
-  <div class="prod-card" data-cat="mujer"
-       data-name="Remeron tejido 86" data-price="37000"
-       data-img="https://d22fxaf9t8d39k.cloudfront.net/5758461c98122bfce36356c5a0be0108fd023d57c24f4b604d6b8438c243972f404368.jpg">
-    <div class="prod-img">
-      <img src="https://d22fxaf9t8d39k.cloudfront.net/5758461c98122bfce36356c5a0be0108fd023d57c24f4b604d6b8438c243972f404368.jpg" alt="Remeron tejido 86" loading="lazy"/>
-      <div class="prod-overlay">
-        <button class="ov-btn ov-add" onclick="event.stopPropagation();addCart(this)"><i class="fas fa-shopping-bag"></i> Agregar</button>
-        <button class="ov-btn ov-view" onclick="event.stopPropagation();openQV(this)">Ver detalle</button>
-      </div>
-    </div>
-    <div class="prod-info">
-      <p class="prod-cat">Mujer · Remeras</p>
-      <h3 class="prod-name">Remeron tejido 86</h3>
-      <p class="prod-price">$37.000</p>
-    </div>
-  </div>
-
-  <div class="prod-card" data-cat="mujer"
-       data-name="Crop tejido Kendi" data-price="23000"
-       data-img="https://d22fxaf9t8d39k.cloudfront.net/41bcc8a83d38eb40760aa0bc7c9191debc4d38e07c741958b6892462108f6644404368.jpg">
-    <div class="prod-img">
-      <img src="https://d22fxaf9t8d39k.cloudfront.net/41bcc8a83d38eb40760aa0bc7c9191debc4d38e07c741958b6892462108f6644404368.jpg" alt="Crop tejido Kendi" loading="lazy"/>
-      <div class="prod-overlay">
-        <button class="ov-btn ov-add" onclick="event.stopPropagation();addCart(this)"><i class="fas fa-shopping-bag"></i> Agregar</button>
-        <button class="ov-btn ov-view" onclick="event.stopPropagation();openQV(this)">Ver detalle</button>
-      </div>
-    </div>
-    <div class="prod-info">
-      <p class="prod-cat">Mujer · Remeras</p>
-      <h3 class="prod-name">Crop tejido Kendi</h3>
-      <p class="prod-price">$23.000</p>
-    </div>
-  </div>
-
-  <div class="prod-card" data-cat="mujer"
-       data-name="Body" data-price="15000"
-       data-img="https://d22fxaf9t8d39k.cloudfront.net/bedfef39950f4610f0c85df6710b0ca0c8a00a6daadba4e57234036417b5ccf2404368.jpg">
-    <div class="prod-img">
-      <img src="https://d22fxaf9t8d39k.cloudfront.net/bedfef39950f4610f0c85df6710b0ca0c8a00a6daadba4e57234036417b5ccf2404368.jpg" alt="Body" loading="lazy"/>
-      <div class="prod-overlay">
-        <button class="ov-btn ov-add" onclick="event.stopPropagation();addCart(this)"><i class="fas fa-shopping-bag"></i> Agregar</button>
-        <button class="ov-btn ov-view" onclick="event.stopPropagation();openQV(this)">Ver detalle</button>
-      </div>
-    </div>
-    <div class="prod-info">
-      <p class="prod-cat">Mujer · Remeras</p>
-      <h3 class="prod-name">Body</h3>
-      <p class="prod-price">$15.000</p>
-    </div>
-  </div>
-
-  <div class="prod-card" data-cat="mujer sale"
-       data-name="Jean Ancho" data-price="50000" data-oldprice="70000"
-       data-img="https://d22fxaf9t8d39k.cloudfront.net/dd90a394af234d838d3d5ae4d59f16dd819614b3a74c2e8354a0c11be282fd64404368.jpg">
-    <div class="prod-img">
-      <span class="badge badge-sale">−28%</span>
-      <img src="https://d22fxaf9t8d39k.cloudfront.net/dd90a394af234d838d3d5ae4d59f16dd819614b3a74c2e8354a0c11be282fd64404368.jpg" alt="Jean Ancho" loading="lazy"/>
-      <div class="prod-overlay">
-        <button class="ov-btn ov-add" onclick="event.stopPropagation();addCart(this)"><i class="fas fa-shopping-bag"></i> Agregar</button>
-        <button class="ov-btn ov-view" onclick="event.stopPropagation();openQV(this)">Ver detalle</button>
-      </div>
-    </div>
-    <div class="prod-info">
-      <p class="prod-cat">Mujer · Pantalones</p>
-      <h3 class="prod-name">Jean Ancho</h3>
-      <p class="prod-price"><del>$70.000</del> $50.000</p>
-    </div>
-  </div>
-
-  <div class="prod-card" data-cat="mujer sale"
-       data-name="Pantalon Mujer" data-price="25000" data-oldprice="40000"
-       data-img="https://d22fxaf9t8d39k.cloudfront.net/23cd8555c955f6c941e822edc5e0106e217b34584c01292fec7946f714b871c5404368.jpg">
-    <div class="prod-img">
-      <span class="badge badge-sale">−37%</span>
-      <img src="https://d22fxaf9t8d39k.cloudfront.net/23cd8555c955f6c941e822edc5e0106e217b34584c01292fec7946f714b871c5404368.jpg" alt="Pantalon Mujer" loading="lazy"/>
-      <div class="prod-overlay">
-        <button class="ov-btn ov-add" onclick="event.stopPropagation();addCart(this)"><i class="fas fa-shopping-bag"></i> Agregar</button>
-        <button class="ov-btn ov-view" onclick="event.stopPropagation();openQV(this)">Ver detalle</button>
-      </div>
-    </div>
-    <div class="prod-info">
-      <p class="prod-cat">Mujer · Pantalones</p>
-      <h3 class="prod-name">Pantalon Mujer</h3>
-      <p class="prod-price"><del>$40.000</del> $25.000</p>
-    </div>
-  </div>
-
-  <div class="prod-card" data-cat="mujer sale"
-       data-name="Remera Crop Top" data-price="15000" data-oldprice="25000"
-       data-img="https://d22fxaf9t8d39k.cloudfront.net/e1ced99735f95039982ce3dd6ffe72a2f0b82b2e6e60497f8d2567731f5224a0404368.jpg">
-    <div class="prod-img">
-      <span class="badge badge-sale">−40%</span>
-      <img src="https://d22fxaf9t8d39k.cloudfront.net/e1ced99735f95039982ce3dd6ffe72a2f0b82b2e6e60497f8d2567731f5224a0404368.jpg" alt="Remera Crop Top" loading="lazy"/>
-      <div class="prod-overlay">
-        <button class="ov-btn ov-add" onclick="event.stopPropagation();addCart(this)"><i class="fas fa-shopping-bag"></i> Agregar</button>
-        <button class="ov-btn ov-view" onclick="event.stopPropagation();openQV(this)">Ver detalle</button>
-      </div>
-    </div>
-    <div class="prod-info">
-      <p class="prod-cat">Mujer · Remeras</p>
-      <h3 class="prod-name">Remera Crop Top</h3>
-      <p class="prod-price"><del>$25.000</del> $15.000</p>
-    </div>
-  </div>
-
-  <div class="prod-card" data-cat="mujer sale"
-       data-name="Top Verde" data-price="15000" data-oldprice="25000"
-       data-img="https://d22fxaf9t8d39k.cloudfront.net/9ed84011c0f7f607432c187f40ec36f82b414e84b3d28269fc42305dd6efed95404368.jpg">
-    <div class="prod-img">
-      <span class="badge badge-sale">−40%</span>
-      <img src="https://d22fxaf9t8d39k.cloudfront.net/9ed84011c0f7f607432c187f40ec36f82b414e84b3d28269fc42305dd6efed95404368.jpg" alt="Top Verde" loading="lazy"/>
-      <div class="prod-overlay">
-        <button class="ov-btn ov-add" onclick="event.stopPropagation();addCart(this)"><i class="fas fa-shopping-bag"></i> Agregar</button>
-        <button class="ov-btn ov-view" onclick="event.stopPropagation();openQV(this)">Ver detalle</button>
-      </div>
-    </div>
-    <div class="prod-info">
-      <p class="prod-cat">Mujer · Remeras</p>
-      <h3 class="prod-name">Top Verde</h3>
-      <p class="prod-price"><del>$25.000</del> $15.000</p>
-    </div>
-  </div>
-
-  <div class="prod-card" data-cat="mujer sale"
-       data-name="Short HOJAS" data-price="30000" data-oldprice="45000"
-       data-img="https://d22fxaf9t8d39k.cloudfront.net/61b3e9431a237af50d1fa63f7068428871a2386de0fde482ec3600e6adfbbdec404368.jpg">
-    <div class="prod-img">
-      <span class="badge badge-sale">−33%</span>
-      <img src="https://d22fxaf9t8d39k.cloudfront.net/61b3e9431a237af50d1fa63f7068428871a2386de0fde482ec3600e6adfbbdec404368.jpg" alt="Short HOJAS" loading="lazy"/>
-      <div class="prod-overlay">
-        <button class="ov-btn ov-add" onclick="event.stopPropagation();addCart(this)"><i class="fas fa-shopping-bag"></i> Agregar</button>
-        <button class="ov-btn ov-view" onclick="event.stopPropagation();openQV(this)">Ver detalle</button>
-      </div>
-    </div>
-    <div class="prod-info">
-      <p class="prod-cat">Mujer · Shorts</p>
-      <h3 class="prod-name">Short HOJAS</h3>
-      <p class="prod-price"><del>$45.000</del> $30.000</p>
-    </div>
-  </div>
-
-  <div class="prod-card" data-cat="mujer sale"
-       data-name="Short BRICK" data-price="25000" data-oldprice="35000"
-       data-img="https://d22fxaf9t8d39k.cloudfront.net/dbf00d91308b96b6c71d0c8f6726ce7901b0520cd4813222db616da53ee83966404368.jpg">
-    <div class="prod-img">
-      <span class="badge badge-sale">−28%</span>
-      <img src="https://d22fxaf9t8d39k.cloudfront.net/dbf00d91308b96b6c71d0c8f6726ce7901b0520cd4813222db616da53ee83966404368.jpg" alt="Short BRICK" loading="lazy"/>
-      <div class="prod-overlay">
-        <button class="ov-btn ov-add" onclick="event.stopPropagation();addCart(this)"><i class="fas fa-shopping-bag"></i> Agregar</button>
-        <button class="ov-btn ov-view" onclick="event.stopPropagation();openQV(this)">Ver detalle</button>
-      </div>
-    </div>
-    <div class="prod-info">
-      <p class="prod-cat">Mujer · Shorts</p>
-      <h3 class="prod-name">Short BRICK</h3>
-      <p class="prod-price"><del>$35.000</del> $25.000</p>
-    </div>
-  </div>
-
-  <div class="prod-card" data-cat="mujer sale"
-       data-name="Short BLANCO" data-price="25000" data-oldprice="35000"
-       data-img="https://d22fxaf9t8d39k.cloudfront.net/11eb585d8ea84f6f172125795b54363a9ce9eb1be22ab65cee3579ca43c07cdd404368.jpg">
-    <div class="prod-img">
-      <span class="badge badge-sale">−28%</span>
-      <img src="https://d22fxaf9t8d39k.cloudfront.net/11eb585d8ea84f6f172125795b54363a9ce9eb1be22ab65cee3579ca43c07cdd404368.jpg" alt="Short BLANCO" loading="lazy"/>
-      <div class="prod-overlay">
-        <button class="ov-btn ov-add" onclick="event.stopPropagation();addCart(this)"><i class="fas fa-shopping-bag"></i> Agregar</button>
-        <button class="ov-btn ov-view" onclick="event.stopPropagation();openQV(this)">Ver detalle</button>
-      </div>
-    </div>
-    <div class="prod-info">
-      <p class="prod-cat">Mujer · Shorts</p>
-      <h3 class="prod-name">Short BLANCO</h3>
-      <p class="prod-price"><del>$35.000</del> $25.000</p>
-    </div>
-  </div>
-
-  <!-- ▸▸ ACCESORIOS ◂◂ -->
-  <div class="cat-heading" data-ch="accesorios"><h2>Accesorios</h2></div>
-
-  <div class="prod-card" data-cat="accesorios"
-       data-name="Cinto TEJIDO ELASTIZADO" data-price="25000"
-       data-img="accesorios/cinto.png">
-    <div class="prod-img">
-      <img src="accesorios/cinto.png" alt="Cinto TEJIDO ELASTIZADO" loading="lazy"/>
-      <div class="prod-overlay">
-        <button class="ov-btn ov-add" onclick="event.stopPropagation();addCart(this)"><i class="fas fa-shopping-bag"></i> Agregar</button>
-        <button class="ov-btn ov-view" onclick="event.stopPropagation();openQV(this)">Ver detalle</button>
-      </div>
-    </div>
-    <div class="prod-info">
-      <p class="prod-cat">Accesorios · Cintos</p>
-      <h3 class="prod-name">Cinto TEJIDO ELASTIZADO</h3>
-      <p class="prod-price">$25.000</p>
-    </div>
-  </div>
-
-  <div class="prod-card" data-cat="accesorios"
-       data-name="Pilusos prelavados" data-price="15000"
-       data-img="accesorios/pilusos.png">
-    <div class="prod-img">
-      <img src="accesorios/pilusos.png" alt="Pilusos prelavados" loading="lazy"/>
-      <div class="prod-overlay">
-        <button class="ov-btn ov-add" onclick="event.stopPropagation();addCart(this)"><i class="fas fa-shopping-bag"></i> Agregar</button>
-        <button class="ov-btn ov-view" onclick="event.stopPropagation();openQV(this)">Ver detalle</button>
-      </div>
-    </div>
-    <div class="prod-info">
-      <p class="prod-cat">Accesorios · Gorras</p>
-      <h3 class="prod-name">Pilusos prelavados</h3>
-      <p class="prod-price">$15.000</p>
-    </div>
-  </div>
-
-  <div class="prod-card" data-cat="accesorios"
-       data-name="Gorras prelavadas" data-price="15000"
-       data-img="accesorios/gorrasprelavadas.png">
-    <div class="prod-img">
-      <img src="accesorios/gorrasprelavadas.png" alt="Gorras prelavadas" loading="lazy"/>
-      <div class="prod-overlay">
-        <button class="ov-btn ov-add" onclick="event.stopPropagation();addCart(this)"><i class="fas fa-shopping-bag"></i> Agregar</button>
-        <button class="ov-btn ov-view" onclick="event.stopPropagation();openQV(this)">Ver detalle</button>
-      </div>
-    </div>
-    <div class="prod-info">
-      <p class="prod-cat">Accesorios · Gorras</p>
-      <h3 class="prod-name">Gorras prelavadas</h3>
-      <p class="prod-price">$15.000</p>
-    </div>
-  </div>
-
-  <div class="prod-card" data-cat="accesorios" data-name="Abanico ORGULLO" data-price="20000"
-       data-img="https://d22fxaf9t8d39k.cloudfront.net/d7bb9acf8f5ca09e741eac41c71f65a1a789da46d32346dbcc8da085b6888a8b404368.jpg">
-    <div class="prod-img">
-      <img src="https://d22fxaf9t8d39k.cloudfront.net/d7bb9acf8f5ca09e741eac41c71f65a1a789da46d32346dbcc8da085b6888a8b404368.jpg" alt="Abanico ORGULLO" loading="lazy"/>
-      <div class="prod-overlay">
-        <button class="ov-btn ov-add" onclick="event.stopPropagation();addCart(this)"><i class="fas fa-shopping-bag"></i> Agregar</button>
-        <button class="ov-btn ov-view" onclick="event.stopPropagation();openQV(this)">Ver detalle</button>
-      </div>
-    </div>
-    <div class="prod-info"><p class="prod-cat">Accesorios · Abanicos</p><h3 class="prod-name">Abanico ORGULLO</h3><p class="prod-price">$20.000</p></div>
-  </div>
-
-  <div class="prod-card" data-cat="accesorios" data-name="Abanico MUSIC" data-price="20000"
-       data-img="https://d22fxaf9t8d39k.cloudfront.net/eed069dcbb94dd317b2fec3eef483d8f2755eced6906f337408a75fb921645d7404368.png">
-    <div class="prod-img">
-      <img src="https://d22fxaf9t8d39k.cloudfront.net/eed069dcbb94dd317b2fec3eef483d8f2755eced6906f337408a75fb921645d7404368.png" alt="Abanico MUSIC" loading="lazy"/>
-      <div class="prod-overlay">
-        <button class="ov-btn ov-add" onclick="event.stopPropagation();addCart(this)"><i class="fas fa-shopping-bag"></i> Agregar</button>
-        <button class="ov-btn ov-view" onclick="event.stopPropagation();openQV(this)">Ver detalle</button>
-      </div>
-    </div>
-    <div class="prod-info"><p class="prod-cat">Accesorios · Abanicos</p><h3 class="prod-name">Abanico MUSIC</h3><p class="prod-price">$20.000</p></div>
-  </div>
-
-  <div class="prod-card" data-cat="accesorios" data-name="Abanico A MI AIRE" data-price="20000"
-       data-img="accesorios/AbanicoAire.png>
-    <div class="prod-img">
-      <img src="accesorios/AbanicoAire.png" alt="Abanico A MI AIRE" loading="lazy"/>
-      <div class="prod-overlay">
-        <button class="ov-btn ov-add" onclick="event.stopPropagation();addCart(this)"><i class="fas fa-shopping-bag"></i> Agregar</button>
-        <button class="ov-btn ov-view" onclick="event.stopPropagation();openQV(this)">Ver detalle</button>
-      </div>
-    </div>
-    <div class="prod-info"><p class="prod-cat">Accesorios · Abanicos</p><h3 class="prod-name">Abanico A MI AIRE</h3><p class="prod-price">$20.000</p></div>
-  </div>
-
-  <div class="prod-card" data-cat="accesorios" data-name="Abanico ALIEN" data-price="20000"
-       data-img="accesorios/AbanicoAlien.png">
-    <div class="prod-img">
-      <img src="accesorios/AbanicoAlien.png" alt="Abanico ALIEN" loading="lazy"/>
-      <div class="prod-overlay">
-        <button class="ov-btn ov-add" onclick="event.stopPropagation();addCart(this)"><i class="fas fa-shopping-bag"></i> Agregar</button>
-        <button class="ov-btn ov-view" onclick="event.stopPropagation();openQV(this)">Ver detalle</button>
-      </div>
-    </div>
-    <div class="prod-info"><p class="prod-cat">Accesorios · Abanicos</p><h3 class="prod-name">Abanico ALIEN</h3><p class="prod-price">$20.000</p></div>
-  </div>
-
-  <div class="prod-card" data-cat="accesorios" data-name="Abanico ARCO IRIS" data-price="20000"
-       data-img="https://d22fxaf9t8d39k.cloudfront.net/1edcf80198e30639eb1bddab0a661bde5a9713728556ccf81c3df7b12a39068f404368.png">
-    <div class="prod-img">
-      <img src="https://d22fxaf9t8d39k.cloudfront.net/1edcf80198e30639eb1bddab0a661bde5a9713728556ccf81c3df7b12a39068f404368.png" alt="Abanico ARCO IRIS" loading="lazy"/>
-      <div class="prod-overlay">
-        <button class="ov-btn ov-add" onclick="event.stopPropagation();addCart(this)"><i class="fas fa-shopping-bag"></i> Agregar</button>
-        <button class="ov-btn ov-view" onclick="event.stopPropagation();openQV(this)">Ver detalle</button>
-      </div>
-    </div>
-    <div class="prod-info"><p class="prod-cat">Accesorios · Abanicos</p><h3 class="prod-name">Abanico ARCO IRIS</h3><p class="prod-price">$20.000</p></div>
-  </div>
-
-  <div class="prod-card" data-cat="accesorios" data-name="Abanico GO AWAY" data-price="20000"
-       data-img="https://d22fxaf9t8d39k.cloudfront.net/a06deeb3a1ab8a9e2ed2f4ca672a71d0967aea3913f163ba3d75e5bf2e3cfdae404368.png">
-    <div class="prod-img">
-      <img src="https://d22fxaf9t8d39k.cloudfront.net/a06deeb3a1ab8a9e2ed2f4ca672a71d0967aea3913f163ba3d75e5bf2e3cfdae404368.png" alt="Abanico GO AWAY" loading="lazy"/>
-      <div class="prod-overlay">
-        <button class="ov-btn ov-add" onclick="event.stopPropagation();addCart(this)"><i class="fas fa-shopping-bag"></i> Agregar</button>
-        <button class="ov-btn ov-view" onclick="event.stopPropagation();openQV(this)">Ver detalle</button>
-      </div>
-    </div>
-    <div class="prod-info"><p class="prod-cat">Accesorios · Abanicos</p><h3 class="prod-name">Abanico GO AWAY</h3><p class="prod-price">$20.000</p></div>
-  </div>
-
-  <div class="prod-card" data-cat="accesorios" data-name="Abanico FLORAL" data-price="20000"
-       data-img="https://d22fxaf9t8d39k.cloudfront.net/58dd07e55d61f8ef6bfce53e625056e06146dd6880ca33e7666396b57397e407404368.png">
-    <div class="prod-img">
-      <img src="https://d22fxaf9t8d39k.cloudfront.net/58dd07e55d61f8ef6bfce53e625056e06146dd6880ca33e7666396b57397e407404368.png" alt="Abanico FLORAL" loading="lazy"/>
-      <div class="prod-overlay">
-        <button class="ov-btn ov-add" onclick="event.stopPropagation();addCart(this)"><i class="fas fa-shopping-bag"></i> Agregar</button>
-        <button class="ov-btn ov-view" onclick="event.stopPropagation();openQV(this)">Ver detalle</button>
-      </div>
-    </div>
-    <div class="prod-info"><p class="prod-cat">Accesorios · Abanicos</p><h3 class="prod-name">Abanico FLORAL</h3><p class="prod-price">$20.000</p></div>
-  </div>
-
-  <div class="prod-card" data-cat="accesorios" data-name="Abanico SOBRADOS" data-price="20000"
-       data-img="https://d22fxaf9t8d39k.cloudfront.net/ea809116f02307d347d5e34db61666ef1b2ae1e2392cd0f3c97661335a505a9d404368.png">
-    <div class="prod-img">
-      <img src="https://d22fxaf9t8d39k.cloudfront.net/ea809116f02307d347d5e34db61666ef1b2ae1e2392cd0f3c97661335a505a9d404368.png" alt="Abanico SOBRADOS" loading="lazy"/>
-      <div class="prod-overlay">
-        <button class="ov-btn ov-add" onclick="event.stopPropagation();addCart(this)"><i class="fas fa-shopping-bag"></i> Agregar</button>
-        <button class="ov-btn ov-view" onclick="event.stopPropagation();openQV(this)">Ver detalle</button>
-      </div>
-    </div>
-    <div class="prod-info"><p class="prod-cat">Accesorios · Abanicos</p><h3 class="prod-name">Abanico SOBRADOS</h3><p class="prod-price">$20.000</p></div>
-  </div>
-
-  <div class="prod-card" data-cat="accesorios" data-name="Abanico MAÑANA VOY A TENER RESACA" data-price="20000"
-       data-img="accesorios/AbanicoMañana.png">
-    <div class="prod-img">
-      <img src="accesorios/AbanicoMañana.png" alt="Abanico MAÑANA VOY A TENER RESACA" loading="lazy"/>
-      <div class="prod-overlay">
-        <button class="ov-btn ov-add" onclick="event.stopPropagation();addCart(this)"><i class="fas fa-shopping-bag"></i> Agregar</button>
-        <button class="ov-btn ov-view" onclick="event.stopPropagation();openQV(this)">Ver detalle</button>
-      </div>
-    </div>
-    <div class="prod-info"><p class="prod-cat">Accesorios · Abanicos</p><h3 class="prod-name">Abanico MAÑANA VOY A TENER RESACA</h3><p class="prod-price">$20.000</p></div>
-  </div>
-
-  <!-- empty state -->
-  <div class="empty-msg" id="emptyMsg">
-    <i class="fas fa-search"></i>
-    No hay productos en esta categoría
-  </div>
-
-</div><!-- /prod-grid -->
-</div><!-- /shop-body -->
+</div>
 
 <!-- ══ RESEÑAS ══ -->
 <div class="reviews-bar">
@@ -1314,11 +545,6 @@
       <p class="review-card-text">"Compré el conjunto de lino y quedé enamorado. El talle es perfecto, muy cómodo. 100% recomendable."</p>
       <p class="review-card-author">— Matías R., Jesús María</p>
     </div>
-    <div class="review-card">
-      <div class="review-card-stars">★★★★★</div>
-      <p class="review-card-text">"Me encantó la atención, respondieron rápido por WhatsApp y el envío fue puntual. Volveré a comprar."</p>
-      <p class="review-card-author">— Sofía G., Villa María</p>
-    </div>
   </div>
 </div>
 
@@ -1339,6 +565,7 @@
       <li><a href="#" onclick="filterBy('hombre')">Hombre</a></li>
       <li><a href="#" onclick="filterBy('mujer')">Mujer</a></li>
       <li><a href="#" onclick="filterBy('accesorios')">Accesorios</a></li>
+      <li><a href="#" onclick="filterBy('new')">New Collection</a></li>
       <li><a href="#" onclick="filterBy('sale')">Sale</a></li>
     </ul>
   </div>
@@ -1355,22 +582,19 @@
     <h4>Newsletter</h4>
     <p style="font-size:13px;color:var(--muted);margin-bottom:12px;">Sumate. 10% OFF en tu primera compra.</p>
     <div class="nl-form">
-      <input type="email" placeholder="tu@email.com"/>
-      <button><i class="fas fa-arrow-right"></i></button>
+      <input type="email" placeholder="tu@email.com" id="newsletterEmail"/>
+      <button onclick="subscribeNewsletter()"><i class="fas fa-arrow-right"></i></button>
     </div>
     <div class="pay-icons">
       <img src="https://dk0k1i3js6c49.cloudfront.net/applications/logos/payment-icons/mastercard.png" alt="Mastercard"/>
       <img src="https://dk0k1i3js6c49.cloudfront.net/applications/logos/payment-icons/visa.png" alt="Visa"/>
-      <img src="https://dk0k1i3js6c49.cloudfront.net/applications/logos/payment-icons/american-express.png" alt="Amex"/>
       <img src="https://dk0k1i3js6c49.cloudfront.net/applications/logos/payment-icons/naranja.png" alt="Naranja"/>
       <img src="https://dk0k1i3js6c49.cloudfront.net/applications/logos/payment-icons/cabal.png" alt="Cabal"/>
-      <img src="https://dk0k1i3js6c49.cloudfront.net/applications/logos/payment-icons/pagofacil.png" alt="Pago Fácil"/>
-      <img src="https://dk0k1i3js6c49.cloudfront.net/applications/logos/payment-icons/rapipago.png" alt="Rapipago"/>
     </div>
   </div>
 </footer>
 <div class="foot-bot">
-  <span>© 2026 Bara & Co · CUIT · Ing. Olmos 139 – Jesús María · <a href="mailto:bara.and.co.jm@gmail.com">bara.and.co.jm@gmail.com</a></span>
+  <span>© 2026 Bara & Co · Ing. Olmos 139 – Jesús María · <a href="/cdn-cgi/l/email-protection#e mar">bara.and.co.jm@gmail.com</a></span>
   <div class="foot-links">
     <a href="#">Términos y condiciones</a>
     <a href="#">Política de privacidad</a>
@@ -1383,11 +607,10 @@
 </button>
 
 <!-- ══ GUÍA DE TALLES MODAL ══ -->
-<div class="qv-backdrop" id="sgBackdrop" onclick="closeSizeGuide()" style="z-index:501"></div>
+<div class="qv-backdrop" id="sgBackdrop" onclick="closeSizeGuide()"></div>
 <div class="sg-modal" id="sgModal">
   <button class="sg-close" onclick="closeSizeGuide()">×</button>
   <h2>Guía de Talles</h2>
-  <p style="font-size:13px;color:var(--muted);margin-bottom:20px;">Medite el contorno de pecho, cintura y cadera para elegir el talle correcto.</p>
   <h4 style="font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;">Ropa Hombre</h4>
   <table class="sg-table">
     <thead><tr><th>Talle</th><th>Pecho (cm)</th><th>Cintura (cm)</th><th>Cadera (cm)</th></tr></thead>
@@ -1408,31 +631,10 @@
       <tr><td>L</td><td>94–99</td><td>76–81</td><td>98–103</td></tr>
     </tbody>
   </table>
-  <p class="sg-note">¿Estás entre dos talles? Recomendamos elegir el más grande para mayor comodidad. Si tenés dudas, consultanos por WhatsApp.</p>
-  <button onclick="window.open('https://wa.me/5493525614281?text=Hola!%20Tengo%20una%20duda%20sobre%20talles','_blank')" style="margin-top:16px;background:var(--accent);border:none;color:var(--bg);padding:12px 20px;font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;width:100%;">
-    <i class="fab fa-whatsapp"></i> &nbsp; Consultar por WhatsApp
-  </button>
 </div>
 
 <!-- ══ CART TOAST ══ -->
 <div class="cart-toast" id="cartToast"><i class="fas fa-check-circle"></i> Producto agregado al carrito</div>
-
-<!-- ══ QUICK VIEW MODAL ══ -->
-<div class="qv-backdrop" id="qvBackdrop" onclick="closeQV()"></div>
-<div class="qv-modal" id="qvModal">
-  <button class="qv-close" onclick="closeQV()">×</button>
-  <div class="qv-img" id="qvImg"></div>
-  <div class="qv-info">
-    <p class="qv-cat"  id="qvCat"></p>
-    <h2 class="qv-name" id="qvName"></h2>
-    <p class="qv-price" id="qvPrice"></p>
-    <p class="qv-desc" id="qvDesc">Consultá disponibilidad de talles y colores por WhatsApp o agregá al carrito para reservar.</p>
-    <div class="qv-actions">
-      <button class="qv-btn qv-btn-add" id="qvAddBtn"><i class="fas fa-shopping-bag"></i> AGREGAR AL CARRITO</button>
-      <button class="qv-btn qv-btn-wa"  id="qvWaBtn"><i class="fab fa-whatsapp"></i> CONSULTAR POR WHATSAPP</button>
-    </div>
-  </div>
-</div>
 
 <!-- ══ CART BACKDROP & DRAWER ══ -->
 <div class="cart-backdrop" id="cartBackdrop" onclick="toggleCart()"></div>
@@ -1452,161 +654,233 @@
     <button class="pay-btn pay-wa" onclick="pagarWA()">
       <i class="fab fa-whatsapp"></i> Solicitar por WhatsApp
     </button>
-    <p class="pay-info"><i class="fas fa-lock"></i> &nbsp; Pago seguro. Sin comisiones adicionales.</p>
+    <p class="pay-info"><i class="fas fa-lock"></i> &nbsp; Pago seguro</p>
   </div>
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="js/carrito.js"></script>
-
 <script>
-/* ══ CARGA DINÁMICA DESDE productos.json ══ */
-(async function loadProductos() {
+/* ============================================
+   VARIABLES GLOBALES Y ESTADO
+============================================ */
+let productos = [];           // Todos los productos cargados desde JSON
+let cart = JSON.parse(localStorage.getItem('bc_cart') || '[]');
+let activeFilter = 'all';
+
+/* ============================================
+   CARGA INICIAL DE PRODUCTOS
+============================================ */
+async function cargarProductos() {
   try {
-    const res = await fetch('productos.json?t=' + Date.now());
-    if (!res.ok) return; // Si no existe el JSON, usa los productos hardcodeados
-    const prods = await res.json();
-    if (!Array.isArray(prods) || !prods.length) return;
+    const response = await fetch('productos.json?t=' + Date.now());
+    if (!response.ok) throw new Error('No se pudo cargar productos.json');
+    
+    productos = await response.json();
+    productos = productos.filter(p => p.activo !== false); // Solo activos
+    
+    renderizarProductos();
+    actualizarContadorProductos();
+    
+    // Verificar si hay filtro en la URL (?categoria=hombre)
+    const urlParams = new URLSearchParams(window.location.search);
+    const cat = urlParams.get('categoria');
+    if (cat && ['hombre', 'mujer', 'accesorios', 'new', 'sale'].includes(cat)) {
+      filterBy(cat);
+    }
+    
+  } catch (error) {
+    console.error('Error cargando productos:', error);
+    document.getElementById('prodCount').textContent = 'Error al cargar';
+  }
+}
 
-    // Limpiar el grid y reconstruirlo con los datos del JSON
-    const grid = document.getElementById('prodGrid');
-    grid.innerHTML = '';
-
-    // Agrupar por categoría para los headings
-    const cats = ['new', 'hombre', 'mujer', 'accesorios'];
-    const catLabels = { new: 'New Collection 2026', hombre: 'Hombre', mujer: 'Mujer', accesorios: 'Accesorios' };
-
-    // Heading y productos por sección
-    cats.forEach(cat => {
-      const list = prods.filter(p => p.activo !== false && p.categoria === cat);
-      if (!list.length) return;
-
-      // Heading
-      const h = document.createElement('div');
-      h.className = 'cat-heading';
-      h.dataset.ch = cat;
-      h.innerHTML = `<h2>${catLabels[cat]}</h2>`;
-      grid.appendChild(h);
-
-      list.forEach(p => {
-        const disc = p.precioAnterior && p.precioAnterior > p.precio
-          ? Math.round((1 - p.precio / p.precioAnterior) * 100) : 0;
-        const badgeCat = cat === 'new' ? 'hombre' : cat; // para el data-cat
-        const extraCat = p.precioAnterior ? ' sale' : '';
-        const newBadge = cat === 'new' ? '<span class="badge badge-new">New</span>' : '';
-        const saleBadge = disc ? `<span class="badge badge-sale">−${disc}%</span>` : '';
-        const priceHtml = p.precioAnterior
-          ? `<del>$${p.precioAnterior.toLocaleString('es-AR')}</del> $${p.precio.toLocaleString('es-AR')}`
-          : `$${p.precio.toLocaleString('es-AR')}`;
-        const subCat = p.subcategoria ? ` · ${p.subcategoria}` : '';
-
-        const card = document.createElement('div');
-        card.className = 'prod-card';
-        card.dataset.cat = (cat === 'new' ? 'new hombre' : cat) + extraCat;
-        card.dataset.name  = p.nombre;
-        card.dataset.price = p.precio;
-        card.dataset.img   = p.imagen;
-        if (p.precioAnterior) card.dataset.oldprice = p.precioAnterior;
-        card.innerHTML = `
+/* ============================================
+   RENDERIZAR PRODUCTOS EN GRILLA
+============================================ */
+function renderizarProductos() {
+  const grid = document.getElementById('prodGrid');
+  
+  // Agrupar por categoría (para mostrar headings)
+  const categorias = ['new', 'hombre', 'mujer', 'accesorios'];
+  const nombresCategoria = {
+    'new': 'New Collection 2026',
+    'hombre': 'Hombre',
+    'mujer': 'Mujer',
+    'accesorios': 'Accesorios'
+  };
+  
+  let html = '';
+  
+  categorias.forEach(cat => {
+    const productosCat = productos.filter(p => p.categoria === cat);
+    if (productosCat.length === 0) return;
+    
+    // Heading de categoría
+    html += `<div class="cat-heading" data-cat-head="${cat}"><h2>${nombresCategoria[cat]}</h2></div>`;
+    
+    // Productos de esta categoría
+    productosCat.forEach(p => {
+      const descuento = p.precioAnterior ? Math.round((1 - p.precio / p.precioAnterior) * 100) : 0;
+      const categoriasCard = [p.categoria];
+      if (p.precioAnterior) categoriasCard.push('sale');
+      
+      // Formatear precio
+      let precioHtml = `$${p.precio.toLocaleString('es-AR')}`;
+      if (p.precioAnterior) {
+        precioHtml = `<del>$${p.precioAnterior.toLocaleString('es-AR')}</del> $${p.precio.toLocaleString('es-AR')}`;
+      }
+      
+      // Badges
+      let badges = '';
+      if (p.categoria === 'new') badges += '<span class="badge badge-new">New</span>';
+      if (p.precioAnterior) badges += `<span class="badge badge-sale">-${descuento}%</span>`;
+      
+      html += `
+        <div class="prod-card" 
+             data-cat="${categoriasCard.join(' ')}" 
+             data-id="${p.id}"
+             data-nombre="${p.nombre}"
+             data-precio="${p.precio}"
+             data-imagen="${p.imagen}">
           <div class="prod-img">
-            ${newBadge}${saleBadge}
+            ${badges}
             <img src="${p.imagen}" alt="${p.nombre}" loading="lazy"/>
             <div class="prod-overlay">
-              <button class="ov-btn ov-add" onclick="event.stopPropagation();addCart(this)"><i class="fas fa-shopping-bag"></i> Agregar</button>
-              <button class="ov-btn ov-view" onclick="event.stopPropagation();openQV(this)">Ver detalle</button>
+              <button class="ov-btn ov-add" onclick="event.stopPropagation();irAProducto('${p.id}')">
+                <i class="fas fa-shopping-bag"></i> Ver producto
+              </button>
+              <button class="ov-btn ov-view" onclick="event.stopPropagation();irAProducto('${p.id}')">
+                <i class="fas fa-eye"></i> Ver detalle
+              </button>
             </div>
           </div>
           <div class="prod-info">
-            <p class="prod-cat">${catLabels[cat]}${subCat}</p>
+            <p class="prod-cat">${p.subcategoria || p.categoria}</p>
             <h3 class="prod-name">${p.nombre}</h3>
-            <p class="prod-price">${priceHtml}</p>
-          </div>`;
-        grid.appendChild(card);
-      });
+            <p class="prod-price">${precioHtml}</p>
+          </div>
+        </div>
+      `;
     });
-
-    // Empty msg al final
-    const empty = document.createElement('div');
-    empty.className = 'empty-msg';
-    empty.id = 'emptyMsg';
-    empty.innerHTML = '<i class="fas fa-search"></i> No hay productos en esta categoría';
-    grid.appendChild(empty);
-
-    // Actualizar contador
-    const visible = prods.filter(p => p.activo !== false).length;
-    document.getElementById('prodCount').textContent = visible + ' producto' + (visible !== 1 ? 's' : '');
-
-    // Re-asignar referencias para el filtrado
-    window._reInitFilters && window._reInitFilters();
-
-  } catch(e) {
-    console.log('productos.json no encontrado, usando productos hardcodeados.');
-  }
-})();
-
-/* ══ FILTROS ══ */
-const tabs   = document.querySelectorAll('.filter-tab');
-const empty  = document.getElementById('emptyMsg');
-const count  = document.getElementById('prodCount');
-
-function getCards()  { return document.querySelectorAll('.prod-card'); }
-function getHeads()  { return document.querySelectorAll('.cat-heading'); }
-
-function filterBy(f) {
-  tabs.forEach(t => t.classList.toggle('active', t.dataset.f === f));
-  let visible = 0;
-  getCards().forEach(c => {
-    const cats = c.dataset.cat || '';
-    const show = f === 'all' || cats.split(' ').includes(f);
-    c.classList.toggle('hidden', !show);
-    if (show) visible++;
   });
-  getHeads().forEach(h => {
-    if (f === 'all') { h.classList.remove('hidden'); return; }
-    let el = h.nextElementSibling;
-    const nextCards = [];
-    while (el && !el.classList.contains('cat-heading')) {
-      if (el.classList.contains('prod-card')) nextCards.push(el);
-      el = el.nextElementSibling;
-    }
-    h.classList.toggle('hidden', !nextCards.some(c => !c.classList.contains('hidden')));
-  });
-  const emptyEl = document.getElementById('emptyMsg');
-  if (emptyEl) emptyEl.style.display = visible === 0 ? 'block' : 'none';
-  document.getElementById('prodCount').textContent = visible + ' producto' + (visible !== 1 ? 's' : '');
-  document.querySelector('.filters').scrollIntoView({ behavior:'smooth', block:'start' });
+  
+  grid.innerHTML = html;
+  aplicarFiltro(activeFilter);
 }
 
-tabs.forEach(t => t.addEventListener('click', () => filterBy(t.dataset.f)));
+/* ============================================
+   FILTROS
+============================================ */
+function filterBy(categoria) {
+  activeFilter = categoria;
+  aplicarFiltro(categoria);
+  
+  // Actualizar tabs
+  document.querySelectorAll('.filter-tab').forEach(tab => {
+    tab.classList.toggle('active', tab.dataset.f === categoria);
+  });
+}
 
-// Permite re-inicializar tras carga dinámica
-window._reInitFilters = () => {
-  tabs.forEach(t => t.addEventListener('click', () => filterBy(t.dataset.f)));
-};
+function aplicarFiltro(filtro) {
+  const cards = document.querySelectorAll('.prod-card');
+  let visibles = 0;
+  
+  cards.forEach(card => {
+    const cats = card.dataset.cat.split(' ');
+    const mostrar = filtro === 'all' || cats.includes(filtro);
+    card.classList.toggle('hidden', !mostrar);
+    if (mostrar) visibles++;
+  });
+  
+  // Mostrar/ocultar headings según si tienen productos visibles después
+  document.querySelectorAll('.cat-heading').forEach(head => {
+    const cat = head.dataset.catHead;
+    let tieneVisibles = false;
+    let next = head.nextElementSibling;
+    
+    while (next && !next.classList.contains('cat-heading')) {
+      if (next.classList.contains('prod-card') && !next.classList.contains('hidden')) {
+        tieneVisibles = true;
+        break;
+      }
+      next = next.nextElementSibling;
+    }
+    
+    head.classList.toggle('hidden', !tieneVisibles);
+  });
+  
+  // Mostrar mensaje vacío
+  const emptyMsg = document.getElementById('emptyMsg');
+  emptyMsg.style.display = visibles === 0 ? 'block' : 'none';
+  
+  actualizarContadorProductos(visibles);
+}
 
-/* ══ CART ══ */
-let cart = JSON.parse(localStorage.getItem('bc_cart') || '[]');
+function actualizarContadorProductos(visibles = null) {
+  const count = document.getElementById('prodCount');
+  if (visibles === null) {
+    visibles = document.querySelectorAll('.prod-card:not(.hidden)').length;
+  }
+  count.textContent = visibles + ' producto' + (visibles !== 1 ? 's' : '');
+}
 
-function saveCart() { localStorage.setItem('bc_cart', JSON.stringify(cart)); }
+/* ============================================
+   NAVEGACIÓN A PÁGINA DE PRODUCTO
+============================================ */
+function irAProducto(id) {
+  window.location.href = `producto.html?id=${id}`;
+}
+
+/* ============================================
+   CARRITO
+============================================ */
+function saveCart() { 
+  localStorage.setItem('bc_cart', JSON.stringify(cart)); 
+  renderCart();
+}
 
 function toggleCart() {
   document.getElementById('cartDrawer').classList.toggle('open');
   document.getElementById('cartBackdrop').classList.toggle('open');
 }
 
-function addCart(btn) {
-  const card  = btn.closest('.prod-card');
-  const name  = card.dataset.name;
-  const price = parseInt(card.dataset.price);
-  const img   = card.dataset.img;
-  const found = cart.find(i => i.name === name);
-  if (found) found.qty++;
-  else cart.push({ name, price, img, qty:1 });
-  saveCart(); renderCart(); showToast(); toggleCart();
+function renderCart() {
+  const body = document.getElementById('cdBody');
+  const empty = document.getElementById('cdEmpty');
+  const badge = document.getElementById('cartBadge');
+  const totalEl = document.getElementById('cdTotal');
+  
+  const cnt = cart.reduce((s,i) => s + i.qty, 0);
+  const sum = cart.reduce((s,i) => s + i.precio * i.qty, 0);
+  
+  badge.textContent = cnt;
+  badge.classList.toggle('on', cnt > 0);
+  totalEl.textContent = '$' + sum.toLocaleString('es-AR');
+  
+  // Limpiar items anteriores
+  document.querySelectorAll('.cd-item').forEach(el => el.remove());
+  
+  empty.style.display = cart.length ? 'none' : 'block';
+  
+  cart.forEach(item => {
+    const el = document.createElement('div');
+    el.className = 'cd-item';
+    el.innerHTML = `
+      <img class="cd-item-img" src="${item.imagen}" alt="${item.nombre}"/>
+      <div style="flex:1">
+        <div class="cd-item-name">${item.nombre}</div>
+        ${item.talle ? `<div class="cd-item-size">Talle: ${item.talle}</div>` : ''}
+        <div class="cd-item-price">$${(item.precio * item.qty).toLocaleString('es-AR')}</div>
+        <div style="font-size:11px;color:var(--muted);margin-top:4px;">Cant: ${item.qty}</div>
+      </div>
+      <button class="cd-item-rm" onclick="eliminarDelCarrito('${item.id}')">×</button>
+    `;
+    body.appendChild(el);
+  });
 }
 
-function removeCart(name) {
-  cart = cart.filter(i => i.name !== name);
-  saveCart(); renderCart();
+function eliminarDelCarrito(id) {
+  cart = cart.filter(i => i.id !== id);
+  saveCart();
 }
 
 function showToast() {
@@ -1615,121 +889,22 @@ function showToast() {
   setTimeout(() => t.classList.remove('show'), 2400);
 }
 
-function renderCart() {
-  const body  = document.getElementById('cdBody');
-  const empty = document.getElementById('cdEmpty');
-  const badge = document.getElementById('cartBadge');
-  const total = document.getElementById('cdTotal');
-  const cnt   = cart.reduce((s,i) => s+i.qty, 0);
-  const sum   = cart.reduce((s,i) => s+i.price*i.qty, 0);
-  badge.textContent = cnt;
-  badge.classList.toggle('on', cnt > 0);
-  total.textContent = '$' + sum.toLocaleString('es-AR');
-  body.querySelectorAll('.cd-item').forEach(e => e.remove());
-  empty.style.display = cart.length ? 'none' : 'block';
-  cart.forEach(item => {
-    const el = document.createElement('div');
-    el.className = 'cd-item';
-    el.innerHTML = `
-      <img class="cd-item-img" src="${item.img}" alt="${item.name}"/>
-      <div style="flex:1">
-        <div class="cd-item-name">${item.name}${item.qty>1?' ×'+item.qty:''}</div>
-        <div class="cd-item-price">$${(item.price*item.qty).toLocaleString('es-AR')}</div>
-      </div>
-      <button class="cd-item-rm" onclick="removeCart('${item.name.replace(/'/g,"\\'")}')">×</button>`;
-    body.appendChild(el);
-  });
-}
-
 function pagarWA() {
   if (!cart.length) return;
-  const lines = cart.map(i => `• ${i.name}${i.qty>1?' x'+i.qty:''} — $${(i.price*i.qty).toLocaleString('es-AR')}`).join('%0A');
-  const total = cart.reduce((s,i) => s+i.price*i.qty, 0);
-  const msg = `Hola! Quiero hacer el siguiente pedido:%0A%0A${lines}%0A%0A*Total: $${total.toLocaleString('es-AR')}*%0A%0AQuedo esperando confirmación de disponibilidad y datos de pago.`;
-  window.open(`https://wa.me/5493525614281?text=${msg}`, '_blank');
+  const lines = cart.map(i => `• ${i.nombre}${i.talle ? ' (Talle ' + i.talle + ')' : ''}${i.qty > 1 ? ' x' + i.qty : ''} — $${(i.precio * i.qty).toLocaleString('es-AR')}`).join('%0A');
+  const total = cart.reduce((s,i) => s + i.precio * i.qty, 0);
+  window.open(`https://wa.me/5493525614281?text=Hola!%20Quiero%20hacer%20el%20siguiente%20pedido:%0A${lines}%0A%0ATotal:%20$${total.toLocaleString('es-AR')}`, '_blank');
 }
 
-/* ══ MERCADOPAGO ══ */
 function pagarMP() {
-  if (!cart.length) { alert('Tu carrito está vacío'); return; }
-  // ─────────────────────────────────────────────────────────────
-  // TODO: Reemplazar esta URL con el link de pago de MercadoPago
-  // Podés crear un botón de pago en https://www.mercadopago.com.ar
-  // y pegar aquí la URL generada.
-  // ─────────────────────────────────────────────────────────────
-  const MP_LINK = 'https://link.mercadopago.com.ar/baraandco'; // <-- Cambiar por tu link real
-  const total = cart.reduce((s,i) => s+i.price*i.qty, 0);
-  const items = cart.map(i => `${i.name}${i.qty>1?' x'+i.qty:''}`).join(', ');
-  // Si aún no tenés el link configurado, envía por WA con el detalle
-  if (MP_LINK.includes('TU_LINK_AQUI')) {
-    const msg = `Hola! Quiero pagar con MercadoPago:%0A%0A${cart.map(i=>`• ${i.name}${i.qty>1?' x'+i.qty:''} — $${(i.price*i.qty).toLocaleString('es-AR')}`).join('%0A')}%0A%0A*Total: $${total.toLocaleString('es-AR')}*%0A%0APor favor enviame el link de pago de MercadoPago.`;
-    window.open(`https://wa.me/5493525614281?text=${msg}`, '_blank');
-    return;
-  }
-  window.open(MP_LINK, '_blank');
+  if (!cart.length) return;
+  const total = cart.reduce((s,i) => s + i.precio * i.qty, 0);
+  window.open(`https://link.mercadopago.com.ar/baraandco?amount=${total}`, '_blank');
 }
 
-/* ══ QUICK VIEW ══ */
-function openQV(btn) {
-  const card = btn.closest('.prod-card');
-  const name  = card.dataset.name;
-  const price = parseInt(card.dataset.price);
-  const old   = card.dataset.oldprice ? parseInt(card.dataset.oldprice) : null;
-  const img   = card.dataset.img;
-  const cat   = card.querySelector('.prod-cat')?.textContent || '';
-
-  document.getElementById('qvImg').innerHTML   = `<img src="${img}" alt="${name}">`;
-  document.getElementById('qvCat').textContent  = cat;
-  document.getElementById('qvName').textContent = name;
-
-  const priceEl = document.getElementById('qvPrice');
-  if (old) {
-    const pct = Math.round((1 - price/old) * 100);
-    priceEl.innerHTML = `<del>$${old.toLocaleString('es-AR')}</del> $${price.toLocaleString('es-AR')} <span style="background:var(--red);color:#fff;font-size:10px;padding:2px 7px;margin-left:6px;">-${pct}%</span>`;
-  } else {
-    priceEl.textContent = '$' + price.toLocaleString('es-AR');
-  }
-
-  // Add-to-cart button
-  document.getElementById('qvAddBtn').onclick = () => {
-    const found = cart.find(i => i.name === name);
-    if (found) found.qty++;
-    else cart.push({ name, price, img, qty:1 });
-    saveCart(); renderCart(); showToast(); closeQV(); toggleCart();
-  };
-
-  // WhatsApp button
-  document.getElementById('qvWaBtn').onclick = () => {
-    const msg = `Hola! Quiero consultar por *${name}* ($${price.toLocaleString('es-AR')})`;
-    window.open(`https://wa.me/5493525614281?text=${encodeURIComponent(msg)}`, '_blank');
-  };
-
-  document.getElementById('qvModal').classList.add('open');
-  document.getElementById('qvBackdrop').classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-
-function closeQV() {
-  document.getElementById('qvModal').classList.remove('open');
-  document.getElementById('qvBackdrop').classList.remove('open');
-  document.body.style.overflow = '';
-}
-
-// close QV with Escape key
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeQV(); });
-
-// init cart render on load
-renderCart();
-
-/* ══ HAMBURGER MENU ══ */
-function toggleMenu() {
-  const h = document.getElementById('hamburger');
-  const n = document.getElementById('mobileNav');
-  h.classList.toggle('open');
-  n.classList.toggle('open');
-}
-
-/* ══ SEARCH ══ */
+/* ============================================
+   BÚSQUEDA
+============================================ */
 function toggleSearch() {
   const bar = document.getElementById('searchBar');
   bar.classList.toggle('open');
@@ -1739,52 +914,101 @@ function toggleSearch() {
     clearSearch();
   }
 }
+
 function clearSearch() {
   document.getElementById('searchInput').value = '';
-  filterBy(document.querySelector('.filter-tab.active').dataset.f);
+  filterBy(activeFilter);
 }
-document.getElementById('searchInput').addEventListener('input', function() {
-  const q = this.value.trim().toLowerCase();
-  let visible = 0;
-  document.querySelectorAll('.prod-card').forEach(c => {
-    const name = (c.dataset.name || '').toLowerCase();
-    const cat  = (c.querySelector('.prod-cat')?.textContent || '').toLowerCase();
-    const show = !q || name.includes(q) || cat.includes(q);
-    c.classList.toggle('hidden', !show);
-    if (show) visible++;
+
+document.getElementById('searchInput')?.addEventListener('input', function() {
+  const term = this.value.trim().toLowerCase();
+  const cards = document.querySelectorAll('.prod-card');
+  let visibles = 0;
+  
+  cards.forEach(card => {
+    const nombre = card.dataset.nombre?.toLowerCase() || '';
+    const coincide = term === '' || nombre.includes(term);
+    card.classList.toggle('hidden', !coincide);
+    if (coincide) visibles++;
   });
-  document.querySelectorAll('.cat-heading').forEach(h => {
-    let el = h.nextElementSibling;
-    const cards = [];
-    while (el && !el.classList.contains('cat-heading')) {
-      if (el.classList.contains('prod-card')) cards.push(el);
-      el = el.nextElementSibling;
+  
+  document.querySelectorAll('.cat-heading').forEach(head => {
+    let tieneVisibles = false;
+    let next = head.nextElementSibling;
+    while (next && !next.classList.contains('cat-heading')) {
+      if (next.classList.contains('prod-card') && !next.classList.contains('hidden')) {
+        tieneVisibles = true;
+        break;
+      }
+      next = next.nextElementSibling;
     }
-    h.classList.toggle('hidden', !cards.some(c => !c.classList.contains('hidden')));
+    head.classList.toggle('hidden', !tieneVisibles);
   });
-  document.getElementById('prodCount').textContent = visible + ' producto' + (visible !== 1 ? 's' : '');
-  const emptyEl = document.getElementById('emptyMsg');
-  if (emptyEl) emptyEl.style.display = visible === 0 ? 'block' : 'none';
+  
+  document.getElementById('emptyMsg').style.display = visibles === 0 ? 'block' : 'none';
+  actualizarContadorProductos(visibles);
 });
 
-/* ══ SIZE GUIDE MODAL ══ */
+/* ============================================
+   GUÍA DE TALLES
+============================================ */
 function openSizeGuide() {
   document.getElementById('sgModal').classList.add('open');
   document.getElementById('sgBackdrop').classList.add('open');
   document.body.style.overflow = 'hidden';
 }
+
 function closeSizeGuide() {
   document.getElementById('sgModal').classList.remove('open');
   document.getElementById('sgBackdrop').classList.remove('open');
   document.body.style.overflow = '';
 }
 
-/* ══ SALE COUNT BADGE ══ */
-(function setSaleCount() {
-  const n = document.querySelectorAll('.prod-card[data-cat*="sale"]').length;
-  const el = document.getElementById('saleCount');
-  if (el && n > 0) el.textContent = n;
-})();
+/* ============================================
+   MENÚ MÓVIL
+============================================ */
+function toggleMenu() {
+  const h = document.getElementById('hamburger');
+  const n = document.getElementById('mobileNav');
+  h.classList.toggle('open');
+  n.classList.toggle('open');
+}
+
+/* ============================================
+   NEWSLETTER
+============================================ */
+function subscribeNewsletter() {
+  const email = document.getElementById('newsletterEmail').value.trim();
+  if (!email || !email.includes('@')) {
+    alert('Ingresá un email válido');
+    return;
+  }
+  alert('¡Gracias! Te enviamos el 10% OFF a ' + email);
+  document.getElementById('newsletterEmail').value = '';
+}
+
+/* ============================================
+   INICIALIZACIÓN
+============================================ */
+document.addEventListener('DOMContentLoaded', () => {
+  cargarProductos();
+  renderCart();
+  
+  // Configurar eventos de filtros
+  document.querySelectorAll('.filter-tab').forEach(tab => {
+    tab.addEventListener('click', () => filterBy(tab.dataset.f));
+  });
+  
+  // Cerrar modales con Escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      closeSizeGuide();
+      if (document.getElementById('cartDrawer').classList.contains('open')) {
+        toggleCart();
+      }
+    }
+  });
+});
 </script>
 </body>
 </html>
