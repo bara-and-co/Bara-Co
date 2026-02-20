@@ -1,9 +1,14 @@
-// Esperar a que cargue el DOM
+// ===========================================
+// MAIN.JS - BARA & CO
+// Inicialización global y utilidades
+// ===========================================
+
 document.addEventListener('DOMContentLoaded', function() {
     inicializarHeader();
     inicializarCursor();
     inicializarAnimaciones();
     inicializarMenuMobile();
+    inicializarClasesBody();
 });
 
 // Header con cambio al hacer scroll
@@ -17,11 +22,41 @@ function inicializarHeader() {
             header.classList.remove('scrolled');
         }
     });
+    
+    // Trigger inicial
+    if (window.scrollY > 100) {
+        header.classList.add('scrolled');
+    }
 }
 
-// Cursor personalizado (si no es mobile)
+// Detectar página para estilos específicos
+function inicializarClasesBody() {
+    const body = document.body;
+    const path = window.location.pathname;
+    
+    if (path.endsWith('index.html') || path === '/' || path === '') {
+        body.classList.add('inicio');
+        body.classList.remove('interior');
+    } else {
+        body.classList.add('interior');
+        body.classList.remove('inicio');
+    }
+}
+
+// Cursor personalizado (solo desktop)
 function inicializarCursor() {
     if (window.innerWidth <= 768) return;
+    
+    // Crear elementos si no existen
+    if (!document.querySelector('.custom-cursor')) {
+        const cursor = document.createElement('div');
+        cursor.className = 'custom-cursor';
+        document.body.appendChild(cursor);
+        
+        const cursorDot = document.createElement('div');
+        cursorDot.className = 'cursor-dot';
+        document.body.appendChild(cursorDot);
+    }
     
     const cursor = document.querySelector('.custom-cursor');
     const cursorDot = document.querySelector('.cursor-dot');
@@ -42,7 +77,7 @@ function inicializarCursor() {
     });
     
     // Efecto hover en elementos clickeables
-    const clickables = document.querySelectorAll('a, button, .cart-icon, .featured-card, .nav-link');
+    const clickables = document.querySelectorAll('a, button, .cart-icon, .cart-icon-wrap, .nav-link, .btn');
     
     clickables.forEach(el => {
         el.addEventListener('mouseenter', () => {
@@ -83,12 +118,14 @@ function inicializarMenuMobile() {
         navMenu.classList.toggle('show');
         
         const icon = menuToggle.querySelector('i');
-        if (navMenu.classList.contains('show')) {
-            icon.classList.remove('fa-bars');
-            icon.classList.add('fa-times');
-        } else {
-            icon.classList.remove('fa-times');
-            icon.classList.add('fa-bars');
+        if (icon) {
+            if (navMenu.classList.contains('show')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
         }
     });
 }
@@ -96,9 +133,12 @@ function inicializarMenuMobile() {
 // Smooth scroll para anclas
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (href === '#') return;
+        
         e.preventDefault();
         
-        const target = document.querySelector(this.getAttribute('href'));
+        const target = document.querySelector(href);
         if (target) {
             target.scrollIntoView({
                 behavior: 'smooth',
@@ -107,34 +147,10 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         }
     });
 });
-// ===========================================
-// HEADER ADAPTATIVO PARA TODAS LAS PÁGINAS
-// ===========================================
 
-document.addEventListener('DOMContentLoaded', function() {
-    const header = document.getElementById('header');
-    const body = document.body;
-    
-    // Detectar si es página de inicio
-    if (window.location.pathname.endsWith('index.html') || window.location.pathname === '/' || window.location.pathname === '') {
-        body.classList.add('inicio');
-        body.classList.remove('interior');
-    } else {
-        body.classList.add('interior');
-        body.classList.remove('inicio');
-    }
-    
-    // Manejar scroll
-    window.addEventListener('scroll', function() {
-        if (window.scrollY > 100) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
-    });
-    
-    // Trigger inicial
-    if (window.scrollY > 100) {
-        header.classList.add('scrolled');
+// Prevenir comportamiento por defecto en botones vacíos
+document.addEventListener('click', (e) => {
+    if (e.target.tagName === 'A' && e.target.getAttribute('href') === '#') {
+        e.preventDefault();
     }
 });
