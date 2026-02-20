@@ -6,9 +6,7 @@
   <title>Producto · Bara & Co</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
-  <link rel="stylesheet" href="css/global.css"/>
   <style>
-    /* (Copiar los mismos estilos de tienda.html para mantener consistencia) */
     :root {
       --bg:      #0e0e0c;
       --surface: #161614;
@@ -30,8 +28,10 @@
       font-family:var(--sans); font-size:15px; line-height:1.6;
       padding-top:72px;
     }
+    a { color:inherit; text-decoration:none; }
+    img { display:block; width:100%; object-fit:cover; }
     
-    /* Header - mismo que tienda.html */
+    /* Header */
     #header {
       position:fixed; top:0; left:0; right:0; z-index:200;
       display:flex; align-items:center; justify-content:space-between;
@@ -39,6 +39,30 @@
       background:rgba(14,14,12,.93); backdrop-filter:blur(20px);
       border-bottom:1px solid var(--border);
     }
+    .logo-img { height:56px; width:auto; object-fit:contain; display:block; }
+    .header-nav ul { display:flex; gap:36px; }
+    .header-nav a {
+      font-size:11px; font-weight:500; letter-spacing:.12em; text-transform:uppercase;
+      color:var(--muted); position:relative; transition:color .25s;
+    }
+    .header-nav a::after {
+      content:''; position:absolute; bottom:-4px; left:0; right:0;
+      height:1px; background:var(--accent);
+      transform:scaleX(0); transform-origin:left; transition:transform .3s var(--ease);
+    }
+    .header-nav a:hover, .header-nav a.active { color:var(--text); }
+    .header-nav a:hover::after, .header-nav a.active::after { transform:scaleX(1); }
+    .header-icons { display:flex; align-items:center; gap:20px; }
+    .header-icons i { font-size:16px; cursor:pointer; color:var(--muted); transition:color .25s; }
+    .header-icons i:hover { color:var(--accent); }
+    .cart-icon-wrap { position:relative; cursor:pointer; }
+    .cart-badge {
+      position:absolute; top:-7px; right:-9px;
+      background:var(--accent); color:var(--bg);
+      font-size:9px; font-weight:700; width:17px; height:17px;
+      border-radius:50%; display:none; place-items:center;
+    }
+    .cart-badge.on { display:grid; }
     
     /* Breadcrumb */
     .breadcrumb {
@@ -61,12 +85,13 @@
     }
     .main-image {
       aspect-ratio:3/4; overflow:hidden; border:1px solid var(--border);
-      margin-bottom:16px;
+      margin-bottom:16px; cursor:zoom-in;
     }
     .main-image img {
       width:100%; height:100%; object-fit:cover;
       transition:transform .3s;
     }
+    .main-image:hover img { transform:scale(1.02); }
     .thumbnails {
       display:flex; gap:8px; overflow-x:auto; padding-bottom:8px;
     }
@@ -75,7 +100,7 @@
       border:1px solid var(--border); cursor:pointer;
       transition:border-color .2s;
     }
-    .thumb:hover { border-color:var(--accent); }
+    .thumb:hover, .thumb.active { border-color:var(--accent); }
     .thumb img { width:100%; height:100%; object-fit:cover; }
     
     /* Info producto */
@@ -127,6 +152,7 @@
     }
     
     /* Selector de color */
+    .color-label { font-size:12px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; margin:20px 0 12px; }
     .color-options {
       display:flex; gap:10px; margin-bottom:30px;
     }
@@ -181,23 +207,137 @@
       display:grid; grid-template-columns:repeat(4,1fr); gap:2px;
     }
     .related-card {
-      background:var(--surface); cursor:pointer;
+      background:var(--surface); cursor:pointer; transition:transform .3s;
     }
+    .related-card:hover { transform:translateY(-4px); }
     .related-card img {
       aspect-ratio:3/4; object-fit:cover; width:100%;
     }
+    .related-info { padding:12px; }
+    .related-name { font-size:14px; margin-bottom:4px; }
+    .related-price { color:var(--accent); font-size:13px; }
     
+    /* Modal imagen */
+    .image-modal {
+      position:fixed; inset:0; background:rgba(0,0,0,.95);
+      z-index:1000; display:none; place-items:center;
+    }
+    .image-modal.open { display:grid; }
+    .modal-img { max-width:90vw; max-height:90vh; }
+    .modal-close {
+      position:absolute; top:20px; right:20px;
+      background:none; border:1px solid var(--border); color:var(--text);
+      width:40px; height:40px; border-radius:50%; cursor:pointer;
+      font-size:20px; transition:all .2s;
+    }
+    .modal-close:hover { border-color:var(--accent); color:var(--accent); }
+    
+    /* Cart drawer y otros modales (copiados de tienda.html) */
+    .cart-backdrop {
+      position:fixed; inset:0; background:rgba(0,0,0,.55);
+      z-index:398; opacity:0; pointer-events:none; transition:opacity .3s;
+    }
+    .cart-backdrop.open { opacity:1; pointer-events:all; }
+    .cart-drawer {
+      position:fixed; top:0; right:0; bottom:0; width:min(400px,100vw);
+      background:var(--surface); border-left:1px solid var(--border);
+      z-index:399; display:flex; flex-direction:column;
+      transform:translateX(101%); transition:transform .4s var(--ease);
+    }
+    .cart-drawer.open { transform:translateX(0); }
+    .cd-head {
+      padding:20px 22px; border-bottom:1px solid var(--border);
+      display:flex; align-items:center; justify-content:space-between;
+    }
+    .cd-title { font-family:var(--serif); font-size:22px; font-weight:400; }
+    .cd-close {
+      background:none; border:1px solid var(--border); color:var(--text); cursor:pointer;
+      width:32px; height:32px; border-radius:50%; display:grid; place-items:center;
+      font-size:18px; transition:border-color .22s;
+    }
+    .cd-close:hover { border-color:var(--accent); }
+    .cd-body { flex:1; overflow-y:auto; padding:16px 22px; }
+    .cd-empty { text-align:center; padding:56px 0; color:var(--muted); font-size:13px; }
+    .cd-item {
+      display:flex; gap:12px; padding:12px 0; border-bottom:1px solid var(--border);
+    }
+    .cd-item-img { width:66px; height:80px; object-fit:cover; flex-shrink:0; }
+    .cd-item-name  { font-family:var(--serif); font-size:15px; }
+    .cd-item-size  { font-size:11px; color:var(--muted); margin-top:2px; }
+    .cd-item-price { font-size:12px; color:var(--accent); margin-top:4px; }
+    .cd-item-rm {
+      background:none; border:none; color:var(--muted); font-size:17px;
+      cursor:pointer; margin-left:auto; align-self:flex-start; transition:color .2s;
+    }
+    .cd-item-rm:hover { color:var(--red); }
+    .cd-foot { padding:16px 22px; border-top:1px solid var(--border); }
+    .cd-subtotal { display:flex; justify-content:space-between; margin-bottom:14px; font-size:13px; }
+    .cd-subtotal span:last-child { font-family:var(--serif); font-size:19px; color:var(--accent); }
+    .pay-btn {
+      width:100%; padding:14px; border:none; cursor:pointer;
+      font-family:var(--sans); font-size:10px; font-weight:700;
+      letter-spacing:.18em; text-transform:uppercase;
+      display:flex; align-items:center; justify-content:center; gap:8px;
+      margin-bottom:9px; transition:background .22s;
+    }
+    .pay-mp { background:var(--accent); color:var(--bg); }
+    .pay-mp:hover { background:var(--adk); }
+    .pay-wa { background:#25d366; color:#fff; }
+    .pay-wa:hover { background:#1dbd5c; }
+    
+    /* Toast */
+    .cart-toast {
+      position:fixed; bottom:28px; left:50%; transform:translateX(-50%) translateY(60px);
+      background:var(--surface); border:1px solid var(--accent); color:var(--text);
+      padding:12px 22px; font-size:13px; display:flex; align-items:center; gap:9px;
+      z-index:600; opacity:0; white-space:nowrap; pointer-events:none;
+      transition:transform .4s var(--ease), opacity .3s;
+    }
+    .cart-toast.show { transform:translateX(-50%) translateY(0); opacity:1; }
+    .cart-toast i { color:var(--accent); }
+    
+    /* Guía de talles modal */
+    .qv-backdrop {
+      position:fixed; inset:0; background:rgba(0,0,0,.72);
+      z-index:501; opacity:0; pointer-events:none; transition:opacity .3s;
+    }
+    .qv-backdrop.open { opacity:1; pointer-events:all; }
+    .sg-modal {
+      position:fixed; top:50%; left:50%; z-index:502;
+      width:min(580px,96vw); max-height:90vh; overflow-y:auto;
+      background:var(--surface); border:1px solid var(--border);
+      transform:translate(-50%,-52%) scale(.97);
+      opacity:0; pointer-events:none;
+      transition:transform .35s var(--ease), opacity .3s;
+      padding:32px 28px;
+    }
+    .sg-modal.open { transform:translate(-50%,-50%) scale(1); opacity:1; pointer-events:all; }
+    .sg-modal h2 { font-family:var(--serif); font-size:24px; font-weight:400; margin-bottom:20px; }
+    .sg-table { width:100%; border-collapse:collapse; font-size:13px; margin-bottom:20px; }
+    .sg-table th { background:rgba(255,255,255,.05); padding:10px 14px; text-align:left; font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); border-bottom:1px solid var(--border); }
+    .sg-table td { padding:10px 14px; border-bottom:1px solid var(--border); }
+    .sg-close { position:absolute; top:14px; right:16px; background:none; border:1px solid var(--border); color:var(--text); cursor:pointer; width:30px; height:30px; border-radius:50%; display:grid; place-items:center; font-size:16px; transition:border-color .2s; }
+    .sg-close:hover { border-color:var(--accent); }
+    
+    /* Responsive */
     @media (max-width:900px) {
+      #header { padding:0 22px; }
       .product-page { grid-template-columns:1fr; padding:20px; }
       .gallery { position:static; }
       .related-grid { grid-template-columns:repeat(2,1fr); }
+      .breadcrumb { padding:24px 22px 0; }
+    }
+    @media (max-width:480px) {
+      .product-title { font-size:32px; }
+      .related-grid { grid-template-columns:1fr; }
+      .action-buttons { flex-direction:column; }
     }
   </style>
 </head>
 <body>
 
 <header id="header">
-  <a href="index.html"><img src="images/logo.png" alt="Bara & Co" style="height:52px;"/></a>
+  <a href="index.html"><img src="images/logo.png" alt="Bara & Co" class="logo-img"/></a>
   <nav class="header-nav">
     <ul>
       <li><a href="index.html">Inicio</a></li>
@@ -207,7 +347,7 @@
     </ul>
   </nav>
   <div class="header-icons">
-    <i class="fas fa-search"></i>
+    <i class="fas fa-search" onclick="window.location.href='tienda.html'"></i>
     <div class="cart-icon-wrap" onclick="toggleCart()">
       <i class="fas fa-shopping-bag"></i>
       <span class="cart-badge" id="cartBadge">0</span>
@@ -217,14 +357,14 @@
 
 <!-- Breadcrumb -->
 <div class="breadcrumb">
-  <a href="index.html">Inicio</a> / <a href="tienda.html">Tienda</a> / <span id="breadcrumbCat">Categoría</span> / <span id="breadcrumbName">Producto</span>
+  <a href="index.html">Inicio</a> / <a href="tienda.html">Tienda</a> / <span id="breadcrumbCat"></span> / <span id="breadcrumbName"></span>
 </div>
 
 <!-- Página de producto -->
 <div class="product-page">
   <!-- Galería -->
   <div class="gallery">
-    <div class="main-image" id="mainImage">
+    <div class="main-image" id="mainImage" onclick="openImageModal()">
       <img src="" alt="" id="currentImage"/>
     </div>
     <div class="thumbnails" id="thumbnails"></div>
@@ -235,7 +375,7 @@
     <p class="product-category" id="productCategory"></p>
     <h1 class="product-title" id="productName"></h1>
     <div class="product-price" id="productPrice"></div>
-    <p class="product-description" id="productDescription">Prenda de alta calidad, diseño exclusivo Bara & Co. Consultá disponibilidad de talles.</p>
+    <p class="product-description" id="productDescription"></p>
     
     <!-- Selector de talle -->
     <div class="size-label">
@@ -244,9 +384,11 @@
     </div>
     <div class="size-options" id="sizeOptions"></div>
     
-    <!-- Selector de color (opcional) -->
-    <div class="size-label">COLOR</div>
-    <div class="color-options" id="colorOptions"></div>
+    <!-- Selector de color -->
+    <div id="colorSection" style="display:none;">
+      <div class="color-label">COLOR</div>
+      <div class="color-options" id="colorOptions"></div>
+    </div>
     
     <!-- Botones -->
     <div class="action-buttons">
@@ -273,12 +415,17 @@
   </div>
 </div>
 
+<!-- Modal imagen ampliada -->
+<div class="image-modal" id="imageModal" onclick="closeImageModal()">
+  <button class="modal-close">×</button>
+  <img src="" alt="" class="modal-img" id="modalImage"/>
+</div>
+
 <!-- Guía de talles modal -->
 <div class="qv-backdrop" id="sgBackdrop" onclick="closeSizeGuide()"></div>
 <div class="sg-modal" id="sgModal">
   <button class="sg-close" onclick="closeSizeGuide()">×</button>
   <h2>Guía de Talles</h2>
-  <p style="font-size:13px;color:var(--muted);margin-bottom:20px;">Medite el contorno de pecho, cintura y cadera para elegir el talle correcto.</p>
   <h4 style="font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;">Ropa Hombre</h4>
   <table class="sg-table">
     <thead><tr><th>Talle</th><th>Pecho (cm)</th><th>Cintura (cm)</th><th>Cadera (cm)</th></tr></thead>
@@ -301,263 +448,318 @@
   </table>
 </div>
 
-<!-- Carrito drawer (igual que en tienda) -->
+<!-- Cart drawer -->
 <div class="cart-backdrop" id="cartBackdrop" onclick="toggleCart()"></div>
 <div class="cart-drawer" id="cartDrawer">
-  <!-- ... mismo contenido que en tienda.html ... -->
   <div class="cd-head">
     <h2 class="cd-title">Carrito</h2>
     <button class="cd-close" onclick="toggleCart()">×</button>
   </div>
   <div class="cd-body" id="cdBody">
-    <div class="cd-empty">Tu carrito está vacío</div>
+    <div class="cd-empty" id="cdEmpty">Tu carrito está vacío</div>
   </div>
   <div class="cd-foot">
     <div class="cd-subtotal"><span>Subtotal</span><span id="cdTotal">$0</span></div>
-    <button class="pay-btn pay-mp" onclick="pagarMP()">Pagar con MercadoPago</button>
-    <button class="pay-btn pay-wa" onclick="pagarWA()">Solicitar por WhatsApp</button>
+    <button class="pay-btn pay-mp" onclick="pagarMP()">
+      <i class="fab fa-cc-visa"></i> Pagar con MercadoPago
+    </button>
+    <button class="pay-btn pay-wa" onclick="pagarWA()">
+      <i class="fab fa-whatsapp"></i> Solicitar por WhatsApp
+    </button>
+    <p class="pay-info"><i class="fas fa-lock"></i> Pago seguro</p>
   </div>
 </div>
 
+<!-- Toast -->
+<div class="cart-toast" id="cartToast"><i class="fas fa-check-circle"></i> Producto agregado al carrito</div>
+
 <script>
-// ========== CARGA DE DATOS DEL PRODUCTO ==========
+// ========== VARIABLES GLOBALES ==========
+let productos = [];
 let currentProduct = null;
 let selectedSize = null;
 let selectedColor = null;
 let cart = JSON.parse(localStorage.getItem('bc_cart') || '[]');
 
-// Obtener ID del producto de la URL (?id=nombre-del-producto)
+// Obtener ID del producto de la URL
 const urlParams = new URLSearchParams(window.location.search);
-const productId = urlParams.get('id') || 'campera-jean-clasica';
+const productId = urlParams.get('id');
 
-// Base de datos de productos (simulada - después podemos cargar desde JSON)
-const productDatabase = {
-  'campera-jean-clasica': {
-    id: 'campera-jean-clasica',
-    name: 'Campera JEAN clásica',
-    price: 75000,
-    oldPrice: null,
-    category: 'new hombre',
-    categoryLabel: 'New Collection · Hombre',
-    description: 'Campera de jean clásica, corte recto, lavado medio. Ideal para looks urbanos. Composición: 98% algodón, 2% elastano.',
-    images: [
-      'https://d22fxaf9t8d39k.cloudfront.net/d96714644466596d09ed9ffb84226e2b318859a866be9604788cf4154aa52650404368.jpg',
-      'https://d22fxaf9t8d39k.cloudfront.net/d96714644466596d09ed9ffb84226e2b318859a866be9604788cf4154aa52650404368.jpg'
-    ],
-    sizes: ['S', 'M', 'L', 'XL'],
-    colors: ['Azul', 'Negro'],
-    colorCodes: ['#0066cc', '#000000']
-  },
-  'sastrero-rialto': {
-    id: 'sastrero-rialto',
-    name: 'Sastrero RIALTO',
-    price: 70000,
-    oldPrice: null,
-    category: 'new hombre',
-    categoryLabel: 'New Collection · Hombre',
-    description: 'Sastrero de lino, corte moderno, ideal para ocasiones especiales o looks elegantes.',
-    images: ['https://d22fxaf9t8d39k.cloudfront.net/82f0a5682cfeff36ae17af15cd408edaedc84e200eed095f5d3ac7d84b92d4ab404368.jpg'],
-    sizes: ['S', 'M', 'L'],
-    colors: ['Beige', 'Gris'],
-    colorCodes: ['#f5f5dc', '#808080']
-  },
-  'abanico-orgullo': {
-    id: 'abanico-orgullo',
-    name: 'Abanico ORGULLO',
-    price: 20000,
-    oldPrice: null,
-    category: 'accesorios',
-    categoryLabel: 'Accesorios · Abanicos',
-    description: 'Abanico plegable con diseño exclusivo ORGULLO. Ideal para el verano.',
-    images: ['https://d22fxaf9t8d39k.cloudfront.net/d7bb9acf8f5ca09e741eac41c71f65a1a789da46d32346dbcc8da085b6888a8b404368.jpg'],
-    sizes: ['Único'],
-    colors: ['Multicolor'],
-    colorCodes: ['#ff69b4']
-  }
-};
-
-// Cargar producto
-function loadProduct() {
-  const product = productDatabase[productId];
-  if (!product) {
+// ========== CARGAR PRODUCTOS ==========
+async function cargarProductos() {
+  try {
+    const response = await fetch('productos.json?t=' + Date.now());
+    if (!response.ok) throw new Error('No se pudo cargar productos.json');
+    productos = await response.json();
+    
+    // Buscar producto actual
+    currentProduct = productos.find(p => p.id === productId && p.activo !== false);
+    
+    if (!currentProduct) {
+      // Producto no encontrado, redirigir a tienda
+      window.location.href = 'tienda.html';
+      return;
+    }
+    
+    renderizarProducto();
+    cargarRelacionados();
+    
+  } catch (error) {
+    console.error('Error:', error);
     window.location.href = 'tienda.html';
-    return;
   }
+}
+
+// ========== RENDERIZAR PRODUCTO ==========
+function renderizarProducto() {
+  // Breadcrumb
+  document.getElementById('breadcrumbCat').textContent = currentProduct.categoria;
+  document.getElementById('breadcrumbName').textContent = currentProduct.nombre;
   
-  currentProduct = product;
-  
-  // Actualizar breadcrumb
-  document.getElementById('breadcrumbCat').textContent = product.categoryLabel.split('·')[0].trim();
-  document.getElementById('breadcrumbName').textContent = product.name;
-  
-  // Imagen principal
-  document.getElementById('currentImage').src = product.images[0];
-  document.getElementById('currentImage').alt = product.name;
+  // Imágenes
+  const imagenes = currentProduct.imagenes || [currentProduct.imagen];
+  document.getElementById('currentImage').src = imagenes[0];
+  document.getElementById('currentImage').alt = currentProduct.nombre;
   
   // Thumbnails
   const thumbs = document.getElementById('thumbnails');
   thumbs.innerHTML = '';
-  product.images.forEach((img, index) => {
+  imagenes.forEach((img, index) => {
     const thumb = document.createElement('div');
-    thumb.className = 'thumb';
-    thumb.innerHTML = `<img src="${img}" alt="${product.name}" onclick="changeImage(${index})">`;
+    thumb.className = 'thumb' + (index === 0 ? ' active' : '');
+    thumb.innerHTML = `<img src="${img}" alt="${currentProduct.nombre}" onclick="cambiarImagen(${index})">`;
     thumbs.appendChild(thumb);
   });
   
-  // Info
-  document.getElementById('productCategory').textContent = product.categoryLabel;
-  document.getElementById('productName').textContent = product.name;
+  // Info básica
+  document.getElementById('productCategory').textContent = 
+    `${currentProduct.categoria} · ${currentProduct.subcategoria || ''}`;
+  document.getElementById('productName').textContent = currentProduct.nombre;
   
+  // Precio
   const priceEl = document.getElementById('productPrice');
-  if (product.oldPrice) {
-    priceEl.innerHTML = `<del>$${product.oldPrice.toLocaleString('es-AR')}</del> $${product.price.toLocaleString('es-AR')}`;
+  if (currentProduct.precioAnterior) {
+    const descuento = Math.round((1 - currentProduct.precio / currentProduct.precioAnterior) * 100);
+    priceEl.innerHTML = `
+      <del>$${currentProduct.precioAnterior.toLocaleString('es-AR')}</del> 
+      $${currentProduct.precio.toLocaleString('es-AR')}
+      <span style="background:var(--red);color:#fff;font-size:14px;padding:3px 8px;margin-left:10px;">-${descuento}%</span>
+    `;
   } else {
-    priceEl.textContent = '$' + product.price.toLocaleString('es-AR');
+    priceEl.textContent = '$' + currentProduct.precio.toLocaleString('es-AR');
   }
   
-  document.getElementById('productDescription').textContent = product.description;
+  // Descripción
+  document.getElementById('productDescription').textContent = 
+    currentProduct.descripcion || 'Prenda de alta calidad, diseño exclusivo Bara & Co. Consultá disponibilidad de talles.';
   
   // Talles
+  const talles = currentProduct.tallesDisponibles || currentProduct.talles || [];
   const sizeOptions = document.getElementById('sizeOptions');
   sizeOptions.innerHTML = '';
-  product.sizes.forEach(size => {
+  
+  talles.forEach(talle => {
     const btn = document.createElement('button');
     btn.className = 'size-btn';
-    btn.textContent = size;
-    btn.onclick = () => selectSize(size, btn);
+    btn.textContent = talle;
+    btn.onclick = () => seleccionarTalle(talle, btn);
     sizeOptions.appendChild(btn);
   });
   
-  // Colores
-  if (product.colors && product.colors.length > 0) {
+  // Colores (si existen)
+  if (currentProduct.colores && currentProduct.colores.length > 0) {
+    document.getElementById('colorSection').style.display = 'block';
     const colorOptions = document.getElementById('colorOptions');
     colorOptions.innerHTML = '';
-    product.colors.forEach((color, index) => {
+    
+    currentProduct.colores.forEach((color, index) => {
       const btn = document.createElement('button');
       btn.className = 'color-btn';
-      btn.style.backgroundColor = product.colorCodes[index] || '#ccc';
+      btn.style.backgroundColor = getColorCode(color);
       btn.title = color;
-      btn.onclick = () => selectColor(color, btn);
+      btn.onclick = () => seleccionarColor(color, btn);
       colorOptions.appendChild(btn);
     });
   }
+}
+
+// ========== FUNCIONES DE INTERACCIÓN ==========
+function cambiarImagen(index) {
+  const imagenes = currentProduct.imagenes || [currentProduct.imagen];
+  document.getElementById('currentImage').src = imagenes[index];
   
-  // Productos relacionados (simulados)
-  loadRelatedProducts(product.category);
+  // Actualizar active en thumbnails
+  document.querySelectorAll('.thumb').forEach((thumb, i) => {
+    thumb.classList.toggle('active', i === index);
+  });
 }
 
-function changeImage(index) {
-  document.getElementById('currentImage').src = currentProduct.images[index];
-}
-
-function selectSize(size, btn) {
+function seleccionarTalle(talle, btn) {
   document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
-  selectedSize = size;
+  selectedSize = talle;
 }
 
-function selectColor(color, btn) {
+function seleccionarColor(color, btn) {
   document.querySelectorAll('.color-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
   selectedColor = color;
 }
 
-function loadRelatedProducts(category) {
-  const related = document.getElementById('relatedProducts');
-  const cat = category.split(' ')[0]; // 'new' o 'hombre' etc
-  
-  const relatedItems = Object.values(productDatabase)
-    .filter(p => p.category.includes(cat) && p.id !== productId)
-    .slice(0, 4);
-  
-  related.innerHTML = '';
-  relatedItems.forEach(p => {
-    const card = document.createElement('div');
-    card.className = 'related-card';
-    card.onclick = () => window.location.href = `producto.html?id=${p.id}`;
-    card.innerHTML = `
-      <img src="${p.images[0]}" alt="${p.name}"/>
-      <div style="padding:12px;">
-        <div style="font-size:13px;">${p.name}</div>
-        <div style="color:var(--accent);">$${p.price.toLocaleString('es-AR')}</div>
-      </div>
-    `;
-    related.appendChild(card);
-  });
+function getColorCode(color) {
+  const colores = {
+    'Negro': '#000000',
+    'Blanco': '#FFFFFF',
+    'Azul': '#0066cc',
+    'Rojo': '#cc0000',
+    'Verde': '#00cc66',
+    'Amarillo': '#ffcc00',
+    'Gris': '#808080',
+    'Beige': '#f5f5dc',
+    'Camel': '#c19a6b',
+    'Mostaza': '#ffdb58',
+    'Lila': '#c8a2c8',
+    'Fucsia': '#ff00ff',
+    'Arena': '#f4e9d8',
+    'Multicolor': 'linear-gradient(45deg, red, orange, yellow, green, blue, indigo, violet)'
+  };
+  return colores[color] || '#cccccc';
 }
 
-// ========== CARRITO ==========
-function saveCart() { localStorage.setItem('bc_cart', JSON.stringify(cart)); renderCart(); }
-
-function toggleCart() {
-  document.getElementById('cartDrawer').classList.toggle('open');
-  document.getElementById('cartBackdrop').classList.toggle('open');
-}
-
-function addToCart() {
-  if (!selectedSize) {
+// ========== AGREGAR AL CARRITO ==========
+function agregarAlCarrito() {
+  // Verificar que se haya seleccionado talle (si aplica)
+  const talles = currentProduct.tallesDisponibles || currentProduct.talles || [];
+  if (talles.length > 0 && talles[0] !== 'Unico' && !selectedSize) {
     alert('Por favor seleccioná un talle');
     return;
   }
   
   const item = {
     id: currentProduct.id,
-    name: currentProduct.name,
-    price: currentProduct.price,
-    size: selectedSize,
+    nombre: currentProduct.nombre,
+    precio: currentProduct.precio,
+    talle: selectedSize || talles[0] || 'Único',
     color: selectedColor || null,
-    img: currentProduct.images[0],
+    imagen: currentProduct.imagen,
     qty: 1
   };
   
-  const found = cart.find(i => i.id === item.id && i.size === item.size);
-  if (found) found.qty++;
-  else cart.push(item);
+  // Buscar si ya existe en carrito (mismo producto y mismo talle)
+  const existing = cart.find(i => i.id === item.id && i.talle === item.talle);
+  if (existing) {
+    existing.qty++;
+  } else {
+    cart.push(item);
+  }
   
   saveCart();
   toggleCart();
   showToast();
 }
 
-function showToast() {
-  const t = document.getElementById('cartToast');
-  if (!t) {
-    const toast = document.createElement('div');
-    toast.className = 'cart-toast';
-    toast.id = 'cartToast';
-    toast.innerHTML = '<i class="fas fa-check-circle"></i> Producto agregado al carrito';
-    document.body.appendChild(toast);
-    setTimeout(() => {
-      toast.classList.add('show');
-      setTimeout(() => toast.classList.remove('show'), 2400);
-    }, 10);
-  } else {
-    t.classList.add('show');
-    setTimeout(() => t.classList.remove('show'), 2400);
-  }
+// ========== FUNCIONES DE CARRITO ==========
+function saveCart() { 
+  localStorage.setItem('bc_cart', JSON.stringify(cart)); 
+  renderCart();
+}
+
+function toggleCart() {
+  document.getElementById('cartDrawer').classList.toggle('open');
+  document.getElementById('cartBackdrop').classList.toggle('open');
 }
 
 function renderCart() {
+  const body = document.getElementById('cdBody');
+  const empty = document.getElementById('cdEmpty');
   const badge = document.getElementById('cartBadge');
-  const total = document.getElementById('cdTotal');
-  const cnt = cart.reduce((s,i) => s+i.qty, 0);
-  const sum = cart.reduce((s,i) => s+i.price*i.qty, 0);
+  const totalEl = document.getElementById('cdTotal');
+  
+  const cnt = cart.reduce((s,i) => s + i.qty, 0);
+  const sum = cart.reduce((s,i) => s + i.precio * i.qty, 0);
+  
   badge.textContent = cnt;
   badge.classList.toggle('on', cnt > 0);
-  total.textContent = '$' + sum.toLocaleString('es-AR');
+  totalEl.textContent = '$' + sum.toLocaleString('es-AR');
+  
+  // Limpiar items anteriores
+  document.querySelectorAll('.cd-item').forEach(el => el.remove());
+  
+  empty.style.display = cart.length ? 'none' : 'block';
+  
+  cart.forEach(item => {
+    const el = document.createElement('div');
+    el.className = 'cd-item';
+    el.innerHTML = `
+      <img class="cd-item-img" src="${item.imagen}" alt="${item.nombre}"/>
+      <div style="flex:1">
+        <div class="cd-item-name">${item.nombre}</div>
+        <div class="cd-item-size">Talle: ${item.talle}</div>
+        <div class="cd-item-price">$${(item.precio * item.qty).toLocaleString('es-AR')}</div>
+        <div style="font-size:11px;color:var(--muted);margin-top:4px;">Cant: ${item.qty}</div>
+      </div>
+      <button class="cd-item-rm" onclick="eliminarDelCarrito('${item.id}', '${item.talle}')">×</button>
+    `;
+    body.appendChild(el);
+  });
+}
+
+function eliminarDelCarrito(id, talle) {
+  cart = cart.filter(i => !(i.id === id && i.talle === talle));
+  saveCart();
+}
+
+function showToast() {
+  const t = document.getElementById('cartToast');
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2400);
 }
 
 function pagarWA() {
   if (!cart.length) return;
-  const lines = cart.map(i => `• ${i.name} (Talle ${i.size})${i.qty>1?' x'+i.qty:''} — $${(i.price*i.qty).toLocaleString('es-AR')}`).join('%0A');
-  const total = cart.reduce((s,i) => s+i.price*i.qty, 0);
+  const lines = cart.map(i => `• ${i.nombre} (Talle ${i.talle})${i.qty > 1 ? ' x' + i.qty : ''} — $${(i.precio * i.qty).toLocaleString('es-AR')}`).join('%0A');
+  const total = cart.reduce((s,i) => s + i.precio * i.qty, 0);
   window.open(`https://wa.me/5493525614281?text=Hola!%20Quiero%20hacer%20el%20siguiente%20pedido:%0A${lines}%0A%0ATotal:%20$${total.toLocaleString('es-AR')}`, '_blank');
 }
 
 function pagarMP() {
   if (!cart.length) return;
-  const total = cart.reduce((s,i) => s+i.price*i.qty, 0);
+  const total = cart.reduce((s,i) => s + i.precio * i.qty, 0);
   window.open(`https://link.mercadopago.com.ar/baraandco?amount=${total}`, '_blank');
+}
+
+// ========== PRODUCTOS RELACIONADOS ==========
+function cargarRelacionados() {
+  const relacionados = productos
+    .filter(p => p.categoria === currentProduct.categoria && p.id !== currentProduct.id)
+    .slice(0, 4);
+  
+  const grid = document.getElementById('relatedProducts');
+  grid.innerHTML = '';
+  
+  relacionados.forEach(p => {
+    const card = document.createElement('div');
+    card.className = 'related-card';
+    card.onclick = () => window.location.href = `producto.html?id=${p.id}`;
+    card.innerHTML = `
+      <img src="${p.imagen}" alt="${p.nombre}"/>
+      <div class="related-info">
+        <div class="related-name">${p.nombre}</div>
+        <div class="related-price">$${p.precio.toLocaleString('es-AR')}</div>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+// ========== MODAL IMAGEN ==========
+function openImageModal() {
+  document.getElementById('imageModal').classList.add('open');
+  document.getElementById('modalImage').src = document.getElementById('currentImage').src;
+}
+
+function closeImageModal() {
+  document.getElementById('imageModal').classList.remove('open');
 }
 
 // ========== GUÍA DE TALLES ==========
@@ -575,19 +777,26 @@ function closeSizeGuide() {
 
 // ========== INICIALIZACIÓN ==========
 document.addEventListener('DOMContentLoaded', () => {
-  loadProduct();
+  cargarProductos();
   renderCart();
   
-  document.getElementById('addToCartBtn').addEventListener('click', addToCart);
+  document.getElementById('addToCartBtn').addEventListener('click', agregarAlCarrito);
   document.getElementById('whatsappBtn').addEventListener('click', () => {
-    const msg = `Hola! Quiero consultar por *${currentProduct?.name}*`;
+    const msg = `Hola! Quiero consultar por *${currentProduct?.nombre}*`;
     window.open(`https://wa.me/5493525614281?text=${encodeURIComponent(msg)}`, '_blank');
+  });
+  
+  // Cerrar modales con Escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      closeSizeGuide();
+      closeImageModal();
+      if (document.getElementById('cartDrawer').classList.contains('open')) {
+        toggleCart();
+      }
+    }
   });
 });
 </script>
-
-<!-- Toast -->
-<div class="cart-toast" id="cartToast" style="position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(60px);background:var(--surface);border:1px solid var(--accent);color:var(--text);padding:12px 22px;z-index:700;opacity:0;transition:all .4s;"><i class="fas fa-check-circle"></i> Producto agregado al carrito</div>
-
 </body>
 </html>
