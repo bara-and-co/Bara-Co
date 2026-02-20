@@ -1056,9 +1056,9 @@
     "precioAnterior": null,
     "categoria": "accesorios",
     "subcategoria": "Abanicos",
-    "imagen": "https://d22fxaf9t8d39k.cloudfront.net/d7bb9acf8f5ca09e741eac41c71f65a1a789da46d32346dbcc8da085b6888a8b404368.jpg",
+    "imagen": "accesorios/AbanicoOrgullo.png",
     "imagenes": [
-      "https://d22fxaf9t8d39k.cloudfront.net/d7bb9acf8f5ca09e741eac41c71f65a1a789da46d32346dbcc8da085b6888a8b404368.jpg"
+      "accesorios/AbanicoOrgullo.png"
     ],
     "descripcion": "",
     "composicion": "",
@@ -1086,9 +1086,9 @@
     "precioAnterior": null,
     "categoria": "accesorios",
     "subcategoria": "Abanicos",
-    "imagen": "https://d22fxaf9t8d39k.cloudfront.net/eed069dcbb94dd317b2fec3eef483d8f2755eced6906f337408a75fb921645d7404368.png",
+    "imagen": "accesorios/AbanicoMusic.png",
     "imagenes": [
-      "https://d22fxaf9t8d39k.cloudfront.net/eed069dcbb94dd317b2fec3eef483d8f2755eced6906f337408a75fb921645d7404368.png"
+      "accesorios/AbanicoMusic.png"
     ],
     "descripcion": "",
     "composicion": "",
@@ -1116,9 +1116,9 @@
     "precioAnterior": null,
     "categoria": "accesorios",
     "subcategoria": "Abanicos",
-    "imagen": "https://d22fxaf9t8d39k.cloudfront.net/bf1a40912234085e30e0712306b486975b1a87d394e8c747e3ac36dc6bae03ae404368.png",
+    "imagen": "accesorios/AbanicoAire.png",
     "imagenes": [
-      "https://d22fxaf9t8d39k.cloudfront.net/bf1a40912234085e30e0712306b486975b1a87d394e8c747e3ac36dc6bae03ae404368.png"
+      "accesorios/AbanicoAire.png"
     ],
     "descripcion": "",
     "composicion": "",
@@ -1146,9 +1146,9 @@
     "precioAnterior": null,
     "categoria": "accesorios",
     "subcategoria": "Abanicos",
-    "imagen": "https://d22fxaf9t8d39k.cloudfront.net/cfca7c5ddfaf88d6123e72fc5172f9261777138f76401fcec8fe176d15dbc8bf404368.png",
+    "imagen": "accesorios/AbanicoAlien.png",
     "imagenes": [
-      "https://d22fxaf9t8d39k.cloudfront.net/cfca7c5ddfaf88d6123e72fc5172f9261777138f76401fcec8fe176d15dbc8bf404368.png"
+      "accesorios/AbanicoAlien.png"
     ],
     "descripcion": "",
     "composicion": "",
@@ -1206,9 +1206,9 @@
     "precioAnterior": null,
     "categoria": "accesorios",
     "subcategoria": "Abanicos",
-    "imagen": "https://d22fxaf9t8d39k.cloudfront.net/a06deeb3a1ab8a9e2ed2f4ca672a71d0967aea3913f163ba3d75e5bf2e3cfdae404368.png",
+    "imagen": "accesorios/AbanicoGoaway.png",
     "imagenes": [
-      "https://d22fxaf9t8d39k.cloudfront.net/a06deeb3a1ab8a9e2ed2f4ca672a71d0967aea3913f163ba3d75e5bf2e3cfdae404368.png"
+      "accesorios/AbanicoGoaway.png"
     ],
     "descripcion": "",
     "composicion": "",
@@ -1236,9 +1236,9 @@
     "precioAnterior": null,
     "categoria": "accesorios",
     "subcategoria": "Abanicos",
-    "imagen": "https://d22fxaf9t8d39k.cloudfront.net/d44f11a64a90f743bdd55e29fd5369263b6eb5f5924e845ffe614383f5b9ef88404368.png",
+    "imagen": "accesorios/AbanicoMañana.png",
     "imagenes": [
-      "https://d22fxaf9t8d39k.cloudfront.net/d44f11a64a90f743bdd55e29fd5369263b6eb5f5924e845ffe614383f5b9ef88404368.png"
+      "accesorios/AbanicoMañana.png"
     ],
     "descripcion": "",
     "composicion": "",
@@ -1326,9 +1326,9 @@
     "precioAnterior": null,
     "categoria": "accesorios",
     "subcategoria": "Abanicos",
-    "imagen": "https://d22fxaf9t8d39k.cloudfront.net/602828e185d5b296beaf4da7c288ac70c160eed1da1512ca6f9bd6b7c0cd217a404368.png",
+    "imagen": "accesorios/AbanicoNeon.png",
     "imagenes": [
-      "https://d22fxaf9t8d39k.cloudfront.net/602828e185d5b296beaf4da7c288ac70c160eed1da1512ca6f9bd6b7c0cd217a404368.png"
+      "accesorios/AbanicoNeon.png"
     ],
     "descripcion": "",
     "composicion": "",
@@ -1476,9 +1476,9 @@
     "precioAnterior": null,
     "categoria": "accesorios",
     "subcategoria": "Colgantes",
-    "imagen": "https://d22fxaf9t8d39k.cloudfront.net/e20f175cebb5c57b7a2ce30a8ef7975d9923aedec4b9b7d34dd216d46972d7f1404368.jpg",
+    "imagen": "accesorios/CollarSnake.png",
     "imagenes": [
-      "https://d22fxaf9t8d39k.cloudfront.net/e20f175cebb5c57b7a2ce30a8ef7975d9923aedec4b9b7d34dd216d46972d7f1404368.jpg"
+      "accesorios/CollarSnake.png"
     ],
     "descripcion": "",
     "composicion": "",
