@@ -122,6 +122,13 @@
     .badge-hom { background:var(--blue); color:#fff; }
     .badge-muj { background:var(--purple); color:#fff; }
     .badge-acc { background:var(--green); color:#fff; }
+    .badge-lentes { background:#4a6fa5; color:#fff; }      /* Nuevo */
+    .badge-bijou { background:#d4af37; color:#fff; }      /* Nuevo */
+    .badge-billeteras { background:#8b5a2b; color:#fff; } /* Nuevo */
+    .badge-medias { background:#cd5c5c; color:#fff; }     /* Nuevo */
+    .badge-boxers { background:#2e8b57; color:#fff; }     /* Nuevo */
+    .badge-zapatillas { background:#4682b4; color:#fff; } /* Nuevo */
+    
     .disc-badge {
       position:absolute; top:10px; right:10px; z-index:2;
       background:var(--red); color:#fff; font-size:9px; font-weight:700; padding:3px 7px; border-radius:4px;
@@ -506,6 +513,13 @@
       <div class="cat-tab" onclick="setFilter(this,'hombre')">👔 Hombre</div>
       <div class="cat-tab" onclick="setFilter(this,'mujer')">👗 Mujer</div>
       <div class="cat-tab" onclick="setFilter(this,'accesorios')">👜 Accesorios</div>
+      <!-- NUEVAS CATEGORÍAS DENTRO DE ACCESORIOS -->
+      <div class="cat-tab" onclick="setFilter(this,'lentes')">🕶️ Lentes</div>
+      <div class="cat-tab" onclick="setFilter(this,'bijouterie')">💍 Bijouterie</div>
+      <div class="cat-tab" onclick="setFilter(this,'billeteras')">👝 Billeteras</div>
+      <div class="cat-tab" onclick="setFilter(this,'medias')">🧦 Medias</div>
+      <div class="cat-tab" onclick="setFilter(this,'boxers')">🩲 Boxers</div>
+      <div class="cat-tab" onclick="setFilter(this,'zapatillas')">👟 Zapatillas</div>
       <div class="cat-tab" onclick="setFilter(this,'sale')">🏷️ Sale</div>
     </div>
   </div>
@@ -562,9 +576,21 @@
             <option value="Buzos">Buzos</option>
             <option value="Conjuntos">Conjuntos</option>
             <option value="Bermudas">Bermudas</option>
+            <option value="Shorts">Shorts</option>
+            <option value="Polleras">Polleras</option>
+            <option value="Vestidos">Vestidos</option>
+            <!-- NUEVAS SUBCATEGORÍAS PARA ACCESORIOS -->
+            <option value="Lentes de sol">🕶️ Lentes de sol</option>
+            <option value="Bijouterie hombre">💍 Bijouterie hombre</option>
+            <option value="Bijouterie mujer">💍 Bijouterie mujer</option>
+            <option value="Billeteras">👝 Billeteras</option>
+            <option value="Medias">🧦 Medias</option>
+            <option value="Boxers">🩲 Boxers</option>
+            <option value="Zapatillas">👟 Zapatillas</option>
             <option value="Abanicos">Abanicos</option>
             <option value="Gorras">Gorras</option>
             <option value="Cintos">Cintos</option>
+            <option value="Pilusos">Pilusos</option>
           </select>
         </div>
       </div>
@@ -792,12 +818,35 @@ function renderGrid() {
   const grid = document.getElementById('prodGrid');
   grid.innerHTML = '';
 
-  const catMap = { new:'badge-new', hombre:'badge-hom', mujer:'badge-muj', accesorios:'badge-acc' };
-  const catLbl = { new:'New', hombre:'Hombre', mujer:'Mujer', accesorios:'Acces.' };
+  const catMap = { 
+    new:'badge-new', 
+    hombre:'badge-hom', 
+    mujer:'badge-muj', 
+    accesorios:'badge-acc',
+    lentes:'badge-lentes',
+    bijouterie:'badge-bijou',
+    billeteras:'badge-billeteras',
+    medias:'badge-medias',
+    boxers:'badge-boxers',
+    zapatillas:'badge-zapatillas'
+  };
+  
+  const catLbl = { 
+    new:'New', 
+    hombre:'Hombre', 
+    mujer:'Mujer', 
+    accesorios:'Acces.',
+    lentes:'Lentes',
+    bijouterie:'Bijou',
+    billeteras:'Bille.',
+    medias:'Medias',
+    boxers:'Boxers',
+    zapatillas:'Zapa.'
+  };
 
   let list = products.filter(p =>
     (!q || p.nombre.toLowerCase().includes(q)) &&
-    (!filterCat || (filterCat === 'sale' ? p.precioAnterior : p.categoria === filterCat))
+    (!filterCat || (filterCat === 'sale' ? p.precioAnterior : p.categoria === filterCat || p.subcategoria === filterCat))
   );
 
   if (filterCat === 'sale') list = list.filter(p => p.precioAnterior);
@@ -812,12 +861,38 @@ function renderGrid() {
       const tallesStr = p.tallesDisponibles?.slice(0,3).join(', ') + (p.tallesDisponibles?.length > 3 ? '...' : '');
       const colores = p.colores?.length || 0;
       
+      // Determinar badge según subcategoría para accesorios
+      let badgeCat = catMap[p.categoria] || 'badge-acc';
+      let labelCat = catLbl[p.categoria] || p.categoria;
+      
+      if (p.categoria === 'accesorios' && p.subcategoria) {
+        if (p.subcategoria.includes('Lentes')) {
+          badgeCat = 'badge-lentes';
+          labelCat = 'Lentes';
+        } else if (p.subcategoria.includes('Bijouterie')) {
+          badgeCat = 'badge-bijou';
+          labelCat = 'Bijou';
+        } else if (p.subcategoria.includes('Billetera')) {
+          badgeCat = 'badge-billeteras';
+          labelCat = 'Bille.';
+        } else if (p.subcategoria.includes('Media')) {
+          badgeCat = 'badge-medias';
+          labelCat = 'Medias';
+        } else if (p.subcategoria.includes('Boxer')) {
+          badgeCat = 'badge-boxers';
+          labelCat = 'Boxers';
+        } else if (p.subcategoria.includes('Zapatilla')) {
+          badgeCat = 'badge-zapatillas';
+          labelCat = 'Zapa.';
+        }
+      }
+      
       const el = document.createElement('div');
       el.className = 'prod-card' + (p.activo === false ? ' inactive' : '');
       el.dataset.id = p.id;
       el.innerHTML = `
         <div class="prod-img">
-          <span class="cat-badge ${catMap[p.categoria]||'badge-acc'}">${catLbl[p.categoria]||p.categoria}</span>
+          <span class="cat-badge ${badgeCat}">${labelCat}</span>
           ${disc?`<span class="disc-badge">-${disc}</span>`:''}
           <div class="prod-badges">
             ${tallesStr ? `<span class="mini-badge"><i class="fas fa-ruler"></i> ${tallesStr}</span>` : ''}
@@ -1090,9 +1165,9 @@ function updateSubcategorias() {
   const cat = document.getElementById('fCat').value;
   const subSelect = document.getElementById('fSub');
   const options = {
-    hombre: ['Camperas', 'Remeras', 'Pantalones', 'Buzos', 'Conjuntos', 'Bermudas'],
-    mujer: ['Remeras', 'Pantalones', 'Polleras', 'Vestidos', 'Camperas', 'Shorts'],
-    accesorios: ['Abanicos', 'Gorras', 'Cintos', 'Colgantes', 'Pilusos'],
+    hombre: ['Camperas', 'Remeras', 'Pantalones', 'Buzos', 'Conjuntos', 'Bermudas', 'Shorts'],
+    mujer: ['Remeras', 'Pantalones', 'Polleras', 'Vestidos', 'Camperas', 'Shorts', 'Conjuntos'],
+    accesorios: ['Abanicos', 'Gorras', 'Cintos', 'Pilusos', 'Lentes de sol', 'Bijouterie hombre', 'Bijouterie mujer', 'Billeteras', 'Medias', 'Boxers', 'Zapatillas'],
     new: ['Camperas', 'Remeras', 'Pantalones', 'Accesorios']
   };
   
@@ -1229,7 +1304,7 @@ function importFile(e) {
     if (file.name.endsWith('.json')) {
       try {
         const nuevos = JSON.parse(text);
-        products = productos;
+        products = nuevos;
         toast('Importado desde JSON');
       } catch(e) { toast('Error en JSON','err'); }
     } else {
