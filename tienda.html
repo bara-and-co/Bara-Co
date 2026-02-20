@@ -531,7 +531,6 @@
     .review-card-stars { color:var(--accent); font-size:11px; margin-bottom:8px; }
     .review-card-text { font-size:13px; line-height:1.6; color:var(--text); margin-bottom:10px; font-style:italic; }
     .review-card-author { font-size:11px; color:var(--muted); }
-    .review-card-product { font-size:10px; color:var(--accent); margin-top:4px; letter-spacing:.04em; }
 
     /* ── TRUST BADGES (debajo de filtros) ── */
     .trust-strip {
@@ -641,7 +640,7 @@
 
 <!-- ══ TRUST STRIP ══ -->
 <div class="trust-strip">
-  <div class="trust-item" style="background:rgba(201,169,110,.06);border-right:1px solid var(--border);"><i class="fas fa-truck" style="color:var(--accent)"></i><span style="color:var(--accent);font-weight:600;">Envío gratis desde $80.000</span></div>
+  <div class="trust-item"><i class="fas fa-truck"></i><span>Envíos a todo el país</span></div>
   <div class="trust-item"><i class="fas fa-shield-alt"></i><span>Compra segura</span></div>
   <div class="trust-item"><i class="fas fa-exchange-alt"></i><span>Cambios y devoluciones</span></div>
   <div class="trust-item"><i class="fab fa-whatsapp"></i><span>Atención por WhatsApp</span></div>
@@ -1304,25 +1303,21 @@
       <div class="review-card-stars">★★★★★</div>
       <p class="review-card-text">"La campera jean es una pasada, la calidad es excelente y llegó súper rápido. Ya la usé mil veces."</p>
       <p class="review-card-author">— Valentina M., Córdoba</p>
-      <p class="review-card-product">Campera JEAN clásica · Enero 2026</p>
     </div>
     <div class="review-card">
       <div class="review-card-stars">★★★★★</div>
       <p class="review-card-text">"Los abanicos son hermosos y únicos. Me llegaron perfectos y con mucho cuidado en el embalaje."</p>
       <p class="review-card-author">— Lucía T., Buenos Aires</p>
-      <p class="review-card-product">Abanico ORGULLO · Diciembre 2025</p>
     </div>
     <div class="review-card">
       <div class="review-card-stars">★★★★★</div>
       <p class="review-card-text">"Compré el conjunto de lino y quedé enamorado. El talle es perfecto, muy cómodo. 100% recomendable."</p>
       <p class="review-card-author">— Matías R., Jesús María</p>
-      <p class="review-card-product">Conjunto LINO · Noviembre 2025</p>
     </div>
     <div class="review-card">
       <div class="review-card-stars">★★★★★</div>
       <p class="review-card-text">"Me encantó la atención, respondieron rápido por WhatsApp y el envío fue puntual. Volveré a comprar."</p>
       <p class="review-card-author">— Sofía G., Villa María</p>
-      <p class="review-card-product">Sastrero RIALTO · Febrero 2026</p>
     </div>
   </div>
 </div>
@@ -1375,7 +1370,7 @@
   </div>
 </footer>
 <div class="foot-bot">
-  <span>© 2026 Bara & Co · CUIT · Ing. Olmos 139 – Jesús María · <a href="/cdn-cgi/l/email-protection#1e7c7f6c7f307f707a307d713074735e79737f7772307d7173"><span class="__cf_email__" data-cfemail="bcdeddcedd92ddd2d892dfd392d6d1fcdbd1ddd5d092dfd3d1">[email&#160;protected]</span></a></span>
+  <span>© 2026 Bara & Co · CUIT · Ing. Olmos 139 – Jesús María · <a href="mailto:bara.and.co.jm@gmail.com">bara.and.co.jm@gmail.com</a></span>
   <div class="foot-links">
     <a href="#">Términos y condiciones</a>
     <a href="#">Política de privacidad</a>
@@ -1451,16 +1446,6 @@
   </div>
   <div class="cd-foot">
     <div class="cd-subtotal"><span>Subtotal</span><span id="cdTotal">$0</span></div>
-    <!-- Barra progreso envío gratis -->
-    <div id="shippingBar" style="margin-bottom:14px;display:none;">
-      <div style="font-size:10px;color:var(--muted);margin-bottom:6px;display:flex;justify-content:space-between;">
-        <span id="shippingMsg">Agregá más para envío gratis</span>
-        <span style="color:var(--accent);" id="shippingAmt"></span>
-      </div>
-      <div style="height:3px;background:rgba(255,255,255,.08);border-radius:2px;">
-        <div id="shippingProgress" style="height:100%;background:var(--accent);border-radius:2px;transition:width .4s;width:0%"></div>
-      </div>
-    </div>
     <button class="pay-btn pay-mp" onclick="pagarMP()">
       <i class="fab fa-cc-visa"></i> Pagar con MercadoPago
     </button>
@@ -1471,7 +1456,7 @@
   </div>
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="js/carrito.js"></script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="js/carrito.js"></script>
 
 <script>
 /* ══ CARGA DINÁMICA DESDE productos.json ══ */
@@ -1595,36 +1580,8 @@ tabs.forEach(t => t.addEventListener('click', () => filterBy(t.dataset.f)));
 
 // Permite re-inicializar tras carga dinámica
 window._reInitFilters = () => {
-  tabs.forEach(t => t.removeEventListener('click', t._handler));
-  tabs.forEach(t => {
-    t._handler = () => filterBy(t.dataset.f);
-    t.addEventListener('click', t._handler);
-  });
-  // Re-aplicar filtro de URL si está activo
-  const urlCat = new URLSearchParams(window.location.search).get('categoria');
-  if (urlCat) filterByUrlParam(urlCat);
+  tabs.forEach(t => t.addEventListener('click', () => filterBy(t.dataset.f)));
 };
-
-/* ══ FILTRO POR PARÁMETRO DE URL ══
-   Activa automáticamente el filtro cuando se llega desde index.html
-   usando links como tienda.html?categoria=mujer
-*/
-function filterByUrlParam(cat) {
-  // Mapear parámetros de URL a valores de filtro
-  const mapCat = { mujer:'mujer', hombre:'hombre', accesorios:'accesorios', new:'new', sale:'sale', all:'all' };
-  const f = mapCat[cat.toLowerCase()] || 'all';
-  filterBy(f);
-}
-
-// Ejecutar al cargar la página
-document.addEventListener('DOMContentLoaded', function() {
-  const urlParams = new URLSearchParams(window.location.search);
-  const categoria = urlParams.get('categoria');
-  if (categoria) {
-    // Pequeño delay para que los productos dinámicos terminen de cargar
-    setTimeout(() => filterByUrlParam(categoria), 200);
-  }
-});
 
 /* ══ CART ══ */
 let cart = JSON.parse(localStorage.getItem('bc_cart') || '[]');
@@ -1670,28 +1627,6 @@ function renderCart() {
   total.textContent = '$' + sum.toLocaleString('es-AR');
   body.querySelectorAll('.cd-item').forEach(e => e.remove());
   empty.style.display = cart.length ? 'none' : 'block';
-
-  // Barra de envío gratis
-  const FREE_SHIP = 80000;
-  const shippingBar = document.getElementById('shippingBar');
-  if (shippingBar) {
-    if (cart.length > 0) {
-      shippingBar.style.display = 'block';
-      const pct = Math.min(100, (sum / FREE_SHIP) * 100);
-      document.getElementById('shippingProgress').style.width = pct + '%';
-      if (sum >= FREE_SHIP) {
-        document.getElementById('shippingMsg').textContent = '🎉 ¡Tenés envío gratis!';
-        document.getElementById('shippingAmt').textContent = '';
-      } else {
-        const falta = (FREE_SHIP - sum).toLocaleString('es-AR');
-        document.getElementById('shippingMsg').textContent = `Te faltan $${falta} para envío gratis`;
-        document.getElementById('shippingAmt').textContent = `${Math.round(pct)}%`;
-      }
-    } else {
-      shippingBar.style.display = 'none';
-    }
-  }
-
   cart.forEach(item => {
     const el = document.createElement('div');
     el.className = 'cd-item';
@@ -1844,4 +1779,12 @@ function closeSizeGuide() {
   document.body.style.overflow = '';
 }
 
-/* ══ S
+/* ══ SALE COUNT BADGE ══ */
+(function setSaleCount() {
+  const n = document.querySelectorAll('.prod-card[data-cat*="sale"]').length;
+  const el = document.getElementById('saleCount');
+  if (el && n > 0) el.textContent = n;
+})();
+</script>
+</body>
+</html>
