@@ -91,14 +91,14 @@
       display:grid; grid-template-columns:1fr 1fr;
       gap:40px; padding:40px 48px 80px;
       max-width:1400px; margin:0 auto;
+      align-items: start;
     }
     
     /* Galería */
     .gallery {
       position: sticky;
-      top: 100px;
-      align-self: flex-start;
-      height: fit-content;
+      top: 90px;
+      align-self: start;
     }
     
     .main-image {
@@ -274,10 +274,13 @@
     }
     .related-card {
       background:var(--surface); cursor:pointer; transition:transform .3s;
+      overflow: hidden;
     }
     .related-card:hover { transform:translateY(-4px); }
     .related-card img {
       aspect-ratio:3/4; object-fit:cover; width:100%;
+      display: block;
+      height: auto;
     }
     .related-info { padding:12px; }
     .related-name { font-size:14px; margin-bottom:4px; }
@@ -942,7 +945,7 @@
     
     <!-- Botones -->
     <div class="action-buttons">
-      <button class="btn btn-primary add-to-cart" id="addToCartBtn">
+      <button class="btn btn-primary" id="addToCartBtn" onclick="handleAgregarCarrito()">
         <i class="fas fa-shopping-bag"></i> AGREGAR AL CARRITO
       </button>
       <button class="btn btn-secondary" id="whatsappBtn">
@@ -1211,8 +1214,54 @@ function getColorCode(color) {
   return colores[color] || '#cccccc';
 }
 
-// ========== AGREGAR AL CARRITO (USANDO CARRITO.JS) ==========
-// El botón ya tiene data-atributos, el carrito.js se encarga
+// ========== AGREGAR AL CARRITO ==========
+function handleAgregarCarrito() {
+  if (!currentProduct) return;
+  
+  const nombre = currentProduct.nombre;
+  const precio = currentProduct.precio;
+  const imagen = currentProduct.imagen || (currentProduct.imagenes && currentProduct.imagenes[0]) || '';
+  const id = currentProduct.id;
+  const talle = selectedSize || '';
+  const color = selectedColor || '';
+  
+  // Usar agregarAlCarrito de carrito.js si existe
+  if (typeof agregarAlCarrito === 'function') {
+    agregarAlCarrito(id, nombre, precio, imagen, talle, color);
+    return;
+  }
+  
+  // Fallback: manejar carrito directamente con localStorage
+  let cart = JSON.parse(localStorage.getItem('bc_cart') || '[]');
+  const key = id + (talle ? '-' + talle : '') + (color ? '-' + color : '');
+  const existing = cart.find(i => i.id === key || (i.id === id && i.talle === talle && i.color === color));
+  
+  if (existing) {
+    existing.qty = (existing.qty || 1) + 1;
+  } else {
+    cart.push({ id, nombre, precio, imagen, talle, color, qty: 1 });
+  }
+  
+  localStorage.setItem('bc_cart', JSON.stringify(cart));
+  
+  // Actualizar badge
+  const total = cart.reduce((s, i) => s + (i.qty || 1), 0);
+  document.querySelectorAll('.cart-count, .cart-badge').forEach(el => {
+    el.textContent = total;
+    el.classList.toggle('on', total > 0);
+  });
+  
+  // Mostrar notificación
+  const notif = document.getElementById('cartNotification');
+  if (notif) {
+    notif.querySelector('span').textContent = nombre + ' agregado';
+    notif.classList.add('show');
+    setTimeout(() => notif.classList.remove('show'), 3000);
+  }
+  
+  // Abrir carrito
+  if (typeof toggleCart === 'function') toggleCart();
+}
 
 // ========== PRODUCTOS RELACIONADOS ==========
 function cargarRelacionados() {
