@@ -205,32 +205,43 @@
     .foot-links a { color:var(--muted); transition:color .2s; }
     .foot-links a:hover { color:var(--text); }
 
-    /* CART */
-    .cart-backdrop { position:fixed; inset:0; background:rgba(0,0,0,.6); z-index:597; opacity:0; pointer-events:none; transition:opacity .35s; }
-    .cart-backdrop.open { opacity:1; pointer-events:all; }
-    .cart-drawer { position:fixed; top:0; right:0; bottom:0; width:min(400px,100vw); background:var(--surf); border-left:1px solid var(--border); z-index:598; display:flex; flex-direction:column; transform:translateX(101%); transition:transform .42s var(--ease); }
-    .cart-drawer.open { transform:translateX(0); }
-    .cd-head { padding:22px 24px; border-bottom:1px solid var(--border); display:flex; align-items:center; justify-content:space-between; }
-    .cd-title { font-family:var(--serif); font-size:24px; font-weight:300; }
-    .cd-close { background:none; border:1px solid var(--border); color:var(--text); cursor:pointer; width:34px; height:34px; border-radius:50%; display:grid; place-items:center; font-size:18px; transition:border-color .25s; }
-    .cd-close:hover { border-color:var(--accent); }
-    .cd-body { flex:1; overflow-y:auto; padding:16px 24px; }
-    .cd-empty { text-align:center; padding:60px 0; color:var(--muted); font-size:13px; }
-    .cd-item { display:flex; gap:13px; padding:13px 0; border-bottom:1px solid var(--border); }
-    .cd-item img { width:68px; height:82px; object-fit:cover; flex-shrink:0; }
-    .cd-item-name { font-family:var(--serif); font-size:15px; }
-    .cd-item-price { font-size:12px; color:var(--accent); margin-top:4px; }
-    .cd-item-rm { background:none; border:none; color:var(--muted); font-size:19px; cursor:pointer; margin-left:auto; align-self:flex-start; transition:color .2s; }
-    .cd-item-rm:hover { color:#b83030; }
-    .cd-foot { padding:16px 24px; border-top:1px solid var(--border); }
-    .cd-sub { display:flex; justify-content:space-between; margin-bottom:16px; font-size:13px; }
-    .cd-sub-amt { font-family:var(--serif); font-size:22px; color:var(--accent); }
+    /* CART - Sistema unificado */
+    .overlay { position:fixed; inset:0; background:rgba(0,0,0,.7); z-index:597; opacity:0; visibility:hidden; transition:opacity .35s, visibility .35s; backdrop-filter:blur(4px); }
+    .overlay.active { opacity:1; visibility:visible; }
+    .cart-panel { position:fixed; top:0; right:-500px; width:min(420px,100vw); height:100vh; background:var(--surf); border-left:1px solid var(--border); z-index:598; display:flex; flex-direction:column; transition:right .42s var(--ease); box-shadow:-5px 0 30px rgba(0,0,0,.5); }
+    .cart-panel.open { right:0; }
+    .cart-header { padding:22px 24px; border-bottom:1px solid var(--border); display:flex; align-items:center; justify-content:space-between; }
+    .cart-title { font-family:var(--serif); font-size:24px; font-weight:300; color:var(--text); }
+    .cart-title span { font-size:14px; color:var(--muted); margin-left:8px; }
+    .close-cart { background:none; border:1px solid var(--border); color:var(--text); cursor:pointer; width:34px; height:34px; border-radius:50%; display:grid; place-items:center; font-size:18px; transition:border-color .25s; }
+    .close-cart:hover { border-color:var(--accent); color:var(--accent); }
+    .cart-items { flex:1; overflow-y:auto; padding:16px 24px; }
+    .cart-empty { text-align:center; padding:60px 0; color:var(--muted); font-size:13px; }
+    .cart-empty i { font-size:48px; display:block; margin-bottom:16px; opacity:.4; }
+    .btn-empty { display:inline-block; margin-top:16px; padding:12px 24px; background:var(--accent); color:var(--bg); font-size:12px; letter-spacing:.1em; text-transform:uppercase; border:none; cursor:pointer; transition:background .2s; }
+    .btn-empty:hover { background:#a07e48; }
+    .cart-footer { border-top:1px solid var(--border); padding:16px 24px; background:var(--surf); }
+    .cart-subtotal { display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; font-size:16px; }
+    .cart-subtotal-amt { font-family:var(--serif); font-size:22px; color:var(--accent); }
     .pay-btn { width:100%; padding:14px; border:none; cursor:pointer; font-family:var(--sans); font-size:9px; font-weight:500; letter-spacing:.2em; text-transform:uppercase; display:flex; align-items:center; justify-content:center; gap:8px; margin-bottom:9px; transition:background .22s; }
     .pay-mp { background:var(--accent); color:var(--bg); }
     .pay-mp:hover { background:#a07e48; }
     .pay-wa { background:#25d366; color:#fff; }
     .pay-wa:hover { background:#1dbd5c; }
     .pay-note { text-align:center; font-size:10px; color:var(--muted); margin-top:6px; }
+    .cart-item { display:flex; gap:13px; padding:13px 0; border-bottom:1px solid var(--border); }
+    .cart-item:last-child { border-bottom:none; }
+    .cart-item-img { width:68px; height:82px; object-fit:cover; flex-shrink:0; display:block; }
+    .cart-item-details { flex:1; }
+    .cart-item-name { font-family:var(--serif); font-size:15px; margin-bottom:4px; }
+    .cart-item-price { font-size:12px; color:var(--accent); }
+    .cart-item-rm { background:none; border:none; color:var(--muted); font-size:19px; cursor:pointer; transition:color .2s; padding:4px; align-self:flex-start; }
+    .cart-item-rm:hover { color:#b83030; }
+
+    /* Notification */
+    .cart-notification { position:fixed; bottom:120px; right:30px; background:var(--surf); color:var(--text); padding:15px 25px; border-radius:50px; display:flex; align-items:center; gap:12px; transform:translateY(100px); opacity:0; transition:all .4s var(--ease); z-index:600; border-left:4px solid var(--accent); }
+    .cart-notification.show { transform:translateY(0); opacity:1; }
+    .cart-notification i { color:var(--accent); }
 
     /* WA */
     .wa-btn { position:fixed; bottom:28px; right:28px; z-index:400; width:52px; height:52px; border-radius:50%; background:#25d366; border:none; cursor:pointer; display:grid; place-items:center; box-shadow:0 4px 20px rgba(37,211,102,.35); transition:transform .3s var(--ease); }
@@ -499,112 +510,136 @@
 <!-- WA -->
 <button class="wa-btn" onclick="window.open('https://wa.me/5493525614281?text=Hola!%20Quiero%20consultar%20sobre%20un%20producto','_blank')"><i class="fab fa-whatsapp"></i></button>
 
-<!-- CART -->
-<div class="cart-backdrop" id="cartBackdrop" onclick="toggleCart()"></div>
-<div class="cart-drawer" id="cartDrawer">
-  <div class="cd-head"><h2 class="cd-title">Carrito</h2><button class="cd-close" onclick="toggleCart()">×</button></div>
-  <div class="cd-body" id="cdBody"><div class="cd-empty" id="cdEmpty">Tu carrito está vacío</div></div>
-  <div class="cd-foot">
-    <div class="cd-sub"><span>Subtotal</span><span class="cd-sub-amt" id="cdTotal">$0</span></div>
-    <button class="pay-btn pay-mp" onclick="pagarMP()"><i class="fab fa-cc-visa"></i> Pagar con MercadoPago</button>
-    <button class="pay-btn pay-wa" onclick="pagarWA()"><i class="fab fa-whatsapp"></i> Pedir por WhatsApp</button>
-    <p class="pay-note"><i class="fas fa-lock"></i> Pago seguro</p>
+<!-- CART UNIFICADO -->
+<div class="overlay" id="cartOverlay" onclick="toggleCart()"></div>
+<div class="cart-panel" id="cartPanel">
+  <div class="cart-header">
+    <h2 class="cart-title">Carrito <span class="cart-count" id="cartCountBadge">0</span></h2>
+    <button class="close-cart" onclick="toggleCart()"><i class="fas fa-times"></i></button>
   </div>
+  <div class="cart-items" id="cartItemsBody">
+    <div class="cart-empty" id="cartEmpty">
+      <i class="fas fa-shopping-bag"></i>
+      <p>Tu carrito está vacío</p>
+      <button class="btn-empty" onclick="toggleCart(); window.location.href='tienda.html'">Explorar tienda</button>
+    </div>
+  </div>
+  <div class="cart-footer" id="cartFooter"></div>
+</div>
+
+<div id="cartNotification" class="cart-notification">
+  <i class="fas fa-check-circle"></i>
+  <span id="cartNotifText">Producto agregado</span>
 </div>
 
 <script>
-/* cursor */
+/* ── CURSOR ── */
 const cur=document.getElementById('cur'), ring=document.getElementById('curRing');
 let mx=0,my=0,rx=0,ry=0;
 document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
 (function t(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(t);})();
 
-/* header scroll */
+/* ── HEADER SCROLL ── */
 window.addEventListener('scroll',()=>document.getElementById('header').classList.toggle('scrolled',scrollY>40),{passive:true});
 
-/* cart - CORREGIDO */
-let cart = JSON.parse(localStorage.getItem('bc_cart')||'[]');
-function saveCart() { localStorage.setItem('bc_cart', JSON.stringify(cart)); }
+/* ── CARRITO UNIFICADO (mismo formato que carrito.js) ── */
+const CART_KEY = 'bc_cart';
 
-function toggleCart(){ 
-  document.getElementById('cartDrawer').classList.toggle('open'); 
-  document.getElementById('cartBackdrop').classList.toggle('open'); 
-}
+function getCart() { return JSON.parse(localStorage.getItem(CART_KEY) || '[]'); }
+function saveCart(cart) { localStorage.setItem(CART_KEY, JSON.stringify(cart)); }
 
-function renderCart(){
-  const dot=document.getElementById('cartDot'), 
-        tot=document.getElementById('cdTotal'), 
-        body=document.getElementById('cdBody'), 
-        emp=document.getElementById('cdEmpty');
-  
-  const cnt=cart.reduce((s,i)=>s + (i.qty || 1), 0);
-  const sum=cart.reduce((s,i)=>s + (i.precio || i.price || 0) * (i.qty || 1), 0);
-  
-  dot.textContent = cnt; 
-  dot.classList.toggle('on', cnt>0);
-  tot.textContent = '$' + sum.toLocaleString('es-AR');
-  
-  // Limpiar items anteriores
-  body.querySelectorAll('.cd-item').forEach(e=>e.remove());
-  
-  emp.style.display = cart.length ? 'none' : 'block';
-  
-  cart.forEach(item=>{
-    const el=document.createElement('div'); 
-    el.className='cd-item';
-    const nombre = item.nombre || item.name || 'Producto';
-    const precio = item.precio || item.price || 0;
-    const imagen = item.imagen || item.img || '';
-    const qty = item.qty || 1;
-    
-    el.innerHTML=`
-      <img src="${imagen}" alt="${nombre}" style="width:68px;height:82px;object-fit:cover;"/>
-      <div style="flex:1">
-        <div class="cd-item-name">${nombre}${qty > 1 ? ' ×' + qty : ''}</div>
-        <div class="cd-item-price">$${(precio * qty).toLocaleString('es-AR')}</div>
-      </div>
-      <button class="cd-item-rm" onclick="removeCart('${item.id || item.nombre || item.name}')">×</button>`;
-    body.appendChild(el);
-  });
-}
-
-function removeCart(id){
-  cart = cart.filter(i => (i.id || i.nombre || i.name) !== id);
-  saveCart();
+function toggleCart() {
+  document.getElementById('cartPanel').classList.toggle('open');
+  document.getElementById('cartOverlay').classList.toggle('active');
   renderCart();
 }
 
-function pagarWA(){
-  if(!cart.length) return;
-  const lines=cart.map(i=>{
-    const nombre = i.nombre || i.name || 'Producto';
-    const precio = i.precio || i.price || 0;
-    const qty = i.qty || 1;
-    return `• ${nombre}${qty>1?' x'+qty:''} — $${(precio * qty).toLocaleString('es-AR')}`;
-  }).join('%0A');
+function renderCart() {
+  const cart = getCart();
+  const body = document.getElementById('cartItemsBody');
+  const empty = document.getElementById('cartEmpty');
+  const footer = document.getElementById('cartFooter');
+  const badge = document.getElementById('cartCountBadge');
+  const dot = document.getElementById('cartDot');
   
-  const total = cart.reduce((s,i) => s + (i.precio || i.price || 0) * (i.qty || 1), 0);
-  window.open(`https://wa.me/5493525614281?text=Hola!%20Quiero%20pedir:%0A${lines}%0ATotal:%20$${total.toLocaleString('es-AR')}`,'_blank');
+  const total = cart.reduce((s, i) => s + (i.qty || 1), 0);
+  const subtotal = cart.reduce((s, i) => s + (i.precio || 0) * (i.qty || 1), 0);
+  
+  if (badge) { badge.textContent = total; }
+  if (dot) { dot.textContent = total; dot.classList.toggle('on', total > 0); }
+  
+  // Limpiar items
+  body.querySelectorAll('.cart-item').forEach(e => e.remove());
+  
+  if (cart.length === 0) {
+    empty.style.display = 'block';
+    footer.innerHTML = '';
+    return;
+  }
+  
+  empty.style.display = 'none';
+  
+  cart.forEach(item => {
+    const el = document.createElement('div');
+    el.className = 'cart-item';
+    el.innerHTML = `
+      <img class="cart-item-img" src="${item.imagen || ''}" alt="${item.nombre || ''}" onerror="this.style.display='none'"/>
+      <div class="cart-item-details">
+        <div class="cart-item-name">${item.nombre || 'Producto'}</div>
+        <div class="cart-item-price">$${((item.precio || 0) * (item.qty || 1)).toLocaleString('es-AR')}</div>
+        ${item.talle ? `<div style="font-size:11px;color:var(--muted);margin-top:3px">Talle: ${item.talle}</div>` : ''}
+      </div>
+      <button class="cart-item-rm" onclick="removeFromCart('${item.id}')">×</button>
+    `;
+    body.appendChild(el);
+  });
+  
+  footer.innerHTML = `
+    <div class="cart-subtotal"><span>Subtotal</span><span class="cart-subtotal-amt">$${subtotal.toLocaleString('es-AR')}</span></div>
+    <button class="pay-btn pay-mp" onclick="pagarMP()"><i class="fab fa-cc-visa"></i> Pagar con MercadoPago</button>
+    <button class="pay-btn pay-wa" onclick="pagarWA()"><i class="fab fa-whatsapp"></i> Pedir por WhatsApp</button>
+    <p class="pay-note"><i class="fas fa-lock"></i> Pago seguro · Compra protegida</p>
+  `;
+}
+
+function removeFromCart(id) {
+  const cart = getCart().filter(i => i.id !== id);
+  saveCart(cart);
+  renderCart();
+}
+
+function pagarWA() {
+  const cart = getCart();
+  if (!cart.length) return;
+  const lines = cart.map(i => `• ${i.nombre}${i.qty > 1 ? ' x' + i.qty : ''} — $${((i.precio || 0) * (i.qty || 1)).toLocaleString('es-AR')}`).join('%0A');
+  const total = cart.reduce((s, i) => s + (i.precio || 0) * (i.qty || 1), 0);
+  window.open(`https://wa.me/5493525614281?text=Hola!%20Quiero%20pedir:%0A${lines}%0ATotal:%20$${total.toLocaleString('es-AR')}`, '_blank');
 }
 
 function pagarMP() {
-  if(!cart.length) { alert('Tu carrito está vacío'); return; }
-  const total = cart.reduce((s,i) => s + (i.precio || i.price || 0) * (i.qty || 1), 0);
+  const cart = getCart();
+  if (!cart.length) { alert('Tu carrito está vacío'); return; }
+  const total = cart.reduce((s, i) => s + (i.precio || 0) * (i.qty || 1), 0);
   window.open('https://link.mercadopago.com.ar/baraandco?amount=' + total, '_blank');
 }
 
-function suscribirNewsletter(){ 
-  const v=document.getElementById('nlEmail').value; 
-  if(v && v.includes('@')){
-    alert('¡Gracias! Te enviamos tu 10% OFF.'); 
-    document.getElementById('nlEmail').value='';
+function suscribirNewsletter() {
+  const v = document.getElementById('nlEmail').value;
+  if (v && v.includes('@')) {
+    alert('¡Gracias! Te enviamos tu 10% OFF.');
+    document.getElementById('nlEmail').value = '';
   } else {
     alert('Ingresá un email válido');
-  } 
+  }
 }
 
-// Inicializar
-renderCart();
+// Inicializar badge al cargar
+window.addEventListener('DOMContentLoaded', () => {
+  const cart = getCart();
+  const total = cart.reduce((s, i) => s + (i.qty || 1), 0);
+  const dot = document.getElementById('cartDot');
+  if (dot) { dot.textContent = total; dot.classList.toggle('on', total > 0); }
+});
 </script>
 </body>
 </html>
