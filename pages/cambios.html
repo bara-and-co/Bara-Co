@@ -1,272 +1,258 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cambios y Devoluciones · Bara & Co</title>
-    
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    
-    <!-- Estilos -->
-    <link rel="stylesheet" href="css/global.css">
-    
-    <style>
-        .page-header {
-            height: 30vh;
-            background: linear-gradient(135deg, #0A0A0A 0%, #1A1A1A 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: white;
-            margin-top: 80px;
-        }
-        
-        .page-header h1 {
-            font-size: 3rem;
-            font-family: var(--font-serif);
-        }
-        
-        .page-content {
-            padding: 4rem 0;
-        }
-        
-        .policy-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
-            margin-bottom: 4rem;
-        }
-        
-        .policy-card {
-            padding: 3rem;
-            background: white;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            border-top: 4px solid var(--color-accent);
-        }
-        
-        .policy-card h3 {
-            font-family: var(--font-serif);
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-            color: var(--color-text-primary);
-        }
-        
-        .policy-card .highlight {
-            font-size: 1.2rem;
-            color: var(--color-accent);
-            margin-bottom: 1.5rem;
-            font-weight: 600;
-        }
-        
-        .policy-card ul {
-            list-style: none;
-            padding: 0;
-        }
-        
-        .policy-card li {
-            padding: 0.8rem 0;
-            border-bottom: 1px solid #eee;
-            display: flex;
-            gap: 1rem;
-        }
-        
-        .policy-card li i {
-            color: var(--color-accent);
-            width: 20px;
-        }
-        
-        .steps-section {
-            background: #f9f9f9;
-            padding: 4rem 0;
-            margin: 2rem 0;
-        }
-        
-        .steps-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-        
-        .step-item {
-            text-align: center;
-            padding: 2rem;
-            background: white;
-            position: relative;
-        }
-        
-        .step-number {
-            width: 50px;
-            height: 50px;
-            background: var(--color-accent);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin: 0 auto 1.5rem;
-        }
-        
-        .step-item h4 {
-            font-family: var(--font-serif);
-            margin-bottom: 1rem;
-        }
-        
-        .step-item p {
-            color: var(--color-text-secondary);
-        }
-        
-        .warning-box {
-            background: #fff3e0;
-            border-left: 4px solid #ff9800;
-            padding: 2rem;
-            margin: 2rem 0;
-        }
-        
-        .warning-box i {
-            color: #ff9800;
-            margin-right: 1rem;
-        }
-        
-        @media (max-width: 768px) {
-            .policy-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .steps-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cambios y devoluciones · Bara & Co</title>
+  
+  <!-- CSS GLOBAL -->
+  <link rel="stylesheet" href="../css/global.css">
+  
+  <!-- Fuentes e iconos -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  
+  <style>
+    .page-content {
+      max-width: 900px;
+      margin: 120px auto 80px;
+      padding: 0 20px;
+    }
+    .page-title {
+      font-family: var(--font-serif);
+      font-size: 42px;
+      font-weight: 400;
+      margin-bottom: 40px;
+      color: var(--color-text);
+    }
+    .info-section {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      padding: 40px;
+      margin-bottom: 30px;
+    }
+    .info-section h2 {
+      font-family: var(--font-serif);
+      font-size: 24px;
+      font-weight: 400;
+      margin-bottom: 20px;
+      color: var(--color-accent);
+    }
+    .info-section p {
+      color: var(--color-text-secondary);
+      line-height: 1.8;
+      margin-bottom: 15px;
+    }
+    .info-section ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    .info-section li {
+      color: var(--color-text-secondary);
+      margin-bottom: 10px;
+      padding-left: 25px;
+      position: relative;
+    }
+    .info-section li:before {
+      content: '✓';
+      color: var(--color-accent);
+      position: absolute;
+      left: 0;
+    }
+    .steps {
+      counter-reset: step;
+      list-style: none;
+      padding: 0;
+    }
+    .steps li {
+      counter-increment: step;
+      margin-bottom: 20px;
+      padding-left: 40px;
+      position: relative;
+      color: var(--color-text-secondary);
+    }
+    .steps li:before {
+      content: counter(step);
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 28px;
+      height: 28px;
+      background: var(--color-accent);
+      color: var(--color-bg);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      font-size: 14px;
+    }
+    .highlight {
+      color: var(--color-accent);
+      font-weight: 500;
+    }
+    .contact-wa {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 15px 30px;
+      background: var(--color-green);
+      color: white;
+      border-radius: 40px;
+      font-weight: 500;
+      margin-top: 20px;
+      transition: all 0.3s;
+    }
+    .contact-wa:hover {
+      background: #128C7E;
+      transform: translateY(-2px);
+    }
+  </style>
 </head>
 <body class="interior">
-    <!-- Header (igual que en envios.html) -->
-    <header id="header">
-        <div class="header-container">
-            <a href="index.html" class="logo">
-                <img src="images/logo-bara-co.png" alt="Bara & Co" class="logo-img">
-            </a>
-            <nav>
-                <ul class="nav-menu">
-                    <li><a href="index.html" class="nav-link">Inicio</a></li>
-                    <li><a href="tienda.html" class="nav-link">Tienda</a></li>
-                    <li><a href="lookbook.html" class="nav-link">Lookbook</a></li>
-                    <li><a href="#contacto" class="nav-link">Contacto</a></li>
-                </ul>
-                <div class="menu-toggle">
-                    <i class="fas fa-bars"></i>
-                </div>
-            </nav>
-            <div class="header-icons">
-                <i class="fas fa-search" onclick="window.buscador?.abrirModal()"></i>
-                <a href="login.html"><i class="fas fa-user"></i></a>
-                <div class="cart-icon-wrapper" onclick="toggleCart()">
-                    <i class="fas fa-shopping-bag"></i>
-                    <span class="cart-count">0</span>
-                </div>
-            </div>
-        </div>
-    </header>
 
-    <!-- Page Header -->
-    <div class="page-header">
-        <div>
-            <h1>Cambios y Devoluciones</h1>
-            <p>Tu satisfacción es nuestra prioridad</p>
-        </div>
+<!-- HEADER -->
+<header id="header">
+  <a href="../index.html" class="logo">
+    <img src="../images/LogoB&D.png" alt="Bara & Co" class="logo-img"/>
+  </a>
+  <nav class="nav-menu">
+    <ul>
+      <li><a href="../index.html" class="nav-link">Inicio</a></li>
+      <li><a href="../tienda.html" class="nav-link">Tienda</a></li>
+      <li><a href="../lookbook.html" class="nav-link">Lookbook</a></li>
+      <li><a href="../contacto.html" class="nav-link">Contacto</a></li>
+    </ul>
+  </nav>
+  <div class="header-icons">
+    <i class="fas fa-search" id="searchIcon"></i>
+    <div class="cart-icon-wrap" onclick="toggleCart()">
+      <i class="fas fa-shopping-bag"></i>
+      <span class="cart-badge cart-count">0</span>
     </div>
+    <button class="menu-toggle" id="menuToggle">
+      <i class="fas fa-bars"></i>
+    </button>
+  </div>
+</header>
 
-    <!-- Page Content -->
-    <div class="page-content">
-        <div class="container">
-            <!-- Políticas principales -->
-            <div class="policy-grid">
-                <div class="policy-card">
-                    <h3>Cambios</h3>
-                    <div class="highlight">Tenés 30 días para cambiar tu producto</div>
-                    <ul>
-                        <li><i class="fas fa-check"></i> Podés cambiar por otro talle, color o producto</li>
-                        <li><i class="fas fa-check"></i> El producto debe estar sin uso, con etiquetas y en su packaging original</li>
-                        <li><i class="fas fa-check"></i> Los cambios son gratuitos en nuestros locales</li>
-                        <li><i class="fas fa-check"></i> Para envíos, el costo de reenvío corre por cuenta del cliente</li>
-                        <li><i class="fas fa-check"></i> Si el cambio es por falla, cubrimos todos los costos</li>
-                    </ul>
-                </div>
-                
-                <div class="policy-card">
-                    <h3>Devoluciones</h3>
-                    <div class="highlight">Reembolso garantizado</div>
-                    <ul>
-                        <li><i class="fas fa-check"></i> Podés solicitar el reembolso dentro de los 10 días de recibido</li>
-                        <li><i class="fas fa-check"></i> El reembolso se realiza por el mismo medio de pago</li>
-                        <li><i class="fas fa-check"></i> Procesamos la devolución en un plazo de 5-7 días hábiles</li>
-                        <li><i class="fas fa-check"></i> El producto debe estar en perfectas condiciones</li>
-                        <li><i class="fas fa-check"></i> No realizamos devoluciones en productos de la categoría "Sale"</li>
-                    </ul>
-                </div>
-            </div>
+<!-- CONTENIDO -->
+<div class="page-content">
+  <h1 class="page-title">Cambios y devoluciones</h1>
+  
+  <div class="info-section">
+    <h2>Política de cambios</h2>
+    <p>En Bara & Co queremos que estés 100% satisfecho con tu compra. Por eso, aceptamos cambios y devoluciones dentro de los <span class="highlight">30 días</span> posteriores a la recepción del pedido.</p>
+    
+    <h3 style="margin: 30px 0 15px; color: var(--color-text);">Condiciones:</h3>
+    <ul>
+      <li>Las prendas deben estar sin uso, con etiquetas originales y en su empaque.</li>
+      <li>No se aceptarán cambios de productos en oferta (Sale) o de la sección "Outlet".</li>
+      <li>Los gastos de envío del cambio corren por cuenta del cliente, excepto que el producto tenga falla de fábrica.</li>
+      <li>Para cambios por talle, verificá disponibilidad antes de enviar la prenda.</li>
+    </ul>
+  </div>
+  
+  <div class="info-section">
+    <h2>¿Cómo gestionar un cambio?</h2>
+    <ol class="steps">
+      <li>Contactanos por WhatsApp o email dentro de los 30 días de recibido el pedido.</li>
+      <li>Indicá el número de pedido, el producto que querés cambiar y el motivo.</li>
+      <li>Te daremos las instrucciones para enviar la prenda y la dirección de correo.</li>
+      <li>Una vez recibido y verificado el producto, gestionamos el cambio o reembolso.</li>
+    </ol>
+    
+    <a href="https://wa.me/5493525614281?text=Hola!%20Quiero%20gestionar%20un%20cambio%20de%20producto" class="contact-wa" target="_blank">
+      <i class="fab fa-whatsapp"></i> Iniciar cambio por WhatsApp
+    </a>
+  </div>
+  
+  <div class="info-section">
+    <h2>Devoluciones y reembolsos</h2>
+    <p>Si preferís una devolución en lugar de un cambio, te reembolsamos el importe pagado (sin incluir los gastos de envío originales) una vez que recibamos y verifiquemos el producto.</p>
+    <p>El reembolso se realiza por el mismo medio de pago utilizado en la compra, en un plazo de 5 a 10 días hábiles.</p>
+  </div>
+</div>
 
-            <!-- Pasos para cambio/devolución -->
-            <div class="steps-section">
-                <div class="container">
-                    <h2 class="text-center" style="font-family: var(--font-serif);">¿Cómo gestionar un cambio o devolución?</h2>
-                    
-                    <div class="steps-grid">
-                        <div class="step-item">
-                            <div class="step-number">1</div>
-                            <h4>Contactanos</h4>
-                            <p>Escribinos por WhatsApp al 11 2233-4455 o email a cambios@bara.co con tu número de pedido.</p>
-                        </div>
-                        
-                        <div class="step-item">
-                            <div class="step-number">2</div>
-                            <h4>Coordinamos</h4>
-                            <p>Te indicaremos los pasos a seguir según tu ubicación y el motivo del cambio.</p>
-                        </div>
-                        
-                        <div class="step-item">
-                            <div class="step-number">3</div>
-                            <h4>Recibís la solución</h4>
-                            <p>Procesamos tu cambio o reembolso y te mantenemos informado en todo momento.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Advertencia importante -->
-            <div class="warning-box">
-                <i class="fas fa-exclamation-triangle"></i>
-                <strong>Importante:</strong> Para cambios por talle, asegurate de probar la prenda con cuidado, sin forzar costuras ni quitar etiquetas. No aceptamos cambios en prendas con signos de uso, lavado o daños causados por el cliente.
-            </div>
-
-            <!-- Excepciones -->
-            <div class="info-block" style="margin-top: 2rem;">
-                <h3 style="font-family: var(--font-serif);">Excepciones</h3>
-                <ul style="list-style: none; padding: 0;">
-                    <li style="padding: 0.5rem 0;"><i class="fas fa-times" style="color: #ff4444; margin-right: 1rem;"></i> Productos en la categoría "Sale" (descuentos superiores al 30%)</li>
-                    <li style="padding: 0.5rem 0;"><i class="fas fa-times" style="color: #ff4444; margin-right: 1rem;"></i> Accesorios como gorros, cintas, medias (por razones de higiene)</li>
-                    <li style="padding: 0.5rem 0;"><i class="fas fa-times" style="color: #ff4444; margin-right: 1rem;"></i> Productos personalizados</li>
-                    <li style="padding: 0.5rem 0;"><i class="fas fa-times" style="color: #ff4444; margin-right: 1rem;"></i> Compras con más de 30 días de antigüedad</li>
-                </ul>
-            </div>
-        </div>
+<!-- FOOTER -->
+<footer>
+  <div>
+    <img src="../images/logoN&D.png" alt="Bara & Co" class="footer-logo-img"/>
+    <p class="footer-text">Indumentaria urbana con personalidad. Diseño y confort para tu día a día.</p>
+    <div class="social-icons">
+      <i class="fab fa-instagram" onclick="window.open('https://instagram.com/bara.and.co','_blank')"></i>
+      <i class="fab fa-facebook-f"></i>
+      <i class="fab fa-tiktok"></i>
     </div>
+  </div>
+  <div>
+    <h4 class="footer-title">Categorías</h4>
+    <ul class="footer-links">
+      <li><a href="../tienda.html?categoria=hombre">Hombre</a></li>
+      <li><a href="../tienda.html?categoria=mujer">Mujer</a></li>
+      <li><a href="../tienda.html?categoria=accesorios">Accesorios</a></li>
+      <li><a href="../tienda.html?categoria=new">New Collection</a></li>
+      <li><a href="../tienda.html?categoria=sale">Sale</a></li>
+    </ul>
+  </div>
+  <div>
+    <h4 class="footer-title">Ayuda</h4>
+    <ul class="footer-links">
+      <li><a href="envios.html">Envíos</a></li>
+      <li><a href="cambios.html" class="active">Cambios y devoluciones</a></li>
+      <li><a href="faq.html">Preguntas frecuentes</a></li>
+      <li><a href="../contacto.html">Contacto</a></li>
+    </ul>
+  </div>
+  <div>
+    <h4 class="footer-title">Newsletter</h4>
+    <p class="footer-text">10% OFF en tu primera compra</p>
+    <div class="newsletter-input">
+      <input type="email" placeholder="tu@email.com"/>
+      <button><i class="fas fa-arrow-right"></i></button>
+    </div>
+  </div>
+</footer>
+<div class="footer-bottom">
+  <span>© 2026 Bara & Co · Ing. Olmos 139 – Jesús María</span>
+  <div class="legal-info">
+    <a href="#">Términos y condiciones</a>
+    <a href="#">Política de privacidad</a>
+  </div>
+</div>
 
-    <!-- Footer y carrito (igual que en envios.html) -->
-    <footer id="contacto">
-        <!-- ... mismo footer que envios.html ... -->
-    </footer>
+<!-- WHATSAPP FLOAT -->
+<div class="whatsapp-float" onclick="window.open('https://wa.me/5493525614281?text=Hola!%20Quiero%20consultar%20sobre%20un%20producto','_blank')">
+  <i class="fab fa-whatsapp"></i>
+  <span class="whatsapp-tooltip">Consultar por WhatsApp</span>
+</div>
 
-    <!-- Scripts -->
-    <script src="js/carrito.js"></script>
-    <script src="js/search.js"></script>
-    <script src="js/main.js"></script>
+<!-- CART PANEL -->
+<div class="overlay" onclick="toggleCart()"></div>
+<div class="cart-panel">
+  <div class="cart-header">
+    <h2 class="cart-title">Carrito <span class="cart-count">0</span></h2>
+    <span class="close-cart" onclick="toggleCart()"><i class="fas fa-times"></i></span>
+  </div>
+  <div class="cart-items">
+    <div class="cart-empty">
+      <i class="fas fa-shopping-bag"></i>
+      <p>Tu carrito está vacío</p>
+      <button class="btn-empty" onclick="toggleCart(); window.location.href='../tienda.html'">Explorar productos</button>
+    </div>
+  </div>
+  <div class="cart-footer"></div>
+</div>
+
+<!-- NOTIFICATION -->
+<div id="cartNotification" class="cart-notification">
+  <i class="fas fa-check-circle"></i>
+  <span></span>
+</div>
+
+<!-- JS GLOBALES -->
+<script src="../js/main.js"></script>
+<script src="../js/carrito.js"></script>
+<script src="../js/search.js"></script>
 </body>
 </html>
