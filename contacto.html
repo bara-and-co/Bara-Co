@@ -29,15 +29,29 @@
     img  { display:block; width:100%; object-fit:cover; }
     ul   { list-style:none; }
 
-    /* ── HEADER ── */
+    /* ── HEADER CON LOGO GRANDE ── */
     #header {
       position:fixed; top:0; left:0; right:0; z-index:200;
       display:flex; align-items:center; justify-content:space-between;
-      padding:0 48px; height:72px;
+      padding:0 48px; height:80px; /* Altura aumentada */
       background:rgba(14,14,12,.93); backdrop-filter:blur(20px);
       border-bottom:1px solid var(--border);
     }
-    .logo-img { height:56px; width:auto; object-fit:contain; display:block; }
+    
+    /* Logo blanco para header (fondo oscuro) */
+    .logo-header {
+      height: 70px !important;  /* Más grande */
+      width: auto !important;
+      object-fit: contain;
+      display: block;
+      transition: height .3s;
+    }
+    
+    /* Cuando el header se achica con scroll */
+    #header.scrolled .logo-header {
+      height: 55px !important;
+    }
+    
     .header-nav ul { display:flex; gap:36px; }
     .header-nav a {
       font-size:11px; font-weight:500; letter-spacing:.12em; text-transform:uppercase;
@@ -64,7 +78,7 @@
 
     /* ── SHIPPING BAR ── */
     .shipping-bar {
-      margin-top:72px;
+      margin-top:80px; /* Ajustado por header más alto */
       background:var(--accent); color:var(--bg);
       text-align:center; font-size:11px; font-weight:600;
       letter-spacing:.14em; text-transform:uppercase; padding:10px 16px;
@@ -184,12 +198,21 @@
     .hours-day { color:var(--muted); }
     .hours-time { color:var(--text); }
 
-    /* ── FOOTER ── */
+    /* ── FOOTER CON LOGO NEGRO ── */
     footer {
       padding:60px 48px 36px; border-top:1px solid var(--border);
       display:grid; grid-template-columns:1.4fr 1fr 1fr 1.2fr; gap:44px;
     }
-    .foot-logo { height:52px; width:auto; object-fit:contain; filter:brightness(0) invert(1); }
+    
+    /* Logo negro para footer (fondo oscuro pero con filter invert) */
+    .logo-footer {
+      height: 70px !important;  /* Más grande */
+      width: auto !important;
+      object-fit: contain;
+      display: block;
+      filter: brightness(0) invert(1); /* Para que se vea blanco sobre fondo oscuro */
+    }
+    
     .foot-tag  { margin-top:10px; font-size:13px; color:var(--muted); line-height:1.7; max-width:200px; }
     .foot-social { display:flex; gap:14px; margin-top:16px; }
     .foot-social i { font-size:16px; cursor:pointer; color:var(--muted); transition:color .22s; }
@@ -233,7 +256,7 @@
     .wa-float:hover { transform:scale(1.1); }
     .wa-float i { font-size:22px; color:#fff; }
 
-    /* ── CART DRAWER (igual que tienda) ── */
+    /* ── CART DRAWER ── */
     .cart-backdrop { position:fixed; inset:0; background:rgba(0,0,0,.55); z-index:398; opacity:0; pointer-events:none; transition:opacity .3s; }
     .cart-backdrop.open { opacity:1; pointer-events:all; }
     .cart-drawer { position:fixed; top:0; right:0; bottom:0; width:min(400px,100vw); background:var(--surface); border-left:1px solid var(--border); z-index:399; display:flex; flex-direction:column; transform:translateX(101%); transition:transform .4s var(--ease); }
@@ -262,7 +285,10 @@
 
     /* ── RESPONSIVE ── */
     @media (max-width:900px) {
-      #header { padding:0 22px; }
+      #header { padding:0 22px; height:70px; }
+      .logo-header { height: 60px !important; }
+      #header.scrolled .logo-header { height: 45px !important; }
+      .shipping-bar { margin-top:70px; }
       .header-nav ul { display:none; }
       .contact-body { grid-template-columns:1fr; gap:40px; padding:40px 22px 80px; }
       footer { grid-template-columns:1fr 1fr; padding:40px 22px 26px; }
@@ -271,6 +297,8 @@
     @media (max-width:480px) {
       .form-row.half { grid-template-columns:1fr; }
       footer { grid-template-columns:1fr; gap:26px; }
+      .logo-header { height: 50px !important; }
+      #header.scrolled .logo-header { height: 40px !important; }
     }
   </style>
 </head>
@@ -278,7 +306,9 @@
 
 <!-- ══ HEADER ══ -->
 <header id="header">
-  <a href="index.html"><img src="images/logo.png" alt="Bara & Co" class="logo-img"/></a>
+  <a href="index.html">
+    <img src="images/LogoB&D.png" alt="Bara & Co" class="logo-header"/>
+  </a>
   <nav class="header-nav">
     <ul>
       <li><a href="index.html">Inicio</a></li>
@@ -435,7 +465,7 @@
 <!-- ══ FOOTER ══ -->
 <footer>
   <div>
-    <img src="images/logo.png" alt="Bara & Co" class="foot-logo"/>
+    <img src="images/logoN&D.png" alt="Bara & Co" class="logo-footer"/>
     <p class="foot-tag">Indumentaria urbana con personalidad. Diseño y confort para tu día a día.</p>
     <div class="foot-social">
       <i class="fab fa-instagram" onclick="window.open('https://instagram.com/bara.and.co','_blank')"></i>
@@ -514,7 +544,12 @@
 </div>
 
 <script>
-/* ── CART (shared con tienda) ── */
+/* ── HEADER SCROLL ── */
+window.addEventListener('scroll', () => {
+  document.getElementById('header').classList.toggle('scrolled', window.scrollY > 40);
+}, {passive:true});
+
+/* ── CART ── */
 let cart = JSON.parse(localStorage.getItem('bc_cart') || '[]');
 function saveCart() { localStorage.setItem('bc_cart', JSON.stringify(cart)); }
 function toggleCart() {
