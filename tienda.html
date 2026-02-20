@@ -34,7 +34,9 @@
       -webkit-font-smoothing:antialiased;
     }
     a { color:inherit; text-decoration:none; }
-    img { display:block; width:100%; height:100%; object-fit:cover; }
+    img { display:block; max-width:100%; }
+    /* imágenes dentro de contenedores con altura explícita sí usan object-fit */
+    .prod-img img, .shop-hero-bg, .item-image img, .logo-img, .footer-logo-img { width:100%; height:100%; object-fit:cover; }
     ul { list-style:none; }
 
     /* ===== HEADER (IGUAL AL INDEX) ===== */
@@ -73,10 +75,16 @@
 
     .nav-menu {
       flex: 1;
+    }
+
+    .nav-menu ul {
       display: flex;
       justify-content: flex-start;
+      align-items: center;
       gap: 38px;
       list-style: none;
+      margin: 0;
+      padding: 0;
       margin-left: 40px;
     }
 
@@ -218,9 +226,15 @@
       padding: 11px;
     }
 
+    /* ===== CURSOR CUSTOM ===== */
+    body { cursor: none; }
+    .cur      { position:fixed; width:9px; height:9px; background:var(--accent); border-radius:50%; pointer-events:none; z-index:9999; transform:translate(-50%,-50%); }
+    .cur-ring { position:fixed; width:34px; height:34px; border:1px solid rgba(201,169,110,.45); border-radius:50%; pointer-events:none; z-index:9998; transform:translate(-50%,-50%); transition:width .35s var(--ease), height .35s var(--ease); }
+    a, button, [onclick], .cart-icon-wrap, .prod-card, .filter-tab { cursor: none; }
+
     /* ===== HERO DE TIENDA ===== */
     .shop-hero {
-      height: 300px;
+      height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -255,14 +269,18 @@
       color: var(--accent);
       margin-bottom: 16px;
       font-family: var(--sans);
+      opacity: 0;
+      animation: fadeUp .8s var(--ease) .3s forwards;
     }
 
     .shop-title {
       font-family: var(--serif);
-      font-size: clamp(48px, 8vw, 80px);
+      font-size: clamp(64px, 9vw, 110px);
       font-weight: 300;
-      line-height: 1;
-      margin-bottom: 16px;
+      line-height: .95;
+      margin-bottom: 18px;
+      opacity: 0;
+      animation: fadeUp .9s var(--ease) .45s forwards;
     }
 
     .shop-title em {
@@ -275,6 +293,61 @@
       letter-spacing: .22em;
       text-transform: uppercase;
       color: rgba(255,255,255,.7);
+      opacity: 0;
+      animation: fadeUp .8s var(--ease) .6s forwards;
+    }
+
+    .shop-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 38px;
+      font-size: 10px;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--white);
+      border-bottom: 1px solid rgba(255,255,255,.35);
+      padding-bottom: 4px;
+      transition: border-color .3s, color .3s;
+      opacity: 0;
+      animation: fadeUp .8s var(--ease) .75s forwards;
+    }
+    .shop-cta:hover { color: var(--accent); border-color: var(--accent); }
+
+    /* Scroll hint */
+    .scroll-hint {
+      position: absolute;
+      bottom: 36px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      color: rgba(255,255,255,.4);
+      font-size: 8px;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      opacity: 0;
+      animation: fadeIn 1s 1.2s var(--ease) forwards;
+    }
+    .scroll-hint-line {
+      width: 1px;
+      height: 52px;
+      background: rgba(255,255,255,.15);
+      position: relative;
+      overflow: hidden;
+    }
+    .scroll-hint-line::after {
+      content: '';
+      position: absolute;
+      top: -100%;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--accent);
+      animation: scrollDrop 2s 1.5s infinite;
     }
 
     /* ===== FILTROS ===== */
@@ -830,6 +903,84 @@
       from { opacity:0; transform:translateY(20px); }
       to { opacity:1; transform:none; }
     }
+    @keyframes fadeIn { from{opacity:0} to{opacity:1} }
+    @keyframes scrollDrop { 0%{top:-100%} 100%{top:100%} }
+
+    /* ===== REVIEWS ===== */
+    .reviews-bar {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      padding: 32px 48px;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: var(--surface);
+      overflow-x: auto;
+    }
+    .review-score {
+      display: flex; flex-direction: column; align-items: center;
+      gap: 4px; flex-shrink: 0;
+      padding-right: 40px; border-right: 1px solid var(--border);
+    }
+    .score-num { font-family:var(--serif); font-size:48px; font-weight:300; color:var(--accent); line-height:1; }
+    .score-stars { color:var(--accent); font-size:14px; letter-spacing:2px; }
+    .score-count { font-size:11px; color:var(--muted); }
+    .review-cards { display:flex; gap:16px; flex:1; }
+    .review-card {
+      flex:1; min-width:180px; background:rgba(255,255,255,.02);
+      border:1px solid var(--border); padding:20px 18px;
+      display:flex; flex-direction:column; gap:8px;
+    }
+    .review-card-stars { color:var(--accent); font-size:11px; letter-spacing:2px; }
+    .review-card-text  { font-size:13px; font-style:italic; color:var(--text); line-height:1.7; flex:1; }
+    .review-card-author { font-size:11px; color:var(--muted); }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      padding: 72px 52px 40px;
+      display: grid;
+      grid-template-columns: 1.6fr 1fr 1fr 1.2fr;
+      gap: 52px;
+    }
+    .footer-logo-img {
+      height: 52px; width: auto; object-fit: contain;
+      filter: brightness(0) invert(1); display: block;
+    }
+    .footer-text { margin-top:14px; font-size:13px; color:var(--muted); line-height:1.8; max-width:210px; }
+    .social-icons { display:flex; gap:16px; margin-top:20px; }
+    .social-icons i { font-size:16px; color:var(--muted); transition:color .25s; }
+    .social-icons i:hover { color:var(--accent); }
+    .footer-title {
+      font-size:8px; letter-spacing:.25em; text-transform:uppercase;
+      color:var(--muted); margin-bottom:20px; padding-bottom:10px;
+      border-bottom:1px solid var(--border);
+    }
+    .footer-links li + li { margin-top:10px; }
+    .footer-links a { font-size:13px; color:rgba(237,233,225,.45); transition:color .25s; }
+    .footer-links a:hover { color:var(--accent); }
+    .newsletter-input { display:flex; margin-top:14px; }
+    .newsletter-input input {
+      flex:1; background:rgba(255,255,255,.05); border:1px solid var(--border);
+      border-right:none; color:var(--text); padding:10px 13px;
+      font-size:13px; font-family:var(--sans); outline:none; transition:border-color .25s;
+    }
+    .newsletter-input input:focus { border-color:var(--accent); }
+    .newsletter-input button {
+      background:var(--accent); border:none; color:var(--bg);
+      padding:10px 14px; font-size:14px; transition:background .25s;
+    }
+    .newsletter-input button:hover { background:var(--adk); }
+    .footer-bottom {
+      background: var(--surface);
+      padding:20px 52px; border-top:1px solid var(--border);
+      display:flex; align-items:center; justify-content:space-between;
+      font-size:10px; color:var(--muted); flex-wrap:wrap; gap:8px;
+    }
+    .legal-info { display:flex; gap:20px; }
+    .footer-bottom a { color:var(--muted); transition:color .2s; }
+    .footer-bottom a:hover { color:var(--text); }
 
     @media (max-width: 1100px) {
       .prod-grid { grid-template-columns: repeat(3, 1fr); }
@@ -858,6 +1009,10 @@
   </style>
 </head>
 <body>
+
+<!-- CURSOR CUSTOM -->
+<div class="cur" id="cur"></div>
+<div class="cur-ring" id="curRing"></div>
 
 <header id="header">
   <a href="index.html">
@@ -900,10 +1055,15 @@
     <p class="shop-eyebrow">New Collection 2026</p>
     <h1 class="shop-title">Nuestra <em>Tienda</em></h1>
     <p class="shop-sub">Indumentaria urbana con personalidad</p>
+    <a href="#productos" class="shop-cta">Ver colección &nbsp;<i class="fas fa-arrow-down"></i></a>
+  </div>
+  <div class="scroll-hint">
+    <span>Scroll</span>
+    <div class="scroll-hint-line"></div>
   </div>
 </div>
 
-<div class="filters">
+<div class="filters" id="productos">
   <div class="filter-tabs">
     <button class="filter-tab active" data-f="all">Todos</button>
     <button class="filter-tab" data-f="new">New Collection</button>
@@ -1065,6 +1225,28 @@
 <script src="js/search.js"></script>
 
 <script>
+// ── CURSOR ──
+(function(){
+  const cur = document.getElementById('cur');
+  const ring = document.getElementById('curRing');
+  if (!cur || !ring) return;
+  let mx=0, my=0, rx=0, ry=0;
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    cur.style.left = mx+'px'; cur.style.top = my+'px';
+  });
+  (function loop(){
+    rx += (mx-rx)*.12; ry += (my-ry)*.12;
+    ring.style.left = rx+'px'; ring.style.top = ry+'px';
+    requestAnimationFrame(loop);
+  })();
+})();
+
+// ── HEADER SCROLL ──
+window.addEventListener('scroll', () => {
+  document.getElementById('header').classList.toggle('scrolled', scrollY > 40);
+}, { passive: true });
+
 // ========== MOBILE MENU ==========
 document.getElementById('menuToggle').addEventListener('click', function() {
   const menu = document.getElementById('mobileNav');
