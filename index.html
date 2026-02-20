@@ -783,6 +783,7 @@
     .testi-stars { color:var(--accent); font-size:12px; letter-spacing:2px; }
     .testi-text { font-size:13px; line-height:1.8; color:var(--text); font-style:italic; flex:1; }
     .testi-author { font-size:11px; color:var(--muted); padding-top:12px; border-top:1px solid var(--border); }
+    .testi-product { font-size:10px; color:var(--accent); margin-top:4px; letter-spacing:.05em; }
     @media (max-width:900px) {
       .testi-grid { grid-template-columns:1fr 1fr; }
       .testimonios { padding:64px 22px; }
@@ -790,6 +791,19 @@
     @media (max-width:540px) {
       .testi-grid { grid-template-columns:1fr; }
     }
+
+    /* ── SKELETON CARDS ── */
+    .prod-card-skeleton {
+      background:var(--surface); border:1px solid var(--border);
+      aspect-ratio:3/4;
+    }
+    .prod-card-skeleton::after {
+      content:''; display:block; width:100%; height:100%;
+      background:linear-gradient(90deg, transparent 0%, rgba(255,255,255,.04) 50%, transparent 100%);
+      background-size:200% 100%;
+      animation:shimmer 1.6s infinite;
+    }
+    @keyframes shimmer { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
     
     /* Responsive para móviles - Hero */
     @media (max-width: 768px) {
@@ -873,7 +887,7 @@
   </div>
   
   <!-- Left panel — Mujer -->
-  <div class="hero-half hero-half-left" id="panelLeft" onclick="location.href='tienda.html'">
+  <div class="hero-half hero-half-left" id="panelLeft" onclick="location.href='tienda.html?categoria=mujer'">
     <div class="hero-image-wrapper">
       <img src="images/modeloportizq.png" alt="Mujer"/>
     </div>
@@ -881,7 +895,7 @@
   </div>
 
   <!-- Right panel — Hombre -->
-  <div class="hero-half hero-half-right" id="panelRight" onclick="location.href='tienda.html'">
+  <div class="hero-half hero-half-right" id="panelRight" onclick="location.href='tienda.html?categoria=hombre'">
     <div class="hero-image-wrapper">
       <img src="images/modeloderecha.png" alt="Hombre"/>
     </div>
@@ -928,7 +942,7 @@
 
 <!-- ══ CATEGORÍAS ══ -->
 <div class="cat-strip">
-  <div class="cat-tile" onclick="location.href='tienda.html'">
+  <div class="cat-tile" onclick="location.href='tienda.html?categoria=mujer'">
     <img src="images/modeloportizq.png" alt="Mujer"/>
     <div class="cat-tile-overlay">
       <p class="cat-tile-label">Colección</p>
@@ -936,7 +950,7 @@
       <span class="cat-tile-link">Ver todo <i class="fas fa-arrow-right" style="font-size:9px"></i></span>
     </div>
   </div>
-  <div class="cat-tile" onclick="location.href='tienda.html'">
+  <div class="cat-tile" onclick="location.href='tienda.html?categoria=hombre'">
     <img src="images/modeloderecha.png" alt="Hombre"/>
     <div class="cat-tile-overlay">
       <p class="cat-tile-label">Colección</p>
@@ -944,7 +958,7 @@
       <span class="cat-tile-link">Ver todo <i class="fas fa-arrow-right" style="font-size:9px"></i></span>
     </div>
   </div>
-  <div class="cat-tile" onclick="location.href='tienda.html'">
+  <div class="cat-tile" onclick="location.href='tienda.html?categoria=accesorios'">
     <img src="https://d22fxaf9t8d39k.cloudfront.net/4685374b45b479cfd58e9da55c51fd9889b25c8240a765e91d1d62b8873d0386404368.jpg" alt="Accesorios"/>
     <div class="cat-tile-overlay">
       <p class="cat-tile-label">Colección</p>
@@ -964,8 +978,24 @@
     <a class="section-link" href="tienda.html">Ver todos <i class="fas fa-arrow-right" style="font-size:9px"></i></a>
   </div>
 
+  <!-- Medios de pago cerca del CTA para generar confianza -->
+  <div style="display:flex;align-items:center;gap:10px;margin-bottom:28px;flex-wrap:wrap;">
+    <span style="font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);">Pagá con</span>
+    <img src="https://dk0k1i3js6c49.cloudfront.net/applications/logos/payment-icons/mastercard.png" alt="Mastercard" style="height:20px;width:auto;opacity:.55;filter:grayscale(1) brightness(2);"/>
+    <img src="https://dk0k1i3js6c49.cloudfront.net/applications/logos/payment-icons/visa.png" alt="Visa" style="height:20px;width:auto;opacity:.55;filter:grayscale(1) brightness(2);"/>
+    <img src="https://dk0k1i3js6c49.cloudfront.net/applications/logos/payment-icons/naranja.png" alt="Naranja" style="height:20px;width:auto;opacity:.55;filter:grayscale(1) brightness(2);"/>
+    <img src="https://dk0k1i3js6c49.cloudfront.net/applications/logos/payment-icons/cabal.png" alt="Cabal" style="height:20px;width:auto;opacity:.55;filter:grayscale(1) brightness(2);"/>
+    <span style="font-size:10px;letter-spacing:.1em;color:var(--accent);margin-left:4px;">· Hasta 6 cuotas</span>
+    <span style="font-size:10px;letter-spacing:.1em;color:var(--muted);margin-left:8px;">·</span>
+    <span style="font-size:10px;letter-spacing:.1em;color:var(--accent);">🚚 Envío gratis desde $80.000</span>
+  </div>
+
   <div class="prod-grid" id="productosDestacados">
-    <!-- Se carga dinámicamente con JS -->
+    <!-- Skeleton cards mientras carga -->
+    <div class="prod-card-skeleton"></div>
+    <div class="prod-card-skeleton"></div>
+    <div class="prod-card-skeleton"></div>
+    <div class="prod-card-skeleton"></div>
   </div>
 </section>
 
@@ -1040,21 +1070,25 @@
       <div class="testi-stars">★★★★★</div>
       <p class="testi-text">"La campera jean es una pasada. La calidad es excelente y llegó súper rápido. Ya la usé mil veces y siempre recibo comentarios."</p>
       <p class="testi-author">Valentina M. — Córdoba Capital</p>
+      <p class="testi-product">Campera JEAN clásica · Enero 2026</p>
     </div>
     <div class="testi-card">
       <div class="testi-stars">★★★★★</div>
       <p class="testi-text">"Los abanicos son hermosos y únicos. Me llegaron perfectos y muy bien embalados. Servicio impecable, volvería a comprar sin dudarlo."</p>
       <p class="testi-author">Lucía T. — Buenos Aires</p>
+      <p class="testi-product">Abanico ORGULLO · Diciembre 2025</p>
     </div>
     <div class="testi-card">
       <div class="testi-stars">★★★★★</div>
       <p class="testi-text">"Compré el conjunto de lino y quedé enamorado. El talle es perfecto, muy cómodo. 100% recomendable para el verano."</p>
       <p class="testi-author">Matías R. — Jesús María</p>
+      <p class="testi-product">Conjunto LINO · Noviembre 2025</p>
     </div>
     <div class="testi-card">
       <div class="testi-stars">★★★★★</div>
       <p class="testi-text">"Me encantó la atención, respondieron rápido por WhatsApp y el envío fue puntual. Una experiencia de compra muy agradable."</p>
       <p class="testi-author">Sofía G. — Villa María</p>
+      <p class="testi-product">Sastrero RIALTO · Febrero 2026</p>
     </div>
   </div>
 </section>
@@ -1063,7 +1097,7 @@
 <section class="nl-section" id="contacto">
   <div>
     <h2 class="nl-title">Sumate a<br/><em>Bara & Co</em></h2>
-    <p class="nl-sub">10% OFF en tu primera compra. Acceso anticipado a colecciones y promociones exclusivas para suscriptores.</p>
+    <p class="nl-sub">Acceso 48hs antes a cada colección nueva. Descuentos exclusivos de temporada y 10% OFF en tu primera compra.</p>
   </div>
   <div>
     <div class="nl-form">
@@ -1090,11 +1124,11 @@
   <div class="foot-col">
     <h4>Categorías</h4>
     <ul>
-      <li><a href="tienda.html">Hombre</a></li>
-      <li><a href="tienda.html">Mujer</a></li>
-      <li><a href="tienda.html">Accesorios</a></li>
-      <li><a href="tienda.html">New Collection</a></li>
-      <li><a href="tienda.html">Sale</a></li>
+      <li><a href="tienda.html?categoria=hombre">Hombre</a></li>
+      <li><a href="tienda.html?categoria=mujer">Mujer</a></li>
+      <li><a href="tienda.html?categoria=accesorios">Accesorios</a></li>
+      <li><a href="tienda.html?categoria=new">New Collection</a></li>
+      <li><a href="tienda.html?categoria=sale">Sale</a></li>
     </ul>
   </div>
   <div class="foot-col">
@@ -1120,7 +1154,7 @@
   </div>
 </footer>
 <div class="foot-bottom">
-  <span>© 2026 Bara & Co &nbsp;·&nbsp; Ing. Olmos 139 – Jesús María &nbsp;·&nbsp; <a href="mailto:bara.and.co.jm@gmail.com">bara.and.co.jm@gmail.com</a></span>
+  <span>© 2026 Bara & Co &nbsp;·&nbsp; Ing. Olmos 139 – Jesús María &nbsp;·&nbsp; <a href="/cdn-cgi/l/email-protection#0e6c6f7c6f206f606a206d612064634e69636f6762206d6163"><span class="__cf_email__" data-cfemail="2a484b584b044b444e0449450440476a4d474b434604494547">[email&#160;protected]</span></a></span>
   <div class="foot-links">
     <a href="#">Términos y condiciones</a>
     <a href="#">Política de privacidad</a>
@@ -1150,13 +1184,23 @@
       <span>Subtotal</span>
       <span class="cd-subtotal-amt" id="cdTotal">$0</span>
     </div>
+    <!-- Barra progreso envío gratis -->
+    <div id="shippingBar" style="margin-bottom:14px;display:none;">
+      <div style="font-size:10px;color:var(--muted);margin-bottom:6px;display:flex;justify-content:space-between;">
+        <span id="shippingMsg">Agregá más para envío gratis</span>
+        <span style="color:var(--accent);" id="shippingAmt"></span>
+      </div>
+      <div style="height:3px;background:rgba(255,255,255,.08);border-radius:2px;">
+        <div id="shippingProgress" style="height:100%;background:var(--accent);border-radius:2px;transition:width .4s;width:0%"></div>
+      </div>
+    </div>
     <button class="pay-btn pay-mp" onclick="pagarConMercadoPago()"><i class="fab fa-cc-visa"></i> Pagar con MercadoPago</button>
     <button class="pay-btn pay-wa" onclick="pagarWA()"><i class="fab fa-whatsapp"></i> Solicitar por WhatsApp</button>
     <p class="pay-note"><i class="fas fa-lock"></i> &nbsp;Pago seguro. Sin comisiones adicionales.</p>
   </div>
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="js/carrito.js"></script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="js/carrito.js"></script>
 <script>
 /* ── CURSOR ── */
 const cur = document.getElementById('cur');
@@ -1221,63 +1265,99 @@ document.addEventListener('DOMContentLoaded', async function() {
   await cargarDestacados();
 });
 
+const FALLBACK_PRODUCTOS = [
+  {
+    id: 'f1',
+    nombre: 'Campera JEAN clásica',
+    precio: 65000,
+    precioAnterior: 85000,
+    imagen: 'https://d22fxaf9t8d39k.cloudfront.net/4685374b45b479cfd58e9da55c51fd9889b25c8240a765e91d1d62b8873d0386404368.jpg',
+    categoria: 'new'
+  },
+  {
+    id: 'f2',
+    nombre: 'Sastrero RIALTO',
+    precio: 72000,
+    precioAnterior: null,
+    imagen: 'https://d22fxaf9t8d39k.cloudfront.net/375cc7ff5b765aef3317f2c7e3644ca98c4c2e0143f743fa61ae63e643ad60fb404368.png',
+    categoria: 'new'
+  },
+  {
+    id: 'f3',
+    nombre: 'Abanico ORGULLO',
+    precio: 20000,
+    precioAnterior: null,
+    imagen: 'https://d22fxaf9t8d39k.cloudfront.net/d7bb9acf8f5ca09e741eac41c71f65a1a789da46d32346dbcc8da085b6888a8b404368.jpg',
+    categoria: 'accesorios'
+  },
+  {
+    id: 'f4',
+    nombre: 'Pilusos prelavados',
+    precio: 15000,
+    precioAnterior: 22000,
+    imagen: 'https://d22fxaf9t8d39k.cloudfront.net/04f404fb2c2c189df4aabe4a97bff9aa96f2bd5b3783d41e222f89c28bc0ee2d404368.png',
+    categoria: 'accesorios'
+  }
+];
+
 async function cargarDestacados() {
+  const grid = document.getElementById('productosDestacados');
+  if (!grid) return;
+
+  let destacados = [];
+
   try {
     const response = await fetch('productos.json?t=' + Date.now());
-    const todos = await response.json();
+    if (response.ok) {
+      const todos = await response.json();
+      destacados = todos.filter(p => p.activo === true).slice(0, 4);
+    }
+  } catch (error) {
+    console.warn('productos.json no disponible, usando productos de respaldo');
+  }
+
+  // Si el JSON falló o vino vacío, usar fallback
+  if (!destacados.length) {
+    destacados = FALLBACK_PRODUCTOS;
+  }
+  
+  let html = '';
+  destacados.forEach(producto => {
+    const descuento = producto.precioAnterior ? 
+      Math.round((1 - producto.precio / producto.precioAnterior) * 100) : 0;
     
-    // Tomar los primeros 4 productos activos como destacados
-    const destacados = todos.filter(p => p.activo === true).slice(0, 4);
-    
-    const grid = document.getElementById('productosDestacados');
-    if (!grid) return;
-    
-    let html = '';
-    destacados.forEach(producto => {
-      const descuento = producto.precioAnterior ? 
-        Math.round((1 - producto.precio / producto.precioAnterior) * 100) : 0;
-      
-      html += `
-        <div class="prod-card" onclick="window.location.href='producto.html?id=${producto.id}'">
-          <div class="prod-img">
-            ${producto.categoria === 'new' ? '<span class="prod-badge badge-new">New</span>' : ''}
-            ${producto.precioAnterior ? `<span class="prod-badge badge-sale">-${descuento}%</span>` : ''}
-            <img src="${producto.imagen}" alt="${producto.nombre}" loading="lazy" 
-                 onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'300\' height=\'400\'%3E%3Crect fill=\'%23f0ede8\' width=\'300\' height=\'400\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%23c9a96e\' font-size=\'14\'%3ESin imagen%3C/text%3E%3C/svg%3E'"/>
-            <div class="prod-overlay">
-              <button class="ov-btn ov-add" onclick="event.stopPropagation(); agregarAlCarrito('${producto.id}', '${producto.nombre}', ${producto.precio}, '${producto.imagen}')">
-                <i class="fas fa-shopping-bag"></i> Agregar
-              </button>
-              <button class="ov-btn ov-view" onclick="event.stopPropagation(); window.location.href='producto.html?id=${producto.id}'">
-                <i class="fas fa-eye"></i>
-              </button>
-            </div>
-          </div>
-          <div class="prod-info">
-            <p class="prod-cat">${producto.categoria}</p>
-            <h3 class="prod-name">${producto.nombre}</h3>
-            <p class="prod-price">
-              ${producto.precioAnterior ? `<del>$${producto.precioAnterior.toLocaleString('es-AR')}</del>` : ''}
-              $${producto.precio.toLocaleString('es-AR')}
-            </p>
+    html += `
+      <div class="prod-card" onclick="window.location.href='producto.html?id=${producto.id}'">
+        <div class="prod-img">
+          ${producto.categoria === 'new' ? '<span class="prod-badge badge-new">New</span>' : ''}
+          ${producto.precioAnterior ? `<span class="prod-badge badge-sale">-${descuento}%</span>` : ''}
+          <img src="${producto.imagen}" alt="${producto.nombre}" loading="lazy" 
+               onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'300\' height=\'400\'%3E%3Crect fill=\'%23f0ede8\' width=\'300\' height=\'400\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%23c9a96e\' font-size=\'14\'%3ESin imagen%3C/text%3E%3C/svg%3E'"/>
+          <div class="prod-overlay">
+            <button class="ov-btn ov-add" onclick="event.stopPropagation(); agregarAlCarrito('${producto.id}', '${producto.nombre}', ${producto.precio}, '${producto.imagen}')">
+              <i class="fas fa-shopping-bag"></i> Agregar
+            </button>
+            <button class="ov-btn ov-view" onclick="event.stopPropagation(); window.location.href='producto.html?id=${producto.id}'">
+              <i class="fas fa-eye"></i>
+            </button>
           </div>
         </div>
-      `;
-    });
-    
-    grid.innerHTML = html;
-    
-    // Activar animaciones de aparición
-    document.querySelectorAll('.prod-card').forEach(c => c.classList.add('visible'));
-    
-  } catch (error) {
-    console.error('Error cargando destacados:', error);
-    document.getElementById('productosDestacados').innerHTML = `
-      <div class="no-products" style="grid-column:1/-1; text-align:center; padding:40px;">
-        <p>Error al cargar productos</p>
+        <div class="prod-info">
+          <p class="prod-cat">${producto.categoria}</p>
+          <h3 class="prod-name">${producto.nombre}</h3>
+          <p class="prod-price">
+            ${producto.precioAnterior ? `<del>$${producto.precioAnterior.toLocaleString('es-AR')}</del>` : ''}
+            $${producto.precio.toLocaleString('es-AR')}
+          </p>
+        </div>
       </div>
     `;
-  }
+  });
+  
+  grid.innerHTML = html;
+  
+  // Activar animaciones de aparición
+  document.querySelectorAll('.prod-card').forEach(c => c.classList.add('visible'));
 }
 
 /* ── CART ── */
@@ -1314,6 +1394,28 @@ function renderCart(){
   total.textContent = '$'+sum.toLocaleString('es-AR');
   body.querySelectorAll('.cd-item').forEach(e=>e.remove());
   empty.style.display = cart.length ? 'none' : 'block';
+
+  // Barra de envío gratis
+  const FREE_SHIP = 80000;
+  const shippingBar = document.getElementById('shippingBar');
+  if (shippingBar) {
+    if (cart.length > 0) {
+      shippingBar.style.display = 'block';
+      const pct = Math.min(100, (sum / FREE_SHIP) * 100);
+      document.getElementById('shippingProgress').style.width = pct + '%';
+      if (sum >= FREE_SHIP) {
+        document.getElementById('shippingMsg').textContent = '🎉 ¡Tenés envío gratis!';
+        document.getElementById('shippingAmt').textContent = '';
+      } else {
+        const falta = (FREE_SHIP - sum).toLocaleString('es-AR');
+        document.getElementById('shippingMsg').textContent = `Te faltan $${falta} para envío gratis`;
+        document.getElementById('shippingAmt').textContent = `${Math.round(pct)}%`;
+      }
+    } else {
+      shippingBar.style.display = 'none';
+    }
+  }
+
   cart.forEach(item=>{
     const el = document.createElement('div');
     el.className='cd-item';
@@ -1347,14 +1449,4 @@ function subscribe(){
   const email = document.getElementById('nlEmail').value.trim();
   if (!email || !email.includes('@')) { alert('Ingresá un email válido'); return; }
   alert('¡Gracias! Te enviamos el 10% OFF a ' + email);
-  document.getElementById('nlEmail').value = '';
-}
-
-/* ── HAMBURGER MENU ── */
-function toggleIndexMenu() {
-  document.getElementById('hamburger').classList.toggle('open');
-  document.getElementById('mobileNavIdx').classList.toggle('open');
-}
-</script>
-</body>
-</html>
+  document.getElementByI
