@@ -66,6 +66,49 @@
     }
     .cart-badge.on { display:grid; }
 
+    /* ── HAMBURGUER MOBILE ── */
+    .hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; padding:4px; background:none; border:none; }
+    .hamburger span { display:block; width:22px; height:1.5px; background:var(--muted); transition:all .3s; }
+    .hamburger.open span:nth-child(1) { transform:translateY(6.5px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity:0; }
+    .hamburger.open span:nth-child(3) { transform:translateY(-6.5px) rotate(-45deg); }
+    .mobile-nav {
+      display:none; position:fixed; top:72px; left:0; right:0; z-index:199;
+      background:rgba(14,14,12,.98); backdrop-filter:blur(20px);
+      border-bottom:1px solid var(--border);
+      padding:24px 22px; flex-direction:column; gap:4px;
+    }
+    .mobile-nav.open { display:flex; }
+    .mobile-nav a {
+      padding:13px 0; font-size:13px; font-weight:500; color:var(--muted);
+      border-bottom:1px solid var(--border); display:block; transition:color .2s;
+    }
+    .mobile-nav a:last-child { border-bottom:none; }
+    .mobile-nav a:hover, .mobile-nav a.active { color:var(--accent); }
+
+    /* ── SEARCH BAR ── */
+    .search-bar {
+      display:flex; align-items:center; gap:12px;
+      padding:14px 48px; border-bottom:1px solid var(--border);
+      background:rgba(14,14,12,.6);
+      max-height:0; overflow:hidden; opacity:0;
+      transition:max-height .35s var(--ease), opacity .3s, padding .3s;
+      padding-top:0; padding-bottom:0;
+    }
+    .search-bar.open { max-height:60px; opacity:1; padding-top:14px; padding-bottom:14px; }
+    .search-bar i { color:var(--muted); font-size:14px; flex-shrink:0; }
+    .search-input {
+      flex:1; background:none; border:none; outline:none;
+      color:var(--text); font-family:var(--sans); font-size:14px;
+    }
+    .search-input::placeholder { color:var(--muted); }
+    .search-clear { background:none; border:none; color:var(--muted); cursor:pointer; font-size:16px; padding:2px; transition:color .2s; }
+    .search-clear:hover { color:var(--text); }
+    @media (max-width:900px) {
+      .hamburger { display:flex; }
+      .search-bar { padding-left:22px; padding-right:22px; }
+    }
+
     /* ── SHIPPING BAR ── */
     .shipping-bar {
       margin-top:72px;
@@ -159,6 +202,16 @@
       padding:20px; opacity:0; transition:opacity .28s;
     }
     .prod-card:hover .prod-overlay { opacity:1; }
+
+    /* En móvil los botones siempre visibles abajo de la card */
+    @media (hover:none) {
+      .prod-overlay { display:none !important; }
+      .prod-card-actions {
+        display:flex !important; gap:6px; padding:8px 10px 12px;
+      }
+    }
+    .prod-card-actions { display:none; }
+    .prod-card-actions .ov-btn { flex:1; }
 
     .ov-btn {
       width:100%; padding:11px; border:none; cursor:pointer;
@@ -357,6 +410,140 @@
       .qv-info { padding:22px 18px; }
     }
 
+    /* ── SALE TAB DESTACADO ── */
+    .filter-tab[data-f="sale"] { color:var(--red); border-color:rgba(184,48,48,.3); }
+    .filter-tab[data-f="sale"]:hover, .filter-tab[data-f="sale"].active { background:var(--red); border-color:var(--red); color:var(--white); }
+    .sale-count {
+      background:var(--red); color:#fff; font-size:8px; font-weight:700;
+      padding:1px 5px; border-radius:20px; margin-left:4px; vertical-align:middle;
+    }
+
+    /* ── GUÍA DE TALLES LINK ── */
+    .size-guide-bar {
+      display:flex; align-items:center; justify-content:flex-end;
+      padding:10px 48px; border-bottom:1px solid var(--border);
+      font-size:11px; color:var(--muted); gap:6px;
+    }
+    .size-guide-bar a { color:var(--accent); text-decoration:underline; text-underline-offset:3px; cursor:pointer; }
+    .size-guide-bar a:hover { color:var(--adk); }
+
+    /* ── STOCK BADGE ── */
+    .badge-stock { background:#b85c00; color:#fff; }
+    .badge-nostock { background:#555; color:#ccc; }
+    .prod-card.out-of-stock { opacity:.6; }
+    .prod-card.out-of-stock .ov-add { opacity:.4; cursor:not-allowed; }
+
+    /* ── CARRITO: CONTROLES DE CANTIDAD ── */
+    .cd-item-qty {
+      display:flex; align-items:center; gap:8px; margin-top:6px;
+    }
+    .cd-item-qty button {
+      background:var(--border); border:none; color:var(--text); width:22px; height:22px;
+      display:grid; place-items:center; cursor:pointer; font-size:14px; border-radius:3px;
+      transition:background .2s;
+    }
+    .cd-item-qty button:hover { background:var(--accent); color:var(--bg); }
+    .cd-item-qty span { font-size:13px; min-width:16px; text-align:center; }
+
+    /* ── MODAL SELECTOR DE TALLE ── */
+    .sm-backdrop {
+      position:fixed; inset:0; background:rgba(0,0,0,.72);
+      z-index:500; opacity:0; pointer-events:none; transition:opacity .3s;
+    }
+    .sm-backdrop.open { opacity:1; pointer-events:all; }
+    .size-modal {
+      position:fixed; bottom:0; left:0; right:0; z-index:501;
+      background:var(--surface); border-top:1px solid var(--border);
+      padding:28px 24px 36px;
+      transform:translateY(100%); transition:transform .38s var(--ease);
+      max-width:480px; margin:0 auto;
+    }
+    .size-modal.open { transform:translateY(0); }
+    @media(min-width:600px){
+      .size-modal {
+        bottom:auto; top:50%; left:50%; right:auto;
+        transform:translate(-50%,-52%) scale(.97);
+        width:min(440px,95vw); border:1px solid var(--border); border-radius:2px;
+        opacity:0; transition:transform .35s var(--ease), opacity .3s;
+      }
+      .size-modal.open { transform:translate(-50%,-50%) scale(1); opacity:1; }
+    }
+    .sm-head { display:flex; align-items:center; gap:14px; margin-bottom:20px; }
+    .sm-head img { width:64px; height:80px; object-fit:cover; flex-shrink:0; }
+    .sm-head-info h3 { font-family:var(--serif); font-size:17px; font-weight:400; }
+    .sm-head-info p  { font-size:13px; color:var(--accent); margin-top:2px; }
+    .sm-label { font-size:10px; letter-spacing:.15em; text-transform:uppercase; color:var(--muted); margin-bottom:10px; }
+    .sm-talles { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:14px; }
+    .sm-talle-btn {
+      min-width:52px; padding:10px 14px; border:1px solid var(--border); background:none;
+      color:var(--text); font-family:var(--sans); font-size:13px; cursor:pointer;
+      transition:all .2s; text-align:center;
+    }
+    .sm-talle-btn:hover { border-color:var(--accent); }
+    .sm-talle-btn.active { background:var(--accent); border-color:var(--accent); color:var(--bg); }
+    .sm-error { font-size:12px; color:#e05555; margin-bottom:10px; display:none; }
+    .sm-confirm {
+      width:100%; padding:14px; background:var(--accent); border:none; color:var(--bg);
+      font-family:var(--sans); font-size:10px; font-weight:700; letter-spacing:.18em;
+      text-transform:uppercase; cursor:pointer; transition:background .22s;
+      display:flex; align-items:center; justify-content:center; gap:8px;
+    }
+    .sm-confirm:hover { background:var(--adk); }
+    .sm-close-btn {
+      position:absolute; top:14px; right:16px;
+      background:none; border:1px solid var(--border); color:var(--text); cursor:pointer;
+      width:30px; height:30px; border-radius:50%; display:grid; place-items:center;
+      font-size:16px; transition:border-color .2s;
+    }
+    .sm-close-btn:hover { border-color:var(--accent); }
+
+    /* ── GUÍA DE TALLES MODAL ── */
+    .sg-modal {
+      position:fixed; top:50%; left:50%; z-index:502;
+      width:min(580px,96vw); max-height:90vh; overflow-y:auto;
+      background:var(--surface); border:1px solid var(--border);
+      transform:translate(-50%,-52%) scale(.97);
+      opacity:0; pointer-events:none;
+      transition:transform .35s var(--ease), opacity .3s;
+      padding:32px 28px;
+    }
+    .sg-modal.open { transform:translate(-50%,-50%) scale(1); opacity:1; pointer-events:all; }
+    .sg-modal h2 { font-family:var(--serif); font-size:24px; font-weight:400; margin-bottom:20px; }
+    .sg-table { width:100%; border-collapse:collapse; font-size:13px; margin-bottom:20px; }
+    .sg-table th { background:rgba(255,255,255,.05); padding:10px 14px; text-align:left; font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); border-bottom:1px solid var(--border); }
+    .sg-table td { padding:10px 14px; border-bottom:1px solid var(--border); }
+    .sg-table tr:last-child td { border-bottom:none; }
+    .sg-note { font-size:12px; color:var(--muted); line-height:1.7; }
+    .sg-close { position:absolute; top:14px; right:16px; background:none; border:1px solid var(--border); color:var(--text); cursor:pointer; width:30px; height:30px; border-radius:50%; display:grid; place-items:center; font-size:16px; transition:border-color .2s; }
+    .sg-close:hover { border-color:var(--accent); }
+
+    /* ── RESEÑAS ── */
+    .reviews-bar {
+      background:var(--surface); border-top:1px solid var(--border); border-bottom:1px solid var(--border);
+      padding:28px 48px; display:flex; gap:40px; align-items:center; overflow-x:auto;
+    }
+    .review-score { display:flex; flex-direction:column; align-items:center; gap:4px; flex-shrink:0; border-right:1px solid var(--border); padding-right:40px; }
+    .review-score .score-num { font-family:var(--serif); font-size:48px; font-weight:400; color:var(--accent); line-height:1; }
+    .review-score .score-stars { color:var(--accent); font-size:16px; letter-spacing:2px; }
+    .review-score .score-count { font-size:11px; color:var(--muted); }
+    .review-cards { display:flex; gap:20px; }
+    .review-card { background:rgba(255,255,255,.03); border:1px solid var(--border); padding:18px 20px; min-width:220px; max-width:260px; flex-shrink:0; }
+    .review-card-stars { color:var(--accent); font-size:11px; margin-bottom:8px; }
+    .review-card-text { font-size:13px; line-height:1.6; color:var(--text); margin-bottom:10px; font-style:italic; }
+    .review-card-author { font-size:11px; color:var(--muted); }
+
+    /* ── TRUST BADGES (debajo de filtros) ── */
+    .trust-strip {
+      display:flex; gap:0; border-bottom:1px solid var(--border);
+    }
+    .trust-item {
+      flex:1; display:flex; align-items:center; justify-content:center; gap:9px;
+      padding:14px 10px; font-size:11px; color:var(--muted); border-right:1px solid var(--border);
+    }
+    .trust-item:last-child { border-right:none; }
+    .trust-item i { color:var(--accent); font-size:14px; flex-shrink:0; }
+    @media(max-width:600px){ .trust-item span { display:none; } .trust-item { padding:12px; } }
+
     /* ── KEYFRAMES ── */
     @keyframes fadeUp {
       from { opacity:0; transform:translateY(20px); }
@@ -396,13 +583,31 @@
     </ul>
   </nav>
   <div class="header-icons">
-    <i class="fas fa-search"></i>
+    <i class="fas fa-search" onclick="toggleSearch()" title="Buscar"></i>
     <div class="cart-icon-wrap" onclick="toggleCart()">
       <i class="fas fa-shopping-bag"></i>
       <span class="cart-badge" id="cartBadge">0</span>
     </div>
+    <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menú">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </header>
+
+<!-- ══ MOBILE NAV ══ -->
+<nav class="mobile-nav" id="mobileNav">
+  <a href="index.html">Inicio</a>
+  <a href="tienda.html" class="active">Tienda</a>
+  <a href="lookbook.html">Lookbook</a>
+  <a href="contacto.html">Contacto</a>
+</nav>
+
+<!-- ══ SEARCH BAR ══ -->
+<div class="search-bar" id="searchBar">
+  <i class="fas fa-search"></i>
+  <input type="text" class="search-input" id="searchInput" placeholder="Buscar productos..."/>
+  <button class="search-clear" onclick="clearSearch()">×</button>
+</div>
 
 <!-- ══ SHIPPING BAR ══ -->
 <div class="shipping-bar">🚚 &nbsp; Envíos a todo el país &nbsp;·&nbsp; Retiro en local · Ing. Olmos 139, Jesús María &nbsp;·&nbsp; Compra segura</div>
@@ -422,9 +627,23 @@
     <button class="filter-tab" data-f="hombre">Hombre</button>
     <button class="filter-tab" data-f="mujer">Mujer</button>
     <button class="filter-tab" data-f="accesorios">Accesorios</button>
-    <button class="filter-tab" data-f="sale">Sale</button>
+    <button class="filter-tab" data-f="sale">Sale <span class="sale-count" id="saleCount"></span></button>
   </div>
   <span class="prod-count" id="prodCount">38 productos</span>
+</div>
+
+<!-- ══ SIZE GUIDE BAR ══ -->
+<div class="size-guide-bar">
+  <i class="fas fa-ruler-horizontal" style="font-size:12px;color:var(--accent)"></i>
+  ¿No sabés tu talle? &nbsp;<a onclick="openSizeGuide()">Ver guía de talles</a>
+</div>
+
+<!-- ══ TRUST STRIP ══ -->
+<div class="trust-strip">
+  <div class="trust-item"><i class="fas fa-truck"></i><span>Envíos a todo el país</span></div>
+  <div class="trust-item"><i class="fas fa-shield-alt"></i><span>Compra segura</span></div>
+  <div class="trust-item"><i class="fas fa-exchange-alt"></i><span>Cambios y devoluciones</span></div>
+  <div class="trust-item"><i class="fab fa-whatsapp"></i><span>Atención por WhatsApp</span></div>
 </div>
 
 <!-- ══ GRID ══ -->
@@ -1072,6 +1291,37 @@
 </div><!-- /prod-grid -->
 </div><!-- /shop-body -->
 
+<!-- ══ RESEÑAS ══ -->
+<div class="reviews-bar">
+  <div class="review-score">
+    <span class="score-num">4.9</span>
+    <div class="score-stars">★★★★★</div>
+    <span class="score-count">+120 compradores</span>
+  </div>
+  <div class="review-cards">
+    <div class="review-card">
+      <div class="review-card-stars">★★★★★</div>
+      <p class="review-card-text">"La campera jean es una pasada, la calidad es excelente y llegó súper rápido. Ya la usé mil veces."</p>
+      <p class="review-card-author">— Valentina M., Córdoba</p>
+    </div>
+    <div class="review-card">
+      <div class="review-card-stars">★★★★★</div>
+      <p class="review-card-text">"Los abanicos son hermosos y únicos. Me llegaron perfectos y con mucho cuidado en el embalaje."</p>
+      <p class="review-card-author">— Lucía T., Buenos Aires</p>
+    </div>
+    <div class="review-card">
+      <div class="review-card-stars">★★★★★</div>
+      <p class="review-card-text">"Compré el conjunto de lino y quedé enamorado. El talle es perfecto, muy cómodo. 100% recomendable."</p>
+      <p class="review-card-author">— Matías R., Jesús María</p>
+    </div>
+    <div class="review-card">
+      <div class="review-card-stars">★★★★★</div>
+      <p class="review-card-text">"Me encantó la atención, respondieron rápido por WhatsApp y el envío fue puntual. Volveré a comprar."</p>
+      <p class="review-card-author">— Sofía G., Villa María</p>
+    </div>
+  </div>
+</div>
+
 <!-- ══ FOOTER ══ -->
 <footer id="contacto">
   <div>
@@ -1098,7 +1348,7 @@
       <li><a href="#">Envíos</a></li>
       <li><a href="#">Cambios y devoluciones</a></li>
       <li><a href="#">Preguntas frecuentes</a></li>
-      <li><a href="/cdn-cgi/l/email-protection#22404350430c434c460c414d0c484f62454f434b4e0c414d4f">Contacto</a></li>
+      <li><a href="contacto.html">Contacto</a></li>
     </ul>
   </div>
   <div class="foot-col">
@@ -1120,7 +1370,7 @@
   </div>
 </footer>
 <div class="foot-bot">
-  <span>© 2026 Bara & Co · CUIT · Ing. Olmos 139 – Jesús María · <a href="/cdn-cgi/l/email-protection#12707360733c737c763c717d3c787f52757f737b7e3c717d7f"><span class="__cf_email__" data-cfemail="3c5e5d4e5d125d5258125f531256517c5b515d5550125f5351">[email&#160;protected]</span></a></span>
+  <span>© 2026 Bara & Co · CUIT · Ing. Olmos 139 – Jesús María · <a href="mailto:bara.and.co.jm@gmail.com">bara.and.co.jm@gmail.com</a></span>
   <div class="foot-links">
     <a href="#">Términos y condiciones</a>
     <a href="#">Política de privacidad</a>
@@ -1131,6 +1381,38 @@
 <button class="wa-float" onclick="window.open('https://wa.me/5493525614281?text=Hola!%20Quiero%20consultar%20sobre%20un%20producto','_blank')" title="Consultar por WhatsApp">
   <i class="fab fa-whatsapp"></i>
 </button>
+
+<!-- ══ GUÍA DE TALLES MODAL ══ -->
+<div class="qv-backdrop" id="sgBackdrop" onclick="closeSizeGuide()" style="z-index:501"></div>
+<div class="sg-modal" id="sgModal">
+  <button class="sg-close" onclick="closeSizeGuide()">×</button>
+  <h2>Guía de Talles</h2>
+  <p style="font-size:13px;color:var(--muted);margin-bottom:20px;">Medite el contorno de pecho, cintura y cadera para elegir el talle correcto.</p>
+  <h4 style="font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;">Ropa Hombre</h4>
+  <table class="sg-table">
+    <thead><tr><th>Talle</th><th>Pecho (cm)</th><th>Cintura (cm)</th><th>Cadera (cm)</th></tr></thead>
+    <tbody>
+      <tr><td>S</td><td>88–92</td><td>74–78</td><td>88–92</td></tr>
+      <tr><td>M</td><td>93–98</td><td>79–84</td><td>93–98</td></tr>
+      <tr><td>L</td><td>99–104</td><td>85–90</td><td>99–104</td></tr>
+      <tr><td>XL</td><td>105–112</td><td>91–98</td><td>105–112</td></tr>
+    </tbody>
+  </table>
+  <h4 style="font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;">Ropa Mujer</h4>
+  <table class="sg-table">
+    <thead><tr><th>Talle</th><th>Pecho (cm)</th><th>Cintura (cm)</th><th>Cadera (cm)</th></tr></thead>
+    <tbody>
+      <tr><td>XS</td><td>80–84</td><td>62–66</td><td>84–88</td></tr>
+      <tr><td>S</td><td>85–88</td><td>67–70</td><td>89–92</td></tr>
+      <tr><td>M</td><td>89–93</td><td>71–75</td><td>93–97</td></tr>
+      <tr><td>L</td><td>94–99</td><td>76–81</td><td>98–103</td></tr>
+    </tbody>
+  </table>
+  <p class="sg-note">¿Estás entre dos talles? Recomendamos elegir el más grande para mayor comodidad. Si tenés dudas, consultanos por WhatsApp.</p>
+  <button onclick="window.open('https://wa.me/5493525614281?text=Hola!%20Tengo%20una%20duda%20sobre%20talles','_blank')" style="margin-top:16px;background:var(--accent);border:none;color:var(--bg);padding:12px 20px;font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;width:100%;">
+    <i class="fab fa-whatsapp"></i> &nbsp; Consultar por WhatsApp
+  </button>
+</div>
 
 <!-- ══ CART TOAST ══ -->
 <div class="cart-toast" id="cartToast"><i class="fas fa-check-circle"></i> Producto agregado al carrito</div>
@@ -1438,6 +1720,71 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeQV(); }
 
 // init cart render on load
 renderCart();
+
+/* ══ HAMBURGER MENU ══ */
+function toggleMenu() {
+  const h = document.getElementById('hamburger');
+  const n = document.getElementById('mobileNav');
+  h.classList.toggle('open');
+  n.classList.toggle('open');
+}
+
+/* ══ SEARCH ══ */
+function toggleSearch() {
+  const bar = document.getElementById('searchBar');
+  bar.classList.toggle('open');
+  if (bar.classList.contains('open')) {
+    document.getElementById('searchInput').focus();
+  } else {
+    clearSearch();
+  }
+}
+function clearSearch() {
+  document.getElementById('searchInput').value = '';
+  filterBy(document.querySelector('.filter-tab.active').dataset.f);
+}
+document.getElementById('searchInput').addEventListener('input', function() {
+  const q = this.value.trim().toLowerCase();
+  let visible = 0;
+  document.querySelectorAll('.prod-card').forEach(c => {
+    const name = (c.dataset.name || '').toLowerCase();
+    const cat  = (c.querySelector('.prod-cat')?.textContent || '').toLowerCase();
+    const show = !q || name.includes(q) || cat.includes(q);
+    c.classList.toggle('hidden', !show);
+    if (show) visible++;
+  });
+  document.querySelectorAll('.cat-heading').forEach(h => {
+    let el = h.nextElementSibling;
+    const cards = [];
+    while (el && !el.classList.contains('cat-heading')) {
+      if (el.classList.contains('prod-card')) cards.push(el);
+      el = el.nextElementSibling;
+    }
+    h.classList.toggle('hidden', !cards.some(c => !c.classList.contains('hidden')));
+  });
+  document.getElementById('prodCount').textContent = visible + ' producto' + (visible !== 1 ? 's' : '');
+  const emptyEl = document.getElementById('emptyMsg');
+  if (emptyEl) emptyEl.style.display = visible === 0 ? 'block' : 'none';
+});
+
+/* ══ SIZE GUIDE MODAL ══ */
+function openSizeGuide() {
+  document.getElementById('sgModal').classList.add('open');
+  document.getElementById('sgBackdrop').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeSizeGuide() {
+  document.getElementById('sgModal').classList.remove('open');
+  document.getElementById('sgBackdrop').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+/* ══ SALE COUNT BADGE ══ */
+(function setSaleCount() {
+  const n = document.querySelectorAll('.prod-card[data-cat*="sale"]').length;
+  const el = document.getElementById('saleCount');
+  if (el && n > 0) el.textContent = n;
+})();
 </script>
 </body>
 </html>
