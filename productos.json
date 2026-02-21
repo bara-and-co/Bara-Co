@@ -845,9 +845,9 @@
     "precioAnterior": null,
     "categoria": "accesorios",
     "subcategoria": "Gorras",
-    "imagen": "https://d22fxaf9t8d39k.cloudfront.net/04f404fb2c2c189df4aabe4a97bff9aa96f2bd5b3783d41e222f89c28bc0ee2d404368.png",
+    "imagen": "accesorios/pilusos.png",
     "imagenes": [
-      "https://d22fxaf9t8d39k.cloudfront.net/04f404fb2c2c189df4aabe4a97bff9aa96f2bd5b3783d41e222f89c28bc0ee2d404368.png"
+      "accesorios/pilusos.png"
     ],
     "descripcion": "",
     "colores": [],
@@ -868,7 +868,7 @@
     "sku": "PILUSOS-PRELAVADOS",
     "stock": 10,
     "activo": true,
-    "url": "https://baraandco.empretienda.com.ar/accesorios/gorras/pilusos-prelavados"
+    "url": "accesorios/pilusos.png"
   },
   {
     "id": "gorras-prelavadas",
@@ -877,9 +877,9 @@
     "precioAnterior": null,
     "categoria": "accesorios",
     "subcategoria": "Gorras",
-    "imagen": "https://d22fxaf9t8d39k.cloudfront.net/375cc7ff5b765aef3317f2c7e3644ca98c4c2e0143f743fa61ae63e643ad60fb404368.png",
+    "imagen": "accesorios/gorrasprelavadas.png",
     "imagenes": [
-      "https://d22fxaf9t8d39k.cloudfront.net/375cc7ff5b765aef3317f2c7e3644ca98c4c2e0143f743fa61ae63e643ad60fb404368.png"
+      "accesorios/gorrasprelavadas.png"
     ],
     "descripcion": "",
     "colores": [],
@@ -1229,9 +1229,9 @@
     "precioAnterior": null,
     "categoria": "accesorios",
     "subcategoria": "Abanicos",
-    "imagen": "accesorios/AbanicoAlien.png",
+    "imagen": "accesorios/AbanicoAlien.webp",
     "imagenes": [
-      "accesorios/AbanicoAlien.png"
+      "accesorios/AbanicoAlien.webp"
     ],
     "descripcion": "",
     "colores": [],
