@@ -1197,9 +1197,9 @@
     "precioAnterior": null,
     "categoria": "accesorios",
     "subcategoria": "Abanicos",
-    "imagen": "accesorios/AbanicoAire.png",
+    "imagen": "accesorios/AmiAire.webp",
     "imagenes": [
-      "accesorios/AbanicoAire.png"
+      "accesorios/AmiAire.webp"
     ],
     "descripcion": "",
     "colores": [],
@@ -1325,9 +1325,9 @@
     "precioAnterior": null,
     "categoria": "accesorios",
     "subcategoria": "Abanicos",
-    "imagen": "accesorios/AbanicoMañana.png",
+    "imagen": "accesorios/mañana.png",
     "imagenes": [
-      "accesorios/AbanicoMañana.png"
+      "accesorios/mañana.png"
     ],
     "descripcion": "",
     "colores": [],
@@ -1421,9 +1421,9 @@
     "precioAnterior": null,
     "categoria": "accesorios",
     "subcategoria": "Abanicos",
-    "imagen": "accesorios/AbanicoNeon.png",
+    "imagen": "accesorios/neon.png",
     "imagenes": [
-      "accesorios/AbanicoNeon.png"
+      "accesorios/neon.png"
     ],
     "descripcion": "",
     "colores": [],
