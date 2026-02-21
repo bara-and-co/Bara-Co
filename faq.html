@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Preguntas frecuentes · Bara & Co</title>
+  
+  <!-- CSS GLOBAL -->
+  <link rel="stylesheet" href="../css/global.css">
+  
+  <!-- Fuentes e iconos -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  
+  <style>
+    .page-content {
+      max-width: 900px;
+      margin: 120px auto 80px;
+      padding: 0 20px;
+    }
+    .page-title {
+      font-family: var(--font-serif);
+      font-size: 42px;
+      font-weight: 400;
+      margin-bottom: 40px;
+      color: var(--color-text);
+    }
+    .faq-item {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      margin-bottom: 15px;
+    }
+    .faq-question {
+      padding: 20px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 500;
+      color: var(--color-text);
+    }
+    .faq-question i {
+      transition: transform 0.3s;
+    }
+    .faq-question.active i {
+      transform: rotate(180deg);
+    }
+    .faq-answer {
+      padding: 0 20px 20px;
+      color: var(--color-text-secondary);
+      line-height: 1.8;
+      display: none;
+    }
+    .faq-answer.show {
+      display: block;
+    }
+  </style>
+</head>
+<body class="interior">
+
+<!-- HEADER -->
+<header id="header">
+  <a href="../index.html" class="logo">
+    <img src="../images/LogoB&D.png" alt="Bara & Co" class="logo-img"/>
+  </a>
+  <nav class="nav-menu">
+    <ul>
+      <li><a href="../index.html" class="nav-link">Inicio</a></li>
+      <li><a href="../tienda.html" class="nav-link">Tienda</a></li>
+      <li><a href="../lookbook.html" class="nav-link">Lookbook</a></li>
+      <li><a href="../contacto.html" class="nav-link">Contacto</a></li>
+    </ul>
+  </nav>
+  <div class="header-icons">
+    <i class="fas fa-search" id="searchIcon"></i>
+    <div class="cart-icon-wrap" onclick="toggleCart()">
+      <i class="fas fa-shopping-bag"></i>
+      <span class="cart-badge cart-count">0</span>
+    </div>
+    <button class="menu-toggle" id="menuToggle">
+      <i class="fas fa-bars"></i>
+    </button>
+  </div>
+</header>
+
+<!-- CONTENIDO -->
+<div class="page-content">
+  <h1 class="page-title">Preguntas frecuentes</h1>
+  
+  <div class="faq-item">
+    <div class="faq-question" onclick="toggleFaq(this)">
+      <span>¿Cómo puedo saber mi talle?</span>
+      <i class="fas fa-chevron-down"></i>
+    </div>
+    <div class="faq-answer">
+      En cada producto encontrarás una guía de talles específica. También podés consultar nuestra <a href="#" style="color: var(--color-accent);">guía general de talles</a> o escribirnos por WhatsApp para asesoramiento personalizado.
+    </div>
+  </div>
+  
+  <div class="faq-item">
+    <div class="faq-question" onclick="toggleFaq(this)">
+      <span>¿Cuánto tarda el envío?</span>
+      <i class="fas fa-chevron-down"></i>
+    </div>
+    <div class="faq-answer">
+      El tiempo de entrega depende de tu ubicación: para CABA y GBA es de 3 a 5 días hábiles, para el resto del país de 5 a 10 días hábiles. Los envíos express llegan en 24/48 hs.
+    </div>
+  </div>
+  
+  <div class="faq-item">
+    <div class="faq-question" onclick="toggleFaq(this)">
+      <span>¿Cómo realizo un cambio?</span>
+      <i class="fas fa-chevron-down"></i>
+    </div>
+    <div class="faq-answer">
+      Tenés 30 días para realizar cambios. Contactanos por WhatsApp con tu número de pedido y te indicaremos los pasos a seguir. Los cambios están sujetos a disponibilidad de stock.
+    </div>
+  </div>
+  
+  <div class="faq-item">
+    <div class="faq-question" onclick="toggleFaq(this)">
+      <span>¿Qué medios de pago aceptan?</span>
+      <i class="fas fa-chevron-down"></i>
+    </div>
+    <div class="faq-answer">
+    Aceptamos pago a través de MercadoPago (tarjetas de crédito, débito, Rapipago, Pago Fácil, transferencia y más), con hasta 6 cuotas sin interés con tarjetas seleccionadas. También podés coordinar el pago por WhatsApp.
+    </div>
+  </div>
+  
+  <div class="faq-item">
+    <div class="faq-question" onclick="toggleFaq(this)">
+      <span>¿El envío es gratis?</span>
+      <i class="fas fa-chevron-down"></i>
+    </div>
+    <div class="faq-answer">
+    Sí, el envío es gratis para compras superiores a $80.000 dentro de Argentina. Para compras menores, el costo es de $1.200 para CABA/GBA y $2.500 para el resto del país.
+    </div>
+  </div>
+  
+  <div class="faq-item">
+    <div class="faq-question" onclick="toggleFaq(this)">
+      <span>¿Puedo retirar mi compra en el local?</span>
+      <i class="fas fa-chevron-down"></i>
+    </div>
+    <div class="faq-answer">
+      ¡Claro que sí! Podés retirar tu compra sin cargo en nuestro local de Ing. Olmos 139, Jesús María. Escribinos por WhatsApp para coordinar el horario de retiro.
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <img src="../images/logoN&D.png" alt="Bara & Co" class="footer-logo-img"/>
+    <p class="footer-text">Indumentaria urbana con personalidad. Diseño y confort para tu día a día.</p>
+    <div class="social-icons">
+      <i class="fab fa-instagram" onclick="window.open('https://instagram.com/bara.and.co','_blank')"></i>
+      <i class="fab fa-facebook-f"></i>
+      <i class="fab fa-tiktok"></i>
+    </div>
+  </div>
+  <div>
+    <h4 class="footer-title">Categorías</h4>
+    <ul class="footer-links">
+      <li><a href="../tienda.html?categoria=hombre">Hombre</a></li>
+      <li><a href="../tienda.html?categoria=mujer">Mujer</a></li>
+      <li><a href="../tienda.html?categoria=accesorios">Accesorios</a></li>
+      <li><a href="../tienda.html?categoria=new">New Collection</a></li>
+      <li><a href="../tienda.html?categoria=sale">Sale</a></li>
+    </ul>
+  </div>
+  <div>
+    <h4 class="footer-title">Ayuda</h4>
+    <ul class="footer-links">
+      <li><a href="envios.html">Envíos</a></li>
+      <li><a href="cambios.html">Cambios y devoluciones</a></li>
+      <li><a href="faq.html" class="active">Preguntas frecuentes</a></li>
+      <li><a href="../contacto.html">Contacto</a></li>
+    </ul>
+  </div>
+  <div>
+    <h4 class="footer-title">Newsletter</h4>
+    <p class="footer-text">10% OFF en tu primera compra</p>
+    <div class="newsletter-input">
+      <input type="email" placeholder="tu@email.com"/>
+      <button><i class="fas fa-arrow-right"></i></button>
+    </div>
+  </div>
+</footer>
+<div class="footer-bottom">
+  <span>© 2026 Bara & Co · Ing. Olmos 139 – Jesús María</span>
+  <div class="legal-info">
+    <a href="terminos.html">Términos y condiciones</a>
+    <a href="privacidad.html">Política de privacidad</a>
+  </div>
+</div>
+
+<!-- WHATSAPP FLOAT -->
+<div class="whatsapp-float" onclick="window.open('https://wa.me/5493525614281?text=Hola!%20Quiero%20consultar%20sobre%20un%20producto','_blank')">
+  <i class="fab fa-whatsapp"></i>
+  <span class="whatsapp-tooltip">Consultar por WhatsApp</span>
+</div>
+
+<!-- CART PANEL -->
+<div class="overlay" onclick="toggleCart()"></div>
+<div class="cart-panel">
+  <div class="cart-header">
+    <h2 class="cart-title">Carrito <span class="cart-count">0</span></h2>
+    <span class="close-cart" onclick="toggleCart()"><i class="fas fa-times"></i></span>
+  </div>
+  <div class="cart-items">
+    <div class="cart-empty">
+      <i class="fas fa-shopping-bag"></i>
+      <p>Tu carrito está vacío</p>
+      <button class="btn-empty" onclick="toggleCart(); window.location.href='../tienda.html'">Explorar productos</button>
+    </div>
+  </div>
+  <div class="cart-footer"></div>
+</div>
+
+<!-- NOTIFICATION -->
+<div id="cartNotification" class="cart-notification">
+  <i class="fas fa-check-circle"></i>
+  <span></span>
+</div>
+
+<!-- JS GLOBALES -->
+<script src="../js/main.js"></script>
+<script src="../js/carrito.js"></script>
+<script src="../js/search.js"></script>
+
+<!-- JS específico de FAQ -->
+<script>
+  function toggleFaq(element) {
+    const answer = element.nextElementSibling;
+    const icon = element.querySelector('i');
+    
+    answer.classList.toggle('show');
+    element.classList.toggle('active');
+    
+    if (answer.classList.contains('show')) {
+      icon.style.transform = 'rotate(180deg)';
+    } else {
+      icon.style.transform = 'rotate(0deg)';
+    }
+  }
+</script>
+</body>
+</html>
