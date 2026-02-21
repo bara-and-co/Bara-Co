@@ -40,7 +40,7 @@
     
     /* Logo blanco para header (fondo oscuro) */
     .logo-header {
-      height: 70px !important;  /* Más grande */
+      height: 80px !important;  /* Más grande */
       width: auto !important;
       object-fit: contain;
       display: block;
@@ -297,8 +297,13 @@
     @media (max-width:480px) {
       .form-row.half { grid-template-columns:1fr; }
       footer { grid-template-columns:1fr; gap:26px; }
-      .logo-header { height: 50px !important; }
-      #header.scrolled .logo-header { height: 40px !important; }
+      .logo-header { height: 60px !important; }
+      #header.scrolled .logo-header { height: 50px !important; }
+    }
+    @media (hover: none) and (pointer: coarse) {
+      .cursor, .custom-cursor, .cursor-dot, .cursor-follower, [class*="cursor"] {
+        display: none !important;
+      }
     }
   </style>
 </head>
@@ -365,7 +370,7 @@
       <div class="info-text">
         <span class="info-label">Email</span>
         <span class="info-value">
-          <a href="mailto:bara.and.co.jm@gmail.com">bara.and.co.jm@gmail.com</a>
+          <a href="/cdn-cgi/l/email-protection#03616271622d626d672d606c2d696e43646e626a6f2d606c6e"><span class="__cf_email__" data-cfemail="eb898a998ac58a858fc58884c58186ab8c868a8287c5888486">[email&#160;protected]</span></a>
         </span>
       </div>
     </div>
@@ -509,7 +514,7 @@
   </div>
 </footer>
 <div class="foot-bot">
-  <span>© 2026 Bara & Co · Ing. Olmos 139 – Jesús María · <a href="mailto:bara.and.co.jm@gmail.com">bara.and.co.jm@gmail.com</a></span>
+  <span>© 2026 Bara & Co · Ing. Olmos 139 – Jesús María · <a href="/cdn-cgi/l/email-protection#fd9f9c8f9cd39c9399d39e92d39790bd9a909c9491d39e9290"><span class="__cf_email__" data-cfemail="5c3e3d2e3d723d3238723f337236311c3b313d3530723f3331">[email&#160;protected]</span></a></span>
   <div class="foot-links">
     <a href="#">Términos y condiciones</a>
     <a href="#">Política de privacidad</a>
@@ -543,7 +548,7 @@
   </div>
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 /* ── HEADER SCROLL ── */
 window.addEventListener('scroll', () => {
   document.getElementById('header').classList.toggle('scrolled', window.scrollY > 40);
@@ -614,16 +619,4 @@ function enviarFormulario() {
   // Armar mensaje de WhatsApp con todos los datos
   const motivoTxt = motivo ? `%0A*Motivo:* ${document.getElementById('fMotivo').options[document.getElementById('fMotivo').selectedIndex].text}` : '';
   const telTxt    = tel ? `%0A*Tel:* ${tel}` : '';
-  const wa = `Hola! Mensaje desde el sitio web:%0A%0A*Nombre:* ${nombre} ${apellido}%0A*Email:* ${email}${telTxt}${motivoTxt}%0A%0A*Mensaje:*%0A${encodeURIComponent(mensaje)}`;
-
-  // Abrir WhatsApp con el mensaje
-  window.open(`https://wa.me/5493525614281?text=${wa}`, '_blank');
-
-  // Mostrar confirmación
-  document.getElementById('formSuccess').classList.add('show');
-  ['fNombre','fApellido','fEmail','fTel','fMensaje'].forEach(id => document.getElementById(id).value = '');
-  document.getElementById('fMotivo').selectedIndex = 0;
-}
-</script>
-</body>
-</html>
+  const wa = `Hola! Mensaje desde el sitio web:%0A%0A*Nombre:* ${nombre} ${apellido}%0A*Email:* ${email}${telTxt}${motivoTxt}%0A%0A*Mensaje:*%0A${encodeURIComponent(m
