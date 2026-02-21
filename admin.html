@@ -234,13 +234,212 @@
     .form-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
     .form-hint { font-size:11px; color:var(--muted); margin-top:5px; display:flex; align-items:center; gap:5px; }
 
-    /* IMAGEN PREVIEW */
+    /* IMAGEN PREVIEW (legacy, keep for compat) */
     .img-prev-wrap {
       border-radius:var(--radius); overflow:hidden; aspect-ratio:3/4; max-height:220px;
       background:#f0ede8; border:1.5px solid var(--border); margin-top:8px; display:none;
     }
     .img-prev-wrap.on { display:block; }
     .img-prev-wrap img { width:100%; height:100%; object-fit:cover; }
+
+    /* ─── UPLOADER ─── */
+    .img-upload-zone {
+      position: relative;
+      border: 2px dashed var(--border);
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: border-color .2s, background .2s;
+      overflow: hidden;
+      min-height: 180px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg);
+    }
+    .img-upload-zone:hover,
+    .img-upload-zone.drag-over {
+      border-color: var(--accent);
+      background: rgba(201,169,110,.05);
+    }
+    .img-upload-zone.drag-over { border-style: solid; }
+    .img-upload-zone.has-image { border-style: solid; border-color: var(--accent); }
+
+    .upload-idle {
+      text-align: center;
+      padding: 32px 20px;
+      pointer-events: none;
+    }
+    .upload-icon {
+      font-size: 36px;
+      color: var(--accent);
+      opacity: .6;
+      margin-bottom: 12px;
+    }
+    .upload-title {
+      font-weight: 600;
+      font-size: 15px;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+    .upload-sub {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+    .upload-formats {
+      font-size: 11px;
+      color: var(--muted);
+      background: var(--border);
+      padding: 3px 10px;
+      border-radius: 20px;
+      display: inline-block;
+    }
+
+    .upload-preview {
+      width: 100%;
+      position: relative;
+    }
+    .upload-preview img {
+      width: 100%;
+      max-height: 280px;
+      object-fit: contain;
+      display: block;
+      background: #f0ede8;
+    }
+    .upload-clear {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: rgba(0,0,0,.55);
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      font-size: 13px;
+      display: grid;
+      place-items: center;
+      transition: background .2s;
+      z-index: 5;
+    }
+    .upload-clear:hover { background: var(--red); }
+    .upload-badge {
+      position: absolute;
+      bottom: 8px;
+      left: 8px;
+      background: var(--green);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .url-fallback {
+      margin-top: 10px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .url-fallback summary {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 0;
+      user-select: none;
+      list-style: none;
+    }
+    .url-fallback summary::-webkit-details-marker { display: none; }
+    .url-fallback summary:hover { color: var(--accent); }
+
+    /* Extra images grid */
+    .extra-imgs-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 8px;
+    }
+    .extra-img-item {
+      position: relative;
+      width: 72px;
+      height: 72px;
+      border-radius: 6px;
+      overflow: hidden;
+      border: 1.5px solid var(--border);
+      flex-shrink: 0;
+    }
+    .extra-img-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .extra-img-remove {
+      position: absolute;
+      top: 2px;
+      right: 2px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: rgba(0,0,0,.6);
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      font-size: 10px;
+      display: grid;
+      place-items: center;
+    }
+    .extra-add-btn {
+      width: 72px;
+      height: 72px;
+      border-radius: 6px;
+      border: 2px dashed var(--border);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      cursor: pointer;
+      color: var(--muted);
+      font-size: 11px;
+      transition: all .2s;
+      flex-shrink: 0;
+    }
+    .extra-add-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .extra-add-btn i { font-size: 18px; }
+
+    /* Upload progress */
+    .upload-progress {
+      position: absolute;
+      inset: 0;
+      background: rgba(255,255,255,.92);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      z-index: 10;
+      display: none;
+    }
+    .upload-progress.show { display: flex; }
+    .progress-bar-wrap {
+      width: 120px;
+      height: 3px;
+      background: var(--border);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .progress-bar-fill {
+      height: 100%;
+      background: var(--accent);
+      border-radius: 2px;
+      width: 0%;
+      transition: width .3s;
+    }
+    .progress-label { font-size: 12px; color: var(--muted); }
 
     /* GESTIÓN DE TALLES */
     .sizes-section {
@@ -645,21 +844,48 @@
         <div class="section-title">
           <i class="fas fa-images"></i> Imágenes del producto
         </div>
-        
-        <div class="form-row">
-          <label class="form-label">URL de la imagen principal *</label>
-          <input type="url" class="form-input" id="fImg" placeholder="https://..." oninput="previewImg()"/>
-          <div class="img-prev-wrap" id="imgWrap">
-            <img id="imgPrev" src="" alt="" onerror="this.parentElement.classList.remove('on')"/>
+
+        <!-- Zona principal de carga -->
+        <div class="img-upload-zone" id="dropZone" onclick="document.getElementById('fileInput').click()" ondragover="onDragOver(event)" ondragleave="onDragLeave(event)" ondrop="onDrop(event)">
+          <div class="upload-idle" id="uploadIdle">
+            <div class="upload-icon"><i class="fas fa-cloud-upload-alt"></i></div>
+            <div class="upload-title">Tocá para elegir una foto</div>
+            <div class="upload-sub">o arrastrá y soltá desde tu compu</div>
+            <div class="upload-formats">JPG · PNG · WEBP · hasta 5MB</div>
           </div>
+          <div class="upload-preview" id="uploadPreview" style="display:none">
+            <img id="imgPrev" src="" alt=""/>
+            <button class="upload-clear" onclick="clearImage(event)" title="Quitar imagen">
+              <i class="fas fa-times"></i>
+            </button>
+            <div class="upload-badge"><i class="fas fa-check"></i> Imagen cargada</div>
+          </div>
+          <input type="file" id="fileInput" accept="image/*" style="display:none" onchange="onFileSelect(event)"/>
+          <!-- Campo oculto que guarda la URL final -->
+          <input type="hidden" id="fImg"/>
         </div>
 
-        <div class="form-row">
-          <label class="form-label">Imágenes adicionales (URLs separadas por coma)</label>
-          <input type="text" class="form-input" id="fImagenes" placeholder="https://img1.jpg, https://img2.jpg, ..."/>
-        </div>
+        <!-- URL manual como alternativa -->
+        <details class="url-fallback" id="urlFallback">
+          <summary><i class="fas fa-link"></i> O pegá una URL de imagen</summary>
+          <div style="margin-top:10px; display:flex; gap:8px;">
+            <input type="url" class="form-input" id="fImgUrl" placeholder="https://..." style="flex:1"/>
+            <button class="btn btn-ghost btn-sm" onclick="useUrlImage()">Usar</button>
+          </div>
+        </details>
 
-        <div class="images-grid" id="imagesPreview"></div>
+        <!-- Imágenes adicionales -->
+        <div style="margin-top:16px;">
+          <label class="form-label">Fotos adicionales</label>
+          <div class="extra-imgs-grid" id="extraImgsGrid">
+            <div class="extra-add-btn" onclick="document.getElementById('extraFileInput').click()">
+              <i class="fas fa-plus"></i>
+              <span>Agregar</span>
+            </div>
+          </div>
+          <input type="file" id="extraFileInput" accept="image/*" multiple style="display:none" onchange="onExtraFiles(event)"/>
+          <input type="hidden" id="fImagenes"/>
+        </div>
       </div>
 
       <!-- VISIBILIDAD -->
@@ -995,9 +1221,17 @@ let editId = null;
 function openModal(id = null) {
   editId = id;
   document.getElementById('modalTitle').textContent = id ? 'Editar producto' : 'Nuevo producto';
-  document.getElementById('imgWrap').classList.remove('on');
-  document.getElementById('imagesPreview').innerHTML = '';
   document.getElementById('duplicateBtn').style.display = id ? 'inline-flex' : 'none';
+
+  // Reset uploader
+  extraImgUrls = [];
+  document.getElementById('fImg').value = '';
+  document.getElementById('fImagenes').value = '';
+  document.getElementById('imgPrev').src = '';
+  document.getElementById('uploadIdle').style.display = 'block';
+  document.getElementById('uploadPreview').style.display = 'none';
+  document.getElementById('dropZone').classList.remove('has-image');
+  renderExtraImgs([]);
 
   // Opciones de talles predefinidas
   const tallesOpciones = ['S', 'M', 'L', 'XL', 'XXL', '36', '38', '40', '42', '44', '46', '48', 'Único'];
@@ -1065,13 +1299,14 @@ function openModal(id = null) {
     }
     
     if (p.imagen) { 
-      document.getElementById('imgPrev').src = p.imagen; 
-      document.getElementById('imgWrap').classList.add('on');
+      setMainImage(p.imagen);
     }
     
     // Preview de imágenes adicionales
-    if (p.imagenes) {
-      showImagesPreview(p.imagenes);
+    if (p.imagenes && p.imagenes.length > 1) {
+      extraImgUrls = p.imagenes.slice(1);
+      document.getElementById('fImagenes').value = extraImgUrls.join(', ');
+      renderExtraImgs(extraImgUrls);
     }
   } else {
     // Limpiar
@@ -1103,32 +1338,111 @@ function updActivoLabel() {
 }
 
 function previewImg() {
-  const url = document.getElementById('fImg').value.trim();
-  if (url) { 
-    document.getElementById('imgPrev').src = url; 
-    document.getElementById('imgWrap').classList.add('on');
-  } else { 
-    document.getElementById('imgWrap').classList.remove('on'); 
-  }
+  // legacy - no-op, kept for compat
 }
 
 function showImagesPreview(urls) {
-  const container = document.getElementById('imagesPreview');
-  container.innerHTML = '';
-  urls.forEach((url, index) => {
-    const div = document.createElement('div');
-    div.className = 'image-item' + (index === 0 ? ' primary' : '');
-    div.innerHTML = `<img src="${url}" alt=""><button class="image-remove" onclick="removeImage(${index})">✕</button>`;
-    container.appendChild(div);
-  });
+  // legacy - rebuild extra imgs grid
+  renderExtraImgs(urls);
 }
 
 function removeImage(index) {
-  const input = document.getElementById('fImagenes');
-  const urls = input.value.split(',').map(s => s.trim()).filter(s => s);
-  urls.splice(index, 1);
-  input.value = urls.join(', ');
-  showImagesPreview(urls);
+  extraImgUrls.splice(index, 1);
+  document.getElementById('fImagenes').value = extraImgUrls.join(', ');
+  renderExtraImgs(extraImgUrls);
+}
+
+/* ─── UPLOADER ─── */
+let extraImgUrls = [];
+
+function onDragOver(e) {
+  e.preventDefault();
+  document.getElementById('dropZone').classList.add('drag-over');
+}
+function onDragLeave() {
+  document.getElementById('dropZone').classList.remove('drag-over');
+}
+function onDrop(e) {
+  e.preventDefault();
+  document.getElementById('dropZone').classList.remove('drag-over');
+  const file = e.dataTransfer.files[0];
+  if (file && file.type.startsWith('image/')) loadImageFile(file, true);
+}
+function onFileSelect(e) {
+  const file = e.target.files[0];
+  if (file) loadImageFile(file, true);
+  e.target.value = '';
+}
+
+function loadImageFile(file, isMain) {
+  if (file.size > 5 * 1024 * 1024) {
+    toast('La imagen no debe superar 5MB', 'err');
+    return;
+  }
+  const reader = new FileReader();
+  reader.onload = function(ev) {
+    const dataUrl = ev.target.result;
+    if (isMain) {
+      setMainImage(dataUrl);
+    } else {
+      addExtraImage(dataUrl);
+    }
+  };
+  reader.readAsDataURL(file);
+}
+
+function setMainImage(src) {
+  document.getElementById('imgPrev').src = src;
+  document.getElementById('fImg').value = src;
+  document.getElementById('uploadIdle').style.display = 'none';
+  document.getElementById('uploadPreview').style.display = 'block';
+  document.getElementById('dropZone').classList.add('has-image');
+}
+
+function clearImage(e) {
+  e.stopPropagation();
+  document.getElementById('imgPrev').src = '';
+  document.getElementById('fImg').value = '';
+  document.getElementById('uploadIdle').style.display = 'block';
+  document.getElementById('uploadPreview').style.display = 'none';
+  document.getElementById('dropZone').classList.remove('has-image');
+}
+
+function useUrlImage() {
+  const url = document.getElementById('fImgUrl').value.trim();
+  if (!url) return;
+  setMainImage(url);
+  document.getElementById('fImgUrl').value = '';
+  document.getElementById('urlFallback').removeAttribute('open');
+}
+
+function onExtraFiles(e) {
+  const files = Array.from(e.target.files);
+  files.forEach(f => loadImageFile(f, false));
+  e.target.value = '';
+}
+
+function addExtraImage(src) {
+  extraImgUrls.push(src);
+  document.getElementById('fImagenes').value = extraImgUrls.join(', ');
+  renderExtraImgs(extraImgUrls);
+}
+
+function renderExtraImgs(urls) {
+  const grid = document.getElementById('extraImgsGrid');
+  grid.innerHTML = '';
+  urls.forEach((url, i) => {
+    const div = document.createElement('div');
+    div.className = 'extra-img-item';
+    div.innerHTML = `<img src="${url}" alt=""/><button class="extra-img-remove" onclick="removeImage(${i})" title="Quitar"><i class="fas fa-times"></i></button>`;
+    grid.appendChild(div);
+  });
+  // Add button always last
+  const add = document.createElement('div');
+  add.className = 'extra-add-btn';
+  add.onclick = () => document.getElementById('extraFileInput').click();
+  add.innerHTML = '<i class="fas fa-plus"></i><span>Agregar</span>';
+  grid.appendChild(add);
 }
 
 function addCustomSize() {
@@ -1187,11 +1501,10 @@ function saveProduct() {
   
   if (!nombre) { toast('Ingresá el nombre del producto','err'); return; }
   if (!precio||precio<1) { toast('Ingresá un precio válido','err'); return; }
-  if (!imagen) { toast('Ingresá la URL de la imagen principal','err'); return; }
+  if (!imagen) { toast('Cargá una imagen del producto','err'); return; }
 
   const ant = parseInt(document.getElementById('fPrecioAnt').value);
-  const imagenesExtras = document.getElementById('fImagenes').value
-    .split(',').map(s => s.trim()).filter(s => s);
+  const imagenesExtras = extraImgUrls.filter(u => u && u !== imagen);
   
   // Recolectar talles seleccionados
   const talles = [];
