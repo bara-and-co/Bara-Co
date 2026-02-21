@@ -803,9 +803,155 @@ header .logo img {
 
     @keyframes fadeUp  { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:none} }
     @keyframes fadeIn  { from{opacity:0} to{opacity:1} }
+
+    /* ─────────────────────────────────────
+       PRELOADER
+    ───────────────────────────────────── */
+    #preloader {
+      position: fixed;
+      inset: 0;
+      background: #080806;
+      z-index: 99999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    #preloader::before {
+      content: '';
+      position: absolute;
+      inset: -200%;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      background-size: 180px;
+      opacity: 0.55;
+      pointer-events: none;
+      animation: grainShift 0.08s steps(1) infinite;
+    }
+    @keyframes grainShift {
+      0%  { transform: translate(0,0); }
+      25% { transform: translate(-2%,-1%); }
+      50% { transform: translate(1%,2%); }
+      75% { transform: translate(-1%,1%); }
+    }
+    .pre-runway { position:absolute; inset:0; display:flex; justify-content:center; pointer-events:none; }
+    .pre-rl, .pre-rr {
+      position:absolute; top:0; width:1px; height:0;
+      background: linear-gradient(to bottom, transparent 0%, #c9a96e 20%, #e8d5a8 50%, #c9a96e 80%, transparent 100%);
+      animation: preRunwayDrop 1.8s cubic-bezier(0.22,1,0.36,1) forwards;
+    }
+    .pre-rl { left:calc(50% - 60px); animation-delay:0s; }
+    .pre-rr { left:calc(50% + 60px); animation-delay:0.06s; }
+    .pre-rc {
+      position:absolute; top:0; left:50%; transform:translateX(-50%);
+      width:120px; height:0;
+      animation: preRunwayDrop 1.8s cubic-bezier(0.22,1,0.36,1) 0.03s forwards;
+    }
+    .pre-rc::before {
+      content:''; display:block; width:100%; height:100%;
+      background: linear-gradient(to bottom, transparent, rgba(201,169,110,.18) 30%, rgba(201,169,110,.08) 70%, transparent);
+    }
+    @keyframes preRunwayDrop {
+      from { height:0; opacity:0; } 5% { opacity:1; } to { height:100%; opacity:1; }
+    }
+    .pre-beam {
+      position:absolute; top:-60px; left:50%; transform:translateX(-50%);
+      width:120px; height:60px;
+      background: linear-gradient(to bottom, transparent, rgba(201,169,110,.7), rgba(255,240,190,.95), rgba(201,169,110,.7), transparent);
+      filter:blur(3px); opacity:0;
+      animation: preBeamSlide 1.8s cubic-bezier(0.4,0,0.6,1) 0.25s forwards;
+    }
+    .pre-flare {
+      position:absolute; left:50%; transform:translateX(-50%);
+      width:200px; height:1px;
+      background: linear-gradient(to right, transparent, rgba(201,169,110,.18), rgba(201,169,110,.25), rgba(201,169,110,.18), transparent);
+      opacity:0;
+      animation: preBeamSlide 1.8s cubic-bezier(0.4,0,0.6,1) 0.25s forwards;
+    }
+    @keyframes preBeamSlide {
+      0%  { top:-60px; opacity:0; } 8% { opacity:1; } 92% { opacity:1; } 100% { top:100vh; opacity:0; }
+    }
+    .pre-logo {
+      position:relative; z-index:2; text-align:center;
+      display:flex; flex-direction:column; align-items:center; gap:14px;
+      opacity:0; animation: preLogoReveal 1s cubic-bezier(0.22,1,0.36,1) 1.5s forwards;
+    }
+    @keyframes preLogoReveal {
+      from { opacity:0; transform:translateY(8px); filter:blur(4px); }
+      to   { opacity:1; transform:translateY(0);   filter:blur(0);    }
+    }
+    .pre-logo-name {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-weight: 300;
+      font-size: clamp(34px, 6vw, 54px);
+      letter-spacing: 0.35em;
+      color: #f5f0e8;
+      text-transform: uppercase;
+      line-height: 1;
+    }
+    .pre-logo-name em { font-style:italic; color:#e8d5a8; font-weight:300; }
+    .pre-logo-sub {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      font-size: clamp(8px, 1.1vw, 10px);
+      letter-spacing: 0.55em;
+      color: rgba(201,169,110,.6);
+      text-transform: uppercase;
+      text-indent: 0.55em;
+    }
+    .pre-logo-line {
+      width:0; height:1px;
+      background: linear-gradient(to right, transparent, #c9a96e, transparent);
+      opacity:0; animation: preLineExpand 0.8s cubic-bezier(0.22,1,0.36,1) 2s forwards;
+    }
+    @keyframes preLineExpand {
+      from { width:0; opacity:0; } to { width:80px; opacity:1; }
+    }
+    .pre-progress {
+      position:absolute; bottom:48px; left:50%; transform:translateX(-50%);
+      width:120px; opacity:0; animation: preFadeIn 0.6s ease 1.7s forwards;
+    }
+    @keyframes preFadeIn { to { opacity:1; } }
+    .pre-track { width:100%; height:1px; background:rgba(201,169,110,.15); position:relative; overflow:hidden; }
+    .pre-fill {
+      position:absolute; inset:0; width:0%;
+      background: linear-gradient(to right, rgba(201,169,110,.2), #c9a96e, #e8d5a8);
+      box-shadow: 0 0 8px #c9a96e;
+      animation: preProgressLoad 1.5s cubic-bezier(0.4,0,0.2,1) 1.7s forwards;
+    }
+    @keyframes preProgressLoad {
+      0% { width:0%; } 60% { width:75%; } 100% { width:100%; }
+    }
+    #preloader.out {
+      animation: preOut 0.9s cubic-bezier(0.76,0,0.24,1) forwards;
+    }
+    @keyframes preOut {
+      from { clip-path: inset(0 0 0 0); }
+      to   { clip-path: inset(0 0 100% 0); }
+    }
   </style>
 </head>
 <body class="inicio">
+
+<!-- ═══ PRELOADER ═══ -->
+<div id="preloader">
+  <div class="pre-runway">
+    <div class="pre-rl"></div>
+    <div class="pre-rr"></div>
+    <div class="pre-rc"></div>
+    <div class="pre-beam"></div>
+    <div class="pre-flare"></div>
+  </div>
+  <div class="pre-logo">
+    <div class="pre-logo-name">Bara <em>&amp;</em> Co</div>
+    <div class="pre-logo-line"></div>
+    <div class="pre-logo-sub">Nueva Colección 2026</div>
+  </div>
+  <div class="pre-progress">
+    <div class="pre-track">
+      <div class="pre-fill"></div>
+    </div>
+  </div>
+</div>
 
 <!-- HEADER -->
 <header id="header">
@@ -1129,6 +1275,19 @@ header .logo img {
 </div>
 
 <!-- JS GLOBALES -->
+<script>
+  // ═══ PRELOADER ═══
+  window.addEventListener('load', function () {
+    setTimeout(function () {
+      var pre = document.getElementById('preloader');
+      if (!pre) return;
+      pre.classList.add('out');
+      pre.addEventListener('animationend', function () {
+        pre.style.display = 'none';
+      }, { once: true });
+    }, 3200);
+  });
+</script>
 <script src="js/main.js"></script>
 <script src="js/carrito.js"></script>
 <script src="js/search.js"></script>
