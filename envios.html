@@ -137,6 +137,25 @@
                 font-size: 2.5rem;
             }
         }
+
+        /* Logo más grande */
+        .logo-img {
+            height: 80px !important;
+            width: auto !important;
+            object-fit: contain;
+            display: block;
+            transition: height .3s;
+        }
+        #header.scrolled .logo-img {
+            height: 64px !important;
+        }
+
+        /* Sin cursor custom en mobile */
+        @media (hover: none) and (pointer: coarse) {
+            .cursor, .custom-cursor, .cursor-dot, .cursor-follower, [class*="cursor"] {
+                display: none !important;
+            }
+        }
     </style>
 </head>
 <body class="interior">
