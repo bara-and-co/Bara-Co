@@ -89,7 +89,7 @@ header .logo img {
       font-weight: 500;
       letter-spacing: .18em;
       text-transform: uppercase;
-      color: rgba(255,255,255,.65);
+      color: rgba(201,169,110,.65);
       position: relative;
       transition: color .25s;
     }
@@ -109,7 +109,7 @@ header .logo img {
     
     .inicio .nav-menu a:hover,
     .inicio .nav-menu a.active {
-      color: var(--white);
+      color: var(--gold-light, #e8d5a8);
     }
     
     .inicio .nav-menu a:hover::after,
@@ -126,7 +126,7 @@ header .logo img {
     
     .inicio .header-icons i {
       font-size: 16px;
-      color: rgba(255,255,255,.6);
+      color: rgba(201,169,110,.6);
       cursor: pointer;
       transition: color .25s;
     }
@@ -251,11 +251,11 @@ header .logo img {
       left: 50%;
       width: 1px;
       height: 100%;
-      background: rgba(255,255,255,.15);
+      background: linear-gradient(to bottom, transparent, rgba(201,169,110,.5) 30%, rgba(232,213,168,.7) 50%, rgba(201,169,110,.5) 70%, transparent);
       z-index: 5;
       transform: scaleY(0);
       transform-origin: top;
-      animation: dividerGrow 1.2s var(--ease) .4s forwards;
+      animation: dividerGrow 1.2s var(--ease) 3.3s forwards;
     }
 
     @keyframes dividerGrow {
@@ -269,11 +269,11 @@ header .logo img {
       font-size: 9px;
       letter-spacing: .35em;
       text-transform: uppercase;
-      color: rgba(255,255,255,.7);
+      color: rgba(201,169,110,.75);
       font-family: var(--sans);
       font-weight: 400;
       opacity: 0;
-      animation: fadeUp .8s var(--ease) 1s forwards;
+      animation: fadeUp .8s var(--ease) 3.4s forwards;
     }
 
     .hero-half-left .hero-label {
@@ -304,22 +304,24 @@ header .logo img {
       margin-bottom: 18px;
       font-family: var(--sans);
       opacity: 0;
-      animation: fadeUp .8s var(--ease) .5s forwards;
+      animation: fadeUp .8s var(--ease) 3.4s forwards;
     }
 
     .hero-h1 {
-      font-family: var(--serif);
-      font-size: clamp(64px, 9vw, 130px);
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(34px, 6vw, 54px);  /* igual que el preloader */
       font-weight: 300;
-      line-height: .95;
-      letter-spacing: -.01em;
-      opacity: 0;
-      animation: fadeUp .9s var(--ease) .65s forwards;
+      line-height: 1;
+      letter-spacing: 0.35em;  /* igual que el preloader */
+      color: #f5f0e8;
+      opacity: 1;  /* ya visible — el preloader lo tapa */
+      text-transform: uppercase;
     }
 
     .hero-h1 em {
       font-style: italic;
-      color: var(--accent);
+      color: #e8d5a8;
+      font-weight: 300;
     }
 
     .hero-sub {
@@ -327,9 +329,9 @@ header .logo img {
       font-size: 11px;
       letter-spacing: .22em;
       text-transform: uppercase;
-      color: rgba(255,255,255,.55);
+      color: rgba(201,169,110,.55);
       opacity: 0;
-      animation: fadeUp .8s var(--ease) .8s forwards;
+      animation: fadeUp .8s var(--ease) 3.55s forwards;
     }
 
     .hero-cta {
@@ -340,19 +342,19 @@ header .logo img {
       font-size: 10px;
       letter-spacing: .22em;
       text-transform: uppercase;
-      color: var(--white);
-      border-bottom: 1px solid rgba(255,255,255,.4);
+      color: #e8d5a8;
+      border-bottom: 1px solid rgba(201,169,110,.45);
       padding-bottom: 4px;
       cursor: pointer;
       pointer-events: all;
       opacity: 0;
-      animation: fadeUp .8s var(--ease) .95s forwards;
+      animation: fadeUp .8s var(--ease) 3.7s forwards;
       transition: border-color .3s, color .3s;
     }
 
     .hero-cta:hover {
       border-color: var(--accent);
-      color: var(--accent);
+      color: #fff8e8;
     }
 
     .scroll-hint {
@@ -365,19 +367,19 @@ header .logo img {
       flex-direction: column;
       align-items: center;
       gap: 10px;
-      color: rgba(255,255,255,.4);
+      color: rgba(201,169,110,.5);
       font-size: 8px;
       letter-spacing: .3em;
       text-transform: uppercase;
       opacity: 0;
-      animation: fadeIn 1s .5s var(--ease) forwards;
+      animation: fadeIn 1s 3.8s var(--ease) forwards;
       transition: opacity 0.3s ease;
     }
 
     .scroll-hint-line {
       width: 1px;
       height: 52px;
-      background: rgba(255,255,255,.15);
+      background: rgba(201,169,110,.2);
       position: relative;
       overflow: hidden;
     }
@@ -547,7 +549,7 @@ header .logo img {
     .cat-tile-link {
       display:inline-flex; align-items:center; gap:8px;
       font-size:9px; letter-spacing:.2em; text-transform:uppercase;
-      color:rgba(255,255,255,.7); border-bottom:1px solid rgba(255,255,255,.25);
+      color:rgba(201,169,110,.75); border-bottom:1px solid rgba(201,169,110,.3);
       padding-bottom:3px; transition:all .3s;
     }
     .cat-tile:hover .cat-tile-link { color:var(--accent); border-color:var(--accent); }
@@ -622,7 +624,7 @@ header .logo img {
       background:rgba(255,255,255,.02); border:1px solid var(--border); padding:28px 24px;
       display:flex; flex-direction:column; gap:14px; transition:border-color .25s;
     }
-    .testi-card:hover { border-color:rgba(201,169,110,.25); }
+    .testi-card:hover { border-color:rgba(201,169,110,.4); }
     .testi-stars { color:var(--accent); font-size:12px; letter-spacing:2px; }
     .testi-text { font-size:13px; line-height:1.8; color:var(--text); font-style:italic; flex:1; }
     .testi-author { font-size:11px; color:var(--muted); padding-top:12px; border-top:1px solid var(--border); }
@@ -769,7 +771,7 @@ header .logo img {
     }
 
     .menu-toggle { display:none; flex-direction:column; gap:5px; cursor:pointer; padding:4px; background:none; border:none; }
-    .menu-toggle span { display:block; width:22px; height:1.5px; background:rgba(255,255,255,.6); transition:all .3s; }
+    .menu-toggle span { display:block; width:22px; height:1.5px; background:rgba(201,169,110,.7); transition:all .3s; }
     .menu-toggle.open span:nth-child(1) { transform:translateY(6.5px) rotate(45deg); }
     .menu-toggle.open span:nth-child(2) { opacity:0; }
     .menu-toggle.open span:nth-child(3) { transform:translateY(-6.5px) rotate(-45deg); }
@@ -781,7 +783,7 @@ header .logo img {
     }
     .mobile-nav.open { display:flex; }
     .mobile-nav a {
-      padding:13px 0; font-size:13px; font-weight:500; color:rgba(255,255,255,.55);
+      padding:13px 0; font-size:13px; font-weight:500; color:rgba(201,169,110,.55);
       border-bottom:1px solid var(--border); display:block; transition:color .2s;
     }
     .mobile-nav a:last-child { border-bottom:none; }
@@ -871,9 +873,16 @@ header .logo img {
       0%  { top:-60px; opacity:0; } 8% { opacity:1; } 92% { opacity:1; } 100% { top:100vh; opacity:0; }
     }
     .pre-logo {
-      position:relative; z-index:2; text-align:center;
-      display:flex; flex-direction:column; align-items:center; gap:14px;
-      opacity:0; animation: preLogoReveal 1s cubic-bezier(0.22,1,0.36,1) 1.5s forwards;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 100000;
+      text-align: center;
+      display: flex; flex-direction:column; align-items:center; gap:14px;
+      opacity: 0;
+      animation: preLogoReveal 1s cubic-bezier(0.22,1,0.36,1) 1.5s forwards;
+      pointer-events: none;
     }
     @keyframes preLogoReveal {
       from { opacity:0; transform:translateY(8px); filter:blur(4px); }
@@ -922,12 +931,21 @@ header .logo img {
       0% { width:0%; } 60% { width:75%; } 100% { width:100%; }
     }
     #preloader.out {
-      animation: preOut 0.9s cubic-bezier(0.76,0,0.24,1) forwards;
+      animation: preOut 1s cubic-bezier(0.76,0,0.24,1) forwards;
     }
     @keyframes preOut {
       from { clip-path: inset(0 0 0 0); }
       to   { clip-path: inset(0 0 100% 0); }
     }
+    /* El logo NO se mueve con el telón — queda fijo en el centro */
+    #preloader.out .pre-logo {
+      animation: preLogoStay 1s forwards;
+    }
+    @keyframes preLogoStay {
+      from { opacity: 1; transform: translate(0, 0); }
+      to   { opacity: 0; transform: translate(0, 0); }
+    }
+    /* El resto del preloader (pasarela, barra) sube con el telón normalmente */
   </style>
 </head>
 <body class="inicio">
@@ -1015,7 +1033,7 @@ header .logo img {
 
   <div class="hero-center" id="heroContent">
     <p class="hero-pre">New Collection 2026</p>
-    <h1 class="hero-h1">Bara<br/><em>&amp; Co</em></h1>
+    <h1 class="hero-h1">Bara <em>&amp; Co</em></h1>
     <p class="hero-sub">Esencia urbana · Confort atemporal</p>
     <a class="hero-cta" href="tienda.html">Descubrir colección <i class="fas fa-arrow-right"></i></a>
   </div>
@@ -1280,10 +1298,22 @@ header .logo img {
   window.addEventListener('load', function () {
     setTimeout(function () {
       var pre = document.getElementById('preloader');
+      var logo = pre ? pre.querySelector('.pre-logo') : null;
       if (!pre) return;
+
+      // El logo se desvanece justo cuando el telón termina de subir
+      // y el hero-h1 ya está debajo en el mismo lugar
       pre.classList.add('out');
+
+      // Fade out del logo (está fixed, no sube con el telón)
+      if (logo) {
+        logo.style.transition = 'opacity 0.3s ease 0.7s';
+        logo.style.opacity = '0';
+      }
+
       pre.addEventListener('animationend', function () {
         pre.style.display = 'none';
+        if (logo) logo.style.display = 'none';
       }, { once: true });
     }, 3200);
   });
