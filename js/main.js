@@ -12,3 +12,7 @@
     header.classList.toggle('scrolled', window.scrollY > 40);
   }, { passive: true });
 })();
+// Solo activar el cursor custom en dispositivos con mouse (no táctiles)
+if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+  // ... todo el código del cursor custom va acá adentro ...
+}
