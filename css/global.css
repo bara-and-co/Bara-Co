@@ -9,8 +9,9 @@
     --color-border: rgba(255,255,255,.07);
     --color-text: #f0ece4;
     --color-text-secondary: #7a7872;
-    --color-accent: #c9a96e;
-    --color-accent-dark: #9e7a3e;
+    --accent:      #c9a96e;
+--accent-light: #e8d5a8;  /* dorado claro para itálicas y hovers */
+--accent-dim:  rgba(201,169,110,0.65); /* dorado tenue para textos secundarios */
     --color-red: #b83030;
     --color-green: #25d366;
     --color-white: #ffffff;
