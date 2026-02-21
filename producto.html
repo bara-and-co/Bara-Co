@@ -40,7 +40,8 @@
       background:rgba(14,14,12,.93); backdrop-filter:blur(20px);
       border-bottom:1px solid var(--border);
     }
-    .logo-img { height:56px; width:auto; object-fit:contain; display:block; }
+    .logo-img { height:80px; width:auto; object-fit:contain; display:block; transition: height .3s; }
+    #header.scrolled .logo-img { height:64px; }
     .header-nav ul { display:flex; gap:36px; }
     .header-nav a {
       font-size:11px; font-weight:500; letter-spacing:.12em; text-transform:uppercase;
@@ -871,6 +872,11 @@
       .related-grid { grid-template-columns:1fr; }
       .action-buttons { flex-direction:column; }
       .stock-info { flex-direction:column; gap:12px; }
+    }
+    @media (hover: none) and (pointer: coarse) {
+      .cursor, .custom-cursor, .cursor-dot, .cursor-follower, [class*="cursor"] {
+        display: none !important;
+      }
     }
   </style>
 </head>
