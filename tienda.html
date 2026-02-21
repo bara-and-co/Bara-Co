@@ -239,6 +239,12 @@ header .logo img {
     .cur-ring { position:fixed; width:34px; height:34px; border:1px solid rgba(201,169,110,.45); border-radius:50%; pointer-events:none; z-index:9998; transform:translate(-50%,-50%); transition:width .35s var(--ease), height .35s var(--ease); }
     a, button, [onclick], .cart-icon-wrap, .prod-card, .filter-tab { cursor: none; }
 
+    /* Sin cursor custom en táctil */
+    @media (hover: none) and (pointer: coarse) {
+      body, a, button, [onclick], .cart-icon-wrap, .prod-card, .filter-tab { cursor: auto !important; }
+      .cur, .cur-ring, .cursor, .custom-cursor, .cursor-dot, .cursor-follower, [class*="cursor"] { display: none !important; }
+    }
+
     /* ===== HERO DE TIENDA ===== */
     .shop-hero {
       height: 100vh;
@@ -1243,6 +1249,8 @@ header .logo img {
 <script>
 // ── CURSOR ──
 (function(){
+  // Solo activar en dispositivos con mouse real (no táctiles)
+  if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
   const cur = document.getElementById('cur');
   const ring = document.getElementById('curRing');
   if (!cur || !ring) return;
