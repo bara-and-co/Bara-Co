@@ -2093,9 +2093,9 @@
     "precioAnterior": null,
     "categoria": "accesorios",
     "subcategoria": "Gorras",
-    "imagen": "https://d22fxaf9t8d39k.cloudfront.net/3de4d742c2b4b89fe6233751a56d9d09d711f8e9de21644ee57f643d94663137404368.png",
+    "imagen": "accesorios/Gorra bordada NY.webp",
     "imagenes": [
-      "https://d22fxaf9t8d39k.cloudfront.net/3de4d742c2b4b89fe6233751a56d9d09d711f8e9de21644ee57f643d94663137404368.png"
+      "accesorios/Gorra bordada NY.webp"
     ],
     "descripcion": "",
     "colores": [],
@@ -2125,9 +2125,9 @@
     "precioAnterior": null,
     "categoria": "accesorios",
     "subcategoria": null,
-    "imagen": "https://d22fxaf9t8d39k.cloudfront.net/c8677c2d184cbbef81ad972ce9d76d94c2e02e72330321ceda972e7e00d635ac404368.png",
+    "imagen": "accesorios/Gorra bordada.webp",
     "imagenes": [
-      "https://d22fxaf9t8d39k.cloudfront.net/c8677c2d184cbbef81ad972ce9d76d94c2e02e72330321ceda972e7e00d635ac404368.png"
+      "accesorios/Gorra bordada.webp"
     ],
     "descripcion": "",
     "colores": [],
