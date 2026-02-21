@@ -87,6 +87,13 @@
       padding: 0;
       margin-left: 40px;
     }
+    /* Logo más grande */
+.nav-logo img,
+.navbar__logo img,
+header .logo img {
+  height: 70px;   /* antes probablemente era 40px o 50px — cambiá este valor a gusto */
+  width: auto;
+}
 
     .nav-menu a {
       font-size: 10px;
@@ -1003,6 +1010,16 @@
       .trust-item span { display:none; }
       .trust-item { padding:12px; }
     }
+    /* Desactivar cursor custom y efectos de mouse en mobile */
+@media (hover: none) and (pointer: coarse) {
+  .cursor,
+  .custom-cursor,
+  .cursor-dot,
+  .cursor-follower,
+  [class*="cursor"] {
+    display: none !important;
+  }
+}
     @media (max-width: 480px) {
       .prod-grid { grid-template-columns: 1fr; }
     }
