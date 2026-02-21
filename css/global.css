@@ -1318,48 +1318,45 @@ footer {
   border: 1px solid transparent;
 }
 
-.pay-mp {
-  background-color: #009ee3; /* Color oficial de MercadoPago */
-  color: white;
-}
-
-.pay-mp:hover {
-  background-color: #0077b0;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 12px rgba(0, 110, 255, 0.2);
-}
-
-.pay-wa {
-  background-color: #25D366; /* Color oficial de WhatsApp */
-  color: white;
-}
-
-.pay-wa:hover {
-  background-color: #128C7E;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 12px rgba(37, 211, 102, 0.2);
-}
-
-.pay-note {
-  font-size: 0.75rem;
-  text-align: center;
-  color: #666;
-  margin-top: 0.5rem;
+.pay-btn {
+  width: 100%;
+  padding: 0.9rem;
+  margin: 0.4rem 0;
+  border: none;
+  border-radius: 4px;
+  font-weight: 500;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: 0.2s;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.3rem;
+  gap: 0.5rem;
 }
 
-.pay-note i {
-  color: #009ee3;
+.pay-mp {
+  background: #f0f0f0;
+  color: #333;
+  border: 1px solid #ddd;
+}
+
+.pay-mp:hover {
+  background: #e0e0e0;
+}
+
+.pay-wa {
+  background: #f0f0f0;
+  color: #333;
+  border: 1px solid #ddd;
+}
+
+.pay-wa:hover {
+  background: #e0e0e0;
+}
+
+.pay-note {
   font-size: 0.7rem;
-}
-
-/* Opcional: estilo para botones deshabilitados si el carrito está vacío */
-.pay-btn.disabled,
-.pay-btn:disabled {
-  opacity: 0.5;
-  pointer-events: none;
-  filter: grayscale(0.5);
+  color: #888;
+  text-align: center;
+  margin-top: 0.5rem;
 }
