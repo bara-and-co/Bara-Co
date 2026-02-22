@@ -244,17 +244,16 @@
 
     /* ─── UPLOADER ─── */
     .img-upload-zone {
+      display: block;
       position: relative;
       border: 2px dashed var(--border);
       border-radius: var(--radius);
       cursor: pointer;
       transition: border-color .2s, background .2s;
       overflow: hidden;
-      min-height: 180px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      min-height: 160px;
       background: var(--bg);
+      text-align: center;
     }
     .img-upload-zone:hover,
     .img-upload-zone.drag-over {
@@ -265,8 +264,8 @@
     .img-upload-zone.has-image { border-style: solid; border-color: var(--accent); }
 
     .upload-idle {
+      padding: 36px 20px;
       text-align: center;
-      padding: 32px 20px;
       pointer-events: none;
     }
     .upload-icon {
@@ -846,8 +845,8 @@
         </div>
 
         <!-- Zona principal de carga -->
-        <div class="img-upload-zone" id="dropZone" ondragover="onDragOver(event)" ondragleave="onDragLeave(event)" ondrop="onDrop(event)">
-          <div class="upload-idle" id="uploadIdle" onclick="abrirSelectorFoto()" style="cursor:pointer;width:100%;padding:32px 20px;text-align:center;">
+        <label class="img-upload-zone" id="dropZone" for="fileInput" ondragover="onDragOver(event)" ondragleave="onDragLeave(event)" ondrop="onDrop(event)">
+          <div class="upload-idle" id="uploadIdle">
             <div class="upload-icon"><i class="fas fa-cloud-upload-alt"></i></div>
             <div class="upload-title">Tocá para elegir una foto</div>
             <div class="upload-sub">o arrastrá y soltá desde tu compu</div>
@@ -855,15 +854,14 @@
           </div>
           <div class="upload-preview" id="uploadPreview" style="display:none;position:relative;">
             <img id="imgPrev" src="" alt="" style="width:100%;max-height:260px;object-fit:contain;display:block;background:#f0ede8;"/>
-            <div style="position:absolute;top:8px;right:8px;display:flex;gap:6px;">
-              <button onclick="abrirSelectorFoto()" style="background:rgba(0,0,0,.6);color:#fff;border:none;border-radius:20px;padding:6px 12px;font-size:11px;cursor:pointer;font-family:var(--sans);display:flex;align-items:center;gap:5px;"><i class="fas fa-camera"></i> Cambiar</button>
-              <button onclick="clearImage(event)" style="background:rgba(0,0,0,.6);color:#fff;border:none;border-radius:20px;padding:6px 12px;font-size:11px;cursor:pointer;font-family:var(--sans);display:flex;align-items:center;gap:5px;"><i class="fas fa-times"></i> Quitar</button>
+            <div style="position:absolute;top:8px;right:8px;display:flex;gap:6px;" onclick="event.preventDefault()">
+              <button type="button" onclick="event.preventDefault();event.stopPropagation();document.getElementById('fileInput').click()" style="background:rgba(0,0,0,.6);color:#fff;border:none;border-radius:20px;padding:6px 12px;font-size:11px;cursor:pointer;font-family:var(--sans);display:flex;align-items:center;gap:5px;"><i class="fas fa-camera"></i> Cambiar</button>
+              <button type="button" onclick="event.preventDefault();event.stopPropagation();clearImage()" style="background:rgba(0,0,0,.6);color:#fff;border:none;border-radius:20px;padding:6px 12px;font-size:11px;cursor:pointer;font-family:var(--sans);display:flex;align-items:center;gap:5px;"><i class="fas fa-times"></i> Quitar</button>
             </div>
             <div class="upload-badge" id="uploadBadge" style="position:absolute;bottom:8px;left:8px;background:var(--green);color:#fff;font-size:11px;font-weight:600;padding:4px 10px;border-radius:20px;display:flex;align-items:center;gap:5px;"><i class="fas fa-check"></i> Imagen cargada</div>
           </div>
-          <!-- Campo oculto que guarda la URL final -->
           <input type="hidden" id="fImg"/>
-        </div>
+        </label>
 
         <!-- URL manual como alternativa -->
         <details class="url-fallback" id="urlFallback">
