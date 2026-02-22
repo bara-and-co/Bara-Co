@@ -873,7 +873,7 @@
 
         <!-- Zona principal de carga -->
         <div class="img-upload-zone" id="dropZone" ondragover="onDragOver(event)" ondragleave="onDragLeave(event)" ondrop="onDrop(event)">
-          <div class="upload-idle" id="uploadIdle" onclick="document.getElementById('fileInput').click()" style="cursor:pointer; width:100%;">
+          <div class="upload-idle" id="uploadIdle" onclick="abrirSelectorFoto()" style="cursor:pointer; width:100%;">
             <div class="upload-icon"><i class="fas fa-cloud-upload-alt"></i></div>
             <div class="upload-title">Tocá para elegir una foto</div>
             <div class="upload-sub">o arrastrá y soltá desde tu compu</div>
@@ -882,7 +882,7 @@
           <div class="upload-preview" id="uploadPreview" style="display:none">
             <img id="imgPrev" src="" alt="" onerror="this.style.opacity='.3'"/>
             <div class="upload-preview-actions">
-              <button class="upload-action-btn" onclick="document.getElementById('fileInput').click()" title="Cambiar foto">
+              <button class="upload-action-btn" onclick="abrirSelectorFoto()" title="Cambiar foto">
                 <i class="fas fa-camera"></i> Cambiar foto
               </button>
               <button class="upload-action-btn upload-action-del" onclick="clearImage(event)" title="Quitar imagen">
@@ -1398,6 +1398,15 @@ function removeImage(index) {
 
 /* ─── UPLOADER ─── */
 let extraImgUrls = [];
+
+function abrirSelectorFoto() {
+  // Pequeño delay para que el evento del modal no cancele el file picker
+  setTimeout(function() {
+    const input = document.getElementById('fileInput');
+    input.value = ''; // reset para permitir elegir el mismo archivo
+    input.click();
+  }, 50);
+}
 
 function onDragOver(e) {
   e.preventDefault();
