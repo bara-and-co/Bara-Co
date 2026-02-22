@@ -1215,6 +1215,7 @@ function setFilter(el, cat) {
 }
 
 /* ─── TOGGLE ACTIVO ─── */
+let toggleDebounce;
 function toggleA(id, val) {
   const p = products.find(x => x.id === id);
   if (!p) return;
@@ -1225,8 +1226,19 @@ function toggleA(id, val) {
     const lbl = card.querySelector('.prod-footer-label');
     if (lbl) lbl.textContent = val ? '✓ Visible' : 'Oculto';
   }
-  dirty();
   updateStats();
+  localStorage.setItem('bc_draft', JSON.stringify(products));
+
+  // Debounce: esperar 1.5s antes de publicar (por si cambia varios seguido)
+  clearTimeout(toggleDebounce);
+  const token = localStorage.getItem('bc_gh_token');
+  if (token) {
+    toggleDebounce = setTimeout(() => {
+      publishSilent(val ? 'Producto visible en tienda ✓' : 'Producto ocultado ✓');
+    }, 1500);
+  } else {
+    dirty();
+  }
 }
 
 /* ─── ESTADÍSTICAS ─── */
@@ -1539,7 +1551,7 @@ function updateSubcategorias() {
   });
 }
 
-function saveProduct() {
+async function saveProduct() {
   const nombre = document.getElementById('fNombre').value.trim();
   const precio = parseInt(document.getElementById('fPrecio').value);
   const imagen = document.getElementById('fImg').value.trim();
@@ -1551,13 +1563,11 @@ function saveProduct() {
   const ant = parseInt(document.getElementById('fPrecioAnt').value);
   const imagenesExtras = extraImgUrls.filter(u => u && u !== imagen);
   
-  // Recolectar talles seleccionados
   const talles = [];
   document.querySelectorAll('#sizesContainer input[type="checkbox"]:checked').forEach(chk => {
     talles.push(chk.value);
   });
   
-  // Recolectar colores seleccionados
   const colores = [];
   document.querySelectorAll('#colorsContainer .color-chip.selected').forEach(chip => {
     colores.push(chip.dataset.color);
@@ -1584,15 +1594,23 @@ function saveProduct() {
   if (editId) {
     const idx = products.findIndex(x => x.id === editId);
     if (idx !== -1) products[idx] = prod;
-    toast('Producto actualizado ✓');
   } else {
     products.unshift(prod);
-    toast('Producto agregado ✓');
   }
-  closeModal(); 
-  dirty(); 
+
+  closeModal();
   renderGrid();
   updateStats();
+  localStorage.setItem('bc_draft', JSON.stringify(products));
+
+  // Auto-publicar si hay token configurado
+  const token = localStorage.getItem('bc_gh_token');
+  if (token) {
+    await publishSilent(editId ? 'Producto actualizado y publicado ✓' : 'Producto agregado a la tienda ✓');
+  } else {
+    dirty();
+    toast('Guardado. Configurá el token de GitHub para publicar automáticamente.', 'info');
+  }
 }
 
 /* ─── DUPLICAR ─── */
@@ -1617,12 +1635,19 @@ function duplicateFromModal() {
 }
 
 /* ─── DELETE ─── */
-function deleteP(id) {
+async function deleteP(id) {
   const p = products.find(x => x.id === id);
   if (!p || !confirm(`¿Eliminar "${p.nombre}"?`)) return;
   products = products.filter(x => x.id !== id);
-  dirty(); renderGrid(); updateStats(); 
-  toast('Producto eliminado');
+  renderGrid(); updateStats();
+  localStorage.setItem('bc_draft', JSON.stringify(products));
+  const token = localStorage.getItem('bc_gh_token');
+  if (token) {
+    await publishSilent('Producto eliminado y publicado ✓');
+  } else {
+    dirty();
+    toast('Producto eliminado');
+  }
 }
 
 /* ─── DIRTY / BANNER ─── */
@@ -1701,12 +1726,16 @@ function importFile(e) {
 }
 
 /* ─── PUBLICAR EN GITHUB ─── */
-async function publish() {
+
+// Versión silenciosa — llamada automáticamente al guardar
+async function publishSilent(successMsg = '¡Publicado! La tienda se actualiza en ~1 minuto 🎉') {
   const token = localStorage.getItem('bc_gh_token');
   const repo  = localStorage.getItem('bc_gh_repo') || 'bara-and-co/Bara-Co';
-  if (!token) { openConfig(); toast('Primero configurá tu token de GitHub','err'); return; }
+  if (!token) return false;
 
+  // Mostrar estado "publicando" en el botón manual
   const btn = document.getElementById('publishBtn');
+  const originalHtml = btn.innerHTML;
   btn.disabled = true;
   btn.innerHTML = '<div class="spinner"></div> Publicando...';
 
@@ -1731,14 +1760,24 @@ async function publish() {
     pending = 0;
     document.getElementById('saveBanner').classList.remove('show');
     localStorage.removeItem('bc_draft');
-    toast('¡Publicado! La tienda se actualiza en 1-2 minutos 🎉','ok');
+    toast(successMsg, 'ok');
+    return true;
 
   } catch(e) {
-    toast('Error: ' + e.message, 'err');
+    toast('No se pudo publicar: ' + e.message, 'err');
+    dirty(); // marcar como pendiente para publicar manualmente
+    return false;
   } finally {
     btn.disabled = false;
-    btn.innerHTML = '<i class="fas fa-cloud-upload-alt"></i> Publicar ahora';
+    btn.innerHTML = originalHtml;
   }
+}
+
+// Versión manual — botón "Publicar ahora"
+async function publish() {
+  const token = localStorage.getItem('bc_gh_token');
+  if (!token) { openConfig(); toast('Primero configurá tu token de GitHub','err'); return; }
+  await publishSilent('¡Todo publicado! La tienda se actualiza en ~1 minuto 🎉');
 }
 
 /* ─── CONFIGURACIÓN ─── */
