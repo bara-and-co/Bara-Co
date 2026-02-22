@@ -324,6 +324,32 @@
       z-index: 5;
     }
     .upload-clear:hover { background: var(--red); }
+    .upload-preview-actions {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      display: flex;
+      gap: 6px;
+      z-index: 5;
+    }
+    .upload-action-btn {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      padding: 6px 12px;
+      border-radius: 20px;
+      background: rgba(0,0,0,.6);
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      font-size: 11px;
+      font-family: var(--sans);
+      font-weight: 500;
+      transition: background .2s;
+      backdrop-filter: blur(4px);
+    }
+    .upload-action-btn:hover { background: var(--accent); }
+    .upload-action-del:hover { background: var(--red) !important; }
     .upload-badge {
       position: absolute;
       bottom: 8px;
@@ -846,18 +872,23 @@
         </div>
 
         <!-- Zona principal de carga -->
-        <div class="img-upload-zone" id="dropZone" onclick="document.getElementById('fileInput').click()" ondragover="onDragOver(event)" ondragleave="onDragLeave(event)" ondrop="onDrop(event)">
-          <div class="upload-idle" id="uploadIdle">
+        <div class="img-upload-zone" id="dropZone" ondragover="onDragOver(event)" ondragleave="onDragLeave(event)" ondrop="onDrop(event)">
+          <div class="upload-idle" id="uploadIdle" onclick="document.getElementById('fileInput').click()" style="cursor:pointer; width:100%;">
             <div class="upload-icon"><i class="fas fa-cloud-upload-alt"></i></div>
             <div class="upload-title">Tocá para elegir una foto</div>
             <div class="upload-sub">o arrastrá y soltá desde tu compu</div>
             <div class="upload-formats">JPG · PNG · WEBP · hasta 5MB</div>
           </div>
           <div class="upload-preview" id="uploadPreview" style="display:none">
-            <img id="imgPrev" src="" alt=""/>
-            <button class="upload-clear" onclick="clearImage(event)" title="Quitar imagen">
-              <i class="fas fa-times"></i>
-            </button>
+            <img id="imgPrev" src="" alt="" onerror="this.style.opacity='.3'"/>
+            <div class="upload-preview-actions">
+              <button class="upload-action-btn" onclick="document.getElementById('fileInput').click()" title="Cambiar foto">
+                <i class="fas fa-camera"></i> Cambiar foto
+              </button>
+              <button class="upload-action-btn upload-action-del" onclick="clearImage(event)" title="Quitar imagen">
+                <i class="fas fa-times"></i> Quitar
+              </button>
+            </div>
             <div class="upload-badge"><i class="fas fa-check"></i> Imagen cargada</div>
           </div>
           <input type="file" id="fileInput" accept="image/*" style="display:none" onchange="onFileSelect(event)"/>
@@ -1392,7 +1423,20 @@ function loadImageFile(file, isMain) {
 }
 
 function setMainImage(src) {
-  document.getElementById('imgPrev').src = src;
+  const img = document.getElementById('imgPrev');
+  // Si es URL relativa del repo, mostrar con fallback visual
+  if (src && !src.startsWith('data:') && !src.startsWith('http')) {
+    // URL relativa — intentar cargar, si falla mostrar placeholder dorado
+    img.src = src;
+    img.onerror = function() {
+      this.style.opacity = '.2';
+      this.onerror = null;
+    };
+    img.onload = function() { this.style.opacity = '1'; };
+  } else {
+    img.style.opacity = '1';
+    img.src = src;
+  }
   document.getElementById('fImg').value = src;
   document.getElementById('uploadIdle').style.display = 'none';
   document.getElementById('uploadPreview').style.display = 'block';
@@ -1400,8 +1444,9 @@ function setMainImage(src) {
 }
 
 function clearImage(e) {
-  e.stopPropagation();
+  if (e) e.stopPropagation();
   document.getElementById('imgPrev').src = '';
+  document.getElementById('imgPrev').style.opacity = '1';
   document.getElementById('fImg').value = '';
   document.getElementById('uploadIdle').style.display = 'block';
   document.getElementById('uploadPreview').style.display = 'none';
