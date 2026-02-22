@@ -324,32 +324,6 @@
       z-index: 5;
     }
     .upload-clear:hover { background: var(--red); }
-    .upload-preview-actions {
-      position: absolute;
-      top: 8px;
-      right: 8px;
-      display: flex;
-      gap: 6px;
-      z-index: 5;
-    }
-    .upload-action-btn {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      padding: 6px 12px;
-      border-radius: 20px;
-      background: rgba(0,0,0,.6);
-      color: #fff;
-      border: none;
-      cursor: pointer;
-      font-size: 11px;
-      font-family: var(--sans);
-      font-weight: 500;
-      transition: background .2s;
-      backdrop-filter: blur(4px);
-    }
-    .upload-action-btn:hover { background: var(--accent); }
-    .upload-action-del:hover { background: var(--red) !important; }
     .upload-badge {
       position: absolute;
       bottom: 8px;
@@ -873,24 +847,21 @@
 
         <!-- Zona principal de carga -->
         <div class="img-upload-zone" id="dropZone" ondragover="onDragOver(event)" ondragleave="onDragLeave(event)" ondrop="onDrop(event)">
-          <div class="upload-idle" id="uploadIdle" onclick="abrirSelectorFoto()" style="cursor:pointer; width:100%;">
+          <div class="upload-idle" id="uploadIdle" onclick="abrirSelectorFoto()" style="cursor:pointer;width:100%;padding:32px 20px;text-align:center;">
             <div class="upload-icon"><i class="fas fa-cloud-upload-alt"></i></div>
             <div class="upload-title">Tocá para elegir una foto</div>
             <div class="upload-sub">o arrastrá y soltá desde tu compu</div>
-            <div class="upload-formats">JPG · PNG · WEBP · hasta 5MB</div>
+            <div class="upload-formats">JPG · PNG · WEBP · hasta 10MB</div>
           </div>
-          <div class="upload-preview" id="uploadPreview" style="display:none">
-            <img id="imgPrev" src="" alt="" onerror="this.style.opacity='.3'"/>
-            <div class="upload-preview-actions">
-              <button class="upload-action-btn" onclick="abrirSelectorFoto()" title="Cambiar foto">
-                <i class="fas fa-camera"></i> Cambiar foto
-              </button>
-              <button class="upload-action-btn upload-action-del" onclick="clearImage(event)" title="Quitar imagen">
-                <i class="fas fa-times"></i> Quitar
-              </button>
+          <div class="upload-preview" id="uploadPreview" style="display:none;position:relative;">
+            <img id="imgPrev" src="" alt="" style="width:100%;max-height:260px;object-fit:contain;display:block;background:#f0ede8;"/>
+            <div style="position:absolute;top:8px;right:8px;display:flex;gap:6px;">
+              <button onclick="abrirSelectorFoto()" style="background:rgba(0,0,0,.6);color:#fff;border:none;border-radius:20px;padding:6px 12px;font-size:11px;cursor:pointer;font-family:var(--sans);display:flex;align-items:center;gap:5px;"><i class="fas fa-camera"></i> Cambiar</button>
+              <button onclick="clearImage(event)" style="background:rgba(0,0,0,.6);color:#fff;border:none;border-radius:20px;padding:6px 12px;font-size:11px;cursor:pointer;font-family:var(--sans);display:flex;align-items:center;gap:5px;"><i class="fas fa-times"></i> Quitar</button>
             </div>
-            <div class="upload-badge"><i class="fas fa-check"></i> Imagen cargada</div>
+            <div class="upload-badge" id="uploadBadge" style="position:absolute;bottom:8px;left:8px;background:var(--green);color:#fff;font-size:11px;font-weight:600;padding:4px 10px;border-radius:20px;display:flex;align-items:center;gap:5px;"><i class="fas fa-check"></i> Imagen cargada</div>
           </div>
+          <!-- Campo oculto que guarda la URL final -->
           <input type="hidden" id="fImg"/>
         </div>
 
@@ -907,7 +878,7 @@
         <div style="margin-top:16px;">
           <label class="form-label">Fotos adicionales</label>
           <div class="extra-imgs-grid" id="extraImgsGrid">
-            <div class="extra-add-btn" onclick="document.getElementById('extraFileInput').click()">
+            <div class="extra-add-btn" onclick="abrirSelectorFotoExtra()">
               <i class="fas fa-plus"></i>
               <span>Agregar</span>
             </div>
@@ -1005,7 +976,7 @@
 <!-- TOAST -->
 <div class="toast" id="toast"></div>
 
-<!-- File inputs fuera del modal para que funcionen en mobile -->
+<!-- Inputs de archivo FUERA del modal para que funcionen en todos los browsers -->
 <input type="file" id="fileInput" accept="image/*" style="display:none" onchange="onFileSelect(event)"/>
 <input type="file" id="extraFileInput" accept="image/*" multiple style="display:none" onchange="onExtraFiles(event)"/>
 
@@ -1216,7 +1187,6 @@ function setFilter(el, cat) {
 }
 
 /* ─── TOGGLE ACTIVO ─── */
-let toggleDebounce;
 function toggleA(id, val) {
   const p = products.find(x => x.id === id);
   if (!p) return;
@@ -1227,19 +1197,8 @@ function toggleA(id, val) {
     const lbl = card.querySelector('.prod-footer-label');
     if (lbl) lbl.textContent = val ? '✓ Visible' : 'Oculto';
   }
+  dirty();
   updateStats();
-  localStorage.setItem('bc_draft', JSON.stringify(products));
-
-  // Debounce: esperar 1.5s antes de publicar (por si cambia varios seguido)
-  clearTimeout(toggleDebounce);
-  const token = localStorage.getItem('bc_gh_token');
-  if (token) {
-    toggleDebounce = setTimeout(() => {
-      publishSilent(val ? 'Producto visible en tienda ✓' : 'Producto ocultado ✓');
-    }, 1500);
-  } else {
-    dirty();
-  }
 }
 
 /* ─── ESTADÍSTICAS ─── */
@@ -1400,10 +1359,17 @@ function removeImage(index) {
 let extraImgUrls = [];
 
 function abrirSelectorFoto() {
-  // Pequeño delay para que el evento del modal no cancele el file picker
   setTimeout(function() {
     const input = document.getElementById('fileInput');
-    input.value = ''; // reset para permitir elegir el mismo archivo
+    input.value = '';
+    input.click();
+  }, 50);
+}
+
+function abrirSelectorFotoExtra() {
+  setTimeout(function() {
+    const input = document.getElementById('extraFileInput');
+    input.value = '';
     input.click();
   }, 50);
 }
@@ -1419,50 +1385,83 @@ function onDrop(e) {
   e.preventDefault();
   document.getElementById('dropZone').classList.remove('drag-over');
   const file = e.dataTransfer.files[0];
-  if (file && file.type.startsWith('image/')) loadImageFile(file, true);
+  if (file && file.type.startsWith('image/')) subirImagen(file, true);
 }
 function onFileSelect(e) {
   const file = e.target.files[0];
-  if (file) loadImageFile(file, true);
+  if (file) subirImagen(file, true);
   e.target.value = '';
 }
 
-function loadImageFile(file, isMain) {
-  if (file.size > 5 * 1024 * 1024) {
-    toast('La imagen no debe superar 5MB', 'err');
+/* ─── SUBIR IMAGEN A IMGBB ─── */
+const IMGBB_KEY = '4b8cb176fa2f05d9e430984b4ae855ad';
+
+async function subirImagen(file, isMain) {
+  if (file.size > 10 * 1024 * 1024) {
+    toast('La imagen no debe superar 10MB', 'err');
     return;
   }
-  const reader = new FileReader();
-  reader.onload = function(ev) {
-    const dataUrl = ev.target.result;
+
+  // Mostrar preview local inmediato mientras sube
+  const localUrl = URL.createObjectURL(file);
+  if (isMain) {
+    setMainImageLoading(localUrl);
+  } else {
+    addExtraImageLoading(localUrl);
+  }
+
+  // Subir a ImgBB
+  const formData = new FormData();
+  formData.append('image', file);
+
+  try {
+    const res = await fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_KEY}`, {
+      method: 'POST',
+      body: formData
+    });
+    const data = await res.json();
+    if (!data.success) throw new Error(data.error?.message || 'Error al subir');
+
+    const url = data.data.url;
     if (isMain) {
-      setMainImage(dataUrl);
+      setMainImage(url);
     } else {
-      addExtraImage(dataUrl);
+      replaceExtraImageLoading(localUrl, url);
     }
-  };
-  reader.readAsDataURL(file);
+    URL.revokeObjectURL(localUrl);
+
+  } catch (err) {
+    toast('No se pudo subir la imagen: ' + err.message, 'err');
+    if (isMain) clearImage();
+    else removeExtraImageLoading(localUrl);
+    URL.revokeObjectURL(localUrl);
+  }
+}
+
+function setMainImageLoading(previewSrc) {
+  const img = document.getElementById('imgPrev');
+  img.src = previewSrc;
+  img.style.opacity = '0.5';
+  document.getElementById('fImg').value = '';
+  document.getElementById('uploadIdle').style.display = 'none';
+  document.getElementById('uploadPreview').style.display = 'block';
+  document.getElementById('dropZone').classList.add('has-image');
+  const badge = document.getElementById('uploadBadge');
+  if (badge) badge.innerHTML = '<div class="spinner" style="width:12px;height:12px;border-color:rgba(255,255,255,.3);border-top-color:#fff"></div> Subiendo imagen...';
+  if (badge) badge.style.background = 'var(--accent)';
 }
 
 function setMainImage(src) {
   const img = document.getElementById('imgPrev');
-  // Si es URL relativa del repo, mostrar con fallback visual
-  if (src && !src.startsWith('data:') && !src.startsWith('http')) {
-    // URL relativa — intentar cargar, si falla mostrar placeholder dorado
-    img.src = src;
-    img.onerror = function() {
-      this.style.opacity = '.2';
-      this.onerror = null;
-    };
-    img.onload = function() { this.style.opacity = '1'; };
-  } else {
-    img.style.opacity = '1';
-    img.src = src;
-  }
+  img.src = src;
+  img.style.opacity = '1';
   document.getElementById('fImg').value = src;
   document.getElementById('uploadIdle').style.display = 'none';
   document.getElementById('uploadPreview').style.display = 'block';
   document.getElementById('dropZone').classList.add('has-image');
+  const badge = document.getElementById('uploadBadge');
+  if (badge) badge.innerHTML = '<i class="fas fa-check"></i> Imagen cargada';
+  if (badge) badge.style.background = 'var(--green)';
 }
 
 function clearImage(e) {
@@ -1485,14 +1484,53 @@ function useUrlImage() {
 
 function onExtraFiles(e) {
   const files = Array.from(e.target.files);
-  files.forEach(f => loadImageFile(f, false));
+  files.forEach(f => subirImagen(f, false));
   e.target.value = '';
+}
+
+function addExtraImageLoading(previewSrc) {
+  extraImgUrls.push('__loading__' + previewSrc);
+  renderExtraImgs(extraImgUrls);
+}
+
+function replaceExtraImageLoading(previewSrc, realUrl) {
+  const idx = extraImgUrls.findIndex(u => u === '__loading__' + previewSrc);
+  if (idx !== -1) extraImgUrls[idx] = realUrl;
+  document.getElementById('fImagenes').value = extraImgUrls.filter(u => !u.startsWith('__loading__')).join(', ');
+  renderExtraImgs(extraImgUrls);
+}
+
+function removeExtraImageLoading(previewSrc) {
+  extraImgUrls = extraImgUrls.filter(u => u !== '__loading__' + previewSrc);
+  renderExtraImgs(extraImgUrls);
 }
 
 function addExtraImage(src) {
   extraImgUrls.push(src);
   document.getElementById('fImagenes').value = extraImgUrls.join(', ');
   renderExtraImgs(extraImgUrls);
+}
+
+function renderExtraImgs(urls) {
+  const grid = document.getElementById('extraImgsGrid');
+  grid.innerHTML = '';
+  urls.forEach((url, i) => {
+    const isLoading = url.startsWith('__loading__');
+    const src = isLoading ? url.replace('__loading__', '') : url;
+    const div = document.createElement('div');
+    div.className = 'extra-img-item';
+    div.style.opacity = isLoading ? '0.5' : '1';
+    div.innerHTML = `<img src="${src}" alt=""/>` +
+      (isLoading
+        ? `<div style="position:absolute;inset:0;display:grid;place-items:center;background:rgba(0,0,0,.3)"><div class="spinner" style="border-color:rgba(255,255,255,.3);border-top-color:#fff;width:20px;height:20px"></div></div>`
+        : `<button class="extra-img-remove" onclick="removeImage(${i})" title="Quitar"><i class="fas fa-times"></i></button>`);
+    grid.appendChild(div);
+  });
+  const add = document.createElement('div');
+  add.className = 'extra-add-btn';
+  add.onclick = abrirSelectorFotoExtra;
+  add.innerHTML = '<i class="fas fa-plus"></i><span>Agregar</span>';
+  grid.appendChild(add);
 }
 
 function renderExtraImgs(urls) {
@@ -1507,7 +1545,7 @@ function renderExtraImgs(urls) {
   // Add button always last
   const add = document.createElement('div');
   add.className = 'extra-add-btn';
-  add.onclick = () => document.getElementById('extraFileInput').click();
+  add.onclick = abrirSelectorFotoExtra;
   add.innerHTML = '<i class="fas fa-plus"></i><span>Agregar</span>';
   grid.appendChild(add);
 }
@@ -1561,7 +1599,7 @@ function updateSubcategorias() {
   });
 }
 
-async function saveProduct() {
+function saveProduct() {
   const nombre = document.getElementById('fNombre').value.trim();
   const precio = parseInt(document.getElementById('fPrecio').value);
   const imagen = document.getElementById('fImg').value.trim();
@@ -1573,11 +1611,13 @@ async function saveProduct() {
   const ant = parseInt(document.getElementById('fPrecioAnt').value);
   const imagenesExtras = extraImgUrls.filter(u => u && u !== imagen);
   
+  // Recolectar talles seleccionados
   const talles = [];
   document.querySelectorAll('#sizesContainer input[type="checkbox"]:checked').forEach(chk => {
     talles.push(chk.value);
   });
   
+  // Recolectar colores seleccionados
   const colores = [];
   document.querySelectorAll('#colorsContainer .color-chip.selected').forEach(chip => {
     colores.push(chip.dataset.color);
@@ -1607,19 +1647,17 @@ async function saveProduct() {
   } else {
     products.unshift(prod);
   }
-
   closeModal();
+  dirty();
   renderGrid();
   updateStats();
-  localStorage.setItem('bc_draft', JSON.stringify(products));
 
-  // Auto-publicar si hay token configurado
+  // Auto-publicar si hay token
   const token = localStorage.getItem('bc_gh_token');
   if (token) {
-    await publishSilent(editId ? 'Producto actualizado y publicado ✓' : 'Producto agregado a la tienda ✓');
+    setTimeout(() => publish(), 300);
   } else {
-    dirty();
-    toast('Guardado. Configurá el token de GitHub para publicar automáticamente.', 'info');
+    toast('Guardado localmente. Configurá el token de GitHub para publicar.', 'info');
   }
 }
 
@@ -1645,19 +1683,12 @@ function duplicateFromModal() {
 }
 
 /* ─── DELETE ─── */
-async function deleteP(id) {
+function deleteP(id) {
   const p = products.find(x => x.id === id);
   if (!p || !confirm(`¿Eliminar "${p.nombre}"?`)) return;
   products = products.filter(x => x.id !== id);
-  renderGrid(); updateStats();
-  localStorage.setItem('bc_draft', JSON.stringify(products));
-  const token = localStorage.getItem('bc_gh_token');
-  if (token) {
-    await publishSilent('Producto eliminado y publicado ✓');
-  } else {
-    dirty();
-    toast('Producto eliminado');
-  }
+  dirty(); renderGrid(); updateStats(); 
+  toast('Producto eliminado');
 }
 
 /* ─── DIRTY / BANNER ─── */
@@ -1736,25 +1767,36 @@ function importFile(e) {
 }
 
 /* ─── PUBLICAR EN GITHUB ─── */
-
-// Versión silenciosa — llamada automáticamente al guardar
-async function publishSilent(successMsg = '¡Publicado! La tienda se actualiza en ~1 minuto 🎉') {
+async function publish() {
   const token = localStorage.getItem('bc_gh_token');
   const repo  = localStorage.getItem('bc_gh_repo') || 'bara-and-co/Bara-Co';
-  if (!token) return false;
+  if (!token) { openConfig(); toast('Primero configurá tu token de GitHub','err'); return; }
 
-  // Mostrar estado "publicando" en el botón manual
   const btn = document.getElementById('publishBtn');
-  const originalHtml = btn.innerHTML;
   btn.disabled = true;
   btn.innerHTML = '<div class="spinner"></div> Publicando...';
 
   try {
+    // Verificar que no haya imágenes base64 sin subir
+    const conBase64 = products.filter(p => p.imagen && p.imagen.startsWith('data:'));
+    if (conBase64.length) {
+      toast(`⚠️ ${conBase64.length} producto(s) tienen imagen sin subir. Editálos y volvé a cargar la foto.`, 'err');
+      btn.disabled = false;
+      btn.innerHTML = '<i class="fas fa-cloud-upload-alt"></i> Publicar ahora';
+      return;
+    }
+
     const getR = await fetch(`https://api.github.com/repos/${repo}/contents/productos.json`, {
       headers:{ Authorization:`token ${token}`, Accept:'application/vnd.github.v3+json' }
     });
-    const sha = getR.ok ? (await getR.json()).sha : null;
 
+    if (!getR.ok && getR.status !== 404) {
+      if (getR.status === 401) throw new Error('Token vencido. Generá uno nuevo en GitHub → Settings → Developer settings.');
+      if (getR.status === 403) throw new Error('Sin permisos. El token necesita el permiso "repo".');
+      throw new Error(`Error ${getR.status} al acceder al repositorio.`);
+    }
+
+    const sha = getR.ok ? (await getR.json()).sha : null;
     const json = JSON.stringify(products, null, 2);
     const b64  = btoa(unescape(encodeURIComponent(json)));
     const now  = new Date().toLocaleString('es-AR');
@@ -1765,29 +1807,24 @@ async function publishSilent(successMsg = '¡Publicado! La tienda se actualiza e
       body: JSON.stringify({ message:`Admin: actualizar productos — ${now}`, content:b64, ...(sha?{sha}:{}) })
     });
 
-    if (!putR.ok) { const e = await putR.json(); throw new Error(e.message || 'Error al publicar'); }
+    if (!putR.ok) {
+      const e = await putR.json();
+      if (putR.status === 422) throw new Error('Archivo demasiado grande. Revisá que las imágenes sean URLs, no archivos.');
+      throw new Error(e.message || `Error ${putR.status} al publicar`);
+    }
 
     pending = 0;
     document.getElementById('saveBanner').classList.remove('show');
     localStorage.removeItem('bc_draft');
-    toast(successMsg, 'ok');
-    return true;
+    toast('¡Publicado! La tienda se actualiza en ~1 minuto 🎉','ok');
 
   } catch(e) {
-    toast('No se pudo publicar: ' + e.message, 'err');
-    dirty(); // marcar como pendiente para publicar manualmente
-    return false;
+    toast('Error: ' + e.message, 'err');
+    console.error('Publish error:', e);
   } finally {
     btn.disabled = false;
-    btn.innerHTML = originalHtml;
+    btn.innerHTML = '<i class="fas fa-cloud-upload-alt"></i> Publicar ahora';
   }
-}
-
-// Versión manual — botón "Publicar ahora"
-async function publish() {
-  const token = localStorage.getItem('bc_gh_token');
-  if (!token) { openConfig(); toast('Primero configurá tu token de GitHub','err'); return; }
-  await publishSilent('¡Todo publicado! La tienda se actualiza en ~1 minuto 🎉');
 }
 
 /* ─── CONFIGURACIÓN ─── */
