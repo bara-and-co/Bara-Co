@@ -891,8 +891,6 @@
             </div>
             <div class="upload-badge"><i class="fas fa-check"></i> Imagen cargada</div>
           </div>
-          <input type="file" id="fileInput" accept="image/*" style="display:none" onchange="onFileSelect(event)"/>
-          <!-- Campo oculto que guarda la URL final -->
           <input type="hidden" id="fImg"/>
         </div>
 
@@ -914,7 +912,6 @@
               <span>Agregar</span>
             </div>
           </div>
-          <input type="file" id="extraFileInput" accept="image/*" multiple style="display:none" onchange="onExtraFiles(event)"/>
           <input type="hidden" id="fImagenes"/>
         </div>
       </div>
@@ -1007,6 +1004,10 @@
 
 <!-- TOAST -->
 <div class="toast" id="toast"></div>
+
+<!-- File inputs fuera del modal para que funcionen en mobile -->
+<input type="file" id="fileInput" accept="image/*" style="display:none" onchange="onFileSelect(event)"/>
+<input type="file" id="extraFileInput" accept="image/*" multiple style="display:none" onchange="onExtraFiles(event)"/>
 
 <script>
 /* ─── LOGIN ─── */
