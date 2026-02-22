@@ -254,8 +254,7 @@
       min-height: 160px;
       background: var(--bg);
       text-align: center;
-    }
-    .img-upload-zone:hover,
+    }    .img-upload-zone:hover,
     .img-upload-zone.drag-over {
       border-color: var(--accent);
       background: rgba(201,169,110,.05);
@@ -845,24 +844,26 @@
         </div>
 
         <!-- Zona principal de carga -->
-        <label class="img-upload-zone" id="dropZone" ondragover="onDragOver(event)" ondragleave="onDragLeave(event)" ondrop="onDrop(event)">
-          <input type="file" id="fileInput" accept="image/*" style="display:none" onchange="onFileSelect(event)"/>
+        <div class="img-upload-zone" id="dropZone" ondragover="onDragOver(event)" ondragleave="onDragLeave(event)" ondrop="onDrop(event)">
+          <!-- Input invisible que cubre toda la zona -->
+          <input type="file" id="fileInput" accept="image/*" onchange="onFileSelect(event)"
+            style="position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;z-index:10;"/>
           <div class="upload-idle" id="uploadIdle">
             <div class="upload-icon"><i class="fas fa-cloud-upload-alt"></i></div>
             <div class="upload-title">Tocá para elegir una foto</div>
             <div class="upload-sub">o arrastrá y soltá desde tu compu</div>
             <div class="upload-formats">JPG · PNG · WEBP · hasta 10MB</div>
           </div>
-          <div class="upload-preview" id="uploadPreview" style="display:none;position:relative;">
+          <div class="upload-preview" id="uploadPreview" style="display:none;position:relative;z-index:5;">
             <img id="imgPrev" src="" alt="" style="width:100%;max-height:260px;object-fit:contain;display:block;background:#f0ede8;"/>
-            <div style="position:absolute;top:8px;right:8px;display:flex;gap:6px;">
-              <label style="background:rgba(0,0,0,.6);color:#fff;border:none;border-radius:20px;padding:6px 12px;font-size:11px;cursor:pointer;font-family:var(--sans);display:flex;align-items:center;gap:5px;" for="fileInput"><i class="fas fa-camera"></i> Cambiar</label>
-              <button type="button" onclick="event.preventDefault();event.stopPropagation();clearImage()" style="background:rgba(0,0,0,.6);color:#fff;border:none;border-radius:20px;padding:6px 12px;font-size:11px;cursor:pointer;font-family:var(--sans);display:flex;align-items:center;gap:5px;"><i class="fas fa-times"></i> Quitar</button>
+            <div style="position:absolute;top:8px;right:8px;display:flex;gap:6px;z-index:20;">
+              <button type="button" onclick="event.stopPropagation();document.getElementById('fileInput').click()" style="background:rgba(0,0,0,.6);color:#fff;border:none;border-radius:20px;padding:6px 12px;font-size:11px;cursor:pointer;font-family:var(--sans);display:flex;align-items:center;gap:5px;"><i class="fas fa-camera"></i> Cambiar</button>
+              <button type="button" onclick="event.stopPropagation();clearImage()" style="background:rgba(0,0,0,.6);color:#fff;border:none;border-radius:20px;padding:6px 12px;font-size:11px;cursor:pointer;font-family:var(--sans);display:flex;align-items:center;gap:5px;"><i class="fas fa-times"></i> Quitar</button>
             </div>
-            <div class="upload-badge" id="uploadBadge" style="position:absolute;bottom:8px;left:8px;background:var(--green);color:#fff;font-size:11px;font-weight:600;padding:4px 10px;border-radius:20px;display:flex;align-items:center;gap:5px;"><i class="fas fa-check"></i> Imagen cargada</div>
+            <div class="upload-badge" id="uploadBadge" style="position:absolute;bottom:8px;left:8px;background:var(--green);color:#fff;font-size:11px;font-weight:600;padding:4px 10px;border-radius:20px;display:flex;align-items:center;gap:5px;z-index:20;"><i class="fas fa-check"></i> Imagen cargada</div>
           </div>
           <input type="hidden" id="fImg"/>
-        </label>
+        </div>
 
         <!-- URL manual como alternativa -->
         <details class="url-fallback" id="urlFallback">
@@ -1441,12 +1442,12 @@ function setMainImageLoading(previewSrc) {
   img.src = previewSrc;
   img.style.opacity = '0.5';
   document.getElementById('fImg').value = '';
+  document.getElementById('fileInput').style.zIndex = '1'; // behind preview buttons
   document.getElementById('uploadIdle').style.display = 'none';
   document.getElementById('uploadPreview').style.display = 'block';
   document.getElementById('dropZone').classList.add('has-image');
   const badge = document.getElementById('uploadBadge');
-  if (badge) badge.innerHTML = '<div class="spinner" style="width:12px;height:12px;border-color:rgba(255,255,255,.3);border-top-color:#fff"></div> Subiendo imagen...';
-  if (badge) badge.style.background = 'var(--accent)';
+  if (badge) { badge.innerHTML = '<div class="spinner" style="width:12px;height:12px;border-color:rgba(255,255,255,.3);border-top-color:#fff"></div> Subiendo imagen...'; badge.style.background = 'var(--accent)'; }
 }
 
 function setMainImage(src) {
@@ -1454,12 +1455,12 @@ function setMainImage(src) {
   img.src = src;
   img.style.opacity = '1';
   document.getElementById('fImg').value = src;
+  document.getElementById('fileInput').style.zIndex = '1';
   document.getElementById('uploadIdle').style.display = 'none';
   document.getElementById('uploadPreview').style.display = 'block';
   document.getElementById('dropZone').classList.add('has-image');
   const badge = document.getElementById('uploadBadge');
-  if (badge) badge.innerHTML = '<i class="fas fa-check"></i> Imagen cargada';
-  if (badge) badge.style.background = 'var(--green)';
+  if (badge) { badge.innerHTML = '<i class="fas fa-check"></i> Imagen cargada'; badge.style.background = 'var(--green)'; }
 }
 
 function clearImage(e) {
@@ -1467,6 +1468,7 @@ function clearImage(e) {
   document.getElementById('imgPrev').src = '';
   document.getElementById('imgPrev').style.opacity = '1';
   document.getElementById('fImg').value = '';
+  document.getElementById('fileInput').style.zIndex = '10'; // back on top
   document.getElementById('uploadIdle').style.display = 'block';
   document.getElementById('uploadPreview').style.display = 'none';
   document.getElementById('dropZone').classList.remove('has-image');
