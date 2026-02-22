@@ -1373,7 +1373,7 @@ function renderizarProductos() {
                     (p.precioAnterior ? `<span class="badge badge-sale">-${descuento}%</span>` : '');
       
       html += `
-        <div class="prod-card" data-cat="${cats.join(' ')}" data-subcat="${p.subcategoria || ''}" data-id="${p.id}" data-nombre="${p.nombre}" data-precio="${p.precio}" data-imagen="${p.imagen}">
+        <div class="prod-card" data-cat="${cats.join(' ')}" data-subcat="${(p.subcategoria || '').replace(/"/g,'&quot;')}" data-id="${p.id}" data-nombre="${p.nombre}" data-precio="${p.precio}" data-imagen="${p.imagen}">
           <div class="prod-img">
             ${badges}
             <img src="${p.imagen}" alt="${p.nombre}" loading="lazy"/>
@@ -1402,14 +1402,6 @@ function renderizarProductos() {
 
 let activeSubcat = 'all';
 
-// Mapa de subcategorías por categoría (sacado del JSON real)
-const SUBCATS = {
-  hombre:     ['Camperas', 'Remeras', 'Pantalones', 'Buzos', 'Conjuntos', 'Bermudas', 'Shorts'],
-  mujer:      ['Remeras', 'Pantalones', 'Polleras', 'Vestidos', 'Camperas', 'Shorts', 'Conjuntos'],
-  accesorios: ['Abanicos', 'Gorras', 'Cintos', 'Lentes de sol', 'Bijouterie', 'Billeteras', 'Medias', 'Boxers', 'Zapatillas'],
-  new:        ['Camperas', 'Remeras', 'Pantalones', 'Accesorios']
-};
-
 function filterBy(categoria) {
   activeFilter = categoria;
   activeSubcat = 'all';
@@ -1426,25 +1418,26 @@ function filterBySub(subcat) {
 
 function renderSubcatTabs(categoria) {
   const container = document.getElementById('subcatTabs');
-  const subcats = SUBCATS[categoria];
 
-  if (!subcats || categoria === 'all' || categoria === 'sale') {
+  if (categoria === 'all' || categoria === 'sale') {
     container.style.display = 'none';
     return;
   }
 
-  // Filtrar solo las subcategorías que realmente tienen productos cargados
-  const subcatsConProductos = subcats.filter(s =>
-    productos.some(p => p.categoria === categoria && p.subcategoria === s)
-  );
+  // Sacar subcategorías REALES del JSON para esta categoría
+  const subcatsReales = [...new Set(
+    productos
+      .filter(p => p.categoria === categoria && p.subcategoria)
+      .map(p => p.subcategoria)
+  )].sort();
 
-  if (!subcatsConProductos.length) {
+  if (!subcatsReales.length) {
     container.style.display = 'none';
     return;
   }
 
   container.innerHTML = `<button class="subcat-tab active" data-s="all" onclick="filterBySub('all')">Todas</button>`;
-  subcatsConProductos.forEach(s => {
+  subcatsReales.forEach(s => {
     const btn = document.createElement('button');
     btn.className = 'subcat-tab';
     btn.dataset.s = s;
