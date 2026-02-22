@@ -100,7 +100,7 @@ header .logo img {
       font-weight: 500;
       letter-spacing: .18em;
       text-transform: uppercase;
-      color: rgba(201,169,110,.65);
+      color: rgba(255,255,255,.65);
       position: relative;
       transition: color .25s;
     }
@@ -137,7 +137,7 @@ header .logo img {
 
     .header-icons i {
       font-size: 16px;
-      color: rgba(201,169,110,.6);
+      color: rgba(255,255,255,.6);
       cursor: pointer;
       transition: color .25s;
     }
@@ -184,7 +184,7 @@ header .logo img {
       display: block;
       width: 22px;
       height: 1.5px;
-      background: rgba(201,169,110,.6);
+      background: rgba(255,255,255,.6);
       transition: all .3s;
     }
 
@@ -212,7 +212,7 @@ header .logo img {
       padding: 13px 0;
       font-size: 13px;
       font-weight: 500;
-      color: rgba(201,169,110,.55);
+      color: rgba(255,255,255,.55);
       border-bottom: 1px solid var(--border);
       display: block;
       transition: color .2s;
@@ -305,7 +305,7 @@ header .logo img {
       font-size: 11px;
       letter-spacing: .22em;
       text-transform: uppercase;
-      color: rgba(201,169,110,.7);
+      color: rgba(255,255,255,.7);
       opacity: 0;
       animation: fadeUp .8s var(--ease) .6s forwards;
     }
@@ -318,8 +318,8 @@ header .logo img {
       font-size: 10px;
       letter-spacing: .22em;
       text-transform: uppercase;
-      color: #e8d5a8;
-      border-bottom: 1px solid rgba(201,169,110,.35);
+      color: var(--white);
+      border-bottom: 1px solid rgba(255,255,255,.35);
       padding-bottom: 4px;
       transition: border-color .3s, color .3s;
       opacity: 0;
@@ -338,7 +338,7 @@ header .logo img {
       flex-direction: column;
       align-items: center;
       gap: 10px;
-      color: rgba(201,169,110,.4);
+      color: rgba(255,255,255,.4);
       font-size: 8px;
       letter-spacing: .3em;
       text-transform: uppercase;
@@ -348,7 +348,7 @@ header .logo img {
     .scroll-hint-line {
       width: 1px;
       height: 52px;
-      background: rgba(201,169,110,.2);
+      background: rgba(255,255,255,.15);
       position: relative;
       overflow: hidden;
     }
@@ -409,6 +409,34 @@ header .logo img {
       border-color: var(--accent);
       color: var(--bg);
     }
+
+    /* Subcategorías */
+    .subcat-tabs {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      padding-top: 8px;
+      border-top: 1px solid var(--border);
+      margin-top: 2px;
+      animation: fadeIn .2s ease;
+    }
+    @keyframes fadeIn { from { opacity:0; transform:translateY(-4px); } to { opacity:1; transform:none; } }
+    .subcat-tab {
+      padding: 5px 14px;
+      border: 1px solid var(--border);
+      background: none;
+      color: var(--muted);
+      font-family: var(--sans);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border-radius: 20px;
+      transition: all .2s;
+    }
+    .subcat-tab:hover { border-color: var(--accent); color: var(--accent); }
+    .subcat-tab.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
 
     .prod-count {
       font-size: 11px;
@@ -1095,6 +1123,10 @@ header .logo img {
     <button class="filter-tab" data-f="accesorios">Accesorios</button>
     <button class="filter-tab" data-f="sale">Sale</button>
   </div>
+  <!-- Subcategorías — aparecen al elegir una categoría -->
+  <div class="subcat-tabs" id="subcatTabs" style="display:none">
+    <button class="subcat-tab active" data-s="all">Todas</button>
+  </div>
   <span class="prod-count" id="prodCount">Cargando...</span>
 </div>
 
@@ -1310,8 +1342,7 @@ async function cargarProductos() {
     const cat = urlParams.get('categoria');
     if (cat && ['hombre', 'mujer', 'accesorios', 'new', 'sale'].includes(cat)) {
       filterBy(cat);
-    }
-  } catch (error) {
+    }  } catch (error) {
     console.error('Error:', error);
     document.getElementById('prodCount').textContent = 'Error al cargar';
   }
@@ -1342,7 +1373,7 @@ function renderizarProductos() {
                     (p.precioAnterior ? `<span class="badge badge-sale">-${descuento}%</span>` : '');
       
       html += `
-        <div class="prod-card" data-cat="${cats.join(' ')}" data-id="${p.id}" data-nombre="${p.nombre}" data-precio="${p.precio}" data-imagen="${p.imagen}">
+        <div class="prod-card" data-cat="${cats.join(' ')}" data-subcat="${p.subcategoria || ''}" data-id="${p.id}" data-nombre="${p.nombre}" data-precio="${p.precio}" data-imagen="${p.imagen}">
           <div class="prod-img">
             ${badges}
             <img src="${p.imagen}" alt="${p.nombre}" loading="lazy"/>
@@ -1369,23 +1400,79 @@ function renderizarProductos() {
   aplicarFiltro(activeFilter);
 }
 
+let activeSubcat = 'all';
+
+// Mapa de subcategorías por categoría (sacado del JSON real)
+const SUBCATS = {
+  hombre:     ['Camperas', 'Remeras', 'Pantalones', 'Buzos', 'Conjuntos', 'Bermudas', 'Shorts'],
+  mujer:      ['Remeras', 'Pantalones', 'Polleras', 'Vestidos', 'Camperas', 'Shorts', 'Conjuntos'],
+  accesorios: ['Abanicos', 'Gorras', 'Cintos', 'Lentes de sol', 'Bijouterie', 'Billeteras', 'Medias', 'Boxers', 'Zapatillas'],
+  new:        ['Camperas', 'Remeras', 'Pantalones', 'Accesorios']
+};
+
 function filterBy(categoria) {
   activeFilter = categoria;
-  aplicarFiltro(categoria);
+  activeSubcat = 'all';
+  aplicarFiltro(categoria, 'all');
   document.querySelectorAll('.filter-tab').forEach(t => t.classList.toggle('active', t.dataset.f === categoria));
+  renderSubcatTabs(categoria);
 }
 
-function aplicarFiltro(filtro) {
+function filterBySub(subcat) {
+  activeSubcat = subcat;
+  aplicarFiltro(activeFilter, subcat);
+  document.querySelectorAll('.subcat-tab').forEach(t => t.classList.toggle('active', t.dataset.s === subcat));
+}
+
+function renderSubcatTabs(categoria) {
+  const container = document.getElementById('subcatTabs');
+  const subcats = SUBCATS[categoria];
+
+  if (!subcats || categoria === 'all' || categoria === 'sale') {
+    container.style.display = 'none';
+    return;
+  }
+
+  // Filtrar solo las subcategorías que realmente tienen productos cargados
+  const subcatsConProductos = subcats.filter(s =>
+    productos.some(p => p.categoria === categoria && p.subcategoria === s)
+  );
+
+  if (!subcatsConProductos.length) {
+    container.style.display = 'none';
+    return;
+  }
+
+  container.innerHTML = `<button class="subcat-tab active" data-s="all" onclick="filterBySub('all')">Todas</button>`;
+  subcatsConProductos.forEach(s => {
+    const btn = document.createElement('button');
+    btn.className = 'subcat-tab';
+    btn.dataset.s = s;
+    btn.textContent = s;
+    btn.onclick = () => filterBySub(s);
+    container.appendChild(btn);
+  });
+
+  container.style.display = 'flex';
+}
+
+function aplicarFiltro(filtro, subcat = 'all') {
   const cards = document.querySelectorAll('.prod-card');
   let visibles = 0;
-  
+
   cards.forEach(card => {
-    const cats = card.dataset.cat.split(' ');
-    const mostrar = filtro === 'all' || cats.includes(filtro);
+    const cats = card.dataset.cat ? card.dataset.cat.split(' ') : [];
+    const cardSubcat = card.dataset.subcat || '';
+
+    let mostrar = filtro === 'all' || cats.includes(filtro);
+    if (mostrar && subcat !== 'all') {
+      mostrar = cardSubcat === subcat;
+    }
+
     card.classList.toggle('hidden', !mostrar);
     if (mostrar) visibles++;
   });
-  
+
   document.querySelectorAll('.cat-heading').forEach(head => {
     let tiene = false;
     let next = head.nextElementSibling;
@@ -1395,7 +1482,7 @@ function aplicarFiltro(filtro) {
     }
     head.classList.toggle('hidden', !tiene);
   });
-  
+
   document.getElementById('emptyMsg').style.display = visibles === 0 ? 'block' : 'none';
   actualizarContador(visibles);
 }
