@@ -1,5 +1,37 @@
 [
   {
+    "id": "chaleco-r-stico-procesado-1771871377712",
+    "nombre": "Chaleco Rústico Procesado",
+    "precio": 35000,
+    "precioAnterior": 55000,
+    "categoria": "hombre",
+    "subcategoria": "Buzos",
+    "descripcion": "",
+    "imagen": "https://i.ibb.co/JXY1ttb/chalecoarena.webp",
+    "imagenes": [
+      "https://i.ibb.co/JXY1ttb/chalecoarena.webp",
+      "https://i.ibb.co/S45wPpYw/Chalecoarenadetalle.webp"
+    ],
+    "tallesDisponibles": [
+      "L"
+    ],
+    "colores": [
+      {
+        "nombre": "Beige",
+        "codigo": "#D4B896",
+        "stock": 0
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Beige__L": null
+    },
+    "stock": 0,
+    "sku": "CHALECO-RÚSTICO-PROCESADO"
+  },
+  {
     "id": "chaleco-r-stico-procesado-1771871244375",
     "nombre": "Chaleco Rústico Procesado",
     "precio": 35000,
