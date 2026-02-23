@@ -1216,18 +1216,49 @@ header .logo img {
 </section>
 
 <!-- OUTLET -->
-<section class="section" id="outletSection" style="display:none">
-  <div class="section-header">
-    <div>
-      <p class="section-eyebrow" style="color:#e07b39;">Últimas unidades</p>
-      <h2 class="section-title">Outlet <em>& Ofertas</em></h2>
+<section id="outletSection" style="display:none">
+
+  <!-- Banner de urgencia -->
+  <div style="background:linear-gradient(135deg,#1a0e00,#2a1500,#1a0e00);border-top:1px solid rgba(224,123,57,.2);border-bottom:1px solid rgba(224,123,57,.2);padding:22px 52px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;">
+    <div style="display:flex;align-items:center;gap:18px;">
+      <div style="width:8px;height:8px;border-radius:50%;background:#e07b39;box-shadow:0 0 10px #e07b39;animation:pulseOrange 1.8s ease-in-out infinite;flex-shrink:0;"></div>
+      <div>
+        <p style="font-size:8px;letter-spacing:.4em;text-transform:uppercase;color:#e07b39;margin-bottom:3px;">Stock limitado · Últimas unidades</p>
+        <p style="font-family:var(--serif);font-size:clamp(18px,2.5vw,26px);font-weight:300;color:var(--text);line-height:1;">Precios especiales antes de que se acaben</p>
+      </div>
     </div>
-    <a class="section-link" href="tienda.html?categoria=outlet">Ver todo <i class="fas fa-arrow-right"></i></a>
+    <a href="tienda.html?categoria=outlet" style="display:inline-flex;align-items:center;gap:9px;padding:12px 24px;border:1px solid rgba(224,123,57,.5);color:#e07b39;font-size:9px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;transition:all .3s;white-space:nowrap;" onmouseover="this.style.background='rgba(224,123,57,.1)'" onmouseout="this.style.background='none'">
+      Ver todo el outlet <i class="fas fa-arrow-right"></i>
+    </a>
   </div>
-  <div class="prod-grid" id="productosOutlet">
-    <!-- Se carga dinámicamente -->
+
+  <!-- Grid de productos -->
+  <div style="padding:48px 52px 72px;background:var(--surface);">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:36px;gap:16px;flex-wrap:wrap;">
+      <div>
+        <p style="font-size:8px;letter-spacing:.35em;text-transform:uppercase;color:#e07b39;margin-bottom:8px;">Outlet & Sale</p>
+        <h2 style="font-family:var(--serif);font-size:clamp(28px,3.5vw,48px);font-weight:300;line-height:1;color:var(--text);">Oportunidades <em style="font-style:italic;">únicas</em></h2>
+      </div>
+    </div>
+    <div class="prod-grid" id="productosOutlet">
+      <!-- Se carga dinámicamente -->
+    </div>
   </div>
+
 </section>
+
+<style>
+@keyframes pulseOrange {
+  0%, 100% { opacity:1; box-shadow:0 0 6px #e07b39; }
+  50%       { opacity:.4; box-shadow:0 0 14px #e07b39; }
+}
+#outletSection .prod-card .badge-outlet-idx {
+  position:absolute; top:12px; left:12px; z-index:2;
+  background:#e07b39; color:#fff;
+  font-size:8px; font-weight:700; letter-spacing:.12em; text-transform:uppercase;
+  padding:4px 9px;
+}
+</style>
 
 <!-- NEWSLETTER -->
 <section class="nl-section" id="contacto">
@@ -1263,6 +1294,7 @@ header .logo img {
       <li><a href="tienda.html?categoria=accesorios">Accesorios</a></li>
       <li><a href="tienda.html?categoria=new">New Collection</a></li>
       <li><a href="tienda.html?categoria=sale">Sale</a></li>
+      <li><a href="tienda.html?categoria=outlet" style="color:#e07b39;">🏷️ Outlet</a></li>
     </ul>
   </div>
   <div>
@@ -1552,17 +1584,24 @@ header .logo img {
       const response = await fetch('productos.json?t=' + Date.now());
       if (!response.ok) return;
       const todos = await response.json();
-      const outlet = todos.filter(p => p.activo !== false && p.outlet).slice(0, 4);
-      if (!outlet.length) return;
+      // Incluir productos outlet O con precio anterior (sale)
+      const outletItems = todos.filter(p => p.activo !== false && (p.outlet || p.precioAnterior));
+      if (!outletItems.length) return;
       section.style.display = 'block';
+      // Ordenar: primero outlet, luego sale, máximo 4
+      const sorted = [
+        ...outletItems.filter(p => p.outlet),
+        ...outletItems.filter(p => !p.outlet && p.precioAnterior)
+      ].slice(0, 4);
       let html = '';
-      outlet.forEach(p => {
+      sorted.forEach(p => {
         const descuento = p.precioAnterior ? Math.round((1 - p.precio / p.precioAnterior) * 100) : 0;
+        const esOutlet = p.outlet;
         html += `
-          <div class="prod-card visible" onclick="window.location.href='producto.html?id=${p.id}'">
+          <div class="prod-card visible" onclick="window.location.href='producto.html?id=${p.id}'" style="cursor:pointer;">
             <div class="prod-img">
-              <span class="prod-badge" style="background:#e07b39;color:#fff;">Outlet</span>
-              ${p.precioAnterior ? `<span class="prod-badge badge-sale" style="top:36px;">-${descuento}%</span>` : ''}
+              ${esOutlet ? '<span class="prod-badge" style="background:#e07b39;color:#fff;position:absolute;top:14px;left:14px;z-index:2;font-size:7px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:4px 9px;">Outlet</span>' : ''}
+              ${p.precioAnterior ? `<span class="prod-badge badge-sale" style="${esOutlet ? 'top:44px;' : ''}">-${descuento}%</span>` : ''}
               <img src="${p.imagen}" alt="${p.nombre}" loading="lazy"/>
               <div class="prod-overlay">
                 <button class="ov-btn ov-add" onclick="event.stopPropagation(); agregarAlCarrito('${p.id}','${p.nombre}',${p.precio},'${p.imagen}')">
@@ -1574,7 +1613,7 @@ header .logo img {
               </div>
             </div>
             <div class="prod-info">
-              <p class="prod-cat">${p.subcategoria || p.categoria}</p>
+              <p class="prod-cat" style="color:${esOutlet ? '#e07b39' : 'var(--muted)'};">${esOutlet ? 'Outlet · ' : ''}${p.subcategoria || p.categoria}</p>
               <h3 class="prod-name">${p.nombre}</h3>
               <p class="prod-price">
                 ${p.precioAnterior ? `<del>$${p.precioAnterior.toLocaleString('es-AR')}</del>` : ''}
