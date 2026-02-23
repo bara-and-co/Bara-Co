@@ -1110,6 +1110,17 @@
         </div>
       </div>
 
+      <!-- STOCK POR TALLE (sin colores) -->
+      <div class="sizes-section" id="stockTallesSection" style="display:none">
+        <div class="section-title">
+          <i class="fas fa-layer-group"></i> Stock por talle
+          <span style="font-size:11px;color:var(--muted);margin-left:auto">Ingresá la cantidad disponible de cada talle</span>
+        </div>
+        <div id="stockTallesWrap" style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;">
+          <!-- generado por JS -->
+        </div>
+      </div>
+
       <!-- GRILLA DE STOCK por color × talle -->
       <div class="sizes-section" id="stockGridSection" style="display:none">
         <div class="section-title">
@@ -1624,6 +1635,15 @@ function openModal(id = null) {
     // Reconstruir grilla de stock y cargar valores guardados
     buildStockGrid();
     if (p.stockMap) loadStockData(p.stockMap);
+    if (p.stockTalles) {
+      document.querySelectorAll('.stock-talle-input').forEach(inp => {
+        const val = p.stockTalles[inp.dataset.talle];
+        if (val !== undefined && val !== null) {
+          inp.value = val;
+          if (val === 0) { inp.style.borderColor = '#e05555'; inp.style.color = '#e05555'; }
+        }
+      });
+    }
     
     // Preview de imágenes adicionales
     if (p.imagenes && p.imagenes.length > 1) {
@@ -1926,6 +1946,43 @@ function buildStockGrid() {
 
   const section = document.getElementById('stockGridSection');
   const wrap = document.getElementById('stockGridWrap');
+  const tallesSection = document.getElementById('stockTallesSection');
+  const tallesWrap = document.getElementById('stockTallesWrap');
+
+  // Stock por talle (sin colores): mostrar cuando hay talles seleccionados
+  if (talles.length && !colores.length) {
+    tallesSection.style.display = 'block';
+    // Guardar valores actuales
+    const prevTalles = {};
+    tallesWrap.querySelectorAll('.stock-talle-input').forEach(inp => {
+      prevTalles[inp.dataset.talle] = inp.value;
+    });
+    tallesWrap.innerHTML = '';
+    talles.forEach(t => {
+      const div = document.createElement('div');
+      div.style.cssText = 'display:flex;flex-direction:column;align-items:center;gap:4px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:10px 12px;min-width:70px;';
+      const label = document.createElement('span');
+      label.style.cssText = 'font-size:12px;font-weight:600;color:var(--text);';
+      label.textContent = t;
+      const inp = document.createElement('input');
+      inp.type = 'number';
+      inp.min = '0';
+      inp.placeholder = '0';
+      inp.value = prevTalles[t] ?? '';
+      inp.className = 'stock-input stock-talle-input';
+      inp.dataset.talle = t;
+      inp.style.cssText = 'width:52px;padding:4px 6px;border:1px solid var(--border);border-radius:6px;background:var(--bg);color:var(--text);font-size:13px;font-family:var(--sans);text-align:center;';
+      inp.addEventListener('input', () => {
+        inp.style.borderColor = (inp.value === '0' || inp.value === '') ? '#e05555' : 'var(--border)';
+        inp.style.color = (inp.value === '0' || inp.value === '') ? '#e05555' : 'var(--text)';
+      });
+      div.appendChild(label);
+      div.appendChild(inp);
+      tallesWrap.appendChild(div);
+    });
+  } else {
+    tallesSection.style.display = 'none';
+  }
 
   if (!talles.length || !colores.length) {
     section.style.display = 'none';
@@ -2208,6 +2265,12 @@ function saveProduct() {
     colores.push({ nombre: wrap.dataset.color, codigo: wrap.dataset.code, stock });
   });
 
+  // Recolectar stock por talle
+  const stockTalles = {};
+  document.querySelectorAll('.stock-talle-input').forEach(inp => {
+    if (inp.dataset.talle) stockTalles[inp.dataset.talle] = inp.value !== '' ? parseInt(inp.value) : null;
+  });
+
   const prod = {
     id: editId || nombre.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'') + '-' + Date.now(),
     nombre, 
@@ -2224,6 +2287,7 @@ function saveProduct() {
     destacado: document.getElementById('fDestacado').checked,
     outlet: document.getElementById('fOutlet').checked,
     stockMap: getStockData(),
+    stockTalles: Object.keys(stockTalles).length ? stockTalles : null,
     stock: parseInt(document.getElementById('fStock').value) || 0,
     sku: editId ? products.find(p => p.id === editId)?.sku : (nombre.toUpperCase().replace(/ /g,'-'))
   };
