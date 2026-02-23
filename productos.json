@@ -1,5 +1,36 @@
 [
   {
+    "id": "pantal-n-r-o-negro-1771859826120",
+    "nombre": "Pantalón Río Negro",
+    "precio": 25000,
+    "precioAnterior": 35000,
+    "categoria": "hombre",
+    "subcategoria": "Pantalones",
+    "descripcion": "",
+    "imagen": "https://i.ibb.co/MxJq57mW/rionegromarron.png",
+    "imagenes": [
+      "https://i.ibb.co/MxJq57mW/rionegromarron.png"
+    ],
+    "tallesDisponibles": [
+      "L"
+    ],
+    "colores": [
+      {
+        "nombre": "Marrón",
+        "codigo": "#795548",
+        "stock": 0
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Marrón__L": null
+    },
+    "stock": 0,
+    "sku": "PANTALÓN-RÍO-NEGRO"
+  },
+  {
     "id": "pantal-n-r-o-negro-1771859756008",
     "nombre": "Pantalón Río Negro",
     "precio": 25000,
