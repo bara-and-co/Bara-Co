@@ -409,6 +409,11 @@ header .logo img {
       border-color: var(--accent);
       color: var(--bg);
     }
+    .filter-tab[data-f="outlet"].active {
+      background: #e07b39;
+      border-color: #e07b39;
+      color: #fff;
+    }
 
     /* Subcategorías */
     .subcat-tabs {
@@ -539,6 +544,10 @@ header .logo img {
     .badge-sale {
       background: #b83030;
       color: var(--white);
+    }
+    .badge-outlet {
+      background: #e07b39;
+      color: #fff;
     }
 
     .prod-overlay {
@@ -1122,6 +1131,7 @@ header .logo img {
     <button class="filter-tab" data-f="mujer">Mujer</button>
     <button class="filter-tab" data-f="accesorios">Accesorios</button>
     <button class="filter-tab" data-f="sale">Sale</button>
+    <button class="filter-tab" data-f="outlet" style="color:#e07b39;border-color:#e07b39aa;">🏷️ Outlet</button>
   </div>
   <!-- Subcategorías — aparecen al elegir una categoría -->
   <div class="subcat-tabs" id="subcatTabs" style="display:none">
@@ -1340,7 +1350,7 @@ async function cargarProductos() {
     
     const urlParams = new URLSearchParams(window.location.search);
     const cat = urlParams.get('categoria');
-    if (cat && ['hombre', 'mujer', 'accesorios', 'new', 'sale'].includes(cat)) {
+    if (cat && ['hombre', 'mujer', 'accesorios', 'new', 'sale', 'outlet'].includes(cat)) {
       filterBy(cat);
     }  } catch (error) {
     console.error('Error:', error);
@@ -1364,13 +1374,15 @@ function renderizarProductos() {
       const descuento = p.precioAnterior ? Math.round((1 - p.precio / p.precioAnterior) * 100) : 0;
       const cats = [p.categoria];
       if (p.precioAnterior) cats.push('sale');
-      
+      if (p.outlet) cats.push('outlet');
+
       const precioHtml = p.precioAnterior 
         ? `<del>$${p.precioAnterior.toLocaleString('es-AR')}</del> $${p.precio.toLocaleString('es-AR')}`
         : `$${p.precio.toLocaleString('es-AR')}`;
-      
+
       const badges = (p.categoria === 'new' ? '<span class="badge badge-new">New</span>' : '') +
-                    (p.precioAnterior ? `<span class="badge badge-sale">-${descuento}%</span>` : '');
+                    (p.outlet ? '<span class="badge badge-outlet">Outlet</span>' : '') +
+                    (p.precioAnterior && !p.outlet ? `<span class="badge badge-sale">-${descuento}%</span>` : '');
       
       html += `
         <div class="prod-card" data-cat="${cats.join(' ')}" data-subcat="${(p.subcategoria || '').replace(/"/g,'&quot;')}" data-id="${p.id}" data-nombre="${p.nombre}" data-precio="${p.precio}" data-imagen="${p.imagen}">
