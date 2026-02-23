@@ -656,6 +656,27 @@
     }
     .color-chip-wrap { position: relative; }
     .color-chip-wrap:hover .cp-chip-remove { display: flex; }
+    .color-stock-wrap {
+      margin-top: 3px;
+      display: flex;
+      justify-content: center;
+    }
+    .color-stock-input {
+      width: 42px;
+      padding: 2px 4px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      background: var(--bg);
+      color: var(--fg);
+      font-size: 11px;
+      font-family: var(--sans);
+      text-align: center;
+      display: none;
+    }
+    .color-chip-wrap.selected-wrap .color-stock-input { display: block; }
+    .color-stock-input:focus { outline: none; border-color: var(--accent); }
+    /* Stock = 0 → input rojo */
+    .color-stock-input[value="0"] { border-color: #e05555; color: #e05555; }
 
     /* MÚLTIPLES IMÁGENES */
     .images-grid {
@@ -1105,6 +1126,14 @@
               <div class="t-track"></div><div class="t-thumb"></div>
             </label>
           </label>
+
+          <label style="display:flex;align-items:center;gap:10px;">
+            <span style="font-size:13px;color:#e07b39;">🏷️ Outlet</span>
+            <label class="toggle">
+              <input type="checkbox" id="fOutlet"/>
+              <div class="t-track" style="background:#e07b39 !important;"></div><div class="t-thumb"></div>
+            </label>
+          </label>
         </div>
       </div>
 
@@ -1478,6 +1507,7 @@ function openModal(id = null) {
     document.getElementById('fImagenes').value = p.imagenes?.join(', ') || '';
     document.getElementById('fActivo').checked = p.activo !== false;
     document.getElementById('fDestacado').checked = p.destacado || false;
+    document.getElementById('fOutlet').checked = p.outlet || false;
     
     // Marcar talles disponibles
     if (p.tallesDisponibles) {
@@ -1486,12 +1516,21 @@ function openModal(id = null) {
       });
     }
     
-    // Marcar colores disponibles
+    // Marcar colores disponibles con su stock
     if (p.colores) {
       document.querySelectorAll('#colorsContainer .color-chip-wrap').forEach(wrap => {
-        const sel = p.colores.includes(wrap.dataset.color);
+        // colores puede ser array de strings o array de {nombre, stock}
+        const colorData = p.colores.find(c => 
+          typeof c === 'string' ? c === wrap.dataset.color : c.nombre === wrap.dataset.color
+        );
+        const sel = !!colorData;
+        const stockVal = colorData && typeof colorData === 'object' ? colorData.stock : null;
         wrap.classList.toggle('selected-wrap', sel);
         wrap.querySelector('.color-chip').classList.toggle('selected', sel);
+        if (sel && stockVal !== null) {
+          const inp = wrap.querySelector('.color-stock-input');
+          if (inp) inp.value = stockVal;
+        }
       });
     }    
     if (p.imagen) { 
@@ -1510,6 +1549,7 @@ function openModal(id = null) {
     document.getElementById('fCat').value = 'hombre';
     document.getElementById('fActivo').checked = true;
     document.getElementById('fDestacado').checked = false;
+    document.getElementById('fOutlet').checked = false;
     
     document.querySelectorAll('#sizesContainer input, #colorsContainer .color-chip').forEach(el => {
       if (el.tagName === 'INPUT') el.checked = false;
@@ -1852,12 +1892,12 @@ function cpAddColor() {
   if (document.querySelector(`#colorsContainer .color-chip-wrap[data-color="${name}"]`)) {
     toast('Ese color ya está agregado', 'err'); return;
   }
-  addColorChip(name, hex, true);
+  addColorChip(name, hex, true, 0);
   document.getElementById('cpName').value = '';
   toast(`Color "${name}" agregado ✓`);
 }
 
-function addColorChip(name, code, selected = false) {
+function addColorChip(name, code, selected = false, stock = null) {
   const container = document.getElementById('colorsContainer');
   const wrap = document.createElement('div');
   wrap.className = 'color-chip-wrap' + (selected ? ' selected-wrap' : '');
@@ -1867,15 +1907,26 @@ function addColorChip(name, code, selected = false) {
   const chip = document.createElement('div');
   chip.className = 'color-chip' + (selected ? ' selected' : '');
   chip.style.backgroundColor = code;
-  const isLight = ['#FFFFFF','#F5F0E8','#FDD835','#81D4FA','#CE93D8','#F48FB1','#FFFFFF'].includes(code)
-    || (parseInt(code.slice(1,3),16) > 200 && parseInt(code.slice(3,5),16) > 200);
+  const isLight = ['#FFFFFF','#F5F0E8','#FDD835','#81D4FA','#CE93D8','#F48FB1'].includes(code)
+    || (parseInt(code.slice(1,3),16) > 200 && parseInt(code.slice(3,5),16) > 200 && parseInt(code.slice(5,7),16) > 200);
   if (isLight) chip.style.borderColor = 'rgba(0,0,0,.2)';
 
   const label = document.createElement('div');
   label.className = 'color-chip-label';
   label.textContent = name;
 
-  // Remove button on long press / right click
+  const stockWrap = document.createElement('div');
+  stockWrap.className = 'color-stock-wrap';
+  const stockInput = document.createElement('input');
+  stockInput.type = 'number';
+  stockInput.min = '0';
+  stockInput.placeholder = '0';
+  stockInput.value = stock !== null && stock !== undefined ? stock : '';
+  stockInput.className = 'color-stock-input';
+  stockInput.title = 'Stock de este color';
+  stockInput.onclick = e => e.stopPropagation();
+  stockWrap.appendChild(stockInput);
+
   const removeBtn = document.createElement('button');
   removeBtn.className = 'cp-chip-remove';
   removeBtn.innerHTML = '×';
@@ -1884,7 +1935,9 @@ function addColorChip(name, code, selected = false) {
 
   wrap.appendChild(chip);
   wrap.appendChild(label);
+  wrap.appendChild(stockWrap);
   wrap.appendChild(removeBtn);
+
   wrap.onclick = () => {
     const sel = wrap.classList.toggle('selected-wrap');
     chip.classList.toggle('selected', sel);
@@ -1931,10 +1984,12 @@ function saveProduct() {
     talles.push(chk.value);
   });
   
-  // Recolectar colores seleccionados
+  // Recolectar colores seleccionados con stock
   const colores = [];
   document.querySelectorAll('#colorsContainer .color-chip-wrap.selected-wrap').forEach(wrap => {
-    colores.push(wrap.dataset.color);
+    const stockInput = wrap.querySelector('.color-stock-input');
+    const stock = stockInput ? (parseInt(stockInput.value) || 0) : 0;
+    colores.push({ nombre: wrap.dataset.color, codigo: wrap.dataset.code, stock });
   });
 
   const prod = {
@@ -1951,6 +2006,7 @@ function saveProduct() {
     colores: colores,
     activo: document.getElementById('fActivo').checked,
     destacado: document.getElementById('fDestacado').checked,
+    outlet: document.getElementById('fOutlet').checked,
     stock: 10,
     sku: editId ? products.find(p => p.id === editId)?.sku : (nombre.toUpperCase().replace(/ /g,'-'))
   };
