@@ -1,5 +1,36 @@
 [
   {
+    "id": "rompeviento-soacha-1771871652463",
+    "nombre": "Rompeviento Soacha",
+    "precio": 50000,
+    "precioAnterior": null,
+    "categoria": "hombre",
+    "subcategoria": "Camperas",
+    "descripcion": "",
+    "imagen": "https://i.ibb.co/LX9NRFM9/rompevientonegra.webp",
+    "imagenes": [
+      "https://i.ibb.co/LX9NRFM9/rompevientonegra.webp"
+    ],
+    "tallesDisponibles": [
+      "XL"
+    ],
+    "colores": [
+      {
+        "nombre": "Negro",
+        "codigo": "#111111",
+        "stock": 0
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Negro__XL": null
+    },
+    "stock": 1,
+    "sku": "ROMPEVIENTO-SOACHA"
+  },
+  {
     "id": "rompeviento-soacha-1771871613383",
     "nombre": "Rompeviento Soacha",
     "precio": 50000,
