@@ -1,5 +1,38 @@
 [
   {
+    "id": "camo-baggy-gabardina-1771873166614",
+    "nombre": "CAMO – BAGGY GABARDINA",
+    "precio": 49000,
+    "precioAnterior": 70000,
+    "categoria": "hombre",
+    "subcategoria": "Pantalones",
+    "descripcion": "",
+    "imagen": "https://i.ibb.co/V1VFDCM/CAMO-BAGGY-GABARDINA.webp",
+    "imagenes": [
+      "https://i.ibb.co/V1VFDCM/CAMO-BAGGY-GABARDINA.webp"
+    ],
+    "tallesDisponibles": [
+      "40",
+      "42",
+      "44",
+      "46"
+    ],
+    "colores": [],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Jean__36": null,
+      "Jean__38": null,
+      "Jean__40": null,
+      "Jean__42": null,
+      "Jean__44": null,
+      "Jean__46": null
+    },
+    "stock": 5,
+    "sku": "CAMO-–-BAGGY-GABARDINA"
+  },
+  {
     "id": "kunai-baggy-1771873097430",
     "nombre": "KUNAI – BAGGY",
     "precio": 49000,
