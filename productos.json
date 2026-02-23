@@ -1,5 +1,36 @@
 [
   {
+    "id": "rompeviento-soacha-1771871613383",
+    "nombre": "Rompeviento Soacha",
+    "precio": 50000,
+    "precioAnterior": null,
+    "categoria": "hombre",
+    "subcategoria": "Camperas",
+    "descripcion": "",
+    "imagen": "https://i.ibb.co/Hf3R8m2b/image-afb197.png",
+    "imagenes": [
+      "https://i.ibb.co/Hf3R8m2b/image-afb197.png"
+    ],
+    "tallesDisponibles": [
+      "L"
+    ],
+    "colores": [
+      {
+        "nombre": "#050a3d",
+        "codigo": "#050a3d",
+        "stock": 0
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Azul marino__L": null
+    },
+    "stock": 0,
+    "sku": "ROMPEVIENTO-SOACHA"
+  },
+  {
     "id": "chaleco-r-stico-procesado-1771871377712",
     "nombre": "Chaleco Rústico Procesado",
     "precio": 35000,
