@@ -1,5 +1,37 @@
 [
   {
+    "id": "pantal-n-pace-1771862128535",
+    "nombre": "Pantalón Pace",
+    "precio": 45000,
+    "precioAnterior": 66000,
+    "categoria": "hombre",
+    "subcategoria": "Pantalones",
+    "descripcion": "",
+    "imagen": "https://i.ibb.co/fdgnB8Hs/pantalonpaceverdefrente.png",
+    "imagenes": [
+      "https://i.ibb.co/fdgnB8Hs/pantalonpaceverdefrente.png",
+      "https://i.ibb.co/21tNkNbJ/pantalonpaceverdemilitar.png"
+    ],
+    "tallesDisponibles": [
+      "40"
+    ],
+    "colores": [
+      {
+        "nombre": "Verde oliva",
+        "codigo": "#827717",
+        "stock": 0
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Verde oliva__40": null
+    },
+    "stock": 0,
+    "sku": "PANTALÓN-PACE"
+  },
+  {
     "id": "pantal-n-pace-1771862063799",
     "nombre": "Pantalón Pace",
     "precio": 45000,
