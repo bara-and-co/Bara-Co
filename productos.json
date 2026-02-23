@@ -1,5 +1,29 @@
 [
   {
+    "id": "buzo-canguro-regular-aguilas-1771844860483",
+    "nombre": "Buzo Canguro Regular Aguilas",
+    "precio": 50,
+    "precioAnterior": 60,
+    "categoria": "hombre",
+    "subcategoria": "Buzos",
+    "descripcion": "",
+    "imagen": "https://i.ibb.co/PshNXgwr/Buzo-canguro-regular-fullest-positivo-Frente-Crudo.webp",
+    "imagenes": [
+      "https://i.ibb.co/PshNXgwr/Buzo-canguro-regular-fullest-positivo-Frente-Crudo.webp",
+      "https://i.ibb.co/0yPf6fd0/Buzocanguroregularaguilas-Espalda.webp"
+    ],
+    "tallesDisponibles": [
+      "XL"
+    ],
+    "colores": [
+      "Beige"
+    ],
+    "activo": true,
+    "destacado": true,
+    "stock": 10,
+    "sku": "BUZO-CANGURO-REGULAR-AGUILAS"
+  },
+  {
     "id": "buzo-canguro-regular-i-dont-care-1771844763516",
     "nombre": "Buzo Canguro Regular I Dont Care",
     "precio": 50,
