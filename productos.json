@@ -1,5 +1,28 @@
 [
   {
+    "id": "ri-onera-1771847352121",
+    "nombre": "Riñonera",
+    "precio": 40,
+    "precioAnterior": 48,
+    "categoria": "hombre",
+    "subcategoria": "Billeteras",
+    "descripcion": "",
+    "imagen": "https://i.ibb.co/hxTp70GQ/Ri-oneranegra.jpg",
+    "imagenes": [
+      "https://i.ibb.co/hxTp70GQ/Ri-oneranegra.jpg"
+    ],
+    "tallesDisponibles": [
+      "L"
+    ],
+    "colores": [
+      "Negro"
+    ],
+    "activo": true,
+    "destacado": true,
+    "stock": 10,
+    "sku": "RIÑONERA"
+  },
+  {
     "id": "buzo-rustico-camping-1771847171177",
     "nombre": "Buzo Rustico Camping",
     "precio": 40,
