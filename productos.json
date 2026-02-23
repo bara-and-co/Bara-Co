@@ -1,5 +1,36 @@
 [
   {
+    "id": "remera-over-print-stone-1771869473857",
+    "nombre": "Remera Over Print Stone (copia)",
+    "precio": 12000,
+    "precioAnterior": 18000,
+    "categoria": "hombre",
+    "subcategoria": "Remeras",
+    "descripcion": "",
+    "imagen": "https://i.ibb.co/YBz9kSNg/Remera-Stone2.webp",
+    "imagenes": [
+      "https://i.ibb.co/YBz9kSNg/Remera-Stone2.webp"
+    ],
+    "tallesDisponibles": [
+      "M"
+    ],
+    "colores": [
+      {
+        "nombre": "Azul marino",
+        "codigo": "#1A237E",
+        "stock": 0
+      }
+    ],
+    "activo": false,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Azul marino__M": null
+    },
+    "stock": 10,
+    "sku": "REMERA-OVER-PRINT-STONE"
+  },
+  {
     "id": "remera-over-print-stone-1771869331889",
     "nombre": "Remera Over Print Stone",
     "precio": 12000,
