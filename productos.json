@@ -1,5 +1,27 @@
 [
   {
+    "id": "musculosa-morley-1771852119470",
+    "nombre": "MUSCULOSA MORLEY",
+    "precio": 17,
+    "precioAnterior": 25,
+    "categoria": "hombre",
+    "subcategoria": "Musculosa",
+    "descripcion": "",
+    "imagen": "https://i.ibb.co/nNjD5h1T/11-254499c18cd6d6d70b17665946571526-1024-1024.webp",
+    "imagenes": [
+      "https://i.ibb.co/nNjD5h1T/11-254499c18cd6d6d70b17665946571526-1024-1024.webp",
+      "https://i.ibb.co/SXmxy2hG/MUSCULOSA-MORLEYVerde2.webp"
+    ],
+    "tallesDisponibles": [
+      "XXL"
+    ],
+    "colores": [],
+    "activo": true,
+    "destacado": false,
+    "stock": 10,
+    "sku": "MUSCULOSA-MORLEY"
+  },
+  {
     "id": "pantalon-vancouver-1771847547993",
     "nombre": "Pantalon Vancouver",
     "precio": 32,
