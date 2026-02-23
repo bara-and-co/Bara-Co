@@ -1,5 +1,30 @@
 [
   {
+    "id": "buzo-waffle-1771846923193",
+    "nombre": "Buzo Waffle",
+    "precio": 40,
+    "precioAnterior": 45,
+    "categoria": "hombre",
+    "subcategoria": "Buzos",
+    "descripcion": "",
+    "imagen": "https://i.ibb.co/NkmkKV1/Buzo-Waffle-Crudo3.webp",
+    "imagenes": [
+      "https://i.ibb.co/NkmkKV1/Buzo-Waffle-Crudo3.webp",
+      "https://i.ibb.co/VpV5hZSR/Buzo-Waffle-Crudodetalle.webp",
+      "https://i.ibb.co/XxmnRpxH/Buzo-Waffle-Frentecrudo.webp"
+    ],
+    "tallesDisponibles": [
+      "XL"
+    ],
+    "colores": [
+      "Beige"
+    ],
+    "activo": true,
+    "destacado": true,
+    "stock": 10,
+    "sku": "BUZO-WAFFLE"
+  },
+  {
     "id": "buzo-waffle-1771846775809",
     "nombre": "Buzo Waffle",
     "precio": 40,
