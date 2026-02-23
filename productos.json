@@ -1,5 +1,38 @@
 [
   {
+    "id": "pantal-n-denim-ch-a-1771862631614",
+    "nombre": "Pantalón Denim Chía",
+    "precio": 70000,
+    "precioAnterior": 85000,
+    "categoria": "hombre",
+    "subcategoria": "Pantalones",
+    "descripcion": "",
+    "imagen": "https://i.ibb.co/7hF9RS2/Denim-Chia1.webp",
+    "imagenes": [
+      "https://i.ibb.co/7hF9RS2/Denim-Chia1.webp",
+      "https://i.ibb.co/5xsHLvPM/Denimchia3.webp",
+      "https://i.ibb.co/QvNbpsnT/Denimchia2.webp"
+    ],
+    "tallesDisponibles": [
+      "44"
+    ],
+    "colores": [
+      {
+        "nombre": "Azul marino",
+        "codigo": "#1A237E",
+        "stock": 0
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Azul marino__44": null
+    },
+    "stock": 1,
+    "sku": "PANTALÓN-DENIM-CHÍA"
+  },
+  {
     "id": "pantal-n-denim-ch-a-1771862594152",
     "nombre": "Pantalón Denim Chía",
     "precio": 70000,
