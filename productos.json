@@ -1,5 +1,29 @@
 [
   {
+    "id": "buzo-madrid-1771846274594",
+    "nombre": "Buzo Madrid",
+    "precio": 40,
+    "precioAnterior": 50,
+    "categoria": "hombre",
+    "subcategoria": "Buzos",
+    "descripcion": "",
+    "imagen": "https://i.ibb.co/0yn9H7Gv/Buzo-Madrid-Azul-Frente.webp",
+    "imagenes": [
+      "https://i.ibb.co/0yn9H7Gv/Buzo-Madrid-Azul-Frente.webp",
+      "https://i.ibb.co/GQcxZDnq/Buzo-Madrid-Azuldetalle.webp"
+    ],
+    "tallesDisponibles": [
+      "L"
+    ],
+    "colores": [
+      "Azul"
+    ],
+    "activo": true,
+    "destacado": true,
+    "stock": 10,
+    "sku": "BUZO-MADRID"
+  },
+  {
     "id": "buzo-madrid-1771846165730",
     "nombre": "Buzo Madrid",
     "precio": 40,
