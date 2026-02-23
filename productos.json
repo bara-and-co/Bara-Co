@@ -1,5 +1,29 @@
 [
   {
+    "id": "buzo-cuello-redondo-geom-tric-1771845493866",
+    "nombre": "Buzo cuello redondo geométric",
+    "precio": 40,
+    "precioAnterior": 48,
+    "categoria": "hombre",
+    "subcategoria": "Buzos",
+    "descripcion": "",
+    "imagen": "https://i.ibb.co/FbDpsDqB/Buzo-cuello-redondo-geom-tric-Arena.webp",
+    "imagenes": [
+      "https://i.ibb.co/FbDpsDqB/Buzo-cuello-redondo-geom-tric-Arena.webp",
+      "https://i.ibb.co/v6qSgqXy/Buzo-cuello-redondo-geom-tric-Espalda.webp"
+    ],
+    "tallesDisponibles": [
+      "L"
+    ],
+    "colores": [
+      "Camel"
+    ],
+    "activo": true,
+    "destacado": true,
+    "stock": 10,
+    "sku": "BUZO-CUELLO-REDONDO-GEOMÉTRIC"
+  },
+  {
     "id": "buzo-over-rustico-pasta-1771845328226",
     "nombre": "Buzo Over Rustico Pasta",
     "precio": 40,
