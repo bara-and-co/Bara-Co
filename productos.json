@@ -1,5 +1,32 @@
 [
   {
+    "id": "pantal-n-denim-ch-a-1771862492398",
+    "nombre": "Pantalón Denim Chía",
+    "precio": 70000,
+    "precioAnterior": 85000,
+    "categoria": "hombre",
+    "subcategoria": "Pantalones",
+    "descripcion": "",
+    "imagen": "https://i.ibb.co/7hF9RS2/Denim-Chia1.webp",
+    "imagenes": [
+      "https://i.ibb.co/7hF9RS2/Denim-Chia1.webp",
+      "https://i.ibb.co/QvNbpsnT/Denimchia2.webp",
+      "https://i.ibb.co/5xsHLvPM/Denimchia3.webp"
+    ],
+    "tallesDisponibles": [
+      "38"
+    ],
+    "colores": [],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Marrón__46": null
+    },
+    "stock": 2,
+    "sku": "PANTALÓN-DENIM-CHÍA"
+  },
+  {
     "id": "pantal-n-pace-1771862196974",
     "nombre": "Pantalón Pace",
     "precio": 45000,
