@@ -31,8 +31,8 @@
   {
     "id": "musculosa-morley-1771852633429",
     "nombre": "MUSCULOSA MORLEY",
-    "precio": 17,
-    "precioAnterior": 25,
+    "precio": 17500,
+    "precioAnterior": 25000,
     "categoria": "hombre",
     "subcategoria": "Musculosa",
     "descripcion": "",
@@ -44,10 +44,15 @@
       "XL"
     ],
     "colores": [
-      "Gris"
+      {
+        "nombre": "Gris",
+        "codigo": "#9E9E9E",
+        "stock": 0
+      }
     ],
     "activo": true,
     "destacado": true,
+    "outlet": false,
     "stock": 10,
     "sku": "MUSCULOSA-MORLEY"
   },
