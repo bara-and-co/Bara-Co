@@ -1,5 +1,30 @@
 [
   {
+    "id": "buzo-over-tocadiscos-1771845115195",
+    "nombre": "Buzo Over Tocadiscos",
+    "precio": 50,
+    "precioAnterior": 60,
+    "categoria": "hombre",
+    "subcategoria": "Buzos",
+    "descripcion": "",
+    "imagen": "https://i.ibb.co/PsF3h1XB/Buzo-Over-Tocadiscos-Frente-Rosa.webp",
+    "imagenes": [
+      "https://i.ibb.co/PsF3h1XB/Buzo-Over-Tocadiscos-Frente-Rosa.webp",
+      "https://i.ibb.co/rGrk5j5s/Buzo-Over-Tocadiscos-Rosa.webp",
+      "https://i.ibb.co/pvhPWPMf/Buzo-Over-Tocadiscos-Frente.webp"
+    ],
+    "tallesDisponibles": [
+      "L"
+    ],
+    "colores": [
+      "colorado"
+    ],
+    "activo": true,
+    "destacado": true,
+    "stock": 10,
+    "sku": "BUZO-OVER-TOCADISCOS"
+  },
+  {
     "id": "buzo-canguro-regular-aguilas-1771844860483",
     "nombre": "Buzo Canguro Regular Aguilas",
     "precio": 50,
