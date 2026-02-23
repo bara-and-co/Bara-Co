@@ -1,5 +1,41 @@
 [
   {
+    "id": "remera-oversize-lisa-1771875608949",
+    "nombre": "Remera Oversize Lisa",
+    "precio": 14000,
+    "precioAnterior": 20000,
+    "categoria": "hombre",
+    "subcategoria": "Remeras",
+    "descripcion": "Color Hueso",
+    "imagen": "https://i.ibb.co/jP4FDhRJ/Remera-oversize-hueso.webp",
+    "imagenes": [
+      "https://i.ibb.co/jP4FDhRJ/Remera-oversize-hueso.webp"
+    ],
+    "tallesDisponibles": [
+      "L"
+    ],
+    "colores": [
+      {
+        "nombre": "Crema",
+        "codigo": "#F5F0E8",
+        "stock": 0
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Crema__L": 1
+    },
+    "stockTalles": {
+      "38": 1,
+      "40": 1,
+      "42": 2
+    },
+    "stock": 1,
+    "sku": "REMERA-OVERSIZE-LISA"
+  },
+  {
     "id": "remera-oversize-lisa-1771875523069",
     "nombre": "Remera oversize Lisa",
     "precio": 14000,
