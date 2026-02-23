@@ -1,5 +1,41 @@
 [
   {
+    "id": "remera-oversize-lisa-1771875523069",
+    "nombre": "Remera oversize Lisa",
+    "precio": 14000,
+    "precioAnterior": 20000,
+    "categoria": "hombre",
+    "subcategoria": "Remeras",
+    "descripcion": "",
+    "imagen": "https://i.ibb.co/X9cyKhg/Remera-oversizenegra.webp",
+    "imagenes": [
+      "https://i.ibb.co/X9cyKhg/Remera-oversizenegra.webp"
+    ],
+    "tallesDisponibles": [
+      "M"
+    ],
+    "colores": [
+      {
+        "nombre": "Negro",
+        "codigo": "#111111",
+        "stock": 0
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Negro__M": 1
+    },
+    "stockTalles": {
+      "38": 1,
+      "40": 1,
+      "42": 2
+    },
+    "stock": 1,
+    "sku": "REMERA-OVERSIZE-LISA"
+  },
+  {
     "id": "shadow-2-0-baggy-gabardina-1771873647606",
     "nombre": "SHADOW 2.0 – BAGGY GABARDINA",
     "precio": 49000,
