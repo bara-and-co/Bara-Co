@@ -2,8 +2,8 @@
   {
     "id": "pantalon-bis-1771853644517",
     "nombre": "PANTALON BIS",
-    "precio": 30,
-    "precioAnterior": 50,
+    "precio": 30000,
+    "precioAnterior": 50000,
     "categoria": "hombre",
     "subcategoria": "Pantalones",
     "descripcion": "",
@@ -16,10 +16,15 @@
       "XL"
     ],
     "colores": [
-      "Azul marino"
+      {
+        "nombre": "Azul marino",
+        "codigo": "#1A237E",
+        "stock": 0
+      }
     ],
     "activo": true,
     "destacado": true,
+    "outlet": false,
     "stock": 10,
     "sku": "PANTALON-BIS"
   },
