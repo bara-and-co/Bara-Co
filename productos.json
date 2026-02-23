@@ -1,5 +1,29 @@
 [
   {
+    "id": "musculosa-morley-1771852276765",
+    "nombre": "MUSCULOSA MORLEY",
+    "precio": 17,
+    "precioAnterior": 25,
+    "categoria": "hombre",
+    "subcategoria": "Musculosa",
+    "descripcion": "",
+    "imagen": "https://i.ibb.co/1tSCknmZ/MUSCULOSA-MORLEYBORDO2.webp",
+    "imagenes": [
+      "https://i.ibb.co/1tSCknmZ/MUSCULOSA-MORLEYBORDO2.webp",
+      "https://i.ibb.co/NnTxJ0pW/MUSCULOSA-MORLEYBordo.webp"
+    ],
+    "tallesDisponibles": [
+      "M"
+    ],
+    "colores": [
+      "Bordo"
+    ],
+    "activo": true,
+    "destacado": false,
+    "stock": 10,
+    "sku": "MUSCULOSA-MORLEY"
+  },
+  {
     "id": "musculosa-morley-1771852119470",
     "nombre": "MUSCULOSA MORLEY",
     "precio": 17,
