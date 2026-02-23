@@ -1,5 +1,37 @@
 [
   {
+    "id": "pantal-n-tama-1771860952216",
+    "nombre": "Pantalón Tama",
+    "precio": 40000,
+    "precioAnterior": 66000,
+    "categoria": "hombre",
+    "subcategoria": "Pantalones",
+    "descripcion": "",
+    "imagen": "https://i.ibb.co/LdFyQHTf/Pantalon-Tama-Blanco.webp",
+    "imagenes": [
+      "https://i.ibb.co/LdFyQHTf/Pantalon-Tama-Blanco.webp",
+      "https://i.ibb.co/LXJR7T2w/Pantalon-Tama-Blanco2.webp"
+    ],
+    "tallesDisponibles": [
+      "L"
+    ],
+    "colores": [
+      {
+        "nombre": "Blanco",
+        "codigo": "#FFFFFF",
+        "stock": 0
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Blanco__L": null
+    },
+    "stock": 0,
+    "sku": "PANTALÓN-TAMA"
+  },
+  {
     "id": "campera-r-o-negro-1771860517728",
     "nombre": "Campera Río Negro",
     "precio": 25000,
