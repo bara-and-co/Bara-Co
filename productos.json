@@ -1,5 +1,30 @@
 [
   {
+    "id": "buzo-madrid-1771846097786",
+    "nombre": "Buzo Madrid",
+    "precio": 40,
+    "precioAnterior": 49,
+    "categoria": "hombre",
+    "subcategoria": "Buzos",
+    "descripcion": "",
+    "imagen": "https://i.ibb.co/jkHrTjSY/Buzo-Madrid-Frente.webp",
+    "imagenes": [
+      "https://i.ibb.co/jkHrTjSY/Buzo-Madrid-Frente.webp",
+      "https://i.ibb.co/QvVvmKYB/Buzo-Madrid-Frente2.webp",
+      "https://i.ibb.co/YBnYkZZn/Buzo-Madrid-Espalda.webp"
+    ],
+    "tallesDisponibles": [
+      "M"
+    ],
+    "colores": [
+      "Negro"
+    ],
+    "activo": true,
+    "destacado": false,
+    "stock": 10,
+    "sku": "BUZO-MADRID"
+  },
+  {
     "id": "buzo-over-rustico-pizza-1771845717890",
     "nombre": "Buzo Over Rustico Pizza",
     "precio": 40,
