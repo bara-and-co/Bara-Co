@@ -1,5 +1,31 @@
 [
   {
+    "id": "buzo-waffle-1771846658953",
+    "nombre": "Buzo Waffle",
+    "precio": 40,
+    "precioAnterior": 45,
+    "categoria": "hombre",
+    "subcategoria": "Buzos",
+    "descripcion": "",
+    "imagen": "https://i.ibb.co/B28YByXs/Buzo-Waffle-Rosafrente.webp",
+    "imagenes": [
+      "https://i.ibb.co/B28YByXs/Buzo-Waffle-Rosafrente.webp",
+      "https://i.ibb.co/XfkZWV44/Buzo-Wafflerosa3.webp",
+      "https://i.ibb.co/dygw3XY/Buzo-Wafflerosa-detalle.webp",
+      "https://i.ibb.co/xqRPhjXX/Buzo-Waffle-Rosa.webp"
+    ],
+    "tallesDisponibles": [
+      "L"
+    ],
+    "colores": [
+      "rojo"
+    ],
+    "activo": true,
+    "destacado": true,
+    "stock": 10,
+    "sku": "BUZO-WAFFLE"
+  },
+  {
     "id": "buzo-waffle-1771846454002",
     "nombre": "Buzo Waffle",
     "precio": 40,
