@@ -1,5 +1,39 @@
 [
   {
+    "id": "sudadera-surf-1771870925207",
+    "nombre": "Sudadera SURF",
+    "precio": 12000,
+    "precioAnterior": 20000,
+    "categoria": "hombre",
+    "subcategoria": "Remeras",
+    "descripcion": "",
+    "imagen": "https://i.ibb.co/xbDVkMp/surfmarronn.webp",
+    "imagenes": [
+      "https://i.ibb.co/xbDVkMp/surfmarronn.webp"
+    ],
+    "tallesDisponibles": [],
+    "colores": [
+      {
+        "nombre": "Marrón",
+        "codigo": "#795548",
+        "stock": 0
+      },
+      {
+        "nombre": "Salmón",
+        "codigo": "#FF8A65",
+        "stock": 0
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Rosa__S": null
+    },
+    "stock": 1,
+    "sku": "SUDADERA-SURF"
+  },
+  {
     "id": "sudadera-surf-1771870574736",
     "nombre": "Sudadera SURF",
     "precio": 12000,
