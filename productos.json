@@ -1,5 +1,28 @@
 [
   {
+    "id": "pantalon-vancouver-1771847547993",
+    "nombre": "Pantalon Vancouver",
+    "precio": 32,
+    "precioAnterior": 53,
+    "categoria": "hombre",
+    "subcategoria": "Pantalones",
+    "descripcion": "",
+    "imagen": "https://i.ibb.co/CpkpknHK/Pantalon-Vancouvercrudo.webp",
+    "imagenes": [
+      "https://i.ibb.co/CpkpknHK/Pantalon-Vancouvercrudo.webp"
+    ],
+    "tallesDisponibles": [
+      "S"
+    ],
+    "colores": [
+      "Beige"
+    ],
+    "activo": true,
+    "destacado": true,
+    "stock": 10,
+    "sku": "PANTALON-VANCOUVER"
+  },
+  {
     "id": "ri-onera-1771847352121",
     "nombre": "Riñonera",
     "precio": 40,
