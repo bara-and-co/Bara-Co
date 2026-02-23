@@ -1,5 +1,29 @@
 [
   {
+    "id": "buzo-over-rustico-pizza-1771845717890",
+    "nombre": "Buzo Over Rustico Pizza",
+    "precio": 40,
+    "precioAnterior": 50,
+    "categoria": "hombre",
+    "subcategoria": "Buzos",
+    "descripcion": "",
+    "imagen": "https://i.ibb.co/9xM7Mk1/Buzo-Over-Rustico-Pizza-Frente.webp",
+    "imagenes": [
+      "https://i.ibb.co/9xM7Mk1/Buzo-Over-Rustico-Pizza-Frente.webp",
+      "https://i.ibb.co/ymkSQFf9/Buzo-Over-Rustico-Pizza-Atras.webp"
+    ],
+    "tallesDisponibles": [
+      "M"
+    ],
+    "colores": [
+      "Verde"
+    ],
+    "activo": true,
+    "destacado": true,
+    "stock": 10,
+    "sku": "BUZO-OVER-RUSTICO-PIZZA"
+  },
+  {
     "id": "buzo-cuello-redondo-geom-tric-1771845493866",
     "nombre": "Buzo cuello redondo geométric",
     "precio": 40,
