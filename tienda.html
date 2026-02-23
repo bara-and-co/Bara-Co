@@ -1380,8 +1380,13 @@ function renderizarProductos() {
         ? `<del>$${p.precioAnterior.toLocaleString('es-AR')}</del> $${p.precio.toLocaleString('es-AR')}`
         : `$${p.precio.toLocaleString('es-AR')}`;
 
+      // Verificar si está sin stock total
+      const sinStock = p.colores && p.colores.length > 0 && 
+        p.colores.every(c => typeof c === 'object' ? (c.stock || 0) === 0 : false);
+
       const badges = (p.categoria === 'new' ? '<span class="badge badge-new">New</span>' : '') +
                     (p.outlet ? '<span class="badge badge-outlet">Outlet</span>' : '') +
+                    (sinStock ? '<span class="badge" style="background:#555;color:#fff;">Sin stock</span>' : '') +
                     (p.precioAnterior && !p.outlet ? `<span class="badge badge-sale">-${descuento}%</span>` : '');
       
       html += `
