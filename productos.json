@@ -1,5 +1,29 @@
 [
   {
+    "id": "buzo-waffle-1771846775809",
+    "nombre": "Buzo Waffle",
+    "precio": 40,
+    "precioAnterior": 48,
+    "categoria": "hombre",
+    "subcategoria": "Buzos",
+    "descripcion": "",
+    "imagen": "https://i.ibb.co/TD9PV5Lc/Buzo-Waffle-Verde-Frente.webp",
+    "imagenes": [
+      "https://i.ibb.co/TD9PV5Lc/Buzo-Waffle-Verde-Frente.webp",
+      "https://i.ibb.co/k2RCdyBZ/Buzo-Waffle-Verde-Espalda.webp"
+    ],
+    "tallesDisponibles": [
+      "XXL"
+    ],
+    "colores": [
+      "Verde"
+    ],
+    "activo": true,
+    "destacado": true,
+    "stock": 10,
+    "sku": "BUZO-WAFFLE"
+  },
+  {
     "id": "buzo-waffle-1771846658953",
     "nombre": "Buzo Waffle",
     "precio": 40,
