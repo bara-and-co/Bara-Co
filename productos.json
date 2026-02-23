@@ -1,5 +1,46 @@
 [
   {
+    "id": "baggy-bordado-atom-1771873581656",
+    "nombre": "Baggy Bordado ATOM",
+    "precio": 49000,
+    "precioAnterior": 70000,
+    "categoria": "hombre",
+    "subcategoria": "Pantalones",
+    "descripcion": "",
+    "imagen": "https://i.ibb.co/5hHWc8Hc/ATOM-BAGGY-BORDADO.webp",
+    "imagenes": [
+      "https://i.ibb.co/5hHWc8Hc/ATOM-BAGGY-BORDADO.webp"
+    ],
+    "tallesDisponibles": [
+      "36",
+      "38",
+      "40",
+      "42",
+      "44",
+      "46"
+    ],
+    "colores": [
+      {
+        "nombre": "Azul",
+        "codigo": "#1E88E5",
+        "stock": 0
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Azul__36": null,
+      "Azul__38": null,
+      "Azul__40": null,
+      "Azul__42": null,
+      "Azul__44": null,
+      "Azul__46": null
+    },
+    "stock": 5,
+    "sku": "BAGGY-BORDADO-ATOM"
+  },
+  {
     "id": "camo-baggy-gabardina-1771873166614",
     "nombre": "CAMO – BAGGY GABARDINA",
     "precio": 49000,
