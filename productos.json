@@ -59,8 +59,8 @@
   {
     "id": "musculosa-morley-1771852276765",
     "nombre": "MUSCULOSA MORLEY",
-    "precio": 17,
-    "precioAnterior": 25,
+    "precio": 17500,
+    "precioAnterior": 25000,
     "categoria": "hombre",
     "subcategoria": "Musculosa",
     "descripcion": "",
@@ -74,10 +74,15 @@
       "XXL"
     ],
     "colores": [
-      "Bordo"
+      {
+        "nombre": "Bordo",
+        "codigo": "#7B1C2A",
+        "stock": 0
+      }
     ],
     "activo": true,
     "destacado": false,
+    "outlet": false,
     "stock": 10,
     "sku": "MUSCULOSA-MORLEY"
   },
