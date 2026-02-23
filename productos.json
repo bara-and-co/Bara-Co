@@ -1,5 +1,28 @@
 [
   {
+    "id": "buzo-over-rustico-pasta-1771845328226",
+    "nombre": "Buzo Over Rustico Pasta",
+    "precio": 40,
+    "precioAnterior": 49,
+    "categoria": "hombre",
+    "subcategoria": "Buzos",
+    "descripcion": "",
+    "imagen": "https://i.ibb.co/rR6jjKpY/Buzo-Over-Rustico-Pasta-Frente.webp",
+    "imagenes": [
+      "https://i.ibb.co/rR6jjKpY/Buzo-Over-Rustico-Pasta-Frente.webp"
+    ],
+    "tallesDisponibles": [
+      "S"
+    ],
+    "colores": [
+      "Camel"
+    ],
+    "activo": true,
+    "destacado": true,
+    "stock": 10,
+    "sku": "BUZO-OVER-RUSTICO-PASTA"
+  },
+  {
     "id": "buzo-over-tocadiscos-1771845230378",
     "nombre": "Buzo Over Tocadiscos",
     "precio": 50,
