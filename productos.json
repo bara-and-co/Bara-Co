@@ -1,5 +1,28 @@
 [
   {
+    "id": "buzo-frisa-singapur-1771847059137",
+    "nombre": "Buzo FrIsa Singapur",
+    "precio": 40,
+    "precioAnterior": 50,
+    "categoria": "hombre",
+    "subcategoria": "Buzos",
+    "descripcion": "",
+    "imagen": "https://i.ibb.co/mwTWDw2/Buzo-Fr-Isa-Singapur-Negro-Frente.webp",
+    "imagenes": [
+      "https://i.ibb.co/mwTWDw2/Buzo-Fr-Isa-Singapur-Negro-Frente.webp"
+    ],
+    "tallesDisponibles": [
+      "L"
+    ],
+    "colores": [
+      "Negro"
+    ],
+    "activo": true,
+    "destacado": true,
+    "stock": 10,
+    "sku": "BUZO-FRISA-SINGAPUR"
+  },
+  {
     "id": "buzo-waffle-1771846923193",
     "nombre": "Buzo Waffle",
     "precio": 40,
