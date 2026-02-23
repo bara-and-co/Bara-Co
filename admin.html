@@ -471,14 +471,58 @@
 
     /* GESTIÓN DE COLORES */
     .color-options {
-      display:flex; flex-wrap:wrap; gap:8px; margin-bottom:12px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 12px;
     }
     .color-chip {
-      width:40px; height:40px; border-radius:50%; border:2px solid transparent;
-      cursor:pointer; transition:all .2s;
+      position: relative;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 2px solid rgba(0,0,0,.12);
+      cursor: pointer;
+      transition: all .2s;
+      flex-shrink: 0;
     }
-    .color-chip:hover { transform:scale(1.1); }
-    .color-chip.selected { border-color:var(--accent); box-shadow:0 0 0 2px var(--accent); }
+    .color-chip:hover { transform: scale(1.15); }
+    .color-chip.selected {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent);
+      transform: scale(1.15);
+    }
+    .color-chip.selected::after {
+      content: '✓';
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      font-size: 14px;
+      font-weight: 700;
+      color: rgba(255,255,255,.9);
+      text-shadow: 0 1px 3px rgba(0,0,0,.5);
+    }
+    .color-chip-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      cursor: pointer;
+    }
+    .color-chip-label {
+      font-size: 9px;
+      font-family: var(--sans);
+      color: var(--muted);
+      text-align: center;
+      line-height: 1;
+      max-width: 40px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .color-chip-wrap:hover .color-chip-label { color: var(--fg); }
+    .color-chip-wrap.selected-wrap .color-chip-label { color: var(--accent); font-weight: 600; }
 
     /* MÚLTIPLES IMÁGENES */
     .images-grid {
@@ -1249,30 +1293,64 @@ function openModal(id = null) {
     tallesContainer.appendChild(chip);
   });
 
-  // Opciones de colores predefinidas
+  // Paleta de colores de moda
   const coloresOpciones = [
-    { name: 'Negro', code: '#000000' },
-    { name: 'Blanco', code: '#FFFFFF' },
-    { name: 'Gris', code: '#808080' },
-    { name: 'Azul', code: '#0066cc' },
-    { name: 'Rojo', code: '#cc0000' },
-    { name: 'Verde', code: '#00cc66' },
-    { name: 'Beige', code: '#f5f5dc' },
-    { name: 'Camel', code: '#c19a6b' },
-    { name: 'Mostaza', code: '#ffdb58' }
+    { name: 'Negro',      code: '#111111' },
+    { name: 'Blanco',     code: '#FFFFFF' },
+    { name: 'Gris',       code: '#9E9E9E' },
+    { name: 'Gris oscuro',code: '#424242' },
+    { name: 'Crema',      code: '#F5F0E8' },
+    { name: 'Beige',      code: '#D4B896' },
+    { name: 'Camel',      code: '#C19A6B' },
+    { name: 'Marron',     code: '#795548' },
+    { name: 'Chocolate',  code: '#4E342E' },
+    { name: 'Rojo',       code: '#E53935' },
+    { name: 'Bordo',      code: '#7B1C2A' },
+    { name: 'Rosa',       code: '#F48FB1' },
+    { name: 'Rosa viejo', code: '#C48B9F' },
+    { name: 'Salmón',     code: '#FF8A65' },
+    { name: 'Naranja',    code: '#FB8C00' },
+    { name: 'Amarillo',   code: '#FDD835' },
+    { name: 'Mostaza',    code: '#F9A825' },
+    { name: 'Verde',      code: '#43A047' },
+    { name: 'Verde oliva',code: '#827717' },
+    { name: 'Verde agua', code: '#4DB6AC' },
+    { name: 'Celeste',    code: '#81D4FA' },
+    { name: 'Azul',       code: '#1E88E5' },
+    { name: 'Azul marino',code: '#1A237E' },
+    { name: 'Jean',       code: '#5C7FA3' },
+    { name: 'Violeta',    code: '#8E24AA' },
+    { name: 'Lila',       code: '#CE93D8' },
+    { name: 'Dorado',     code: '#C9A96E' },
+    { name: 'Plateado',   code: '#B0BEC5' },
   ];
   const coloresContainer = document.getElementById('colorsContainer');
   coloresContainer.innerHTML = '';
   coloresOpciones.forEach(c => {
+    const wrap = document.createElement('div');
+    wrap.className = 'color-chip-wrap';
+    wrap.dataset.color = c.name;
+
     const chip = document.createElement('div');
     chip.className = 'color-chip';
     chip.style.backgroundColor = c.code;
-    chip.title = c.name;
-    chip.dataset.color = c.name;
-    chip.onclick = () => {
-      chip.classList.toggle('selected');
+    // Borde oscuro para colores claros
+    if (['#FFFFFF','#F5F0E8','#FDD835','#81D4FA','#CE93D8','#F48FB1'].includes(c.code)) {
+      chip.style.borderColor = 'rgba(0,0,0,.2)';
+    }
+
+    const label = document.createElement('div');
+    label.className = 'color-chip-label';
+    label.textContent = c.name;
+
+    wrap.appendChild(chip);
+    wrap.appendChild(label);
+
+    wrap.onclick = () => {
+      const sel = wrap.classList.toggle('selected-wrap');
+      chip.classList.toggle('selected', sel);
     };
-    coloresContainer.appendChild(chip);
+    coloresContainer.appendChild(wrap);
   });
 
   if (id) {
@@ -1298,8 +1376,10 @@ function openModal(id = null) {
     
     // Marcar colores disponibles
     if (p.colores) {
-      document.querySelectorAll('#colorsContainer .color-chip').forEach(chip => {
-        chip.classList.toggle('selected', p.colores.includes(chip.dataset.color));
+      document.querySelectorAll('#colorsContainer .color-chip-wrap').forEach(wrap => {
+        const sel = p.colores.includes(wrap.dataset.color);
+        wrap.classList.toggle('selected-wrap', sel);
+        wrap.querySelector('.color-chip').classList.toggle('selected', sel);
       });
     }
     
@@ -1622,8 +1702,8 @@ function saveProduct() {
   
   // Recolectar colores seleccionados
   const colores = [];
-  document.querySelectorAll('#colorsContainer .color-chip.selected').forEach(chip => {
-    colores.push(chip.dataset.color);
+  document.querySelectorAll('#colorsContainer .color-chip-wrap.selected-wrap').forEach(wrap => {
+    colores.push(wrap.dataset.color);
   });
 
   const prod = {
