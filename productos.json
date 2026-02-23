@@ -1,5 +1,37 @@
 [
   {
+    "id": "pantal-n-largo-mila-1771860177856",
+    "nombre": "Pantalón Largo Mila",
+    "precio": 35000,
+    "precioAnterior": 50000,
+    "categoria": "hombre",
+    "subcategoria": "Pantalones",
+    "descripcion": "",
+    "imagen": "https://i.ibb.co/0yn08J8C/image-277f249c.png",
+    "imagenes": [
+      "https://i.ibb.co/0yn08J8C/image-277f249c.png",
+      "https://i.ibb.co/21ckRjwR/image-bd30ba82.png"
+    ],
+    "tallesDisponibles": [
+      "L"
+    ],
+    "colores": [
+      {
+        "nombre": "Celeste",
+        "codigo": "#81D4FA",
+        "stock": 0
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Celeste__L": null
+    },
+    "stock": 1,
+    "sku": "PANTALÓN-LARGO-MILA"
+  },
+  {
     "id": "pantal-n-r-o-negro-1771859826120",
     "nombre": "Pantalón Río Negro",
     "precio": 25000,
