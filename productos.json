@@ -1,5 +1,31 @@
 [
   {
+    "id": "buzo-waffle-1771846454002",
+    "nombre": "Buzo Waffle",
+    "precio": 40,
+    "precioAnterior": 50,
+    "categoria": "hombre",
+    "subcategoria": "Buzos",
+    "descripcion": "",
+    "imagen": "https://i.ibb.co/KxJQ9VTF/Buzo-Waffle-Negro-Frete.webp",
+    "imagenes": [
+      "https://i.ibb.co/KxJQ9VTF/Buzo-Waffle-Negro-Frete.webp",
+      "https://i.ibb.co/nN8WN5Yh/Buzo-Waffle-Frente-Negro.webp",
+      "https://i.ibb.co/wNJPVHV9/Buzo-Waffle-Frente-Negro.webp",
+      "https://i.ibb.co/bRDg35z5/Buzo-Waffle-Negro.webp"
+    ],
+    "tallesDisponibles": [
+      "S"
+    ],
+    "colores": [
+      "Negro"
+    ],
+    "activo": true,
+    "destacado": false,
+    "stock": 10,
+    "sku": "BUZO-WAFFLE"
+  },
+  {
     "id": "buzo-madrid-1771846274594",
     "nombre": "Buzo Madrid",
     "precio": 40,
