@@ -1,5 +1,29 @@
 [
   {
+    "id": "buzo-over-tocadiscos-1771845230378",
+    "nombre": "Buzo Over Tocadiscos",
+    "precio": 50,
+    "precioAnterior": 60,
+    "categoria": "hombre",
+    "subcategoria": "Buzos",
+    "descripcion": "",
+    "imagen": "https://i.ibb.co/jNrpyz7/Buzo-Over-Tocadiscos-Crudo-Frente.webp",
+    "imagenes": [
+      "https://i.ibb.co/jNrpyz7/Buzo-Over-Tocadiscos-Crudo-Frente.webp",
+      "https://i.ibb.co/jvMMdMvr/Buzo-Over-Tocadiscos-Crudo-Frente2.webp"
+    ],
+    "tallesDisponibles": [
+      "M"
+    ],
+    "colores": [
+      "Blanco"
+    ],
+    "activo": true,
+    "destacado": true,
+    "stock": 10,
+    "sku": "BUZO-OVER-TOCADISCOS"
+  },
+  {
     "id": "buzo-over-tocadiscos-1771845115195",
     "nombre": "Buzo Over Tocadiscos",
     "precio": 50,
