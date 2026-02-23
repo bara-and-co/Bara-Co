@@ -1,5 +1,36 @@
 [
   {
+    "id": "pantal-n-tama-1771861412711",
+    "nombre": "Pantalón Tama",
+    "precio": 40000,
+    "precioAnterior": 66000,
+    "categoria": "hombre",
+    "subcategoria": "Pantalones",
+    "descripcion": "",
+    "imagen": "https://i.ibb.co/TQcFWMH/pantalontamachocolate.png",
+    "imagenes": [
+      "https://i.ibb.co/TQcFWMH/pantalontamachocolate.png"
+    ],
+    "tallesDisponibles": [
+      "M"
+    ],
+    "colores": [
+      {
+        "nombre": "Marrón",
+        "codigo": "#795548",
+        "stock": 0
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Marrón__M": null
+    },
+    "stock": 0,
+    "sku": "PANTALÓN-TAMA"
+  },
+  {
     "id": "pantal-n-tama-1771861365848",
     "nombre": "Pantalón Tama",
     "precio": 40000,
