@@ -39,8 +39,9 @@
     "categoria": "hombre",
     "subcategoria": "Pantalones",
     "descripcion": "",
-    "imagen": "https://i.ibb.co/MxJq57mW/rionegromarron.png",
+    "imagen": "https://i.ibb.co/HpKS8dp9/Campera-Rio-Negro-Marr-n.webp",
     "imagenes": [
+      "https://i.ibb.co/HpKS8dp9/Campera-Rio-Negro-Marr-n.webp",
       "https://i.ibb.co/MxJq57mW/rionegromarron.png"
     ],
     "tallesDisponibles": [
@@ -59,7 +60,7 @@
     "stockMap": {
       "Marrón__L": null
     },
-    "stock": 1,
+    "stock": 3,
     "sku": "PANTALÓN-RÍO-NEGRO"
   },
   {
