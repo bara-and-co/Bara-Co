@@ -813,6 +813,173 @@ header .logo img {
     @keyframes fadeUp  { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:none} }
     @keyframes fadeIn  { from{opacity:0} to{opacity:1} }
 
+    /* ── ANNOUNCEMENT BAR ── */
+    .ann-bar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 600;
+      height: 36px;
+      background: #0f0f0c;
+      border-bottom: 1px solid rgba(201,169,110,.18);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      transition: transform .4s var(--ease), opacity .4s;
+    }
+    .ann-bar.hidden {
+      transform: translateY(-100%);
+      opacity: 0;
+      pointer-events: none;
+    }
+    .ann-track {
+      display: flex;
+      align-items: center;
+      white-space: nowrap;
+      animation: annScroll 28s linear infinite;
+    }
+    .ann-track:hover { animation-play-state: paused; }
+    @keyframes annScroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+    .ann-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 20px;
+      padding: 0 32px;
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: rgba(201,169,110,.55);
+      flex-shrink: 0;
+    }
+    .ann-item a {
+      color: var(--accent);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      transition: color .2s;
+    }
+    .ann-item a:hover { color: #e8d5a8; }
+    .ann-sep {
+      display: inline-block;
+      width: 3px; height: 3px;
+      border-radius: 50%;
+      background: rgba(201,169,110,.25);
+      flex-shrink: 0;
+    }
+    .ann-close {
+      position: absolute;
+      right: 14px;
+      background: none;
+      border: none;
+      color: rgba(201,169,110,.3);
+      font-size: 12px;
+      cursor: pointer;
+      padding: 4px 8px;
+      line-height: 1;
+      transition: color .2s;
+      z-index: 2;
+    }
+    .ann-close:hover { color: var(--accent); }
+
+    /* Empujar header cuando la barra está visible */
+    body.ann-on .inicio #header { top: 36px; }
+    body.ann-on .shipping-bar  { margin-top: calc(80px + 36px); }
+    @media (max-width: 900px) {
+      body.ann-on .shipping-bar { margin-top: calc(68px + 36px); }
+    }
+
+    /* ── OUTLET SECTION ── */
+    #outletSection {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+    }
+    .outlet-banner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 32px 52px;
+      border-bottom: 1px solid rgba(201,169,110,.08);
+      flex-wrap: wrap;
+    }
+    .outlet-banner-left {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+    }
+    .outlet-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 7px 16px;
+      border: 1px solid rgba(201,169,110,.25);
+      font-size: 8px;
+      font-weight: 600;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: var(--accent);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .outlet-heading { display: flex; flex-direction: column; gap: 5px; }
+    .outlet-eyebrow {
+      font-size: 8px;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .outlet-title {
+      font-family: var(--serif);
+      font-size: clamp(24px, 3vw, 38px);
+      font-weight: 300;
+      color: var(--text);
+      line-height: 1;
+    }
+    .outlet-title em { font-style: italic; color: var(--accent); }
+    .outlet-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 12px 26px;
+      border: 1px solid rgba(201,169,110,.25);
+      color: rgba(201,169,110,.65);
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      transition: all .3s;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .outlet-cta:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: rgba(201,169,110,.04);
+    }
+    .outlet-grid-wrap { padding: 36px 52px 72px; }
+    .outlet-note {
+      font-size: 10px;
+      letter-spacing: .12em;
+      color: var(--muted);
+      margin-bottom: 32px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .outlet-note::before {
+      content: '';
+      display: inline-block;
+      width: 22px; height: 1px;
+      background: rgba(201,169,110,.2);
+    }
+    @media (max-width: 900px) {
+      .outlet-banner { padding: 22px; }
+      .outlet-grid-wrap { padding: 24px 22px 52px; }
+    }
+
     /* ─────────────────────────────────────
        PRELOADER
     ───────────────────────────────────── */
@@ -961,6 +1128,23 @@ header .logo img {
   </style>
 </head>
 <body class="inicio">
+
+<!-- ── ANNOUNCEMENT BAR (outlet/sale) ── -->
+<div class="ann-bar" id="annBar">
+  <div class="ann-track" id="annTrack">
+    <!-- bloque A -->
+    <span class="ann-item">Precios especiales · Últimas unidades <span class="ann-sep"></span></span>
+    <span class="ann-item"><a href="tienda.html?categoria=outlet">Ver Outlet &amp; Sale →</a> <span class="ann-sep"></span></span>
+    <span class="ann-item">Hasta 40% OFF en prendas seleccionadas <span class="ann-sep"></span></span>
+    <span class="ann-item">Stock limitado · No te lo pierdas <span class="ann-sep"></span></span>
+    <!-- bloque B (copia exacta para loop sin saltos) -->
+    <span class="ann-item">Precios especiales · Últimas unidades <span class="ann-sep"></span></span>
+    <span class="ann-item"><a href="tienda.html?categoria=outlet">Ver Outlet &amp; Sale →</a> <span class="ann-sep"></span></span>
+    <span class="ann-item">Hasta 40% OFF en prendas seleccionadas <span class="ann-sep"></span></span>
+    <span class="ann-item">Stock limitado · No te lo pierdas <span class="ann-sep"></span></span>
+  </div>
+  <button class="ann-close" onclick="cerrarAnnBar()" title="Cerrar">✕</button>
+</div>
 
 <!-- ═══ PRELOADER ═══ -->
 <div id="preloader">
@@ -1215,50 +1399,34 @@ header .logo img {
   </div>
 </section>
 
-<!-- OUTLET -->
+<!-- OUTLET & SALE -->
 <section id="outletSection" style="display:none">
 
-  <!-- Banner de urgencia -->
-  <div style="background:linear-gradient(135deg,#1a0e00,#2a1500,#1a0e00);border-top:1px solid rgba(224,123,57,.2);border-bottom:1px solid rgba(224,123,57,.2);padding:22px 52px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;">
-    <div style="display:flex;align-items:center;gap:18px;">
-      <div style="width:8px;height:8px;border-radius:50%;background:#e07b39;box-shadow:0 0 10px #e07b39;animation:pulseOrange 1.8s ease-in-out infinite;flex-shrink:0;"></div>
-      <div>
-        <p style="font-size:8px;letter-spacing:.4em;text-transform:uppercase;color:#e07b39;margin-bottom:3px;">Stock limitado · Últimas unidades</p>
-        <p style="font-family:var(--serif);font-size:clamp(18px,2.5vw,26px);font-weight:300;color:var(--text);line-height:1;">Precios especiales antes de que se acaben</p>
+  <!-- Cabecera con identidad de marca -->
+  <div class="outlet-banner">
+    <div class="outlet-banner-left">
+      <div class="outlet-tag">
+        <i class="fas fa-tag" style="font-size:9px;"></i> Outlet &amp; Sale
+      </div>
+      <div class="outlet-heading">
+        <p class="outlet-eyebrow">Últimas unidades · Precios especiales</p>
+        <h2 class="outlet-title">Oportunidades <em>de temporada</em></h2>
       </div>
     </div>
-    <a href="tienda.html?categoria=outlet" style="display:inline-flex;align-items:center;gap:9px;padding:12px 24px;border:1px solid rgba(224,123,57,.5);color:#e07b39;font-size:9px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;transition:all .3s;white-space:nowrap;" onmouseover="this.style.background='rgba(224,123,57,.1)'" onmouseout="this.style.background='none'">
+    <a class="outlet-cta" href="tienda.html?categoria=outlet">
       Ver todo el outlet <i class="fas fa-arrow-right"></i>
     </a>
   </div>
 
-  <!-- Grid de productos -->
-  <div style="padding:48px 52px 72px;background:var(--surface);">
-    <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:36px;gap:16px;flex-wrap:wrap;">
-      <div>
-        <p style="font-size:8px;letter-spacing:.35em;text-transform:uppercase;color:#e07b39;margin-bottom:8px;">Outlet & Sale</p>
-        <h2 style="font-family:var(--serif);font-size:clamp(28px,3.5vw,48px);font-weight:300;line-height:1;color:var(--text);">Oportunidades <em style="font-style:italic;">únicas</em></h2>
-      </div>
-    </div>
+  <!-- Productos -->
+  <div class="outlet-grid-wrap">
+    <p class="outlet-note">Stock limitado — una vez agotado no se repone</p>
     <div class="prod-grid" id="productosOutlet">
       <!-- Se carga dinámicamente -->
     </div>
   </div>
 
 </section>
-
-<style>
-@keyframes pulseOrange {
-  0%, 100% { opacity:1; box-shadow:0 0 6px #e07b39; }
-  50%       { opacity:.4; box-shadow:0 0 14px #e07b39; }
-}
-#outletSection .prod-card .badge-outlet-idx {
-  position:absolute; top:12px; left:12px; z-index:2;
-  background:#e07b39; color:#fff;
-  font-size:8px; font-weight:700; letter-spacing:.12em; text-transform:uppercase;
-  padding:4px 9px;
-}
-</style>
 
 <!-- NEWSLETTER -->
 <section class="nl-section" id="contacto">
@@ -1294,7 +1462,7 @@ header .logo img {
       <li><a href="tienda.html?categoria=accesorios">Accesorios</a></li>
       <li><a href="tienda.html?categoria=new">New Collection</a></li>
       <li><a href="tienda.html?categoria=sale">Sale</a></li>
-      <li><a href="tienda.html?categoria=outlet" style="color:#e07b39;">🏷️ Outlet</a></li>
+      <li><a href="tienda.html?categoria=outlet">Outlet</a></li>
     </ul>
   </div>
   <div>
@@ -1572,57 +1740,105 @@ header .logo img {
   }
 
   document.addEventListener('DOMContentLoaded', () => {
+    initAnnBar();
     cargarDestacados();
     cargarOutlet();
   });
 
+  // ── ANNOUNCEMENT BAR ──
+  function initAnnBar() {
+    const bar = document.getElementById('annBar');
+    if (!bar) return;
+
+    // Si el usuario ya lo cerró en esta sesión, no mostrarlo
+    if (sessionStorage.getItem('bc_ann_closed')) {
+      bar.classList.add('hidden');
+      return;
+    }
+
+    // Solo mostrar si hay productos outlet o sale
+    // (se activa desde cargarOutlet cuando confirma que existen)
+  }
+
+  function cerrarAnnBar() {
+    const bar = document.getElementById('annBar');
+    if (bar) bar.classList.add('hidden');
+    document.body.classList.remove('ann-on');
+    sessionStorage.setItem('bc_ann_closed', '1');
+  }
+
+  function mostrarAnnBar() {
+    if (sessionStorage.getItem('bc_ann_closed')) return;
+    const bar = document.getElementById('annBar');
+    if (bar) {
+      bar.classList.remove('hidden');
+      document.body.classList.add('ann-on');
+    }
+  }
+
+  // ── OUTLET ──
   async function cargarOutlet() {
     const grid = document.getElementById('productosOutlet');
     const section = document.getElementById('outletSection');
     if (!grid || !section) return;
+
     try {
       const response = await fetch('productos.json?t=' + Date.now());
       if (!response.ok) return;
       const todos = await response.json();
-      // Incluir productos outlet O con precio anterior (sale)
+
+      // Incluir outlet Y sale (precio anterior)
       const outletItems = todos.filter(p => p.activo !== false && (p.outlet || p.precioAnterior));
       if (!outletItems.length) return;
+
+      // Mostrar sección y announcement bar
       section.style.display = 'block';
-      // Ordenar: primero outlet, luego sale, máximo 4
+      mostrarAnnBar();
+
+      // Ordenar: outlet primero, luego sale. Máximo 4.
       const sorted = [
         ...outletItems.filter(p => p.outlet),
         ...outletItems.filter(p => !p.outlet && p.precioAnterior)
       ].slice(0, 4);
+
       let html = '';
       sorted.forEach(p => {
-        const descuento = p.precioAnterior ? Math.round((1 - p.precio / p.precioAnterior) * 100) : 0;
+        const descuento = p.precioAnterior
+          ? Math.round((1 - p.precio / p.precioAnterior) * 100) : 0;
         const esOutlet = p.outlet;
+
         html += `
           <div class="prod-card visible" onclick="window.location.href='producto.html?id=${p.id}'" style="cursor:pointer;">
             <div class="prod-img">
-              ${esOutlet ? '<span class="prod-badge" style="background:#e07b39;color:#fff;position:absolute;top:14px;left:14px;z-index:2;font-size:7px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:4px 9px;">Outlet</span>' : ''}
-              ${p.precioAnterior ? `<span class="prod-badge badge-sale" style="${esOutlet ? 'top:44px;' : ''}">-${descuento}%</span>` : ''}
+              ${esOutlet
+                ? `<span class="prod-badge" style="position:absolute;top:14px;left:14px;z-index:2;background:rgba(0,0,0,.55);color:var(--accent);font-size:7px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;padding:4px 10px;border:1px solid rgba(201,169,110,.3);">Outlet</span>`
+                : ''}
+              ${p.precioAnterior
+                ? `<span class="prod-badge badge-sale" style="${esOutlet ? 'top:46px;' : ''}">-${descuento}%</span>`
+                : ''}
               <img src="${p.imagen}" alt="${p.nombre}" loading="lazy"/>
               <div class="prod-overlay">
-                <button class="ov-btn ov-add" onclick="event.stopPropagation(); agregarAlCarrito('${p.id}','${p.nombre}',${p.precio},'${p.imagen}')">
+                <button class="ov-btn ov-add" onclick="event.stopPropagation();agregarAlCarrito('${p.id}','${p.nombre}',${p.precio},'${p.imagen}')">
                   <i class="fas fa-shopping-bag"></i> Agregar
                 </button>
-                <button class="ov-btn ov-view" onclick="event.stopPropagation(); window.location.href='producto.html?id=${p.id}'">
+                <button class="ov-btn ov-view" onclick="event.stopPropagation();window.location.href='producto.html?id=${p.id}'">
                   <i class="fas fa-eye"></i> Ver detalle
                 </button>
               </div>
             </div>
             <div class="prod-info">
-              <p class="prod-cat" style="color:${esOutlet ? '#e07b39' : 'var(--muted)'};">${esOutlet ? 'Outlet · ' : ''}${p.subcategoria || p.categoria}</p>
+              <p class="prod-cat">${p.subcategoria || p.categoria}</p>
               <h3 class="prod-name">${p.nombre}</h3>
               <p class="prod-price">
-                ${p.precioAnterior ? `<del>$${p.precioAnterior.toLocaleString('es-AR')}</del>` : ''}
+                ${p.precioAnterior ? `<del>$${p.precioAnterior.toLocaleString('es-AR')}</del> ` : ''}
                 $${p.precio.toLocaleString('es-AR')}
               </p>
             </div>
           </div>`;
       });
+
       grid.innerHTML = html;
+
     } catch(e) { console.warn('Outlet error:', e); }
   }
 </script>
