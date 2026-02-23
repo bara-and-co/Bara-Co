@@ -1,5 +1,28 @@
 [
   {
+    "id": "buzo-over-minimalist-1771844677467",
+    "nombre": "Buzo Over Minimalist",
+    "precio": 50,
+    "precioAnterior": 60,
+    "categoria": "hombre",
+    "subcategoria": "Buzos",
+    "descripcion": "",
+    "imagen": "https://i.ibb.co/3yPc9Pqg/Buzo-Over-Minimalist.webp",
+    "imagenes": [
+      "https://i.ibb.co/3yPc9Pqg/Buzo-Over-Minimalist.webp"
+    ],
+    "tallesDisponibles": [
+      "S"
+    ],
+    "colores": [
+      "Azul"
+    ],
+    "activo": true,
+    "destacado": true,
+    "stock": 10,
+    "sku": "BUZO-OVER-MINIMALIST"
+  },
+  {
     "id": "buzo-rustico-clasic-club-1771771715845",
     "nombre": "Buzo Rustico Clasic Club",
     "precio": 40,
