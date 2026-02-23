@@ -1462,6 +1462,7 @@ function openModal(id = null) {
   ];
   paleta.forEach(c => addColorChip(c.name, c.code, false));
 
+  if (id) {
     const p = products.find(x => x.id === id);
     if (!p) return;
     document.getElementById('fNombre').value   = p.nombre || '';
