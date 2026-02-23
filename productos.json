@@ -1,5 +1,38 @@
 [
   {
+    "id": "oversize-el-veme-1771870063640",
+    "nombre": "Oversize Eléveme",
+    "precio": 17000,
+    "precioAnterior": 25000,
+    "categoria": "hombre",
+    "subcategoria": "",
+    "descripcion": "",
+    "imagen": "https://i.ibb.co/23wK0N1h/remerasizaeleveme2webp.webp",
+    "imagenes": [
+      "https://i.ibb.co/23wK0N1h/remerasizaeleveme2webp.webp"
+    ],
+    "tallesDisponibles": [
+      "M",
+      "XL"
+    ],
+    "colores": [
+      {
+        "nombre": "Negro",
+        "codigo": "#111111",
+        "stock": 0
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Negro__M": null,
+      "Negro__XL": null
+    },
+    "stock": 2,
+    "sku": "OVERSIZE-ELÉVEME"
+  },
+  {
     "id": "remera-over-print-stone-1771869729056",
     "nombre": "Remera Over Print Stone",
     "precio": 12000,
