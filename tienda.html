@@ -1203,6 +1203,7 @@ header .logo img {
       <li><a href="tienda.html?categoria=accesorios">Accesorios</a></li>
       <li><a href="tienda.html?categoria=new">New Collection</a></li>
       <li><a href="tienda.html?categoria=sale">Sale</a></li>
+      <li><a href="tienda.html?categoria=outlet" style="color:#e07b39;">🏷️ Outlet</a></li>
     </ul>
   </div>
   <div>
@@ -1352,7 +1353,15 @@ async function cargarProductos() {
     const cat = urlParams.get('categoria');
     if (cat && ['hombre', 'mujer', 'accesorios', 'new', 'sale', 'outlet'].includes(cat)) {
       filterBy(cat);
-    }  } catch (error) {
+      if (cat === 'outlet' || cat === 'sale') {
+        const bar = document.createElement('div');
+        bar.style.cssText = 'background:linear-gradient(135deg,#1a0e00,#2a1500);border-bottom:1px solid rgba(224,123,57,.3);padding:14px 48px;display:flex;align-items:center;gap:12px;font-size:12px;color:#c97d42;';
+        bar.innerHTML = '<i class="fas fa-tag" style="color:#e07b39;"></i> <strong style="color:#e07b39;">Outlet & Sale</strong> &mdash; Últimas unidades a precios especiales · Stock limitado';
+        const filtersEl = document.getElementById('productos');
+        if (filtersEl) filtersEl.insertAdjacentElement('beforebegin', bar);
+      }
+    }
+  } catch (error) {
     console.error('Error:', error);
     document.getElementById('prodCount').textContent = 'Error al cargar';
   }
@@ -1371,50 +1380,64 @@ function renderizarProductos() {
     html += `<div class="cat-heading" data-cat-head="${cat}"><h2>${nombres[cat]}</h2></div>`;
     
     items.forEach(p => {
-      const descuento = p.precioAnterior ? Math.round((1 - p.precio / p.precioAnterior) * 100) : 0;
-      const cats = [p.categoria];
-      if (p.precioAnterior) cats.push('sale');
-      if (p.outlet) cats.push('outlet');
-
-      const precioHtml = p.precioAnterior 
-        ? `<del>$${p.precioAnterior.toLocaleString('es-AR')}</del> $${p.precio.toLocaleString('es-AR')}`
-        : `$${p.precio.toLocaleString('es-AR')}`;
-
-      // Verificar si está sin stock total
-      const sinStock = p.colores && p.colores.length > 0 && 
-        p.colores.every(c => typeof c === 'object' ? (c.stock || 0) === 0 : false);
-
-      const badges = (p.categoria === 'new' ? '<span class="badge badge-new">New</span>' : '') +
-                    (p.outlet ? '<span class="badge badge-outlet">Outlet</span>' : '') +
-                    (sinStock ? '<span class="badge" style="background:#555;color:#fff;">Sin stock</span>' : '') +
-                    (p.precioAnterior && !p.outlet ? `<span class="badge badge-sale">-${descuento}%</span>` : '');
-      
-      html += `
-        <div class="prod-card" data-cat="${cats.join(' ')}" data-subcat="${(p.subcategoria || '').replace(/"/g,'&quot;')}" data-id="${p.id}" data-nombre="${p.nombre}" data-precio="${p.precio}" data-imagen="${p.imagen}">
-          <div class="prod-img">
-            ${badges}
-            <img src="${p.imagen}" alt="${p.nombre}" loading="lazy"/>
-            <div class="prod-overlay">
-              <button class="ov-btn ov-add" onclick="event.stopPropagation(); agregarAlCarrito('${p.id}', '${p.nombre}', ${p.precio}, '${p.imagen}')">
-                <i class="fas fa-shopping-bag"></i> Agregar
-              </button>
-              <button class="ov-btn ov-view" onclick="event.stopPropagation(); window.location.href='producto.html?id=${p.id}'">
-                <i class="fas fa-eye"></i> Ver detalle
-              </button>
-            </div>
-          </div>
-          <div class="prod-info">
-            <p class="prod-cat">${p.subcategoria || p.categoria}</p>
-            <h3 class="prod-name">${p.nombre}</h3>
-            <p class="prod-price">${precioHtml}</p>
-          </div>
-        </div>
-      `;
+      html += buildCard(p);
     });
   });
+
+  // Sección Outlet & Sale al final (productos marcados outlet O con precio anterior)
+  const outletItems = productos.filter(p => p.outlet || p.precioAnterior);
+  if (outletItems.length) {
+    html += `<div class="cat-heading" data-cat-head="outlet" style="border-top:1px solid rgba(224,123,57,.2);">
+      <h2 style="color:var(--text);">Outlet <span style="font-style:italic;font-family:var(--serif);">& Sale</span></h2>
+    </div>`;
+    outletItems.forEach(p => {
+      html += buildCard(p);
+    });
+  }
   
   grid.innerHTML = html;
   aplicarFiltro(activeFilter);
+}
+
+function buildCard(p) {
+  const descuento = p.precioAnterior ? Math.round((1 - p.precio / p.precioAnterior) * 100) : 0;
+  const cats = [p.categoria];
+  if (p.precioAnterior) cats.push('sale');
+  if (p.outlet) cats.push('outlet');
+
+  const precioHtml = p.precioAnterior 
+    ? `<del>$${p.precioAnterior.toLocaleString('es-AR')}</del> $${p.precio.toLocaleString('es-AR')}`
+    : `$${p.precio.toLocaleString('es-AR')}`;
+
+  const sinStock = p.colores && p.colores.length > 0 && 
+    p.colores.every(c => typeof c === 'object' ? (c.stock || 0) === 0 : false);
+
+  const badges = (p.categoria === 'new' ? '<span class="badge badge-new">New</span>' : '') +
+                (p.outlet ? '<span class="badge badge-outlet">Outlet</span>' : '') +
+                (sinStock ? '<span class="badge" style="background:#555;color:#fff;">Sin stock</span>' : '') +
+                (p.precioAnterior && !p.outlet ? `<span class="badge badge-sale">-${descuento}%</span>` : '');
+  
+  return `
+    <div class="prod-card" data-cat="${cats.join(' ')}" data-subcat="${(p.subcategoria || '').replace(/"/g,'&quot;')}" data-id="${p.id}" data-nombre="${p.nombre}" data-precio="${p.precio}" data-imagen="${p.imagen}">
+      <div class="prod-img">
+        ${badges}
+        <img src="${p.imagen}" alt="${p.nombre}" loading="lazy"/>
+        <div class="prod-overlay">
+          <button class="ov-btn ov-add" onclick="event.stopPropagation(); agregarAlCarrito('${p.id}', '${p.nombre}', ${p.precio}, '${p.imagen}')">
+            <i class="fas fa-shopping-bag"></i> Agregar
+          </button>
+          <button class="ov-btn ov-view" onclick="event.stopPropagation(); window.location.href='producto.html?id=${p.id}'">
+            <i class="fas fa-eye"></i> Ver detalle
+          </button>
+        </div>
+      </div>
+      <div class="prod-info">
+        <p class="prod-cat">${p.outlet ? '<span style="color:#e07b39">Outlet · </span>' : ''}${p.subcategoria || p.categoria}</p>
+        <h3 class="prod-name">${p.nombre}</h3>
+        <p class="prod-price">${precioHtml}</p>
+      </div>
+    </div>
+  `;
 }
 
 let activeSubcat = 'all';
@@ -1436,7 +1459,7 @@ function filterBySub(subcat) {
 function renderSubcatTabs(categoria) {
   const container = document.getElementById('subcatTabs');
 
-  if (categoria === 'all' || categoria === 'sale') {
+  if (categoria === 'all' || categoria === 'sale' || categoria === 'outlet') {
     container.style.display = 'none';
     return;
   }
@@ -1484,6 +1507,17 @@ function aplicarFiltro(filtro, subcat = 'all') {
   });
 
   document.querySelectorAll('.cat-heading').forEach(head => {
+    const headCat = head.dataset.catHead || '';
+    // Para el heading de outlet: mostrarlo si filtro es all u outlet
+    if (headCat === 'outlet') {
+      const tieneVisible = Array.from(document.querySelectorAll('.prod-card'))
+        .filter(c => c.dataset.cat && c.dataset.cat.split(' ').includes('outlet') && !c.classList.contains('hidden'))
+        .length > 0;
+      // Ocultar heading si no hay cards outlet visibles o si hay filtro específico de categoría que no sea outlet/all
+      const mostrarHead = filtro === 'all' || filtro === 'outlet' || filtro === 'sale';
+      head.classList.toggle('hidden', !tieneVisible || !mostrarHead);
+      return;
+    }
     let tiene = false;
     let next = head.nextElementSibling;
     while (next && !next.classList.contains('cat-heading')) {
