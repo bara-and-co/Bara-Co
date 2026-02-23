@@ -1,7 +1,7 @@
 [
   {
-    "id": "remera-over-print-stone-1771869473857",
-    "nombre": "Remera Over Print Stone (copia)",
+    "id": "remera-over-print-stone-1771869688560",
+    "nombre": "Remera Over Print Stone",
     "precio": 12000,
     "precioAnterior": 18000,
     "categoria": "hombre",
@@ -21,13 +21,13 @@
         "stock": 0
       }
     ],
-    "activo": false,
+    "activo": true,
     "destacado": false,
     "outlet": false,
     "stockMap": {
       "Azul marino__M": null
     },
-    "stock": 10,
+    "stock": 0,
     "sku": "REMERA-OVER-PRINT-STONE"
   },
   {
