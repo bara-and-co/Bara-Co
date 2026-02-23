@@ -1,5 +1,30 @@
 [
   {
+    "id": "buzo-madrid-1771846165730",
+    "nombre": "Buzo Madrid",
+    "precio": 40,
+    "precioAnterior": 50,
+    "categoria": "hombre",
+    "subcategoria": "",
+    "descripcion": "",
+    "imagen": "https://i.ibb.co/BH8sDCmx/Buzo-Madrid.webp",
+    "imagenes": [
+      "https://i.ibb.co/BH8sDCmx/Buzo-Madrid.webp",
+      "https://i.ibb.co/4nmmnvYc/Buzo-Madrid-Frentecrudo3.webp",
+      "https://i.ibb.co/9mB51P05/Buzo-Madrid-Crudo-detalle.webp"
+    ],
+    "tallesDisponibles": [
+      "XL"
+    ],
+    "colores": [
+      "Beige"
+    ],
+    "activo": true,
+    "destacado": true,
+    "stock": 10,
+    "sku": "BUZO-MADRID"
+  },
+  {
     "id": "buzo-madrid-1771846097786",
     "nombre": "Buzo Madrid",
     "precio": 40,
