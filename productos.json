@@ -1,5 +1,37 @@
 [
   {
+    "id": "sudadera-safari-1771870321224",
+    "nombre": "Sudadera safari",
+    "precio": 12000,
+    "precioAnterior": 20000,
+    "categoria": "hombre",
+    "subcategoria": "Remeras",
+    "descripcion": "",
+    "imagen": "https://i.ibb.co/rRPf6qZJ/remerasafari.webp",
+    "imagenes": [
+      "https://i.ibb.co/rRPf6qZJ/remerasafari.webp",
+      "https://i.ibb.co/Y7rpP4Kt/remerasafaritrasera.webp"
+    ],
+    "tallesDisponibles": [
+      "M"
+    ],
+    "colores": [
+      {
+        "nombre": "Salmón",
+        "codigo": "#FF8A65",
+        "stock": 0
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Salmón__M": null
+    },
+    "stock": 0,
+    "sku": "SUDADERA-SAFARI"
+  },
+  {
     "id": "oversize-el-veme-1771870063640",
     "nombre": "Oversize Eléveme",
     "precio": 17000,
