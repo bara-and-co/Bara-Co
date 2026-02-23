@@ -1,5 +1,31 @@
 [
   {
+    "id": "pantal-n-r-o-negro-1771859756008",
+    "nombre": "Pantalón Río Negro",
+    "precio": 25000,
+    "precioAnterior": 35000,
+    "categoria": "hombre",
+    "subcategoria": "",
+    "descripcion": "",
+    "imagen": "https://i.ibb.co/84gq8mjr/image-b21cb9f9.png",
+    "imagenes": [
+      "https://i.ibb.co/84gq8mjr/image-b21cb9f9.png",
+      "https://i.ibb.co/whHcGPJ7/Pantalon-Rio-Negro-Trasera.png"
+    ],
+    "tallesDisponibles": [
+      "M"
+    ],
+    "colores": [],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Azul marino__XL": null
+    },
+    "stock": 0,
+    "sku": "PANTALÓN-RÍO-NEGRO"
+  },
+  {
     "id": "pantalon-bis-1771853644517",
     "nombre": "PANTALON BIS",
     "precio": 30000,
