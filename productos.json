@@ -1,5 +1,41 @@
 [
   {
+    "id": "remera-oversize-lisa-1771875664412",
+    "nombre": "Remera Oversize Lisa",
+    "precio": 14000,
+    "precioAnterior": 20000,
+    "categoria": "hombre",
+    "subcategoria": "Remeras",
+    "descripcion": "Amarillo Oro",
+    "imagen": "https://i.ibb.co/YGcMxKp/Remera-oversizeamarillooro.webp",
+    "imagenes": [
+      "https://i.ibb.co/YGcMxKp/Remera-oversizeamarillooro.webp"
+    ],
+    "tallesDisponibles": [
+      "XL"
+    ],
+    "colores": [
+      {
+        "nombre": "Amarillo",
+        "codigo": "#FDD835",
+        "stock": 0
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Amarillo__XL": 1
+    },
+    "stockTalles": {
+      "38": 1,
+      "40": 1,
+      "42": 2
+    },
+    "stock": 1,
+    "sku": "REMERA-OVERSIZE-LISA"
+  },
+  {
     "id": "remera-oversize-lisa-1771875608949",
     "nombre": "Remera Oversize Lisa",
     "precio": 14000,
