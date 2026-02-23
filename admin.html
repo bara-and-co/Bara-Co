@@ -470,6 +470,119 @@
     .size-stock { width:80px; }
 
     /* GESTIÓN DE COLORES */
+    /* Color Picker */
+    .cpicker {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 12px;
+      margin-top: 10px;
+    }
+    .cp-gradient {
+      width: 100%;
+      height: 180px;
+      border-radius: 6px;
+      position: relative;
+      cursor: crosshair;
+      background: linear-gradient(to bottom, transparent, #000),
+                  linear-gradient(to right, #fff, hsl(0,100%,50%));
+      margin-bottom: 10px;
+      user-select: none;
+    }
+    .cp-cursor {
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      border: 2px solid #fff;
+      box-shadow: 0 0 0 1px rgba(0,0,0,.4), 0 2px 4px rgba(0,0,0,.3);
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      top: 20%;
+      left: 80%;
+    }
+    .cp-sliders {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .cp-preview {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 2px solid var(--border);
+      background: #000;
+      flex-shrink: 0;
+    }
+    .cp-eyedrop { flex-shrink: 0; }
+    .cp-slider-col { flex: 1; display: flex; flex-direction: column; gap: 6px; }
+    .cp-hue {
+      -webkit-appearance: none;
+      width: 100%;
+      height: 12px;
+      border-radius: 6px;
+      background: linear-gradient(to right,
+        hsl(0,100%,50%), hsl(30,100%,50%), hsl(60,100%,50%),
+        hsl(90,100%,50%), hsl(120,100%,50%), hsl(150,100%,50%),
+        hsl(180,100%,50%), hsl(210,100%,50%), hsl(240,100%,50%),
+        hsl(270,100%,50%), hsl(300,100%,50%), hsl(330,100%,50%), hsl(360,100%,50%));
+      cursor: pointer;
+      outline: none;
+      border: 1px solid var(--border);
+    }
+    .cp-hue::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #fff;
+      border: 2px solid rgba(0,0,0,.3);
+      box-shadow: 0 1px 3px rgba(0,0,0,.3);
+      cursor: pointer;
+    }
+    .cp-bottom {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+    .cp-hex {
+      width: 90px;
+      padding: 7px 10px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--bg);
+      color: var(--fg);
+      font-family: monospace;
+      font-size: 13px;
+      text-transform: uppercase;
+    }
+    .cp-name-input {
+      flex: 1;
+      padding: 7px 10px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--bg);
+      color: var(--fg);
+      font-family: var(--sans);
+      font-size: 13px;
+    }
+    .cp-add-btn {
+      padding: 7px 14px;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: var(--radius);
+      cursor: pointer;
+      font-family: var(--sans);
+      font-size: 12px;
+      font-weight: 600;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .cp-add-btn:hover { opacity: .85; }
     .color-options {
       display: flex;
       flex-wrap: wrap;
@@ -523,6 +636,26 @@
     }
     .color-chip-wrap:hover .color-chip-label { color: var(--fg); }
     .color-chip-wrap.selected-wrap .color-chip-label { color: var(--accent); font-weight: 600; }
+    .cp-chip-remove {
+      display: none;
+      position: absolute;
+      top: -4px;
+      right: -4px;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--red);
+      color: #fff;
+      border: none;
+      font-size: 10px;
+      cursor: pointer;
+      line-height: 1;
+      padding: 0;
+      align-items: center;
+      justify-content: center;
+    }
+    .color-chip-wrap { position: relative; }
+    .color-chip-wrap:hover .cp-chip-remove { display: flex; }
 
     /* MÚLTIPLES IMÁGENES */
     .images-grid {
@@ -848,6 +981,37 @@
         </div>
       </div>
 
+      <!-- GESTIÓN DE COLORES con picker real -->
+      <div class="sizes-section" id="colorSection">
+        <div class="section-title">
+          <i class="fas fa-palette"></i> Colores disponibles
+          <span style="font-size:11px;color:var(--muted);margin-left:auto">Seleccioná los colores del producto</span>
+        </div>
+
+        <!-- Colores seleccionados -->
+        <div class="color-options" id="colorsContainer"></div>
+
+        <!-- Color picker -->
+        <div class="cpicker" id="colorPicker">
+          <div class="cp-gradient" id="cpGradient">
+            <div class="cp-cursor" id="cpCursor"></div>
+          </div>
+          <div class="cp-sliders">
+            <div class="cp-eyedrop" title="Ver hex actual">
+              <div class="cp-preview" id="cpPreview"></div>
+            </div>
+            <div class="cp-slider-col">
+              <input type="range" class="cp-hue" id="cpHue" min="0" max="360" value="0"/>
+            </div>
+          </div>
+          <div class="cp-bottom">
+            <input class="cp-hex" id="cpHex" maxlength="7" placeholder="#000000"/>
+            <input class="cp-name-input" id="cpName" placeholder="Nombre del color (ej: Bordo)"/>
+            <button class="cp-add-btn" onclick="cpAddColor()"><i class="fas fa-plus"></i> Agregar</button>
+          </div>
+        </div>
+      </div>
+
       <!-- GESTIÓN DE TALLES -->
       <div class="sizes-section">
         <div class="section-title">
@@ -865,22 +1029,6 @@
         <div style="display:flex; gap:6px; margin-top:8px;">
           <input type="text" class="form-input" id="customSize" placeholder="Agregar talle personalizado" style="flex:1"/>
           <button class="btn btn-ghost btn-sm" onclick="addCustomSize()">Agregar</button>
-        </div>
-      </div>
-
-      <!-- GESTIÓN DE COLORES -->
-      <div class="sizes-section">
-        <div class="section-title">
-          <i class="fas fa-palette"></i> Colores disponibles
-        </div>
-        
-        <div class="color-options" id="colorsContainer">
-          <!-- Se llena con JS -->
-        </div>
-
-        <div style="display:flex; gap:6px; margin-top:8px;">
-          <input type="text" class="form-input" id="customColor" placeholder="ej: Azul, Rojo, Verde..." style="flex:1"/>
-          <button class="btn btn-ghost btn-sm" onclick="addCustomColor()">Agregar</button>
         </div>
       </div>
 
@@ -1293,67 +1441,27 @@ function openModal(id = null) {
     tallesContainer.appendChild(chip);
   });
 
-  // Paleta de colores de moda
-  const coloresOpciones = [
-    { name: 'Negro',      code: '#111111' },
-    { name: 'Blanco',     code: '#FFFFFF' },
-    { name: 'Gris',       code: '#9E9E9E' },
-    { name: 'Gris oscuro',code: '#424242' },
-    { name: 'Crema',      code: '#F5F0E8' },
-    { name: 'Beige',      code: '#D4B896' },
-    { name: 'Camel',      code: '#C19A6B' },
-    { name: 'Marron',     code: '#795548' },
-    { name: 'Chocolate',  code: '#4E342E' },
-    { name: 'Rojo',       code: '#E53935' },
-    { name: 'Bordo',      code: '#7B1C2A' },
-    { name: 'Rosa',       code: '#F48FB1' },
-    { name: 'Rosa viejo', code: '#C48B9F' },
-    { name: 'Salmón',     code: '#FF8A65' },
-    { name: 'Naranja',    code: '#FB8C00' },
-    { name: 'Amarillo',   code: '#FDD835' },
-    { name: 'Mostaza',    code: '#F9A825' },
-    { name: 'Verde',      code: '#43A047' },
-    { name: 'Verde oliva',code: '#827717' },
-    { name: 'Verde agua', code: '#4DB6AC' },
-    { name: 'Celeste',    code: '#81D4FA' },
-    { name: 'Azul',       code: '#1E88E5' },
-    { name: 'Azul marino',code: '#1A237E' },
-    { name: 'Jean',       code: '#5C7FA3' },
-    { name: 'Violeta',    code: '#8E24AA' },
-    { name: 'Lila',       code: '#CE93D8' },
-    { name: 'Dorado',     code: '#C9A96E' },
-    { name: 'Plateado',   code: '#B0BEC5' },
+  // Inicializar color picker
+  document.getElementById('colorsContainer').innerHTML = '';
+  cpInit();
+  const paleta = [
+    { name:'Negro', code:'#111111' }, { name:'Blanco', code:'#FFFFFF' },
+    { name:'Gris', code:'#9E9E9E' }, { name:'Gris oscuro', code:'#424242' },
+    { name:'Crema', code:'#F5F0E8' }, { name:'Beige', code:'#D4B896' },
+    { name:'Camel', code:'#C19A6B' }, { name:'Marrón', code:'#795548' },
+    { name:'Rojo', code:'#E53935' }, { name:'Bordo', code:'#7B1C2A' },
+    { name:'Rosa', code:'#F48FB1' }, { name:'Rosa viejo', code:'#C48B9F' },
+    { name:'Salmón', code:'#FF8A65' }, { name:'Naranja', code:'#FB8C00' },
+    { name:'Amarillo', code:'#FDD835' }, { name:'Mostaza', code:'#F9A825' },
+    { name:'Verde', code:'#43A047' }, { name:'Verde oliva', code:'#827717' },
+    { name:'Verde agua', code:'#4DB6AC' }, { name:'Celeste', code:'#81D4FA' },
+    { name:'Azul', code:'#1E88E5' }, { name:'Azul marino', code:'#1A237E' },
+    { name:'Jean', code:'#5C7FA3' }, { name:'Violeta', code:'#8E24AA' },
+    { name:'Lila', code:'#CE93D8' }, { name:'Dorado', code:'#C9A96E' },
+    { name:'Plateado', code:'#B0BEC5' },
   ];
-  const coloresContainer = document.getElementById('colorsContainer');
-  coloresContainer.innerHTML = '';
-  coloresOpciones.forEach(c => {
-    const wrap = document.createElement('div');
-    wrap.className = 'color-chip-wrap';
-    wrap.dataset.color = c.name;
+  paleta.forEach(c => addColorChip(c.name, c.code, false));
 
-    const chip = document.createElement('div');
-    chip.className = 'color-chip';
-    chip.style.backgroundColor = c.code;
-    // Borde oscuro para colores claros
-    if (['#FFFFFF','#F5F0E8','#FDD835','#81D4FA','#CE93D8','#F48FB1'].includes(c.code)) {
-      chip.style.borderColor = 'rgba(0,0,0,.2)';
-    }
-
-    const label = document.createElement('div');
-    label.className = 'color-chip-label';
-    label.textContent = c.name;
-
-    wrap.appendChild(chip);
-    wrap.appendChild(label);
-
-    wrap.onclick = () => {
-      const sel = wrap.classList.toggle('selected-wrap');
-      chip.classList.toggle('selected', sel);
-    };
-    coloresContainer.appendChild(wrap);
-  });
-
-  if (id) {
     const p = products.find(x => x.id === id);
     if (!p) return;
     document.getElementById('fNombre').value   = p.nombre || '';
@@ -1381,8 +1489,7 @@ function openModal(id = null) {
         wrap.classList.toggle('selected-wrap', sel);
         wrap.querySelector('.color-chip').classList.toggle('selected', sel);
       });
-    }
-    
+    }    
     if (p.imagen) { 
       setMainImage(p.imagen);
     }
@@ -1644,24 +1751,144 @@ function addCustomSize() {
   document.getElementById('customSize').value = '';
 }
 
-function addCustomColor() {
-  const val = document.getElementById('customColor').value.trim();
-  if (!val) return;
-  
-  // Generar color aleatorio
-  const hue = Math.floor(Math.random() * 360);
-  const code = `hsl(${hue}, 80%, 60%)`;
-  
-  const chip = document.createElement('div');
-  chip.className = 'color-chip selected';
-  chip.style.backgroundColor = code;
-  chip.title = val;
-  chip.dataset.color = val;
-  chip.onclick = function() { this.classList.toggle('selected'); };
-  
-  document.getElementById('colorsContainer').appendChild(chip);
-  document.getElementById('customColor').value = '';
+/* ─── COLOR PICKER ─── */
+let cpHue = 0, cpS = 80, cpV = 80;
+
+function cpInit() {
+  const gradient = document.getElementById('cpGradient');
+  const hueSlider = document.getElementById('cpHue');
+  const hexInput = document.getElementById('cpHex');
+
+  function updateAll() {
+    // Update gradient background hue
+    gradient.style.background = `
+      linear-gradient(to bottom, transparent, #000),
+      linear-gradient(to right, #fff, hsl(${cpHue},100%,50%))
+    `;
+    const color = hsvToHex(cpHue, cpS, cpV);
+    document.getElementById('cpPreview').style.background = color;
+    document.getElementById('cpCursor').style.background = color;
+    hexInput.value = color;
+  }
+
+  // Hue slider
+  hueSlider.addEventListener('input', () => {
+    cpHue = parseInt(hueSlider.value);
+    updateAll();
+  });
+
+  // Gradient drag
+  let dragging = false;
+  function pickFromGradient(e) {
+    const rect = gradient.getBoundingClientRect();
+    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+    const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+    cpS = Math.max(0, Math.min(100, ((clientX - rect.left) / rect.width) * 100));
+    cpV = Math.max(0, Math.min(100, (1 - (clientY - rect.top) / rect.height) * 100));
+    const cursor = document.getElementById('cpCursor');
+    cursor.style.left = cpS + '%';
+    cursor.style.top = (100 - cpV) + '%';
+    updateAll();
+  }
+  gradient.addEventListener('mousedown', e => { dragging = true; pickFromGradient(e); });
+  gradient.addEventListener('touchstart', e => { dragging = true; pickFromGradient(e); }, {passive:true});
+  document.addEventListener('mousemove', e => { if (dragging) pickFromGradient(e); });
+  document.addEventListener('touchmove', e => { if (dragging) pickFromGradient(e); }, {passive:true});
+  document.addEventListener('mouseup', () => dragging = false);
+  document.addEventListener('touchend', () => dragging = false);
+
+  // Hex input
+  hexInput.addEventListener('input', () => {
+    const hex = hexInput.value.replace(/[^0-9a-fA-F#]/g,'');
+    if (hex.length === 7) {
+      const [h,s,v] = hexToHsv(hex);
+      cpHue = h; cpS = s; cpV = v;
+      hueSlider.value = cpHue;
+      document.getElementById('cpCursor').style.left = cpS + '%';
+      document.getElementById('cpCursor').style.top = (100-cpV) + '%';
+      document.getElementById('cpPreview').style.background = hex;
+    }
+  });
+
+  updateAll();
 }
+
+function hsvToHex(h, s, v) {
+  s /= 100; v /= 100;
+  const f = n => {
+    const k = (n + h/60) % 6;
+    return v - v*s*Math.max(0, Math.min(k, 4-k, 1));
+  };
+  const toHex = x => Math.round(x*255).toString(16).padStart(2,'0');
+  return '#' + toHex(f(5)) + toHex(f(3)) + toHex(f(1));
+}
+
+function hexToHsv(hex) {
+  let r = parseInt(hex.slice(1,3),16)/255;
+  let g = parseInt(hex.slice(3,5),16)/255;
+  let b = parseInt(hex.slice(5,7),16)/255;
+  const max = Math.max(r,g,b), min = Math.min(r,g,b), d = max-min;
+  let h = 0, s = max ? d/max : 0, v = max;
+  if (d) {
+    if (max===r) h = ((g-b)/d+6)%6;
+    else if (max===g) h = (b-r)/d+2;
+    else h = (r-g)/d+4;
+    h *= 60;
+  }
+  return [Math.round(h), Math.round(s*100), Math.round(v*100)];
+}
+
+function cpAddColor() {
+  const hex = document.getElementById('cpHex').value.trim();
+  const name = document.getElementById('cpName').value.trim() || hex;
+  if (!hex || !/^#[0-9a-fA-F]{6}$/.test(hex)) {
+    toast('Ingresá un color válido', 'err'); return;
+  }
+  // Check not duplicate
+  if (document.querySelector(`#colorsContainer .color-chip-wrap[data-color="${name}"]`)) {
+    toast('Ese color ya está agregado', 'err'); return;
+  }
+  addColorChip(name, hex, true);
+  document.getElementById('cpName').value = '';
+  toast(`Color "${name}" agregado ✓`);
+}
+
+function addColorChip(name, code, selected = false) {
+  const container = document.getElementById('colorsContainer');
+  const wrap = document.createElement('div');
+  wrap.className = 'color-chip-wrap' + (selected ? ' selected-wrap' : '');
+  wrap.dataset.color = name;
+  wrap.dataset.code = code;
+
+  const chip = document.createElement('div');
+  chip.className = 'color-chip' + (selected ? ' selected' : '');
+  chip.style.backgroundColor = code;
+  const isLight = ['#FFFFFF','#F5F0E8','#FDD835','#81D4FA','#CE93D8','#F48FB1','#FFFFFF'].includes(code)
+    || (parseInt(code.slice(1,3),16) > 200 && parseInt(code.slice(3,5),16) > 200);
+  if (isLight) chip.style.borderColor = 'rgba(0,0,0,.2)';
+
+  const label = document.createElement('div');
+  label.className = 'color-chip-label';
+  label.textContent = name;
+
+  // Remove button on long press / right click
+  const removeBtn = document.createElement('button');
+  removeBtn.className = 'cp-chip-remove';
+  removeBtn.innerHTML = '×';
+  removeBtn.title = 'Quitar';
+  removeBtn.onclick = e => { e.stopPropagation(); wrap.remove(); };
+
+  wrap.appendChild(chip);
+  wrap.appendChild(label);
+  wrap.appendChild(removeBtn);
+  wrap.onclick = () => {
+    const sel = wrap.classList.toggle('selected-wrap');
+    chip.classList.toggle('selected', sel);
+  };
+  container.appendChild(wrap);
+}
+
+function addCustomColor() {}
 
 function updateSubcategorias() {
   const cat = document.getElementById('fCat').value;
