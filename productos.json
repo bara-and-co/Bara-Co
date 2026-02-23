@@ -1,5 +1,37 @@
 [
   {
+    "id": "shadow-2-0-baggy-gabardina-1771873647606",
+    "nombre": "SHADOW 2.0 – BAGGY GABARDINA",
+    "precio": 49000,
+    "precioAnterior": 70000,
+    "categoria": "hombre",
+    "subcategoria": "Pantalones",
+    "descripcion": "",
+    "imagen": "https://i.ibb.co/qYLCDPts/SHADOW-2-0-BAGGY-GABARDINA.png",
+    "imagenes": [
+      "https://i.ibb.co/qYLCDPts/SHADOW-2-0-BAGGY-GABARDINA.png"
+    ],
+    "tallesDisponibles": [
+      "38",
+      "40",
+      "42"
+    ],
+    "colores": [],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Azul__36": null,
+      "Azul__38": null,
+      "Azul__40": null,
+      "Azul__42": null,
+      "Azul__44": null,
+      "Azul__46": null
+    },
+    "stock": 4,
+    "sku": "SHADOW-2.0-–-BAGGY-GABARDINA"
+  },
+  {
     "id": "baggy-bordado-atom-1771873581656",
     "nombre": "Baggy Bordado ATOM",
     "precio": 49000,
