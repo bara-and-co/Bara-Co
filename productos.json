@@ -1,5 +1,36 @@
 [
   {
+    "id": "pantal-n-tama-1771861457855",
+    "nombre": "Pantalón Tama",
+    "precio": 40000,
+    "precioAnterior": 66000,
+    "categoria": "hombre",
+    "subcategoria": "Pantalones",
+    "descripcion": "",
+    "imagen": "https://i.ibb.co/DDdDDgmw/pantalontamaverde.png",
+    "imagenes": [
+      "https://i.ibb.co/DDdDDgmw/pantalontamaverde.png"
+    ],
+    "tallesDisponibles": [
+      "S"
+    ],
+    "colores": [
+      {
+        "nombre": "Verde oliva",
+        "codigo": "#827717",
+        "stock": 0
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Verde oliva__S": null
+    },
+    "stock": 0,
+    "sku": "PANTALÓN-TAMA"
+  },
+  {
     "id": "pantal-n-tama-1771861412711",
     "nombre": "Pantalón Tama",
     "precio": 40000,
