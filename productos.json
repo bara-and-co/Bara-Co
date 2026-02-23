@@ -1,5 +1,28 @@
 [
   {
+    "id": "buzo-rustico-camping-1771847171177",
+    "nombre": "Buzo Rustico Camping",
+    "precio": 40,
+    "precioAnterior": 50,
+    "categoria": "hombre",
+    "subcategoria": "Buzos",
+    "descripcion": "",
+    "imagen": "https://i.ibb.co/cKtnBLYQ/Buzo-Rustico-Camping-Arena-Frente.webp",
+    "imagenes": [
+      "https://i.ibb.co/cKtnBLYQ/Buzo-Rustico-Camping-Arena-Frente.webp"
+    ],
+    "tallesDisponibles": [
+      "L"
+    ],
+    "colores": [
+      "Camel"
+    ],
+    "activo": true,
+    "destacado": true,
+    "stock": 10,
+    "sku": "BUZO-RUSTICO-CAMPING"
+  },
+  {
     "id": "buzo-frisa-singapur-1771847059137",
     "nombre": "Buzo FrIsa Singapur",
     "precio": 40,
