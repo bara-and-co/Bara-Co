@@ -1,5 +1,36 @@
 [
   {
+    "id": "jeans-galaxy-xido-1771872932078",
+    "nombre": "Jeans Galaxy Óxido",
+    "precio": 35000,
+    "precioAnterior": 50000,
+    "categoria": "hombre",
+    "subcategoria": "Pantalones",
+    "descripcion": "",
+    "imagen": "https://i.ibb.co/C37MzwNB/GALAXY-OXIDO-JEAN-RECTO-1.webp",
+    "imagenes": [
+      "https://i.ibb.co/C37MzwNB/GALAXY-OXIDO-JEAN-RECTO-1.webp"
+    ],
+    "tallesDisponibles": [
+      "44"
+    ],
+    "colores": [
+      {
+        "nombre": "Jean",
+        "codigo": "#5C7FA3",
+        "stock": 0
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Jean__44": null
+    },
+    "stock": 1,
+    "sku": "JEANS-GALAXY-ÓXIDO"
+  },
+  {
     "id": "rompeviento-soacha-1771871652463",
     "nombre": "Rompeviento Soacha",
     "precio": 50000,
