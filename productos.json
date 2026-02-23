@@ -20,13 +20,11 @@
     "activo": true,
     "destacado": false,
     "outlet": false,
-    "stockMap": {
-      "Azul__36": null,
-      "Azul__38": null,
-      "Azul__40": null,
-      "Azul__42": null,
-      "Azul__44": null,
-      "Azul__46": null
+    "stockMap": {},
+    "stockTalles": {
+      "38": 1,
+      "40": 1,
+      "42": 2
     },
     "stock": 4,
     "sku": "SHADOW-2.0-–-BAGGY-GABARDINA"
