@@ -1,5 +1,36 @@
 [
   {
+    "id": "sudadera-surf-1771870574736",
+    "nombre": "Sudadera SURF",
+    "precio": 12000,
+    "precioAnterior": 20000,
+    "categoria": "hombre",
+    "subcategoria": "Remeras",
+    "descripcion": "",
+    "imagen": "https://i.ibb.co/tp5S5G08/Whats-App-Image-2026-02-23-at-08-58-36-1.webp",
+    "imagenes": [
+      "https://i.ibb.co/tp5S5G08/Whats-App-Image-2026-02-23-at-08-58-36-1.webp"
+    ],
+    "tallesDisponibles": [
+      "S"
+    ],
+    "colores": [
+      {
+        "nombre": "Rosa",
+        "codigo": "#F48FB1",
+        "stock": 0
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Rosa__S": null
+    },
+    "stock": 0,
+    "sku": "SUDADERA-SURF"
+  },
+  {
     "id": "sudadera-safari-1771870321224",
     "nombre": "Sudadera safari",
     "precio": 12000,
