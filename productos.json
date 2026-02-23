@@ -1,36 +1,5 @@
 [
   {
-    "id": "pantal-n-largo-r-o-negro-1771857558362",
-    "nombre": "Pantalón Largo Río Negro",
-    "precio": 25000,
-    "precioAnterior": 35000,
-    "categoria": "hombre",
-    "subcategoria": "Pantalones",
-    "descripcion": "",
-    "imagen": "https://i.ibb.co/Y4Q4XSSm/Rio-Negro.jpg",
-    "imagenes": [
-      "https://i.ibb.co/Y4Q4XSSm/Rio-Negro.jpg"
-    ],
-    "tallesDisponibles": [
-      "L"
-    ],
-    "colores": [
-      {
-        "nombre": "Marrón",
-        "codigo": "#795548",
-        "stock": 0
-      }
-    ],
-    "activo": true,
-    "destacado": false,
-    "outlet": false,
-    "stockMap": {
-      "Marrón__L": null
-    },
-    "stock": 0,
-    "sku": "PANTALÓN-LARGO-RÍO-NEGRO"
-  },
-  {
     "id": "pantalon-bis-1771853644517",
     "nombre": "PANTALON BIS",
     "precio": 30000,
