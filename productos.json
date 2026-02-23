@@ -36,7 +36,7 @@
     "precio": 25000,
     "precioAnterior": 35000,
     "categoria": "hombre",
-    "subcategoria": "",
+    "subcategoria": "Pantalones",
     "descripcion": "",
     "imagen": "https://i.ibb.co/84gq8mjr/image-b21cb9f9.png",
     "imagenes": [
@@ -51,7 +51,7 @@
     "destacado": false,
     "outlet": false,
     "stockMap": {
-      "Azul marino__XL": null
+      "Marrón__L": null
     },
     "stock": 0,
     "sku": "PANTALÓN-RÍO-NEGRO"
