@@ -1,5 +1,41 @@
 [
   {
+    "id": "remera-oversize-lisa-1771875807220",
+    "nombre": "Remera Oversize Lisa",
+    "precio": 14000,
+    "precioAnterior": 20000,
+    "categoria": "hombre",
+    "subcategoria": "Remeras",
+    "descripcion": "",
+    "imagen": "https://i.ibb.co/Tx4jdf3B/Remera-oversize-gris-melange.webp",
+    "imagenes": [
+      "https://i.ibb.co/Tx4jdf3B/Remera-oversize-gris-melange.webp"
+    ],
+    "tallesDisponibles": [
+      "M"
+    ],
+    "colores": [
+      {
+        "nombre": "Gris",
+        "codigo": "#9E9E9E",
+        "stock": 0
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Gris__M": 1
+    },
+    "stockTalles": {
+      "38": 1,
+      "40": 1,
+      "42": 2
+    },
+    "stock": 1,
+    "sku": "REMERA-OVERSIZE-LISA"
+  },
+  {
     "id": "remera-oversize-lisa-1771875762132",
     "nombre": "Remera Oversize lisa",
     "precio": 14000,
