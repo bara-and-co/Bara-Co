@@ -1,5 +1,28 @@
 [
   {
+    "id": "musculosa-morley-1771852633429",
+    "nombre": "MUSCULOSA MORLEY",
+    "precio": 17,
+    "precioAnterior": 25,
+    "categoria": "hombre",
+    "subcategoria": "Musculosa",
+    "descripcion": "",
+    "imagen": "https://i.ibb.co/RGhzkwk2/MUSCULOSA-MORLEYgris.png",
+    "imagenes": [
+      "https://i.ibb.co/RGhzkwk2/MUSCULOSA-MORLEYgris.png"
+    ],
+    "tallesDisponibles": [
+      "XL"
+    ],
+    "colores": [
+      "Gris"
+    ],
+    "activo": true,
+    "destacado": true,
+    "stock": 10,
+    "sku": "MUSCULOSA-MORLEY"
+  },
+  {
     "id": "musculosa-morley-1771852276765",
     "nombre": "MUSCULOSA MORLEY",
     "precio": 17,
