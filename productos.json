@@ -1,5 +1,43 @@
 [
   {
+    "id": "short-lowen-1771891730326",
+    "nombre": "Short Lowen",
+    "precio": 30000,
+    "precioAnterior": 45000,
+    "categoria": "hombre",
+    "subcategoria": "",
+    "descripcion": "",
+    "imagen": "https://i.ibb.co/xknGPZ7/Short-Lowen1.webp",
+    "imagenes": [
+      "https://i.ibb.co/xknGPZ7/Short-Lowen1.webp",
+      "https://i.ibb.co/RpYp1vxN/Short-Lowen2.webp",
+      "https://i.ibb.co/gMSD59YV/Short-Lowen3.webp"
+    ],
+    "tallesDisponibles": [
+      "42"
+    ],
+    "colores": [
+      {
+        "nombre": "Negro",
+        "codigo": "#111111",
+        "stock": 0
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Negro__42": 1
+    },
+    "stockTalles": {
+      "38": 1,
+      "40": 1,
+      "42": 2
+    },
+    "stock": 1,
+    "sku": "SHORT-LOWEN"
+  },
+  {
     "id": "short-ravney-1771891560446",
     "nombre": "Short Ravney",
     "precio": 30000,
