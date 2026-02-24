@@ -4175,18 +4175,11 @@
     "precioAnterior": 110000,
     "categoria": "hombre",
     "subcategoria": "Pantalones",
-    "imagen": "https://d22fxaf9t8d39k.cloudfront.net/957fec0545984835082d08c8c78734678d120da6b2f676a959cfcc881b4f3ddf404368.png",
-    "imagenes": [
-      "https://d22fxaf9t8d39k.cloudfront.net/957fec0545984835082d08c8c78734678d120da6b2f676a959cfcc881b4f3ddf404368.png"
-    ],
     "descripcion": "",
-    "composicion": "",
-    "cuidado": "",
-    "talles": [
-      "S",
-      "M",
-      "L",
-      "XL"
+    "imagen": "https://i.ibb.co/Txt3kZBC/Pantalon-CUSTOM-FACE-2.webp",
+    "imagenes": [
+      "https://i.ibb.co/Txt3kZBC/Pantalon-CUSTOM-FACE-2.webp",
+      "https://i.ibb.co/mVL44P50/Pantalon-CUSTOM-FACE-2.png"
     ],
     "tallesDisponibles": [
       "S",
@@ -4194,9 +4187,33 @@
       "L",
       "XL"
     ],
-    "sku": "PANTALON-CUSTOM-FACE-2",
+    "colores": [],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Bordo__M": null,
+      "Bordo__XXL": null
+    },
+    "stockTalles": {
+      "S": null,
+      "M": null,
+      "L": null,
+      "XL": null
+    },
     "stock": 10,
-    "activo": true
+    "sku": "PANTALON-CUSTOM-FACE-2",
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
   },
   {
     "id": "bermuda-morley",
