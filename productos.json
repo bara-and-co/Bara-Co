@@ -4,7 +4,7 @@
     "nombre": "Short Lowen",
     "precio": 30000,
     "precioAnterior": 45000,
-    "categoria": "hombre",
+    "categoria": "mujer",
     "subcategoria": "",
     "descripcion": "",
     "imagen": "https://i.ibb.co/xknGPZ7/Short-Lowen1.webp",
@@ -29,11 +29,7 @@
     "stockMap": {
       "Negro__42": 1
     },
-    "stockTalles": {
-      "38": 1,
-      "40": 1,
-      "42": 2
-    },
+    "stockTalles": null,
     "stock": 1,
     "sku": "SHORT-LOWEN"
   },
