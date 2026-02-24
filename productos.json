@@ -2945,18 +2945,13 @@
     "precioAnterior": 30000,
     "categoria": "hombre",
     "subcategoria": "Pantalones",
-    "imagen": "https://d22fxaf9t8d39k.cloudfront.net/23d625d545c1e155e70543e48cb442af745c07e825bcc83ccbeda4b481a2dc73404368.jpg",
-    "imagenes": [
-      "https://d22fxaf9t8d39k.cloudfront.net/23d625d545c1e155e70543e48cb442af745c07e825bcc83ccbeda4b481a2dc73404368.jpg"
-    ],
     "descripcion": "",
-    "composicion": "",
-    "cuidado": "",
-    "talles": [
-      "S",
-      "M",
-      "L",
-      "XL"
+    "imagen": "https://i.ibb.co/G43zTKjp/Short-de-ba-o-ESTAMPADOS.webp",
+    "imagenes": [
+      "https://i.ibb.co/G43zTKjp/Short-de-ba-o-ESTAMPADOS.webp",
+      "https://i.ibb.co/DPvM6qbr/Short-de-ba-o-ESTAMPADOS.jpg",
+      "https://i.ibb.co/QvV6B8kQ/Short-de-ba-o-ESTAMPADOS2.jpg",
+      "https://i.ibb.co/nsTFDDTM/Short-de-ba-o-ESTAMPADOS4.jpg"
     ],
     "tallesDisponibles": [
       "S",
@@ -2964,9 +2959,33 @@
       "L",
       "XL"
     ],
-    "sku": "SHORT-DE-BANO-ESTAMPADOS",
+    "colores": [],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Bordo__M": null,
+      "Bordo__XXL": null
+    },
+    "stockTalles": {
+      "S": null,
+      "M": null,
+      "L": null,
+      "XL": null
+    },
     "stock": 10,
-    "activo": true
+    "sku": "SHORT-DE-BANO-ESTAMPADOS",
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
   },
   {
     "id": "remera-inter-tejida",
