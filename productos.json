@@ -4115,18 +4115,10 @@
     "precioAnterior": 45000,
     "categoria": "hombre",
     "subcategoria": "Remeras",
-    "imagen": "https://d22fxaf9t8d39k.cloudfront.net/6b1135d070f5e14b27a6c1a60000ac1a63d8202cc6d61e6df65cb8db1bf307cf404368.jpg",
-    "imagenes": [
-      "https://d22fxaf9t8d39k.cloudfront.net/6b1135d070f5e14b27a6c1a60000ac1a63d8202cc6d61e6df65cb8db1bf307cf404368.jpg"
-    ],
     "descripcion": "",
-    "composicion": "",
-    "cuidado": "",
-    "talles": [
-      "S",
-      "M",
-      "L",
-      "XL"
+    "imagen": "https://i.ibb.co/fz05QFZK/Chomba-VOGUE.webp",
+    "imagenes": [
+      "https://i.ibb.co/fz05QFZK/Chomba-VOGUE.webp"
     ],
     "tallesDisponibles": [
       "S",
@@ -4134,9 +4126,39 @@
       "L",
       "XL"
     ],
-    "sku": "CHOMBA-VOGUE",
+    "colores": [],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Marrón__S": null,
+      "Marrón__M": null,
+      "Marrón__L": null,
+      "Marrón__XL": 1,
+      "Verde oliva__S": null,
+      "Verde oliva__M": null,
+      "Verde oliva__L": null,
+      "Verde oliva__XL": null
+    },
+    "stockTalles": {
+      "S": 1,
+      "M": 2,
+      "L": 1,
+      "XL": 2
+    },
     "stock": 10,
-    "activo": true
+    "sku": "CHOMBA-VOGUE",
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
   },
   {
     "id": "bermuda-mom-gabardina",
