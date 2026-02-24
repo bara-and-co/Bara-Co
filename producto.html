@@ -682,6 +682,7 @@
       <h1 class="product-title" id="productName"></h1>
       <div class="product-price" id="productPrice"></div>
       <p class="product-description" id="productDescription"></p>
+      <p id="stockUrgency" style="display:none;color:#e07b39;font-size:13px;font-weight:600;margin:-8px 0 16px;letter-spacing:.04em;"></p>
 
       <!-- CAMBIO 4: Material / composición -->
       <div class="material-block" id="materialBlock" style="display:none;">
@@ -913,6 +914,45 @@ function actualizarMetaTags() {
   document.getElementById('twImage').content            = imagen;
 }
 
+// ========== DESCRIPCIÓN AUTO-GENERADA ==========
+function generarDescripcion(p) {
+  const subcat = p.subcategoria || '';
+  const cat    = p.categoria    || '';
+  const nombre = p.nombre       || '';
+
+  // Talles disponibles
+  const talles = (p.tallesDisponibles || p.talles || []).filter(t => t && t !== 'Unico');
+  const tallesStr = talles.length ? `Talles disponibles: ${talles.join(', ')}.` : '';
+
+  // Colores
+  const colores = Array.isArray(p.colores)
+    ? p.colores.map(c => (typeof c === 'object' ? c.nombre : c)).filter(Boolean)
+    : [];
+  const colorStr = colores.length ? `Colores: ${colores.join(', ')}.` : '';
+
+  // Plantillas por subcategoría / tipo de prenda
+  const plantillas = {
+    'Remeras':    `Remera de corte oversize, confeccionada con telas de alta calidad para el máximo confort en el día a día. Diseño exclusivo Bara & Co, ideal para looks urbanos y casuales.`,
+    'Pantalones': `Pantalón de diseño urbano con excelente caída y comodidad. Confección cuidada, telas premium. Perfecta combinación entre estilo y funcionalidad.`,
+    'Shorts':     `Short de verano con diseño exclusivo Bara & Co. Tela liviana y cómoda, ideal para el calor. Corte moderno que se adapta a cualquier look.`,
+    'Polleras':   `Pollera de diseño contemporáneo, confeccionada con telas suaves y de caída fluida. Versátil, fácil de combinar y pensada para el día a día.`,
+    'Camperas':   `Campera de diseño urbano, ideal para el entretiempo. Confección de calidad con detalles pensados para durar. Un básico infaltable en cualquier guardarropa.`,
+    'Buzos':      `Buzo de abrigo suave y cómodo. Confección cuidada con telas de calidad. Perfecto para los días frescos, solo o en capas.`,
+    'Conjuntos':  `Conjunto coordinado de diseño exclusivo Bara & Co. Piezas pensadas para usarse juntas o por separado, con una estética urbana y versátil.`,
+    'Abanicos':   `Abanico artesanal con diseño exclusivo, ideal para el verano. Ligero, funcional y con una estética única que lo convierte en un accesorio indispensable.`,
+    'Gorras':     `Gorra con diseño urbano y terminaciones de calidad. Regulable, cómoda y perfecta para completar cualquier look casual.`,
+    'Cintos':     `Cinto de diseño contemporáneo, ideal para acentuar la silueta y dar un toque de estilo a cualquier outfit.`,
+    'Colgantes':  `Accesorio exclusivo diseñado para agregar personalidad a tus looks. De uso versátil y gran calidad de materiales.`,
+  };
+
+  const base = plantillas[subcat]
+    || (cat === 'accesorios'
+        ? `Accesorio de diseño exclusivo Bara & Co. Calidad artesanal para completar tu look con personalidad.`
+        : `Prenda de diseño exclusivo Bara & Co. Confección cuidada con telas de alta calidad, pensada para combinar estilo y confort en cada uso.`);
+
+  return [base, tallesStr, colorStr].filter(Boolean).join(' ');
+}
+
 // ========== RENDERIZAR PRODUCTO ==========
 function renderizarProducto() {
   // Breadcrumb
@@ -951,14 +991,28 @@ function renderizarProducto() {
     priceEl.textContent = '$' + currentProduct.precio.toLocaleString('es-AR');
   }
 
-  // Descripción
-  document.getElementById('productDescription').textContent =
-    currentProduct.descripcion || 'Prenda de alta calidad, diseño exclusivo Bara & Co. Consultá disponibilidad de talles.';
+  // Descripción — auto-generada si está vacía
+  const desc = currentProduct.descripcion && currentProduct.descripcion.trim()
+    ? currentProduct.descripcion
+    : generarDescripcion(currentProduct);
+  document.getElementById('productDescription').textContent = desc;
+
+  // Fix urgency: mostrar stock bajo si corresponde
+  const stockEl = document.getElementById('stockUrgency');
+  if (stockEl) {
+    const stock = currentProduct.stock;
+    if (typeof stock === 'number' && stock > 0 && stock <= 5) {
+      stockEl.textContent = `⚡ ¡Solo quedan ${stock} unidad${stock === 1 ? '' : 'es'}!`;
+      stockEl.style.display = 'block';
+    } else {
+      stockEl.style.display = 'none';
+    }
+  }
 
   // CAMBIO 4: Material / composición
   // Buscamos campos: material, composicion, cuidados en el JSON del producto
   const mat  = currentProduct.material  || currentProduct.composicion || null;
-  const care = currentProduct.cuidados  || null;
+  const care = currentProduct.cuidados  || currentProduct.cuidado || null;
   if (mat || care) {
     document.getElementById('materialBlock').style.display = 'block';
 
