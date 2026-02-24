@@ -72,9 +72,9 @@ p{
 
 <div class="icon">✔</div>
 
-<h1>Gracias por tu compra</h1>
+<h1 id="titulo">Gracias por tu compra</h1>
 
-<p>
+<p id="mensaje">
 Tu pedido fue recibido correctamente.<br>
 En breve recibirás un correo con los detalles de tu compra.<br><br>
 Gracias por confiar en Bara & Co.
@@ -83,6 +83,23 @@ Gracias por confiar en Bara & Co.
 <a href="index.html" class="btn">Volver al inicio</a>
 
 </div>
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function(){
+
+  const nombre = localStorage.getItem("bc_nombre_cliente");
+
+  if(nombre){
+    document.getElementById("titulo").textContent =
+      `Gracias por tu compra, ${nombre}`;
+
+    localStorage.removeItem("bc_nombre_cliente");
+  }
+
+});
+
+</script>
 
 </body>
 </html>
