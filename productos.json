@@ -30,11 +30,7 @@
       "Crema__38": 1,
       "Crema__40": 1
     },
-    "stockTalles": {
-      "36": 1,
-      "38": 1,
-      "44": 1
-    },
+    "stockTalles": null,
     "stock": 2,
     "sku": "MINI-MARFIL"
   },
