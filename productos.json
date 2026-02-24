@@ -1154,8 +1154,8 @@
   {
     "id": "pantalon-vancouver-1771847547993",
     "nombre": "Pantalon Vancouver",
-    "precio": 32,
-    "precioAnterior": 53,
+    "precio": 32000,
+    "precioAnterior": null,
     "categoria": "hombre",
     "subcategoria": "Pantalones",
     "descripcion": "",
@@ -1167,12 +1167,34 @@
       "S"
     ],
     "colores": [
-      "Beige"
+      {
+        "nombre": "Beige",
+        "codigo": "#D4B896",
+        "stock": 0
+      }
     ],
     "activo": true,
     "destacado": true,
+    "outlet": false,
+    "stockMap": {
+      "Beige__S": null
+    },
+    "stockTalles": {
+      "L": null
+    },
     "stock": 10,
-    "sku": "PANTALON-VANCOUVER"
+    "sku": "PANTALON-VANCOUVER",
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
   },
   {
     "id": "ri-onera-1771847352121",
