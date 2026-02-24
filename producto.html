@@ -317,6 +317,18 @@
       opacity:.28; cursor:not-allowed;
       text-decoration:line-through;
     }
+    /* Stock indicator en talle */
+    .size-btn { flex-direction:column; gap:2px; padding-top:6px; padding-bottom:6px; }
+    .size-btn-nombre { line-height:1; }
+    .size-stock-dot {
+      font-size:9px; font-weight:700; color:#e07b39; line-height:1;
+      letter-spacing:0;
+    }
+    .size-oos-label {
+      font-size:8px; color:var(--muted); font-weight:600; letter-spacing:.05em;
+    }
+    /* Color agotado */
+    .out-of-stock-color { filter: grayscale(1); }
 
     #sizeError {
       font-size:12px; color:#e07b6a; margin-top:-14px;
@@ -1096,9 +1108,41 @@
 <script src="js/carrito.js"></script>
 
 <script>
-/* ══════════════════════════════════════
-   BARA & CO — PÁGINA DE PRODUCTO
-══════════════════════════════════════ */
+// ─── STOCK REAL (lee todas las fuentes) ──
+function calcStockReal(p) {
+  if (p.stockMap && typeof p.stockMap === 'object') {
+    const vals = Object.values(p.stockMap).filter(v => v !== null && v !== undefined && v !== '');
+    if (vals.length) return vals.reduce((a, b) => a + (parseInt(b) || 0), 0);
+  }
+  if (p.stockTalles && typeof p.stockTalles === 'object') {
+    const vals = Object.values(p.stockTalles).filter(v => v !== null && v !== undefined);
+    if (vals.length) return vals.reduce((a, b) => a + (parseInt(b) || 0), 0);
+  }
+  if (Array.isArray(p.colores) && p.colores.length && typeof p.colores[0] === 'object') {
+    const total = p.colores.reduce((a, c) => a + (parseInt(c.stock) || 0), 0);
+    if (total > 0) return total;
+  }
+  if (typeof p.stock === 'number') return p.stock;
+  return null;
+}
+
+// Stock por talle específico
+function getStockParaTalle(p, talle) {
+  // Primero buscar en stockTalles
+  if (p.stockTalles && p.stockTalles[talle] !== undefined && p.stockTalles[talle] !== null) {
+    return parseInt(p.stockTalles[talle]) || 0;
+  }
+  // Buscar en stockMap sumando todos los colores para ese talle
+  if (p.stockMap && typeof p.stockMap === 'object') {
+    const keysForTalle = Object.entries(p.stockMap).filter(([k]) => k.endsWith('__' + talle));
+    if (keysForTalle.length) {
+      return keysForTalle.reduce((a, [, v]) => a + (parseInt(v) || 0), 0);
+    }
+  }
+  return null; // sin info
+}
+
+
 let productos = [];
 let currentProduct = null;
 let selectedSize  = null;
@@ -1231,11 +1275,19 @@ function renderizarProducto() {
     priceEl.innerHTML = `<span class="price-current">$${p.precio.toLocaleString('es-AR')}</span>`;
   }
 
-  // Stock urgency
-  const stock = p.stock;
-  if (typeof stock === 'number' && stock > 0 && stock <= 5) {
+  // Stock urgency — usa calcStockReal para leer todas las fuentes
+  const stockReal = calcStockReal(p);
+  const isAgotado = stockReal !== null && stockReal === 0;
+  if (isAgotado) {
+    document.getElementById('stockUrgencyText').textContent = '⚠️ Sin stock disponible';
+    document.getElementById('stockUrgency').classList.add('show');
+    document.getElementById('stockUrgency').style.color = 'var(--red)';
+    document.getElementById('addToCartBtn').disabled = true;
+    document.getElementById('addToCartBtn').style.opacity = '0.45';
+    document.getElementById('addToCartBtn').innerHTML = '<i class="fas fa-ban"></i> <span>Sin stock</span>';
+  } else if (stockReal !== null && stockReal > 0 && stockReal <= 5) {
     document.getElementById('stockUrgencyText').textContent =
-      `¡Solo quedan ${stock} unidad${stock === 1 ? '' : 'es'}!`;
+      `¡Solo quedan ${stockReal} unidad${stockReal === 1 ? '' : 'es'}!`;
     document.getElementById('stockUrgency').classList.add('show');
   }
 
@@ -1243,30 +1295,65 @@ function renderizarProducto() {
   const desc = (p.descripcion && p.descripcion.trim()) ? p.descripcion : generarDescripcion(p);
   document.getElementById('productDescription').textContent = desc;
 
-  // Material
-  const mat  = p.material || p.composicion || null;
+  // Material / Composición — lee campo 'fabrica' del nuevo admin O los campos legacy
+  const fabrica  = p.fabrica || null;       // nuevo formato: { algodon: 80, poliester: 20 }
+  const matLegacy = p.material || p.composicion || null;  // formato viejo: string o array
   const care = p.cuidados || p.cuidado || null;
-  if (mat || care) {
+
+  if (fabrica || matLegacy || care) {
     document.getElementById('materialBlock').style.display = 'block';
-    if (mat) {
-      const tagsEl = document.getElementById('materialTags');
-      (Array.isArray(mat) ? mat : [mat]).forEach(m => {
+    const tagsEl = document.getElementById('materialTags');
+    tagsEl.innerHTML = '';
+
+    // Nuevo formato: objeto con porcentajes
+    if (fabrica && typeof fabrica === 'object') {
+      const nombresFibra = {
+        algodon:'Algodón', poliester:'Poliéster', elastano:'Elastano',
+        viscosa:'Viscosa', lana:'Lana', nylon:'Nylon', lino:'Lino',
+        seda:'Seda/Raso', acilico:'Acrílico', modal:'Modal'
+      };
+      Object.entries(fabrica)
+        .sort((a,b) => b[1] - a[1]) // de mayor a menor %
+        .forEach(([fibra, pct]) => {
+          const sp = document.createElement('span');
+          sp.className = 'material-tag';
+          sp.innerHTML = `<i class="fas fa-percentage"></i>${pct}% ${nombresFibra[fibra] || fibra}`;
+          tagsEl.appendChild(sp);
+        });
+    }
+    // Formato legacy
+    if (matLegacy) {
+      (Array.isArray(matLegacy) ? matLegacy : [matLegacy]).forEach(m => {
         const sp = document.createElement('span');
         sp.className = 'material-tag';
         sp.innerHTML = `<i class="fas fa-tag"></i>${m}`;
         tagsEl.appendChild(sp);
       });
     }
+
+    // Cuidados — nuevo formato: string pipe-separated "Lavar a mano|No planchar"
+    // Formato legacy: array
     if (care) {
       const careEl = document.getElementById('careIcons');
+      careEl.innerHTML = '';
+      const careList = typeof care === 'string' ? care.split('|').filter(Boolean) : (Array.isArray(care) ? care : [care]);
       const iconMap = {
-        'lavar a mano': { icon:'fa-hands-wash', label:'A mano' },
-        'no secar':     { icon:'fa-ban',         label:'Sin secadora' },
-        'no planchar':  { icon:'fa-ban',         label:'Sin plancha' },
-        'lavar frio':   { icon:'fa-snowflake',   label:'Frío' },
-        'lavar maquina':{ icon:'fa-tshirt',      label:'Máquina 30°' },
+        'lavar a mano':             { icon:'fa-hand-holding-water', label:'A mano' },
+        'máquina agua fría':        { icon:'fa-tint',               label:'Máquina fría' },
+        'lavar en frío 30°':        { icon:'fa-thermometer-quarter', label:'30°C' },
+        'no usar secadora':         { icon:'fa-ban',                 label:'Sin secadora' },
+        'secar a la sombra':        { icon:'fa-cloud-sun',           label:'Sombra' },
+        'no planchar':              { icon:'fa-ban',                 label:'Sin plancha' },
+        'planchar a baja temperatura': { icon:'fa-temperature-low', label:'Plancha suave' },
+        'no usar blanqueadores':    { icon:'fa-minus-circle',        label:'Sin cloro' },
+        'lavar al revés':           { icon:'fa-sync-alt',            label:'Al revés' },
+        'dry clean only':           { icon:'fa-shield-alt',          label:'Dry clean' },
+        // legacy keys
+        'no secar':    { icon:'fa-ban',       label:'Sin secadora' },
+        'lavar frio':  { icon:'fa-snowflake', label:'Frío' },
+        'lavar maquina': { icon:'fa-tshirt',  label:'Máquina 30°' },
       };
-      (Array.isArray(care) ? care : [care]).forEach(c => {
+      careList.forEach(c => {
         const info = iconMap[c.toLowerCase()] || { icon:'fa-info-circle', label:c };
         const div  = document.createElement('div');
         div.className = 'care-icon';
@@ -1276,32 +1363,99 @@ function renderizarProducto() {
     }
   }
 
-  // Talles
+  // Talles — con stock por talle
   const talles = p.tallesDisponibles || p.talles || [];
   const sizeEl = document.getElementById('sizeOptions');
   sizeEl.innerHTML = '';
-  talles.forEach(t => {
-    const btn = document.createElement('button');
-    btn.className = 'size-btn';
-    btn.textContent = typeof t === 'object' ? t.nombre : t;
-    if (t.agotado) btn.classList.add('out-of-stock');
-    btn.onclick = () => seleccionarTalle(btn.textContent, btn);
-    sizeEl.appendChild(btn);
-  });
 
-  // Colores
+  if (talles.length > 0) {
+    document.querySelector('.section-label').style.display = 'flex';
+    talles.forEach(t => {
+      const nombre   = typeof t === 'object' ? t.nombre : t;
+      const agotadoT = t.agotado || false;
+      const stockT   = getStockParaTalle(p, nombre);
+
+      const btn = document.createElement('button');
+      btn.className = 'size-btn';
+
+      // Determinar si está agotado
+      const sinStock = agotadoT || (stockT !== null && stockT === 0);
+      if (sinStock) btn.classList.add('out-of-stock');
+
+      // Texto con stock opcional
+      let html = `<span class="size-btn-nombre">${nombre}</span>`;
+      if (stockT !== null && stockT > 0 && stockT <= 5) {
+        html += `<span class="size-stock-dot" title="${stockT} disponibles">·${stockT}</span>`;
+      } else if (sinStock) {
+        html += `<span class="size-oos-label">Ag.</span>`;
+      }
+      btn.innerHTML = html;
+
+      if (!sinStock) {
+        btn.onclick = () => seleccionarTalle(nombre, btn);
+      } else {
+        btn.title = 'Sin stock';
+      }
+      sizeEl.appendChild(btn);
+    });
+
+    // Mostrar leyenda si algún talle tiene stock bajo
+    const hayStockBajo = talles.some(t => {
+      const n = typeof t === 'object' ? t.nombre : t;
+      const s = getStockParaTalle(p, n);
+      return s !== null && s > 0 && s <= 3;
+    });
+    if (hayStockBajo) {
+      const hint = document.createElement('p');
+      hint.style.cssText = 'font-size:11px;color:#e07b39;margin-top:-14px;margin-bottom:12px;display:flex;align-items:center;gap:5px;';
+      hint.innerHTML = '<i class="fas fa-bolt"></i> Los talles con · número tienen pocas unidades';
+      sizeEl.after(hint);
+    }
+  } else {
+    // Sin talles: ocultar sección
+    document.querySelector('.section-label').style.display = 'none';
+  }
+
+  // Colores — usa el código hex del admin directamente si está disponible
   if (p.colores && p.colores.length > 0) {
     document.getElementById('colorSection').style.display = 'block';
     const colEl = document.getElementById('colorOptions');
     colEl.innerHTML = '';
     p.colores.forEach(color => {
-      const nombre = typeof color === 'object' ? color.nombre : color;
+      const nombre   = typeof color === 'object' ? color.nombre  : color;
+      const codigo   = typeof color === 'object' ? color.codigo  : getColorCode(nombre);
+      const stockC   = typeof color === 'object' ? (parseInt(color.stock) || null) : null;
+      const sinStock = stockC !== null && stockC === 0;
+
+      const wrap = document.createElement('div');
+      wrap.style.cssText = 'display:flex;flex-direction:column;align-items:center;gap:4px;';
+
       const btn = document.createElement('button');
-      btn.className = 'color-btn';
-      btn.style.backgroundColor = getColorCode(nombre);
-      btn.title = nombre;
-      btn.onclick = () => seleccionarColor(nombre, btn);
-      colEl.appendChild(btn);
+      btn.className = 'color-btn' + (sinStock ? ' out-of-stock-color' : '');
+      btn.style.backgroundColor = codigo;
+      btn.title = nombre + (sinStock ? ' — Sin stock' : stockC !== null && stockC <= 3 ? ` — ${stockC} disponible${stockC===1?'':'s'}` : '');
+      if (sinStock) {
+        btn.style.opacity = '0.3';
+        btn.style.cursor = 'not-allowed';
+        btn.style.position = 'relative';
+      } else {
+        btn.onclick = () => seleccionarColor(nombre, btn);
+      }
+
+      const lbl = document.createElement('span');
+      lbl.style.cssText = 'font-size:9px;color:var(--muted);text-align:center;max-width:44px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;';
+      lbl.textContent = nombre;
+
+      wrap.appendChild(btn);
+      if (stockC !== null && stockC > 0 && stockC <= 3) {
+        const stk = document.createElement('span');
+        stk.style.cssText = 'font-size:9px;color:#e07b39;font-weight:600;';
+        stk.textContent = `·${stockC}`;
+        wrap.appendChild(stk);
+      } else {
+        wrap.appendChild(lbl);
+      }
+      colEl.appendChild(wrap);
     });
   }
 
@@ -1350,9 +1504,19 @@ function getColorCode(color) {
 // ─── AGREGAR AL CARRITO ──────────────
 function handleAddToCart() {
   if (!currentProduct) return;
+
+  // Si el producto está completamente agotado
+  const stockTotal = calcStockReal(currentProduct);
+  if (stockTotal !== null && stockTotal === 0) {
+    document.getElementById('sizeError').innerHTML =
+      '<i class="fas fa-ban" style="color:var(--red)"></i> Este producto no tiene stock disponible';
+    return;
+  }
+
   const talles = currentProduct.tallesDisponibles || currentProduct.talles || [];
   const needsSize = talles.length > 0
     && (typeof talles[0] === 'string' ? talles[0] !== 'Unico' : talles[0].nombre !== 'Unico');
+
   if (needsSize && !selectedSize) {
     const sizeEl = document.getElementById('sizeOptions');
     sizeEl.style.animation = 'none';
@@ -1362,6 +1526,17 @@ function handleAddToCart() {
       '<i class="fas fa-exclamation-circle" style="color:#e07b6a"></i> Seleccioná un talle para continuar';
     return;
   }
+
+  // Verificar stock del talle seleccionado
+  if (selectedSize) {
+    const stockTalle = getStockParaTalle(currentProduct, selectedSize);
+    if (stockTalle !== null && stockTalle === 0) {
+      document.getElementById('sizeError').innerHTML =
+        `<i class="fas fa-exclamation-circle" style="color:#e07b6a"></i> El talle ${selectedSize} no tiene stock`;
+      return;
+    }
+  }
+
   const talleParaCarrito = needsSize ? (selectedSize || '') : '';
   agregarAlCarrito(
     currentProduct.id,
@@ -1410,7 +1585,7 @@ function cargarCrossSelling() {
 
   const candidatos = productos.filter(p =>
     p.id !== currentProduct.id && p.activo !== false &&
-    !(typeof p.stock === 'number' && p.stock === 0) &&
+    !(calcStockReal(p) === 0) &&
     targets.some(t => p.subcategoria === t || p.categoria === t)
   ).sort(() => Math.random() - .5).slice(0, 4);
 
