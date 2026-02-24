@@ -2296,7 +2296,17 @@ function saveProduct() {
     outlet: document.getElementById('fOutlet').checked,
     stockMap: getStockData(),
     stockTalles: Object.keys(stockTalles).length ? stockTalles : null,
-    stock: parseInt(document.getElementById('fStock').value) || 0,
+    // Si el campo stock está vacío → null (no agotado, sin info)
+    // Si tiene valor → ese número. 0 = sin stock real.
+    // Si hay stockTalles, calcular total automáticamente como fallback
+    stock: (() => {
+      const raw = document.getElementById('fStock').value.trim();
+      if (raw !== '') return parseInt(raw);
+      // calcular desde stockTalles si existen
+      const vals = Object.values(stockTalles).filter(v => v !== null && v !== undefined);
+      if (vals.length) return vals.reduce((a, b) => a + (parseInt(b) || 0), 0);
+      return null; // sin info de stock = no mostrar agotado
+    })(),
     sku: editId ? products.find(p => p.id === editId)?.sku : (nombre.toUpperCase().replace(/ /g,'-'))
   };
 
