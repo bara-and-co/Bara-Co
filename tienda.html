@@ -446,30 +446,6 @@
   <i class="fab fa-whatsapp"></i>
 </button>
 
-<!-- CARRITO -->
-<div class="overlay" onclick="toggleCart()"></div>
-<div class="cart-panel">
-  <div class="cart-header">
-    <h2 class="cart-title">Carrito <span class="cart-count">0</span></h2>
-    <button class="close-cart" onclick="toggleCart()" aria-label="Cerrar"><i class="fas fa-times"></i></button>
-  </div>
-  <div class="cart-items">
-    <div class="cart-empty">
-      <i class="fas fa-shopping-bag"></i>
-      <p>Tu carrito está vacío</p>
-      <button class="btn-empty" onclick="toggleCart()">Explorar productos</button>
-    </div>
-  </div>
-  <div class="cart-footer"></div>
-</div>
-
-<!-- TOAST -->
-<div id="cartNotification" class="cart-notification">
-  <i class="fas fa-check-circle"></i>
-  <span></span>
-  <span class="cart-notif-action">Ver carrito</span>
-</div>
-
 <!-- GUÍA DE TALLES -->
 <div class="qv-backdrop" id="sgBackdrop" onclick="closeSizeGuide()"></div>
 <div class="sg-modal" id="sgModal">
@@ -498,7 +474,7 @@
 </div>
 
 <script src="js/main.js"></script>
-<script src="js/carrito.js"></script>
+<script src="js/carrito-ui.js"></script>
 <script src="js/search.js"></script>
 
 <script>
