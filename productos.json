@@ -1492,8 +1492,8 @@
   {
     "id": "buzo-over-tocadiscos-1771845230378",
     "nombre": "Buzo Over Tocadiscos",
-    "precio": 50,
-    "precioAnterior": 60,
+    "precio": 50000,
+    "precioAnterior": null,
     "categoria": "hombre",
     "subcategoria": "Buzos",
     "descripcion": "",
@@ -1506,12 +1506,34 @@
       "M"
     ],
     "colores": [
-      "Blanco"
+      {
+        "nombre": "Blanco",
+        "codigo": "#FFFFFF",
+        "stock": 0
+      }
     ],
     "activo": true,
     "destacado": true,
+    "outlet": false,
+    "stockMap": {
+      "Blanco__M": null
+    },
+    "stockTalles": {
+      "L": null
+    },
     "stock": 10,
-    "sku": "BUZO-OVER-TOCADISCOS"
+    "sku": "BUZO-OVER-TOCADISCOS",
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
   },
   {
     "id": "buzo-over-tocadiscos-1771845115195",
