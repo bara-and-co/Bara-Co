@@ -24,7 +24,7 @@
       }
     ],
     "activo": true,
-    "destacado": false,
+    "destacado": true,
     "outlet": true,
     "stockMap": {
       "Crema__38": 1,
