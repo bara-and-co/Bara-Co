@@ -56,16 +56,16 @@
         "stock": 0
       }
     ],
-    "activo": true,
+    "activo": false,
     "destacado": false,
     "outlet": true,
     "stockMap": {
       "Jean__M": 1
     },
     "stockTalles": {
-      "36": 1,
       "38": 1,
-      "44": 1
+      "40": 1,
+      "42": 1
     },
     "stock": 1,
     "sku": "CANGURO-DENIM-CROP"
