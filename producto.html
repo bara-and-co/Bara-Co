@@ -422,7 +422,71 @@
     .related-info { padding:12px; }
     .related-name { font-size:14px; margin-bottom:4px; }
     .related-price { color:var(--accent); font-size:13px; }
-    
+
+    /* Cross-selling "Completá el look" */
+    .crossell {
+      padding: 60px 0 0;
+      border-top: 1px solid var(--border);
+      margin-bottom: 0;
+    }
+    .crossell-header {
+      display: flex; align-items: baseline; gap: 16px; margin-bottom: 8px;
+    }
+    .crossell-header h3 {
+      font-family:var(--serif); font-size:28px; font-weight:400;
+    }
+    .crossell-header p {
+      font-size:12px; color:var(--muted); letter-spacing:.06em;
+    }
+    .crossell-grid {
+      display:grid; grid-template-columns:repeat(4,1fr); gap:2px; margin-top:24px;
+    }
+    .crossell-card {
+      background:var(--surface); cursor:pointer;
+      position:relative; overflow:hidden;
+      transition:transform .3s var(--ease);
+    }
+    .crossell-card:hover { transform:translateY(-4px); }
+    .crossell-card img { aspect-ratio:3/4; object-fit:cover; width:100%; display:block; }
+    .crossell-badge-cat {
+      position:absolute; top:10px; left:10px; z-index:2;
+      font-size:8px; font-weight:700; letter-spacing:.12em; text-transform:uppercase;
+      padding:3px 9px; background:var(--accent); color:var(--bg);
+    }
+    .crossell-badge-sale {
+      position:absolute; top:10px; right:10px; z-index:2;
+      font-size:8px; font-weight:700; padding:3px 7px;
+      background:#b83030; color:#fff;
+    }
+    .crossell-overlay {
+      position:absolute; inset:0; background:rgba(11,11,9,.5);
+      display:flex; align-items:center; justify-content:center;
+      opacity:0; transition:opacity .25s;
+    }
+    .crossell-card:hover .crossell-overlay { opacity:1; }
+    .crossell-add {
+      background:#fff; color:var(--bg); border:none; cursor:pointer;
+      font-family:var(--sans); font-size:9px; font-weight:700;
+      letter-spacing:.16em; text-transform:uppercase;
+      padding:11px 20px;
+      display:flex; align-items:center; gap:7px;
+      transform:translateY(8px); transition:transform .3s var(--ease), background .2s;
+    }
+    .crossell-card:hover .crossell-add { transform:translateY(0); }
+    .crossell-add:hover { background:var(--accent); }
+    .crossell-info { padding:12px; }
+    .crossell-cat { font-size:8px; letter-spacing:.18em; text-transform:uppercase; color:var(--muted); margin-bottom:3px; }
+    .crossell-name { font-family:var(--serif); font-size:14px; margin-bottom:4px; line-height:1.2; }
+    .crossell-price { color:var(--accent); font-size:13px; }
+    .crossell-price del { color:var(--muted); font-size:11px; margin-right:4px; }
+
+    @media (max-width:900px) {
+      .crossell-grid { grid-template-columns:repeat(2,1fr); }
+    }
+    @media (max-width:480px) {
+      .crossell-grid { grid-template-columns:repeat(2,1fr); }
+    }
+
     /* Modal imagen */
     .image-modal {
       position:fixed; inset:0; background:rgba(0,0,0,.95);
@@ -793,6 +857,15 @@
     </div><!-- fin product-info -->
   </div><!-- fin product-columns -->
 
+  <!-- Cross-selling: Completá el look -->
+  <div class="crossell" id="crossellSection" style="display:none;">
+    <div class="crossell-header">
+      <h3>Completá el look</h3>
+      <p>Prendas que combinan perfecto</p>
+    </div>
+    <div class="crossell-grid" id="crossellGrid"></div>
+  </div>
+
   <!-- Productos relacionados -->
   <div class="related">
     <h3>También te puede gustar</h3>
@@ -1160,11 +1233,12 @@ function togglePolicy(id) {
 // ========== RELACIONADOS ==========
 function cargarRelacionados() {
   const rel = productos
-    .filter(p => p.categoria === currentProduct.categoria && p.id !== currentProduct.id)
+    .filter(p => p.categoria === currentProduct.categoria && p.id !== currentProduct.id && p.activo !== false)
     .slice(0, 4);
   const grid = document.getElementById('relatedProducts');
   grid.innerHTML = '';
   rel.forEach(p => {
+    const disc = p.precioAnterior ? Math.round((1 - p.precio / p.precioAnterior) * 100) : 0;
     const card = document.createElement('div');
     card.className = 'related-card';
     card.onclick = () => window.location.href = `producto.html?id=${p.id}`;
@@ -1172,7 +1246,89 @@ function cargarRelacionados() {
       <img src="${p.imagen}" alt="${p.nombre}" loading="lazy"/>
       <div class="related-info">
         <div class="related-name">${p.nombre}</div>
-        <div class="related-price">$${p.precio.toLocaleString('es-AR')}</div>
+        <div class="related-price">
+          ${p.precioAnterior ? `<del>$${p.precioAnterior.toLocaleString('es-AR')}</del> ` : ''}
+          $${p.precio.toLocaleString('es-AR')}
+        </div>
+      </div>`;
+    grid.appendChild(card);
+  });
+  cargarCrossSelling();
+}
+
+// ========== CROSS-SELLING: COMPLETÁ EL LOOK ==========
+function cargarCrossSelling() {
+  if (!currentProduct) return;
+
+  // Mapa de complementos por subcategoría/categoría
+  const complementos = {
+    // Si mirás remeras → mostrá pantalones y accesorios
+    'Remeras':    ['Pantalones', 'Bermudas', 'Shorts', 'Accesorios', 'accesorios'],
+    // Si mirás pantalones/shorts → mostrá remeras, camperas, accesorios
+    'Pantalones': ['Remeras', 'Camperas', 'Buzos', 'accesorios'],
+    'Bermudas':   ['Remeras', 'accesorios'],
+    'Shorts':     ['Remeras', 'Camperas', 'accesorios'],
+    // Si mirás camperas → mostrá remeras y pantalones
+    'Camperas':   ['Remeras', 'Pantalones', 'accesorios'],
+    'Buzos':      ['Pantalones', 'Remeras'],
+    // Si mirás polleras → remeras, accesorios
+    'Polleras':   ['Remeras', 'accesorios'],
+    // Si mirás conjuntos → solo accesorios
+    'Conjuntos':  ['accesorios', 'Accesorios'],
+    // Si mirás accesorios → remeras y pantalones de la misma categoría de género
+    'Abanicos':   ['Remeras', 'Pantalones'],
+    'Gorras':     ['Remeras', 'Buzos'],
+    'Cintos':     ['Pantalones', 'Remeras'],
+  };
+
+  const subcat  = currentProduct.subcategoria || '';
+  const cat     = currentProduct.categoria || '';
+  const targets = complementos[subcat] || complementos[cat] || [];
+
+  if (!targets.length) return;
+
+  // Buscar productos que coincidan con las subcategorías/categorías complementarias
+  const candidatos = productos.filter(p => {
+    if (p.id === currentProduct.id || p.activo === false) return false;
+    if (typeof p.stock === 'number' && p.stock === 0) return false;
+    return targets.some(t =>
+      p.subcategoria === t || p.categoria === t
+    );
+  });
+
+  // Mezclar y tomar 4
+  const shuffled = candidatos.sort(() => Math.random() - 0.5).slice(0, 4);
+  if (!shuffled.length) return;
+
+  const section = document.getElementById('crossellSection');
+  const grid    = document.getElementById('crossellGrid');
+  section.style.display = 'block';
+  grid.innerHTML = '';
+
+  shuffled.forEach(p => {
+    const disc = p.precioAnterior ? Math.round((1 - p.precio / p.precioAnterior) * 100) : 0;
+    const catLabel = p.subcategoria || p.categoria;
+
+    const card = document.createElement('div');
+    card.className = 'crossell-card';
+    card.onclick = () => window.location.href = `producto.html?id=${p.id}`;
+    card.innerHTML = `
+      <span class="crossell-badge-cat">${catLabel}</span>
+      ${disc ? `<span class="crossell-badge-sale">-${disc}%</span>` : ''}
+      <img src="${p.imagen}" alt="${p.nombre}" loading="lazy"/>
+      <div class="crossell-overlay">
+        <button class="crossell-add"
+          onclick="event.stopPropagation(); agregarAlCarrito('${p.id}','${p.nombre}',${p.precio},'${p.imagen}')">
+          <i class="fas fa-shopping-bag"></i> Agregar
+        </button>
+      </div>
+      <div class="crossell-info">
+        <div class="crossell-cat">${catLabel}</div>
+        <div class="crossell-name">${p.nombre}</div>
+        <div class="crossell-price">
+          ${p.precioAnterior ? `<del>$${p.precioAnterior.toLocaleString('es-AR')}</del>` : ''}
+          $${p.precio.toLocaleString('es-AR')}
+        </div>
       </div>`;
     grid.appendChild(card);
   });
