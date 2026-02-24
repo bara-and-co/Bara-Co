@@ -1,223 +1,587 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Checkout | Bara & Co</title>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Checkout · Bara & Co</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <style>
+    :root {
+      --bg:      #0b0b09;
+      --surface: #131310;
+      --surface2:#1a1a17;
+      --border:  rgba(255,255,255,.07);
+      --border2: rgba(255,255,255,.11);
+      --text:    #ede9e1;
+      --muted:   #6b6760;
+      --muted2:  #9a9591;
+      --accent:  #c9a96e;
+      --adk:     #a07e48;
+      --red:     #c0392b;
+      --serif:   'Cormorant Garamond', Georgia, serif;
+      --sans:    'DM Sans', sans-serif;
+      --ease:    cubic-bezier(.16,1,.3,1);
+    }
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body {
+      background:var(--bg); color:var(--text);
+      font-family:var(--sans); font-size:14px; line-height:1.6;
+      -webkit-font-smoothing:antialiased;
+      padding-top:112px; min-height:100vh;
+    }
+    a { color:inherit; text-decoration:none; }
 
-<style>
-*{box-sizing:border-box;margin:0;padding:0;font-family:Helvetica, sans-serif;}
-body{background:#0f0f0f;color:#f5f5f5;}
+    /* ── HEADER ──────────────────────── */
+    #header {
+      position:fixed; top:0; left:0; right:0; z-index:500;
+      height:68px; display:flex; align-items:center;
+      justify-content:space-between; padding:0 48px;
+      background:rgba(11,11,9,.97); backdrop-filter:blur(24px);
+      border-bottom:1px solid var(--border);
+    }
+    .logo-img { height:52px; width:auto; object-fit:contain; }
+    .back-link {
+      display:flex; align-items:center; gap:7px;
+      font-size:10px; font-weight:600; letter-spacing:.14em;
+      text-transform:uppercase; color:var(--muted); transition:color .25s;
+    }
+    .back-link:hover { color:var(--accent); }
+    .back-link i { font-size:9px; }
 
-.container{
-  max-width:1200px;
-  margin:60px auto;
-  display:flex;
-  gap:60px;
-  padding:0 20px;
-}
+    /* ── BARRA DE PASOS ──────────────── */
+    .steps-bar {
+      position:fixed; top:68px; left:0; right:0; z-index:400;
+      height:44px; background:var(--surface); border-bottom:1px solid var(--border);
+      display:flex; align-items:center; padding:0 48px; gap:0;
+    }
+    .step {
+      display:flex; align-items:center; gap:8px; flex-shrink:0;
+      font-size:9px; font-weight:600; letter-spacing:.16em; text-transform:uppercase;
+      color:var(--muted); padding-right:22px; position:relative;
+    }
+    .step:not(:last-child)::after {
+      content:''; position:absolute; right:8px; top:50%;
+      transform:translateY(-50%);
+      border-top:3px solid transparent;
+      border-bottom:3px solid transparent;
+      border-left:4px solid rgba(255,255,255,.12);
+    }
+    .step.done  { color:var(--accent); }
+    .step.active{ color:var(--text); }
+    .step-num {
+      width:19px; height:19px; border-radius:50%;
+      border:1.5px solid currentColor;
+      display:grid; place-items:center; font-size:8px; flex-shrink:0;
+    }
+    .step.done .step-num { background:var(--accent); border-color:var(--accent); color:var(--bg); }
 
-.left{flex:65%;}
-.right{
-  flex:35%;
-  background:#1a1a1a;
-  padding:30px;
-  border-radius:14px;
-  position:sticky;
-  top:40px;
-  animation:fadeIn .8s ease;
-}
+    /* ── PAGE ────────────────────────── */
+    .page { max-width:1080px; margin:0 auto; padding:44px 24px 100px; }
 
-h2{
-  font-weight:300;
-  letter-spacing:1px;
-  margin-bottom:20px;
-}
+    /* ── ESTADO VACÍO ────────────────── */
+    .empty-wrap {
+      text-align:center; padding:90px 24px;
+    }
+    .empty-wrap i { font-size:52px; color:var(--muted); opacity:.2; display:block; margin-bottom:22px; }
+    .empty-wrap p { color:var(--muted); font-size:15px; margin-bottom:28px; }
+    .btn-explorar {
+      display:inline-flex; align-items:center; gap:9px;
+      padding:13px 30px; background:var(--accent); color:var(--bg);
+      font-size:10px; font-weight:700; letter-spacing:.14em; text-transform:uppercase;
+      transition:background .25s;
+    }
+    .btn-explorar:hover { background:var(--adk); }
 
-input{
-  width:100%;
-  padding:14px;
-  margin-bottom:15px;
-  background:#1a1a1a;
-  border:1px solid #333;
-  color:white;
-  border-radius:8px;
-  transition:.3s;
-}
+    /* ── GRID ────────────────────────── */
+    .checkout-grid {
+      display:grid; grid-template-columns:1fr 370px; gap:44px; align-items:start;
+    }
 
-input:focus{
-  border:1px solid #c6a14a;
-  outline:none;
-}
+    /* ── SECCIONES FORM ──────────────── */
+    .fs { margin-bottom:36px; }
+    .fs-title {
+      font-family:var(--serif); font-size:21px; font-weight:400;
+      display:flex; align-items:center; gap:10px;
+      padding-bottom:14px; margin-bottom:20px; border-bottom:1px solid var(--border);
+    }
+    .fs-title i { font-size:15px; color:var(--accent); }
 
-.btn{
-  width:100%;
-  padding:16px;
-  background:black;
-  border:1px solid #c6a14a;
-  color:white;
-  border-radius:8px;
-  cursor:pointer;
-  transition:.3s;
-}
+    .row  { display:grid; gap:12px; margin-bottom:12px; }
+    .row2 { grid-template-columns:1fr 1fr; }
 
-.btn:hover{
-  background:#c6a14a;
-  color:black;
-}
+    .fld { display:flex; flex-direction:column; gap:5px; }
+    .fld label {
+      font-size:9px; font-weight:600; letter-spacing:.16em;
+      text-transform:uppercase; color:var(--muted);
+    }
+    .fld input {
+      background:var(--surface2); border:1px solid var(--border2);
+      color:var(--text); font-family:var(--sans); font-size:14px;
+      padding:12px 14px; transition:border-color .25s, background .2s;
+    }
+    .fld input::placeholder { color:var(--muted); }
+    .fld input:focus { outline:none; border-color:var(--accent); background:rgba(201,169,110,.04); }
+    .fld input.err { border-color:var(--red); }
+    .fld input[readonly] { opacity:.45; cursor:default; }
+    .err-msg {
+      font-size:11px; color:#e07b6a; min-height:15px;
+      display:flex; align-items:center; gap:4px;
+    }
+    .err-msg i { font-size:9px; }
 
-.summary-item{
-  display:flex;
-  justify-content:space-between;
-  margin-bottom:8px;
-  font-size:14px;
-}
+    /* Opciones envío */
+    .envio-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:16px; }
+    .envio-card {
+      border:1.5px solid var(--border2); padding:14px 16px;
+      cursor:pointer; transition:border-color .2s, background .2s;
+      position:relative; user-select:none;
+    }
+    .envio-card:hover { border-color:rgba(201,169,110,.4); }
+    .envio-card.sel { border-color:var(--accent); background:rgba(201,169,110,.04); }
+    .envio-card input[type=radio] { position:absolute; opacity:0; pointer-events:none; }
+    .ec-title { font-size:12px; font-weight:600; margin-bottom:3px; }
+    .ec-sub   { font-size:11px; color:var(--muted); }
+    .ec-price { font-size:12px; color:var(--accent); margin-top:7px; font-weight:500; }
+    .ec-check {
+      position:absolute; top:10px; right:10px;
+      width:16px; height:16px; border-radius:50%; border:1.5px solid var(--border2);
+      display:grid; place-items:center; font-size:8px; color:var(--bg); transition:all .2s;
+    }
+    .envio-card.sel .ec-check { background:var(--accent); border-color:var(--accent); }
 
-.total{
-  display:flex;
-  justify-content:space-between;
-  margin-top:20px;
-  font-size:20px;
-  font-weight:bold;
-}
+    /* Pago info */
+    .pay-info {
+      font-size:13px; color:var(--muted2); line-height:1.85; margin-bottom:16px;
+    }
+    .pay-pills { display:flex; gap:7px; flex-wrap:wrap; margin-bottom:22px; }
+    .pp {
+      font-size:9.5px; font-weight:700; padding:5px 11px; border-radius:3px; letter-spacing:.03em;
+    }
 
-.steps{
-  display:flex;
-  justify-content:space-between;
-  margin-bottom:40px;
-  font-size:12px;
-  letter-spacing:1px;
-}
+    /* Botón pagar */
+    .btn-pay {
+      width:100%; height:52px; background:var(--accent); color:var(--bg); border:none;
+      cursor:pointer; font-family:var(--sans); font-size:11px; font-weight:700;
+      letter-spacing:.18em; text-transform:uppercase;
+      display:flex; align-items:center; justify-content:center; gap:9px;
+      transition:background .25s, transform .15s;
+    }
+    .btn-pay:hover:not(:disabled) { background:var(--adk); transform:translateY(-1px); }
+    .btn-pay:active { transform:none; }
+    .btn-pay:disabled { opacity:.5; cursor:not-allowed; }
+    .btn-pay.loading .txt { display:none; }
+    .btn-pay .spin { display:none; }
+    .btn-pay.loading .spin { display:flex; align-items:center; gap:8px; }
 
-.step{
-  flex:1;
-  text-align:center;
-  opacity:.3;
-}
+    .ssl-note {
+      text-align:center; font-size:10.5px; color:var(--muted);
+      margin-top:12px; display:flex; align-items:center; justify-content:center; gap:5px;
+    }
+    .ssl-note i { color:#4db87a; }
 
-.step.active{
-  color:#c6a14a;
-  opacity:1;
-}
+    /* ── RESUMEN ─────────────────────── */
+    .summary { background:var(--surface); border:1px solid var(--border); position:sticky; top:128px; }
+    .sum-head {
+      padding:17px 22px; border-bottom:1px solid var(--border);
+      display:flex; align-items:center; justify-content:space-between;
+      font-size:9px; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:var(--muted);
+    }
+    .sum-count {
+      background:var(--accent); color:var(--bg);
+      width:19px; height:19px; border-radius:50%;
+      display:grid; place-items:center; font-size:8.5px; font-weight:700;
+    }
+    .sum-items { padding:14px 22px; max-height:280px; overflow-y:auto; }
+    .sum-items::-webkit-scrollbar { width:3px; }
+    .sum-items::-webkit-scrollbar-thumb { background:var(--accent); border-radius:2px; }
 
-.error{
-  font-size:12px;
-  color:#c64a4a;
-  margin-bottom:10px;
-}
+    .si {
+      display:flex; gap:12px; padding:11px 0;
+      border-bottom:1px solid var(--border);
+    }
+    .si:last-child { border-bottom:none; }
+    .si-img {
+      width:52px; height:68px; flex-shrink:0;
+      background:var(--surface2); overflow:hidden; position:relative;
+    }
+    .si-img img { width:100%; height:100%; object-fit:cover; }
+    .si-qty {
+      position:absolute; top:-5px; right:-5px;
+      background:var(--accent); color:var(--bg);
+      width:17px; height:17px; border-radius:50%;
+      font-size:8.5px; font-weight:700; display:grid; place-items:center;
+    }
+    .si-body { flex:1; min-width:0; }
+    .si-name {
+      font-family:var(--serif); font-size:14px; line-height:1.2;
+      margin-bottom:2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+    }
+    .si-meta { font-size:10px; color:var(--muted); margin-bottom:5px; letter-spacing:.03em; }
+    .si-price { font-size:13px; color:var(--accent); }
 
-@keyframes fadeIn{
-  from{opacity:0;transform:translateY(20px);}
-  to{opacity:1;transform:translateY(0);}
-}
+    .sum-calcs { padding:16px 22px; border-top:1px solid var(--border); }
+    .sc-row {
+      display:flex; justify-content:space-between; align-items:center;
+      font-size:13px; margin-bottom:9px; color:var(--muted2);
+    }
+    .sc-row.total {
+      color:var(--text); font-size:14px; font-weight:600;
+      margin:13px 0 0; padding-top:13px; border-top:1px solid var(--border2);
+    }
+    .sc-row.total span:last-child {
+      font-family:var(--serif); font-size:22px; color:var(--accent);
+    }
+    .free-ship {
+      font-size:11px; color:#4db87a; font-weight:500;
+      display:none; align-items:center; gap:5px; margin-bottom:10px;
+    }
+    .free-ship.on { display:flex; }
+    .free-ship i { font-size:12px; }
 
-@media(max-width:900px){
-  .container{flex-direction:column;}
-  .right{position:relative;top:0;}
-}
-</style>
+    /* ── RESPONSIVE ──────────────────── */
+    @media (max-width:900px) {
+      body { padding-top:112px; }
+      #header, .steps-bar { padding-left:20px; padding-right:20px; }
+      .checkout-grid { grid-template-columns:1fr; }
+      .summary { position:relative; top:0; order:-1; }
+    }
+    @media (max-width:520px) {
+      .row2       { grid-template-columns:1fr; }
+      .envio-grid { grid-template-columns:1fr; }
+    }
+  </style>
 </head>
 <body>
 
-<div class="container">
+<!-- HEADER -->
+<header id="header">
+  <a href="index.html">
+    <img src="images/LogoB&D.png" alt="Bara & Co" class="logo-img"/>
+  </a>
+  <a href="tienda.html" class="back-link">
+    <i class="fas fa-arrow-left"></i> Seguir comprando
+  </a>
+</header>
 
-<div class="left">
-
-<div class="steps">
-  <div class="step active">Carrito</div>
-  <div class="step active">Datos</div>
-  <div class="step">Pago</div>
-  <div class="step">Confirmación</div>
+<!-- PASOS -->
+<div class="steps-bar">
+  <div class="step done">
+    <span class="step-num"><i class="fas fa-check" style="font-size:7px"></i></span>
+    Carrito
+  </div>
+  <div class="step active">
+    <span class="step-num">2</span>
+    Datos &amp; Envío
+  </div>
+  <div class="step">
+    <span class="step-num">3</span>
+    Pago
+  </div>
+  <div class="step">
+    <span class="step-num">4</span>
+    Confirmación
+  </div>
 </div>
 
-<h2>Contacto</h2>
-<input type="email" id="email" placeholder="Email">
-<div id="emailError" class="error"></div>
+<div class="page">
 
-<h2>Envío</h2>
-<input type="text" id="nombre" placeholder="Nombre completo">
-<input type="text" placeholder="Dirección">
-<input type="text" placeholder="Ciudad">
-<input type="text" placeholder="Código postal">
+  <!-- Carrito vacío -->
+  <div class="empty-wrap" id="emptyWrap" style="display:none">
+    <i class="fas fa-shopping-bag"></i>
+    <p>Tu carrito está vacío</p>
+    <a href="tienda.html" class="btn-explorar"><i class="fas fa-arrow-left"></i> Explorar tienda</a>
+  </div>
 
-<button class="btn" onclick="pagar()">Pagar con Mercado Pago</button>
+  <!-- Contenido principal -->
+  <div class="checkout-grid" id="checkoutGrid">
 
-</div>
+    <!-- FORMULARIO -->
+    <div>
 
-<div class="right">
+      <!-- Contacto -->
+      <div class="fs">
+        <h2 class="fs-title"><i class="fas fa-user"></i> Contacto</h2>
+        <div class="row row2">
+          <div class="fld">
+            <label>Nombre completo *</label>
+            <input type="text" id="nombre" placeholder="Tu nombre y apellido"/>
+            <span class="err-msg" id="errNombre"></span>
+          </div>
+          <div class="fld">
+            <label>Email *</label>
+            <input type="email" id="email" placeholder="tu@email.com"/>
+            <span class="err-msg" id="errEmail"></span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="fld">
+            <label>Teléfono / WhatsApp (opcional)</label>
+            <input type="tel" id="telefono" placeholder="+54 9 351 000 0000"/>
+          </div>
+        </div>
+      </div>
 
-<h2>Tu Pedido</h2>
-<div id="productos"></div>
+      <!-- Envío -->
+      <div class="fs">
+        <h2 class="fs-title"><i class="fas fa-truck"></i> Envío</h2>
+        <div class="envio-grid">
+          <label class="envio-card sel" id="cardEnvio" onclick="elegirEnvio('envio',this)">
+            <input type="radio" name="envio" value="envio" checked/>
+            <div class="ec-title">Envío a domicilio</div>
+            <div class="ec-sub">2–7 días hábiles</div>
+            <div class="ec-price" id="lblEnvioCosto">—</div>
+            <span class="ec-check"><i class="fas fa-check"></i></span>
+          </label>
+          <label class="envio-card" id="cardRetiro" onclick="elegirEnvio('retiro',this)">
+            <input type="radio" name="envio" value="retiro"/>
+            <div class="ec-title">Retiro en local</div>
+            <div class="ec-sub">Ing. Olmos 139 · Jesús María</div>
+            <div class="ec-price">Gratis</div>
+            <span class="ec-check"><i class="fas fa-check"></i></span>
+          </label>
+        </div>
 
-<div class="total">
-<span>Total</span>
-<span id="total">$0</span>
-</div>
+        <div id="bloqDireccion">
+          <div class="row">
+            <div class="fld">
+              <label>Dirección *</label>
+              <input type="text" id="direccion" placeholder="Calle y número, piso/depto"/>
+              <span class="err-msg" id="errDir"></span>
+            </div>
+          </div>
+          <div class="row row2">
+            <div class="fld">
+              <label>Ciudad</label>
+              <input type="text" id="ciudad" placeholder="Ciudad"/>
+            </div>
+            <div class="fld">
+              <label>Provincia</label>
+              <input type="text" id="provincia" placeholder="Córdoba"/>
+            </div>
+          </div>
+          <div class="row row2">
+            <div class="fld">
+              <label>Código postal</label>
+              <input type="text" id="cp" placeholder="5220"/>
+            </div>
+            <div class="fld">
+              <label>País</label>
+              <input type="text" value="Argentina" readonly/>
+            </div>
+          </div>
+        </div>
+      </div>
 
-</div>
+      <!-- Pago -->
+      <div class="fs">
+        <h2 class="fs-title"><i class="fas fa-shield-alt"></i> Pago seguro</h2>
+        <p class="pay-info">
+          Tu pago es procesado por <strong style="color:var(--text)">MercadoPago</strong> con encriptación
+          SSL 256-bit. Aceptamos tarjetas de crédito, débito y saldo MP. Podés pagar en cuotas según tu banco.
+        </p>
+        <div class="pay-pills">
+          <span class="pp" style="background:#1a1f71;color:#fff">VISA</span>
+          <span class="pp" style="background:#eb001b;color:#fff">Mastercard</span>
+          <span class="pp" style="background:#016fd0;color:#fff">AMEX</span>
+          <span class="pp" style="background:#009ee3;color:#fff">MercadoPago</span>
+        </div>
 
-</div>
+        <button class="btn-pay" id="btnPagar" onclick="pagar()">
+          <span class="txt"><i class="fas fa-lock" style="font-size:11px"></i> Pagar con MercadoPago</span>
+          <span class="spin"><i class="fas fa-circle-notch fa-spin"></i> Redirigiendo...</span>
+        </button>
+        <p class="ssl-note"><i class="fas fa-lock"></i> Compra protegida · SSL 256-bit · Datos encriptados</p>
+      </div>
+
+    </div>
+
+    <!-- RESUMEN -->
+    <div class="summary">
+      <div class="sum-head">
+        <span>Tu pedido</span>
+        <span class="sum-count" id="sumCount">0</span>
+      </div>
+      <div class="sum-items" id="sumItems"></div>
+      <div class="sum-calcs">
+        <div class="sc-row">
+          <span>Subtotal</span>
+          <span id="scSubtotal">$0</span>
+        </div>
+        <div class="sc-row" id="rowEnvio">
+          <span>Envío</span>
+          <span id="scEnvio">—</span>
+        </div>
+        <div class="free-ship" id="freeShip">
+          <i class="fas fa-truck"></i> ¡Envío gratis incluido!
+        </div>
+        <div class="sc-row total">
+          <span>Total</span>
+          <span id="scTotal">$0</span>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- fin .checkout-grid -->
+</div><!-- fin .page -->
 
 <script>
+/* ════════════════════════════════
+   CHECKOUT — BARA & CO
+════════════════════════════════ */
+const CART_KEY     = 'bc_cart';
+const MP_LINK      = 'https://link.mercadopago.com.ar/baraandco';
+const ENVIO_GRATIS = 80000; // monto mínimo para envío gratis
+let   modoEnvio    = 'envio';
 
-const CART_KEY = "bc_cart";
-const MP_LINK = "https://link.mercadopago.com.ar/baraandco";
-function getCart(){
-  return JSON.parse(localStorage.getItem(CART_KEY)) || [];
+// ── Utilidades ──────────────────
+function getCart() {
+  try { return JSON.parse(localStorage.getItem(CART_KEY)) || []; }
+  catch(e) { return []; }
 }
 
-function renderResumen(){
+// ── Init ────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
   const cart = getCart();
-  const cont = document.getElementById("productos");
-  const totalEl = document.getElementById("total");
-
-  cont.innerHTML="";
-  let total=0;
-
-  cart.forEach(item=>{
-    const sub=item.precio*item.qty;
-    total+=sub;
-
-    cont.innerHTML+=`
-      <div class="summary-item">
-        <span>${item.nombre} x${item.qty}</span>
-        <span>$${sub.toLocaleString("es-AR")}</span>
-      </div>
-    `;
-  });
-
-  totalEl.textContent="$"+total.toLocaleString("es-AR");
-}
-
-function validarEmail(email){
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-}
-
-function pagar(){
-
-  const email = document.getElementById("email").value;
-  const nombre = document.getElementById("nombre").value;
-  const error = document.getElementById("emailError");
-
-  if(!validarEmail(email)){
-    error.textContent="Ingresá un email válido.";
+  if (!cart.length) {
+    document.getElementById('emptyWrap').style.display  = 'block';
+    document.getElementById('checkoutGrid').style.display = 'none';
     return;
   }
+  renderResumen(cart);
+  recalcTotales(cart);
+});
 
-  if(nombre.length < 3){
-    alert("Ingresá tu nombre completo.");
-    return;
-  }
+// ── Render items resumen ─────────
+function renderResumen(cart) {
+  const total = cart.reduce((a, i) => a + (i.qty || 1), 0);
+  document.getElementById('sumCount').textContent = total;
 
-  localStorage.setItem("bc_nombre_cliente", nombre);
-
-  error.textContent="";
-  window.location.href = MP_LINK;
+  document.getElementById('sumItems').innerHTML = cart.map(item => {
+    const meta = [item.talle, item.color].filter(Boolean).join(' · ');
+    const sub  = item.precio * (item.qty || 1);
+    return `
+      <div class="si">
+        <div class="si-img">
+          <img src="${item.imagen || ''}" alt="${item.nombre}"
+               onerror="this.style.display='none'"/>
+          <span class="si-qty">${item.qty || 1}</span>
+        </div>
+        <div class="si-body">
+          <div class="si-name">${item.nombre}</div>
+          ${meta ? `<div class="si-meta">${meta}</div>` : ''}
+          <div class="si-price">$${sub.toLocaleString('es-AR')}</div>
+        </div>
+      </div>`;
+  }).join('');
 }
 
-document.addEventListener("DOMContentLoaded",renderResumen);
+// ── Recalcular totales ───────────
+function recalcTotales(cart) {
+  cart = cart || getCart();
+  const subtotal  = cart.reduce((a, i) => a + i.precio * (i.qty || 1), 0);
+  const esRetiro  = modoEnvio === 'retiro';
+  const gratis    = subtotal >= ENVIO_GRATIS || esRetiro;
 
+  document.getElementById('scSubtotal').textContent  = '$' + subtotal.toLocaleString('es-AR');
+  document.getElementById('scEnvio').textContent     = gratis ? 'Gratis' : 'A calcular';
+  document.getElementById('scTotal').textContent     = '$' + subtotal.toLocaleString('es-AR');
+  document.getElementById('rowEnvio').style.display  = esRetiro ? 'none' : '';
+  document.getElementById('freeShip').classList.toggle('on', gratis);
+  document.getElementById('lblEnvioCosto').textContent = gratis ? 'Gratis' : 'A calcular';
+}
+
+// ── Elegir modo envío ────────────
+function elegirEnvio(tipo, el) {
+  modoEnvio = tipo;
+  document.querySelectorAll('.envio-card').forEach(c => c.classList.remove('sel'));
+  el.classList.add('sel');
+  document.getElementById('bloqDireccion').style.display = tipo === 'retiro' ? 'none' : '';
+  recalcTotales();
+}
+
+// ── Validación y errores ─────────
+function setError(inputId, msgId, msg) {
+  const inp = document.getElementById(inputId);
+  const el  = document.getElementById(msgId);
+  if (inp) inp.classList.toggle('err', !!msg);
+  if (el)  el.innerHTML = msg ? `<i class="fas fa-exclamation-circle"></i> ${msg}` : '';
+}
+
+// ── Proceder al pago ─────────────
+function pagar() {
+  const nombre  = document.getElementById('nombre').value.trim();
+  const email   = document.getElementById('email').value.trim();
+  const esRetiro = modoEnvio === 'retiro';
+  let valido = true;
+
+  // Validar nombre
+  if (nombre.length < 3) {
+    setError('nombre', 'errNombre', 'Ingresá tu nombre completo');
+    valido = false;
+  } else {
+    setError('nombre', 'errNombre', '');
+  }
+
+  // Validar email
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    setError('email', 'errEmail', 'Ingresá un email válido');
+    valido = false;
+  } else {
+    setError('email', 'errEmail', '');
+  }
+
+  // Validar dirección si no es retiro
+  if (!esRetiro) {
+    const dir = document.getElementById('direccion').value.trim();
+    if (dir.length < 5) {
+      setError('direccion', 'errDir', 'Ingresá tu dirección de entrega');
+      valido = false;
+    } else {
+      setError('direccion', 'errDir', '');
+    }
+  }
+
+  if (!valido) return;
+
+  const cart     = getCart();
+  const subtotal = cart.reduce((a, i) => a + i.precio * (i.qty || 1), 0);
+
+  // Guardar pedido para success.html
+  const pedido = {
+    nombre,
+    email,
+    telefono:  document.getElementById('telefono').value.trim(),
+    modoEnvio,
+    envio: esRetiro
+      ? 'Retiro en local — Ing. Olmos 139, Jesús María'
+      : [
+          document.getElementById('direccion').value.trim(),
+          document.getElementById('ciudad').value.trim(),
+          document.getElementById('provincia').value.trim(),
+          document.getElementById('cp').value.trim()
+        ].filter(Boolean).join(', '),
+    total: subtotal,
+    items: cart,
+    fecha: new Date().toISOString()
+  };
+
+  localStorage.setItem('bc_pedido', JSON.stringify(pedido));
+  localStorage.setItem('bc_nombre_cliente', nombre);
+
+  // ⚠️ Limpiar el carrito ANTES de redirigir
+  localStorage.removeItem(CART_KEY);
+
+  // Animación botón → redirección
+  const btn = document.getElementById('btnPagar');
+  btn.classList.add('loading');
+  btn.disabled = true;
+
+  setTimeout(() => {
+    window.location.href = MP_LINK;
+  }, 650);
+}
 </script>
-
 </body>
 </html>
