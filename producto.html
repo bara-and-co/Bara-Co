@@ -1121,30 +1121,6 @@
 
 </div>
 
-<!-- ═══════════ CARRITO ════════════ -->
-<div class="overlay" onclick="toggleCart()"></div>
-<div class="cart-panel">
-  <div class="cart-header">
-    <h2 class="cart-title">Carrito <span class="cart-count">0</span></h2>
-    <button class="close-cart" onclick="toggleCart()"><i class="fas fa-times"></i></button>
-  </div>
-  <div class="cart-items">
-    <div class="cart-empty">
-      <i class="fas fa-shopping-bag"></i>
-      <p>Tu carrito está vacío</p>
-      <a href="tienda.html" class="btn-empty">Explorar tienda</a>
-    </div>
-  </div>
-  <div class="cart-footer"></div>
-</div>
-
-<!-- ═══════════ TOAST ════════════ -->
-<div id="cartNotification" class="cart-notification">
-  <i class="fas fa-check-circle notif-icon"></i>
-  <span class="notif-text">Producto agregado</span>
-  <span class="notif-cta">Ver carrito →</span>
-</div>
-
 <!-- ═══════════ STICKY CTA MOBILE ════════════ -->
 <div class="sticky-cta-bar" id="stickyCta">
   <div class="sticky-cta-price" id="stickyCtaPrice"></div>
@@ -1161,7 +1137,7 @@
 </button>
 
 <script src="js/main.js"></script>
-<script src="js/carrito.js"></script>
+<script src="js/carrito-ui.js"></script>
 
 <script>
 /* ══════════════════════════════════════
@@ -1673,11 +1649,13 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.key === 'Escape') { closeSizeGuide(); closeImageModal(); }
   });
 
-  // Toast clickeable → abre carrito
-  document.getElementById('cartNotification').addEventListener('click', () => {
-    document.getElementById('cartNotification').classList.remove('show');
-    if (typeof toggleCart === 'function') toggleCart();
-  });
+  // Toast clickeable → abre carrito (manejado por carrito-ui.js)
+  const cartNotifEl = document.getElementById('bcToast');
+  if (cartNotifEl) {
+    cartNotifEl.addEventListener('click', () => {
+      if (typeof toggleCart === 'function') toggleCart();
+    });
+  }
 });
 </script>
 </body>
