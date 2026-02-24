@@ -6,7 +6,7 @@
 // ========== CONFIGURACIÓN ==========
 const CONFIG = {
     API_URL: 'productos.json',
-    WHATSAPP_NUMBER: '5491112345678', // Reemplazar con tu número real
+    WHATSAPP_NUMBER: '5493525614281', // Reemplazar con tu número real
     FREE_SHIPPING_THRESHOLD: 80000,
     LOW_STOCK_THRESHOLD: 5
 };
