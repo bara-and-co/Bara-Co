@@ -1421,8 +1421,8 @@
   {
     "id": "buzo-over-rustico-pizza-1771845717890",
     "nombre": "Buzo Over Rustico Pizza",
-    "precio": 40,
-    "precioAnterior": 50,
+    "precio": 40000,
+    "precioAnterior": null,
     "categoria": "hombre",
     "subcategoria": "Buzos",
     "descripcion": "",
@@ -1435,12 +1435,34 @@
       "M"
     ],
     "colores": [
-      "Verde"
+      {
+        "nombre": "Verde",
+        "codigo": "#43A047",
+        "stock": 0
+      }
     ],
     "activo": true,
     "destacado": true,
+    "outlet": false,
+    "stockMap": {
+      "Verde__M": null
+    },
+    "stockTalles": {
+      "L": null
+    },
     "stock": 10,
-    "sku": "BUZO-OVER-RUSTICO-PIZZA"
+    "sku": "BUZO-OVER-RUSTICO-PIZZA",
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
   },
   {
     "id": "buzo-cuello-redondo-geom-tric-1771845493866",
