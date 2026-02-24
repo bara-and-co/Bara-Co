@@ -823,7 +823,7 @@ async function cargarProductos() {
 
 // ========== CONSTRUIR CARD ==========
 function buildCard(p) {
-  const agotado  = p.agotado || p.stock === 0;
+  const agotado  = p.agotado || (typeof p.stock === 'number' && p.stock === 0);
   const descuento= p.precioAnterior ? Math.round((1 - p.precio / p.precioAnterior) * 100) : 0;
   const cats     = [p.categoria];
   if (p.precioAnterior) cats.push('sale');
