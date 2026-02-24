@@ -879,10 +879,22 @@
     "destacado": false,
     "outlet": false,
     "stockMap": {
-      "Rosa__S": null
+      "Rosa__S": 1
     },
-    "stock": 0,
-    "sku": "SUDADERA-SURF"
+    "stockTalles": null,
+    "stock": 1,
+    "sku": "SUDADERA-SURF",
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
   },
   {
     "id": "sudadera-safari-1771870321224",
