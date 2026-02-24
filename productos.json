@@ -1,5 +1,41 @@
 [
   {
+    "id": "canguro-denim-crop-1771892792654",
+    "nombre": "Canguro Denim Crop",
+    "precio": 30000,
+    "precioAnterior": 45000,
+    "categoria": "mujer",
+    "subcategoria": "Remeras",
+    "descripcion": "",
+    "imagen": "https://i.ibb.co/VYb70y5L/Top-Capuchajeans.png",
+    "imagenes": [
+      "https://i.ibb.co/VYb70y5L/Top-Capuchajeans.png"
+    ],
+    "tallesDisponibles": [
+      "M"
+    ],
+    "colores": [
+      {
+        "nombre": "Jean",
+        "codigo": "#5C7FA3",
+        "stock": 0
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Jean__M": 1
+    },
+    "stockTalles": {
+      "38": 1,
+      "40": 1,
+      "42": 1
+    },
+    "stock": 1,
+    "sku": "CANGURO-DENIM-CROP"
+  },
+  {
     "id": "jean-cargo-bolsillo-largo-1771892180264",
     "nombre": "Jean Cargo Bolsillo Largo",
     "precio": 40000,
