@@ -4542,18 +4542,10 @@
     "precioAnterior": 40000,
     "categoria": "hombre",
     "subcategoria": "Pantalones",
-    "imagen": "https://d22fxaf9t8d39k.cloudfront.net/36741ac8f122051ddedbc0d4dacccd18a03e4381d82b2aaa67c4c930093673de404368.webp",
-    "imagenes": [
-      "https://d22fxaf9t8d39k.cloudfront.net/36741ac8f122051ddedbc0d4dacccd18a03e4381d82b2aaa67c4c930093673de404368.webp"
-    ],
     "descripcion": "",
-    "composicion": "",
-    "cuidado": "",
-    "talles": [
-      "S",
-      "M",
-      "L",
-      "XL"
+    "imagen": "https://i.ibb.co/MyNxqCCC/Bermuda-MILA.webp",
+    "imagenes": [
+      "https://i.ibb.co/MyNxqCCC/Bermuda-MILA.webp"
     ],
     "tallesDisponibles": [
       "S",
@@ -4561,9 +4553,39 @@
       "L",
       "XL"
     ],
-    "sku": "BERMUDA-MILA",
+    "colores": [],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Marrón__S": null,
+      "Marrón__M": null,
+      "Marrón__L": null,
+      "Marrón__XL": 1,
+      "Verde oliva__S": null,
+      "Verde oliva__M": null,
+      "Verde oliva__L": null,
+      "Verde oliva__XL": null
+    },
+    "stockTalles": {
+      "S": 1,
+      "M": 2,
+      "L": 1,
+      "XL": 2
+    },
     "stock": 10,
-    "activo": true
+    "sku": "BERMUDA-MILA",
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
   },
   {
     "id": "bermuda-santander",
