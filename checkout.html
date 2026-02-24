@@ -6,8 +6,6 @@
 <title>Checkout | Bara & Co</title>
 
 <style>
-
-/* ===== RESET ===== */
 *{box-sizing:border-box;margin:0;padding:0;font-family: 'Helvetica Neue', sans-serif;}
 
 body{
@@ -15,7 +13,6 @@ body{
   color:#f5f5f5;
 }
 
-/* ===== LAYOUT ===== */
 .checkout{
   display:flex;
   max-width:1200px;
@@ -24,10 +21,7 @@ body{
   padding:0 20px;
 }
 
-.left{
-  flex:65%;
-}
-
+.left{flex:65%;}
 .right{
   flex:35%;
   position:sticky;
@@ -38,22 +32,17 @@ body{
   border-radius:12px;
 }
 
-/* ===== TITLES ===== */
 h2{
-  font-size:22px;
-  margin-bottom:20px;
-  letter-spacing:1px;
+  font-size:20px;
+  margin:25px 0 15px;
   font-weight:300;
-}
-
-/* ===== INPUTS ===== */
-.input-group{
-  margin-bottom:20px;
+  letter-spacing:1px;
 }
 
 input{
   width:100%;
   padding:14px;
+  margin-bottom:15px;
   background:#1a1a1a;
   border:1px solid #333;
   color:white;
@@ -62,40 +51,32 @@ input{
 }
 
 input:focus{
-  outline:none;
   border:1px solid #c6a14a;
+  outline:none;
 }
 
-.error{
-  font-size:12px;
-  color:#c64a4a;
-  margin-top:5px;
-}
-
-/* ===== BUTTON ===== */
-.btn-primary{
+.btn{
   width:100%;
   padding:16px;
-  margin-top:20px;
   background:black;
   border:1px solid #c6a14a;
-  color:#fff;
-  font-size:16px;
+  color:white;
   cursor:pointer;
   border-radius:8px;
+  margin-top:20px;
   transition:.3s;
 }
 
-.btn-primary:hover{
+.btn:hover{
   background:#c6a14a;
   color:black;
 }
 
-/* ===== SUMMARY ===== */
 .summary-item{
   display:flex;
   justify-content:space-between;
   margin-bottom:10px;
+  font-size:14px;
 }
 
 .total{
@@ -108,34 +89,14 @@ input:focus{
 
 .security{
   font-size:12px;
-  margin-top:15px;
   color:#aaa;
-}
-
-.progress-bar{
-  background:#333;
-  height:6px;
-  border-radius:4px;
-  margin:15px 0;
-}
-
-.progress{
-  height:6px;
-  background:#c6a14a;
-  border-radius:4px;
-  width:70%;
+  margin-top:15px;
 }
 
 @media(max-width:900px){
-  .checkout{
-    flex-direction:column;
-  }
-  .right{
-    position:relative;
-    top:0;
-  }
+  .checkout{flex-direction:column;}
+  .right{position:relative;top:0;}
 }
-
 </style>
 </head>
 
@@ -143,100 +104,87 @@ input:focus{
 
 <div class="checkout">
 
-  <!-- LEFT -->
-  <div class="left">
+<div class="left">
 
-    <h2>Contacto</h2>
+<h2>Contacto</h2>
+<input type="email" id="email" placeholder="Email">
 
-    <div class="input-group">
-      <input type="email" id="email" placeholder="Email">
-      <div class="error" id="emailError"></div>
-    </div>
+<h2>Envío</h2>
+<input type="text" placeholder="Nombre completo">
+<input type="text" placeholder="Dirección">
+<input type="text" placeholder="Ciudad">
+<input type="text" placeholder="Código postal">
 
-    <h2>Envío</h2>
+<button class="btn" onclick="finalizarCompra()">Finalizar Compra</button>
 
-    <div class="input-group">
-      <input type="text" placeholder="Nombre completo">
-    </div>
+<div class="security">
+Pago 100% seguro y cifrado.
+</div>
 
-    <div class="input-group">
-      <input type="text" placeholder="Dirección">
-    </div>
+</div>
 
-    <div class="input-group">
-      <input type="text" placeholder="Ciudad">
-    </div>
+<div class="right">
 
-    <div class="input-group">
-      <input type="text" placeholder="Código postal">
-    </div>
+<h2>Tu Pedido</h2>
 
-    <h2>Pago</h2>
+<div id="productos"></div>
 
-    <div class="input-group">
-      <input type="text" placeholder="Número de tarjeta">
-    </div>
+<div class="total">
+<span>Total</span>
+<span id="total">$0</span>
+</div>
 
-    <div class="input-group">
-      <input type="text" placeholder="MM/AA">
-    </div>
-
-    <div class="input-group">
-      <input type="text" placeholder="CVV">
-    </div>
-
-    <button class="btn-primary" onclick="validar()">
-      Finalizar Compra
-    </button>
-
-    <div class="security">
-      Pago 100% seguro y cifrado.
-    </div>
-
-  </div>
-
-  <!-- RIGHT -->
-  <div class="right">
-
-    <h2>Tu Pedido</h2>
-
-    <div class="summary-item">
-      <span>Body Elegance</span>
-      <span>$38.000</span>
-    </div>
-
-    <div class="summary-item">
-      <span>Envío</span>
-      <span>Gratis</span>
-    </div>
-
-    <div class="progress-bar">
-      <div class="progress"></div>
-    </div>
-
-    <div class="total">
-      <span>Total</span>
-      <span>$38.000</span>
-    </div>
-
-  </div>
+</div>
 
 </div>
 
 <script>
 
-function validar(){
-  const email = document.getElementById('email').value;
-  const error = document.getElementById('emailError');
+const CART_KEY = "bc_cart";
 
-  if(!email.includes('@')){
-    error.textContent = "Ingresá un email válido.";
+function getCart(){
+  return JSON.parse(localStorage.getItem(CART_KEY)) || [];
+}
+
+function renderResumen(){
+
+  const cart = getCart();
+  const container = document.getElementById("productos");
+  const totalEl = document.getElementById("total");
+
+  container.innerHTML = "";
+  let total = 0;
+
+  cart.forEach(item=>{
+    const subtotal = item.precio * item.qty;
+    total += subtotal;
+
+    container.innerHTML += `
+      <div class="summary-item">
+        <span>${item.nombre} x${item.qty}</span>
+        <span>$${subtotal.toLocaleString("es-AR")}</span>
+      </div>
+    `;
+  });
+
+  totalEl.textContent = "$" + total.toLocaleString("es-AR");
+}
+
+function finalizarCompra(){
+
+  const email = document.getElementById("email").value;
+
+  if(!email.includes("@")){
+    alert("Ingresá un email válido.");
     return;
   }
 
-  error.textContent = "";
-  alert("Compra simulada correctamente.");
+  alert("Compra simulada correctamente 🖤");
+  localStorage.removeItem(CART_KEY);
+  window.location.href = "index.html";
 }
+
+document.addEventListener("DOMContentLoaded",renderResumen);
 
 </script>
 
