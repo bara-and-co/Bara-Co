@@ -2821,18 +2821,11 @@
     "precioAnterior": 30000,
     "categoria": "hombre",
     "subcategoria": "Pantalones",
-    "imagen": "https://d22fxaf9t8d39k.cloudfront.net/06a77b40ecdc626f4daad492e24aa3d3da0b7345e488022a7fb4472e8a5e3803404368.jpg",
-    "imagenes": [
-      "https://d22fxaf9t8d39k.cloudfront.net/06a77b40ecdc626f4daad492e24aa3d3da0b7345e488022a7fb4472e8a5e3803404368.jpg"
-    ],
     "descripcion": "",
-    "composicion": "",
-    "cuidado": "",
-    "talles": [
-      "S",
-      "M",
-      "L",
-      "XL"
+    "imagen": "https://i.ibb.co/RmL5mCb/Short-de-ba-o-MULTIRAYAS.webp",
+    "imagenes": [
+      "https://i.ibb.co/RmL5mCb/Short-de-ba-o-MULTIRAYAS.webp",
+      "https://i.ibb.co/zhRq0L1s/Short-de-ba-o-MULTIRAYAS.jpg"
     ],
     "tallesDisponibles": [
       "S",
@@ -2840,9 +2833,33 @@
       "L",
       "XL"
     ],
-    "sku": "SHORT-DE-BANO-MULTIRAYAS",
+    "colores": [],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Bordo__M": null,
+      "Bordo__XXL": null
+    },
+    "stockTalles": {
+      "S": null,
+      "M": null,
+      "L": null,
+      "XL": null
+    },
     "stock": 10,
-    "activo": true
+    "sku": "SHORT-DE-BANO-MULTIRAYAS",
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
   },
   {
     "id": "short-de-bano-rayado",
