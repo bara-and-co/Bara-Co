@@ -1541,8 +1541,8 @@
   {
     "id": "buzo-canguro-regular-aguilas-1771844860483",
     "nombre": "Buzo Canguro Regular Aguilas",
-    "precio": 50,
-    "precioAnterior": 60,
+    "precio": 50000,
+    "precioAnterior": null,
     "categoria": "hombre",
     "subcategoria": "Buzos",
     "descripcion": "",
@@ -1555,12 +1555,32 @@
       "XL"
     ],
     "colores": [
-      "Beige"
+      {
+        "nombre": "Beige",
+        "codigo": "#D4B896",
+        "stock": 0
+      }
     ],
     "activo": true,
     "destacado": true,
+    "outlet": false,
+    "stockMap": {
+      "Beige__XL": null
+    },
+    "stockTalles": null,
     "stock": 10,
-    "sku": "BUZO-CANGURO-REGULAR-AGUILAS"
+    "sku": "BUZO-CANGURO-REGULAR-AGUILAS",
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
   },
   {
     "id": "buzo-canguro-regular-i-dont-care-1771844763516",
