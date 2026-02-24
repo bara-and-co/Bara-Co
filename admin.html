@@ -2734,11 +2734,20 @@ function saveProduct() {
     stockMap: getStockData(),
     stockTalles: Object.keys(stockTalles).length ? stockTalles : null,
     stock: (() => {
+      // Si el campo manual tiene valor, usar ese
       const raw = document.getElementById('fStock').value.trim();
       if (raw !== '') return parseInt(raw);
-      const vals = Object.values(stockTalles).filter(v => v !== null && v !== undefined);
-      if (vals.length) return vals.reduce((a, b) => a + (parseInt(b) || 0), 0);
-      return null;
+      // Calcular desde stockMap (color×talle)
+      const sm = getStockData();
+      const smVals = Object.values(sm).filter(v => v !== null && v !== undefined && v !== '');
+      if (smVals.length) return smVals.reduce((a, b) => a + (parseInt(b) || 0), 0);
+      // Calcular desde stockTalles
+      const stVals = Object.values(stockTalles).filter(v => v !== null && v !== undefined);
+      if (stVals.length) return stVals.reduce((a, b) => a + (parseInt(b) || 0), 0);
+      // Calcular desde colores con stock
+      const colTotal = colores.reduce((a, c) => a + (parseInt(c.stock) || 0), 0);
+      if (colTotal > 0) return colTotal;
+      return null; // sin info de stock = no marcar agotado en tienda
     })(),
     sku: document.getElementById('fSku')?.value.trim() || (editId ? products.find(p => p.id === editId)?.sku : (nombre.toUpperCase().replace(/ /g,'-'))),
     // New fields
