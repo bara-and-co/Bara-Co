@@ -62,8 +62,12 @@
     "stockMap": {
       "Jean__M": 1
     },
-    "stockTalles": null,
-    "stock": 1,
+    "stockTalles": {
+      "36": 1,
+      "38": 1,
+      "44": 1
+    },
+    "stock": 2,
     "sku": "CANGURO-DENIM-CROP"
   },
   {
