@@ -4546,18 +4546,11 @@
     "precioAnterior": 70000,
     "categoria": "hombre",
     "subcategoria": "Pantalones",
-    "imagen": "https://d22fxaf9t8d39k.cloudfront.net/6ba7ba0ed537dfe7950f95223ffd9a1d1e0d26e2cf83b90cc22296c3247f1af3404368.jpg",
-    "imagenes": [
-      "https://d22fxaf9t8d39k.cloudfront.net/6ba7ba0ed537dfe7950f95223ffd9a1d1e0d26e2cf83b90cc22296c3247f1af3404368.jpg"
-    ],
     "descripcion": "",
-    "composicion": "",
-    "cuidado": "",
-    "talles": [
-      "S",
-      "M",
-      "L",
-      "XL"
+    "imagen": "https://i.ibb.co/0R5fXBss/Pantalon-jean-0541.webp",
+    "imagenes": [
+      "https://i.ibb.co/0R5fXBss/Pantalon-jean-0541.webp",
+      "https://i.ibb.co/1YK052jQ/Pantalon-jean-0541.jpg"
     ],
     "tallesDisponibles": [
       "S",
@@ -4565,9 +4558,33 @@
       "L",
       "XL"
     ],
-    "sku": "PANTALON-JEAN-0541",
+    "colores": [],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Bordo__M": null,
+      "Bordo__XXL": null
+    },
+    "stockTalles": {
+      "S": null,
+      "M": null,
+      "L": null,
+      "XL": null
+    },
     "stock": 10,
-    "activo": true
+    "sku": "PANTALON-JEAN-0541",
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
   },
   {
     "id": "gorra-bordada-ny",
