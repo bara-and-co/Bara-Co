@@ -194,16 +194,25 @@ function validarEmail(email){
 }
 
 function pagar(){
-  const email=document.getElementById("email").value;
-  const error=document.getElementById("emailError");
+
+  const email = document.getElementById("email").value;
+  const nombre = document.getElementById("nombre").value;
+  const error = document.getElementById("emailError");
 
   if(!validarEmail(email)){
     error.textContent="Ingresá un email válido.";
     return;
   }
 
+  if(nombre.length < 3){
+    alert("Ingresá tu nombre completo.");
+    return;
+  }
+
+  localStorage.setItem("bc_nombre_cliente", nombre);
+
   error.textContent="";
-  window.location.href=MP_LINK;
+  window.location.href = MP_LINK;
 }
 
 document.addEventListener("DOMContentLoaded",renderResumen);
