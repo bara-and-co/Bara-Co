@@ -3409,18 +3409,10 @@
     "precioAnterior": null,
     "categoria": "hombre",
     "subcategoria": "Remeras",
-    "imagen": "https://d22fxaf9t8d39k.cloudfront.net/f3ec3d6b6f9065b07f84032f79990f291be6dc4684445ae87e2f6997be790715404368.png",
-    "imagenes": [
-      "https://d22fxaf9t8d39k.cloudfront.net/f3ec3d6b6f9065b07f84032f79990f291be6dc4684445ae87e2f6997be790715404368.png"
-    ],
     "descripcion": "",
-    "composicion": "",
-    "cuidado": "",
-    "talles": [
-      "S",
-      "M",
-      "L",
-      "XL"
+    "imagen": "https://i.ibb.co/4Z4KQS4q/Remera-GALICIA.webp",
+    "imagenes": [
+      "https://i.ibb.co/4Z4KQS4q/Remera-GALICIA.webp"
     ],
     "tallesDisponibles": [
       "S",
@@ -3428,9 +3420,39 @@
       "L",
       "XL"
     ],
-    "sku": "REMERA-GALICIA",
+    "colores": [],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Marrón__S": null,
+      "Marrón__M": null,
+      "Marrón__L": null,
+      "Marrón__XL": 1,
+      "Verde oliva__S": null,
+      "Verde oliva__M": null,
+      "Verde oliva__L": null,
+      "Verde oliva__XL": null
+    },
+    "stockTalles": {
+      "S": 1,
+      "M": 2,
+      "L": 1,
+      "XL": 2
+    },
     "stock": 10,
-    "activo": true
+    "sku": "REMERA-GALICIA",
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
   },
   {
     "id": "remera-cielo",
