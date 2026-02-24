@@ -1295,8 +1295,8 @@
   {
     "id": "buzo-waffle-1771846658953",
     "nombre": "Buzo Waffle",
-    "precio": 40,
-    "precioAnterior": 45,
+    "precio": 40000,
+    "precioAnterior": null,
     "categoria": "hombre",
     "subcategoria": "Buzos",
     "descripcion": "",
@@ -1310,13 +1310,29 @@
     "tallesDisponibles": [
       "L"
     ],
-    "colores": [
-      "rojo"
-    ],
+    "colores": [],
     "activo": true,
     "destacado": true,
+    "outlet": false,
+    "stockMap": {
+      "Negro__S": null
+    },
+    "stockTalles": {
+      "L": null
+    },
     "stock": 10,
-    "sku": "BUZO-WAFFLE"
+    "sku": "BUZO-WAFFLE",
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
   },
   {
     "id": "buzo-waffle-1771846454002",
