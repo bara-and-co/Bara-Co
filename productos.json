@@ -3102,18 +3102,11 @@
     "precioAnterior": 75000,
     "categoria": "hombre",
     "subcategoria": "Pantalones",
-    "imagen": "https://d22fxaf9t8d39k.cloudfront.net/fa693e785f22af48e6822e56319cf73a27c346b8426073564ae246e592af33b9404368.jpg",
-    "imagenes": [
-      "https://d22fxaf9t8d39k.cloudfront.net/fa693e785f22af48e6822e56319cf73a27c346b8426073564ae246e592af33b9404368.jpg"
-    ],
     "descripcion": "",
-    "composicion": "",
-    "cuidado": "",
-    "talles": [
-      "S",
-      "M",
-      "L",
-      "XL"
+    "imagen": "https://i.ibb.co/VYqQ2V3H/Bermuda-REAL-TREE-baggy.png",
+    "imagenes": [
+      "https://i.ibb.co/VYqQ2V3H/Bermuda-REAL-TREE-baggy.png",
+      "https://i.ibb.co/PZ7P492J/Bermuda-REAL-TREE-baggy.jpg"
     ],
     "tallesDisponibles": [
       "S",
@@ -3121,9 +3114,33 @@
       "L",
       "XL"
     ],
-    "sku": "BERMUDA-REAL-TREE-BAGGY",
+    "colores": [],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Bordo__M": null,
+      "Bordo__XXL": null
+    },
+    "stockTalles": {
+      "S": null,
+      "M": null,
+      "L": null,
+      "XL": null
+    },
     "stock": 10,
-    "activo": true
+    "sku": "BERMUDA-REAL-TREE-BAGGY",
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
   },
   {
     "id": "sweater-arraial",
