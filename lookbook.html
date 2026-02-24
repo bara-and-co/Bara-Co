@@ -21,16 +21,13 @@
     *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
     html, body { height:100%; }
     html { scroll-behavior:smooth; }
-    body { background:var(--bg); color:var(--text); font-family:var(--sans); -webkit-font-smoothing:antialiased; }
-    /* Cursor custom solo en desktop con mouse real */
-    @media (pointer:fine) { body { cursor:none; } }
+    body { background:var(--bg); color:var(--text); font-family:var(--sans); -webkit-font-smoothing:antialiased; cursor:none; }
     a { color:inherit; text-decoration:none; }
     img { display:block; width:100%; }
 
-    /* ── CURSOR — solo desktop ── */
-    .cur      { position:fixed; width:9px; height:9px; background:var(--accent); border-radius:50%; pointer-events:none; z-index:9999; transform:translate(-50%,-50%); display:none; }
-    .cur-ring { position:fixed; width:34px; height:34px; border:1px solid rgba(201,169,110,.45); border-radius:50%; pointer-events:none; z-index:9998; transform:translate(-50%,-50%); transition:width .35s var(--ease),height .35s var(--ease); display:none; }
-    @media (pointer:fine) { .cur { display:block; } .cur-ring { display:block; } }
+    /* ── CURSOR ── */
+    .cur      { position:fixed; width:9px; height:9px; background:var(--accent); border-radius:50%; pointer-events:none; z-index:9999; transform:translate(-50%,-50%); }
+    .cur-ring { position:fixed; width:34px; height:34px; border:1px solid rgba(201,169,110,.45); border-radius:50%; pointer-events:none; z-index:9998; transform:translate(-50%,-50%); transition:width .35s var(--ease),height .35s var(--ease); }
 
     /* ── HEADER ── */
     #header {
@@ -40,47 +37,33 @@
       border-bottom:1px solid transparent;
     }
     #header.scrolled { background:rgba(11,11,9,.96); backdrop-filter:blur(24px); border-color:var(--border); }
-    
-    /* Nav izquierda */
-    .hdr-nav { flex:1; }
+
+    /* Logo izquierda */
+    .hdr-logo { display:flex; align-items:center; flex-shrink:0; }
+
+    .logo-header {
+      height: 70px !important;
+      width: auto !important;
+      max-width:none !important;
+      object-fit:contain;
+      filter:brightness(0) invert(1);
+      transition:height .5s var(--ease);
+    }
+    #header.scrolled .logo-header { height: 55px !important; }
+
+    /* Nav centrada absoluta respecto al header */
+    .hdr-nav { position:absolute; left:50%; transform:translateX(-50%); pointer-events:auto; }
     .hdr-nav ul { display:flex; gap:38px; list-style:none; margin:0; padding:0; }
     .hdr-nav a { font-size:10px; font-weight:500; letter-spacing:.18em; text-transform:uppercase; color:rgba(255,255,255,.6); position:relative; transition:color .25s; }
     .hdr-nav a::after { content:''; position:absolute; bottom:-3px; left:0; right:0; height:1px; background:var(--accent); transform:scaleX(0); transform-origin:left; transition:transform .3s var(--ease); }
     .hdr-nav a:hover, .hdr-nav a.active { color:#fff; }
     .hdr-nav a:hover::after, .hdr-nav a.active::after { transform:scaleX(1); }
-
-    /* Logo centrado absoluto — solo desktop */
-    .hdr-logo {
-      position:absolute; left:50%; transform:translateX(-50%);
-      display:flex; align-items:center; height:100%;
-      transition:all .4s var(--ease);
-    }
-    .logo-header {
-      height:70px; width:auto; object-fit:contain;
-      filter:brightness(0) invert(1);
-      transition:height .4s var(--ease);
-    }
-    #header.scrolled .logo-header { height:52px; }
-
-    /* Iconos derecha */
     .hdr-right { margin-left:auto; display:flex; align-items:center; gap:22px; }
     .hdr-right i { font-size:16px; color:rgba(255,255,255,.6); cursor:pointer; transition:color .25s; }
     .hdr-right i:hover { color:var(--accent); }
     .cart-w { position:relative; cursor:pointer; }
     .cart-dot { position:absolute; top:-6px; right:-7px; width:16px; height:16px; border-radius:50%; background:var(--accent); color:var(--bg); font-size:8px; font-weight:700; display:none; place-items:center; }
     .cart-dot.on { display:grid; }
-
-    /* Mobile menu toggle */
-    .lb-menu-toggle { display:none; flex-direction:column; gap:5px; cursor:pointer; padding:4px; background:none; border:none; order:3; }
-    .lb-menu-toggle span { display:block; width:22px; height:1.5px; background:rgba(201,169,110,.7); transition:all .3s; }
-    .lb-menu-toggle.open span:nth-child(1) { transform:translateY(6.5px) rotate(45deg); }
-    .lb-menu-toggle.open span:nth-child(2) { opacity:0; }
-    .lb-menu-toggle.open span:nth-child(3) { transform:translateY(-6.5px) rotate(-45deg); }
-    .lb-mobile-nav { display:none; position:fixed; top:70px; left:0; right:0; z-index:499; background:rgba(11,11,9,.98); backdrop-filter:blur(20px); border-bottom:1px solid var(--border); padding:20px 22px; flex-direction:column; gap:4px; }
-    .lb-mobile-nav.open { display:flex; }
-    .lb-mobile-nav a { padding:12px 0; font-size:13px; font-weight:500; color:rgba(201,169,110,.6); border-bottom:1px solid var(--border); display:block; transition:color .2s; }
-    .lb-mobile-nav a:last-child { border-bottom:none; }
-    .lb-mobile-nav a:hover, .lb-mobile-nav a.active { color:var(--accent); }
 
     /* ── HERO ── */
     .lb-hero {
@@ -121,15 +104,15 @@
     .lb-item:hover img  { transform:scale(1.04); }
 
     /* Layout específico — columnas de 12 */
-    .lb-item:nth-child(1) { grid-column:1/8;  aspect-ratio:16/10; }  /* grande izq */
-    .lb-item:nth-child(2) { grid-column:8/13; aspect-ratio:9/10; }   /* alto der */
-    .lb-item:nth-child(3) { grid-column:1/5;  aspect-ratio:3/4; }    /* vertical */
-    .lb-item:nth-child(4) { grid-column:5/9;  aspect-ratio:3/4; }    /* vertical */
-    .lb-item:nth-child(5) { grid-column:9/13; aspect-ratio:3/4; }    /* vertical */
-    .lb-item:nth-child(6) { grid-column:1/6;  aspect-ratio:9/10; }   /* mediano */
-    .lb-item:nth-child(7) { grid-column:6/13; aspect-ratio:16/10; }  /* grande */
-    .lb-item:nth-child(8) { grid-column:1/7;  aspect-ratio:16/10; }  /* grande */
-    .lb-item:nth-child(9) { grid-column:7/13; aspect-ratio:9/10; }   /* mediano */
+    .lb-item:nth-child(1) { grid-column:1/8;  aspect-ratio:16/10; }
+    .lb-item:nth-child(2) { grid-column:8/13; aspect-ratio:9/10; }
+    .lb-item:nth-child(3) { grid-column:1/5;  aspect-ratio:3/4; }
+    .lb-item:nth-child(4) { grid-column:5/9;  aspect-ratio:3/4; }
+    .lb-item:nth-child(5) { grid-column:9/13; aspect-ratio:3/4; }
+    .lb-item:nth-child(6) { grid-column:1/6;  aspect-ratio:9/10; }
+    .lb-item:nth-child(7) { grid-column:6/13; aspect-ratio:16/10; }
+    .lb-item:nth-child(8) { grid-column:1/7;  aspect-ratio:16/10; }
+    .lb-item:nth-child(9) { grid-column:7/13; aspect-ratio:9/10; }
 
     /* Overlay */
     .lb-overlay {
@@ -266,15 +249,10 @@
       .lb-item:nth-child(9) { grid-column:7/13; }
     }
     @media(max-width:768px) {
-      #header { padding:0 22px; height:68px; }
+      #header { padding:0 22px; height:70px; }
       .hdr-nav { display:none; }
-      .hdr-right { gap:16px; }
-      /* Logo a la izquierda en mobile */
-      .hdr-logo { position:static; transform:none; height:auto; margin-right:auto; }
-      .logo-header { height:56px !important; }
-      #header.scrolled .logo-header { height:44px !important; }
-      .lb-menu-toggle { display:flex; }
-      .lb-mobile-nav { top:68px; }
+      .logo-header { height: 60px !important; }
+      #header.scrolled .logo-header { height: 45px !important; }
       .lb-mosaic { grid-template-columns:1fr 1fr; gap:1px; }
       .lb-item { grid-column:auto !important; aspect-ratio:3/4 !important; }
       .lb-item:nth-child(1) { grid-column:1/-1 !important; aspect-ratio:16/9 !important; }
@@ -288,8 +266,8 @@
       .lb-mosaic { grid-template-columns:1fr; }
       footer { grid-template-columns:1fr; }
       .lb-title { font-size:48px; }
-      .logo-header { height:48px !important; }
-      #header.scrolled .logo-header { height:38px !important; }
+      .logo-header { height: 50px !important; }
+      #header.scrolled .logo-header { height: 40px !important; }
     }
   </style>
 </head>
@@ -298,16 +276,13 @@
 <div class="cur" id="cur"></div>
 <div class="cur-ring" id="curRing"></div>
 
-<!-- MOBILE NAV -->
-<nav class="lb-mobile-nav" id="lbMobileNav">
-  <a href="index.html">Inicio</a>
-  <a href="tienda.html">Tienda</a>
-  <a href="lookbook.html" class="active">Lookbook</a>
-  <a href="contacto.html">Contacto</a>
-</nav>
-
 <!-- HEADER -->
 <header id="header">
+  <div class="hdr-logo">
+    <a href="index.html">
+      <img src="images/LogoB&D.png" alt="Bara & Co" class="logo-header"/>
+    </a>
+  </div>
   <nav class="hdr-nav">
     <ul>
       <li><a href="index.html">Inicio</a></li>
@@ -316,20 +291,12 @@
       <li><a href="contacto.html">Contacto</a></li>
     </ul>
   </nav>
-  <div class="hdr-logo">
-    <a href="index.html">
-      <img src="images/LogoB&D.png" alt="Bara & Co" class="logo-header"/>
-    </a>
-  </div>
   <div class="hdr-right">
     <i class="fas fa-search" onclick="window.location.href='tienda.html'"></i>
     <div class="cart-w" onclick="toggleCart()">
       <i class="fas fa-shopping-bag"></i>
       <span class="cart-dot" id="cartDot">0</span>
     </div>
-    <button class="lb-menu-toggle" id="lbMenuToggle" aria-label="Menú">
-      <span></span><span></span><span></span>
-    </button>
   </div>
 </header>
 
@@ -554,33 +521,11 @@
 <script src="js/carrito.js"></script>
 
 <script>
-/* cursor — solo en desktop con mouse real */
+/* cursor */
 const cur=document.getElementById('cur'), ring=document.getElementById('curRing');
-if (cur && ring && window.matchMedia('(pointer:fine)').matches) {
-  let mx=0,my=0,rx=0,ry=0;
-  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
-  (function t(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(t);})();
-}
-
-/* mobile menu */
-const lbToggle = document.getElementById('lbMenuToggle');
-const lbNav = document.getElementById('lbMobileNav');
-if (lbToggle && lbNav) {
-  lbToggle.addEventListener('click', function() {
-    lbNav.classList.toggle('open');
-    this.classList.toggle('open');
-  });
-  document.addEventListener('click', function(e) {
-    if (!lbToggle.contains(e.target) && !lbNav.contains(e.target)) {
-      lbNav.classList.remove('open');
-      lbToggle.classList.remove('open');
-    }
-  });
-}
-
-/* header scroll */
-const hdr = document.getElementById('header');
-if (hdr) window.addEventListener('scroll', () => hdr.classList.toggle('scrolled', window.scrollY > 40), {passive:true});
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
+(function t(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(t);})();
 
 function suscribirNewsletter(){
   const v=document.getElementById('nlEmail').value;
