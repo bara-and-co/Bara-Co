@@ -1,789 +1,1168 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <!-- ============================================================
+       CAMBIO 1: Open Graph / SEO tags dinámicos
+       Se rellenan con JS una vez cargado el producto desde productos.json
+       ============================================================ -->
+  <title id="pageTitle">Producto · Bara & Co</title>
+  <meta name="description" id="metaDesc" content="Indumentaria exclusiva · Bara & Co"/>
+  <!-- Open Graph -->
+  <meta property="og:type"        content="product"/>
+  <meta property="og:site_name"   content="Bara & Co"/>
+  <meta property="og:title"       id="ogTitle"   content="Bara & Co"/>
+  <meta property="og:description" id="ogDesc"    content="Indumentaria exclusiva · Bara & Co"/>
+  <meta property="og:image"       id="ogImage"   content=""/>
+  <meta property="og:url"         id="ogUrl"     content=""/>
+  <!-- Twitter Card -->
+  <meta name="twitter:card"        content="summary_large_image"/>
+  <meta name="twitter:title"       id="twTitle"  content="Bara & Co"/>
+  <meta name="twitter:description" id="twDesc"   content="Indumentaria exclusiva · Bara & Co"/>
+  <meta name="twitter:image"       id="twImage"  content=""/>
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
+  <style>
+    :root {
+      --bg:      #0e0e0c;
+      --surface: #161614;
+      --border:  rgba(255,255,255,.07);
+      --text:    #f0ece4;
+      --muted:   #7a7872;
+      --accent:  #c9a96e;
+      --adk:     #9e7a3e;
+      --red:     #b83030;
+      --green:   #25d366;
+      --white:   #fff;
+      --serif:   'Playfair Display', serif;
+      --sans:    'Inter', sans-serif;
+      --ease:    cubic-bezier(.16,1,.3,1);
+    }
     
-    <!-- SEO Dinámico (se actualiza con JS) -->
-    <title id="meta-title">Producto · Bara & Co</title>
-    <meta name="description" id="meta-desc" content="Indumentaria urbana con diseño y confort. Bara & Co">
-    <meta name="keywords" content="ropa urbana, streetwear, argentina, moda, indumentaria">
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      background:var(--bg); color:var(--text);
+      font-family:var(--sans); font-size:15px; line-height:1.6;
+      padding-top:72px;
+    }
+    a { color:inherit; text-decoration:none; }
+    img { display:block; width:100%; object-fit:cover; }
     
-    <!-- Open Graph para redes sociales -->
-    <meta property="og:type" content="product">
-    <meta property="og:site_name" content="Bara & Co">
-    <meta property="og:title" id="og-title" content="Bara & Co">
-    <meta property="og:description" id="og-desc" content="Tienda online de indumentaria urbana">
-    <meta property="og:image" id="og-image" content="https://bara-and-co.github.io/Bara-Co/og-default.jpg">
-    <meta property="og:url" id="og-url" content="">
+    /* Header */
+    #header {
+      position:fixed; top:0; left:0; right:0; z-index:200;
+      display:flex; align-items:center; justify-content:space-between;
+      padding:0 48px; height:72px;
+      background:rgba(14,14,12,.93); backdrop-filter:blur(20px);
+      border-bottom:1px solid var(--border);
+    }
+    .logo-img { height:80px; width:auto; object-fit:contain; display:block; transition: height .3s; }
+    #header.scrolled .logo-img { height:64px; }
+    .header-nav ul { display:flex; gap:36px; }
+    .header-nav a {
+      font-size:11px; font-weight:500; letter-spacing:.12em; text-transform:uppercase;
+      color:var(--muted); position:relative; transition:color .25s;
+    }
+    .header-nav a::after {
+      content:''; position:absolute; bottom:-4px; left:0; right:0;
+      height:1px; background:var(--accent);
+      transform:scaleX(0); transform-origin:left; transition:transform .3s var(--ease);
+    }
+    .header-nav a:hover, .header-nav a.active { color:var(--text); }
+    .header-nav a:hover::after, .header-nav a.active::after { transform:scaleX(1); }
+    .header-icons { display:flex; align-items:center; gap:20px; }
+    .header-icons i { font-size:16px; cursor:pointer; color:var(--muted); transition:color .25s; }
+    .header-icons i:hover { color:var(--accent); }
+    .cart-icon-wrap { position:relative; cursor:pointer; }
+    .cart-badge {
+      position:absolute; top:-7px; right:-9px;
+      background:var(--accent); color:var(--bg);
+      font-size:9px; font-weight:700; width:17px; height:17px;
+      border-radius:50%; display:none; place-items:center;
+    }
+    .cart-badge.on { display:grid; }
     
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="favicon.png">
+    /* Breadcrumb */
+    .breadcrumb {
+      padding:24px 48px 0;
+      font-size:12px; color:var(--muted);
+    }
+    .breadcrumb a { color:var(--muted); }
+    .breadcrumb a:hover { color:var(--accent); }
     
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    /* Página de producto */
+    .product-page {
+      padding: 40px 48px 80px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .product-columns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: start;
+      margin-bottom: 80px;
+    }
+
+    .gallery {
+      position: sticky;
+      top: 100px;
+      height: fit-content;
+    }
     
-    <!-- Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    .main-image {
+      aspect-ratio: 3/4; 
+      overflow: hidden; 
+      border: 1px solid var(--border);
+      margin-bottom: 16px; 
+      cursor: zoom-in;
+      background: var(--surface);
+    }
     
-    <!-- Estilos -->
-    <link rel="stylesheet" href="global.css">
+    .main-image img {
+      width: 100%; 
+      height: 100%; 
+      object-fit: cover;
+      transition: transform .3s;
+    }
     
-    <style>
-        /* ========== ESTILOS ESPECÍFICOS DE PRODUCTO ========== */
-        .product-page {
-            min-height: 100vh;
-            padding-top: 80px;
-        }
-        
-        /* Breadcrumb */
-        .breadcrumb {
-            padding: 20px 0;
-            font-size: 13px;
-            color: var(--color-text-secondary);
-        }
-        .breadcrumb a {
-            color: var(--color-text-secondary);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        .breadcrumb a:hover {
-            color: var(--color-accent);
-        }
-        .breadcrumb span {
-            margin: 0 8px;
-            opacity: 0.5;
-        }
-        
-        /* Grid Principal */
-        .product-grid {
-            display: grid;
-            grid-template-columns: 1.2fr 1fr;
-            gap: 60px;
-            padding: 20px 0 80px;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-        
-        /* Galería de Imágenes */
-        .product-gallery {
-            position: sticky;
-            top: 100px;
-            align-self: start;
-        }
-        .main-image {
-            width: 100%;
-            aspect-ratio: 3/4;
-            background: var(--color-bg);
-            border-radius: var(--border-radius);
-            overflow: hidden;
-            margin-bottom: 16px;
-            cursor: zoom-in;
-        }
-        .main-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s;
-        }
-        .main-image:hover img {
-            transform: scale(1.05);
-        }
-        .thumbnail-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 12px;
-        }
-        .thumbnail {
-            aspect-ratio: 1;
-            border-radius: 4px;
-            overflow: hidden;
-            cursor: pointer;
-            border: 2px solid transparent;
-            transition: all 0.3s;
-        }
-        .thumbnail.active {
-            border-color: var(--color-accent);
-        }
-        .thumbnail img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        /* Info del Producto */
-        .product-info {
-            padding: 20px 0;
-        }
-        .product-brand {
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            color: var(--color-text-secondary);
-            margin-bottom: 12px;
-        }
-        .product-title {
-            font-family: var(--font-serif);
-            font-size: clamp(28px, 4vw, 42px);
-            font-weight: 400;
-            color: var(--color-text);
-            margin-bottom: 16px;
-            line-height: 1.2;
-        }
-        .product-price {
-            display: flex;
-            align-items: baseline;
-            gap: 16px;
-            margin-bottom: 24px;
-        }
-        .current-price {
-            font-size: 32px;
-            font-weight: 600;
-            color: var(--color-accent);
-        }
-        .old-price {
-            font-size: 18px;
-            text-decoration: line-through;
-            color: var(--color-text-secondary);
-        }
-        .discount-badge {
-            background: var(--color-red);
-            color: white;
-            font-size: 11px;
-            font-weight: 700;
-            padding: 4px 10px;
-            border-radius: 4px;
-            text-transform: uppercase;
-        }
-        
-        /* Stock Status */
-        .stock-status {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-bottom: 20px;
-            font-size: 13px;
-        }
-        .stock-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: var(--color-green);
-        }
-        .stock-dot.low {
-            background: var(--color-orange);
-        }
-        .stock-dot.out {
-            background: var(--color-red);
-        }
-        .stock-text {
-            color: var(--color-text-secondary);
-        }
-        .stock-text.out {
-            color: var(--color-red);
-            font-weight: 600;
-        }
-        
-        /* Selectores */
-        .selector-group {
-            margin-bottom: 24px;
-        }
-        .selector-label {
-            font-size: 13px;
-            font-weight: 500;
-            color: var(--color-text);
-            margin-bottom: 12px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .selector-label a {
-            color: var(--color-accent);
-            text-decoration: underline;
-            font-size: 12px;
-        }
-        .size-options {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-        .size-btn {
-            min-width: 56px;
-            height: 48px; /* Tap target 48px mínimo */
-            border: 1px solid var(--color-border);
-            background: transparent;
-            color: var(--color-text);
-            font-size: 14px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s;
-            border-radius: 4px;
-        }
-        .size-btn:hover:not(:disabled) {
-            border-color: var(--color-accent);
-            color: var(--color-accent);
-        }
-        .size-btn.selected {
-            background: var(--color-accent);
-            border-color: var(--color-accent);
-            color: var(--color-bg);
-        }
-        .size-btn:disabled {
-            opacity: 0.3;
-            cursor: not-allowed;
-            text-decoration: line-through;
-        }
-        
-        /* Color Options */
-        .color-options {
-            display: flex;
-            gap: 12px;
-        }
-        .color-btn {
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            border: 2px solid transparent;
-            cursor: pointer;
-            transition: all 0.3s;
-            position: relative;
-        }
-        .color-btn.selected {
-            border-color: var(--color-accent);
-            transform: scale(1.1);
-        }
-        .color-btn:disabled {
-            opacity: 0.3;
-            cursor: not-allowed;
-        }
-        
-        /* Botones de Acción */
-        .action-buttons {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            margin: 32px 0;
-        }
-        .btn-add-cart {
-            width: 100%;
-            height: 56px;
-            background: var(--color-accent);
-            color: var(--color-bg);
-            border: none;
-            font-size: 14px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            cursor: pointer;
-            transition: all 0.3s;
-            border-radius: var(--border-radius);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
-        .btn-add-cart:hover:not(:disabled) {
-            background: var(--color-accent-dark);
-            transform: translateY(-2px);
-        }
-        .btn-add-cart:disabled {
-            background: var(--color-border);
-            color: var(--color-text-secondary);
-            cursor: not-allowed;
-        }
-        .btn-whatsapp {
-            width: 100%;
-            height: 48px;
-            background: transparent;
-            color: var(--color-text);
-            border: 1px solid var(--color-border);
-            font-size: 13px;
-            cursor: pointer;
-            transition: all 0.3s;
-            border-radius: var(--border-radius);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-        .btn-whatsapp:hover {
-            border-color: var(--color-green);
-            color: var(--color-green);
-        }
-        
-        /* Trust Badges */
-        .trust-badges {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 16px;
-            padding: 20px 0;
-            border-top: 1px solid var(--color-border);
-            margin-top: 20px;
-        }
-        .trust-item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 12px;
-            color: var(--color-text-secondary);
-        }
-        .trust-item i {
-            color: var(--color-accent);
-            font-size: 14px;
-        }
-        .payment-logos {
-            display: flex;
-            gap: 12px;
-            align-items: center;
-            margin-top: 12px;
-        }
-        .payment-logos img {
-            height: 28px;
-            opacity: 0.8;
-            transition: opacity 0.3s;
-        }
-        .payment-logos img:hover {
-            opacity: 1;
-        }
-        
-        /* Detalles del Producto */
-        .product-details {
-            margin-top: 40px;
-            padding-top: 30px;
-            border-top: 1px solid var(--color-border);
-        }
-        .details-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 24px;
-            margin-top: 20px;
-        }
-        .detail-item h4 {
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--color-accent);
-            margin-bottom: 8px;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-        .detail-item p {
-            font-size: 14px;
-            color: var(--color-text-secondary);
-            line-height: 1.6;
-        }
-        
-        /* Related Products */
-        .related-section {
-            padding: 80px 0;
-            border-top: 1px solid var(--color-border);
-        }
-        .section-title {
-            font-family: var(--font-serif);
-            font-size: 28px;
-            text-align: center;
-            margin-bottom: 40px;
-        }
-        .related-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 24px;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-        
-        /* Modal Size Guide */
-        .modal-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.8);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-            padding: 20px;
-        }
-        .modal-overlay.active {
-            display: flex;
-        }
-        .modal-content {
-            background: var(--color-bg);
-            border: 1px solid var(--color-border);
-            border-radius: var(--border-radius);
-            max-width: 600px;
-            width: 100%;
-            max-height: 90vh;
-            overflow-y: auto;
-            padding: 40px;
-            position: relative;
-        }
-        .modal-close {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            font-size: 24px;
-            cursor: pointer;
-            color: var(--color-text-secondary);
-            transition: color 0.3s;
-        }
-        .modal-close:hover {
-            color: var(--color-accent);
-        }
-        .size-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        .size-table th,
-        .size-table td {
-            padding: 12px;
-            text-align: center;
-            border: 1px solid var(--color-border);
-            font-size: 13px;
-        }
-        .size-table th {
-            background: var(--color-bg);
-            font-weight: 600;
-            color: var(--color-accent);
-        }
-        
-        /* Image Zoom Modal */
-        .zoom-modal {
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.95);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            z-index: 1001;
-            cursor: zoom-out;
-        }
-        .zoom-modal.active {
-            display: flex;
-        }
-        .zoom-modal img {
-            max-width: 90%;
-            max-height: 90%;
-            object-fit: contain;
-        }
-        
-        /* ========== RESPONSIVE ========== */
-        @media (max-width: 1024px) {
-            .product-grid {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-            .product-gallery {
-                position: static;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .product-page {
-                padding-top: 70px;
-            }
-            .breadcrumb {
-                padding: 16px 0;
-                font-size: 12px;
-            }
-            .product-grid {
-                padding: 0 0 60px;
-                gap: 32px;
-            }
-            .main-image {
-                aspect-ratio: 1;
-            }
-            .thumbnail-grid {
-                grid-template-columns: repeat(4, 1fr);
-            }
-            .product-title {
-                font-size: 24px;
-            }
-            .current-price {
-                font-size: 26px;
-            }
-            .details-grid {
-                grid-template-columns: 1fr;
-                gap: 16px;
-            }
-            .trust-badges {
-                flex-direction: column;
-                gap: 12px;
-            }
-            .size-btn,
-            .color-btn {
-                min-height: 48px; /* Tap target mínimo */
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .product-title {
-                font-size: 22px;
-            }
-            .action-buttons {
-                position: fixed;
-                bottom: 0;
-                left: 0;
-                right: 0;
-                background: var(--color-bg);
-                padding: 16px 20px;
-                border-top: 1px solid var(--color-border);
-                z-index: 100;
-                margin: 0;
-            }
-            .product-info {
-                padding-bottom: 100px;
-            }
-            .modal-content {
-                padding: 30px 20px;
-            }
-        }
-    </style>
+    .main-image:hover img { 
+      transform: scale(1.02); 
+    }
+    
+    .thumbnails {
+      display: flex; 
+      gap: 8px; 
+      overflow-x: auto; 
+      padding-bottom: 8px;
+      scrollbar-width: thin;
+      scrollbar-color: var(--accent) var(--border);
+    }
+    .thumbnails::-webkit-scrollbar { height: 4px; }
+    .thumbnails::-webkit-scrollbar-track { background: var(--border); }
+    .thumbnails::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 4px; }
+    
+    .thumb {
+      width: 80px; 
+      height: 100px; 
+      flex-shrink: 0;
+      border: 1px solid var(--border); 
+      cursor: pointer;
+      transition: border-color .2s;
+      background: var(--surface);
+    }
+    .thumb:hover, .thumb.active { border-color: var(--accent); }
+    .thumb img { width: 100%; height: 100%; object-fit: cover; }
+    
+    /* Info producto */
+    .product-info { padding: 20px 0; }
+    
+    .product-category {
+      font-size:10px; letter-spacing:.2em; text-transform:uppercase;
+      color:var(--accent); margin-bottom:10px;
+    }
+    .product-title {
+      font-family:var(--serif); font-size:42px; font-weight:400;
+      margin-bottom:20px; line-height:1.1;
+    }
+    .product-price {
+      font-size:32px; color:var(--accent); margin-bottom:20px;
+    }
+    .product-price del {
+      font-size:20px; color:var(--muted); margin-right:10px;
+    }
+    .product-description {
+      font-size:15px; color:var(--muted); line-height:1.8;
+      margin-bottom:20px; padding-bottom:20px;
+      border-bottom:1px solid var(--border);
+    }
+
+    /* ============================================================
+       CAMBIO 4: Bloque de material / composición
+       ============================================================ */
+    .material-block {
+      margin-bottom: 24px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--border);
+    }
+    .material-title {
+      font-size: 10px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+    .material-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .material-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: var(--text);
+      background: rgba(255,255,255,.04);
+      border: 1px solid var(--border);
+      padding: 6px 12px;
+      border-radius: 20px;
+    }
+    .material-tag i { color: var(--accent); font-size: 11px; }
+    .care-icons {
+      display: flex;
+      gap: 14px;
+      margin-top: 12px;
+    }
+    .care-icon {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      font-size: 10px;
+      color: var(--muted);
+      text-align: center;
+      min-width: 44px;
+    }
+    .care-icon i { font-size: 18px; color: rgba(201,169,110,.6); }
+    
+    /* Selector de talle */
+    .size-label {
+      font-size:12px; font-weight:600; letter-spacing:.1em;
+      text-transform:uppercase; margin-bottom:12px;
+    }
+    .size-guide-link {
+      float:right; font-size:11px; color:var(--accent);
+      text-decoration:underline; cursor:pointer;
+    }
+    .size-options {
+      display:flex; flex-wrap:wrap; gap:8px; margin-bottom:24px;
+    }
+    .size-btn {
+      min-width:52px; padding:12px 18px;
+      border:1px solid var(--border); background:none;
+      color:var(--text); font-size:14px; cursor:pointer;
+      transition:all .2s;
+    }
+    .size-btn:hover { border-color:var(--accent); }
+    .size-btn.active {
+      background:var(--accent); border-color:var(--accent); color:var(--bg);
+    }
+    .size-btn.out-of-stock {
+      opacity:.3; cursor:not-allowed; text-decoration:line-through;
+    }
+    
+    /* Selector de color */
+    .color-label { font-size:12px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; margin:20px 0 12px; }
+    .color-options { display:flex; gap:10px; margin-bottom:30px; }
+    .color-btn {
+      width:36px; height:36px; border-radius:50%;
+      border:2px solid transparent; cursor:pointer;
+      transition:border-color .2s;
+    }
+    .color-btn:hover, .color-btn.active { border-color:var(--accent); }
+    
+    /* Botones de acción */
+    .action-buttons {
+      display:flex; gap:12px; margin-bottom:20px;
+    }
+    .btn {
+      flex:1; padding:15px; border:none; cursor:pointer;
+      font-family:var(--sans); font-size:12px; font-weight:600;
+      letter-spacing:.15em; text-transform:uppercase;
+      display:flex; align-items:center; justify-content:center; gap:8px;
+      transition:all .2s;
+    }
+    .btn-primary { background:var(--accent); color:var(--bg); }
+    .btn-primary:hover { background:var(--adk); }
+    .btn-secondary {
+      background:transparent; border:1px solid var(--border); color:var(--text);
+    }
+    .btn-secondary:hover { border-color:var(--accent); color:var(--accent); }
+
+    /* ============================================================
+       CAMBIO 2: Badges de medios de pago
+       ============================================================ */
+    .payment-badges {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      padding: 16px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      margin-bottom: 16px;
+    }
+    .payment-badges-label {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      color: var(--muted);
+      width: 100%;
+      margin-bottom: 4px;
+    }
+    .pay-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 28px;
+      padding: 0 10px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .04em;
+      white-space: nowrap;
+    }
+    .badge-visa      { background: #1a1f71; color: #fff; }
+    .badge-mc        { background: #eb001b; color: #fff; }
+    .badge-mc span   { color: #f79e1b; }
+    .badge-amex      { background: #016fd0; color: #fff; }
+    .badge-mp        { background: #009ee3; color: #fff; }
+    .badge-ssl {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-size: 11px; color: var(--muted);
+      border: 1px solid var(--border);
+      padding: 4px 10px; border-radius: 4px;
+    }
+    .badge-ssl i { color: #4db87a; font-size: 12px; }
+
+    /* Stock info — ahora incluye cambios y envío */
+    .stock-info {
+      display:flex; gap:24px; margin-bottom:20px;
+      padding:20px; background:var(--surface); border:1px solid var(--border);
+      flex-wrap: wrap;
+    }
+    .stock-item {
+      display:flex; align-items:center; gap:8px; font-size:13px;
+    }
+    .stock-item i { color:var(--accent); }
+
+    /* ============================================================
+       CAMBIO 3: Acordeón de política de cambios
+       ============================================================ */
+    .policy-accordion {
+      border: 1px solid var(--border);
+      margin-bottom: 16px;
+    }
+    .policy-item {
+      border-bottom: 1px solid var(--border);
+    }
+    .policy-item:last-child { border-bottom: none; }
+    .policy-trigger {
+      width: 100%;
+      background: none;
+      border: none;
+      color: var(--text);
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-family: var(--sans);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: color .2s;
+    }
+    .policy-trigger:hover { color: var(--accent); }
+    .policy-trigger i.icon-left { color: var(--accent); margin-right: 10px; font-size: 14px; }
+    .policy-trigger i.chevron { font-size: 11px; color: var(--muted); transition: transform .3s var(--ease); }
+    .policy-item.open .policy-trigger i.chevron { transform: rotate(180deg); }
+    .policy-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .4s var(--ease), padding .3s;
+    }
+    .policy-item.open .policy-body { max-height: 400px; }
+    .policy-content {
+      padding: 0 18px 16px;
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+    .policy-content strong { color: var(--text); }
+    .policy-content ul {
+      list-style: none;
+      margin-top: 8px;
+    }
+    .policy-content ul li {
+      padding: 3px 0;
+      display: flex;
+      gap: 8px;
+    }
+    .policy-content ul li::before {
+      content: '→';
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+
+    /* Productos relacionados */
+    .related {
+      padding: 60px 0 0;
+      border-top: 1px solid var(--border);
+    }
+    .related h3 {
+      font-family:var(--serif); font-size:28px; font-weight:400;
+      margin-bottom:30px;
+    }
+    .related-grid {
+      display:grid; grid-template-columns:repeat(4,1fr); gap:2px;
+    }
+    .related-card {
+      background:var(--surface); cursor:pointer; transition:transform .3s;
+    }
+    .related-card:hover { transform:translateY(-4px); }
+    .related-card img { aspect-ratio:3/4; object-fit:cover; width:100%; }
+    .related-info { padding:12px; }
+    .related-name { font-size:14px; margin-bottom:4px; }
+    .related-price { color:var(--accent); font-size:13px; }
+    
+    /* Modal imagen */
+    .image-modal {
+      position:fixed; inset:0; background:rgba(0,0,0,.95);
+      z-index:1000; display:none; place-items:center;
+    }
+    .image-modal.open { display:grid; }
+    .modal-img { max-width:90vw; max-height:90vh; }
+    .modal-close {
+      position:absolute; top:20px; right:20px;
+      background:none; border:1px solid var(--border); color:var(--text);
+      width:40px; height:40px; border-radius:50%; cursor:pointer;
+      font-size:20px; transition:all .2s;
+    }
+    .modal-close:hover { border-color:var(--accent); color:var(--accent); }
+    
+    /* Carrito overlay */
+    #overlay {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.7);
+      z-index: 998; opacity: 0; pointer-events: none;
+      transition: opacity 0.3s var(--ease); backdrop-filter: blur(4px);
+    }
+    #overlay.active { opacity: 1; pointer-events: all; }
+
+    #cartPanel {
+      position: fixed; top: 0; right: 0; bottom: 0;
+      width: min(420px, 100%); background: var(--surface);
+      border-left: 1px solid var(--border); z-index: 999;
+      transform: translateX(100%); transition: transform 0.4s var(--ease);
+      display: flex; flex-direction: column;
+      box-shadow: -5px 0 30px rgba(0,0,0,0.5);
+    }
+    #cartPanel.open { transform: translateX(0); }
+
+    .cart-header {
+      padding: 24px 20px; border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .cart-header h2 { font-family: var(--serif); font-size: 24px; font-weight: 400; }
+    .cart-header h2 span { font-size: 14px; color: var(--muted); margin-left: 8px; }
+    .close-cart {
+      background: none; border: 1px solid var(--border); color: var(--text);
+      width: 36px; height: 36px; border-radius: 50%; cursor: pointer;
+      font-size: 18px; transition: all 0.2s;
+    }
+    .close-cart:hover { border-color: var(--accent); color: var(--accent); }
+
+    .cart-items { flex: 1; overflow-y: auto; padding: 20px; }
+
+    .cart-item {
+      display: flex; gap: 16px; padding: 16px 0;
+      border-bottom: 1px solid var(--border); position: relative;
+    }
+    .cart-item:last-child { border-bottom: none; }
+    .item-image {
+      width: 80px; height: 100px; flex-shrink: 0;
+      background: var(--bg); border-radius: 4px; overflow: hidden;
+    }
+    .item-image img { width: 100%; height: 100%; object-fit: cover; }
+    .item-details { flex: 1; }
+    .item-details h4 { font-family: var(--serif); font-size: 16px; margin-bottom: 4px; }
+    .item-price { font-size: 14px; color: var(--accent); margin-bottom: 8px; }
+    .item-actions {
+      display: flex; align-items: center;
+      justify-content: space-between; margin-top: 8px;
+    }
+    .item-quantity {
+      display: flex; align-items: center; gap: 10px;
+      background: var(--bg); border-radius: 20px; padding: 4px 8px;
+    }
+    .qty-btn {
+      background: none; border: none; color: var(--text);
+      width: 24px; height: 24px; cursor: pointer; font-size: 16px; transition: color 0.2s;
+    }
+    .qty-btn:hover { color: var(--accent); }
+    .quantity { min-width: 24px; text-align: center; font-size: 14px; }
+    .remove-item {
+      background: none; border: none; color: var(--muted);
+      cursor: pointer; font-size: 16px; transition: color 0.2s; padding: 4px;
+    }
+    .remove-item:hover { color: var(--red); }
+
+    .cart-empty { text-align: center; padding: 60px 20px; color: var(--muted); }
+    .cart-empty i { font-size: 48px; margin-bottom: 16px; opacity: 0.5; }
+    .btn-empty {
+      display: inline-block; margin-top: 20px; padding: 12px 24px;
+      background: var(--accent); color: var(--bg);
+      font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+      transition: background 0.2s;
+    }
+    .btn-empty:hover { background: var(--adk); }
+
+    .cart-footer {
+      border-top: 1px solid var(--border); padding: 20px; background: var(--surface);
+    }
+    .subtotal {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 16px; font-size: 16px;
+    }
+    .subtotal span:last-child { font-family: var(--serif); font-size: 22px; color: var(--accent); }
+
+    .shipping-alert {
+      background: rgba(201,169,110,0.1); border: 1px solid var(--border);
+      border-radius: 8px; padding: 12px; margin-bottom: 16px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .shipping-alert i { color: var(--accent); font-size: 18px; }
+    .shipping-alert p { font-size: 13px; color: var(--muted); }
+
+    .btn-shipping {
+      width: 100%; padding: 14px; background: var(--accent); color: var(--bg);
+      border: none; font-size: 12px; font-weight: 600; letter-spacing: 0.15em;
+      text-transform: uppercase; cursor: pointer; transition: background 0.2s; margin-bottom: 10px;
+    }
+    .btn-shipping:hover { background: var(--adk); }
+
+    .payment-options { display: flex; flex-direction: column; gap: 10px; margin: 20px 0; }
+    .payment-btn {
+      width: 100%; padding: 16px; border: none; cursor: pointer;
+      font-size: 13px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+      display: flex; align-items: center; justify-content: center; gap: 10px; transition: all 0.2s;
+    }
+    .mercadopago-btn { background: #009ee3; color: #fff; }
+    .mercadopago-btn:hover { background: #0083c7; transform: translateY(-2px); }
+    .whatsapp-btn { background: #25d366; color: #fff; }
+    .whatsapp-btn:hover { background: #1da85c; transform: translateY(-2px); }
+
+    #cartNotification {
+      position: fixed; bottom: 30px; left: 50%;
+      transform: translateX(-50%) translateY(70px);
+      background: var(--surface); border: 1px solid var(--accent);
+      color: var(--text); padding: 14px 24px; border-radius: 40px; z-index: 1000;
+      display: flex; align-items: center; gap: 12px;
+      opacity: 0; transition: all 0.3s var(--ease);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+    #cartNotification.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+    #cartNotification i { color: var(--accent); font-size: 18px; }
+
+    .wa-float {
+      position: fixed; bottom: 26px; right: 26px; z-index: 300;
+      width: 52px; height: 52px; border-radius: 50%;
+      background: #25d366; border: none; cursor: pointer;
+      display: grid; place-items: center;
+      box-shadow: 0 4px 18px rgba(37,211,102,.35);
+      transition: transform .3s var(--ease);
+    }
+    .wa-float:hover { transform: scale(1.1); }
+    .wa-float i { font-size: 22px; color: #fff; }
+
+    /* Guía de talles */
+    .qv-backdrop {
+      position:fixed; inset:0; background:rgba(0,0,0,.72);
+      z-index:501; opacity:0; pointer-events:none; transition:opacity .3s;
+    }
+    .qv-backdrop.open { opacity:1; pointer-events:all; }
+    .sg-modal {
+      position:fixed; top:50%; left:50%; z-index:502;
+      width:min(580px,96vw); max-height:90vh; overflow-y:auto;
+      background:var(--surface); border:1px solid var(--border);
+      transform:translate(-50%,-52%) scale(.97);
+      opacity:0; pointer-events:none;
+      transition:transform .35s var(--ease), opacity .3s;
+      padding:32px 28px;
+    }
+    .sg-modal.open { transform:translate(-50%,-50%) scale(1); opacity:1; pointer-events:all; }
+    .sg-modal h2 { font-family:var(--serif); font-size:24px; font-weight:400; margin-bottom:20px; }
+    .sg-table { width:100%; border-collapse:collapse; font-size:13px; margin-bottom:20px; }
+    .sg-table th {
+      background:rgba(255,255,255,.05); padding:10px 14px; text-align:left;
+      font-size:10px; letter-spacing:.1em; text-transform:uppercase;
+      color:var(--muted); border-bottom:1px solid var(--border);
+    }
+    .sg-table td { padding:10px 14px; border-bottom:1px solid var(--border); }
+    .sg-close {
+      position:absolute; top:14px; right:16px; background:none;
+      border:1px solid var(--border); color:var(--text); cursor:pointer;
+      width:30px; height:30px; border-radius:50%; display:grid; place-items:center;
+      font-size:16px; transition:border-color .2s;
+    }
+    .sg-close:hover { border-color:var(--accent); }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      20% { transform: translateX(-6px); }
+      40% { transform: translateX(6px); }
+      60% { transform: translateX(-4px); }
+      80% { transform: translateX(4px); }
+    }
+
+    /* Responsive */
+    @media (max-width:900px) {
+      #header { padding:0 22px; }
+      .header-nav ul { display:none; }
+      .product-page { padding: 20px; }
+      .product-columns { grid-template-columns: 1fr; gap: 20px; margin-bottom: 40px; }
+      .gallery { position: relative; top: 0; margin-bottom: 20px; }
+      .related-grid { grid-template-columns:repeat(2,1fr); }
+      .breadcrumb { padding:24px 22px 0; }
+      .action-buttons { flex-direction: column; }
+      .stock-info { flex-direction: column; gap: 12px; }
+    }
+    @media (max-width:480px) {
+      .product-title { font-size:32px; }
+      .related-grid { grid-template-columns:1fr; }
+    }
+    @media (hover: none) and (pointer: coarse) {
+      .cursor, .custom-cursor, .cursor-dot, .cursor-follower, [class*="cursor"] {
+        display: none !important;
+      }
+    }
+  </style>
 </head>
 <body>
-    <!-- Header (se carga dinámicamente o incluir desde index.html) -->
-    <header id="header" class="header">
-        <div class="container header-container">
-            <a href="index.html" class="logo">
-                <img src="logo.png" alt="Bara & Co" class="logo-img">
-            </a>
-            <nav class="nav-menu">
-                <a href="tienda.html?categoria=hombre" class="nav-link">Hombre</a>
-                <a href="tienda.html?categoria=mujer" class="nav-link">Mujer</a>
-                <a href="tienda.html?categoria=accesorios" class="nav-link">Accesorios</a>
-                <a href="tienda.html?categoria=outlet" class="nav-link">Outlet</a>
-            </nav>
-            <div class="header-icons">
-                <i class="fas fa-search" id="search-icon"></i>
-                <div class="cart-icon-wrap" id="cart-icon">
-                    <i class="fas fa-shopping-bag"></i>
-                    <span class="cart-badge" id="cart-count">0</span>
-                </div>
-            </div>
-        </div>
-    </header>
 
-    <!-- Página de Producto -->
-    <main class="product-page">
-        <div class="container">
-            <!-- Breadcrumb -->
-            <nav class="breadcrumb" id="breadcrumb">
-                <a href="index.html">Inicio</a>
-                <span>/</span>
-                <a href="tienda.html" id="bc-category">Tienda</a>
-                <span>/</span>
-                <span id="bc-product">Producto</span>
-            </nav>
+<header id="header">
+  <a href="index.html"><img src="images/LogoB&D.png" alt="Bara & Co" class="logo-img"/></a>
+  <nav class="header-nav">
+    <ul>
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="tienda.html" class="active">Tienda</a></li>
+      <li><a href="lookbook.html">Lookbook</a></li>
+      <li><a href="contacto.html">Contacto</a></li>
+    </ul>
+  </nav>
+  <div class="header-icons">
+    <i class="fas fa-search" onclick="window.location.href='tienda.html'"></i>
+    <div class="cart-icon-wrap" onclick="toggleCart()">
+      <i class="fas fa-shopping-bag"></i>
+      <span class="cart-badge cart-count">0</span>
+    </div>
+  </div>
+</header>
 
-            <!-- Grid Principal -->
-            <div class="product-grid">
-                <!-- Galería -->
-                <div class="product-gallery">
-                    <div class="main-image" id="main-image-container">
-                        <img src="" alt="" id="main-image" loading="eager">
-                    </div>
-                    <div class="thumbnail-grid" id="thumbnail-grid">
-                        <!-- Thumbnails generados dinámicamente -->
-                    </div>
-                </div>
+<!-- Breadcrumb -->
+<div class="breadcrumb">
+  <a href="index.html">Inicio</a> /
+  <a href="tienda.html">Tienda</a> /
+  <span id="breadcrumbCat"></span> /
+  <span id="breadcrumbName"></span>
+</div>
 
-                <!-- Info del Producto -->
-                <div class="product-info">
-                    <div class="product-brand">Bara & Co</div>
-                    <h1 class="product-title" id="product-title">Cargando...</h1>
-                    
-                    <!-- Precio -->
-                    <div class="product-price">
-                        <span class="current-price" id="current-price">$0</span>
-                        <span class="old-price" id="old-price"></span>
-                        <span class="discount-badge" id="discount-badge" style="display:none"></span>
-                    </div>
+<!-- Página de producto -->
+<div class="product-page">
+  <div class="product-columns">
 
-                    <!-- Stock Status -->
-                    <div class="stock-status" id="stock-status">
-                        <div class="stock-dot" id="stock-dot"></div>
-                        <span class="stock-text" id="stock-text">Verificando stock...</span>
-                    </div>
-
-                    <!-- Selector de Talles -->
-                    <div class="selector-group">
-                        <div class="selector-label">
-                            <span>Talle</span>
-                            <a href="#" id="size-guide-link">Guía de talles</a>
-                        </div>
-                        <div class="size-options" id="size-options">
-                            <!-- Talles generados dinámicamente -->
-                        </div>
-                    </div>
-
-                    <!-- Selector de Colores (si aplica) -->
-                    <div class="selector-group" id="color-group" style="display:none">
-                        <div class="selector-label">Color</div>
-                        <div class="color-options" id="color-options">
-                            <!-- Colores generados dinámicamente -->
-                        </div>
-                    </div>
-
-                    <!-- Botones de Acción -->
-                    <div class="action-buttons">
-                        <button class="btn-add-cart" id="btn-add-cart">
-                            <i class="fas fa-shopping-bag"></i>
-                            <span>Agregar al carrito</span>
-                        </button>
-                        <button class="btn-whatsapp" id="btn-whatsapp">
-                            <i class="fab fa-whatsapp"></i>
-                            <span>Consultar por WhatsApp</span>
-                        </button>
-                    </div>
-
-                    <!-- Trust Badges -->
-                    <div class="trust-badges">
-                        <div class="trust-item">
-                            <i class="fas fa-truck"></i>
-                            <span>Envíos a todo el país</span>
-                        </div>
-                        <div class="trust-item">
-                            <i class="fas fa-undo"></i>
-                            <span>Cambios hasta 30 días</span>
-                        </div>
-                        <div class="trust-item">
-                            <i class="fas fa-shield-alt"></i>
-                            <span>Compra protegida</span>
-                        </div>
-                        <div class="trust-item">
-                            <i class="fas fa-credit-card"></i>
-                            <span>Hasta 3 cuotas sin interés</span>
-                        </div>
-                    </div>
-                    <div class="payment-logos">
-                        <img src="https://http2.mlstatic.com/storage/logos-mp/64x32.png" alt="MercadoPago">
-                        <img src="https://http2.mlstatic.com/storage/logos-mp/visa-64x32.png" alt="Visa">
-                        <img src="https://http2.mlstatic.com/storage/logos-mp/mastercard-64x32.png" alt="Mastercard">
-                    </div>
-
-                    <!-- Detalles del Producto -->
-                    <div class="product-details">
-                        <div class="details-grid">
-                            <div class="detail-item">
-                                <h4>🧵 Composición</h4>
-                                <p id="prod-composicion">Algodón 95%, Elastano 5%</p>
-                            </div>
-                            <div class="detail-item">
-                                <h4>🧼 Cuidados</h4>
-                                <p id="prod-cuidado">Lavar a mano, no usar blanqueador</p>
-                            </div>
-                            <div class="detail-item">
-                                <h4>🚚 Envío</h4>
-                                <p>2-5 días hábiles · Gratis desde $80.000</p>
-                            </div>
-                            <div class="detail-item">
-                                <h4>🔄 Cambios</h4>
-                                <p>30 días · <a href="pages/cambios.html" style="color:var(--color-accent)">Ver política</a></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Sección Productos Relacionados -->
-        <section class="related-section">
-            <div class="container">
-                <h2 class="section-title">También te puede gustar</h2>
-                <div class="related-grid" id="related-grid">
-                    <!-- Productos relacionados generados dinámicamente -->
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Modal Guía de Talles -->
-    <div class="modal-overlay" id="size-guide-modal">
-        <div class="modal-content">
-            <span class="modal-close" id="size-guide-close">&times;</span>
-            <h3 style="font-family:var(--font-serif);font-size:24px;margin-bottom:20px">Guía de Talles</h3>
-            
-            <h4 style="margin:20px 0 10px;font-size:16px;color:var(--color-accent)">Hombre</h4>
-            <table class="size-table">
-                <thead>
-                    <tr>
-                        <th>Talle</th>
-                        <th>Pecho (cm)</th>
-                        <th>Cintura (cm)</th>
-                        <th>Cadera (cm)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr><td>S</td><td>88-92</td><td>76-80</td><td>88-92</td></tr>
-                    <tr><td>M</td><td>92-96</td><td>80-84</td><td>92-96</td></tr>
-                    <tr><td>L</td><td>96-100</td><td>84-88</td><td>96-100</td></tr>
-                    <tr><td>XL</td><td>100-104</td><td>88-92</td><td>100-104</td></tr>
-                </tbody>
-            </table>
-
-            <h4 style="margin:20px 0 10px;font-size:16px;color:var(--color-accent)">Mujer</h4>
-            <table class="size-table">
-                <thead>
-                    <tr>
-                        <th>Talle</th>
-                        <th>Pecho (cm)</th>
-                        <th>Cintura (cm)</th>
-                        <th>Cadera (cm)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr><td>XS</td><td>76-80</td><td>60-64</td><td>84-88</td></tr>
-                    <tr><td>S</td><td>80-84</td><td>64-68</td><td>88-92</td></tr>
-                    <tr><td>M</td><td>84-88</td><td>68-72</td><td>92-96</td></tr>
-                    <tr><td>L</td><td>88-92</td><td>72-76</td><td>96-100</td></tr>
-                </tbody>
-            </table>
-        </div>
+    <!-- Galería -->
+    <div class="gallery">
+      <div class="main-image" id="mainImage" onclick="openImageModal()">
+        <img src="" alt="" id="currentImage" style="width:100%;height:100%;object-fit:cover;"/>
+      </div>
+      <div class="thumbnails" id="thumbnails"></div>
     </div>
 
-    <!-- Modal Zoom de Imagen -->
-    <div class="zoom-modal" id="zoom-modal">
-        <img src="" alt="" id="zoom-image">
-    </div>
+    <!-- Info producto -->
+    <div class="product-info">
+      <p class="product-category" id="productCategory"></p>
+      <h1 class="product-title" id="productName"></h1>
+      <div class="product-price" id="productPrice"></div>
+      <p class="product-description" id="productDescription"></p>
 
-    <!-- Footer (incluir desde index.html o cargar dinámicamente) -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <h4>Bara & Co</h4>
-                    <p>Indumentaria urbana con diseño y confort.</p>
-                    <p style="margin-top:10px;font-size:13px;color:var(--color-text-secondary)">Ing. Olmos 139 – Jesús María, Córdoba</p>
-                </div>
-                <div class="footer-col">
-                    <h4>Ayuda</h4>
-                    <a href="pages/envios.html">Envíos</a>
-                    <a href="pages/cambios.html">Cambios y devoluciones</a>
-                    <a href="pages/faq.html">Preguntas frecuentes</a>
-                    <a href="contacto.html">Contacto</a>
-                </div>
-                <div class="footer-col">
-                    <h4>Legal</h4>
-                    <a href="pages/terminos.html">Términos y condiciones</a>
-                    <a href="pages/privacidad.html">Política de privacidad</a>
-                </div>
-                <div class="footer-col">
-                    <h4>Seguinos</h4>
-                    <div class="social-links">
-                        <a href="https://instagram.com/bara.and.co" target="_blank"><i class="fab fa-instagram"></i></a>
-                        <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
-                    </div>
-                </div>
+      <!-- CAMBIO 4: Material / composición -->
+      <div class="material-block" id="materialBlock" style="display:none;">
+        <div class="material-title">Composición &amp; cuidados</div>
+        <div class="material-tags" id="materialTags"></div>
+        <div class="care-icons" id="careIcons"></div>
+      </div>
+
+      <!-- Selector de talle -->
+      <div class="size-label">
+        TALLE
+        <span class="size-guide-link" onclick="openSizeGuide()">Guía de talles</span>
+      </div>
+      <div class="size-options" id="sizeOptions"></div>
+
+      <!-- Selector de color -->
+      <div id="colorSection" style="display:none;">
+        <div class="color-label">COLOR</div>
+        <div class="color-options" id="colorOptions"></div>
+      </div>
+
+      <!-- Botones -->
+      <div class="action-buttons">
+        <button class="btn btn-primary" id="addToCartBtn" onclick="handleAddToCart()">
+          <i class="fas fa-shopping-bag"></i> AGREGAR AL CARRITO
+        </button>
+        <button class="btn btn-secondary" id="whatsappBtn">
+          <i class="fab fa-whatsapp"></i> CONSULTAR
+        </button>
+      </div>
+
+      <!-- CAMBIO 2: Badges de medios de pago -->
+      <div class="payment-badges">
+        <div class="payment-badges-label">Medios de pago aceptados</div>
+        <span class="pay-badge badge-visa">VISA</span>
+        <span class="pay-badge badge-mc">Master<span>card</span></span>
+        <span class="pay-badge badge-amex">AMEX</span>
+        <span class="pay-badge badge-mp"><i class="fas fa-tag" style="font-size:10px;margin-right:4px;"></i>MercadoPago</span>
+        <span class="badge-ssl"><i class="fas fa-lock"></i> Compra protegida</span>
+      </div>
+
+      <!-- Stock y envíos -->
+      <div class="stock-info">
+        <div class="stock-item"><i class="fas fa-truck"></i> Envío gratis +$80.000</div>
+        <div class="stock-item"><i class="fas fa-undo-alt"></i> Cambios 30 días</div>
+        <div class="stock-item"><i class="fas fa-shield-alt"></i> Compra segura</div>
+      </div>
+
+      <!-- CAMBIO 3: Acordeón de políticas inline -->
+      <div class="policy-accordion">
+
+        <div class="policy-item" id="policyEnvio">
+          <button class="policy-trigger" onclick="togglePolicy('policyEnvio')">
+            <span><i class="fas fa-truck icon-left"></i>Envíos</span>
+            <i class="fas fa-chevron-down chevron"></i>
+          </button>
+          <div class="policy-body">
+            <div class="policy-content">
+              <strong>Envío gratis</strong> en compras mayores a $80.000 a todo el país.
+              <ul>
+                <li>AMBA: 2–4 días hábiles</li>
+                <li>Interior: 4–7 días hábiles (según zona)</li>
+                <li>Retiro en showroom: coordinar por WhatsApp</li>
+                <li>Seguimiento de envío por email una vez despachado</li>
+              </ul>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 Bara & Co. Todos los derechos reservados.</p>
-            </div>
+          </div>
         </div>
-    </footer>
 
-    <!-- Scripts -->
-    <script src="main.js"></script>
-    <script src="producto.js"></script>
+        <div class="policy-item" id="policyCambios">
+          <button class="policy-trigger" onclick="togglePolicy('policyCambios')">
+            <span><i class="fas fa-undo-alt icon-left"></i>Cambios y devoluciones</span>
+            <i class="fas fa-chevron-down chevron"></i>
+          </button>
+          <div class="policy-body">
+            <div class="policy-content">
+              Tenés <strong>30 días</strong> desde que recibís el producto para cambiar por talle, color u otro artículo.
+              <ul>
+                <li>Prenda sin uso, con etiqueta original y en su packaging</li>
+                <li>El costo de envío del cambio está a cargo del cliente</li>
+                <li>Devoluciones de dinero: solo en caso de producto defectuoso</li>
+                <li>Iniciá el proceso por WhatsApp o <a href="contacto.html" style="color:var(--accent);">contacto</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="policy-item" id="policyPago">
+          <button class="policy-trigger" onclick="togglePolicy('policyPago')">
+            <span><i class="fas fa-shield-alt icon-left"></i>Seguridad de pago</span>
+            <i class="fas fa-chevron-down chevron"></i>
+          </button>
+          <div class="policy-body">
+            <div class="policy-content">
+              Todas las transacciones son procesadas por <strong>MercadoPago</strong>, con encriptación SSL de 256 bits. 
+              Bara &amp; Co nunca almacena datos de tu tarjeta.
+              <ul>
+                <li>Tarjetas de crédito y débito (Visa, Mastercard, Amex)</li>
+                <li>Pago en cuotas disponible según banco</li>
+                <li>Transferencia bancaria / Mercado Pago saldo</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- fin policy-accordion -->
+
+    </div><!-- fin product-info -->
+  </div><!-- fin product-columns -->
+
+  <!-- Productos relacionados -->
+  <div class="related">
+    <h3>También te puede gustar</h3>
+    <div class="related-grid" id="relatedProducts"></div>
+  </div>
+
+</div><!-- fin product-page -->
+
+<!-- Modal imagen ampliada -->
+<div class="image-modal" id="imageModal" onclick="closeImageModal()">
+  <button class="modal-close">×</button>
+  <img src="" alt="" class="modal-img" id="modalImage"/>
+</div>
+
+<!-- Guía de talles modal -->
+<div class="qv-backdrop" id="sgBackdrop" onclick="closeSizeGuide()"></div>
+<div class="sg-modal" id="sgModal">
+  <button class="sg-close" onclick="closeSizeGuide()">×</button>
+  <h2>Guía de Talles</h2>
+  <h4 style="font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;">Ropa Hombre</h4>
+  <table class="sg-table">
+    <thead><tr><th>Talle</th><th>Pecho (cm)</th><th>Cintura (cm)</th><th>Cadera (cm)</th></tr></thead>
+    <tbody>
+      <tr><td>S</td><td>88–92</td><td>74–78</td><td>88–92</td></tr>
+      <tr><td>M</td><td>93–98</td><td>79–84</td><td>93–98</td></tr>
+      <tr><td>L</td><td>99–104</td><td>85–90</td><td>99–104</td></tr>
+      <tr><td>XL</td><td>105–112</td><td>91–98</td><td>105–112</td></tr>
+    </tbody>
+  </table>
+  <h4 style="font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;">Ropa Mujer</h4>
+  <table class="sg-table">
+    <thead><tr><th>Talle</th><th>Pecho (cm)</th><th>Cintura (cm)</th><th>Cadera (cm)</th></tr></thead>
+    <tbody>
+      <tr><td>XS</td><td>80–84</td><td>62–66</td><td>84–88</td></tr>
+      <tr><td>S</td><td>85–88</td><td>67–70</td><td>89–92</td></tr>
+      <tr><td>M</td><td>89–93</td><td>71–75</td><td>93–97</td></tr>
+      <tr><td>L</td><td>94–99</td><td>76–81</td><td>98–103</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Carrito -->
+<div id="overlay" class="overlay" onclick="toggleCart()"></div>
+<div id="cartPanel" class="cart-panel">
+  <div class="cart-header">
+    <h2>Carrito <span class="cart-count">0</span></h2>
+    <button class="close-cart" onclick="toggleCart()"><i class="fas fa-times"></i></button>
+  </div>
+  <div class="cart-items">
+    <div class="cart-empty">
+      <i class="fas fa-shopping-bag"></i>
+      <p>Tu carrito está vacío</p>
+      <a href="tienda.html" class="btn-empty" onclick="toggleCart(); return false;">Explorar productos</a>
+    </div>
+  </div>
+  <div class="cart-footer"></div>
+</div>
+
+<!-- Notificación -->
+<div id="cartNotification">
+  <i class="fas fa-check-circle"></i>
+  <span>Producto agregado</span>
+</div>
+
+<!-- WA Float -->
+<button class="wa-float" onclick="window.open('https://wa.me/5493525614281?text=Hola!%20Quiero%20consultar%20sobre%20un%20producto','_blank')" title="Consultar por WhatsApp">
+  <i class="fab fa-whatsapp"></i>
+</button>
+
+<script src="js/main.js"></script>
+<script src="js/carrito.js"></script>
+
+<script>
+// ========== VARIABLES GLOBALES ==========
+let productos = [];
+let currentProduct = null;
+let selectedSize = null;
+let selectedColor = null;
+
+const urlParams = new URLSearchParams(window.location.search);
+const productId = urlParams.get('id');
+
+// ========== CARGAR PRODUCTOS ==========
+async function cargarProductos() {
+  try {
+    const response = await fetch('productos.json?t=' + Date.now());
+    if (!response.ok) throw new Error('No se pudo cargar productos.json');
+    productos = await response.json();
+    currentProduct = productos.find(p => p.id === productId && p.activo !== false);
+    if (!currentProduct) { window.location.href = 'tienda.html'; return; }
+    renderizarProducto();
+    actualizarMetaTags();
+    cargarRelacionados();
+  } catch (error) {
+    console.error('Error:', error);
+    window.location.href = 'tienda.html';
+  }
+}
+
+// ========== CAMBIO 1: Actualizar OG/meta tags con datos reales del producto ==========
+function actualizarMetaTags() {
+  if (!currentProduct) return;
+
+  const titulo  = `${currentProduct.nombre} — Bara & Co | $${currentProduct.precio.toLocaleString('es-AR')}`;
+  const desc    = currentProduct.descripcion
+                  || `${currentProduct.nombre} · ${currentProduct.categoria} · Bara & Co. Comprá online con envío a todo el país.`;
+  const imagen  = currentProduct.imagen
+                  || (currentProduct.imagenes && currentProduct.imagenes[0]) || '';
+  const url     = window.location.href;
+
+  document.getElementById('pageTitle').textContent      = titulo;
+  document.getElementById('metaDesc').content           = desc;
+  document.getElementById('ogTitle').content            = titulo;
+  document.getElementById('ogDesc').content             = desc;
+  document.getElementById('ogImage').content            = imagen;
+  document.getElementById('ogUrl').content              = url;
+  document.getElementById('twTitle').content            = titulo;
+  document.getElementById('twDesc').content             = desc;
+  document.getElementById('twImage').content            = imagen;
+}
+
+// ========== RENDERIZAR PRODUCTO ==========
+function renderizarProducto() {
+  // Breadcrumb
+  document.getElementById('breadcrumbCat').textContent  = currentProduct.categoria;
+  document.getElementById('breadcrumbName').textContent = currentProduct.nombre;
+
+  // Imágenes
+  const imagenes = currentProduct.imagenes || [currentProduct.imagen];
+  document.getElementById('currentImage').src = imagenes[0];
+  document.getElementById('currentImage').alt = currentProduct.nombre;
+
+  const thumbs = document.getElementById('thumbnails');
+  thumbs.innerHTML = '';
+  imagenes.forEach((img, i) => {
+    const div = document.createElement('div');
+    div.className = 'thumb' + (i === 0 ? ' active' : '');
+    div.innerHTML = `<img src="${img}" alt="${currentProduct.nombre}"/>`;
+    div.onclick = () => cambiarImagen(i);
+    thumbs.appendChild(div);
+  });
+
+  // Info básica
+  document.getElementById('productCategory').textContent =
+    `${currentProduct.categoria} · ${currentProduct.subcategoria || ''}`;
+  document.getElementById('productName').textContent = currentProduct.nombre;
+
+  // Precio
+  const priceEl = document.getElementById('productPrice');
+  if (currentProduct.precioAnterior) {
+    const descuento = Math.round((1 - currentProduct.precio / currentProduct.precioAnterior) * 100);
+    priceEl.innerHTML = `
+      <del>$${currentProduct.precioAnterior.toLocaleString('es-AR')}</del>
+      $${currentProduct.precio.toLocaleString('es-AR')}
+      <span style="background:var(--red);color:#fff;font-size:14px;padding:3px 8px;margin-left:10px;">-${descuento}%</span>`;
+  } else {
+    priceEl.textContent = '$' + currentProduct.precio.toLocaleString('es-AR');
+  }
+
+  // Descripción
+  document.getElementById('productDescription').textContent =
+    currentProduct.descripcion || 'Prenda de alta calidad, diseño exclusivo Bara & Co. Consultá disponibilidad de talles.';
+
+  // CAMBIO 4: Material / composición
+  // Buscamos campos: material, composicion, cuidados en el JSON del producto
+  const mat  = currentProduct.material  || currentProduct.composicion || null;
+  const care = currentProduct.cuidados  || null;
+  if (mat || care) {
+    document.getElementById('materialBlock').style.display = 'block';
+
+    if (mat) {
+      const tagsEl = document.getElementById('materialTags');
+      // Si es un string, lo mostramos como un solo tag; si es array, uno por elemento
+      const mats = Array.isArray(mat) ? mat : [mat];
+      mats.forEach(m => {
+        const span = document.createElement('span');
+        span.className = 'material-tag';
+        span.innerHTML = `<i class="fas fa-tag"></i>${m}`;
+        tagsEl.appendChild(span);
+      });
+    }
+
+    if (care) {
+      const careEl = document.getElementById('careIcons');
+      // Mapa de íconos para tipos de cuidado comunes
+      const iconMap = {
+        'lavar a mano':    { icon: 'fa-hands-wash',   label: 'Lavar a mano' },
+        'no secar':        { icon: 'fa-ban',           label: 'No secadora' },
+        'no planchar':     { icon: 'fa-ban',           label: 'No planchar' },
+        'planchar':        { icon: 'fa-tshirt',        label: 'Planchar' },
+        'lavar frio':      { icon: 'fa-snowflake',     label: 'Lavar frío' },
+        'no blanquear':    { icon: 'fa-ban',           label: 'No blanquear' },
+        'limpieza seca':   { icon: 'fa-leaf',          label: 'Limpieza seca' },
+        'lavar maquina':   { icon: 'fa-tshirt',        label: 'Máquina 30°' },
+      };
+      const cares = Array.isArray(care) ? care : [care];
+      cares.forEach(c => {
+        const key  = c.toLowerCase();
+        const info = iconMap[key] || { icon: 'fa-info-circle', label: c };
+        const div  = document.createElement('div');
+        div.className = 'care-icon';
+        div.innerHTML = `<i class="fas ${info.icon}"></i><span>${info.label}</span>`;
+        careEl.appendChild(div);
+      });
+    }
+  }
+
+  // Talles
+  const talles = currentProduct.tallesDisponibles || currentProduct.talles || [];
+  const sizeOptions = document.getElementById('sizeOptions');
+  sizeOptions.innerHTML = '';
+  talles.forEach(talle => {
+    const btn = document.createElement('button');
+    btn.className = 'size-btn';
+    btn.textContent = talle;
+    btn.onclick = () => seleccionarTalle(talle, btn);
+    sizeOptions.appendChild(btn);
+  });
+
+  // Colores
+  if (currentProduct.colores && currentProduct.colores.length > 0) {
+    document.getElementById('colorSection').style.display = 'block';
+    const colorOptions = document.getElementById('colorOptions');
+    colorOptions.innerHTML = '';
+    currentProduct.colores.forEach(color => {
+      const btn = document.createElement('button');
+      btn.className = 'color-btn';
+      btn.style.backgroundColor = getColorCode(color);
+      btn.title = color;
+      btn.onclick = () => seleccionarColor(color, btn);
+      colorOptions.appendChild(btn);
+    });
+  }
+
+  const addBtn = document.getElementById('addToCartBtn');
+  addBtn.dataset.id     = currentProduct.id;
+  addBtn.dataset.nombre = currentProduct.nombre;
+  addBtn.dataset.precio = currentProduct.precio;
+  addBtn.dataset.imagen = currentProduct.imagen;
+}
+
+// ========== FUNCIONES DE INTERACCIÓN ==========
+function cambiarImagen(index) {
+  const imagenes = currentProduct.imagenes || [currentProduct.imagen];
+  document.getElementById('currentImage').src = imagenes[index];
+  document.querySelectorAll('.thumb').forEach((t, i) => t.classList.toggle('active', i === index));
+}
+
+function seleccionarTalle(talle, btn) {
+  document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  selectedSize = talle;
+}
+
+function seleccionarColor(color, btn) {
+  document.querySelectorAll('.color-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  selectedColor = color;
+}
+
+function getColorCode(color) {
+  const c = {
+    'Negro':'#000000','Blanco':'#FFFFFF','Azul':'#0066cc','Rojo':'#cc0000',
+    'Verde':'#00cc66','Amarillo':'#ffcc00','Gris':'#808080','Beige':'#f5f5dc',
+    'Camel':'#c19a6b','Mostaza':'#ffdb58','Lila':'#c8a2c8','Fucsia':'#ff00ff',
+    'Arena':'#f4e9d8',
+  };
+  return c[color] || '#cccccc';
+}
+
+// ========== AGREGAR AL CARRITO ==========
+function handleAddToCart() {
+  if (!currentProduct) return;
+  const talles = currentProduct.tallesDisponibles || currentProduct.talles || [];
+  if (talles.length > 0 && talles[0] !== 'Unico' && !selectedSize) {
+    const sizeOptions = document.getElementById('sizeOptions');
+    sizeOptions.style.animation = 'none';
+    sizeOptions.offsetHeight;
+    sizeOptions.style.animation = 'shake 0.4s ease';
+    let errorMsg = document.getElementById('sizeError');
+    if (!errorMsg) {
+      errorMsg = document.createElement('p');
+      errorMsg.id = 'sizeError';
+      errorMsg.style.cssText = 'color:#b83030;font-size:13px;margin-top:6px;';
+      sizeOptions.parentNode.insertBefore(errorMsg, sizeOptions.nextSibling);
+    }
+    errorMsg.textContent = '⚠ Por favor seleccioná un talle antes de agregar al carrito';
+    setTimeout(() => { if (errorMsg) errorMsg.textContent = ''; }, 3000);
+    return;
+  }
+  const talleParaCarrito = (talles.length > 0 && talles[0] === 'Unico') ? '' : (selectedSize || '');
+  agregarAlCarrito(
+    currentProduct.id,
+    currentProduct.nombre,
+    currentProduct.precio,
+    currentProduct.imagen || (currentProduct.imagenes && currentProduct.imagenes[0]) || '',
+    talleParaCarrito,
+    selectedColor || ''
+  );
+}
+
+// ========== ACORDEÓN DE POLÍTICAS ==========
+function togglePolicy(id) {
+  const item = document.getElementById(id);
+  const wasOpen = item.classList.contains('open');
+  // Cerrar todos
+  document.querySelectorAll('.policy-item').forEach(i => i.classList.remove('open'));
+  // Abrir si estaba cerrado
+  if (!wasOpen) item.classList.add('open');
+}
+
+// ========== RELACIONADOS ==========
+function cargarRelacionados() {
+  const rel = productos
+    .filter(p => p.categoria === currentProduct.categoria && p.id !== currentProduct.id)
+    .slice(0, 4);
+  const grid = document.getElementById('relatedProducts');
+  grid.innerHTML = '';
+  rel.forEach(p => {
+    const card = document.createElement('div');
+    card.className = 'related-card';
+    card.onclick = () => window.location.href = `producto.html?id=${p.id}`;
+    card.innerHTML = `
+      <img src="${p.imagen}" alt="${p.nombre}" loading="lazy"/>
+      <div class="related-info">
+        <div class="related-name">${p.nombre}</div>
+        <div class="related-price">$${p.precio.toLocaleString('es-AR')}</div>
+      </div>`;
+    grid.appendChild(card);
+  });
+}
+
+// ========== MODAL IMAGEN ==========
+function openImageModal() {
+  document.getElementById('imageModal').classList.add('open');
+  document.getElementById('modalImage').src = document.getElementById('currentImage').src;
+}
+function closeImageModal() {
+  document.getElementById('imageModal').classList.remove('open');
+}
+
+// ========== GUÍA DE TALLES ==========
+function openSizeGuide() {
+  document.getElementById('sgModal').classList.add('open');
+  document.getElementById('sgBackdrop').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeSizeGuide() {
+  document.getElementById('sgModal').classList.remove('open');
+  document.getElementById('sgBackdrop').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+// ========== INICIALIZACIÓN ==========
+document.addEventListener('DOMContentLoaded', () => {
+  cargarProductos();
+
+  document.getElementById('whatsappBtn').addEventListener('click', () => {
+    const msg = `Hola! Quiero consultar por *${currentProduct?.nombre}*`;
+    window.open(`https://wa.me/5493525614281?text=${encodeURIComponent(msg)}`, '_blank');
+  });
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') { closeSizeGuide(); closeImageModal(); }
+  });
+
+  // Scroll header
+  window.addEventListener('scroll', () => {
+    document.getElementById('header').classList.toggle('scrolled', window.scrollY > 40);
+  });
+});
+</script>
 </body>
 </html>
