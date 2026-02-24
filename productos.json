@@ -3465,18 +3465,10 @@
     "precioAnterior": null,
     "categoria": "accesorios",
     "subcategoria": "Abanicos",
-    "imagen": "accesorios/AbanicoAire.png",
-    "imagenes": [
-      "accesorios/AbanicoAire.png"
-    ],
     "descripcion": "",
-    "composicion": "",
-    "cuidado": "",
-    "talles": [
-      "S",
-      "M",
-      "L",
-      "XL"
+    "imagen": "https://i.ibb.co/tM02pnDG/amiaire.png",
+    "imagenes": [
+      "https://i.ibb.co/tM02pnDG/amiaire.png"
     ],
     "tallesDisponibles": [
       "S",
@@ -3484,9 +3476,33 @@
       "L",
       "XL"
     ],
-    "sku": "ABANICOS-A-MI-AIRE",
+    "colores": [],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Bordo__M": null,
+      "Bordo__XXL": null
+    },
+    "stockTalles": {
+      "S": null,
+      "M": null,
+      "L": null,
+      "XL": null
+    },
     "stock": 10,
-    "activo": true
+    "sku": "ABANICOS-A-MI-AIRE",
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
   },
   {
     "id": "abanico-alien",
