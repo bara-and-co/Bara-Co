@@ -849,6 +849,148 @@
     .spinner { width:15px; height:15px; border:2px solid rgba(255,255,255,.3); border-top-color:#fff; border-radius:50%; animation:spin .7s linear infinite; display:inline-block; }
     @keyframes spin { to { transform:rotate(360deg); } }
 
+    /* ─── MODAL TABS ─── */
+    .modal-tabs {
+      display: flex; gap: 4px; padding: 0 26px; margin-bottom: -1px;
+      border-bottom: 1px solid var(--border); background: var(--surface);
+      position: sticky; top: 69px; z-index: 9;
+    }
+    .modal-tab {
+      padding: 10px 16px; font-size: 13px; font-weight: 500;
+      border: none; background: none; cursor: pointer; color: var(--muted);
+      border-bottom: 2px solid transparent; margin-bottom: -1px;
+      font-family: var(--sans); transition: all .2s; display: flex; align-items: center; gap: 6px;
+    }
+    .modal-tab:hover { color: var(--text); }
+    .modal-tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    /* ─── FABRIC COMPOSITION ─── */
+    .fabric-section {
+      border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 16px; background: var(--bg); margin-bottom: 20px;
+    }
+    .fabric-title {
+      font-weight: 600; font-size: 14px; margin-bottom: 14px;
+      display: flex; align-items: center; gap: 8px; color: var(--text);
+    }
+    .fabric-total-badge {
+      margin-left: auto; font-size: 12px; font-weight: 600;
+      padding: 3px 10px; border-radius: 20px; transition: all .3s;
+    }
+    .fabric-total-badge.ok { background: rgba(45,138,94,.12); color: var(--green); }
+    .fabric-total-badge.warn { background: rgba(192,57,43,.1); color: var(--red); }
+    .fabric-total-badge.partial { background: rgba(201,169,110,.12); color: var(--accent); }
+    .fabric-row {
+      display: flex; align-items: center; gap: 10px; margin-bottom: 10px;
+    }
+    .fabric-label {
+      width: 100px; font-size: 13px; font-weight: 500; flex-shrink: 0;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .fabric-slider-wrap { flex: 1; position: relative; }
+    .fabric-slider {
+      -webkit-appearance: none; width: 100%; height: 6px;
+      border-radius: 3px; outline: none; cursor: pointer;
+      background: var(--border); transition: background .2s;
+    }
+    .fabric-slider::-webkit-slider-thumb {
+      -webkit-appearance: none; width: 18px; height: 18px;
+      border-radius: 50%; background: var(--accent); cursor: pointer;
+      border: 2px solid #fff; box-shadow: 0 1px 4px rgba(0,0,0,.2);
+    }
+    .fabric-pct {
+      width: 52px; text-align: center; font-size: 13px; font-weight: 600;
+      color: var(--accent); background: var(--surface); border: 1px solid var(--border);
+      border-radius: 6px; padding: 4px 6px; font-family: var(--sans);
+      flex-shrink: 0;
+    }
+    .fabric-bar-visual {
+      height: 8px; border-radius: 4px; margin-top: 4px; overflow: hidden;
+      background: var(--border); display: flex;
+    }
+    .fabric-bar-segment {
+      height: 100%; transition: width .3s var(--ease);
+    }
+    .fabric-presets {
+      display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px;
+    }
+    .fabric-preset {
+      padding: 5px 11px; border-radius: 20px; border: 1px solid var(--border);
+      background: var(--surface); font-size: 11px; font-weight: 500;
+      cursor: pointer; color: var(--muted); transition: all .2s;
+    }
+    .fabric-preset:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* CUIDADOS */
+    .care-grid { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px; }
+    .care-chip {
+      display: flex; align-items: center; gap: 6px; padding: 7px 12px;
+      border: 1px solid var(--border); border-radius: 20px; cursor: pointer;
+      font-size: 12px; background: var(--surface); color: var(--muted);
+      transition: all .2s; user-select: none;
+    }
+    .care-chip:hover { border-color: var(--accent); color: var(--accent); }
+    .care-chip.selected { background: rgba(201,169,110,.1); border-color: var(--accent); color: var(--accent); }
+    .care-chip i { font-size: 14px; }
+
+    /* CHIPS ETIQUETAS */
+    .tag-input-wrap {
+      display: flex; flex-wrap: wrap; gap: 6px; padding: 8px;
+      border: 1.5px solid var(--border); border-radius: var(--radius);
+      background: var(--bg); min-height: 44px; cursor: text;
+      transition: border-color .2s;
+    }
+    .tag-input-wrap:focus-within { border-color: var(--accent); background: var(--surface); }
+    .tag-chip {
+      display: flex; align-items: center; gap: 5px; padding: 3px 10px;
+      background: rgba(201,169,110,.15); color: var(--accent); border-radius: 20px;
+      font-size: 12px; font-weight: 500;
+    }
+    .tag-chip button { background: none; border: none; cursor: pointer; color: inherit; padding: 0; font-size: 11px; }
+    .tag-input {
+      border: none; outline: none; background: none; font-family: var(--sans);
+      font-size: 13px; color: var(--text); min-width: 100px; flex: 1;
+    }
+    .tag-input::placeholder { color: var(--muted); }
+
+    /* SORT INDICATOR */
+    .sort-indicator {
+      display: flex; gap: 8px; align-items: center; margin-left: auto;
+      font-size: 12px; color: var(--muted);
+    }
+    .sort-btn {
+      padding: 5px 10px; border: 1px solid var(--border); border-radius: 6px;
+      background: var(--surface); font-size: 11px; font-weight: 500; cursor: pointer;
+      font-family: var(--sans); color: var(--muted); transition: all .2s;
+    }
+    .sort-btn.active, .sort-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* BULK ACTIONS */
+    .bulk-bar {
+      background: #1a1a17; color: #fff; border-radius: var(--radius);
+      padding: 12px 18px; margin-bottom: 16px; display: none;
+      align-items: center; gap: 12px; flex-wrap: wrap;
+    }
+    .bulk-bar.show { display: flex; }
+    .bulk-count { font-size: 13px; }
+    .bulk-count strong { color: var(--accent); }
+
+    /* SELECT CHECKBOX ON CARD */
+    .card-select-chk {
+      position: absolute; top: 10px; right: 52px; z-index: 3;
+      width: 20px; height: 20px; accent-color: var(--accent);
+      cursor: pointer; display: none;
+    }
+    .select-mode .card-select-chk { display: block; }
+    .prod-card.selected-card { outline: 2px solid var(--accent); }
+
+    /* PRINT LABEL */
+    @media print {
+      .topbar, .toolbar, .stats-panel, .save-banner, .add-card { display: none !important; }
+    }
+
     @media(max-width:640px){
       .topbar { padding:0 16px; flex-wrap:wrap; height:auto; padding:12px; gap:10px; }
       .topbar-left, .topbar-right { width:100%; justify-content:space-between; }
@@ -858,6 +1000,7 @@
       .cat-tabs { display:none; }
       .stats-panel { grid-template-columns:1fr 1fr; }
       .preview-card { display:none; }
+      .modal-tabs { overflow-x: auto; white-space: nowrap; }
     }
   </style>
 </head>
@@ -972,7 +1115,6 @@
       <div class="cat-tab" onclick="setFilter(this,'hombre')">👔 Hombre</div>
       <div class="cat-tab" onclick="setFilter(this,'mujer')">👗 Mujer</div>
       <div class="cat-tab" onclick="setFilter(this,'accesorios')">👜 Accesorios</div>
-      <!-- NUEVAS CATEGORÍAS DENTRO DE ACCESORIOS -->
       <div class="cat-tab" onclick="setFilter(this,'lentes')">🕶️ Lentes</div>
       <div class="cat-tab" onclick="setFilter(this,'bijouterie')">💍 Bijouterie</div>
       <div class="cat-tab" onclick="setFilter(this,'billeteras')">👝 Billeteras</div>
@@ -980,7 +1122,24 @@
       <div class="cat-tab" onclick="setFilter(this,'boxers')">🩲 Boxers</div>
       <div class="cat-tab" onclick="setFilter(this,'zapatillas')">👟 Zapatillas</div>
       <div class="cat-tab" onclick="setFilter(this,'sale')">🏷️ Sale</div>
+      <div class="cat-tab" onclick="setFilter(this,'sin-stock')" title="Sin stock">⚠️ Sin stock</div>
     </div>
+    <div class="sort-indicator">
+      <span>Ordenar:</span>
+      <button class="sort-btn active" onclick="setSort(this,'recent')">Reciente</button>
+      <button class="sort-btn" onclick="setSort(this,'nombre')">A-Z</button>
+      <button class="sort-btn" onclick="setSort(this,'precio-asc')">$ ↑</button>
+      <button class="sort-btn" onclick="setSort(this,'precio-desc')">$ ↓</button>
+    </div>
+  </div>
+
+  <!-- Bulk bar -->
+  <div class="bulk-bar" id="bulkBar">
+    <span class="bulk-count"><strong id="bulkCount">0</strong> seleccionados</span>
+    <button class="btn btn-ghost btn-sm" onclick="bulkToggleActive(true)"><i class="fas fa-eye"></i> Mostrar todos</button>
+    <button class="btn btn-ghost btn-sm" onclick="bulkToggleActive(false)"><i class="fas fa-eye-slash"></i> Ocultar todos</button>
+    <button class="btn btn-danger btn-sm" onclick="bulkDelete()"><i class="fas fa-trash"></i> Eliminar seleccionados</button>
+    <button class="btn btn-ghost btn-sm" onclick="clearSelection()" style="margin-left:auto"><i class="fas fa-times"></i> Cancelar</button>
   </div>
 
   <!-- Grid -->
@@ -995,246 +1154,481 @@
       <h2 class="modal-title" id="modalTitle">Nuevo producto</h2>
       <button class="modal-close" onclick="closeModal()">✕</button>
     </div>
+
+    <!-- TABS -->
+    <div class="modal-tabs">
+      <button class="modal-tab active" onclick="switchTab(this,'tab-basic')"><i class="fas fa-info-circle"></i> Básico</button>
+      <button class="modal-tab" onclick="switchTab(this,'tab-material')"><i class="fas fa-tshirt"></i> Material</button>
+      <button class="modal-tab" onclick="switchTab(this,'tab-stock')"><i class="fas fa-boxes"></i> Stock</button>
+      <button class="modal-tab" onclick="switchTab(this,'tab-media')"><i class="fas fa-images"></i> Fotos</button>
+      <button class="modal-tab" onclick="switchTab(this,'tab-config')"><i class="fas fa-sliders-h"></i> Config</button>
+    </div>
+
     <div class="modal-body">
       <input type="hidden" id="editId"/>
 
-      <!-- INFORMACIÓN BÁSICA -->
-      <div class="form-row">
-        <label class="form-label">Nombre del producto *</label>
-        <input type="text" class="form-input" id="fNombre" placeholder="ej: Campera LAMPARD"/>
-      </div>
+      <!-- ═══ TAB: BÁSICO ═══ -->
+      <div class="tab-panel active" id="tab-basic">
 
-      <div class="form-grid">
+        <!-- INFORMACIÓN BÁSICA -->
         <div class="form-row">
-          <label class="form-label">Precio ($) *</label>
-          <input type="number" class="form-input" id="fPrecio" placeholder="75000"/>
-        </div>
-        <div class="form-row">
-          <label class="form-label">Precio anterior</label>
-          <input type="number" class="form-input" id="fPrecioAnt" placeholder="Para mostrar descuento"/>
-        </div>
-      </div>
-
-      <div class="form-grid">
-        <div class="form-row">
-          <label class="form-label">Categoría *</label>
-          <select class="form-select" id="fCat" onchange="updateSubcategorias()">
-            <option value="new">✨ New Collection</option>
-            <option value="hombre">👔 Hombre</option>
-            <option value="mujer">👗 Mujer</option>
-            <option value="accesorios">👜 Accesorios</option>
-          </select>
-        </div>
-        <div class="form-row">
-          <label class="form-label">Subcategoría</label>
-          <select class="form-select" id="fSub">
-            <option value="">Seleccionar</option>
-            <option value="Camperas">Camperas</option>
-            <option value="Camisas">Camisas</option>
-            <option value="Musculosa">Musculosa</option>
-            <option value="Remeras">Remeras</option>
-            <option value="Pantalones">Pantalones</option>
-            <option value="Buzos">Buzos</option>
-            <option value="Conjuntos">Conjuntos</option>
-            <option value="Bermudas">Bermudas</option>
-            <option value="Shorts">Shorts</option>
-            <option value="Polleras">Polleras</option>
-            <option value="Vestidos">Vestidos</option>
-            <!-- ACCESORIOS -->
-            <option value="Lentes de sol">🕶️ Lentes de sol</option>
-            <option value="Bijouterie hombre">💍 Bijouterie hombre</option>
-            <option value="Bijouterie mujer">💍 Bijouterie mujer</option>
-            <option value="Billeteras">👝 Billeteras</option>
-            <option value="Riñoneras">👜 Riñoneras</option>
-            <option value="Medias">🧦 Medias</option>
-            <option value="Boxers">🩲 Boxers</option>
-            <option value="Zapatillas">👟 Zapatillas</option>
-            <option value="Abanicos">Abanicos</option>
-            <option value="Gorras">Gorras</option>
-            <option value="Cintos">Cintos</option>
-            <option value="Pilusos">Pilusos</option>
-          </select>
-        </div>
-      </div>
-
-      <!-- DESCRIPCIÓN -->
-      <div class="form-row">
-        <label class="form-label">Descripción</label>
-        <textarea class="form-textarea" id="fDesc" placeholder="Descripción del producto..."></textarea>
-        <div class="form-hint">
-          <i class="fas fa-info-circle"></i> Se mostrará en la página de producto
-        </div>
-      </div>
-
-      <!-- GESTIÓN DE COLORES con picker real -->
-      <div class="sizes-section" id="colorSection">
-        <div class="section-title">
-          <i class="fas fa-palette"></i> Colores disponibles
-          <span style="font-size:11px;color:var(--muted);margin-left:auto">Seleccioná los colores del producto</span>
+          <label class="form-label">Nombre del producto *</label>
+          <input type="text" class="form-input" id="fNombre" placeholder="ej: Campera LAMPARD"/>
         </div>
 
-        <!-- Colores seleccionados -->
-        <div class="color-options" id="colorsContainer"></div>
-
-        <!-- Color picker -->
-        <div class="cpicker" id="colorPicker">
-          <div class="cp-gradient" id="cpGradient">
-            <div class="cp-cursor" id="cpCursor"></div>
-          </div>
-          <div class="cp-sliders">
-            <div class="cp-eyedrop" title="Ver hex actual">
-              <div class="cp-preview" id="cpPreview"></div>
-            </div>
-            <div class="cp-slider-col">
-              <input type="range" class="cp-hue" id="cpHue" min="0" max="360" value="0"/>
-            </div>
-          </div>
-          <div class="cp-bottom">
-            <input class="cp-hex" id="cpHex" maxlength="7" placeholder="#000000"/>
-            <input class="cp-name-input" id="cpName" placeholder="Nombre del color (ej: Bordo)"/>
-            <button class="cp-add-btn" onclick="cpAddColor()"><i class="fas fa-plus"></i> Agregar</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- GESTIÓN DE TALLES -->
-      <div class="sizes-section">
-        <div class="section-title">
-          <i class="fas fa-ruler"></i> Talles disponibles
-          <span style="font-size:11px;color:var(--muted);margin-left:auto">Marcá los que tiene este producto</span>
-        </div>
-        <div class="size-options" id="sizesContainer"></div>
-        <div class="form-hint"><i class="fas fa-info-circle"></i> Podés agregar talles personalizados como "36", "Único", etc.</div>
-        <div style="display:flex;gap:6px;margin-top:8px;">
-          <input type="text" class="form-input" id="customSize" placeholder="Agregar talle personalizado" style="flex:1"/>
-          <button class="btn btn-ghost btn-sm" onclick="addCustomSize()">Agregar</button>
-        </div>
-      </div>
-
-      <!-- STOCK POR TALLE (sin colores) -->
-      <div class="sizes-section" id="stockTallesSection" style="display:none">
-        <div class="section-title">
-          <i class="fas fa-layer-group"></i> Stock por talle
-          <span style="font-size:11px;color:var(--muted);margin-left:auto">Ingresá la cantidad disponible de cada talle</span>
-        </div>
-        <div id="stockTallesWrap" style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;">
-          <!-- generado por JS -->
-        </div>
-      </div>
-
-      <!-- GRILLA DE STOCK por color × talle -->
-      <div class="sizes-section" id="stockGridSection" style="display:none">
-        <div class="section-title">
-          <i class="fas fa-boxes"></i> Stock por color y talle
-          <span style="font-size:11px;color:var(--muted);margin-left:auto">Ingresá la cantidad disponible de cada combinación</span>
-        </div>
-        <div id="stockGridWrap" style="overflow-x:auto;">
-          <!-- grilla generada por JS -->
-        </div>
-      </div>
-
-      <!-- MÚLTIPLES IMÁGENES -->
-      <div class="sizes-section">
-        <div class="section-title">
-          <i class="fas fa-images"></i> Imágenes del producto
-        </div>
-
-        <!-- Zona principal de carga -->
-        <div class="img-upload-zone" id="dropZone" ondragover="onDragOver(event)" ondragleave="onDragLeave(event)" ondrop="onDrop(event)">
-          <!-- Input invisible que cubre toda la zona -->
-          <input type="file" id="fileInput" accept="image/*" onchange="onFileSelect(event)"
-            style="position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;z-index:10;"/>
-          <div class="upload-idle" id="uploadIdle">
-            <div class="upload-icon"><i class="fas fa-cloud-upload-alt"></i></div>
-            <div class="upload-title">Tocá para elegir una foto</div>
-            <div class="upload-sub">o arrastrá y soltá desde tu compu</div>
-            <div class="upload-formats">JPG · PNG · WEBP · hasta 10MB</div>
-          </div>
-          <div class="upload-preview" id="uploadPreview" style="display:none;position:relative;z-index:5;">
-            <img id="imgPrev" src="" alt="" style="width:100%;max-height:260px;object-fit:contain;display:block;background:#f0ede8;"/>
-            <div style="position:absolute;top:8px;right:8px;display:flex;gap:6px;z-index:20;">
-              <button type="button" onclick="event.stopPropagation();document.getElementById('fileInput').click()" style="background:rgba(0,0,0,.6);color:#fff;border:none;border-radius:20px;padding:6px 12px;font-size:11px;cursor:pointer;font-family:var(--sans);display:flex;align-items:center;gap:5px;"><i class="fas fa-camera"></i> Cambiar</button>
-              <button type="button" onclick="event.stopPropagation();clearImage()" style="background:rgba(0,0,0,.6);color:#fff;border:none;border-radius:20px;padding:6px 12px;font-size:11px;cursor:pointer;font-family:var(--sans);display:flex;align-items:center;gap:5px;"><i class="fas fa-times"></i> Quitar</button>
-            </div>
-            <div class="upload-badge" id="uploadBadge" style="position:absolute;bottom:8px;left:8px;background:var(--green);color:#fff;font-size:11px;font-weight:600;padding:4px 10px;border-radius:20px;display:flex;align-items:center;gap:5px;z-index:20;"><i class="fas fa-check"></i> Imagen cargada</div>
-          </div>
-          <input type="hidden" id="fImg"/>
-        </div>
-
-        <!-- URL manual como alternativa -->
-        <details class="url-fallback" id="urlFallback">
-          <summary><i class="fas fa-link"></i> O pegá una URL de imagen</summary>
-          <div style="margin-top:10px; display:flex; gap:8px;">
-            <input type="url" class="form-input" id="fImgUrl" placeholder="https://..." style="flex:1"/>
-            <button class="btn btn-ghost btn-sm" onclick="useUrlImage()">Usar</button>
-          </div>
-        </details>
-
-        <!-- Imágenes adicionales -->
-        <div style="margin-top:16px;">
-          <label class="form-label">Fotos adicionales</label>
-          <div class="extra-imgs-grid" id="extraImgsGrid">
-            <div class="extra-add-btn" onclick="abrirSelectorFotoExtra()">
-              <i class="fas fa-plus"></i>
-              <span>Agregar</span>
-            </div>
-          </div>
-          <input type="hidden" id="fImagenes"/>
-        </div>
-      </div>
-
-      <!-- UNIDADES EN STOCK -->
-      <div class="form-row">
-        <label class="form-label"><i class="fas fa-warehouse" style="color:var(--accent);margin-right:4px;"></i> Unidades en stock</label>
         <div class="form-grid">
-          <div>
-            <input type="number" class="form-input" id="fStock" min="0" placeholder="ej: 15" oninput="updateStockLabel()"/>
-            <div class="form-hint"><i class="fas fa-info-circle"></i> Cantidad total disponible del producto</div>
+          <div class="form-row">
+            <label class="form-label">Precio ($) *</label>
+            <input type="number" class="form-input" id="fPrecio" placeholder="75000"/>
           </div>
-          <div style="display:flex;align-items:center;">
-            <div id="stockStatusBadge" style="display:none;padding:8px 14px;border-radius:var(--radius);font-size:13px;font-weight:500;"></div>
+          <div class="form-row">
+            <label class="form-label">Precio anterior</label>
+            <input type="number" class="form-input" id="fPrecioAnt" placeholder="Para mostrar descuento"/>
           </div>
         </div>
-      </div>
 
-      <!-- VISIBILIDAD -->
-      <div class="form-row">
-        <label class="form-label">Estado</label>
-        <div style="display:flex;align-items:center;gap:20px;margin-top:6px; flex-wrap:wrap;">
-          <label style="display:flex;align-items:center;gap:10px;">
-            <span style="font-size:13px;">Visible en tienda</span>
-            <label class="toggle">
-              <input type="checkbox" id="fActivo" checked onchange="updActivoLabel()"/>
-              <div class="t-track"></div><div class="t-thumb"></div>
-            </label>
-          </label>
-          <span id="activoLbl" style="font-size:13px;color:var(--green)">Sí, se muestra</span>
-          
-          <label style="display:flex;align-items:center;gap:10px;">
-            <span style="font-size:13px;">Destacar en inicio</span>
-            <label class="toggle">
-              <input type="checkbox" id="fDestacado"/>
-              <div class="t-track"></div><div class="t-thumb"></div>
-            </label>
-          </label>
-
-          <label style="display:flex;align-items:center;gap:10px;">
-            <span style="font-size:13px;color:#e07b39;">🏷️ Outlet</span>
-            <label class="toggle toggle-outlet">
-              <input type="checkbox" id="fOutlet"/>
-              <div class="t-track"></div><div class="t-thumb"></div>
-            </label>
-          </label>
+        <div class="form-grid">
+          <div class="form-row">
+            <label class="form-label">Categoría *</label>
+            <select class="form-select" id="fCat" onchange="updateSubcategorias()">
+              <option value="new">✨ New Collection</option>
+              <option value="hombre">👔 Hombre</option>
+              <option value="mujer">👗 Mujer</option>
+              <option value="accesorios">👜 Accesorios</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <label class="form-label">Subcategoría</label>
+            <select class="form-select" id="fSub">
+              <option value="">Seleccionar</option>
+              <option value="Camperas">Camperas</option>
+              <option value="Camisas">Camisas</option>
+              <option value="Musculosa">Musculosa</option>
+              <option value="Remeras">Remeras</option>
+              <option value="Pantalones">Pantalones</option>
+              <option value="Buzos">Buzos</option>
+              <option value="Conjuntos">Conjuntos</option>
+              <option value="Bermudas">Bermudas</option>
+              <option value="Shorts">Shorts</option>
+              <option value="Polleras">Polleras</option>
+              <option value="Vestidos">Vestidos</option>
+              <option value="Lentes de sol">🕶️ Lentes de sol</option>
+              <option value="Bijouterie hombre">💍 Bijouterie hombre</option>
+              <option value="Bijouterie mujer">💍 Bijouterie mujer</option>
+              <option value="Billeteras">👝 Billeteras</option>
+              <option value="Riñoneras">👜 Riñoneras</option>
+              <option value="Medias">🧦 Medias</option>
+              <option value="Boxers">🩲 Boxers</option>
+              <option value="Zapatillas">👟 Zapatillas</option>
+              <option value="Abanicos">Abanicos</option>
+              <option value="Gorras">Gorras</option>
+              <option value="Cintos">Cintos</option>
+              <option value="Pilusos">Pilusos</option>
+            </select>
+          </div>
         </div>
-      </div>
 
-    </div>
+        <!-- DESCRIPCIÓN -->
+        <div class="form-row">
+          <label class="form-label">Descripción</label>
+          <textarea class="form-textarea" id="fDesc" placeholder="Descripción del producto..."></textarea>
+          <div class="form-hint"><i class="fas fa-info-circle"></i> Se mostrará en la página de producto</div>
+        </div>
+
+        <!-- ETIQUETAS -->
+        <div class="form-row">
+          <label class="form-label"><i class="fas fa-tags" style="color:var(--accent);margin-right:4px"></i> Etiquetas / Keywords</label>
+          <div class="tag-input-wrap" id="tagWrap" onclick="document.getElementById('tagInput').focus()">
+            <input type="text" class="tag-input" id="tagInput" placeholder="Escribí y presioná Enter..." onkeydown="addTag(event)"/>
+          </div>
+          <div class="form-hint"><i class="fas fa-info-circle"></i> Ayudan en búsquedas internas (ej: verano, oversize, casual)</div>
+        </div>
+
+        <!-- TEMPORADA / GÉNERO -->
+        <div class="form-grid">
+          <div class="form-row">
+            <label class="form-label">Temporada</label>
+            <select class="form-select" id="fTemporada">
+              <option value="">Sin especificar</option>
+              <option value="verano">☀️ Verano</option>
+              <option value="invierno">❄️ Invierno</option>
+              <option value="primavera">🌸 Primavera</option>
+              <option value="otoño">🍂 Otoño</option>
+              <option value="all-season">🔄 Todo el año</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <label class="form-label">Género</label>
+            <select class="form-select" id="fGenero">
+              <option value="">Sin especificar</option>
+              <option value="masculino">Masculino</option>
+              <option value="femenino">Femenino</option>
+              <option value="unisex">Unisex</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- SKU / CÓDIGO -->
+        <div class="form-row">
+          <label class="form-label">SKU / Código interno</label>
+          <input type="text" class="form-input" id="fSku" placeholder="ej: CAM-001-NEG"/>
+          <div class="form-hint"><i class="fas fa-info-circle"></i> Código de referencia propio (no visible en tienda)</div>
+        </div>
+
+      </div><!-- /tab-basic -->
+
+      <!-- ═══ TAB: MATERIAL ═══ -->
+      <div class="tab-panel" id="tab-material">
+
+        <!-- COMPOSICIÓN DE TELA -->
+        <div class="fabric-section">
+          <div class="fabric-title">
+            <i class="fas fa-tshirt" style="color:var(--accent)"></i>
+            Composición de tela
+            <span class="fabric-total-badge partial" id="fabricTotal">0%</span>
+          </div>
+
+          <!-- Barra visual de composición -->
+          <div class="fabric-bar-visual" id="fabricBarVisual" style="margin-bottom:16px;"></div>
+
+          <!-- Fibras -->
+          <div id="fabricRows">
+            <div class="fabric-row">
+              <div class="fabric-label"><span style="width:10px;height:10px;border-radius:50%;background:#c9a96e;display:inline-block;"></span> Algodón</div>
+              <div class="fabric-slider-wrap">
+                <input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-algodon" oninput="updateFabric()"/>
+              </div>
+              <input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-algodon-pct" oninput="syncFabricSlider('algodon')"/> 
+            </div>
+            <div class="fabric-row">
+              <div class="fabric-label"><span style="width:10px;height:10px;border-radius:50%;background:#3d6bce;display:inline-block;"></span> Poliéster</div>
+              <div class="fabric-slider-wrap">
+                <input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-poliester" oninput="updateFabric()"/>
+              </div>
+              <input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-poliester-pct" oninput="syncFabricSlider('poliester')"/>
+            </div>
+            <div class="fabric-row">
+              <div class="fabric-label"><span style="width:10px;height:10px;border-radius:50%;background:#2d8a5e;display:inline-block;"></span> Elastano</div>
+              <div class="fabric-slider-wrap">
+                <input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-elastano" oninput="updateFabric()"/>
+              </div>
+              <input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-elastano-pct" oninput="syncFabricSlider('elastano')"/>
+            </div>
+            <div class="fabric-row">
+              <div class="fabric-label"><span style="width:10px;height:10px;border-radius:50%;background:#8e44ad;display:inline-block;"></span> Viscosa</div>
+              <div class="fabric-slider-wrap">
+                <input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-viscosa" oninput="updateFabric()"/>
+              </div>
+              <input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-viscosa-pct" oninput="syncFabricSlider('viscosa')"/>
+            </div>
+            <div class="fabric-row">
+              <div class="fabric-label"><span style="width:10px;height:10px;border-radius:50%;background:#c0392b;display:inline-block;"></span> Lana</div>
+              <div class="fabric-slider-wrap">
+                <input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-lana" oninput="updateFabric()"/>
+              </div>
+              <input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-lana-pct" oninput="syncFabricSlider('lana')"/>
+            </div>
+            <div class="fabric-row">
+              <div class="fabric-label"><span style="width:10px;height:10px;border-radius:50%;background:#7f8c8d;display:inline-block;"></span> Nylon</div>
+              <div class="fabric-slider-wrap">
+                <input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-nylon" oninput="updateFabric()"/>
+              </div>
+              <input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-nylon-pct" oninput="syncFabricSlider('nylon')"/>
+            </div>
+            <div class="fabric-row">
+              <div class="fabric-label"><span style="width:10px;height:10px;border-radius:50%;background:#f39c12;display:inline-block;"></span> Lino</div>
+              <div class="fabric-slider-wrap">
+                <input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-lino" oninput="updateFabric()"/>
+              </div>
+              <input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-lino-pct" oninput="syncFabricSlider('lino')"/>
+            </div>
+            <div class="fabric-row">
+              <div class="fabric-label"><span style="width:10px;height:10px;border-radius:50%;background:#1abc9c;display:inline-block;"></span> Seda / Raso</div>
+              <div class="fabric-slider-wrap">
+                <input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-seda" oninput="updateFabric()"/>
+              </div>
+              <input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-seda-pct" oninput="syncFabricSlider('seda')"/>
+            </div>
+            <div class="fabric-row">
+              <div class="fabric-label"><span style="width:10px;height:10px;border-radius:50%;background:#e67e22;display:inline-block;"></span> Acílico</div>
+              <div class="fabric-slider-wrap">
+                <input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-acilico" oninput="updateFabric()"/>
+              </div>
+              <input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-acilico-pct" oninput="syncFabricSlider('acilico')"/>
+            </div>
+            <div class="fabric-row">
+              <div class="fabric-label"><span style="width:10px;height:10px;border-radius:50%;background:#34495e;display:inline-block;"></span> Modal</div>
+              <div class="fabric-slider-wrap">
+                <input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-modal" oninput="updateFabric()"/>
+              </div>
+              <input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-modal-pct" oninput="syncFabricSlider('modal')"/>
+            </div>
+          </div>
+
+          <!-- Presets rápidos -->
+          <div class="fabric-presets">
+            <span style="font-size:11px;color:var(--muted);margin-right:4px;line-height:28px;">Presets:</span>
+            <button class="fabric-preset" onclick="applyFabricPreset({algodon:100})">100% Algodón</button>
+            <button class="fabric-preset" onclick="applyFabricPreset({poliester:100})">100% Poliéster</button>
+            <button class="fabric-preset" onclick="applyFabricPreset({algodon:95,elastano:5})">95/5 Algodón/Elastano</button>
+            <button class="fabric-preset" onclick="applyFabricPreset({algodon:80,poliester:20})">80/20 Algodón/Poliéster</button>
+            <button class="fabric-preset" onclick="applyFabricPreset({algodon:60,poliester:35,elastano:5})">Jean 60/35/5</button>
+            <button class="fabric-preset" onclick="applyFabricPreset({viscosa:70,poliester:25,elastano:5})">Viscosa 70/25/5</button>
+            <button class="fabric-preset" onclick="applyFabricPreset({poliester:88,elastano:12})">Lycra 88/12</button>
+            <button class="fabric-preset" onclick="applyFabricPreset({lana:80,poliamida:20})">Lana 80%</button>
+            <button class="fabric-preset" onclick="clearFabric()"><i class="fas fa-undo" style="font-size:10px"></i> Limpiar</button>
+          </div>
+
+          <input type="hidden" id="fFabrica"/>
+        </div>
+
+        <!-- CUIDADOS -->
+        <div class="form-row">
+          <label class="form-label"><i class="fas fa-hands-wash" style="color:var(--accent);margin-right:4px"></i> Instrucciones de cuidado</label>
+          <div class="care-grid" id="careGrid">
+            <div class="care-chip" onclick="toggleCare(this)" data-care="Lavar a mano"><i class="fas fa-hand-holding-water"></i> Lavar a mano</div>
+            <div class="care-chip" onclick="toggleCare(this)" data-care="Máquina agua fría"><i class="fas fa-tint"></i> Máquina fría</div>
+            <div class="care-chip" onclick="toggleCare(this)" data-care="Lavar en frío 30°"><i class="fas fa-thermometer-quarter"></i> 30°C</div>
+            <div class="care-chip" onclick="toggleCare(this)" data-care="No usar secadora"><i class="fas fa-ban"></i> No secadora</div>
+            <div class="care-chip" onclick="toggleCare(this)" data-care="Secar a la sombra"><i class="fas fa-cloud-sun"></i> Sombra</div>
+            <div class="care-chip" onclick="toggleCare(this)" data-care="No planchar"><i class="fas fa-ban"></i> No planchar</div>
+            <div class="care-chip" onclick="toggleCare(this)" data-care="Planchar a baja temperatura"><i class="fas fa-temperature-low"></i> Planchar suave</div>
+            <div class="care-chip" onclick="toggleCare(this)" data-care="No usar blanqueadores"><i class="fas fa-minus-circle"></i> Sin blanqueador</div>
+            <div class="care-chip" onclick="toggleCare(this)" data-care="Lavar al revés"><i class="fas fa-sync-alt"></i> Al revés</div>
+            <div class="care-chip" onclick="toggleCare(this)" data-care="Dry clean only"><i class="fas fa-shield-alt"></i> Dry clean</div>
+          </div>
+          <input type="hidden" id="fCuidados"/>
+        </div>
+
+        <!-- PESO / DETALLES -->
+        <div class="form-grid">
+          <div class="form-row">
+            <label class="form-label">Peso aprox. (gramos)</label>
+            <input type="number" class="form-input" id="fPeso" placeholder="ej: 350" min="0"/>
+            <div class="form-hint"><i class="fas fa-info-circle"></i> Útil para calcular envíos</div>
+          </div>
+          <div class="form-row">
+            <label class="form-label">País de origen</label>
+            <select class="form-select" id="fOrigen">
+              <option value="">Sin especificar</option>
+              <option value="Argentina">🇦🇷 Argentina</option>
+              <option value="Brasil">🇧🇷 Brasil</option>
+              <option value="China">🇨🇳 China</option>
+              <option value="Bangladesh">🇧🇩 Bangladesh</option>
+              <option value="India">🇮🇳 India</option>
+              <option value="Perú">🇵🇪 Perú</option>
+              <option value="Colombia">🇨🇴 Colombia</option>
+              <option value="Italia">🇮🇹 Italia</option>
+              <option value="Portugal">🇵🇹 Portugal</option>
+              <option value="Turquía">🇹🇷 Turquía</option>
+            </select>
+          </div>
+        </div>
+
+      </div><!-- /tab-material -->
+
+      <!-- ═══ TAB: STOCK ═══ -->
+      <div class="tab-panel" id="tab-stock">
+
+        <!-- GESTIÓN DE COLORES con picker real -->
+        <div class="sizes-section" id="colorSection">
+          <div class="section-title">
+            <i class="fas fa-palette"></i> Colores disponibles
+            <span style="font-size:11px;color:var(--muted);margin-left:auto">Seleccioná los colores del producto</span>
+          </div>
+          <div class="color-options" id="colorsContainer"></div>
+          <div class="cpicker" id="colorPicker">
+            <div class="cp-gradient" id="cpGradient">
+              <div class="cp-cursor" id="cpCursor"></div>
+            </div>
+            <div class="cp-sliders">
+              <div class="cp-eyedrop" title="Ver hex actual">
+                <div class="cp-preview" id="cpPreview"></div>
+              </div>
+              <div class="cp-slider-col">
+                <input type="range" class="cp-hue" id="cpHue" min="0" max="360" value="0"/>
+              </div>
+            </div>
+            <div class="cp-bottom">
+              <input class="cp-hex" id="cpHex" maxlength="7" placeholder="#000000"/>
+              <input class="cp-name-input" id="cpName" placeholder="Nombre del color (ej: Bordo)"/>
+              <button class="cp-add-btn" onclick="cpAddColor()"><i class="fas fa-plus"></i> Agregar</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- GESTIÓN DE TALLES -->
+        <div class="sizes-section">
+          <div class="section-title">
+            <i class="fas fa-ruler"></i> Talles disponibles
+            <span style="font-size:11px;color:var(--muted);margin-left:auto">Marcá los que tiene este producto</span>
+          </div>
+          <div class="size-options" id="sizesContainer"></div>
+          <div class="form-hint"><i class="fas fa-info-circle"></i> Podés agregar talles personalizados como "36", "Único", etc.</div>
+          <div style="display:flex;gap:6px;margin-top:8px;">
+            <input type="text" class="form-input" id="customSize" placeholder="Agregar talle personalizado" style="flex:1"/>
+            <button class="btn btn-ghost btn-sm" onclick="addCustomSize()">Agregar</button>
+          </div>
+        </div>
+
+        <!-- STOCK POR TALLE (sin colores) -->
+        <div class="sizes-section" id="stockTallesSection" style="display:none">
+          <div class="section-title">
+            <i class="fas fa-layer-group"></i> Stock por talle
+            <span style="font-size:11px;color:var(--muted);margin-left:auto">Ingresá la cantidad disponible de cada talle</span>
+          </div>
+          <div id="stockTallesWrap" style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;"></div>
+        </div>
+
+        <!-- GRILLA DE STOCK por color × talle -->
+        <div class="sizes-section" id="stockGridSection" style="display:none">
+          <div class="section-title">
+            <i class="fas fa-boxes"></i> Stock por color y talle
+            <span style="font-size:11px;color:var(--muted);margin-left:auto">Ingresá la cantidad disponible de cada combinación</span>
+          </div>
+          <div id="stockGridWrap" style="overflow-x:auto;"></div>
+        </div>
+
+        <!-- UNIDADES EN STOCK -->
+        <div class="form-row">
+          <label class="form-label"><i class="fas fa-warehouse" style="color:var(--accent);margin-right:4px;"></i> Unidades en stock (total)</label>
+          <div class="form-grid">
+            <div>
+              <input type="number" class="form-input" id="fStock" min="0" placeholder="ej: 15" oninput="updateStockLabel()"/>
+              <div class="form-hint"><i class="fas fa-info-circle"></i> Cantidad total disponible del producto</div>
+            </div>
+            <div style="display:flex;align-items:center;">
+              <div id="stockStatusBadge" style="display:none;padding:8px 14px;border-radius:var(--radius);font-size:13px;font-weight:500;"></div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /tab-stock -->
+
+      <!-- ═══ TAB: FOTOS ═══ -->
+      <div class="tab-panel" id="tab-media">
+
+        <!-- MÚLTIPLES IMÁGENES -->
+        <div class="sizes-section">
+          <div class="section-title">
+            <i class="fas fa-images"></i> Imágenes del producto
+          </div>
+          <div class="img-upload-zone" id="dropZone" ondragover="onDragOver(event)" ondragleave="onDragLeave(event)" ondrop="onDrop(event)">
+            <input type="file" id="fileInput" accept="image/*" onchange="onFileSelect(event)"
+              style="position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;z-index:10;"/>
+            <div class="upload-idle" id="uploadIdle">
+              <div class="upload-icon"><i class="fas fa-cloud-upload-alt"></i></div>
+              <div class="upload-title">Tocá para elegir una foto</div>
+              <div class="upload-sub">o arrastrá y soltá desde tu compu</div>
+              <div class="upload-formats">JPG · PNG · WEBP · hasta 10MB</div>
+            </div>
+            <div class="upload-preview" id="uploadPreview" style="display:none;position:relative;z-index:5;">
+              <img id="imgPrev" src="" alt="" style="width:100%;max-height:260px;object-fit:contain;display:block;background:#f0ede8;"/>
+              <div style="position:absolute;top:8px;right:8px;display:flex;gap:6px;z-index:20;">
+                <button type="button" onclick="event.stopPropagation();document.getElementById('fileInput').click()" style="background:rgba(0,0,0,.6);color:#fff;border:none;border-radius:20px;padding:6px 12px;font-size:11px;cursor:pointer;font-family:var(--sans);display:flex;align-items:center;gap:5px;"><i class="fas fa-camera"></i> Cambiar</button>
+                <button type="button" onclick="event.stopPropagation();clearImage()" style="background:rgba(0,0,0,.6);color:#fff;border:none;border-radius:20px;padding:6px 12px;font-size:11px;cursor:pointer;font-family:var(--sans);display:flex;align-items:center;gap:5px;"><i class="fas fa-times"></i> Quitar</button>
+              </div>
+              <div class="upload-badge" id="uploadBadge" style="position:absolute;bottom:8px;left:8px;background:var(--green);color:#fff;font-size:11px;font-weight:600;padding:4px 10px;border-radius:20px;display:flex;align-items:center;gap:5px;z-index:20;"><i class="fas fa-check"></i> Imagen cargada</div>
+            </div>
+            <input type="hidden" id="fImg"/>
+          </div>
+          <details class="url-fallback" id="urlFallback">
+            <summary><i class="fas fa-link"></i> O pegá una URL de imagen</summary>
+            <div style="margin-top:10px; display:flex; gap:8px;">
+              <input type="url" class="form-input" id="fImgUrl" placeholder="https://..." style="flex:1"/>
+              <button class="btn btn-ghost btn-sm" onclick="useUrlImage()">Usar</button>
+            </div>
+          </details>
+          <div style="margin-top:16px;">
+            <label class="form-label">Fotos adicionales</label>
+            <div class="extra-imgs-grid" id="extraImgsGrid">
+              <div class="extra-add-btn" onclick="abrirSelectorFotoExtra()">
+                <i class="fas fa-plus"></i>
+                <span>Agregar</span>
+              </div>
+            </div>
+            <input type="hidden" id="fImagenes"/>
+          </div>
+        </div>
+
+      </div><!-- /tab-media -->
+
+      <!-- ═══ TAB: CONFIG ═══ -->
+      <div class="tab-panel" id="tab-config">
+
+        <!-- VISIBILIDAD -->
+        <div class="form-row">
+          <label class="form-label">Estado y visibilidad</label>
+          <div style="display:flex;align-items:center;gap:20px;margin-top:6px; flex-wrap:wrap;">
+            <label style="display:flex;align-items:center;gap:10px;">
+              <span style="font-size:13px;">Visible en tienda</span>
+              <label class="toggle">
+                <input type="checkbox" id="fActivo" checked onchange="updActivoLabel()"/>
+                <div class="t-track"></div><div class="t-thumb"></div>
+              </label>
+            </label>
+            <span id="activoLbl" style="font-size:13px;color:var(--green)">Sí, se muestra</span>
+
+            <label style="display:flex;align-items:center;gap:10px;">
+              <span style="font-size:13px;">Destacar en inicio</span>
+              <label class="toggle">
+                <input type="checkbox" id="fDestacado"/>
+                <div class="t-track"></div><div class="t-thumb"></div>
+              </label>
+            </label>
+
+            <label style="display:flex;align-items:center;gap:10px;">
+              <span style="font-size:13px;color:#e07b39;">🏷️ Outlet</span>
+              <label class="toggle toggle-outlet">
+                <input type="checkbox" id="fOutlet"/>
+                <div class="t-track"></div><div class="t-thumb"></div>
+              </label>
+            </label>
+          </div>
+        </div>
+
+        <!-- PROVEEDOR -->
+        <div class="form-row">
+          <label class="form-label"><i class="fas fa-truck" style="color:var(--accent);margin-right:4px"></i> Proveedor</label>
+          <input type="text" class="form-input" id="fProveedor" placeholder="ej: Distribuidora López"/>
+          <div class="form-hint"><i class="fas fa-info-circle"></i> Solo visible en el panel de admin</div>
+        </div>
+
+        <!-- NOTAS INTERNAS -->
+        <div class="form-row">
+          <label class="form-label"><i class="fas fa-sticky-note" style="color:var(--accent);margin-right:4px"></i> Notas internas</label>
+          <textarea class="form-textarea" id="fNotas" placeholder="Notas de uso interno (no se muestra en tienda)..." style="min-height:80px;"></textarea>
+        </div>
+
+        <!-- PRECIO DE COSTO -->
+        <div class="form-grid">
+          <div class="form-row">
+            <label class="form-label">Precio de costo ($)</label>
+            <input type="number" class="form-input" id="fCosto" placeholder="Para calcular margen" min="0"/>
+            <div class="form-hint"><i class="fas fa-eye-slash"></i> Privado, no se muestra en tienda</div>
+          </div>
+          <div class="form-row" style="display:flex;align-items:center;padding-top:20px;">
+            <div id="margenBadge" style="display:none;padding:10px 14px;border-radius:var(--radius);font-size:13px;font-weight:500;background:rgba(45,138,94,.1);color:var(--green);border:1px solid rgba(45,138,94,.2);"></div>
+          </div>
+        </div>
+
+        <!-- LINK EXTERNO -->
+        <div class="form-row">
+          <label class="form-label">Link externo (opcional)</label>
+          <input type="url" class="form-input" id="fLink" placeholder="https://..."/>
+          <div class="form-hint"><i class="fas fa-info-circle"></i> Redirige a la web del fabricante o tienda externa</div>
+        </div>
+
+      </div><!-- /tab-config -->
+
+    </div><!-- /modal-body -->
+
     <div class="modal-foot">
       <button class="btn btn-ghost" onclick="closeModal()">Cancelar</button>
-      <button class="btn btn-primary" onclick="saveProduct()"><i class="fas fa-check"></i> Guardar</button>
       <button class="btn btn-ghost" onclick="duplicateFromModal()" id="duplicateBtn" style="display:none;">
         <i class="fas fa-copy"></i> Duplicar
       </button>
+      <button class="btn btn-primary" onclick="saveProduct()"><i class="fas fa-check"></i> Guardar</button>
     </div>
   </div>
 </div>
@@ -1391,11 +1785,18 @@ function renderGrid() {
   };
 
   let list = products.filter(p =>
-    (!q || p.nombre.toLowerCase().includes(q)) &&
-    (!filterCat || (filterCat === 'sale' ? p.precioAnterior : p.categoria === filterCat || p.subcategoria === filterCat))
+    (!q || p.nombre.toLowerCase().includes(q) || (p.tags||[]).join(' ').toLowerCase().includes(q)) &&
+    (!filterCat || (filterCat === 'sale' ? p.precioAnterior : filterCat === 'sin-stock' ? (p.stock === 0) : p.categoria === filterCat || p.subcategoria === filterCat))
   );
 
   if (filterCat === 'sale') list = list.filter(p => p.precioAnterior);
+  if (filterCat === 'sin-stock') list = list.filter(p => p.stock === 0);
+
+  // Sort
+  if (sortMode === 'nombre') list.sort((a,b) => a.nombre.localeCompare(b.nombre));
+  else if (sortMode === 'precio-asc') list.sort((a,b) => a.precio - b.precio);
+  else if (sortMode === 'precio-desc') list.sort((a,b) => b.precio - a.precio);
+  // 'recent' = default array order
 
   updateStats();
 
@@ -1433,16 +1834,19 @@ function renderGrid() {
         }
       }
       
+      const fabricStr = p.fabrica ? Object.entries(p.fabrica).map(([k,v]) => `${v}% ${k.charAt(0).toUpperCase()+k.slice(1)}`).slice(0,2).join(' · ') : '';
       const el = document.createElement('div');
-      el.className = 'prod-card' + (p.activo === false ? ' inactive' : '');
+      el.className = 'prod-card' + (p.activo === false ? ' inactive' : '') + (selectedIds.has(p.id) ? ' selected-card' : '');
       el.dataset.id = p.id;
       el.innerHTML = `
         <div class="prod-img">
+          <input type="checkbox" class="card-select-chk" ${selectedIds.has(p.id)?'checked':''} onclick="event.stopPropagation();toggleSelectCard('${p.id}',this.checked)" title="Seleccionar"/>
           <span class="cat-badge ${badgeCat}">${labelCat}</span>
           ${disc?`<span class="disc-badge">-${disc}</span>`:''}
           <div class="prod-badges">
             ${tallesStr ? `<span class="mini-badge"><i class="fas fa-ruler"></i> ${tallesStr}</span>` : ''}
             ${colores ? `<span class="mini-badge"><i class="fas fa-palette"></i> ${colores}</span>` : ''}
+            ${p.temporada ? `<span class="mini-badge"><i class="fas fa-calendar"></i> ${p.temporada}</span>` : ''}
           </div>
           <img src="${p.imagen}" alt="${p.nombre}" loading="lazy" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22400%22%3E%3Crect fill=%22%23f0ede8%22 width=%22300%22 height=%22400%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22%23c9a96e%22 font-size=%2214%22%3ESin imagen%3C/text%3E%3C/svg%3E'"/>
           <div class="prod-overlay">
@@ -1458,6 +1862,8 @@ function renderGrid() {
             <span class="price-main">$${p.precio.toLocaleString('es-AR')}</span>
             ${p.precioAnterior?`<span class="price-old">$${p.precioAnterior.toLocaleString('es-AR')}</span>`:''}
           </div>
+          ${fabricStr ? `<div style="font-size:10px;color:var(--muted);margin-top:4px;"><i class="fas fa-tshirt" style="margin-right:3px"></i>${fabricStr}</div>` : ''}
+          ${p.sku ? `<div style="font-size:10px;color:var(--muted);margin-top:2px;font-family:monospace">${p.sku}</div>` : ''}
         </div>
         <div class="prod-footer">
           <span class="prod-footer-label">${p.activo?'✓ Visible':'Oculto'}</span>
@@ -1553,6 +1959,21 @@ function openModal(id = null) {
   document.getElementById('dropZone').classList.remove('has-image');
   renderExtraImgs([]);
 
+  // Reset new fields
+  productTags = [];
+  renderTags();
+  clearFabric();
+  document.querySelectorAll('.care-chip').forEach(c => c.classList.remove('selected'));
+  ['fCuidados','fPeso','fProveedor','fNotas','fCosto','fLink','fSku'].forEach(f => { const el = document.getElementById(f); if(el) el.value = ''; });
+  ['fTemporada','fGenero','fOrigen'].forEach(f => { const el = document.getElementById(f); if(el) el.value = ''; });
+  const margenBadge = document.getElementById('margenBadge'); if(margenBadge) margenBadge.style.display='none';
+
+  // Reset to first tab
+  document.querySelectorAll('.modal-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelector('.modal-tab').classList.add('active');
+  document.getElementById('tab-basic').classList.add('active');
+
   // Opciones de talles predefinidas
   const tallesOpciones = ['S', 'M', 'L', 'XL', 'XXL', '36', '38', '40', '42', '44', '46', '48', 'Único'];
   const tallesContainer = document.getElementById('sizesContainer');
@@ -1600,6 +2021,22 @@ function openModal(id = null) {
     document.getElementById('fActivo').checked = p.activo !== false;
     document.getElementById('fDestacado').checked = p.destacado || false;
     document.getElementById('fOutlet').checked = p.outlet || false;
+    // New fields
+    if (document.getElementById('fTemporada')) document.getElementById('fTemporada').value = p.temporada || '';
+    if (document.getElementById('fGenero')) document.getElementById('fGenero').value = p.genero || '';
+    if (document.getElementById('fOrigen')) document.getElementById('fOrigen').value = p.origen || '';
+    if (document.getElementById('fPeso')) document.getElementById('fPeso').value = p.peso || '';
+    if (document.getElementById('fProveedor')) document.getElementById('fProveedor').value = p.proveedor || '';
+    if (document.getElementById('fNotas')) document.getElementById('fNotas').value = p.notas || '';
+    if (document.getElementById('fCosto')) document.getElementById('fCosto').value = p.costo || '';
+    if (document.getElementById('fLink')) document.getElementById('fLink').value = p.link || '';
+    if (document.getElementById('fSku')) document.getElementById('fSku').value = p.sku || '';
+    // Tags
+    productTags = p.tags || []; renderTags();
+    // Fabric
+    loadFabricData(p.fabrica);
+    // Care
+    loadCareData(p.cuidados);
     
     // Marcar talles disponibles
     if (p.tallesDisponibles) {
@@ -2296,18 +2733,26 @@ function saveProduct() {
     outlet: document.getElementById('fOutlet').checked,
     stockMap: getStockData(),
     stockTalles: Object.keys(stockTalles).length ? stockTalles : null,
-    // Si el campo stock está vacío → null (no agotado, sin info)
-    // Si tiene valor → ese número. 0 = sin stock real.
-    // Si hay stockTalles, calcular total automáticamente como fallback
     stock: (() => {
       const raw = document.getElementById('fStock').value.trim();
       if (raw !== '') return parseInt(raw);
-      // calcular desde stockTalles si existen
       const vals = Object.values(stockTalles).filter(v => v !== null && v !== undefined);
       if (vals.length) return vals.reduce((a, b) => a + (parseInt(b) || 0), 0);
-      return null; // sin info de stock = no mostrar agotado
+      return null;
     })(),
-    sku: editId ? products.find(p => p.id === editId)?.sku : (nombre.toUpperCase().replace(/ /g,'-'))
+    sku: document.getElementById('fSku')?.value.trim() || (editId ? products.find(p => p.id === editId)?.sku : (nombre.toUpperCase().replace(/ /g,'-'))),
+    // New fields
+    tags: productTags.length ? [...productTags] : null,
+    fabrica: getFabricData(),
+    cuidados: document.getElementById('fCuidados')?.value || null,
+    temporada: document.getElementById('fTemporada')?.value || null,
+    genero: document.getElementById('fGenero')?.value || null,
+    peso: document.getElementById('fPeso')?.value ? parseInt(document.getElementById('fPeso').value) : null,
+    origen: document.getElementById('fOrigen')?.value || null,
+    proveedor: document.getElementById('fProveedor')?.value.trim() || null,
+    notas: document.getElementById('fNotas')?.value.trim() || null,
+    costo: document.getElementById('fCosto')?.value ? parseInt(document.getElementById('fCosto').value) : null,
+    link: document.getElementById('fLink')?.value.trim() || null,
   };
 
   if (editId) {
@@ -2532,6 +2977,242 @@ function toast(msg, type='ok') {
   el.className = `toast show ${type}`;
   clearTimeout(toastTmr); 
   toastTmr = setTimeout(() => el.classList.remove('show'), 3500);
+}
+
+/* ─── TAB SWITCHER ─── */
+function switchTab(btn, panelId) {
+  document.querySelectorAll('.modal-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById(panelId).classList.add('active');
+}
+
+/* ─── SORT ─── */
+let sortMode = 'recent';
+function setSort(btn, mode) {
+  sortMode = mode;
+  document.querySelectorAll('.sort-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderGrid();
+}
+
+/* ─── SELECTION MODE ─── */
+let selectedIds = new Set();
+
+function toggleSelectCard(id, checked) {
+  if (checked) selectedIds.add(id);
+  else selectedIds.delete(id);
+  updateBulkBar();
+}
+
+function updateBulkBar() {
+  const bar = document.getElementById('bulkBar');
+  const count = selectedIds.size;
+  if (count > 0) {
+    bar.classList.add('show');
+    document.getElementById('bulkCount').textContent = count;
+  } else {
+    bar.classList.remove('show');
+  }
+}
+
+function clearSelection() {
+  selectedIds.clear();
+  document.querySelectorAll('.card-select-chk').forEach(c => c.checked = false);
+  document.querySelectorAll('.prod-card').forEach(c => c.classList.remove('selected-card'));
+  updateBulkBar();
+}
+
+function bulkToggleActive(val) {
+  selectedIds.forEach(id => {
+    const p = products.find(x => x.id === id);
+    if (p) p.activo = val;
+  });
+  dirty(); renderGrid(); updateStats();
+  clearSelection();
+  toast(`${val ? 'Visibles' : 'Ocultos'}: ${selectedIds.size} productos`);
+}
+
+function bulkDelete() {
+  if (!confirm(`¿Eliminar ${selectedIds.size} productos?`)) return;
+  products = products.filter(p => !selectedIds.has(p.id));
+  selectedIds.clear();
+  dirty(); renderGrid(); updateStats();
+  updateBulkBar();
+  toast('Productos eliminados');
+}
+
+/* ─── TAGS ─── */
+let productTags = [];
+
+function addTag(e) {
+  if (e.key !== 'Enter' && e.key !== ',') return;
+  e.preventDefault();
+  const input = document.getElementById('tagInput');
+  const val = input.value.trim().replace(/,$/, '');
+  if (!val || productTags.includes(val)) { input.value = ''; return; }
+  productTags.push(val);
+  renderTags();
+  input.value = '';
+}
+
+function removeTag(tag) {
+  productTags = productTags.filter(t => t !== tag);
+  renderTags();
+}
+
+function renderTags() {
+  const wrap = document.getElementById('tagWrap');
+  const input = document.getElementById('tagInput');
+  wrap.querySelectorAll('.tag-chip').forEach(c => c.remove());
+  productTags.forEach(tag => {
+    const chip = document.createElement('div');
+    chip.className = 'tag-chip';
+    chip.innerHTML = `${tag}<button onclick="removeTag('${tag}')">✕</button>`;
+    wrap.insertBefore(chip, input);
+  });
+}
+
+/* ─── FABRIC COMPOSITION ─── */
+const FABRICS = ['algodon','poliester','elastano','viscosa','lana','nylon','lino','seda','acilico','modal'];
+const FABRIC_COLORS = {
+  algodon:'#c9a96e', poliester:'#3d6bce', elastano:'#2d8a5e',
+  viscosa:'#8e44ad', lana:'#c0392b', nylon:'#7f8c8d',
+  lino:'#f39c12', seda:'#1abc9c', acilico:'#e67e22', modal:'#34495e'
+};
+
+function updateFabric() {
+  let total = 0;
+  FABRICS.forEach(f => {
+    const slider = document.getElementById(`fab-${f}`);
+    const pct = document.getElementById(`fab-${f}-pct`);
+    if (slider && pct) {
+      pct.value = slider.value;
+      total += parseInt(slider.value) || 0;
+    }
+  });
+  updateFabricUI(total);
+}
+
+function syncFabricSlider(name) {
+  const pct = document.getElementById(`fab-${name}-pct`);
+  const slider = document.getElementById(`fab-${name}`);
+  if (pct && slider) {
+    let val = Math.max(0, Math.min(100, parseInt(pct.value) || 0));
+    pct.value = val;
+    slider.value = val;
+  }
+  updateFabricTotal();
+}
+
+function updateFabricTotal() {
+  let total = 0;
+  FABRICS.forEach(f => {
+    total += parseInt(document.getElementById(`fab-${f}`)?.value) || 0;
+  });
+  updateFabricUI(total);
+}
+
+function updateFabricUI(total) {
+  const badge = document.getElementById('fabricTotal');
+  if (!badge) return;
+  badge.textContent = total + '%';
+  badge.className = 'fabric-total-badge ' + (total === 100 ? 'ok' : total > 100 ? 'warn' : 'partial');
+
+  // Visual bar
+  const bar = document.getElementById('fabricBarVisual');
+  if (!bar) return;
+  bar.innerHTML = '';
+  FABRICS.forEach(f => {
+    const val = parseInt(document.getElementById(`fab-${f}`)?.value) || 0;
+    if (val > 0) {
+      const seg = document.createElement('div');
+      seg.className = 'fabric-bar-segment';
+      seg.style.width = val + '%';
+      seg.style.background = FABRIC_COLORS[f];
+      seg.title = f.charAt(0).toUpperCase() + f.slice(1) + ': ' + val + '%';
+      bar.appendChild(seg);
+    }
+  });
+}
+
+function applyFabricPreset(preset) {
+  FABRICS.forEach(f => {
+    const slider = document.getElementById(`fab-${f}`);
+    const pct = document.getElementById(`fab-${f}-pct`);
+    const val = preset[f] || 0;
+    if (slider) slider.value = val;
+    if (pct) pct.value = val;
+  });
+  updateFabricTotal();
+}
+
+function clearFabric() {
+  applyFabricPreset({});
+}
+
+function getFabricData() {
+  const data = {};
+  FABRICS.forEach(f => {
+    const val = parseInt(document.getElementById(`fab-${f}`)?.value) || 0;
+    if (val > 0) data[f] = val;
+  });
+  return Object.keys(data).length ? data : null;
+}
+
+function loadFabricData(data) {
+  if (!data) return;
+  FABRICS.forEach(f => {
+    const val = data[f] || 0;
+    const slider = document.getElementById(`fab-${f}`);
+    const pct = document.getElementById(`fab-${f}-pct`);
+    if (slider) slider.value = val;
+    if (pct) pct.value = val;
+  });
+  updateFabricTotal();
+}
+
+/* ─── CARE INSTRUCTIONS ─── */
+function toggleCare(chip) {
+  chip.classList.toggle('selected');
+  updateCareInput();
+}
+
+function updateCareInput() {
+  const selected = [];
+  document.querySelectorAll('.care-chip.selected').forEach(c => selected.push(c.dataset.care));
+  document.getElementById('fCuidados').value = selected.join('|');
+}
+
+function loadCareData(str) {
+  if (!str) return;
+  const items = str.split('|');
+  document.querySelectorAll('.care-chip').forEach(chip => {
+    chip.classList.toggle('selected', items.includes(chip.dataset.care));
+  });
+}
+
+/* ─── MARGEN CALCULATOR ─── */
+document.addEventListener('DOMContentLoaded', () => {
+  const priceInput = document.getElementById('fPrecio');
+  const costoInput = document.getElementById('fCosto');
+  if (priceInput && costoInput) {
+    [priceInput, costoInput].forEach(inp => inp.addEventListener('input', calcMargen));
+  }
+});
+
+function calcMargen() {
+  const precio = parseInt(document.getElementById('fPrecio')?.value) || 0;
+  const costo = parseInt(document.getElementById('fCosto')?.value) || 0;
+  const badge = document.getElementById('margenBadge');
+  if (!badge) return;
+  if (!precio || !costo) { badge.style.display = 'none'; return; }
+  const margen = Math.round(((precio - costo) / precio) * 100);
+  badge.style.display = 'block';
+  badge.textContent = `Margen: ${margen}% (ganancia: $${(precio - costo).toLocaleString('es-AR')})`;
+  badge.style.background = margen > 30 ? 'rgba(45,138,94,.1)' : 'rgba(201,169,110,.1)';
+  badge.style.color = margen > 30 ? 'var(--green)' : 'var(--accent)';
+  badge.style.border = margen > 30 ? '1px solid rgba(45,138,94,.2)' : '1px solid rgba(201,169,110,.2)';
 }
 
 document.addEventListener('keydown', e => { 
