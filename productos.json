@@ -278,16 +278,16 @@
     ],
     "activo": true,
     "destacado": false,
-    "outlet": false,
+    "outlet": true,
     "stockMap": {
-      "Jean__38": null,
-      "Jean__44": null,
+      "Jean__38": 1,
+      "Jean__44": 1,
       "Jean__46": null
     },
     "stockTalles": {
+      "36": 1,
       "38": 1,
-      "40": 1,
-      "42": 2
+      "44": 1
     },
     "stock": 4,
     "sku": "SHORT-VELSTON"
