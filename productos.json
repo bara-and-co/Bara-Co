@@ -4348,7 +4348,18 @@
     "colores": [],
     "activo": true,
     "destacado": false,
-    "stock": 10,
+    "outlet": false,
+    "stockMap": {
+      "Crema__38": 1,
+      "Crema__40": 1
+    },
+    "stockTalles": {
+      "S": 1,
+      "M": 1,
+      "L": 1,
+      "XL": 1
+    },
+    "stock": 6,
     "sku": "PANTALON-JEAN"
   }
 ]
