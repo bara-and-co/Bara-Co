@@ -548,59 +548,9 @@
   </div>
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-/* ── HEADER SCROLL ── */
-window.addEventListener('scroll', () => {
-  document.getElementById('header').classList.toggle('scrolled', window.scrollY > 40);
-}, {passive:true});
-
-/* ── CART ── */
-let cart = JSON.parse(localStorage.getItem('bc_cart') || '[]');
-function saveCart() { localStorage.setItem('bc_cart', JSON.stringify(cart)); }
-function toggleCart() {
-  document.getElementById('cartDrawer').classList.toggle('open');
-  document.getElementById('cartBackdrop').classList.toggle('open');
-}
-function removeCart(name) {
-  cart = cart.filter(i => i.name !== name);
-  saveCart(); renderCart();
-}
-function renderCart() {
-  const body  = document.getElementById('cdBody');
-  const badge = document.getElementById('cartBadge');
-  const total = document.getElementById('cdTotal');
-  const cnt   = cart.reduce((s,i) => s+i.qty, 0);
-  const sum   = cart.reduce((s,i) => s+i.price*i.qty, 0);
-  badge.textContent = cnt;
-  badge.classList.toggle('on', cnt > 0);
-  total.textContent = '$' + sum.toLocaleString('es-AR');
-  body.querySelectorAll('.cd-item').forEach(e => e.remove());
-  document.getElementById('cdEmpty').style.display = cart.length ? 'none' : 'block';
-  cart.forEach(item => {
-    const el = document.createElement('div');
-    el.className = 'cd-item';
-    el.innerHTML = `
-      <img class="cd-item-img" src="${item.img}" alt="${item.name}"/>
-      <div style="flex:1">
-        <div class="cd-item-name">${item.name}${item.qty>1?' ×'+item.qty:''}</div>
-        <div class="cd-item-price">$${(item.price*item.qty).toLocaleString('es-AR')}</div>
-      </div>
-      <button class="cd-item-rm" onclick="removeCart('${item.name.replace(/'/g,"\\'")}')">×</button>`;
-    body.appendChild(el);
-  });
-}
-function pagarWA() {
-  if (!cart.length) return;
-  const lines = cart.map(i => `• ${i.name}${i.qty>1?' x'+i.qty:''} — $${(i.price*i.qty).toLocaleString('es-AR')}`).join('%0A');
-  const total = cart.reduce((s,i) => s+i.price*i.qty, 0);
-  const msg = `Hola! Quiero hacer el siguiente pedido:%0A%0A${lines}%0A%0A*Total: $${total.toLocaleString('es-AR')}*`;
-  window.open(`https://wa.me/5493525614281?text=${msg}`, '_blank');
-}
-function pagarMP() {
-  if (!cart.length) { alert('Tu carrito está vacío'); return; }
-  window.open('https://link.mercadopago.com.ar/baraandco', '_blank');
-}
-renderCart();
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+<script src="js/carrito.js"></script>
+<script>
 
 /* ── FORMULARIO DE CONTACTO ── */
 function enviarFormulario() {
@@ -617,6 +567,27 @@ function enviarFormulario() {
   const motivo   = document.getElementById('fMotivo').value;
 
   // Armar mensaje de WhatsApp con todos los datos
-  const motivoTxt = motivo ? `%0A*Motivo:* ${document.getElementById('fMotivo').options[document.getElementById('fMotivo').selectedIndex].text}` : '';
-  const telTxt    = tel ? `%0A*Tel:* ${tel}` : '';
-  const wa = `Hola! Mensaje desde el sitio web:%0A%0A*Nombre:* ${nombre} ${apellido}%0A*Email:* ${email}${telTxt}${motivoTxt}%0A%0A*Mensaje:*%0A${encodeURIComponent(m
+  const motivoTxt = motivo
+    ? `%0A*Motivo:* ${document.getElementById('fMotivo').options[document.getElementById('fMotivo').selectedIndex].text}`
+    : '';
+  const telTxt = tel ? `%0A*Tel:* ${tel}` : '';
+  const wa = `Hola! Mensaje desde el sitio web:%0A%0A*Nombre:* ${nombre} ${apellido}%0A*Email:* ${email}${telTxt}${motivoTxt}%0A%0A*Mensaje:*%0A${encodeURIComponent(mensaje)}`;
+  window.open(`https://wa.me/5493525614281?text=${wa}`, '_blank');
+
+  // Mostrar feedback de éxito
+  document.getElementById('formSuccess').classList.add('show');
+  document.getElementById('formSuccess').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+  // Limpiar formulario
+  setTimeout(() => {
+    ['fNombre','fApellido','fEmail','fTel','fMensaje'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.value = '';
+    });
+    document.getElementById('fMotivo').value = '';
+    document.getElementById('formSuccess').classList.remove('show');
+  }, 4000);
+}
+</script>
+</body>
+</html>
