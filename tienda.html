@@ -534,7 +534,29 @@ async function cargarProductos() {
 
 // ========== CONSTRUIR CARD ==========
 function buildCard(p) {
-  const agotado   = p.agotado || (typeof p.stock === 'number' && p.stock === 0);
+  // Calcular stock real considerando TODOS los campos posibles
+  const stockReal = (() => {
+    // 1. Si tiene stockMap (color×talle), sumar todos los valores
+    if (p.stockMap && typeof p.stockMap === 'object') {
+      const vals = Object.values(p.stockMap).filter(v => v !== null && v !== undefined);
+      if (vals.length) return vals.reduce((a, b) => a + (parseInt(b) || 0), 0);
+    }
+    // 2. Si tiene stockTalles (por talle), sumar
+    if (p.stockTalles && typeof p.stockTalles === 'object') {
+      const vals = Object.values(p.stockTalles).filter(v => v !== null && v !== undefined);
+      if (vals.length) return vals.reduce((a, b) => a + (parseInt(b) || 0), 0);
+    }
+    // 3. Si tiene colores con stock individual, sumar
+    if (Array.isArray(p.colores) && p.colores.length && typeof p.colores[0] === 'object') {
+      const total = p.colores.reduce((a, c) => a + (parseInt(c.stock) || 0), 0);
+      if (total > 0) return total;
+    }
+    // 4. Campo stock general
+    if (typeof p.stock === 'number') return p.stock;
+    // 5. Sin info de stock → no marcar agotado
+    return null;
+  })();
+  const agotado = p.agotado || (stockReal !== null && stockReal === 0);
   const descuento = p.precioAnterior ? Math.round((1 - p.precio/p.precioAnterior)*100) : 0;
   const cats      = [p.categoria];
   if (p.precioAnterior) cats.push('sale');
@@ -555,10 +577,11 @@ function buildCard(p) {
   const agotadoOverlay = agotado ? `<div class="badge-agotado"><span>Agotado</span></div>` : '';
 
   // Botón Agregar: llama al selector de talle si el producto tiene talles
-  const tallesStr = p.talles ? JSON.stringify(p.talles).replace(/"/g,"'") : '';
+  const tallesData = p.tallesDisponibles || p.talles || null;
+  const tallesStr = tallesData ? JSON.stringify(tallesData).replace(/"/g,"'") : '';
   const btnAgregar = agotado ? '' :
     tallesStr
-      ? `<button class="ov-btn ov-add" onclick="event.stopPropagation();mostrarSelectorTalle('${p.id}','${p.nombre.replace(/'/g,"\\'")}',${p.precio},'${p.imagen}',${JSON.stringify(p.talles)})"><i class='fas fa-shopping-bag'></i> Elegir talle</button>`
+      ? `<button class="ov-btn ov-add" onclick="event.stopPropagation();mostrarSelectorTalle('${p.id}','${p.nombre.replace(/'/g,"\\'")}',${p.precio},'${p.imagen}',${JSON.stringify(tallesData)})"><i class='fas fa-shopping-bag'></i> Elegir talle</button>`
       : `<button class="ov-btn ov-add" onclick="event.stopPropagation();agregarAlCarrito('${p.id}','${p.nombre.replace(/'/g,"\\'")}',${p.precio},'${p.imagen}')"><i class='fas fa-shopping-bag'></i> Agregar</button>`;
 
   return `
