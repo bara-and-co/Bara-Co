@@ -4594,18 +4594,10 @@
     "precioAnterior": 35000,
     "categoria": "hombre",
     "subcategoria": "Pantalones",
-    "imagen": "https://d22fxaf9t8d39k.cloudfront.net/66dc45043a85ccc21f18ae93dec8409b70a4bd6641b8af4cfec4793a93477375404368.webp",
-    "imagenes": [
-      "https://d22fxaf9t8d39k.cloudfront.net/66dc45043a85ccc21f18ae93dec8409b70a4bd6641b8af4cfec4793a93477375404368.webp"
-    ],
     "descripcion": "",
-    "composicion": "",
-    "cuidado": "",
-    "talles": [
-      "S",
-      "M",
-      "L",
-      "XL"
+    "imagen": "https://i.ibb.co/69BCpF1/Bermuda-SANTANDER.webp",
+    "imagenes": [
+      "https://i.ibb.co/69BCpF1/Bermuda-SANTANDER.webp"
     ],
     "tallesDisponibles": [
       "S",
@@ -4613,9 +4605,39 @@
       "L",
       "XL"
     ],
-    "sku": "BERMUDA-SANTANDER",
+    "colores": [],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Marrón__S": null,
+      "Marrón__M": null,
+      "Marrón__L": null,
+      "Marrón__XL": 1,
+      "Verde oliva__S": null,
+      "Verde oliva__M": null,
+      "Verde oliva__L": null,
+      "Verde oliva__XL": null
+    },
+    "stockTalles": {
+      "S": 1,
+      "M": 2,
+      "L": 1,
+      "XL": 2
+    },
     "stock": 10,
-    "activo": true
+    "sku": "BERMUDA-SANTANDER",
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
   },
   {
     "id": "bermuda-fibrana",
