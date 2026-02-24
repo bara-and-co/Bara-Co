@@ -56,7 +56,7 @@
         "stock": 0
       }
     ],
-    "activo": false,
+    "activo": true,
     "destacado": false,
     "outlet": true,
     "stockMap": {
