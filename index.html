@@ -9,6 +9,47 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
   
   <style>
+    /* ── RESET TOTAL de global.css para esta página ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    /* Neutralizar el body blanco y el header blanco del global */
+    body {
+      background: #0b0b09 !important;
+      color: #ede9e1 !important;
+      font-family: 'DM Sans', sans-serif !important;
+    }
+
+    /* Eliminar mix-blend-mode del header global que causa el blanco */
+    header {
+      background: transparent !important;
+      mix-blend-mode: normal !important;
+      color: inherit !important;
+      padding: 0 !important;
+      box-shadow: none !important;
+    }
+    header.scrolled {
+      background: rgba(11,11,9,.96) !important;
+      mix-blend-mode: normal !important;
+      color: #ede9e1 !important;
+      padding: 0 !important;
+    }
+
+    /* Neutralizar cart-panel blanco del global */
+    .cart-panel {
+      background: #131310 !important;
+      color: #ede9e1 !important;
+    }
+    .cart-header { border-bottom: 1px solid rgba(255,255,255,.06) !important; }
+
+    /* Neutralizar footer del global */
+    footer {
+      background: #131310 !important;
+      color: #ede9e1 !important;
+      padding: 0 !important;
+      margin-top: 0 !important;
+    }
+
     :root {
       --bg:      #0b0b09;
       --surface: #131310;
