@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checkout | Bara & Co</title>
+
+<style>
+
+/* ===== RESET ===== */
+*{box-sizing:border-box;margin:0;padding:0;font-family: 'Helvetica Neue', sans-serif;}
+
+body{
+  background:#0f0f0f;
+  color:#f5f5f5;
+}
+
+/* ===== LAYOUT ===== */
+.checkout{
+  display:flex;
+  max-width:1200px;
+  margin:60px auto;
+  gap:60px;
+  padding:0 20px;
+}
+
+.left{
+  flex:65%;
+}
+
+.right{
+  flex:35%;
+  position:sticky;
+  top:40px;
+  height:fit-content;
+  background:#1a1a1a;
+  padding:30px;
+  border-radius:12px;
+}
+
+/* ===== TITLES ===== */
+h2{
+  font-size:22px;
+  margin-bottom:20px;
+  letter-spacing:1px;
+  font-weight:300;
+}
+
+/* ===== INPUTS ===== */
+.input-group{
+  margin-bottom:20px;
+}
+
+input{
+  width:100%;
+  padding:14px;
+  background:#1a1a1a;
+  border:1px solid #333;
+  color:white;
+  border-radius:8px;
+  transition:.3s;
+}
+
+input:focus{
+  outline:none;
+  border:1px solid #c6a14a;
+}
+
+.error{
+  font-size:12px;
+  color:#c64a4a;
+  margin-top:5px;
+}
+
+/* ===== BUTTON ===== */
+.btn-primary{
+  width:100%;
+  padding:16px;
+  margin-top:20px;
+  background:black;
+  border:1px solid #c6a14a;
+  color:#fff;
+  font-size:16px;
+  cursor:pointer;
+  border-radius:8px;
+  transition:.3s;
+}
+
+.btn-primary:hover{
+  background:#c6a14a;
+  color:black;
+}
+
+/* ===== SUMMARY ===== */
+.summary-item{
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:10px;
+}
+
+.total{
+  margin-top:20px;
+  font-size:20px;
+  font-weight:bold;
+  display:flex;
+  justify-content:space-between;
+}
+
+.security{
+  font-size:12px;
+  margin-top:15px;
+  color:#aaa;
+}
+
+.progress-bar{
+  background:#333;
+  height:6px;
+  border-radius:4px;
+  margin:15px 0;
+}
+
+.progress{
+  height:6px;
+  background:#c6a14a;
+  border-radius:4px;
+  width:70%;
+}
+
+@media(max-width:900px){
+  .checkout{
+    flex-direction:column;
+  }
+  .right{
+    position:relative;
+    top:0;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="checkout">
+
+  <!-- LEFT -->
+  <div class="left">
+
+    <h2>Contacto</h2>
+
+    <div class="input-group">
+      <input type="email" id="email" placeholder="Email">
+      <div class="error" id="emailError"></div>
+    </div>
+
+    <h2>Envío</h2>
+
+    <div class="input-group">
+      <input type="text" placeholder="Nombre completo">
+    </div>
+
+    <div class="input-group">
+      <input type="text" placeholder="Dirección">
+    </div>
+
+    <div class="input-group">
+      <input type="text" placeholder="Ciudad">
+    </div>
+
+    <div class="input-group">
+      <input type="text" placeholder="Código postal">
+    </div>
+
+    <h2>Pago</h2>
+
+    <div class="input-group">
+      <input type="text" placeholder="Número de tarjeta">
+    </div>
+
+    <div class="input-group">
+      <input type="text" placeholder="MM/AA">
+    </div>
+
+    <div class="input-group">
+      <input type="text" placeholder="CVV">
+    </div>
+
+    <button class="btn-primary" onclick="validar()">
+      Finalizar Compra
+    </button>
+
+    <div class="security">
+      Pago 100% seguro y cifrado.
+    </div>
+
+  </div>
+
+  <!-- RIGHT -->
+  <div class="right">
+
+    <h2>Tu Pedido</h2>
+
+    <div class="summary-item">
+      <span>Body Elegance</span>
+      <span>$38.000</span>
+    </div>
+
+    <div class="summary-item">
+      <span>Envío</span>
+      <span>Gratis</span>
+    </div>
+
+    <div class="progress-bar">
+      <div class="progress"></div>
+    </div>
+
+    <div class="total">
+      <span>Total</span>
+      <span>$38.000</span>
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+
+function validar(){
+  const email = document.getElementById('email').value;
+  const error = document.getElementById('emailError');
+
+  if(!email.includes('@')){
+    error.textContent = "Ingresá un email válido.";
+    return;
+  }
+
+  error.textContent = "";
+  alert("Compra simulada correctamente.");
+}
+
+</script>
+
+</body>
+</html>
