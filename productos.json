@@ -2727,18 +2727,11 @@
     "precioAnterior": 30000,
     "categoria": "hombre",
     "subcategoria": "Pantalones",
-    "imagen": "https://d22fxaf9t8d39k.cloudfront.net/d4dea3af0623e9063f446478fb6e8a3d3d2bc68b32bf3a70a8f9d4fd4d741b03404368.jpg",
-    "imagenes": [
-      "https://d22fxaf9t8d39k.cloudfront.net/d4dea3af0623e9063f446478fb6e8a3d3d2bc68b32bf3a70a8f9d4fd4d741b03404368.jpg"
-    ],
     "descripcion": "",
-    "composicion": "",
-    "cuidado": "",
-    "talles": [
-      "S",
-      "M",
-      "L",
-      "XL"
+    "imagen": "https://i.ibb.co/QF2hkPmV/Short-de-ba-o-ELASTIZADO.webp",
+    "imagenes": [
+      "https://i.ibb.co/QF2hkPmV/Short-de-ba-o-ELASTIZADO.webp",
+      "https://i.ibb.co/RkqMTzyD/Short-de-ba-o-ELASTIZADO.jpg"
     ],
     "tallesDisponibles": [
       "S",
@@ -2746,9 +2739,33 @@
       "L",
       "XL"
     ],
-    "sku": "SHORT-DE-BANO-ELASTIZADO-SOFT",
+    "colores": [],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Bordo__M": null,
+      "Bordo__XXL": null
+    },
+    "stockTalles": {
+      "S": null,
+      "M": null,
+      "L": null,
+      "XL": null
+    },
     "stock": 10,
-    "activo": true
+    "sku": "SHORT-DE-BANO-ELASTIZADO-SOFT",
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
   },
   {
     "id": "short-de-bano-elastizado",
