@@ -1684,8 +1684,8 @@
   {
     "id": "buzo-rustico-think-green-1771771069581",
     "nombre": "Buzo Rustico Think Green",
-    "precio": 40,
-    "precioAnterior": 48,
+    "precio": 40000,
+    "precioAnterior": null,
     "categoria": "hombre",
     "subcategoria": "Buzos",
     "descripcion": "",
@@ -1697,12 +1697,32 @@
       "L"
     ],
     "colores": [
-      "Azul"
+      {
+        "nombre": "Azul",
+        "codigo": "#1E88E5",
+        "stock": 0
+      }
     ],
     "activo": true,
     "destacado": true,
+    "outlet": false,
+    "stockMap": {
+      "Azul__L": null
+    },
+    "stockTalles": null,
     "stock": 10,
-    "sku": "BUZO-RUSTICO-THINK-GREEN"
+    "sku": "BUZO-RUSTICO-THINK-GREEN",
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
   },
   {
     "id": "buzo-rustico-unicornio-1771770636389",
