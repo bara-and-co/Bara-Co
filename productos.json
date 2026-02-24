@@ -1177,8 +1177,8 @@
   {
     "id": "ri-onera-1771847352121",
     "nombre": "Riñonera",
-    "precio": 40,
-    "precioAnterior": 48,
+    "precio": 40000,
+    "precioAnterior": null,
     "categoria": "hombre",
     "subcategoria": "Billeteras",
     "descripcion": "",
@@ -1190,12 +1190,34 @@
       "L"
     ],
     "colores": [
-      "Negro"
+      {
+        "nombre": "Negro",
+        "codigo": "#111111",
+        "stock": 0
+      }
     ],
     "activo": true,
     "destacado": true,
+    "outlet": false,
+    "stockMap": {
+      "Negro__L": null
+    },
+    "stockTalles": {
+      "L": null
+    },
     "stock": 10,
-    "sku": "RIÑONERA"
+    "sku": "RIÑONERA",
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
   },
   {
     "id": "buzo-rustico-camping-1771847171177",
