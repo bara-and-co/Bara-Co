@@ -465,7 +465,7 @@
     .review-card-author { font-size:11px; color:var(--muted); }
 
     /* FOOTER */
-    footer { background: var(--surface); border-top: 1px solid var(--border); padding: 72px 52px 40px; display: grid; grid-template-columns: 1.6fr 1fr 1fr 1.2fr; gap: 52px; }
+    footer { background: var(--surface); border-top: 1px solid var(--border); padding: 72px 52px 40px; display: grid; grid-template-columns: 1.6fr 1fr 1fr; gap: 52px; }
     .footer-logo-img { height: 52px; width: auto; object-fit: contain; filter: brightness(0) invert(1); display: block; }
     .footer-text { margin-top:14px; font-size:13px; color:var(--muted); line-height:1.8; max-width:210px; }
     .social-icons { display:flex; gap:16px; margin-top:20px; }
@@ -606,8 +606,15 @@
 <div class="trust-strip">
   <div class="trust-item"><i class="fas fa-truck"></i><span>Envíos a todo el país</span></div>
   <div class="trust-item"><i class="fas fa-shield-alt"></i><span>Compra segura</span></div>
-  <div class="trust-item"><i class="fas fa-exchange-alt"></i><span>Cambios y devoluciones</span></div>
+  <div class="trust-item"><i class="fas fa-exchange-alt"></i><span>Cambios 30 días</span></div>
   <div class="trust-item"><i class="fab fa-whatsapp"></i><span>Atención por WhatsApp</span></div>
+  <div class="trust-item" style="gap:10px;flex-wrap:wrap;justify-content:center;">
+    <span style="font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);width:100%;text-align:center;margin-bottom:2px;">Medios de pago</span>
+    <span style="background:#1a1f71;color:#fff;font-size:9px;font-weight:700;padding:3px 8px;border-radius:3px;letter-spacing:.05em;">VISA</span>
+    <span style="background:#eb001b;color:#fff;font-size:9px;font-weight:700;padding:3px 8px;border-radius:3px;letter-spacing:.05em;">MC</span>
+    <span style="background:#2557d6;color:#fff;font-size:9px;font-weight:700;padding:3px 8px;border-radius:3px;letter-spacing:.05em;">AMEX</span>
+    <span style="background:#009ee3;color:#fff;font-size:9px;font-weight:700;padding:3px 8px;border-radius:3px;letter-spacing:.05em;">MP</span>
+  </div>
 </div>
 
 <div class="shop-body">
@@ -673,14 +680,7 @@
       <li><a href="contacto.html">Contacto</a></li>
     </ul>
   </div>
-  <div>
-    <h4 class="footer-title">Newsletter</h4>
-    <p class="footer-text">10% OFF en tu primera compra</p>
-    <div class="newsletter-input">
-      <input type="email" placeholder="tu@email.com" id="newsletterEmail"/>
-      <button onclick="suscribirNewsletter()"><i class="fas fa-arrow-right"></i></button>
-    </div>
-  </div>
+
 </footer>
 <div class="footer-bottom">
   <span>© 2026 Bara & Co · Ing. Olmos 139 – Jesús María</span>
@@ -790,9 +790,7 @@ function closeSizeGuide() {
 }
 
 // ── NEWSLETTER ──
-function suscribirNewsletter() {
-  const email = document.getElementById('newsletterEmail').value.trim();
-  if (!email || !email.includes('@')) { alert('Ingresá un email válido'); return; }
+
   // Aquí conectar con Mailchimp u otro servicio
   alert('¡Gracias! Te enviamos un código de descuento a ' + email);
   document.getElementById('newsletterEmail').value = '';
