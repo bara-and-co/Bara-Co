@@ -84,8 +84,8 @@ img {
 }
 
 /* ---------- HEADER GLOBAL ---------- */
-/* Nota: las páginas con #header propio (tienda, lookbook) sobreescriben estos estilos.
-   mix-blend-mode solo aplica al index.html que usa header sin id. */
+/* Solo aplica a páginas sin #header (ej: páginas internas simples).
+   index.html y tienda.html usan #header con sus propios estilos. */
 header:not(#header) {
     position: fixed;
     top: 0;
