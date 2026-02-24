@@ -1707,8 +1707,8 @@
   {
     "id": "buzo-rustico-unicornio-1771770636389",
     "nombre": "Buzo Rustico Unicornio",
-    "precio": 40,
-    "precioAnterior": 48,
+    "precio": 40000,
+    "precioAnterior": null,
     "categoria": "hombre",
     "subcategoria": "Buzos",
     "descripcion": "",
@@ -1721,12 +1721,32 @@
       "M"
     ],
     "colores": [
-      "Negro"
+      {
+        "nombre": "Negro",
+        "codigo": "#111111",
+        "stock": 0
+      }
     ],
     "activo": true,
     "destacado": true,
+    "outlet": false,
+    "stockMap": {
+      "Negro__M": null
+    },
+    "stockTalles": null,
     "stock": 10,
-    "sku": "BUZO-RUSTICO-UNICORNIO"
+    "sku": "BUZO-RUSTICO-UNICORNIO",
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
   },
   {
     "id": "buzo-rustico-unicornio-1771770560630",
