@@ -1565,8 +1565,8 @@
   {
     "id": "buzo-canguro-regular-i-dont-care-1771844763516",
     "nombre": "Buzo Canguro Regular I Dont Care",
-    "precio": 50,
-    "precioAnterior": 60,
+    "precio": 50000,
+    "precioAnterior": null,
     "categoria": "hombre",
     "subcategoria": "Buzos",
     "descripcion": "",
@@ -1578,12 +1578,32 @@
       "S"
     ],
     "colores": [
-      "Negro"
+      {
+        "nombre": "Negro",
+        "codigo": "#111111",
+        "stock": 0
+      }
     ],
     "activo": true,
     "destacado": true,
+    "outlet": false,
+    "stockMap": {
+      "Negro__S": null
+    },
+    "stockTalles": null,
     "stock": 10,
-    "sku": "BUZO-CANGURO-REGULAR-I-DONT-CARE"
+    "sku": "BUZO-CANGURO-REGULAR-I-DONT-CARE",
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
   },
   {
     "id": "buzo-over-minimalist-1771844677467",
