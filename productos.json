@@ -1,5 +1,41 @@
 [
   {
+    "id": "short-harvin-n-1771891980062",
+    "nombre": "Short Harvin N",
+    "precio": 30000,
+    "precioAnterior": 45000,
+    "categoria": "mujer",
+    "subcategoria": "Shorts",
+    "descripcion": "",
+    "imagen": "https://i.ibb.co/20VYy4q7/Short-Harvin-N1.webp",
+    "imagenes": [
+      "https://i.ibb.co/20VYy4q7/Short-Harvin-N1.webp",
+      "https://i.ibb.co/v4TxCCgz/Short-Harvin-N2.webp",
+      "https://i.ibb.co/B2QB1JZ8/Short-Harvin-N3.webp"
+    ],
+    "tallesDisponibles": [
+      "42",
+      "46"
+    ],
+    "colores": [
+      {
+        "nombre": "Celeste",
+        "codigo": "#81D4FA",
+        "stock": 0
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Celeste__42": 1,
+      "Celeste__46": 1
+    },
+    "stockTalles": null,
+    "stock": 2,
+    "sku": "SHORT-HARVIN-N"
+  },
+  {
     "id": "short-lowen-1771891730326",
     "nombre": "Short Lowen",
     "precio": 30000,
