@@ -236,16 +236,16 @@
     ],
     "activo": true,
     "destacado": false,
-    "outlet": false,
+    "outlet": true,
     "stockMap": {
       "Jean__38": 1,
       "Jean__40": 1,
       "Jean__44": 1
     },
     "stockTalles": {
+      "36": 1,
       "38": 1,
-      "40": 1,
-      "42": 2
+      "44": 1
     },
     "stock": 3,
     "sku": "SHORT-RAVNEY"
