@@ -1150,7 +1150,7 @@
   {
     "id": "musculosa-morley-1771852119470",
     "nombre": "MUSCULOSA MORLEY",
-    "precio": 17000,
+    "precio": 17500,
     "precioAnterior": null,
     "categoria": "hombre",
     "subcategoria": "Musculosa",
@@ -1168,7 +1168,8 @@
     "destacado": false,
     "outlet": false,
     "stockMap": {
-      "Beige__S": null
+      "Bordo__M": null,
+      "Bordo__XXL": null
     },
     "stockTalles": {
       "XXL": null
