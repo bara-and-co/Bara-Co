@@ -2915,18 +2915,10 @@
     "precioAnterior": 70000,
     "categoria": "hombre",
     "subcategoria": "Conjuntos",
-    "imagen": "https://d22fxaf9t8d39k.cloudfront.net/99817bd6bf6e9fd396141d1523a7dfd5d4f3b696e0ae3e6a9390dfa9f4a05071404368.jpg",
-    "imagenes": [
-      "https://d22fxaf9t8d39k.cloudfront.net/99817bd6bf6e9fd396141d1523a7dfd5d4f3b696e0ae3e6a9390dfa9f4a05071404368.jpg"
-    ],
     "descripcion": "",
-    "composicion": "",
-    "cuidado": "",
-    "talles": [
-      "S",
-      "M",
-      "L",
-      "XL"
+    "imagen": "https://i.ibb.co/hFCKsDSh/Conjunto-LINO.webp",
+    "imagenes": [
+      "https://i.ibb.co/hFCKsDSh/Conjunto-LINO.webp"
     ],
     "tallesDisponibles": [
       "S",
@@ -2934,9 +2926,39 @@
       "L",
       "XL"
     ],
-    "sku": "CONJUNTO-LINO",
+    "colores": [],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Marrón__S": null,
+      "Marrón__M": null,
+      "Marrón__L": null,
+      "Marrón__XL": 1,
+      "Verde oliva__S": null,
+      "Verde oliva__M": null,
+      "Verde oliva__L": null,
+      "Verde oliva__XL": null
+    },
+    "stockTalles": {
+      "S": 1,
+      "M": 2,
+      "L": 1,
+      "XL": 2
+    },
     "stock": 10,
-    "activo": true
+    "sku": "CONJUNTO-LINO",
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
   },
   {
     "id": "short-de-bano-estampados",
