@@ -74,10 +74,10 @@
     }
     .pre-logo {
       text-align: center;
-      animation: preLogoIn .7s cubic-bezier(.22,1,.36,1) .1s both;
+      animation: preLogoIn .5s cubic-bezier(.22,1,.36,1) .05s both;
     }
     @keyframes preLogoIn {
-      from { opacity:0; transform:translateY(10px); }
+      from { opacity:0; transform:translateY(8px); }
       to   { opacity:1; transform:none; }
     }
     .pre-logo-name {
@@ -95,7 +95,7 @@
     .pre-logo-line {
       width: 0; height: 1px; margin: 12px auto 0;
       background: linear-gradient(to right, transparent, #c9a96e, transparent);
-      animation: preLineIn .6s cubic-bezier(.22,1,.36,1) .6s forwards;
+      animation: preLineIn .4s cubic-bezier(.22,1,.36,1) .4s forwards;
     }
     @keyframes preLineIn { to { width:64px; } }
     .pre-logo-sub {
@@ -103,7 +103,7 @@
       font-family: 'DM Sans', sans-serif; font-size: 9px;
       letter-spacing: .4em; text-transform: uppercase;
       color: rgba(201,169,110,.5);
-      opacity: 0; animation: preSubIn .5s ease .8s forwards;
+      opacity: 0; animation: preSubIn .4s ease .55s forwards;
     }
     @keyframes preSubIn { to { opacity:1; } }
     .pre-bar {
@@ -113,7 +113,7 @@
     .pre-bar-fill {
       height: 100%; width: 0;
       background: linear-gradient(to right, rgba(201,169,110,.3), #c9a96e);
-      animation: preBarIn 1.2s cubic-bezier(.4,0,.2,1) .3s forwards;
+      animation: preBarIn .9s cubic-bezier(.4,0,.2,1) .15s forwards;
     }
     @keyframes preBarIn { to { width: 100%; } }
     /* Salida: telón sube */
@@ -296,10 +296,8 @@
     }
     .ann-close:hover { color:var(--accent); }
     body.ann-on .inicio #header { top:36px; }
-    body.ann-on .shipping-bar  { margin-top:calc(80px + 36px); }
     @media (max-width:900px) {
       body.ann-on #header { top:36px; }
-      body.ann-on .shipping-bar { margin-top:calc(68px + 36px); }
       body.ann-on .mobile-nav { top:calc(68px + 36px); }
     }
 
@@ -474,7 +472,7 @@
     .nl-note { margin-top:12px; font-size:11px; color:var(--muted); }
 
     /* ── SHIPPING BAR ── */
-    .shipping-bar { margin-top:80px; background:var(--accent); color:var(--bg); text-align:center; font-size:10px; font-weight:500; letter-spacing:.22em; text-transform:uppercase; padding:11px; position:relative; }
+    .shipping-bar { background:var(--accent); color:var(--bg); text-align:center; font-size:10px; font-weight:500; letter-spacing:.22em; text-transform:uppercase; padding:11px; position:relative; }
 
     /* ── FOOTER ── */
     footer { background:var(--surface); border-top:1px solid var(--border); padding:80px 52px 40px; display:grid; grid-template-columns:1.6fr 1fr 1fr 1.2fr; gap:52px; }
@@ -610,7 +608,6 @@
       .nl-section { grid-template-columns:1fr; padding:64px 22px; gap:36px; }
       footer { grid-template-columns:1fr 1fr; padding:56px 22px 32px; }
       .footer-bottom { padding:16px 22px; flex-direction:column; text-align:center; }
-      .shipping-bar { margin-top:68px; }
       .inicio #header { padding:0 22px; height:68px; }
       .inicio .nav-menu { display:none; }
       .inicio .logo-img { height:64px !important; }
@@ -700,11 +697,6 @@
   <a href="contacto.html">Contacto</a>
 </nav>
 
-<!-- SHIPPING BAR -->
-<div class="shipping-bar">
-  Envíos a todo el país · Retiro en local · Ing. Olmos 139, Jesús María · Compra segura
-</div>
-
 <!-- HERO -->
 <section class="hero" id="hero">
   <div class="hero-background">
@@ -734,6 +726,11 @@
     <div class="scroll-hint-line"></div>
   </div>
 </section>
+
+<!-- SHIPPING BAR -->
+<div class="shipping-bar">
+  Envíos a todo el país · Retiro en local · Ing. Olmos 139, Jesús María · Compra segura
+</div>
 
 <!-- MARQUEE -->
 <div class="marquee-wrap">
@@ -1035,7 +1032,7 @@
 <!-- PRELOADER JS — ejecutado antes que todo -->
 <script>
 (function() {
-  var DURACION = 1800; // 1.8s total (antes 3.2s)
+  var DURACION = 1100; // 1.1s total (antes 1.8s)
   var saliendo = false;
   function salir() {
     if (saliendo) return;
