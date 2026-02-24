@@ -6,17 +6,13 @@
 <title>Checkout | Bara & Co</title>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0;font-family: 'Helvetica Neue', sans-serif;}
+*{box-sizing:border-box;margin:0;padding:0;font-family:Helvetica, sans-serif;}
+body{background:#0f0f0f;color:#f5f5f5;}
 
-body{
-  background:#0f0f0f;
-  color:#f5f5f5;
-}
-
-.checkout{
-  display:flex;
+.container{
   max-width:1200px;
   margin:60px auto;
+  display:flex;
   gap:60px;
   padding:0 20px;
 }
@@ -24,19 +20,18 @@ body{
 .left{flex:65%;}
 .right{
   flex:35%;
-  position:sticky;
-  top:40px;
-  height:fit-content;
   background:#1a1a1a;
   padding:30px;
-  border-radius:12px;
+  border-radius:14px;
+  position:sticky;
+  top:40px;
+  animation:fadeIn .8s ease;
 }
 
 h2{
-  font-size:20px;
-  margin:25px 0 15px;
   font-weight:300;
   letter-spacing:1px;
+  margin-bottom:20px;
 }
 
 input{
@@ -61,9 +56,8 @@ input:focus{
   background:black;
   border:1px solid #c6a14a;
   color:white;
-  cursor:pointer;
   border-radius:8px;
-  margin-top:20px;
+  cursor:pointer;
   transition:.3s;
 }
 
@@ -75,58 +69,84 @@ input:focus{
 .summary-item{
   display:flex;
   justify-content:space-between;
-  margin-bottom:10px;
+  margin-bottom:8px;
   font-size:14px;
 }
 
 .total{
+  display:flex;
+  justify-content:space-between;
   margin-top:20px;
   font-size:20px;
   font-weight:bold;
-  display:flex;
-  justify-content:space-between;
 }
 
-.security{
+.steps{
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:40px;
   font-size:12px;
-  color:#aaa;
-  margin-top:15px;
+  letter-spacing:1px;
+}
+
+.step{
+  flex:1;
+  text-align:center;
+  opacity:.3;
+}
+
+.step.active{
+  color:#c6a14a;
+  opacity:1;
+}
+
+.error{
+  font-size:12px;
+  color:#c64a4a;
+  margin-bottom:10px;
+}
+
+@keyframes fadeIn{
+  from{opacity:0;transform:translateY(20px);}
+  to{opacity:1;transform:translateY(0);}
 }
 
 @media(max-width:900px){
-  .checkout{flex-direction:column;}
+  .container{flex-direction:column;}
   .right{position:relative;top:0;}
 }
 </style>
 </head>
-
 <body>
 
-<div class="checkout">
+<div class="container">
 
 <div class="left">
 
+<div class="steps">
+  <div class="step active">Carrito</div>
+  <div class="step active">Datos</div>
+  <div class="step">Pago</div>
+  <div class="step">Confirmación</div>
+</div>
+
 <h2>Contacto</h2>
 <input type="email" id="email" placeholder="Email">
+<div id="emailError" class="error"></div>
 
 <h2>Envío</h2>
-<input type="text" placeholder="Nombre completo">
+<input type="text" id="nombre" placeholder="Nombre completo">
 <input type="text" placeholder="Dirección">
 <input type="text" placeholder="Ciudad">
 <input type="text" placeholder="Código postal">
 
-<button class="btn" onclick="finalizarCompra()">Finalizar Compra</button>
-
-<div class="security">
-Pago 100% seguro y cifrado.
-</div>
+<button class="btn" onclick="pagar()">Pagar con Mercado Pago</button>
 
 </div>
 
 <div class="right">
 
 <h2>Tu Pedido</h2>
-
 <div id="productos"></div>
 
 <div class="total">
@@ -141,47 +161,49 @@ Pago 100% seguro y cifrado.
 <script>
 
 const CART_KEY = "bc_cart";
-
+const MP_LINK = "https://link.mercadopago.com.ar/baraandco";
 function getCart(){
   return JSON.parse(localStorage.getItem(CART_KEY)) || [];
 }
 
 function renderResumen(){
-
   const cart = getCart();
-  const container = document.getElementById("productos");
+  const cont = document.getElementById("productos");
   const totalEl = document.getElementById("total");
 
-  container.innerHTML = "";
-  let total = 0;
+  cont.innerHTML="";
+  let total=0;
 
   cart.forEach(item=>{
-    const subtotal = item.precio * item.qty;
-    total += subtotal;
+    const sub=item.precio*item.qty;
+    total+=sub;
 
-    container.innerHTML += `
+    cont.innerHTML+=`
       <div class="summary-item">
         <span>${item.nombre} x${item.qty}</span>
-        <span>$${subtotal.toLocaleString("es-AR")}</span>
+        <span>$${sub.toLocaleString("es-AR")}</span>
       </div>
     `;
   });
 
-  totalEl.textContent = "$" + total.toLocaleString("es-AR");
+  totalEl.textContent="$"+total.toLocaleString("es-AR");
 }
 
-function finalizarCompra(){
+function validarEmail(email){
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
 
-  const email = document.getElementById("email").value;
+function pagar(){
+  const email=document.getElementById("email").value;
+  const error=document.getElementById("emailError");
 
-  if(!email.includes("@")){
-    alert("Ingresá un email válido.");
+  if(!validarEmail(email)){
+    error.textContent="Ingresá un email válido.";
     return;
   }
 
-  alert("Compra simulada correctamente 🖤");
-  localStorage.removeItem(CART_KEY);
-  window.location.href = "index.html";
+  error.textContent="";
+  window.location.href=MP_LINK;
 }
 
 document.addEventListener("DOMContentLoaded",renderResumen);
