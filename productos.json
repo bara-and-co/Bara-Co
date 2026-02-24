@@ -1321,8 +1321,8 @@
   {
     "id": "buzo-waffle-1771846454002",
     "nombre": "Buzo Waffle",
-    "precio": 40,
-    "precioAnterior": 50,
+    "precio": 40000,
+    "precioAnterior": null,
     "categoria": "hombre",
     "subcategoria": "Buzos",
     "descripcion": "",
@@ -1337,12 +1337,34 @@
       "S"
     ],
     "colores": [
-      "Negro"
+      {
+        "nombre": "Negro",
+        "codigo": "#111111",
+        "stock": 0
+      }
     ],
     "activo": true,
     "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Negro__S": null
+    },
+    "stockTalles": {
+      "L": null
+    },
     "stock": 10,
-    "sku": "BUZO-WAFFLE"
+    "sku": "BUZO-WAFFLE",
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
   },
   {
     "id": "buzo-madrid-1771846274594",
