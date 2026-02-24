@@ -1,5 +1,47 @@
 [
   {
+    "id": "short-ravney-1771891560446",
+    "nombre": "Short Ravney",
+    "precio": 30000,
+    "precioAnterior": 45000,
+    "categoria": "mujer",
+    "subcategoria": "Shorts",
+    "descripcion": "",
+    "imagen": "https://i.ibb.co/pvRf8X4m/Short-RAVNEY.webp",
+    "imagenes": [
+      "https://i.ibb.co/pvRf8X4m/Short-RAVNEY.webp",
+      "https://i.ibb.co/ZzvGkdXW/Short-RAVNEY2.webp",
+      "https://i.ibb.co/QFB417j5/Short-RAVNEY3.webp"
+    ],
+    "tallesDisponibles": [
+      "38",
+      "40",
+      "44"
+    ],
+    "colores": [
+      {
+        "nombre": "Jean",
+        "codigo": "#5C7FA3",
+        "stock": 0
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Jean__38": 1,
+      "Jean__40": 1,
+      "Jean__44": 1
+    },
+    "stockTalles": {
+      "38": 1,
+      "40": 1,
+      "42": 2
+    },
+    "stock": 3,
+    "sku": "SHORT-RAVNEY"
+  },
+  {
     "id": "short-velston-1771891324503",
     "nombre": "Short Velston",
     "precio": 30000,
