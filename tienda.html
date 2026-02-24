@@ -790,10 +790,23 @@ function closeSizeGuide() {
 }
 
 // ── NEWSLETTER ──
+function suscribirNewsletter() {
+  const input = document.getElementById('newsletterEmail');
+  if (!input) return;
+  const email = input.value.trim();
+  const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-  // Aquí conectar con Mailchimp u otro servicio
+  if (!email || !re.test(email)) {
+    input.style.borderColor = '#b83030';
+    input.focus();
+    setTimeout(() => { input.style.borderColor = ''; }, 2000);
+    return;
+  }
+
+  // Conectar con Mailchimp: reemplazar el alert por el fetch a tu endpoint
+  // fetch('https://TU_ENDPOINT_MAILCHIMP', { method:'POST', body: JSON.stringify({email}) })
   alert('¡Gracias! Te enviamos un código de descuento a ' + email);
-  document.getElementById('newsletterEmail').value = '';
+  input.value = '';
 }
 
 // ========== ESTADO GLOBAL ==========
