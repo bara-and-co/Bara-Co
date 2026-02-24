@@ -35,23 +35,37 @@
     @media (hover:none) and (pointer:coarse) { body,a,button,[onclick],.cart-icon-wrap,.prod-card,.filter-tab{cursor:auto!important;} .cur,.cur-ring{display:none!important;} }
 
     /* ── HEADER ── */
-    #header { position:fixed; top:0; left:0; right:0; z-index:500; height:80px; display:flex; align-items:center; padding:0 52px; background:rgba(11,11,9,0); transition:background .5s,border-color .5s; border-bottom:1px solid transparent; }
+    #header {
+      position:fixed; top:0; left:0; right:0; z-index:500;
+      height:80px; display:flex; align-items:center; padding:0 52px;
+      background:rgba(11,11,9,0); transition:background .5s,border-color .5s;
+      border-bottom:1px solid transparent; overflow:visible;
+    }
     #header.scrolled { background:rgba(11,11,9,.96); backdrop-filter:blur(24px); border-color:var(--border); }
-    .logo-img { height:80px!important; width:auto!important; object-fit:contain; filter:brightness(0) invert(1); transition:height .5s var(--ease); }
+
+    /* Logo izquierda */
+    .logo-img { height:80px!important; width:auto!important; object-fit:contain; filter:brightness(0) invert(1); transition:height .5s var(--ease); flex-shrink:0; }
     #header.scrolled .logo-img { height:48px!important; }
-    .nav-menu { flex:1; }
-    .nav-menu ul { display:flex; justify-content:flex-start; align-items:center; gap:38px; list-style:none; margin:0; padding:0; margin-left:40px; }
-    .nav-menu a { font-size:10px; font-weight:500; letter-spacing:.18em; text-transform:uppercase; color:rgba(255,255,255,.65); position:relative; transition:color .25s; }
+
+    /* Nav centrada */
+    .nav-menu { position:absolute; left:50%; transform:translateX(-50%); }
+    .nav-menu ul { display:flex; align-items:center; gap:38px; list-style:none; margin:0; padding:0; }
+    .nav-menu a { font-size:10px; font-weight:500; letter-spacing:.18em; text-transform:uppercase; color:rgba(255,255,255,.65); position:relative; transition:color .25s; white-space:nowrap; }
     .nav-menu a::after { content:''; position:absolute; bottom:-3px; left:0; right:0; height:1px; background:var(--accent); transform:scaleX(0); transform-origin:left; transition:transform .3s var(--ease); }
     .nav-menu a:hover,.nav-menu a.active { color:var(--white); }
     .nav-menu a:hover::after,.nav-menu a.active::after { transform:scaleX(1); }
-    .header-icons { margin-left:auto; display:flex; align-items:center; gap:22px; }
+
+    /* Íconos derecha */
+    .header-icons { margin-left:auto; display:flex; align-items:center; gap:22px; flex-shrink:0; }
     .header-icons i { font-size:16px; color:rgba(255,255,255,.6); cursor:pointer; transition:color .25s; }
     .header-icons i:hover { color:var(--accent); }
-    .cart-icon-wrap { position:relative; cursor:pointer; }
-    .cart-badge { position:absolute; top:-6px; right:-7px; width:16px; height:16px; border-radius:50%; background:var(--accent); color:var(--bg); font-size:8px; font-weight:700; display:none; place-items:center; }
+    .cart-icon-wrap { position:relative; cursor:pointer; padding-right:12px; }
+    .cart-badge { position:absolute; top:-6px; right:5px; width:16px; height:16px; border-radius:50%; background:var(--accent); color:var(--bg); font-size:8px; font-weight:700; display:none; place-items:center; }
     .cart-badge.on { display:grid; }
+
+    /* Hamburguesa: solo mobile */
     .menu-toggle { display:none; flex-direction:column; gap:5px; cursor:pointer; padding:4px; background:none; border:none; }
+    @media (min-width:901px) { .menu-toggle { display:none !important; } }
     .menu-toggle span { display:block; width:22px; height:1.5px; background:rgba(255,255,255,.6); transition:all .3s; }
     .menu-toggle.open span:nth-child(1) { transform:translateY(6.5px) rotate(45deg); }
     .menu-toggle.open span:nth-child(2) { opacity:0; }
@@ -534,26 +548,20 @@ async function cargarProductos() {
 
 // ========== CONSTRUIR CARD ==========
 function buildCard(p) {
-  // Calcular stock real considerando TODOS los campos posibles
   const stockReal = (() => {
-    // 1. Si tiene stockMap (color×talle), sumar todos los valores
     if (p.stockMap && typeof p.stockMap === 'object') {
       const vals = Object.values(p.stockMap).filter(v => v !== null && v !== undefined);
       if (vals.length) return vals.reduce((a, b) => a + (parseInt(b) || 0), 0);
     }
-    // 2. Si tiene stockTalles (por talle), sumar
     if (p.stockTalles && typeof p.stockTalles === 'object') {
       const vals = Object.values(p.stockTalles).filter(v => v !== null && v !== undefined);
       if (vals.length) return vals.reduce((a, b) => a + (parseInt(b) || 0), 0);
     }
-    // 3. Si tiene colores con stock individual, sumar
     if (Array.isArray(p.colores) && p.colores.length && typeof p.colores[0] === 'object') {
       const total = p.colores.reduce((a, c) => a + (parseInt(c.stock) || 0), 0);
       if (total > 0) return total;
     }
-    // 4. Campo stock general
     if (typeof p.stock === 'number') return p.stock;
-    // 5. Sin info de stock → no marcar agotado
     return null;
   })();
   const agotado = p.agotado || (stockReal !== null && stockReal === 0);
@@ -576,11 +584,9 @@ function buildCard(p) {
 
   const agotadoOverlay = agotado ? `<div class="badge-agotado"><span>Agotado</span></div>` : '';
 
-  // Botón Agregar: llama al selector de talle si el producto tiene talles
   const tallesData = p.tallesDisponibles || p.talles || null;
-  const tallesStr = tallesData ? JSON.stringify(tallesData).replace(/"/g,"'") : '';
   const btnAgregar = agotado ? '' :
-    tallesStr
+    tallesData
       ? `<button class="ov-btn ov-add" onclick="event.stopPropagation();mostrarSelectorTalle('${p.id}','${p.nombre.replace(/'/g,"\\'")}',${p.precio},'${p.imagen}',${JSON.stringify(tallesData)},${JSON.stringify(p.stockTalles||null)},${JSON.stringify(p.stockMap||null)})"><i class='fas fa-shopping-bag'></i> Elegir talle</button>`
       : `<button class="ov-btn ov-add" onclick="event.stopPropagation();agregarAlCarrito('${p.id}','${p.nombre.replace(/'/g,"\\'")}',${p.precio},'${p.imagen}')"><i class='fas fa-shopping-bag'></i> Agregar</button>`;
 
