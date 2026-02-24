@@ -2406,29 +2406,74 @@
     "precio": 70000,
     "precioAnterior": null,
     "categoria": "new",
-    "subcategoria": null,
+    "subcategoria": "",
+    "descripcion": "",
     "imagen": "hombre/Rialto.png",
     "imagenes": [
       "hombre/Rialto.png"
-    ],
-    "descripcion": "",
-    "composicion": "",
-    "cuidado": "",
-    "talles": [
-      "S",
-      "M",
-      "L",
-      "XL"
     ],
     "tallesDisponibles": [
       "S",
       "M",
       "L",
-      "XL"
+      "XL",
+      "40",
+      "42",
+      "44",
+      "46"
     ],
-    "sku": "SASTRERO-RIALTO",
+    "colores": [
+      {
+        "nombre": "Negro",
+        "codigo": "#111111",
+        "stock": 0
+      },
+      {
+        "nombre": "Beige",
+        "codigo": "#D4B896",
+        "stock": 0
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Negro__S": null,
+      "Negro__M": null,
+      "Negro__L": null,
+      "Negro__XL": null,
+      "Negro__40": 1,
+      "Negro__42": 1,
+      "Negro__44": 1,
+      "Negro__46": null,
+      "Beige__S": null,
+      "Beige__M": null,
+      "Beige__L": null,
+      "Beige__XL": null,
+      "Beige__40": 1,
+      "Beige__42": null,
+      "Beige__44": null,
+      "Beige__46": 1
+    },
+    "stockTalles": {
+      "S": null,
+      "M": null,
+      "L": null,
+      "XL": null
+    },
     "stock": 10,
-    "activo": true
+    "sku": "SASTRERO-RIALTO",
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
   },
   {
     "id": "kimono",
