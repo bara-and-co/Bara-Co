@@ -296,7 +296,7 @@
     <i class="fas fa-search" onclick="window.location.href='tienda.html'"></i>
     <div class="cart-w" onclick="toggleCart()">
       <i class="fas fa-shopping-bag"></i>
-      <span class="cart-dot" id="cartDot">0</span>
+      <span class="cart-dot cart-count cart-badge" id="cartDot">0</span>
     </div>
   </div>
 </header>
@@ -496,30 +496,9 @@
 <!-- WA -->
 <button class="wa-btn" onclick="window.open('https://wa.me/5493525614281?text=Hola!%20Quiero%20consultar%20sobre%20un%20producto','_blank')"><i class="fab fa-whatsapp"></i></button>
 
-<!-- CART — estructura unificada -->
-<div class="overlay" onclick="toggleCart()"></div>
-<div class="cart-panel">
-  <div class="cart-header">
-    <h2 class="cart-title">Carrito</h2>
-    <button class="close-cart" onclick="toggleCart()"><i class="fas fa-times"></i></button>
-  </div>
-  <div class="cart-items">
-    <div class="cart-empty">
-      <i class="fas fa-shopping-bag" style="font-size:40px;display:block;margin-bottom:14px;opacity:.35;"></i>
-      Tu carrito está vacío
-    </div>
-  </div>
-  <div class="cart-footer"></div>
-</div>
-
-<div id="cartNotification" class="cart-notification">
-  <i class="fas fa-check-circle"></i>
-  <span></span>
-</div>
-
 <!-- JS -->
 <script src="js/main.js"></script>
-<script src="js/carrito.js"></script>
+<script src="js/carrito-ui.js"></script>
 
 <script>
 /* cursor */
