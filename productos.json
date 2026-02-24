@@ -1,5 +1,44 @@
 [
   {
+    "id": "mini-marfil-1771892856943",
+    "nombre": "Mini Marfil",
+    "precio": 28000,
+    "precioAnterior": 40000,
+    "categoria": "mujer",
+    "subcategoria": "Polleras",
+    "descripcion": "",
+    "imagen": "https://i.ibb.co/7JkhDxRq/Miniblanca.png",
+    "imagenes": [
+      "https://i.ibb.co/7JkhDxRq/Miniblanca.png",
+      "https://i.ibb.co/tT9dHX2n/Miniblanca-de-atras.png"
+    ],
+    "tallesDisponibles": [
+      "38",
+      "40"
+    ],
+    "colores": [
+      {
+        "nombre": "Crema",
+        "codigo": "#F5F0E8",
+        "stock": 0
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Crema__38": 1,
+      "Crema__40": 1
+    },
+    "stockTalles": {
+      "38": 1,
+      "40": 1,
+      "42": 1
+    },
+    "stock": 2,
+    "sku": "MINI-MARFIL"
+  },
+  {
     "id": "canguro-denim-crop-1771892792654",
     "nombre": "Canguro Denim Crop",
     "precio": 30000,
