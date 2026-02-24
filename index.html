@@ -1634,10 +1634,19 @@ header .logo img {
     <p class="nl-sub">Acceso 48hs antes a cada colección nueva. Descuentos exclusivos de temporada y 10% OFF en tu primera compra.</p>
   </div>
   <div>
-    <div class="nl-form">
-      <input type="email" id="nlEmail" placeholder="tu@email.com"/>
-      <button onclick="suscribirNewsletter()">Suscribirme</button>
-    </div>
+    <!-- 
+      MAILCHIMP: Reemplazá MAILCHIMP_ACTION_URL por la URL de tu audience.
+      Cómo obtenerla: Mailchimp → Audience → Signup forms → Embedded forms → copiar el "action" del form.
+      Ejemplo: https://tudominio.us1.list-manage.com/subscribe/post?u=XXXX&amp;id=YYYY
+    -->
+    <form class="nl-form" id="nlForm" action="MAILCHIMP_ACTION_URL" method="post" target="_blank" novalidate>
+      <input type="email" name="EMAIL" id="nlEmail" placeholder="tu@email.com" required/>
+      <!-- Campo honeypot anti-spam de Mailchimp — no borrar -->
+      <div style="position:absolute;left:-5000px;" aria-hidden="true">
+        <input type="text" name="b_REEMPLAZAR" tabindex="-1" value=""/>
+      </div>
+      <button type="submit">Suscribirme</button>
+    </form>
     <p class="nl-note">Sin spam. Podés darte de baja cuando quieras.</p>
   </div>
 </section>
@@ -1676,10 +1685,13 @@ header .logo img {
   <div>
     <h4 class="footer-title">Newsletter</h4>
     <p class="footer-text">10% OFF en tu primera compra</p>
-    <div class="newsletter-input">
-      <input type="email" placeholder="tu@email.com"/>
-      <button><i class="fas fa-arrow-right"></i></button>
-    </div>
+    <form class="newsletter-input" action="MAILCHIMP_ACTION_URL" method="post" target="_blank" novalidate>
+      <input type="email" name="EMAIL" placeholder="tu@email.com" required/>
+      <div style="position:absolute;left:-5000px;" aria-hidden="true">
+        <input type="text" name="b_REEMPLAZAR" tabindex="-1" value=""/>
+      </div>
+      <button type="submit"><i class="fas fa-arrow-right"></i></button>
+    </form>
   </div>
 </footer>
 <div class="footer-bottom">
@@ -1905,38 +1917,51 @@ header .logo img {
     grid.innerHTML = html;
   }
 
-  function suscribirNewsletter() {
-    const emailInput = document.getElementById('nlEmail');
-    const email = emailInput.value.trim();
-    if (!email || !email.includes('@')) {
-      emailInput.style.borderColor = '#b83030';
-      emailInput.placeholder = 'Ingresá un email válido';
-      setTimeout(() => {
-        emailInput.style.borderColor = '';
-        emailInput.placeholder = 'tu@email.com';
-      }, 2000);
-      return;
-    }
-    // Guardar en localStorage como referencia local
-    const suscriptores = JSON.parse(localStorage.getItem('bc_newsletter') || '[]');
-    if (suscriptores.includes(email)) {
-      emailInput.value = '';
-      showNlSuccess('¡Ya estás suscripto! Te avisamos de cada novedad.');
-      return;
-    }
-    suscriptores.push(email);
-    localStorage.setItem('bc_newsletter', JSON.stringify(suscriptores));
-    emailInput.value = '';
-    showNlSuccess('¡Gracias! Revisá tu email para recibir el 10% OFF 🎉');
-  }
-
-  function showNlSuccess(msg) {
-    const form = document.querySelector('.nl-form');
+  // Newsletter: el form ahora usa Mailchimp nativo (method="post" target="_blank").
+  // La validación de email se hace antes de enviar para mejor UX.
+  (function() {
+    const form = document.getElementById('nlForm');
     if (!form) return;
-    const original = form.innerHTML;
-    form.innerHTML = `<p style="color:var(--accent);font-size:15px;font-weight:500;">${msg}</p>`;
-    setTimeout(() => { form.innerHTML = original; }, 5000);
-  }
+
+    form.addEventListener('submit', function(e) {
+      const emailInput = form.querySelector('input[type="email"]');
+      const email = emailInput ? emailInput.value.trim() : '';
+
+      if (!email || !email.includes('@') || !email.includes('.')) {
+        e.preventDefault();
+        if (emailInput) {
+          emailInput.style.borderColor = '#b83030';
+          emailInput.placeholder = 'Ingresá un email válido';
+          setTimeout(() => {
+            emailInput.style.borderColor = '';
+            emailInput.placeholder = 'tu@email.com';
+          }, 2500);
+        }
+        return;
+      }
+
+      // Si la URL todavía es el placeholder, mostrar instrucción
+      if (form.action.includes('MAILCHIMP_ACTION_URL')) {
+        e.preventDefault();
+        console.warn('Newsletter: reemplazá MAILCHIMP_ACTION_URL con tu URL de Mailchimp');
+        const btn = form.querySelector('button');
+        if (btn) { btn.textContent = '¡Falta configurar!'; setTimeout(() => { btn.textContent = 'Suscribirme'; }, 3000); }
+        return;
+      }
+
+      // Si todo OK, el form se envía solo a Mailchimp (target="_blank")
+      // Mostramos feedback local inmediatamente
+      setTimeout(() => {
+        if (emailInput) emailInput.value = '';
+        const wrap = form.parentElement;
+        const msg = document.createElement('p');
+        msg.style.cssText = 'color:var(--accent);font-size:15px;font-weight:500;margin-top:8px;';
+        msg.textContent = '¡Gracias! Revisá tu email para recibir el 10% OFF 🎉';
+        wrap.appendChild(msg);
+        setTimeout(() => msg.remove(), 5000);
+      }, 300);
+    });
+  })();
 
   document.addEventListener('DOMContentLoaded', () => {
     initAnnBar();
