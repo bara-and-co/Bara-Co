@@ -4409,18 +4409,11 @@
     "precioAnterior": 100000,
     "categoria": "hombre",
     "subcategoria": "Pantalones",
-    "imagen": "https://d22fxaf9t8d39k.cloudfront.net/38eafcd1d5ec28634a2fef8d7655a7b2602701181a02109bc0b104651c5d2a9d404368.jpg",
-    "imagenes": [
-      "https://d22fxaf9t8d39k.cloudfront.net/38eafcd1d5ec28634a2fef8d7655a7b2602701181a02109bc0b104651c5d2a9d404368.jpg"
-    ],
     "descripcion": "",
-    "composicion": "",
-    "cuidado": "",
-    "talles": [
-      "S",
-      "M",
-      "L",
-      "XL"
+    "imagen": "https://i.ibb.co/FLcrPTp4/Pantalon-Jean-Paint.webp",
+    "imagenes": [
+      "https://i.ibb.co/FLcrPTp4/Pantalon-Jean-Paint.webp",
+      "https://i.ibb.co/bMMDrp9D/Pantalon-Jean-Paint.jpg"
     ],
     "tallesDisponibles": [
       "S",
@@ -4428,9 +4421,33 @@
       "L",
       "XL"
     ],
-    "sku": "PANTALON-JEAN-PAINT",
+    "colores": [],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Bordo__M": null,
+      "Bordo__XXL": null
+    },
+    "stockTalles": {
+      "S": null,
+      "M": null,
+      "L": null,
+      "XL": null
+    },
     "stock": 10,
-    "activo": true
+    "sku": "PANTALON-JEAN-PAINT",
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
   },
   {
     "id": "bermuda-mila",
