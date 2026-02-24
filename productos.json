@@ -1223,8 +1223,8 @@
   {
     "id": "buzo-frisa-singapur-1771847059137",
     "nombre": "Buzo FrIsa Singapur",
-    "precio": 40,
-    "precioAnterior": 50,
+    "precio": 40000,
+    "precioAnterior": null,
     "categoria": "hombre",
     "subcategoria": "Buzos",
     "descripcion": "",
@@ -1236,12 +1236,34 @@
       "L"
     ],
     "colores": [
-      "Negro"
+      {
+        "nombre": "Negro",
+        "codigo": "#111111",
+        "stock": 0
+      }
     ],
     "activo": true,
     "destacado": true,
+    "outlet": false,
+    "stockMap": {
+      "Negro__L": null
+    },
+    "stockTalles": {
+      "L": null
+    },
     "stock": 10,
-    "sku": "BUZO-FRISA-SINGAPUR"
+    "sku": "BUZO-FRISA-SINGAPUR",
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
   },
   {
     "id": "buzo-waffle-1771846923193",
