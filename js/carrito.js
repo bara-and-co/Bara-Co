@@ -1,49 +1,23 @@
 /**
- * carrito.js — Bara & Co Dark Luxury
+ * carrito.js — Bara & Co (compatibility shim)
+ * ─────────────────────────────────────────────────────────────────────────────
+ * Este archivo ya NO necesita usarse directamente.
+ * La lógica completa del carrito vive en carrito-ui.js, que incluye el
+ * drawer, los estilos y todas las funciones públicas.
+ *
+ * Si alguna página todavía carga carrito.js, este archivo simplemente
+ * verifica que carrito-ui.js ya esté cargado. Si no, lo carga dinámicamente.
+ * ─────────────────────────────────────────────────────────────────────────────
  */
+(function () {
+  // Si carrito-ui.js ya inyectó el panel, no hacer nada.
+  if (document.getElementById('bcPanel')) return;
 
-(function(){
-
-const CART_KEY = "bc_cart";
-
-function getCart(){
-  return JSON.parse(localStorage.getItem(CART_KEY)) || [];
-}
-
-function saveCart(cart){
-  localStorage.setItem(CART_KEY, JSON.stringify(cart));
-}
-
-window.agregarAlCarrito = function(id,nombre,precio,imagen,talle='',color=''){
-
-  const cart = getCart();
-  const uniqueId = `${id}-${talle}-${color}`;
-  const existing = cart.find(p=>p.id===uniqueId);
-
-  if(existing){
-    existing.qty++;
-  }else{
-    cart.push({
-      id:uniqueId,
-      nombre,
-      precio:parseFloat(precio),
-      imagen,
-      talle,
-      color,
-      qty:1
-    });
-  }
-
-  saveCart(cart);
-  alert("Producto agregado al carrito 🖤");
-}
-
-window.irAlCheckout = function(){
-  if(!getCart().length){
-    alert("Tu carrito está vacío.");
-    return;
-  }
-  window.location.href = "checkout.html";
-};
-
+  // Cargarlo dinámicamente desde la misma carpeta js/
+  const script = document.createElement('script');
+  const base   = document.currentScript
+    ? document.currentScript.src.replace('carrito.js', '')
+    : 'js/';
+  script.src = base + 'carrito-ui.js';
+  document.head.appendChild(script);
 })();
