@@ -3897,18 +3897,11 @@
     "precioAnterior": 60000,
     "categoria": "hombre",
     "subcategoria": "Pantalones",
-    "imagen": "https://d22fxaf9t8d39k.cloudfront.net/9890271f5c7ff2f24fcc5de420f0c5b35e64cf5c1eb989fa336acf68cea9476c404368.jpg",
-    "imagenes": [
-      "https://d22fxaf9t8d39k.cloudfront.net/9890271f5c7ff2f24fcc5de420f0c5b35e64cf5c1eb989fa336acf68cea9476c404368.jpg"
-    ],
     "descripcion": "",
-    "composicion": "",
-    "cuidado": "",
-    "talles": [
-      "S",
-      "M",
-      "L",
-      "XL"
+    "imagen": "https://i.ibb.co/hRhjNkxF/Pantalo-Baggy-Cielo.webp",
+    "imagenes": [
+      "https://i.ibb.co/hRhjNkxF/Pantalo-Baggy-Cielo.webp",
+      "https://i.ibb.co/23cFZ0Th/Pantalo-Baggy-Cielo.jpg"
     ],
     "tallesDisponibles": [
       "S",
@@ -3916,9 +3909,33 @@
       "L",
       "XL"
     ],
-    "sku": "PANTALO-BAGGY-CIELO",
+    "colores": [],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Bordo__M": null,
+      "Bordo__XXL": null
+    },
+    "stockTalles": {
+      "S": null,
+      "M": null,
+      "L": null,
+      "XL": null
+    },
     "stock": 10,
-    "activo": true
+    "sku": "PANTALO-BAGGY-CIELO",
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
   },
   {
     "id": "collar-snake-multiuso",
