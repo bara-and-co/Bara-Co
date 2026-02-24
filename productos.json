@@ -1659,8 +1659,8 @@
   {
     "id": "buzo-rusticothink-green-1771771133333",
     "nombre": "Buzo RusticoThink Green",
-    "precio": 40,
-    "precioAnterior": 48,
+    "precio": 40000,
+    "precioAnterior": null,
     "categoria": "hombre",
     "subcategoria": "Buzos",
     "descripcion": "",
@@ -1674,12 +1674,32 @@
       "XL"
     ],
     "colores": [
-      "Gris"
+      {
+        "nombre": "Gris",
+        "codigo": "#9E9E9E",
+        "stock": 0
+      }
     ],
     "activo": true,
     "destacado": true,
+    "outlet": false,
+    "stockMap": {
+      "Gris__XL": null
+    },
+    "stockTalles": null,
     "stock": 10,
-    "sku": "BUZO-RUSTICOTHINK-GREEN"
+    "sku": "BUZO-RUSTICOTHINK-GREEN",
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
   },
   {
     "id": "buzo-rustico-think-green-1771771069581",
