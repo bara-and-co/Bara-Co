@@ -325,7 +325,7 @@
   <div class="header-icons">
     <div class="cart-icon-wrap" onclick="toggleCart()">
       <i class="fas fa-shopping-bag"></i>
-      <span class="cart-badge" id="cartBadge">0</span>
+      <span class="cart-badge cart-count" id="cartBadge">0</span>
     </div>
   </div>
 </header>
@@ -526,30 +526,7 @@
   <i class="fab fa-whatsapp"></i>
 </button>
 
-<!-- ══ CART DRAWER ══ -->
-<div class="cart-backdrop" id="cartBackdrop" onclick="toggleCart()"></div>
-<div class="cart-drawer" id="cartDrawer">
-  <div class="cd-head">
-    <h2 class="cd-title">Carrito</h2>
-    <button class="cd-close" onclick="toggleCart()">×</button>
-  </div>
-  <div class="cd-body" id="cdBody">
-    <div class="cd-empty" id="cdEmpty">Tu carrito está vacío</div>
-  </div>
-  <div class="cd-foot">
-    <div class="cd-subtotal"><span>Subtotal</span><span id="cdTotal">$0</span></div>
-    <button class="pay-btn pay-mp" onclick="pagarMP()">
-      <i class="fab fa-cc-visa"></i> Pagar con MercadoPago
-    </button>
-    <button class="pay-btn pay-wa" onclick="pagarWA()">
-      <i class="fab fa-whatsapp"></i> Solicitar por WhatsApp
-    </button>
-    <p class="pay-info"><i class="fas fa-lock"></i> &nbsp; Pago seguro. Sin comisiones adicionales.</p>
-  </div>
-</div>
-
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
-<script src="js/carrito.js"></script>
+<script src="js/carrito-ui.js"></script>
 <script>
 
 /* ── FORMULARIO DE CONTACTO ── */
@@ -588,7 +565,6 @@ function enviarFormulario() {
     document.getElementById('formSuccess').classList.remove('show');
   }, 4000);
 }
-  <script src="js/carrito-ui.js"></script>
 </script>
 </body>
 </html>
