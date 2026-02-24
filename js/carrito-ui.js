@@ -482,4 +482,188 @@
   // Por si DOMContentLoaded ya pasó (script cargado con defer/async)
   if (document.readyState !== 'loading') render();
 
+  /* ══════════════════════════════════════════════════════
+     8. SELECTOR DE TALLE (usado en tienda.html)
+        Muestra un modal liviano para elegir talle antes
+        de agregar al carrito desde la grilla de productos.
+  ══════════════════════════════════════════════════════ */
+
+  // Inyectar estilos del modal
+  const styleModal = document.createElement('style');
+  styleModal.textContent = `
+    #bcTalleBackdrop {
+      position:fixed; inset:0; background:rgba(0,0,0,.75);
+      z-index:2200; opacity:0; visibility:hidden;
+      transition:opacity .3s, visibility .3s;
+      backdrop-filter:blur(6px);
+    }
+    #bcTalleBackdrop.open { opacity:1; visibility:visible; }
+    #bcTalleModal {
+      position:fixed; top:50%; left:50%; z-index:2201;
+      width:min(420px,94vw);
+      background:#131310; border:1px solid rgba(255,255,255,.08);
+      padding:28px 24px 24px;
+      transform:translate(-50%,-54%) scale(.97);
+      opacity:0; visibility:hidden;
+      transition:transform .35s cubic-bezier(.16,1,.3,1), opacity .3s, visibility .3s;
+      box-shadow:0 20px 60px rgba(0,0,0,.6);
+    }
+    #bcTalleModal.open {
+      transform:translate(-50%,-50%) scale(1);
+      opacity:1; visibility:visible;
+    }
+    .bc-tm-header {
+      display:flex; align-items:flex-start; justify-content:space-between;
+      margin-bottom:18px; gap:12px;
+    }
+    .bc-tm-title {
+      font-family:'Cormorant Garamond',Georgia,serif;
+      font-size:20px; font-weight:300; line-height:1.15;
+      color:#ede9e1;
+    }
+    .bc-tm-close {
+      background:none; border:1px solid rgba(255,255,255,.1);
+      color:#ede9e1; width:30px; height:30px; border-radius:50%;
+      cursor:pointer; display:grid; place-items:center; font-size:14px;
+      flex-shrink:0; transition:border-color .2s;
+    }
+    .bc-tm-close:hover { border-color:#c9a96e; color:#c9a96e; }
+    .bc-tm-label {
+      font-size:9px; letter-spacing:.18em; text-transform:uppercase;
+      color:#6b6760; margin-bottom:10px;
+    }
+    .bc-tm-talles {
+      display:flex; flex-wrap:wrap; gap:8px; margin-bottom:18px;
+    }
+    .bc-tm-btn {
+      min-width:52px; padding:9px 14px;
+      border:1px solid rgba(255,255,255,.1);
+      background:none; color:#ede9e1;
+      font-family:'DM Sans',sans-serif; font-size:12px;
+      cursor:pointer; transition:all .2s; position:relative;
+    }
+    .bc-tm-btn:hover { border-color:#c9a96e; color:#c9a96e; }
+    .bc-tm-btn.selected { background:#c9a96e; border-color:#c9a96e; color:#0b0b09; }
+    .bc-tm-btn.disabled {
+      opacity:.35; cursor:not-allowed; text-decoration:line-through;
+    }
+    .bc-tm-btn .bc-tm-stock {
+      display:block; font-size:9px; margin-top:2px;
+      color:#6b6760; line-height:1;
+    }
+    .bc-tm-btn.selected .bc-tm-stock { color:rgba(11,11,9,.55); }
+    .bc-tm-add {
+      width:100%; padding:13px; background:#c9a96e; border:none;
+      color:#0b0b09; font-family:'DM Sans',sans-serif;
+      font-size:10px; font-weight:700; letter-spacing:.18em;
+      text-transform:uppercase; cursor:pointer; transition:background .2s;
+      display:flex; align-items:center; justify-content:center; gap:8px;
+    }
+    .bc-tm-add:hover { background:#a07e48; }
+    .bc-tm-err {
+      font-size:11px; color:#e07b6a; margin-bottom:12px; display:none;
+    }
+    .bc-tm-err.show { display:block; }
+  `;
+  document.head.appendChild(styleModal);
+
+  // Inyectar HTML del modal
+  const modalHtml = `
+    <div id="bcTalleBackdrop" onclick="bcCerrarTalle()"></div>
+    <div id="bcTalleModal" role="dialog" aria-modal="true">
+      <div class="bc-tm-header">
+        <h3 class="bc-tm-title" id="bcTmNombre"></h3>
+        <button class="bc-tm-close" onclick="bcCerrarTalle()">✕</button>
+      </div>
+      <p class="bc-tm-label">Elegí tu talle</p>
+      <div class="bc-tm-talles" id="bcTmTalles"></div>
+      <p class="bc-tm-err" id="bcTmErr">Seleccioná un talle para continuar</p>
+      <button class="bc-tm-add" onclick="bcConfirmarTalle()">
+        <i class="fas fa-shopping-bag"></i> Agregar al carrito
+      </button>
+    </div>
+  `;
+  const mw = document.createElement('div');
+  mw.innerHTML = modalHtml;
+  document.body.appendChild(mw);
+
+  // Estado del modal
+  let _tmData = null;
+  let _tmSelected = null;
+
+  window.mostrarSelectorTalle = function(id, nombre, precio, imagen, talles, stockTalles, stockMap) {
+    _tmData = { id, nombre, precio, imagen, talles, stockTalles, stockMap };
+    _tmSelected = null;
+
+    document.getElementById('bcTmNombre').textContent = nombre;
+    document.getElementById('bcTmErr').classList.remove('show');
+
+    const container = document.getElementById('bcTmTalles');
+    container.innerHTML = '';
+
+    const tallesArr = Array.isArray(talles) ? talles : [];
+    tallesArr.forEach(t => {
+      const nombre_t = typeof t === 'object' ? (t.nombre || t.name || t) : t;
+      // Determinar stock
+      let stock = null;
+      if (stockMap   && stockMap[nombre_t]   !== undefined) stock = parseInt(stockMap[nombre_t])   || 0;
+      if (stockTalles && stockTalles[nombre_t] !== undefined) stock = parseInt(stockTalles[nombre_t]) || 0;
+
+      const agotado = (stock !== null && stock === 0);
+      const btn = document.createElement('button');
+      btn.className = 'bc-tm-btn' + (agotado ? ' disabled' : '');
+      btn.disabled = agotado;
+      btn.innerHTML = `<span>${nombre_t}</span>`;
+
+      if (stock !== null && !agotado && stock <= 3) {
+        const s = document.createElement('span');
+        s.className = 'bc-tm-stock';
+        s.textContent = `¡Últimas ${stock}!`;
+        btn.appendChild(s);
+      } else if (agotado) {
+        const s = document.createElement('span');
+        s.className = 'bc-tm-stock';
+        s.textContent = 'Agotado';
+        btn.appendChild(s);
+      }
+
+      if (!agotado) {
+        btn.addEventListener('click', () => {
+          container.querySelectorAll('.bc-tm-btn').forEach(b => b.classList.remove('selected'));
+          btn.classList.add('selected');
+          _tmSelected = nombre_t;
+          document.getElementById('bcTmErr').classList.remove('show');
+        });
+      }
+      container.appendChild(btn);
+    });
+
+    document.getElementById('bcTalleBackdrop').classList.add('open');
+    document.getElementById('bcTalleModal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  };
+
+  window.bcCerrarTalle = function() {
+    document.getElementById('bcTalleBackdrop').classList.remove('open');
+    document.getElementById('bcTalleModal').classList.remove('open');
+    document.body.style.overflow = '';
+    _tmData = null;
+    _tmSelected = null;
+  };
+
+  window.bcConfirmarTalle = function() {
+    if (!_tmData) return;
+    if (!_tmSelected) {
+      document.getElementById('bcTmErr').classList.add('show');
+      return;
+    }
+    window.agregarAlCarrito(_tmData.id, _tmData.nombre, _tmData.precio, _tmData.imagen, _tmSelected, '');
+    bcCerrarTalle();
+  };
+
+  // Cerrar con Escape
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') bcCerrarTalle();
+  });
+
 })();
