@@ -4081,18 +4081,11 @@
     "precioAnterior": 45000,
     "categoria": "hombre",
     "subcategoria": "Pantalones",
-    "imagen": "https://d22fxaf9t8d39k.cloudfront.net/0ea2a6bb213c009940138ae0434150207551c73d7dcf540f1bc48d4fa1271e33404368.webp",
-    "imagenes": [
-      "https://d22fxaf9t8d39k.cloudfront.net/0ea2a6bb213c009940138ae0434150207551c73d7dcf540f1bc48d4fa1271e33404368.webp"
-    ],
     "descripcion": "",
-    "composicion": "",
-    "cuidado": "",
-    "talles": [
-      "S",
-      "M",
-      "L",
-      "XL"
+    "imagen": "https://i.ibb.co/RGLD0TSc/Bermuda-MOM-gabardina.webp",
+    "imagenes": [
+      "https://i.ibb.co/RGLD0TSc/Bermuda-MOM-gabardina.webp",
+      "https://i.ibb.co/CpCJ344B/Bermuda-MOM-gabardina.webp"
     ],
     "tallesDisponibles": [
       "S",
@@ -4100,9 +4093,33 @@
       "L",
       "XL"
     ],
-    "sku": "BERMUDA-MOM-GABARDINA",
+    "colores": [],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Bordo__M": null,
+      "Bordo__XXL": null
+    },
+    "stockTalles": {
+      "S": null,
+      "M": null,
+      "L": null,
+      "XL": null
+    },
     "stock": 10,
-    "activo": true
+    "sku": "BERMUDA-MOM-GABARDINA",
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
   },
   {
     "id": "bermuda-blue-baggy",
