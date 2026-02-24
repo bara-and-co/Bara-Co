@@ -1,5 +1,47 @@
 [
   {
+    "id": "short-velston-1771891324503",
+    "nombre": "Short Velston",
+    "precio": 30000,
+    "precioAnterior": 45000,
+    "categoria": "mujer",
+    "subcategoria": "Shorts",
+    "descripcion": "",
+    "imagen": "https://i.ibb.co/RkTqntCS/Short-VELSTON2.webp",
+    "imagenes": [
+      "https://i.ibb.co/RkTqntCS/Short-VELSTON2.webp",
+      "https://i.ibb.co/Y70LC5b6/Short-VELSTON3.webp",
+      "https://i.ibb.co/Yrsf3kL/Short-VELSTON.webp"
+    ],
+    "tallesDisponibles": [
+      "38",
+      "44",
+      "46"
+    ],
+    "colores": [
+      {
+        "nombre": "Jean",
+        "codigo": "#5C7FA3",
+        "stock": 0
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Jean__38": null,
+      "Jean__44": null,
+      "Jean__46": null
+    },
+    "stockTalles": {
+      "38": 1,
+      "40": 1,
+      "42": 2
+    },
+    "stock": 4,
+    "sku": "SHORT-VELSTON"
+  },
+  {
     "id": "remera-oversize-lisa-1771875807220",
     "nombre": "Remera Oversize Lisa",
     "precio": 14000,
