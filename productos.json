@@ -3010,6 +3010,11 @@
         "nombre": "Marrón",
         "codigo": "#795548",
         "stock": 0
+      },
+      {
+        "nombre": "Verde oliva",
+        "codigo": "#827717",
+        "stock": 0
       }
     ],
     "activo": true,
@@ -3019,7 +3024,11 @@
       "Marrón__S": null,
       "Marrón__M": null,
       "Marrón__L": null,
-      "Marrón__XL": 1
+      "Marrón__XL": 1,
+      "Verde oliva__S": null,
+      "Verde oliva__M": null,
+      "Verde oliva__L": null,
+      "Verde oliva__XL": null
     },
     "stockTalles": {
       "S": 1,
@@ -3028,7 +3037,18 @@
       "XL": 2
     },
     "stock": 10,
-    "sku": "REMERA-INTER-TEJIDA"
+    "sku": "REMERA-INTER-TEJIDA",
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
   },
   {
     "id": "bermuda-liviana-elastizada",
