@@ -3088,9 +3088,9 @@
     "categoria": "hombre",
     "subcategoria": "Pantalones",
     "descripcion": "",
-    "imagen": "https://d22fxaf9t8d39k.cloudfront.net/904e176b85becfa3e907cae30e6dc5fb50758bc2d11d86c2bebe9827d06a0440404368.jpg",
+    "imagen": "https://i.ibb.co/bR7G3V8y/Bermuda-WONDER.webp",
     "imagenes": [
-      "https://d22fxaf9t8d39k.cloudfront.net/904e176b85becfa3e907cae30e6dc5fb50758bc2d11d86c2bebe9827d06a0440404368.jpg"
+      "https://i.ibb.co/bR7G3V8y/Bermuda-WONDER.webp"
     ],
     "tallesDisponibles": [
       "S",
@@ -3103,8 +3103,14 @@
     "destacado": false,
     "outlet": false,
     "stockMap": {
-      "Crema__38": 1,
-      "Crema__40": 1
+      "Marrón__S": null,
+      "Marrón__M": null,
+      "Marrón__L": null,
+      "Marrón__XL": 1,
+      "Verde oliva__S": null,
+      "Verde oliva__M": null,
+      "Verde oliva__L": null,
+      "Verde oliva__XL": null
     },
     "stockTalles": {
       "S": 1,
@@ -3113,7 +3119,18 @@
       "XL": 2
     },
     "stock": 10,
-    "sku": "BERMUDA-WONDER-LINO"
+    "sku": "BERMUDA-WONDER-LINO",
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
   },
   {
     "id": "bermuda-real-tree-baggy",
