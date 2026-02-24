@@ -84,7 +84,9 @@ img {
 }
 
 /* ---------- HEADER GLOBAL ---------- */
-header {
+/* Nota: las páginas con #header propio (tienda, lookbook) sobreescriben estos estilos.
+   mix-blend-mode solo aplica al index.html que usa header sin id. */
+header:not(#header) {
     position: fixed;
     top: 0;
     left: 0;
@@ -97,7 +99,7 @@ header {
     mix-blend-mode: difference;
 }
 
-header.scrolled {
+header:not(#header).scrolled {
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
     color: var(--color-text-primary);
