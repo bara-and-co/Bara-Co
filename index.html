@@ -912,6 +912,7 @@ header .logo img {
 
     @media (max-width:900px) {
       .section { padding:64px 22px; }
+      .hero { height: 70vh; }
       .prod-grid  { grid-template-columns:repeat(2,1fr); }
       .acc-strip  { grid-template-columns:repeat(2,1fr); }
       .editorial  { grid-template-columns:1fr; }
@@ -971,7 +972,7 @@ header .logo img {
     .ann-bar {
       position: fixed;
       top: 0; left: 0; right: 0;
-      z-index: 600;
+      z-index: 490;  /* menor que el header (500) para no taparlo */
       height: 36px;
       background: #0f0f0c;
       border-bottom: 1px solid rgba(201,169,110,.18);
@@ -1042,7 +1043,9 @@ header .logo img {
     body.ann-on .inicio #header { top: 36px; }
     body.ann-on .shipping-bar  { margin-top: calc(80px + 36px); }
     @media (max-width: 900px) {
+      body.ann-on #header { top: 36px; }
       body.ann-on .shipping-bar { margin-top: calc(68px + 36px); }
+      body.ann-on .mobile-nav { top: calc(68px + 36px); }
     }
 
     /* ── OUTLET SECTION ── */
@@ -1885,7 +1888,9 @@ header .logo img {
     grid.innerHTML = html;
   }
 
-
+  </p>`;
+    setTimeout(() => { form.innerHTML = original; }, 5000);
+  }
 
   document.addEventListener('DOMContentLoaded', () => {
     initAnnBar();
