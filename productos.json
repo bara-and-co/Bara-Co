@@ -1999,19 +1999,11 @@
     "precio": 75000,
     "precioAnterior": null,
     "categoria": "new",
-    "subcategoria": null,
+    "subcategoria": "",
+    "descripcion": "",
     "imagen": "https://d22fxaf9t8d39k.cloudfront.net/d96714644466596d09ed9ffb84226e2b318859a866be9604788cf4154aa52650404368.jpg",
     "imagenes": [
       "https://d22fxaf9t8d39k.cloudfront.net/d96714644466596d09ed9ffb84226e2b318859a866be9604788cf4154aa52650404368.jpg"
-    ],
-    "descripcion": "",
-    "composicion": "",
-    "cuidado": "",
-    "talles": [
-      "S",
-      "M",
-      "L",
-      "XL"
     ],
     "tallesDisponibles": [
       "S",
@@ -2019,9 +2011,37 @@
       "L",
       "XL"
     ],
+    "colores": [],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Jean__36": 1,
+      "Jean__38": 1,
+      "Jean__40": 1,
+      "Jean__42": 1,
+      "Jean__44": 1,
+      "Jean__46": 1
+    },
+    "stockTalles": {
+      "S": 1,
+      "M": 1,
+      "L": 1,
+      "XL": 1
+    },
+    "stock": 4,
     "sku": "CAMPERA-JEAN-CLASICA",
-    "stock": 10,
-    "activo": true
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
   },
   {
     "id": "short-hojas",
