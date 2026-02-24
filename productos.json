@@ -58,7 +58,7 @@
     ],
     "activo": true,
     "destacado": false,
-    "outlet": true,
+    "outlet": false,
     "stockMap": {
       "Jean__M": 1
     },
