@@ -1445,8 +1445,8 @@
   {
     "id": "buzo-cuello-redondo-geom-tric-1771845493866",
     "nombre": "Buzo cuello redondo geométric",
-    "precio": 40,
-    "precioAnterior": 48,
+    "precio": 40000,
+    "precioAnterior": null,
     "categoria": "hombre",
     "subcategoria": "Buzos",
     "descripcion": "",
@@ -1459,12 +1459,34 @@
       "L"
     ],
     "colores": [
-      "Camel"
+      {
+        "nombre": "Camel",
+        "codigo": "#C19A6B",
+        "stock": 0
+      }
     ],
     "activo": true,
     "destacado": true,
+    "outlet": false,
+    "stockMap": {
+      "Camel__L": null
+    },
+    "stockTalles": {
+      "L": null
+    },
     "stock": 10,
-    "sku": "BUZO-CUELLO-REDONDO-GEOMÉTRIC"
+    "sku": "BUZO-CUELLO-REDONDO-GEOMÉTRIC",
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
   },
   {
     "id": "buzo-over-rustico-pasta-1771845328226",
