@@ -175,6 +175,7 @@
     .toggle input { opacity:0; width:0; height:0; position:absolute; }
     .t-track { position:absolute; inset:0; background:#ddd; border-radius:11px; transition:background .25s; }
     .toggle input:checked ~ .t-track { background:var(--accent); }
+    .toggle-outlet input:checked ~ .t-track { background:#e07b39; }
     .t-thumb { position:absolute; top:3px; left:3px; width:16px; height:16px; background:#fff; border-radius:50%; transition:transform .25s var(--ease); box-shadow:0 1px 3px rgba(0,0,0,.2); }
     .toggle input:checked ~ .t-thumb { transform:translateX(18px); }
 
@@ -735,8 +736,8 @@
     }
     .color-chip-wrap.selected-wrap .color-stock-input { display: block; }
     .color-stock-input:focus { outline: none; border-color: var(--accent); }
-    /* Stock = 0 → input rojo */
-    .color-stock-input[value="0"] { border-color: #e05555; color: #e05555; }
+    /* Stock = 0 → clase js-sin-stock */
+    .color-stock-input.sin-stock { border-color: #e05555; color: #e05555; }
 
     /* MÚLTIPLES IMÁGENES */
     .images-grid {
@@ -1219,9 +1220,9 @@
 
           <label style="display:flex;align-items:center;gap:10px;">
             <span style="font-size:13px;color:#e07b39;">🏷️ Outlet</span>
-            <label class="toggle">
+            <label class="toggle toggle-outlet">
               <input type="checkbox" id="fOutlet"/>
-              <div class="t-track" style="background:#e07b39 !important;"></div><div class="t-thumb"></div>
+              <div class="t-track"></div><div class="t-thumb"></div>
             </label>
           </label>
         </div>
@@ -2197,6 +2198,13 @@ function addColorChip(name, code, selected = false, stock = null) {
   stockInput.className = 'color-stock-input';
   stockInput.title = 'Stock de este color';
   stockInput.onclick = e => e.stopPropagation();
+  stockInput.addEventListener('input', () => {
+    stockInput.classList.toggle('sin-stock', stockInput.value === '0');
+  });
+  // Inicializar estado
+  if (stock !== null && stock !== undefined && stock !== '') {
+    stockInput.classList.toggle('sin-stock', parseInt(stock) === 0);
+  }
   stockWrap.appendChild(stockInput);
 
   const removeBtn = document.createElement('button');
