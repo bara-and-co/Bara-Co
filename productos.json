@@ -608,15 +608,27 @@
     "destacado": false,
     "outlet": false,
     "stockMap": {
-      "Jean__36": null,
-      "Jean__38": null,
-      "Jean__40": null,
-      "Jean__42": null,
-      "Jean__44": null,
-      "Jean__46": null
+      "Jean__36": 1,
+      "Jean__38": 1,
+      "Jean__40": 1,
+      "Jean__42": 1,
+      "Jean__44": 1,
+      "Jean__46": 1
     },
-    "stock": 0,
-    "sku": "KUNAI-–-BAGGY"
+    "stockTalles": null,
+    "stock": 6,
+    "sku": "KUNAI-–-BAGGY",
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
   },
   {
     "id": "llamas-baggy-jean-1771873039326",
