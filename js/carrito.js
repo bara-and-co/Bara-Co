@@ -137,11 +137,21 @@
   }
 
   /* ─── MODAL SELECTOR DE TALLE ─── */
-  window.mostrarSelectorTalle = function (id, nombre, precio, imagen, talles) {
+  window.mostrarSelectorTalle = function (id, nombre, precio, imagen, talles, stockTalles, stockMap) {
     // Si no hay talles definidos, agregar directo
     if (!talles || talles.length === 0) {
       agregarAlCarrito(id, nombre, precio, imagen, '', '');
       return;
+    }
+
+    // Helper: stock de un talle específico
+    function getStockTalle(talleNombre) {
+      if (stockTalles && stockTalles[talleNombre] !== undefined) return parseInt(stockTalles[talleNombre]) || 0;
+      if (stockMap) {
+        const keysForTalle = Object.entries(stockMap).filter(([k]) => k.endsWith('__' + talleNombre));
+        if (keysForTalle.length) return keysForTalle.reduce((a, [, v]) => a + (parseInt(v) || 0), 0);
+      }
+      return null;
     }
 
     // Crear modal
@@ -219,14 +229,28 @@
     };
 
     talles.forEach(t => {
+      const talleNombre = t.nombre || t;
+      const stockT = getStockTalle(talleNombre);
+      const sinStock = t.agotado || (stockT !== null && stockT === 0);
+
       const btn = document.createElement('button');
-      btn.className = 'talle-btn' + (t.agotado ? ' agotado' : '');
-      btn.textContent = t.nombre || t;
+      btn.className = 'talle-btn' + (sinStock ? ' agotado' : '');
+
+      let html = `<span>${talleNombre}</span>`;
+      if (sinStock) {
+        html += `<span style="display:block;font-size:8px;color:#888;margin-top:2px;">Agotado</span>`;
+      } else if (stockT !== null && stockT > 0 && stockT <= 5) {
+        html += `<span style="display:block;font-size:9px;color:#e07b39;font-weight:700;margin-top:2px;">·${stockT} ud.</span>`;
+      }
+      btn.innerHTML = html;
+      btn.style.flexDirection = 'column';
+      btn.style.lineHeight = '1.2';
+
       btn.onclick = () => {
-        if (t.agotado) return;
+        if (sinStock) return;
         grid.querySelectorAll('.talle-btn').forEach(b => b.classList.remove('selected'));
         btn.classList.add('selected');
-        talleSeleccionado = t.nombre || t;
+        talleSeleccionado = talleNombre;
         confirmBtn.classList.add('visible');
       };
       grid.appendChild(btn);
