@@ -1,5 +1,38 @@
 [
   {
+    "id": "jean-cargo-bolsillo-doble-1771892100614",
+    "nombre": "Jean Cargo Bolsillo Doble",
+    "precio": 40000,
+    "precioAnterior": 65000,
+    "categoria": "mujer",
+    "subcategoria": "Pantalones",
+    "descripcion": "",
+    "imagen": "https://i.ibb.co/pv5PP4G8/cargo4bolsillos.png",
+    "imagenes": [
+      "https://i.ibb.co/pv5PP4G8/cargo4bolsillos.png"
+    ],
+    "tallesDisponibles": [
+      "36",
+      "38",
+      "44"
+    ],
+    "colores": [],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Celeste__42": 1,
+      "Celeste__46": 1
+    },
+    "stockTalles": {
+      "36": 1,
+      "38": 1,
+      "44": 1
+    },
+    "stock": 3,
+    "sku": "JEAN-CARGO-BOLSILLO-DOBLE"
+  },
+  {
     "id": "short-harvin-n-1771891980062",
     "nombre": "Short Harvin N",
     "precio": 30000,
