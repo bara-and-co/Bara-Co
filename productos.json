@@ -118,10 +118,9 @@
     "colores": [],
     "activo": true,
     "destacado": false,
-    "outlet": false,
+    "outlet": true,
     "stockMap": {
-      "Celeste__42": 1,
-      "Celeste__46": 1
+      "Jean__M": 1
     },
     "stockTalles": {
       "36": 1,
