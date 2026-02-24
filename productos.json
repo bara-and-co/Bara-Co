@@ -25,16 +25,12 @@
     ],
     "activo": true,
     "destacado": false,
-    "outlet": false,
+    "outlet": true,
     "stockMap": {
       "Crema__38": 1,
       "Crema__40": 1
     },
-    "stockTalles": {
-      "38": 1,
-      "40": 1,
-      "42": 1
-    },
+    "stockTalles": null,
     "stock": 2,
     "sku": "MINI-MARFIL"
   },
