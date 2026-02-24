@@ -1,142 +1,351 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gracias por tu compra | Bara & Co</title>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>¡Gracias por tu compra! · Bara & Co</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <style>
+    :root {
+      --bg:      #0b0b09;
+      --surface: #131310;
+      --surface2:#1a1a17;
+      --border:  rgba(255,255,255,.07);
+      --border2: rgba(255,255,255,.11);
+      --text:    #ede9e1;
+      --muted:   #6b6760;
+      --muted2:  #9a9591;
+      --accent:  #c9a96e;
+      --adk:     #a07e48;
+      --serif:   'Cormorant Garamond', Georgia, serif;
+      --sans:    'DM Sans', sans-serif;
+      --ease:    cubic-bezier(.16,1,.3,1);
+    }
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      background:var(--bg); color:var(--text);
+      font-family:var(--sans); font-size:14px; line-height:1.6;
+      -webkit-font-smoothing:antialiased; min-height:100vh;
+      overflow-x:hidden; padding-top:68px;
+    }
+    a { color:inherit; text-decoration:none; }
 
-<style>
-*{box-sizing:border-box;margin:0;padding:0;font-family:Helvetica, sans-serif;}
+    /* ── HEADER ──────────────────────── */
+    #header {
+      position:fixed; top:0; left:0; right:0; z-index:500;
+      height:68px; display:flex; align-items:center; justify-content:center;
+      background:rgba(11,11,9,.97); backdrop-filter:blur(24px);
+      border-bottom:1px solid var(--border);
+    }
+    .logo-img { height:52px; width:auto; object-fit:contain; }
 
-body{
-  background:#0f0f0f;
-  color:#f5f5f5;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  height:100vh;
-  text-align:center;
-  overflow:hidden;
-}
+    /* ── LÍNEA DORADA VERTICAL ───────── */
+    .runway {
+      position:fixed; top:68px; left:50%; width:1px; height:0;
+      background:linear-gradient(to bottom, transparent, var(--accent) 20%, rgba(232,213,168,.8) 50%, var(--accent) 80%, transparent);
+      animation:drawRunway 1.4s var(--ease) forwards;
+      z-index:1;
+    }
+    @keyframes drawRunway {
+      from { height:0; opacity:0; }
+      5%   { opacity:1; }
+      to   { height:100vh; opacity:.6; }
+    }
 
-/* ✨ Línea dorada animada */
-.gold-line{
-  position:absolute;
-  top:0;
-  left:50%;
-  width:2px;
-  height:0;
-  background:linear-gradient(to bottom,#c6a14a,#f5d27a,#c6a14a);
-  box-shadow:0 0 15px #c6a14a;
-  animation:drawLine 1.4s ease forwards;
-}
+    /* ── MAIN ────────────────────────── */
+    .main {
+      display:flex; flex-direction:column; align-items:center;
+      padding:60px 24px 80px; min-height:calc(100vh - 68px);
+    }
 
-@keyframes drawLine{
-  from{height:0;}
-  to{height:100%;}
-}
+    /* ── CHECK ANIMADO ───────────────── */
+    .check-wrap {
+      margin-bottom:36px;
+      opacity:0; animation:fadeUp .9s var(--ease) 1.2s forwards;
+    }
+    .check-ring {
+      width:80px; height:80px; border-radius:50%;
+      border:1.5px solid var(--accent);
+      display:grid; place-items:center; position:relative;
+      box-shadow:0 0 0 0 rgba(201,169,110,.3);
+      animation:pulse 2.5s ease 2.2s infinite;
+    }
+    @keyframes pulse {
+      0%   { box-shadow:0 0 0 0  rgba(201,169,110,.4); }
+      70%  { box-shadow:0 0 0 16px rgba(201,169,110,0); }
+      100% { box-shadow:0 0 0 0  rgba(201,169,110,0); }
+    }
+    .check-ring i { font-size:28px; color:var(--accent); }
 
-.card{
-  position:relative;
-  max-width:600px;
-  background:#1a1a1a;
-  padding:70px 40px;
-  border-radius:18px;
-  opacity:0;
-  transform:translateY(20px);
-  animation:fadeIn 1s ease 1.2s forwards;
-}
+    /* ── TÍTULO ──────────────────────── */
+    .title-wrap {
+      text-align:center; margin-bottom:36px;
+      opacity:0; animation:fadeUp .9s var(--ease) 1.4s forwards;
+    }
+    .eyebrow {
+      font-size:9px; font-weight:600; letter-spacing:.35em;
+      text-transform:uppercase; color:var(--accent); margin-bottom:12px;
+    }
+    .title {
+      font-family:var(--serif); font-size:clamp(36px, 6vw, 56px);
+      font-weight:300; line-height:1; margin-bottom:16px;
+    }
+    .title em { font-style:italic; color:var(--accent); }
+    .subtitle {
+      font-size:14px; color:var(--muted2); line-height:1.9; max-width:480px; margin:0 auto;
+    }
 
-@keyframes fadeIn{
-  to{
-    opacity:1;
-    transform:translateY(0);
-  }
-}
+    /* ── TARJETA RESUMEN ─────────────── */
+    .card {
+      width:100%; max-width:580px;
+      background:var(--surface); border:1px solid var(--border);
+      margin-bottom:28px;
+      opacity:0; animation:fadeUp .9s var(--ease) 1.6s forwards;
+    }
+    .card-head {
+      padding:16px 24px; border-bottom:1px solid var(--border);
+      font-size:9px; font-weight:700; letter-spacing:.2em;
+      text-transform:uppercase; color:var(--muted);
+      display:flex; align-items:center; gap:8px;
+    }
+    .card-head i { color:var(--accent); font-size:12px; }
+    .card-body { padding:20px 24px; }
 
-/* ✨ Check dorado */
-.check{
-  width:70px;
-  height:70px;
-  border-radius:50%;
-  border:2px solid #c6a14a;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  margin:0 auto 25px auto;
-  box-shadow:0 0 20px rgba(198,161,74,.4);
-  animation:glow 2s infinite alternate;
-}
+    /* Detalle pedido */
+    .detail-row {
+      display:flex; justify-content:space-between; align-items:flex-start;
+      padding:9px 0; border-bottom:1px solid var(--border); gap:16px;
+    }
+    .detail-row:last-child { border-bottom:none; padding-bottom:0; }
+    .dr-label { font-size:11px; color:var(--muted); text-transform:uppercase; letter-spacing:.08em; flex-shrink:0; }
+    .dr-val   { font-size:13px; color:var(--text); text-align:right; }
 
-.check::after{
-  content:"✓";
-  font-size:32px;
-  color:#c6a14a;
-}
+    /* Divisor */
+    .card-divider { height:1px; background:var(--border); margin:0 24px; }
 
-@keyframes glow{
-  from{box-shadow:0 0 10px rgba(198,161,74,.3);}
-  to{box-shadow:0 0 25px rgba(198,161,74,.8);}
-}
+    /* Items del pedido */
+    .order-items { padding:14px 24px; }
+    .oi {
+      display:flex; gap:12px; padding:9px 0;
+      border-bottom:1px solid var(--border);
+    }
+    .oi:last-child { border-bottom:none; }
+    .oi-img {
+      width:44px; height:56px; flex-shrink:0; background:var(--surface2); overflow:hidden;
+    }
+    .oi-img img { width:100%; height:100%; object-fit:cover; }
+    .oi-info { flex:1; min-width:0; }
+    .oi-name { font-family:var(--serif); font-size:14px; line-height:1.2; margin-bottom:2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .oi-meta { font-size:10px; color:var(--muted); }
+    .oi-price { font-size:13px; color:var(--accent); flex-shrink:0; align-self:center; }
 
-h1{
-  font-weight:300;
-  letter-spacing:2px;
-  margin-bottom:20px;
-}
+    .total-row {
+      padding:14px 24px; border-top:1px solid var(--border);
+      display:flex; justify-content:space-between; align-items:center;
+    }
+    .total-label { font-size:10px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); }
+    .total-amount { font-family:var(--serif); font-size:24px; color:var(--accent); }
 
-p{
-  color:#aaa;
-  line-height:1.6;
-  margin-bottom:35px;
-}
+    /* ── ACCIONES ────────────────────── */
+    .actions {
+      display:flex; flex-direction:column; align-items:center; gap:12px;
+      width:100%; max-width:580px;
+      opacity:0; animation:fadeUp .9s var(--ease) 1.8s forwards;
+    }
+    .btn-primary {
+      width:100%; height:50px; background:var(--accent); color:var(--bg); border:none;
+      display:flex; align-items:center; justify-content:center; gap:9px; cursor:pointer;
+      font-family:var(--sans); font-size:10.5px; font-weight:700;
+      letter-spacing:.16em; text-transform:uppercase; transition:background .25s;
+    }
+    .btn-primary:hover { background:var(--adk); }
+    .btn-secondary {
+      font-size:10.5px; font-weight:600; letter-spacing:.12em;
+      text-transform:uppercase; color:var(--muted); transition:color .2s;
+      display:flex; align-items:center; gap:7px;
+    }
+    .btn-secondary:hover { color:var(--text); }
+    .btn-wa {
+      width:100%; height:50px; background:transparent;
+      border:1.5px solid rgba(37,211,102,.3); color:rgba(37,211,102,.8);
+      display:flex; align-items:center; justify-content:center; gap:9px; cursor:pointer;
+      font-family:var(--sans); font-size:10.5px; font-weight:600;
+      letter-spacing:.12em; text-transform:uppercase;
+      transition:all .25s;
+    }
+    .btn-wa:hover { background:rgba(37,211,102,.08); border-color:#25d366; color:#25d366; }
 
-.btn{
-  display:inline-block;
-  padding:14px 28px;
-  border:1px solid #c6a14a;
-  color:#fff;
-  text-decoration:none;
-  border-radius:8px;
-  transition:.3s;
-}
+    /* ── ANIMACIONES ─────────────────── */
+    @keyframes fadeUp {
+      from { opacity:0; transform:translateY(20px); }
+      to   { opacity:1; transform:none; }
+    }
 
-.btn:hover{
-  background:#c6a14a;
-  color:black;
-}
-</style>
+    @media (max-width:600px) {
+      .main { padding:44px 16px 60px; }
+      .card-body, .order-items, .total-row, .card-head { padding-left:18px; padding-right:18px; }
+    }
+  </style>
 </head>
 <body>
 
-<div class="gold-line"></div>
+<header id="header">
+  <a href="index.html">
+    <img src="images/LogoB&D.png" alt="Bara & Co" class="logo-img"/>
+  </a>
+</header>
 
-<div class="card">
+<div class="runway"></div>
 
-<div class="check"></div>
+<div class="main">
 
-<h1 id="titulo">Gracias por tu compra</h1>
+  <!-- Check -->
+  <div class="check-wrap">
+    <div class="check-ring">
+      <i class="fas fa-check"></i>
+    </div>
+  </div>
 
-<p>
-Tu pedido fue confirmado correctamente.<br>
-Estamos preparando tu envío con el máximo cuidado.<br><br>
-Gracias por elegir Bara & Co.
-</p>
+  <!-- Título -->
+  <div class="title-wrap">
+    <p class="eyebrow">Pedido confirmado</p>
+    <h1 class="title" id="tituloGracias">Gracias por<br/><em>tu compra</em></h1>
+    <p class="subtitle">
+      Recibimos tu pedido correctamente y estamos preparando tu envío.<br>
+      Te contactaremos al email registrado con el seguimiento.
+    </p>
+  </div>
 
-<a href="index.html" class="btn">Volver al inicio</a>
+  <!-- Tarjeta resumen -->
+  <div class="card" id="cardResumen">
+
+    <!-- Datos del cliente -->
+    <div class="card-head"><i class="fas fa-user"></i> Datos del pedido</div>
+    <div class="card-body" id="cardDatos">
+      <!-- Se rellena por JS -->
+    </div>
+
+    <div class="card-divider"></div>
+
+    <!-- Items -->
+    <div class="order-items" id="orderItems" style="display:none">
+      <!-- Se rellena por JS -->
+    </div>
+
+    <!-- Total -->
+    <div class="total-row" id="totalRow" style="display:none">
+      <span class="total-label">Total pagado</span>
+      <span class="total-amount" id="totalAmount"></span>
+    </div>
+
+  </div>
+
+  <!-- Acciones -->
+  <div class="actions">
+    <a href="tienda.html" class="btn-primary">
+      <i class="fas fa-shopping-bag"></i> Seguir comprando
+    </a>
+    <button class="btn-wa" onclick="abrirWA()">
+      <i class="fab fa-whatsapp" style="font-size:17px"></i> Consultar por WhatsApp
+    </button>
+    <a href="index.html" class="btn-secondary">
+      <i class="fas fa-home" style="font-size:10px"></i> Volver al inicio
+    </a>
+  </div>
 
 </div>
 
 <script>
-document.addEventListener("DOMContentLoaded", function(){
-  const nombre = localStorage.getItem("bc_nombre_cliente");
-  if(nombre){
-    document.getElementById("titulo").textContent =
-      `Gracias por tu compra, ${nombre}`;
-    localStorage.removeItem("bc_nombre_cliente");
+document.addEventListener('DOMContentLoaded', () => {
+  // ── Obtener nombre del cliente ───
+  const nombre = localStorage.getItem('bc_nombre_cliente');
+  if (nombre) {
+    document.getElementById('tituloGracias').innerHTML =
+      `Gracias, <em>${nombre.split(' ')[0]}</em>`;
+    localStorage.removeItem('bc_nombre_cliente');
   }
-});
-</script>
 
+  // ── Obtener datos del pedido ─────
+  let pedido = null;
+  try {
+    pedido = JSON.parse(localStorage.getItem('bc_pedido'));
+  } catch(e) {}
+
+  if (!pedido) {
+    // Sin datos: solo mostramos el mensaje genérico
+    document.getElementById('cardResumen').style.display = 'none';
+    return;
+  }
+
+  // ── Datos del cliente ────────────
+  const datosEl = document.getElementById('cardDatos');
+  const filas = [
+    ['Nombre',       pedido.nombre   || '—'],
+    ['Email',        pedido.email    || '—'],
+    ['Entrega',      pedido.envio    || '—'],
+    ['Fecha',        formatFecha(pedido.fecha)],
+  ];
+  if (pedido.telefono) filas.splice(2, 0, ['Teléfono', pedido.telefono]);
+
+  datosEl.innerHTML = filas.map(([label, val]) => `
+    <div class="detail-row">
+      <span class="dr-label">${label}</span>
+      <span class="dr-val">${val}</span>
+    </div>`).join('');
+
+  // ── Items ────────────────────────
+  if (pedido.items && pedido.items.length) {
+    const itemsEl = document.getElementById('orderItems');
+    itemsEl.style.display = 'block';
+    itemsEl.innerHTML = pedido.items.map(item => {
+      const meta = [item.talle, item.color].filter(Boolean).join(' · ');
+      const sub  = item.precio * (item.qty || 1);
+      return `
+        <div class="oi">
+          <div class="oi-img">
+            <img src="${item.imagen || ''}" alt="${item.nombre}"
+                 onerror="this.style.display='none'"/>
+          </div>
+          <div class="oi-info">
+            <div class="oi-name">${item.nombre}${item.qty > 1 ? ` ×${item.qty}` : ''}</div>
+            ${meta ? `<div class="oi-meta">${meta}</div>` : ''}
+          </div>
+          <span class="oi-price">$${sub.toLocaleString('es-AR')}</span>
+        </div>`;
+    }).join('');
+
+    // Total
+    if (pedido.total) {
+      document.getElementById('totalRow').style.display = 'flex';
+      document.getElementById('totalAmount').textContent = '$' + pedido.total.toLocaleString('es-AR');
+    }
+  }
+
+  // ── Limpiar pedido guardado ──────
+  // (lo dejamos 10 minutos por si el usuario recarga, luego lo borramos)
+  setTimeout(() => localStorage.removeItem('bc_pedido'), 10 * 60 * 1000);
+});
+
+// ── Helpers ──────────────────────
+function formatFecha(iso) {
+  if (!iso) return '—';
+  try {
+    return new Date(iso).toLocaleDateString('es-AR', {
+      day:'2-digit', month:'long', year:'numeric',
+      hour:'2-digit', minute:'2-digit'
+    });
+  } catch(e) { return '—'; }
+}
+
+function abrirWA() {
+  const pedido = JSON.parse(localStorage.getItem('bc_pedido') || '{}');
+  const nombre = pedido.nombre || '';
+  const msg = nombre
+    ? `Hola! Soy ${nombre} y quiero consultar sobre mi pedido en Bara & Co.`
+    : 'Hola! Quiero consultar sobre mi pedido en Bara & Co.';
+  window.open('https://wa.me/5493525614281?text=' + encodeURIComponent(msg), '_blank');
+}
+</script>
 </body>
 </html>
