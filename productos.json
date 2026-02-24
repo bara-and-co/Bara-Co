@@ -4038,18 +4038,10 @@
     "precioAnterior": 50000,
     "categoria": "hombre",
     "subcategoria": "Pantalones",
-    "imagen": "https://d22fxaf9t8d39k.cloudfront.net/2d8f8085c7fed7d7db3e7721bfe14d67428fb4acef4205ff42bfc018e894c477404368.jpg",
-    "imagenes": [
-      "https://d22fxaf9t8d39k.cloudfront.net/2d8f8085c7fed7d7db3e7721bfe14d67428fb4acef4205ff42bfc018e894c477404368.jpg"
-    ],
     "descripcion": "",
-    "composicion": "",
-    "cuidado": "",
-    "talles": [
-      "S",
-      "M",
-      "L",
-      "XL"
+    "imagen": "https://i.ibb.co/Fb4x4Z5k/Pantalon-MILA.webp",
+    "imagenes": [
+      "https://i.ibb.co/Fb4x4Z5k/Pantalon-MILA.webp"
     ],
     "tallesDisponibles": [
       "S",
@@ -4057,9 +4049,39 @@
       "L",
       "XL"
     ],
-    "sku": "PANTALON-MILA",
+    "colores": [],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Marrón__S": null,
+      "Marrón__M": null,
+      "Marrón__L": null,
+      "Marrón__XL": 1,
+      "Verde oliva__S": null,
+      "Verde oliva__M": null,
+      "Verde oliva__L": null,
+      "Verde oliva__XL": null
+    },
+    "stockTalles": {
+      "S": 1,
+      "M": 2,
+      "L": 1,
+      "XL": 2
+    },
     "stock": 10,
-    "activo": true
+    "sku": "PANTALON-MILA",
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
   },
   {
     "id": "bermuda-ferlan",
