@@ -2385,18 +2385,10 @@
     "precioAnterior": 45000,
     "categoria": "hombre",
     "subcategoria": "Pantalones",
+    "descripcion": "",
     "imagen": "https://d22fxaf9t8d39k.cloudfront.net/904e176b85becfa3e907cae30e6dc5fb50758bc2d11d86c2bebe9827d06a0440404368.jpg",
     "imagenes": [
       "https://d22fxaf9t8d39k.cloudfront.net/904e176b85becfa3e907cae30e6dc5fb50758bc2d11d86c2bebe9827d06a0440404368.jpg"
-    ],
-    "descripcion": "",
-    "composicion": "",
-    "cuidado": "",
-    "talles": [
-      "S",
-      "M",
-      "L",
-      "XL"
     ],
     "tallesDisponibles": [
       "S",
@@ -2404,9 +2396,22 @@
       "L",
       "XL"
     ],
-    "sku": "BERMUDA-WONDER-LINO",
+    "colores": [],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Crema__38": 1,
+      "Crema__40": 1
+    },
+    "stockTalles": {
+      "S": 1,
+      "M": 2,
+      "L": 1,
+      "XL": 2
+    },
     "stock": 10,
-    "activo": true
+    "sku": "BERMUDA-WONDER-LINO"
   },
   {
     "id": "bermuda-real-tree-baggy",
