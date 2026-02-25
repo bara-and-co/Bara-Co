@@ -1587,17 +1587,31 @@
       {
         "nombre": "Azul marino",
         "codigo": "#1A237E",
-        "stock": 0
+        "stock": 1
       }
     ],
     "activo": true,
     "destacado": false,
     "outlet": false,
     "stockMap": {
-      "Azul marino__M": null
+      "Azul marino__M": 1
     },
-    "stock": 0,
-    "sku": "REMERA-OVER-PRINT-STONE"
+    "stockTalles": {
+      "L": null
+    },
+    "stock": 1,
+    "sku": "REMERA-OVER-PRINT-STONE",
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
   },
   {
     "id": "remera-over-print-stone-1771869331889",
