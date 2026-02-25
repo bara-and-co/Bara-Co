@@ -1,5 +1,60 @@
 [
   {
+    "id": "camisa-sat-n-1772019736691",
+    "nombre": "Camisa Satén",
+    "precio": 60000,
+    "precioAnterior": null,
+    "categoria": "hombre",
+    "subcategoria": "Camisas",
+    "descripcion": "",
+    "imagen": "https://i.ibb.co/1tVkT4W1/camisasatennegra2.webp",
+    "imagenes": [
+      "https://i.ibb.co/1tVkT4W1/camisasatennegra2.webp",
+      "https://i.ibb.co/WYVH1fk/camisasatennegra1.webp",
+      "https://i.ibb.co/DPhHHyZJ/camisasatendorado.webp",
+      "https://i.ibb.co/jtNN3kK/camisasatennegraconsaco.webp"
+    ],
+    "tallesDisponibles": [
+      "XL",
+      "XXL"
+    ],
+    "colores": [
+      {
+        "nombre": "Negro",
+        "codigo": "#111111",
+        "stock": 1
+      },
+      {
+        "nombre": "Dorado",
+        "codigo": "#C9A96E",
+        "stock": 1
+      }
+    ],
+    "activo": true,
+    "destacado": true,
+    "outlet": false,
+    "stockMap": {
+      "Negro__XL": 1,
+      "Negro__XXL": null,
+      "Dorado__XL": null,
+      "Dorado__XXL": 1
+    },
+    "stockTalles": null,
+    "stock": 2,
+    "sku": "CAMISA-SATÉN",
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "pantalon-elipse-1772019558555",
     "nombre": "Pantalon Elipse",
     "precio": 40000,
