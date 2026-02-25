@@ -5787,32 +5787,50 @@
   {
     "id": "remera-boxy-1940",
     "nombre": "Remera Boxy 1940",
-    "precio": 25000,
-    "precioAnterior": null,
+    "precio": 17500,
+    "precioAnterior": 25000,
     "categoria": "hombre",
     "subcategoria": "Remeras",
+    "descripcion": "",
     "imagen": "https://d22fxaf9t8d39k.cloudfront.net/96c0334b0b6b31f66c592e7306501510902a8c8f4b98ddfc70324511b8015dc5404368.webp",
     "imagenes": [
       "https://d22fxaf9t8d39k.cloudfront.net/96c0334b0b6b31f66c592e7306501510902a8c8f4b98ddfc70324511b8015dc5404368.webp"
     ],
-    "descripcion": "",
-    "composicion": "",
-    "cuidado": "",
-    "talles": [
-      "S",
-      "M",
-      "L",
-      "XL"
-    ],
     "tallesDisponibles": [
-      "S",
-      "M",
-      "L",
-      "XL"
+      "S"
     ],
+    "colores": [
+      {
+        "nombre": "Blanco",
+        "codigo": "#FFFFFF",
+        "stock": 1
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": true,
+    "stockMap": {
+      "Blanco__S": 1
+    },
+    "stockTalles": {
+      "S": null,
+      "M": null,
+      "L": null,
+      "XL": null
+    },
+    "stock": 1,
     "sku": "REMERA-BOXY-1940",
-    "stock": 10,
-    "activo": true
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
   },
   {
     "id": "pantalon-cargo-gris",
