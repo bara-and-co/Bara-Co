@@ -1648,6 +1648,35 @@ function getColorCode(color) {
   return map[color] || '#888';
 }
 
+// ─── LIMPIAR CARRITO CORRUPTO ─────────
+(function limpiarCarritocorrupto() {
+  try {
+    const raw = localStorage.getItem('bc_cart');
+    if (!raw) return;
+    const cart = JSON.parse(raw);
+    const limpio = cart.filter(i =>
+      i && typeof i.nombre === 'string' && i.nombre &&
+      typeof i.precio === 'number' && !isNaN(i.precio) && i.precio > 0
+    );
+    if (limpio.length !== cart.length) {
+      localStorage.setItem('bc_cart', JSON.stringify(limpio));
+    }
+  } catch(e) {}
+})();
+
+// ─── AGREGAR DESDE TARJETA (productos relacionados) ─────
+function bcAgregarDesdeCard(p) {
+  const talles = p.tallesDisponibles || p.talles || [];
+  const tienetalles = talles.length > 0 &&
+    (typeof talles[0] === 'string' ? talles[0] !== 'Unico' : (talles[0].nombre || talles[0]) !== 'Unico');
+  if (tienetalles && typeof mostrarSelectorTalle === 'function') {
+    const stockMap = p.stockPorTalle || p.stockTalles || {};
+    mostrarSelectorTalle(p.id, p.nombre, p.precio, p.imagen || p.imagenes?.[0] || '', talles, stockMap, stockMap);
+  } else {
+    agregarAlCarrito(p.id, p.nombre, p.precio, p.imagen || p.imagenes?.[0] || '', '', '');
+  }
+}
+
 // ─── AGREGAR AL CARRITO ──────────────
 function handleAddToCart() {
   if (!currentProduct) return;
@@ -1737,7 +1766,7 @@ function buildProdCard(p, container) {
       <img src="${p.imagen}" alt="${p.nombre}" loading="lazy"/>
       <div class="prod-card-overlay">
         <button class="overlay-add"
-          onclick="event.stopPropagation(); agregarAlCarrito('${p.id}','${p.nombre}',${p.precio},'${p.imagen}')">
+          onclick="event.stopPropagation(); bcAgregarDesdeCard(${JSON.stringify(p).replace(/</g,'\\u003c')})">
           <i class="fas fa-shopping-bag"></i> Agregar
         </button>
       </div>
