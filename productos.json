@@ -1,5 +1,44 @@
 [
   {
+    "id": "camisa-grafiti-1772020153250",
+    "nombre": "Camisa Grafiti",
+    "precio": 35000,
+    "precioAnterior": 50000,
+    "categoria": "hombre",
+    "subcategoria": "Camisas",
+    "descripcion": "",
+    "imagen": "https://i.ibb.co/93dBkJT7/Camisa-Graffiti-Mega.webp",
+    "imagenes": [
+      "https://i.ibb.co/93dBkJT7/Camisa-Graffiti-Mega.webp"
+    ],
+    "tallesDisponibles": [
+      "XL"
+    ],
+    "colores": [],
+    "activo": true,
+    "destacado": false,
+    "outlet": true,
+    "stockMap": {
+      "Azul__XL": 1
+    },
+    "stockTalles": {
+      "XL": 1
+    },
+    "stock": 1,
+    "sku": "CAMISA-GRAFITI",
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "camisa-beneton-floret-1772020043619",
     "nombre": "Camisa Beneton Floret",
     "precio": 35000,
