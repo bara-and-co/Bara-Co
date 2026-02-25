@@ -1,5 +1,59 @@
 [
   {
+    "id": "pantalon-elipse-1772019558555",
+    "nombre": "Pantalon Elipse",
+    "precio": 40000,
+    "precioAnterior": 60000,
+    "categoria": "hombre",
+    "subcategoria": "Pantalones",
+    "descripcion": "",
+    "imagen": "https://i.ibb.co/xSXxTGRm/Pantalon-Elipsechoco2.webp",
+    "imagenes": [
+      "https://i.ibb.co/xSXxTGRm/Pantalon-Elipsechoco2.webp",
+      "https://i.ibb.co/qLS3V05N/Pantalon-Elipsehueso.webp",
+      "https://i.ibb.co/nsL0gY0q/Pantalon-Elipsehueso2.png"
+    ],
+    "tallesDisponibles": [
+      "42",
+      "46"
+    ],
+    "colores": [
+      {
+        "nombre": "Marrón",
+        "codigo": "#795548",
+        "stock": 1
+      },
+      {
+        "nombre": "#e8d9ba",
+        "codigo": "#e8d9ba",
+        "stock": 1
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": true,
+    "stockMap": {
+      "Marrón__42": 1,
+      "Marrón__46": null,
+      "#e8d9ba__42": null,
+      "#e8d9ba__46": 1
+    },
+    "stockTalles": null,
+    "stock": 2,
+    "sku": "PANTALON-ELIPSE",
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": "masculino",
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "pantalon-drift-1772019305811",
     "nombre": "Pantalon Drift",
     "precio": 40000,
