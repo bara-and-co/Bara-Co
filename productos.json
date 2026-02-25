@@ -1307,17 +1307,31 @@
       {
         "nombre": "Beige",
         "codigo": "#D4B896",
-        "stock": 0
+        "stock": 1
       }
     ],
     "activo": true,
     "destacado": false,
     "outlet": false,
     "stockMap": {
-      "Beige__L": null
+      "Beige__L": 1
     },
-    "stock": 0,
-    "sku": "CHALECO-RÚSTICO-PROCESADO"
+    "stockTalles": {
+      "L": null
+    },
+    "stock": 1,
+    "sku": "CHALECO-RÚSTICO-PROCESADO",
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
   },
   {
     "id": "chaleco-r-stico-procesado-1771871244375",
