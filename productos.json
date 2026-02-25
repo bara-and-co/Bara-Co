@@ -1,5 +1,57 @@
 [
   {
+    "id": "pantalon-drift-1772019305811",
+    "nombre": "Pantalon Drift",
+    "precio": 40000,
+    "precioAnterior": 60000,
+    "categoria": "hombre",
+    "subcategoria": "Pantalones",
+    "descripcion": "",
+    "imagen": "https://i.ibb.co/pjYBGdJd/Pantalon-Drift.webp",
+    "imagenes": [
+      "https://i.ibb.co/pjYBGdJd/Pantalon-Drift.webp",
+      "https://i.ibb.co/WWwqdcz3/Pantalon-Drift.webp"
+    ],
+    "tallesDisponibles": [
+      "44",
+      "46"
+    ],
+    "colores": [
+      {
+        "nombre": "Jean",
+        "codigo": "#5C7FA3",
+        "stock": 0
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": true,
+    "stockMap": {
+      "Jean__44": 1,
+      "Jean__46": 1
+    },
+    "stockTalles": null,
+    "stock": 2,
+    "sku": "PANTALON-DRIFT",
+    "tags": [
+      "MI WARA"
+    ],
+    "fabrica": {
+      "algodon": 60,
+      "poliester": 35,
+      "elastano": 5
+    },
+    "cuidados": null,
+    "temporada": null,
+    "genero": "masculino",
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "mini-marfil-1771892856943",
     "nombre": "Mini Marfil",
     "precio": 28000,
