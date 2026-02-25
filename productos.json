@@ -5806,18 +5806,10 @@
     "precioAnterior": 70000,
     "categoria": "hombre",
     "subcategoria": "Pantalones",
-    "imagen": "https://d22fxaf9t8d39k.cloudfront.net/ecf27d665b9de478959f072206cf7366d08de7d3b30e2acf887d622544b29c5d404368.jpg",
-    "imagenes": [
-      "https://d22fxaf9t8d39k.cloudfront.net/ecf27d665b9de478959f072206cf7366d08de7d3b30e2acf887d622544b29c5d404368.jpg"
-    ],
     "descripcion": "",
-    "composicion": "",
-    "cuidado": "",
-    "talles": [
-      "S",
-      "M",
-      "L",
-      "XL"
+    "imagen": "https://i.ibb.co/TBxBR7W2/Pantalon-cargo-Gris.webp",
+    "imagenes": [
+      "https://i.ibb.co/TBxBR7W2/Pantalon-cargo-Gris.webp"
     ],
     "tallesDisponibles": [
       "S",
@@ -5825,9 +5817,32 @@
       "L",
       "XL"
     ],
-    "sku": "PANTALON-CARGO-GRIS",
+    "colores": [],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Blanco__L": 1
+    },
+    "stockTalles": {
+      "S": null,
+      "M": null,
+      "L": null,
+      "XL": null
+    },
     "stock": 10,
-    "activo": true
+    "sku": "PANTALON-CARGO-GRIS",
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
   },
   {
     "id": "pantalon-camuflado",
