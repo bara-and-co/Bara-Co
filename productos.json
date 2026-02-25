@@ -1471,10 +1471,24 @@
     "destacado": false,
     "outlet": false,
     "stockMap": {
-      "Salmón__M": null
+      "Salmón__M": 1
     },
-    "stock": 0,
-    "sku": "SUDADERA-SAFARI"
+    "stockTalles": {
+      "L": null
+    },
+    "stock": 1,
+    "sku": "SUDADERA-SAFARI",
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
   },
   {
     "id": "oversize-el-veme-1771870063640",
