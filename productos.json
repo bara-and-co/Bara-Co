@@ -3966,18 +3966,10 @@
     "precioAnterior": null,
     "categoria": "hombre",
     "subcategoria": "Remeras",
-    "imagen": "https://d22fxaf9t8d39k.cloudfront.net/bd457a0c1a3b8e31be3635be7f0fbb636838ccd8ccb236c0017d89b3b2d4be16404368.png",
-    "imagenes": [
-      "https://d22fxaf9t8d39k.cloudfront.net/bd457a0c1a3b8e31be3635be7f0fbb636838ccd8ccb236c0017d89b3b2d4be16404368.png"
-    ],
     "descripcion": "",
-    "composicion": "",
-    "cuidado": "",
-    "talles": [
-      "S",
-      "M",
-      "L",
-      "XL"
+    "imagen": "https://i.ibb.co/cKN53gWY/Remera-AUTHENTICpng.webp",
+    "imagenes": [
+      "https://i.ibb.co/cKN53gWY/Remera-AUTHENTICpng.webp"
     ],
     "tallesDisponibles": [
       "S",
@@ -3985,9 +3977,32 @@
       "L",
       "XL"
     ],
-    "sku": "REMERA-AUTHENTIC",
+    "colores": [],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Blanco__L": 1
+    },
+    "stockTalles": {
+      "S": null,
+      "M": null,
+      "L": null,
+      "XL": null
+    },
     "stock": 10,
-    "activo": true
+    "sku": "REMERA-AUTHENTIC",
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
   },
   {
     "id": "pilusos-prelavados",
