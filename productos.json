@@ -5836,18 +5836,10 @@
     "precioAnterior": 35000,
     "categoria": "hombre",
     "subcategoria": "Pantalones",
-    "imagen": "https://d22fxaf9t8d39k.cloudfront.net/0b2c10d9c8434b582a9c56c1d5c318b72ac7e47883bd608ae75fb3a98b9529e1404368.jpg",
-    "imagenes": [
-      "https://d22fxaf9t8d39k.cloudfront.net/0b2c10d9c8434b582a9c56c1d5c318b72ac7e47883bd608ae75fb3a98b9529e1404368.jpg"
-    ],
     "descripcion": "",
-    "composicion": "",
-    "cuidado": "",
-    "talles": [
-      "S",
-      "M",
-      "L",
-      "XL"
+    "imagen": "https://i.ibb.co/4RJXfsch/Pantalon-CAMUFLADO.webp",
+    "imagenes": [
+      "https://i.ibb.co/4RJXfsch/Pantalon-CAMUFLADO.webp"
     ],
     "tallesDisponibles": [
       "S",
@@ -5855,9 +5847,32 @@
       "L",
       "XL"
     ],
-    "sku": "PANTALON-CAMUFLADO",
+    "colores": [],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Blanco__L": 1
+    },
+    "stockTalles": {
+      "S": null,
+      "M": null,
+      "L": null,
+      "XL": null
+    },
     "stock": 10,
-    "activo": true
+    "sku": "PANTALON-CAMUFLADO",
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
   },
   {
     "id": "remera-smile",
