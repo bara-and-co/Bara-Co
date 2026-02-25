@@ -1,5 +1,83 @@
 [
   {
+    "id": "sueter-lanilla-1772021474274",
+    "nombre": "Sueter Lanilla",
+    "precio": 35000,
+    "precioAnterior": null,
+    "categoria": "hombre",
+    "subcategoria": "Buzos",
+    "descripcion": "*Los de color Gris topo son con cuello V",
+    "imagen": "https://i.ibb.co/Csmsk0Rr/Sueter-Lanillanegro.webp",
+    "imagenes": [
+      "https://i.ibb.co/Csmsk0Rr/Sueter-Lanillanegro.webp",
+      "https://i.ibb.co/PVsLTpb/Sueter-Lanilla-topo.webp",
+      "https://i.ibb.co/svSXMp0q/Sueter-Lanilla-blanco.webp"
+    ],
+    "tallesDisponibles": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colores": [
+      {
+        "nombre": "Negro",
+        "codigo": "#111111",
+        "stock": 2
+      },
+      {
+        "nombre": "Blanco",
+        "codigo": "#FFFFFF",
+        "stock": 1
+      },
+      {
+        "nombre": "Gris",
+        "codigo": "#9E9E9E",
+        "stock": 2
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Negro__S": 1,
+      "Negro__M": null,
+      "Negro__L": null,
+      "Negro__XL": null,
+      "Negro__XXL": 1,
+      "Blanco__S": null,
+      "Blanco__M": null,
+      "Blanco__L": 1,
+      "Blanco__XL": null,
+      "Blanco__XXL": 1,
+      "Gris__S": null,
+      "Gris__M": 1,
+      "Gris__L": null,
+      "Gris__XL": 1,
+      "Gris__XXL": null
+    },
+    "stockTalles": {
+      "XL": 1
+    },
+    "stock": 6,
+    "sku": "SUETER-LANILLA",
+    "tags": null,
+    "fabrica": {
+      "algodon": 80,
+      "poliester": 20
+    },
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "remera-basic-mw-1772020647938",
     "nombre": "Remera Basic MW",
     "precio": 10500,
