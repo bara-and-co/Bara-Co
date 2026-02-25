@@ -986,6 +986,79 @@
     .select-mode .card-select-chk { display: block; }
     .prod-card.selected-card { outline: 2px solid var(--accent); }
 
+    /* ─── FABRIC ACORDEONES ─── */
+    .fab-group {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: var(--surface);
+    }
+    .fab-group-head {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 14px;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+      list-style: none;
+      user-select: none;
+      background: var(--bg);
+      transition: background .15s;
+    }
+    .fab-group-head::-webkit-details-marker { display: none; }
+    .fab-group-head:hover { background: rgba(201,169,110,.07); }
+    .fab-group-dot {
+      width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0;
+    }
+    .fab-group-sum {
+      margin-left: auto;
+      font-size: 11px; font-weight: 700;
+      color: var(--accent);
+      background: rgba(201,169,110,.12);
+      padding: 2px 8px; border-radius: 20px;
+      min-width: 32px; text-align: center;
+    }
+    .fab-group-sum.empty { color: var(--muted); background: none; }
+    .fab-group-arrow {
+      font-size: 10px; color: var(--muted);
+      transition: transform .25s;
+      flex-shrink: 0;
+    }
+    details.fab-group[open] .fab-group-arrow { transform: rotate(180deg); }
+    .fab-group-body {
+      padding: 8px 10px 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .fab-group-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 6px;
+      border-radius: 6px;
+      transition: background .15s;
+    }
+    .fab-group-row:hover { background: rgba(201,169,110,.06); }
+    .fab-group-row.has-val { background: rgba(201,169,110,.1); }
+    .fab-lbl {
+      width: 130px; flex-shrink: 0;
+      font-size: 12px; font-weight: 600; color: var(--text);
+    }
+    .fab-sub {
+      width: 130px; flex-shrink: 0;
+      font-size: 10px; color: var(--muted);
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .fab-slider-w { flex: 1; }
+    .fab-slider-w .fabric-slider { width: 100%; }
+    @media(max-width:640px) {
+      .fab-sub { display: none; }
+      .fab-lbl { width: 100px; }
+    }
+
     /* PRINT LABEL */
     @media print {
       .topbar, .toolbar, .stats-panel, .save-banner, .add-card { display: none !important; }
@@ -1298,166 +1371,198 @@
           <!-- Barra visual de composición -->
           <div class="fabric-bar-visual" id="fabricBarVisual" style="margin-bottom:16px;"></div>
 
-          <!-- Fibras -->
-          <div id="fabricRows">
-            <div class="fabric-row">
-              <div class="fabric-label"><span style="width:10px;height:10px;border-radius:50%;background:#c9a96e;display:inline-block;"></span> Algodón</div>
-              <div class="fabric-slider-wrap">
-                <input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-algodon" oninput="updateFabric()"/>
-              </div>
-              <input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-algodon-pct" oninput="syncFabricSlider('algodon')"/> 
-            </div>
-            <div class="fabric-row">
-              <div class="fabric-label"><span style="width:10px;height:10px;border-radius:50%;background:#3d6bce;display:inline-block;"></span> Poliéster</div>
-              <div class="fabric-slider-wrap">
-                <input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-poliester" oninput="updateFabric()"/>
-              </div>
-              <input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-poliester-pct" oninput="syncFabricSlider('poliester')"/>
-            </div>
-            <div class="fabric-row">
-              <div class="fabric-label"><span style="width:10px;height:10px;border-radius:50%;background:#2d8a5e;display:inline-block;"></span> Elastano</div>
-              <div class="fabric-slider-wrap">
-                <input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-elastano" oninput="updateFabric()"/>
-              </div>
-              <input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-elastano-pct" oninput="syncFabricSlider('elastano')"/>
-            </div>
-            <div class="fabric-row">
-              <div class="fabric-label"><span style="width:10px;height:10px;border-radius:50%;background:#8e44ad;display:inline-block;"></span> Viscosa</div>
-              <div class="fabric-slider-wrap">
-                <input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-viscosa" oninput="updateFabric()"/>
-              </div>
-              <input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-viscosa-pct" oninput="syncFabricSlider('viscosa')"/>
-            </div>
-            <div class="fabric-row">
-              <div class="fabric-label"><span style="width:10px;height:10px;border-radius:50%;background:#c0392b;display:inline-block;"></span> Lana</div>
-              <div class="fabric-slider-wrap">
-                <input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-lana" oninput="updateFabric()"/>
-              </div>
-              <input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-lana-pct" oninput="syncFabricSlider('lana')"/>
-            </div>
-            <div class="fabric-row">
-              <div class="fabric-label"><span style="width:10px;height:10px;border-radius:50%;background:#7f8c8d;display:inline-block;"></span> Nylon</div>
-              <div class="fabric-slider-wrap">
-                <input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-nylon" oninput="updateFabric()"/>
-              </div>
-              <input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-nylon-pct" oninput="syncFabricSlider('nylon')"/>
-            </div>
-            <div class="fabric-row">
-              <div class="fabric-label"><span style="width:10px;height:10px;border-radius:50%;background:#f39c12;display:inline-block;"></span> Lino</div>
-              <div class="fabric-slider-wrap">
-                <input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-lino" oninput="updateFabric()"/>
-              </div>
-              <input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-lino-pct" oninput="syncFabricSlider('lino')"/>
-            </div>
-            <div class="fabric-row">
-              <div class="fabric-label"><span style="width:10px;height:10px;border-radius:50%;background:#1abc9c;display:inline-block;"></span> Seda / Raso</div>
-              <div class="fabric-slider-wrap">
-                <input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-seda" oninput="updateFabric()"/>
-              </div>
-              <input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-seda-pct" oninput="syncFabricSlider('seda')"/>
-            </div>
-            <div class="fabric-row">
-              <div class="fabric-label"><span style="width:10px;height:10px;border-radius:50%;background:#e67e22;display:inline-block;"></span> Acílico</div>
-              <div class="fabric-slider-wrap">
-                <input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-acilico" oninput="updateFabric()"/>
-              </div>
-              <input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-acilico-pct" oninput="syncFabricSlider('acilico')"/>
-            </div>
-            <div class="fabric-row">
-              <div class="fabric-label"><span style="width:10px;height:10px;border-radius:50%;background:#34495e;display:inline-block;"></span> Modal</div>
-              <div class="fabric-slider-wrap">
-                <input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-modal" oninput="updateFabric()"/>
-              </div>
-              <input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-modal-pct" oninput="syncFabricSlider('modal')"/>
-            </div>
+          <!-- ACORDEONES POR CATEGORÍA -->
+          <div id="fabricRows" style="display:flex;flex-direction:column;gap:4px;">
 
-            <!-- ── Telas nuevas ── -->
-            <div class="fabric-row">
-              <div class="fabric-label"><span style="width:10px;height:10px;border-radius:50%;background:#2c3e50;display:inline-block;"></span> Denim</div>
-              <div class="fabric-slider-wrap"><input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-denim" oninput="updateFabric()"/></div>
-              <input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-denim-pct" oninput="syncFabricSlider('denim')"/>
-            </div>
-            <div class="fabric-row">
-              <div class="fabric-label"><span style="width:10px;height:10px;border-radius:50%;background:#6c5ce7;display:inline-block;"></span> Micropolar</div>
-              <div class="fabric-slider-wrap"><input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-micropolar" oninput="updateFabric()"/></div>
-              <input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-micropolar-pct" oninput="syncFabricSlider('micropolar')"/>
-            </div>
-            <div class="fabric-row">
-              <div class="fabric-label"><span style="width:10px;height:10px;border-radius:50%;background:#b97a56;display:inline-block;"></span> Corderoy</div>
-              <div class="fabric-slider-wrap"><input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-corderoy" oninput="updateFabric()"/></div>
-              <input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-corderoy-pct" oninput="syncFabricSlider('corderoy')"/>
-            </div>
-            <div class="fabric-row">
-              <div class="fabric-label"><span style="width:10px;height:10px;border-radius:50%;background:#e17055;display:inline-block;"></span> Franela</div>
-              <div class="fabric-slider-wrap"><input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-franela" oninput="updateFabric()"/></div>
-              <input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-franela-pct" oninput="syncFabricSlider('franela')"/>
-            </div>
-            <div class="fabric-row">
-              <div class="fabric-label"><span style="width:10px;height:10px;border-radius:50%;background:#00b894;display:inline-block;"></span> Popelín</div>
-              <div class="fabric-slider-wrap"><input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-popelin" oninput="updateFabric()"/></div>
-              <input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-popelin-pct" oninput="syncFabricSlider('popelin')"/>
-            </div>
-            <div class="fabric-row">
-              <div class="fabric-label"><span style="width:10px;height:10px;border-radius:50%;background:#fd79a8;display:inline-block;"></span> Gabardina</div>
-              <div class="fabric-slider-wrap"><input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-gabardina" oninput="updateFabric()"/></div>
-              <input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-gabardina-pct" oninput="syncFabricSlider('gabardina')"/>
-            </div>
-            <div class="fabric-row">
-              <div class="fabric-label"><span style="width:10px;height:10px;border-radius:50%;background:#a29bfe;display:inline-block;"></span> Tul</div>
-              <div class="fabric-slider-wrap"><input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-tul" oninput="updateFabric()"/></div>
-              <input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-tul-pct" oninput="syncFabricSlider('tul')"/>
-            </div>
-            <div class="fabric-row">
-              <div class="fabric-label"><span style="width:10px;height:10px;border-radius:50%;background:#ffeaa7;display:inline-block;border:1px solid #ccc;"></span> Encaje</div>
-              <div class="fabric-slider-wrap"><input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-encaje" oninput="updateFabric()"/></div>
-              <input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-encaje-pct" oninput="syncFabricSlider('encaje')"/>
-            </div>
-            <div class="fabric-row">
-              <div class="fabric-label"><span style="width:10px;height:10px;border-radius:50%;background:#55efc4;display:inline-block;"></span> Piqué</div>
-              <div class="fabric-slider-wrap"><input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-pique" oninput="updateFabric()"/></div>
-              <input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-pique-pct" oninput="syncFabricSlider('pique')"/>
-            </div>
-            <div class="fabric-row">
-              <div class="fabric-label"><span style="width:10px;height:10px;border-radius:50%;background:#e84393;display:inline-block;"></span> Lycra</div>
-              <div class="fabric-slider-wrap"><input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-lycra" oninput="updateFabric()"/></div>
-              <input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-lycra-pct" oninput="syncFabricSlider('lycra')"/>
-            </div>
-            <div class="fabric-row">
-              <div class="fabric-label"><span style="width:10px;height:10px;border-radius:50%;background:#8b4513;display:inline-block;"></span> Cuero</div>
-              <div class="fabric-slider-wrap"><input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-cuero" oninput="updateFabric()"/></div>
-              <input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-cuero-pct" oninput="syncFabricSlider('cuero')"/>
-            </div>
-            <div class="fabric-row">
-              <div class="fabric-label"><span style="width:10px;height:10px;border-radius:50%;background:#a0522d;display:inline-block;"></span> Cuerina</div>
-              <div class="fabric-slider-wrap"><input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-cuerina" oninput="updateFabric()"/></div>
-              <input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-cuerina-pct" oninput="syncFabricSlider('cuerina')"/>
-            </div>
-            div class="fabric-row">
-              <div class="fabric-label"><span style="width:10px;height:10px;border-radius:50%;background:#00b894;display:inline-block;"></span> Satén</div>
-              <div class="fabric-slider-wrap"><input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-popelin" oninput="updateFabric()"/></div>
-              <input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-popelin-pct" oninput="syncFabricSlider('popelin')"/>
-            </div>
-          
+            <!-- 1. Fibras Naturales Vegetales -->
+            <details class="fab-group" open>
+              <summary class="fab-group-head" onclick="toggleFabGroup(this)">
+                <span class="fab-group-dot" style="background:#c9a96e"></span>
+                🌿 Fibras Naturales (vegetales)
+                <span class="fab-group-sum" id="fgs-vegetal">—</span>
+                <i class="fas fa-chevron-down fab-group-arrow"></i>
+              </summary>
+              <div class="fab-group-body">
+                <div class="fab-group-row" data-f="algodon">    <div class="fab-lbl">Algodón</div>    <div class="fab-sub">jersey, poplín, denim, frisa…</div><div class="fab-slider-w"><input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-algodon"    oninput="updateFabric()"/></div><input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-algodon-pct"    oninput="syncFabricSlider('algodon')"/></div>
+                <div class="fab-group-row" data-f="lino">       <div class="fab-lbl">Lino</div>       <div class="fab-sub"></div>                               <div class="fab-slider-w"><input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-lino"       oninput="updateFabric()"/></div><input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-lino-pct"       oninput="syncFabricSlider('lino')"/></div>
+                <div class="fab-group-row" data-f="ramio">      <div class="fab-lbl">Ramio</div>      <div class="fab-sub"></div>                               <div class="fab-slider-w"><input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-ramio"      oninput="updateFabric()"/></div><input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-ramio-pct"      oninput="syncFabricSlider('ramio')"/></div>
+                <div class="fab-group-row" data-f="canhamo">    <div class="fab-lbl">Cáñamo</div>     <div class="fab-sub"></div>                               <div class="fab-slider-w"><input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-canhamo"    oninput="updateFabric()"/></div><input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-canhamo-pct"    oninput="syncFabricSlider('canhamo')"/></div>
+                <div class="fab-group-row" data-f="bambu">      <div class="fab-lbl">Bambú</div>      <div class="fab-sub">fibra regenerada natural</div>       <div class="fab-slider-w"><input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-bambu"      oninput="updateFabric()"/></div><input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-bambu-pct"      oninput="syncFabricSlider('bambu')"/></div>
+              </div>
+            </details>
+
+            <!-- 2. Fibras Naturales Animales -->
+            <details class="fab-group">
+              <summary class="fab-group-head" onclick="toggleFabGroup(this)">
+                <span class="fab-group-dot" style="background:#c0392b"></span>
+                🐑 Fibras Naturales (animales)
+                <span class="fab-group-sum" id="fgs-animal">—</span>
+                <i class="fas fa-chevron-down fab-group-arrow"></i>
+              </summary>
+              <div class="fab-group-body">
+                <div class="fab-group-row" data-f="lana">       <div class="fab-lbl">Lana</div>       <div class="fab-sub">merino, virgen, cardada, peinada</div><div class="fab-slider-w"><input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-lana"       oninput="updateFabric()"/></div><input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-lana-pct"       oninput="syncFabricSlider('lana')"/></div>
+                <div class="fab-group-row" data-f="cashmere">   <div class="fab-lbl">Cashmere</div>   <div class="fab-sub"></div>                               <div class="fab-slider-w"><input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-cashmere"   oninput="updateFabric()"/></div><input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-cashmere-pct"   oninput="syncFabricSlider('cashmere')"/></div>
+                <div class="fab-group-row" data-f="mohair">     <div class="fab-lbl">Mohair</div>     <div class="fab-sub"></div>                               <div class="fab-slider-w"><input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-mohair"     oninput="updateFabric()"/></div><input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-mohair-pct"     oninput="syncFabricSlider('mohair')"/></div>
+                <div class="fab-group-row" data-f="alpaca">     <div class="fab-lbl">Alpaca</div>     <div class="fab-sub"></div>                               <div class="fab-slider-w"><input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-alpaca"     oninput="updateFabric()"/></div><input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-alpaca-pct"     oninput="syncFabricSlider('alpaca')"/></div>
+                <div class="fab-group-row" data-f="angora">     <div class="fab-lbl">Angora</div>     <div class="fab-sub"></div>                               <div class="fab-slider-w"><input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-angora"     oninput="updateFabric()"/></div><input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-angora-pct"     oninput="syncFabricSlider('angora')"/></div>
+                <div class="fab-group-row" data-f="seda">       <div class="fab-lbl">Seda natural</div><div class="fab-sub"></div>                              <div class="fab-slider-w"><input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-seda"       oninput="updateFabric()"/></div><input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-seda-pct"       oninput="syncFabricSlider('seda')"/></div>
+                <div class="fab-group-row" data-f="cuero">      <div class="fab-lbl">Cuero</div>      <div class="fab-sub"></div>                               <div class="fab-slider-w"><input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-cuero"      oninput="updateFabric()"/></div><input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-cuero-pct"      oninput="syncFabricSlider('cuero')"/></div>
+                <div class="fab-group-row" data-f="gamuza">     <div class="fab-lbl">Gamuza</div>     <div class="fab-sub"></div>                               <div class="fab-slider-w"><input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-gamuza"     oninput="updateFabric()"/></div><input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-gamuza-pct"     oninput="syncFabricSlider('gamuza')"/></div>
+              </div>
+            </details>
+
+            <!-- 3. Fibras Sintéticas -->
+            <details class="fab-group">
+              <summary class="fab-group-head" onclick="toggleFabGroup(this)">
+                <span class="fab-group-dot" style="background:#3d6bce"></span>
+                🔬 Fibras Sintéticas
+                <span class="fab-group-sum" id="fgs-sint">—</span>
+                <i class="fas fa-chevron-down fab-group-arrow"></i>
+              </summary>
+              <div class="fab-group-body">
+                <div class="fab-group-row" data-f="poliester">  <div class="fab-lbl">Poliéster</div>   <div class="fab-sub"></div>                              <div class="fab-slider-w"><input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-poliester"  oninput="updateFabric()"/></div><input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-poliester-pct"  oninput="syncFabricSlider('poliester')"/></div>
+                <div class="fab-group-row" data-f="nylon">      <div class="fab-lbl">Nylon / Poliamida</div><div class="fab-sub"></div>                         <div class="fab-slider-w"><input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-nylon"      oninput="updateFabric()"/></div><input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-nylon-pct"      oninput="syncFabricSlider('nylon')"/></div>
+                <div class="fab-group-row" data-f="acilico">    <div class="fab-lbl">Acrílico</div>    <div class="fab-sub"></div>                               <div class="fab-slider-w"><input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-acilico"    oninput="updateFabric()"/></div><input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-acilico-pct"    oninput="syncFabricSlider('acilico')"/></div>
+                <div class="fab-group-row" data-f="elastano">   <div class="fab-lbl">Elastano / Spandex / Lycra</div><div class="fab-sub"></div>                 <div class="fab-slider-w"><input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-elastano"   oninput="updateFabric()"/></div><input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-elastano-pct"   oninput="syncFabricSlider('elastano')"/></div>
+                <div class="fab-group-row" data-f="microfibra">  <div class="fab-lbl">Microfibra</div>  <div class="fab-sub"></div>                              <div class="fab-slider-w"><input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-microfibra"  oninput="updateFabric()"/></div><input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-microfibra-pct"  oninput="syncFabricSlider('microfibra')"/></div>
+                <div class="fab-group-row" data-f="poliuretano"> <div class="fab-lbl">Poliuretano (PU)</div><div class="fab-sub">cuerina sintética</div>          <div class="fab-slider-w"><input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-poliuretano" oninput="updateFabric()"/></div><input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-poliuretano-pct" oninput="syncFabricSlider('poliuretano')"/></div>
+              </div>
+            </details>
+
+            <!-- 4. Fibras Artificiales -->
+            <details class="fab-group">
+              <summary class="fab-group-head" onclick="toggleFabGroup(this)">
+                <span class="fab-group-dot" style="background:#8e44ad"></span>
+                🍃 Fibras Artificiales (celulosa)
+                <span class="fab-group-sum" id="fgs-artif">—</span>
+                <i class="fas fa-chevron-down fab-group-arrow"></i>
+              </summary>
+              <div class="fab-group-body">
+                <div class="fab-group-row" data-f="viscosa">    <div class="fab-lbl">Viscosa / Rayón</div><div class="fab-sub"></div>                            <div class="fab-slider-w"><input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-viscosa"    oninput="updateFabric()"/></div><input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-viscosa-pct"    oninput="syncFabricSlider('viscosa')"/></div>
+                <div class="fab-group-row" data-f="modal">      <div class="fab-lbl">Modal</div>      <div class="fab-sub"></div>                               <div class="fab-slider-w"><input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-modal"      oninput="updateFabric()"/></div><input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-modal-pct"      oninput="syncFabricSlider('modal')"/></div>
+                <div class="fab-group-row" data-f="lyocell">    <div class="fab-lbl">Lyocell (Tencel)</div><div class="fab-sub"></div>                          <div class="fab-slider-w"><input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-lyocell"    oninput="updateFabric()"/></div><input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-lyocell-pct"    oninput="syncFabricSlider('lyocell')"/></div>
+                <div class="fab-group-row" data-f="acetato">    <div class="fab-lbl">Acetato</div>    <div class="fab-sub"></div>                               <div class="fab-slider-w"><input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-acetato"    oninput="updateFabric()"/></div><input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-acetato-pct"    oninput="syncFabricSlider('acetato')"/></div>
+              </div>
+            </details>
+
+            <!-- 5. Tejidos Planos -->
+            <details class="fab-group">
+              <summary class="fab-group-head" onclick="toggleFabGroup(this)">
+                <span class="fab-group-dot" style="background:#2c3e50"></span>
+                🧵 Tejidos Planos
+                <span class="fab-group-sum" id="fgs-plano">—</span>
+                <i class="fas fa-chevron-down fab-group-arrow"></i>
+              </summary>
+              <div class="fab-group-body">
+                <div class="fab-group-row" data-f="popelin">    <div class="fab-lbl">Poplín</div>     <div class="fab-sub"></div>                               <div class="fab-slider-w"><input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-popelin"    oninput="updateFabric()"/></div><input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-popelin-pct"    oninput="syncFabricSlider('popelin')"/></div>
+                <div class="fab-group-row" data-f="sarga">      <div class="fab-lbl">Sarga</div>      <div class="fab-sub"></div>                               <div class="fab-slider-w"><input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-sarga"      oninput="updateFabric()"/></div><input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-sarga-pct"      oninput="syncFabricSlider('sarga')"/></div>
+                <div class="fab-group-row" data-f="gabardina">  <div class="fab-lbl">Gabardina</div>  <div class="fab-sub"></div>                               <div class="fab-slider-w"><input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-gabardina"  oninput="updateFabric()"/></div><input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-gabardina-pct"  oninput="syncFabricSlider('gabardina')"/></div>
+                <div class="fab-group-row" data-f="denim">      <div class="fab-lbl">Denim</div>      <div class="fab-sub">con o sin elastano</div>             <div class="fab-slider-w"><input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-denim"      oninput="updateFabric()"/></div><input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-denim-pct"      oninput="syncFabricSlider('denim')"/></div>
+                <div class="fab-group-row" data-f="tafeta">     <div class="fab-lbl">Tafeta</div>     <div class="fab-sub"></div>                               <div class="fab-slider-w"><input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-tafeta"     oninput="updateFabric()"/></div><input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-tafeta-pct"     oninput="syncFabricSlider('tafeta')"/></div>
+                <div class="fab-group-row" data-f="saten">      <div class="fab-lbl">Satén</div>      <div class="fab-sub"></div>                               <div class="fab-slider-w"><input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-saten"      oninput="updateFabric()"/></div><input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-saten-pct"      oninput="syncFabricSlider('saten')"/></div>
+                <div class="fab-group-row" data-f="crepe">      <div class="fab-lbl">Crepé</div>      <div class="fab-sub"></div>                               <div class="fab-slider-w"><input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-crepe"      oninput="updateFabric()"/></div><input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-crepe-pct"      oninput="syncFabricSlider('crepe')"/></div>
+                <div class="fab-group-row" data-f="gasa">       <div class="fab-lbl">Gasa</div>       <div class="fab-sub"></div>                               <div class="fab-slider-w"><input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-gasa"       oninput="updateFabric()"/></div><input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-gasa-pct"       oninput="syncFabricSlider('gasa')"/></div>
+                <div class="fab-group-row" data-f="oxford">     <div class="fab-lbl">Oxford</div>     <div class="fab-sub"></div>                               <div class="fab-slider-w"><input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-oxford"     oninput="updateFabric()"/></div><input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-oxford-pct"     oninput="syncFabricSlider('oxford')"/></div>
+                <div class="fab-group-row" data-f="twill">      <div class="fab-lbl">Twill</div>      <div class="fab-sub"></div>                               <div class="fab-slider-w"><input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-twill"      oninput="updateFabric()"/></div><input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-twill-pct"      oninput="syncFabricSlider('twill')"/></div>
+                <div class="fab-group-row" data-f="lona">       <div class="fab-lbl">Lona</div>       <div class="fab-sub"></div>                               <div class="fab-slider-w"><input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-lona"       oninput="updateFabric()"/></div><input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-lona-pct"       oninput="syncFabricSlider('lona')"/></div>
+                <div class="fab-group-row" data-f="jacquard">   <div class="fab-lbl">Jacquard / Brocato</div><div class="fab-sub"></div>                        <div class="fab-slider-w"><input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-jacquard"   oninput="updateFabric()"/></div><input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-jacquard-pct"   oninput="syncFabricSlider('jacquard')"/></div>
+              </div>
+            </details>
+
+            <!-- 6. Tejidos de Punto -->
+            <details class="fab-group">
+              <summary class="fab-group-head" onclick="toggleFabGroup(this)">
+                <span class="fab-group-dot" style="background:#00b894"></span>
+                🧶 Tejidos de Punto
+                <span class="fab-group-sum" id="fgs-punto">—</span>
+                <i class="fas fa-chevron-down fab-group-arrow"></i>
+              </summary>
+              <div class="fab-group-body">
+                <div class="fab-group-row" data-f="jersey">     <div class="fab-lbl">Jersey</div>     <div class="fab-sub"></div>                               <div class="fab-slider-w"><input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-jersey"     oninput="updateFabric()"/></div><input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-jersey-pct"     oninput="syncFabricSlider('jersey')"/></div>
+                <div class="fab-group-row" data-f="interlock">  <div class="fab-lbl">Interlock</div>  <div class="fab-sub"></div>                               <div class="fab-slider-w"><input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-interlock"  oninput="updateFabric()"/></div><input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-interlock-pct"  oninput="syncFabricSlider('interlock')"/></div>
+                <div class="fab-group-row" data-f="rib">        <div class="fab-lbl">Rib</div>        <div class="fab-sub"></div>                               <div class="fab-slider-w"><input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-rib"        oninput="updateFabric()"/></div><input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-rib-pct"        oninput="syncFabricSlider('rib')"/></div>
+                <div class="fab-group-row" data-f="morley">     <div class="fab-lbl">Morley / French Terry</div><div class="fab-sub"></div>                     <div class="fab-slider-w"><input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-morley"     oninput="updateFabric()"/></div><input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-morley-pct"     oninput="syncFabricSlider('morley')"/></div>
+                <div class="fab-group-row" data-f="pique">      <div class="fab-lbl">Piqué</div>      <div class="fab-sub"></div>                               <div class="fab-slider-w"><input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-pique"      oninput="updateFabric()"/></div><input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-pique-pct"      oninput="syncFabricSlider('pique')"/></div>
+                <div class="fab-group-row" data-f="frisa">      <div class="fab-lbl">Frisa / Polar</div><div class="fab-sub"></div>                             <div class="fab-slider-w"><input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-frisa"      oninput="updateFabric()"/></div><input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-frisa-pct"      oninput="syncFabricSlider('frisa')"/></div>
+                <div class="fab-group-row" data-f="plush">      <div class="fab-lbl">Plush</div>      <div class="fab-sub"></div>                               <div class="fab-slider-w"><input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-plush"      oninput="updateFabric()"/></div><input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-plush-pct"      oninput="syncFabricSlider('plush')"/></div>
+                <div class="fab-group-row" data-f="waffle">     <div class="fab-lbl">Waffle</div>     <div class="fab-sub"></div>                               <div class="fab-slider-w"><input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-waffle"     oninput="updateFabric()"/></div><input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-waffle-pct"     oninput="syncFabricSlider('waffle')"/></div>
+                <div class="fab-group-row" data-f="ptoroma">    <div class="fab-lbl">Punto Roma</div> <div class="fab-sub"></div>                               <div class="fab-slider-w"><input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-ptoroma"    oninput="updateFabric()"/></div><input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-ptoroma-pct"    oninput="syncFabricSlider('ptoroma')"/></div>
+              </div>
+            </details>
+
+            <!-- 7. Telas Técnicas / Deportivas -->
+            <details class="fab-group">
+              <summary class="fab-group-head" onclick="toggleFabGroup(this)">
+                <span class="fab-group-dot" style="background:#0984e3"></span>
+                ⚡ Técnicas / Deportivas
+                <span class="fab-group-sum" id="fgs-tec">—</span>
+                <i class="fas fa-chevron-down fab-group-arrow"></i>
+              </summary>
+              <div class="fab-group-body">
+                <div class="fab-group-row" data-f="dryfit">     <div class="fab-lbl">Dry Fit</div>    <div class="fab-sub"></div>                               <div class="fab-slider-w"><input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-dryfit"     oninput="updateFabric()"/></div><input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-dryfit-pct"     oninput="syncFabricSlider('dryfit')"/></div>
+                <div class="fab-group-row" data-f="supplex">    <div class="fab-lbl">Supplex</div>    <div class="fab-sub"></div>                               <div class="fab-slider-w"><input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-supplex"    oninput="updateFabric()"/></div><input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-supplex-pct"    oninput="syncFabricSlider('supplex')"/></div>
+                <div class="fab-group-row" data-f="neoprene">   <div class="fab-lbl">Neoprene</div>   <div class="fab-sub"></div>                               <div class="fab-slider-w"><input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-neoprene"   oninput="updateFabric()"/></div><input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-neoprene-pct"   oninput="syncFabricSlider('neoprene')"/></div>
+                <div class="fab-group-row" data-f="softshell">  <div class="fab-lbl">Softshell</div>  <div class="fab-sub"></div>                               <div class="fab-slider-w"><input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-softshell"  oninput="updateFabric()"/></div><input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-softshell-pct"  oninput="syncFabricSlider('softshell')"/></div>
+                <div class="fab-group-row" data-f="ripstop">    <div class="fab-lbl">Ripstop</div>    <div class="fab-sub"></div>                               <div class="fab-slider-w"><input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-ripstop"    oninput="updateFabric()"/></div><input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-ripstop-pct"    oninput="syncFabricSlider('ripstop')"/></div>
+                <div class="fab-group-row" data-f="powermesh">  <div class="fab-lbl">Power Mesh</div> <div class="fab-sub"></div>                               <div class="fab-slider-w"><input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-powermesh"  oninput="updateFabric()"/></div><input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-powermesh-pct"  oninput="syncFabricSlider('powermesh')"/></div>
+              </div>
+            </details>
+
+            <!-- 8. Elegantes / Alta Moda -->
+            <details class="fab-group">
+              <summary class="fab-group-head" onclick="toggleFabGroup(this)">
+                <span class="fab-group-dot" style="background:#a29bfe"></span>
+                ✨ Elegantes / Alta Moda
+                <span class="fab-group-sum" id="fgs-elegan">—</span>
+                <i class="fas fa-chevron-down fab-group-arrow"></i>
+              </summary>
+              <div class="fab-group-body">
+                <div class="fab-group-row" data-f="tul">        <div class="fab-lbl">Tul</div>        <div class="fab-sub"></div>                               <div class="fab-slider-w"><input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-tul"        oninput="updateFabric()"/></div><input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-tul-pct"        oninput="syncFabricSlider('tul')"/></div>
+                <div class="fab-group-row" data-f="encaje">     <div class="fab-lbl">Encaje / Chantilly</div><div class="fab-sub"></div>                        <div class="fab-slider-w"><input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-encaje"     oninput="updateFabric()"/></div><input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-encaje-pct"     oninput="syncFabricSlider('encaje')"/></div>
+                <div class="fab-group-row" data-f="guipur">     <div class="fab-lbl">Güipür</div>     <div class="fab-sub"></div>                               <div class="fab-slider-w"><input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-guipur"     oninput="updateFabric()"/></div><input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-guipur-pct"     oninput="syncFabricSlider('guipur')"/></div>
+                <div class="fab-group-row" data-f="terciopelo"> <div class="fab-lbl">Terciopelo</div> <div class="fab-sub"></div>                               <div class="fab-slider-w"><input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-terciopelo" oninput="updateFabric()"/></div><input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-terciopelo-pct" oninput="syncFabricSlider('terciopelo')"/></div>
+                <div class="fab-group-row" data-f="pana">       <div class="fab-lbl">Pana</div>       <div class="fab-sub"></div>                               <div class="fab-slider-w"><input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-pana"       oninput="updateFabric()"/></div><input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-pana-pct"       oninput="syncFabricSlider('pana')"/></div>
+                <div class="fab-group-row" data-f="organza">    <div class="fab-lbl">Organza / Chiffon</div><div class="fab-sub"></div>                         <div class="fab-slider-w"><input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-organza"    oninput="updateFabric()"/></div><input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-organza-pct"    oninput="syncFabricSlider('organza')"/></div>
+                <div class="fab-group-row" data-f="mikado">     <div class="fab-lbl">Mikado / Shantung</div><div class="fab-sub"></div>                         <div class="fab-slider-w"><input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-mikado"     oninput="updateFabric()"/></div><input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-mikado-pct"     oninput="syncFabricSlider('mikado')"/></div>
+                <div class="fab-group-row" data-f="lurex">      <div class="fab-lbl">Lurex / Lamé</div><div class="fab-sub">con hilos metálicos</div>           <div class="fab-slider-w"><input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-lurex"      oninput="updateFabric()"/></div><input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-lurex-pct"      oninput="syncFabricSlider('lurex')"/></div>
+              </div>
+            </details>
+
+            <!-- 9. Abrigos -->
+            <details class="fab-group">
+              <summary class="fab-group-head" onclick="toggleFabGroup(this)">
+                <span class="fab-group-dot" style="background:#636e72"></span>
+                🧥 Telas para Abrigos
+                <span class="fab-group-sum" id="fgs-abrigo">—</span>
+                <i class="fas fa-chevron-down fab-group-arrow"></i>
+              </summary>
+              <div class="fab-group-body">
+                <div class="fab-group-row" data-f="pano">       <div class="fab-lbl">Paño</div>       <div class="fab-sub"></div>                               <div class="fab-slider-w"><input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-pano"       oninput="updateFabric()"/></div><input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-pano-pct"       oninput="syncFabricSlider('pano')"/></div>
+                <div class="fab-group-row" data-f="tweed">      <div class="fab-lbl">Tweed</div>      <div class="fab-sub"></div>                               <div class="fab-slider-w"><input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-tweed"      oninput="updateFabric()"/></div><input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-tweed-pct"      oninput="syncFabricSlider('tweed')"/></div>
+                <div class="fab-group-row" data-f="boucle">     <div class="fab-lbl">Bouclé</div>     <div class="fab-sub"></div>                               <div class="fab-slider-w"><input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-boucle"     oninput="updateFabric()"/></div><input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-boucle-pct"     oninput="syncFabricSlider('boucle')"/></div>
+                <div class="fab-group-row" data-f="corderoy">   <div class="fab-lbl">Corderoy / Pana gruesa</div><div class="fab-sub"></div>                    <div class="fab-slider-w"><input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-corderoy"   oninput="updateFabric()"/></div><input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-corderoy-pct"   oninput="syncFabricSlider('corderoy')"/></div>
+                <div class="fab-group-row" data-f="fieltro">    <div class="fab-lbl">Fieltro</div>    <div class="fab-sub"></div>                               <div class="fab-slider-w"><input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-fieltro"    oninput="updateFabric()"/></div><input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-fieltro-pct"    oninput="syncFabricSlider('fieltro')"/></div>
+                <div class="fab-group-row" data-f="micropolar">  <div class="fab-lbl">Micropolar</div> <div class="fab-sub"></div>                              <div class="fab-slider-w"><input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-micropolar"  oninput="updateFabric()"/></div><input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-micropolar-pct"  oninput="syncFabricSlider('micropolar')"/></div>
+              </div>
+            </details>
+
+          </div><!-- /fabricRows -->
 
           <!-- Presets rápidos -->
-          <div class="fabric-presets">
+          <div class="fabric-presets" style="margin-top:14px;">
             <span style="font-size:11px;color:var(--muted);margin-right:4px;line-height:28px;">Presets:</span>
             <button class="fabric-preset" onclick="applyFabricPreset({algodon:100})">100% Algodón</button>
             <button class="fabric-preset" onclick="applyFabricPreset({poliester:100})">100% Poliéster</button>
-            <button class="fabric-preset" onclick="applyFabricPreset({denim:98,elastano:2})">Denim 98/2</button>
-            <button class="fabric-preset" onclick="applyFabricPreset({micropolar:100})">100% Micropolar</button>
-            <button class="fabric-preset" onclick="applyFabricPreset({corderoy:100})">100% Corderoy</button>
-            <button class="fabric-preset" onclick="applyFabricPreset({franela:100})">100% Franela</button>
-            <button class="fabric-preset" onclick="applyFabricPreset({gabardina:97,elastano:3})">Gabardina 97/3</button>
             <button class="fabric-preset" onclick="applyFabricPreset({algodon:95,elastano:5})">Algodón/Elastano 95/5</button>
             <button class="fabric-preset" onclick="applyFabricPreset({algodon:80,poliester:20})">Algodón/Poliéster 80/20</button>
-            <button class="fabric-preset" onclick="applyFabricPreset({algodon:60,denim:35,elastano:5})">Jean clásico 60/35/5</button>
+            <button class="fabric-preset" onclick="applyFabricPreset({denim:98,elastano:2})">Denim 98/2</button>
+            <button class="fabric-preset" onclick="applyFabricPreset({algodon:60,denim:35,elastano:5})">Jean clásico</button>
             <button class="fabric-preset" onclick="applyFabricPreset({viscosa:70,poliester:25,elastano:5})">Viscosa 70/25/5</button>
-            <button class="fabric-preset" onclick="applyFabricPreset({lycra:88,poliester:12})">Lycra 88/12</button>
+            <button class="fabric-preset" onclick="applyFabricPreset({elastano:88,poliester:12})">Lycra 88/12</button>
             <button class="fabric-preset" onclick="applyFabricPreset({lana:80,nylon:20})">Lana/Nylon 80/20</button>
             <button class="fabric-preset" onclick="applyFabricPreset({lino:55,algodon:45})">Lino/Algodón 55/45</button>
-            <button class="fabric-preset" onclick="applyFabricPreset({seda:100})">100% Seda/Raso</button>
-            <button class="fabric-preset" onclick="applyFabricPreset({popelin:100})">100% Popelín</button>
+            <button class="fabric-preset" onclick="applyFabricPreset({seda:100})">100% Seda</button>
+            <button class="fabric-preset" onclick="applyFabricPreset({micropolar:100})">100% Micropolar</button>
             <button class="fabric-preset" onclick="applyFabricPreset({cuero:100})">100% Cuero</button>
             <button class="fabric-preset" onclick="clearFabric()"><i class="fas fa-undo" style="font-size:10px"></i> Limpiar</button>
           </div>
@@ -3182,21 +3287,62 @@ function renderTags() {
 }
 
 /* ─── FABRIC COMPOSITION ─── */
-const FABRICS = [
-  'algodon','poliester','elastano','viscosa','lana','nylon',
-  'lino','seda','acilico','modal',
-  'denim','micropolar','corderoy','franela','popelin',
-  'gabardina','tul','encaje','pique','lycra','cuero','cuerina'
+// ── Lista completa de todas las fibras/tejidos por categoría ──
+const FABRIC_GROUPS = [
+  { id:'vegetal', label:'🌿 Naturales vegetales', sum:'fgs-vegetal', color:'#c9a96e',
+    items:['algodon','lino','ramio','canhamo','yute','bambu'] },
+  { id:'animal',  label:'🐑 Naturales animales',  sum:'fgs-animal',  color:'#c0392b',
+    items:['lana','cashmere','mohair','alpaca','angora','seda','cuero','gamuza'] },
+  { id:'sint',    label:'🔬 Sintéticas',           sum:'fgs-sint',    color:'#3d6bce',
+    items:['poliester','nylon','acilico','elastano','microfibra','poliuretano'] },
+  { id:'artif',   label:'🍃 Artificiales celulosa',sum:'fgs-artif',   color:'#8e44ad',
+    items:['viscosa','modal','lyocell','acetato','triacetato'] },
+  { id:'plano',   label:'🧵 Tejidos Planos',       sum:'fgs-plano',   color:'#2c3e50',
+    items:['popelin','sarga','gabardina','denim','tafeta','saten','crepe','gasa','organza','batista','oxford','twill','lona','jacquard'] },
+  { id:'punto',   label:'🧶 Tejidos de Punto',     sum:'fgs-punto',   color:'#00b894',
+    items:['jersey','interlock','rib','morley','pique','frisa','polar','plush','waffle','ptoroma'] },
+  { id:'tec',     label:'⚡ Técnicas/Deportivas',  sum:'fgs-tec',     color:'#0984e3',
+    items:['dryfit','supplex','neoprene','softshell','taslan','ripstop','powermesh'] },
+  { id:'elegan',  label:'✨ Elegantes/Alta Moda',  sum:'fgs-elegan',  color:'#a29bfe',
+    items:['tul','encaje','guipur','terciopelo','pana','lurex','mikado','chiffon'] },
+  { id:'abrigo',  label:'🧥 Abrigos',              sum:'fgs-abrigo',  color:'#636e72',
+    items:['pano','tweed','boucle','corderoy','fieltro','micropolar','franela'] },
 ];
+// Array plano de todas las fibras (para las funciones existentes)
+const FABRICS = FABRIC_GROUPS.flatMap(g => g.items)
+  .filter((f,i,a) => a.indexOf(f) === i); // dedup
+
 const FABRIC_COLORS = {
-  algodon:'#c9a96e',   poliester:'#3d6bce', elastano:'#2d8a5e',
-  viscosa:'#8e44ad',   lana:'#c0392b',      nylon:'#7f8c8d',
-  lino:'#f39c12',      seda:'#1abc9c',      acilico:'#e67e22',
-  modal:'#34495e',     denim:'#2c3e50',     micropolar:'#6c5ce7',
-  corderoy:'#b97a56',  franela:'#e17055',   popelin:'#00b894',
-  gabardina:'#fd79a8', tul:'#a29bfe',       encaje:'#ffeaa7',
-  pique:'#55efc4',     lycra:'#e84393',     cuero:'#8b4513',
-  cuerina:'#a0522d'
+  // Vegetales
+  algodon:'#c9a96e',  lino:'#f39c12',    ramio:'#e2c97e',   canhamo:'#8d9b4a',
+  yute:'#a07850',     bambu:'#5d9e6a',
+  // Animales
+  lana:'#c0392b',     cashmere:'#d4956a', mohair:'#c8a4b8',  alpaca:'#c4a882',
+  angora:'#e8d5d5',   seda:'#1abc9c',    cuero:'#8b4513',   gamuza:'#a0775a',
+  // Sintéticas
+  poliester:'#3d6bce',nylon:'#7f8c8d',   acilico:'#e67e22', elastano:'#2d8a5e',
+  microfibra:'#5dade2',poliuretano:'#6c7a89',
+  // Artificiales
+  viscosa:'#8e44ad',  modal:'#34495e',   lyocell:'#1e8449',  acetato:'#9b59b6',
+  triacetato:'#7d3c98',
+  // Tejidos planos
+  popelin:'#00b894',  sarga:'#7d6608',   gabardina:'#fd79a8',denim:'#2c3e50',
+  tafeta:'#d5a6d0',   saten:'#f1c40f',   crepe:'#cb4335',    gasa:'#aed6f1',
+  organza:'#d7bde2',  batista:'#a9cce3', oxford:'#5d6d7e',   twill:'#797d7f',
+  lona:'#808b96',     jacquard:'#884ea0',
+  // Tejidos de punto
+  jersey:'#27ae60',   interlock:'#148f77',rib:'#1d8348',     morley:'#28b463',
+  pique:'#55efc4',    frisa:'#6c5ce7',   polar:'#74b9ff',    plush:'#a29bfe',
+  waffle:'#fab1a0',   ptoroma:'#81ecec',
+  // Técnicas
+  dryfit:'#0984e3',   supplex:'#00cec9', neoprene:'#2d3436', softshell:'#0652dd',
+  taslan:'#1289a7',   ripstop:'#006266', powermesh:'#12cbc4',
+  // Elegantes
+  tul:'#a29bfe',      encaje:'#f8d7da',  guipur:'#e8daef',   terciopelo:'#7d3c98',
+  pana:'#784212',     lurex:'#d4ac0d',   mikado:'#e8daef',   chiffon:'#f9e4ff',
+  // Abrigos
+  pano:'#5d6d7e',     tweed:'#6e5b47',   boucle:'#b7b7a4',   corderoy:'#b97a56',
+  fieltro:'#808b96',  micropolar:'#6c5ce7',franela:'#e17055',
 };
 
 function updateFabric() {
@@ -3237,21 +3383,48 @@ function updateFabricUI(total) {
   badge.textContent = total + '%';
   badge.className = 'fabric-total-badge ' + (total === 100 ? 'ok' : total > 100 ? 'warn' : 'partial');
 
-  // Visual bar
+  // Visual bar general
   const bar = document.getElementById('fabricBarVisual');
-  if (!bar) return;
-  bar.innerHTML = '';
-  FABRICS.forEach(f => {
-    const val = parseInt(document.getElementById(`fab-${f}`)?.value) || 0;
-    if (val > 0) {
-      const seg = document.createElement('div');
-      seg.className = 'fabric-bar-segment';
-      seg.style.width = val + '%';
-      seg.style.background = FABRIC_COLORS[f];
-      seg.title = f.charAt(0).toUpperCase() + f.slice(1) + ': ' + val + '%';
-      bar.appendChild(seg);
+  if (bar) {
+    bar.innerHTML = '';
+    FABRICS.forEach(f => {
+      const val = parseInt(document.getElementById(`fab-${f}`)?.value) || 0;
+      if (val > 0) {
+        const seg = document.createElement('div');
+        seg.className = 'fabric-bar-segment';
+        seg.style.width = val + '%';
+        seg.style.background = FABRIC_COLORS[f] || '#ccc';
+        seg.title = f.charAt(0).toUpperCase() + f.slice(1) + ': ' + val + '%';
+        bar.appendChild(seg);
+      }
+    });
+  }
+
+  // Badge por grupo + resaltar filas con valor
+  FABRIC_GROUPS.forEach(g => {
+    let groupTotal = 0;
+    g.items.forEach(f => {
+      const val = parseInt(document.getElementById(`fab-${f}`)?.value) || 0;
+      groupTotal += val;
+      const row = document.querySelector(`.fab-group-row[data-f="${f}"]`);
+      if (row) row.classList.toggle('has-val', val > 0);
+    });
+    const sumEl = document.getElementById(g.sum);
+    if (sumEl) {
+      if (groupTotal > 0) {
+        sumEl.textContent = groupTotal + '%';
+        sumEl.classList.remove('empty');
+      } else {
+        sumEl.textContent = '—';
+        sumEl.classList.add('empty');
+      }
     }
   });
+}
+
+function toggleFabGroup(summary) {
+  // Solo abre/cierra — el browser maneja el details nativo
+  // Pero hacemos que se abra automáticamente cuando se edita un item del grupo
 }
 
 function applyFabricPreset(preset) {
@@ -3286,6 +3459,14 @@ function loadFabricData(data) {
     const pct = document.getElementById(`fab-${f}-pct`);
     if (slider) slider.value = val;
     if (pct) pct.value = val;
+  });
+  // Auto-abrir grupos que tienen datos
+  FABRIC_GROUPS.forEach(g => {
+    const hasData = g.items.some(f => (data[f] || 0) > 0);
+    if (hasData) {
+      const detailsEl = document.querySelector(`#fgs-${g.id}`)?.closest('details');
+      if (detailsEl) detailsEl.open = true;
+    }
   });
   updateFabricTotal();
 }
