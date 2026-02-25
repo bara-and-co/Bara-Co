@@ -1382,22 +1382,36 @@
       {
         "nombre": "Marrón",
         "codigo": "#795548",
-        "stock": 0
+        "stock": 1
       },
       {
         "nombre": "Salmón",
         "codigo": "#FF8A65",
-        "stock": 0
+        "stock": 1
       }
     ],
     "activo": true,
     "destacado": false,
     "outlet": false,
     "stockMap": {
-      "Rosa__S": null
+      "Salmón__M": 1
     },
-    "stock": 1,
-    "sku": "SUDADERA-SURF"
+    "stockTalles": {
+      "L": null
+    },
+    "stock": 2,
+    "sku": "SUDADERA-SURF",
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
   },
   {
     "id": "sudadera-surf-1771870574736",
