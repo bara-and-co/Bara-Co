@@ -1,5 +1,63 @@
 [
   {
+    "id": "pantalon-viena-1772021582962",
+    "nombre": "Pantalon Viena",
+    "precio": 60000,
+    "precioAnterior": null,
+    "categoria": "hombre",
+    "subcategoria": "Pantalones",
+    "descripcion": "",
+    "imagen": "https://i.ibb.co/357qtBMQ/Pantalon-Vienaazul.webp",
+    "imagenes": [
+      "https://i.ibb.co/357qtBMQ/Pantalon-Vienaazul.webp",
+      "https://i.ibb.co/pjnw6kSW/Pantalon-Viena-beige.webp"
+    ],
+    "tallesDisponibles": [
+      "40",
+      "44",
+      "48"
+    ],
+    "colores": [
+      {
+        "nombre": "Beige",
+        "codigo": "#D4B896",
+        "stock": 2
+      },
+      {
+        "nombre": "Azul",
+        "codigo": "#1E88E5",
+        "stock": 2
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Beige__40": 1,
+      "Beige__44": null,
+      "Beige__48": 1,
+      "Azul__40": 1,
+      "Azul__44": 1,
+      "Azul__48": null
+    },
+    "stockTalles": {
+      "XL": 1
+    },
+    "stock": 4,
+    "sku": "PANTALON-VIENA",
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "sueter-lanilla-1772021474274",
     "nombre": "Sueter Lanilla",
     "precio": 35000,
