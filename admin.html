@@ -1107,7 +1107,7 @@
   <div class="toolbar">
     <div class="search-box">
       <i class="fas fa-search"></i>
-      <input type="text" placeholder="Buscar producto..." id="searchInput" oninput="renderGrid()"/>
+      <input type="text" placeholder="Buscar por nombre, marca, SKU, tipo de prenda..." id="searchInput" oninput="renderGrid()"/>
     </div>
     <div class="cat-tabs">
       <div class="cat-tab active" onclick="setFilter(this,'')">Todos</div>
@@ -1235,13 +1235,20 @@
           <div class="form-hint"><i class="fas fa-info-circle"></i> Se mostrará en la página de producto</div>
         </div>
 
-        <!-- ETIQUETAS -->
+        <!-- MARCA -->
         <div class="form-row">
-          <label class="form-label"><i class="fas fa-tags" style="color:var(--accent);margin-right:4px"></i> Etiquetas / Keywords</label>
+          <label class="form-label"><i class="fas fa-copyright" style="color:var(--accent);margin-right:4px"></i> Marca / Etiqueta de prenda</label>
+          <input type="text" class="form-input" id="fMarca" placeholder="ej: Bara &amp; Co, Lacoste, Nike, Sin marca..."/>
+          <div class="form-hint"><i class="fas fa-tag"></i> La marca que aparece en la etiqueta cosida de la prenda. Se muestra en la ficha del producto.</div>
+        </div>
+
+        <!-- KEYWORDS DE BÚSQUEDA -->
+        <div class="form-row">
+          <label class="form-label"><i class="fas fa-search" style="color:var(--accent);margin-right:4px"></i> Keywords de búsqueda</label>
           <div class="tag-input-wrap" id="tagWrap" onclick="document.getElementById('tagInput').focus()">
             <input type="text" class="tag-input" id="tagInput" placeholder="Escribí y presioná Enter..." onkeydown="addTag(event)"/>
           </div>
-          <div class="form-hint"><i class="fas fa-info-circle"></i> Ayudan en búsquedas internas (ej: verano, oversize, casual)</div>
+          <div class="form-hint"><i class="fas fa-info-circle"></i> Palabras para búsquedas internas (ej: verano, oversize, casual). No confundir con la marca — eso va arriba.</div>
         </div>
 
         <!-- TEMPORADA / GÉNERO -->
@@ -1363,19 +1370,95 @@
               </div>
               <input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-modal-pct" oninput="syncFabricSlider('modal')"/>
             </div>
-          </div>
+
+            <!-- ── Telas nuevas ── -->
+            <div class="fabric-row">
+              <div class="fabric-label"><span style="width:10px;height:10px;border-radius:50%;background:#2c3e50;display:inline-block;"></span> Denim</div>
+              <div class="fabric-slider-wrap"><input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-denim" oninput="updateFabric()"/></div>
+              <input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-denim-pct" oninput="syncFabricSlider('denim')"/>
+            </div>
+            <div class="fabric-row">
+              <div class="fabric-label"><span style="width:10px;height:10px;border-radius:50%;background:#6c5ce7;display:inline-block;"></span> Micropolar</div>
+              <div class="fabric-slider-wrap"><input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-micropolar" oninput="updateFabric()"/></div>
+              <input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-micropolar-pct" oninput="syncFabricSlider('micropolar')"/>
+            </div>
+            <div class="fabric-row">
+              <div class="fabric-label"><span style="width:10px;height:10px;border-radius:50%;background:#b97a56;display:inline-block;"></span> Corderoy</div>
+              <div class="fabric-slider-wrap"><input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-corderoy" oninput="updateFabric()"/></div>
+              <input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-corderoy-pct" oninput="syncFabricSlider('corderoy')"/>
+            </div>
+            <div class="fabric-row">
+              <div class="fabric-label"><span style="width:10px;height:10px;border-radius:50%;background:#e17055;display:inline-block;"></span> Franela</div>
+              <div class="fabric-slider-wrap"><input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-franela" oninput="updateFabric()"/></div>
+              <input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-franela-pct" oninput="syncFabricSlider('franela')"/>
+            </div>
+            <div class="fabric-row">
+              <div class="fabric-label"><span style="width:10px;height:10px;border-radius:50%;background:#00b894;display:inline-block;"></span> Popelín</div>
+              <div class="fabric-slider-wrap"><input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-popelin" oninput="updateFabric()"/></div>
+              <input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-popelin-pct" oninput="syncFabricSlider('popelin')"/>
+            </div>
+            <div class="fabric-row">
+              <div class="fabric-label"><span style="width:10px;height:10px;border-radius:50%;background:#fd79a8;display:inline-block;"></span> Gabardina</div>
+              <div class="fabric-slider-wrap"><input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-gabardina" oninput="updateFabric()"/></div>
+              <input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-gabardina-pct" oninput="syncFabricSlider('gabardina')"/>
+            </div>
+            <div class="fabric-row">
+              <div class="fabric-label"><span style="width:10px;height:10px;border-radius:50%;background:#a29bfe;display:inline-block;"></span> Tul</div>
+              <div class="fabric-slider-wrap"><input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-tul" oninput="updateFabric()"/></div>
+              <input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-tul-pct" oninput="syncFabricSlider('tul')"/>
+            </div>
+            <div class="fabric-row">
+              <div class="fabric-label"><span style="width:10px;height:10px;border-radius:50%;background:#ffeaa7;display:inline-block;border:1px solid #ccc;"></span> Encaje</div>
+              <div class="fabric-slider-wrap"><input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-encaje" oninput="updateFabric()"/></div>
+              <input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-encaje-pct" oninput="syncFabricSlider('encaje')"/>
+            </div>
+            <div class="fabric-row">
+              <div class="fabric-label"><span style="width:10px;height:10px;border-radius:50%;background:#55efc4;display:inline-block;"></span> Piqué</div>
+              <div class="fabric-slider-wrap"><input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-pique" oninput="updateFabric()"/></div>
+              <input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-pique-pct" oninput="syncFabricSlider('pique')"/>
+            </div>
+            <div class="fabric-row">
+              <div class="fabric-label"><span style="width:10px;height:10px;border-radius:50%;background:#e84393;display:inline-block;"></span> Lycra</div>
+              <div class="fabric-slider-wrap"><input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-lycra" oninput="updateFabric()"/></div>
+              <input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-lycra-pct" oninput="syncFabricSlider('lycra')"/>
+            </div>
+            <div class="fabric-row">
+              <div class="fabric-label"><span style="width:10px;height:10px;border-radius:50%;background:#8b4513;display:inline-block;"></span> Cuero</div>
+              <div class="fabric-slider-wrap"><input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-cuero" oninput="updateFabric()"/></div>
+              <input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-cuero-pct" oninput="syncFabricSlider('cuero')"/>
+            </div>
+            <div class="fabric-row">
+              <div class="fabric-label"><span style="width:10px;height:10px;border-radius:50%;background:#a0522d;display:inline-block;"></span> Cuerina</div>
+              <div class="fabric-slider-wrap"><input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-cuerina" oninput="updateFabric()"/></div>
+              <input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-cuerina-pct" oninput="syncFabricSlider('cuerina')"/>
+            </div>
+            div class="fabric-row">
+              <div class="fabric-label"><span style="width:10px;height:10px;border-radius:50%;background:#00b894;display:inline-block;"></span> Satén</div>
+              <div class="fabric-slider-wrap"><input type="range" class="fabric-slider" min="0" max="100" value="0" id="fab-popelin" oninput="updateFabric()"/></div>
+              <input type="number" class="fabric-pct" min="0" max="100" value="0" id="fab-popelin-pct" oninput="syncFabricSlider('popelin')"/>
+            </div>
+          
 
           <!-- Presets rápidos -->
           <div class="fabric-presets">
             <span style="font-size:11px;color:var(--muted);margin-right:4px;line-height:28px;">Presets:</span>
             <button class="fabric-preset" onclick="applyFabricPreset({algodon:100})">100% Algodón</button>
             <button class="fabric-preset" onclick="applyFabricPreset({poliester:100})">100% Poliéster</button>
-            <button class="fabric-preset" onclick="applyFabricPreset({algodon:95,elastano:5})">95/5 Algodón/Elastano</button>
-            <button class="fabric-preset" onclick="applyFabricPreset({algodon:80,poliester:20})">80/20 Algodón/Poliéster</button>
-            <button class="fabric-preset" onclick="applyFabricPreset({algodon:60,poliester:35,elastano:5})">Jean 60/35/5</button>
+            <button class="fabric-preset" onclick="applyFabricPreset({denim:98,elastano:2})">Denim 98/2</button>
+            <button class="fabric-preset" onclick="applyFabricPreset({micropolar:100})">100% Micropolar</button>
+            <button class="fabric-preset" onclick="applyFabricPreset({corderoy:100})">100% Corderoy</button>
+            <button class="fabric-preset" onclick="applyFabricPreset({franela:100})">100% Franela</button>
+            <button class="fabric-preset" onclick="applyFabricPreset({gabardina:97,elastano:3})">Gabardina 97/3</button>
+            <button class="fabric-preset" onclick="applyFabricPreset({algodon:95,elastano:5})">Algodón/Elastano 95/5</button>
+            <button class="fabric-preset" onclick="applyFabricPreset({algodon:80,poliester:20})">Algodón/Poliéster 80/20</button>
+            <button class="fabric-preset" onclick="applyFabricPreset({algodon:60,denim:35,elastano:5})">Jean clásico 60/35/5</button>
             <button class="fabric-preset" onclick="applyFabricPreset({viscosa:70,poliester:25,elastano:5})">Viscosa 70/25/5</button>
-            <button class="fabric-preset" onclick="applyFabricPreset({poliester:88,elastano:12})">Lycra 88/12</button>
-            <button class="fabric-preset" onclick="applyFabricPreset({lana:80,poliamida:20})">Lana 80%</button>
+            <button class="fabric-preset" onclick="applyFabricPreset({lycra:88,poliester:12})">Lycra 88/12</button>
+            <button class="fabric-preset" onclick="applyFabricPreset({lana:80,nylon:20})">Lana/Nylon 80/20</button>
+            <button class="fabric-preset" onclick="applyFabricPreset({lino:55,algodon:45})">Lino/Algodón 55/45</button>
+            <button class="fabric-preset" onclick="applyFabricPreset({seda:100})">100% Seda/Raso</button>
+            <button class="fabric-preset" onclick="applyFabricPreset({popelin:100})">100% Popelín</button>
+            <button class="fabric-preset" onclick="applyFabricPreset({cuero:100})">100% Cuero</button>
             <button class="fabric-preset" onclick="clearFabric()"><i class="fas fa-undo" style="font-size:10px"></i> Limpiar</button>
           </div>
 
@@ -1785,7 +1868,14 @@ function renderGrid() {
   };
 
   let list = products.filter(p =>
-    (!q || p.nombre.toLowerCase().includes(q) || (p.tags||[]).join(' ').toLowerCase().includes(q)) &&
+    (!q || 
+      p.nombre.toLowerCase().includes(q) || 
+      (p.tags||[]).join(' ').toLowerCase().includes(q) ||
+      (p.subcategoria||'').toLowerCase().includes(q) ||
+      (p.marca||'').toLowerCase().includes(q) ||
+      (p.sku||'').toLowerCase().includes(q) ||
+      (p.descripcion||'').toLowerCase().includes(q)
+    ) &&
     (!filterCat || (filterCat === 'sale' ? p.precioAnterior : filterCat === 'sin-stock' ? (p.stock === 0) : p.categoria === filterCat || p.subcategoria === filterCat))
   );
 
@@ -1863,6 +1953,7 @@ function renderGrid() {
             ${p.precioAnterior?`<span class="price-old">$${p.precioAnterior.toLocaleString('es-AR')}</span>`:''}
           </div>
           ${fabricStr ? `<div style="font-size:10px;color:var(--muted);margin-top:4px;"><i class="fas fa-tshirt" style="margin-right:3px"></i>${fabricStr}</div>` : ''}
+          ${p.marca ? `<div style="font-size:10px;color:var(--accent);margin-top:3px;font-weight:600;letter-spacing:.02em;"><i class="fas fa-copyright" style="margin-right:3px;font-size:9px;opacity:.8"></i>${p.marca}</div>` : ''}
           ${p.sku ? `<div style="font-size:10px;color:var(--muted);margin-top:2px;font-family:monospace">${p.sku}</div>` : ''}
         </div>
         <div class="prod-footer">
@@ -1964,7 +2055,7 @@ function openModal(id = null) {
   renderTags();
   clearFabric();
   document.querySelectorAll('.care-chip').forEach(c => c.classList.remove('selected'));
-  ['fCuidados','fPeso','fProveedor','fNotas','fCosto','fLink','fSku'].forEach(f => { const el = document.getElementById(f); if(el) el.value = ''; });
+  ['fCuidados','fPeso','fProveedor','fNotas','fCosto','fLink','fSku','fMarca'].forEach(f => { const el = document.getElementById(f); if(el) el.value = ''; });
   ['fTemporada','fGenero','fOrigen'].forEach(f => { const el = document.getElementById(f); if(el) el.value = ''; });
   const margenBadge = document.getElementById('margenBadge'); if(margenBadge) margenBadge.style.display='none';
 
@@ -2031,6 +2122,7 @@ function openModal(id = null) {
     if (document.getElementById('fCosto')) document.getElementById('fCosto').value = p.costo || '';
     if (document.getElementById('fLink')) document.getElementById('fLink').value = p.link || '';
     if (document.getElementById('fSku')) document.getElementById('fSku').value = p.sku || '';
+    if (document.getElementById('fMarca')) document.getElementById('fMarca').value = p.marca || '';
     // Tags
     productTags = p.tags || []; renderTags();
     // Fabric
@@ -2669,10 +2761,16 @@ function updateSubcategorias() {
   const cat = document.getElementById('fCat').value;
   const subSelect = document.getElementById('fSub');
   const options = {
-    hombre: ['Camperas', 'Remeras', 'Pantalones', 'Buzos', 'Conjuntos', 'Bermudas', 'Shorts'],
-    mujer: ['Remeras', 'Pantalones', 'Polleras', 'Vestidos', 'Camperas', 'Shorts', 'Conjuntos'],
-    accesorios: ['Abanicos', 'Gorras', 'Cintos', 'Pilusos', 'Lentes de sol', 'Bijouterie hombre', 'Bijouterie mujer', 'Billeteras', 'Medias', 'Boxers', 'Zapatillas'],
-    new: ['Camperas', 'Remeras', 'Pantalones', 'Accesorios']
+    hombre: ['Camperas', 'Remeras', 'Camisas', 'Musculosa', 'Pantalones', 'Buzos', 'Sweaters', 'Conjuntos', 'Bermudas', 'Shorts'],
+    mujer: [
+      'Remeras', 'Tops', 'Bodies', 'Camisola', 'Túnicas', 'Musculosa',
+      'Pantalones', 'Calzas', 'Leggings', 'Joggings',
+      'Polleras', 'Vestidos', 'Monos', 'Mameluco',
+      'Camperas', 'Blazers', 'Cardigans', 'Buzos', 'Sweaters',
+      'Shorts', 'Bermudas', 'Conjuntos', 'Lencería / Ropa interior'
+    ],
+    accesorios: ['Abanicos', 'Gorras', 'Cintos', 'Pilusos', 'Lentes de sol', 'Bijouterie hombre', 'Bijouterie mujer', 'Billeteras', 'Riñoneras', 'Medias', 'Boxers', 'Zapatillas'],
+    new: ['Camperas', 'Remeras', 'Pantalones', 'Vestidos', 'Conjuntos', 'Tops', 'Buzos', 'Accesorios']
   };
   
   subSelect.innerHTML = '<option value="">Seleccionar</option>';
@@ -2750,6 +2848,7 @@ function saveProduct() {
       return null; // sin info de stock = no marcar agotado en tienda
     })(),
     sku: document.getElementById('fSku')?.value.trim() || (editId ? products.find(p => p.id === editId)?.sku : (nombre.toUpperCase().replace(/ /g,'-'))),
+    marca: document.getElementById('fMarca')?.value.trim() || null,
     // New fields
     tags: productTags.length ? [...productTags] : null,
     fabrica: getFabricData(),
@@ -3083,11 +3182,21 @@ function renderTags() {
 }
 
 /* ─── FABRIC COMPOSITION ─── */
-const FABRICS = ['algodon','poliester','elastano','viscosa','lana','nylon','lino','seda','acilico','modal'];
+const FABRICS = [
+  'algodon','poliester','elastano','viscosa','lana','nylon',
+  'lino','seda','acilico','modal',
+  'denim','micropolar','corderoy','franela','popelin',
+  'gabardina','tul','encaje','pique','lycra','cuero','cuerina'
+];
 const FABRIC_COLORS = {
-  algodon:'#c9a96e', poliester:'#3d6bce', elastano:'#2d8a5e',
-  viscosa:'#8e44ad', lana:'#c0392b', nylon:'#7f8c8d',
-  lino:'#f39c12', seda:'#1abc9c', acilico:'#e67e22', modal:'#34495e'
+  algodon:'#c9a96e',   poliester:'#3d6bce', elastano:'#2d8a5e',
+  viscosa:'#8e44ad',   lana:'#c0392b',      nylon:'#7f8c8d',
+  lino:'#f39c12',      seda:'#1abc9c',      acilico:'#e67e22',
+  modal:'#34495e',     denim:'#2c3e50',     micropolar:'#6c5ce7',
+  corderoy:'#b97a56',  franela:'#e17055',   popelin:'#00b894',
+  gabardina:'#fd79a8', tul:'#a29bfe',       encaje:'#ffeaa7',
+  pique:'#55efc4',     lycra:'#e84393',     cuero:'#8b4513',
+  cuerina:'#a0522d'
 };
 
 function updateFabric() {
