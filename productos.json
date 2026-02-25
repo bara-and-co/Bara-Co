@@ -1478,7 +1478,7 @@
       {
         "nombre": "Salmón",
         "codigo": "#FF8A65",
-        "stock": 0
+        "stock": 1
       }
     ],
     "activo": true,
