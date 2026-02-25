@@ -1632,17 +1632,31 @@
       {
         "nombre": "Gris",
         "codigo": "#9E9E9E",
-        "stock": 0
+        "stock": 1
       }
     ],
     "activo": true,
     "destacado": false,
     "outlet": false,
     "stockMap": {
-      "Gris__S": null
+      "Gris__S": 1
     },
-    "stock": 10,
-    "sku": "REMERA-OVER-PRINT-STONE"
+    "stockTalles": {
+      "L": null
+    },
+    "stock": 1,
+    "sku": "REMERA-OVER-PRINT-STONE",
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
   },
   {
     "id": "pantalon-bis-1771853644517",
