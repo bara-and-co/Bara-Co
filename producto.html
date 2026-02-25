@@ -345,14 +345,40 @@
     /* ─── SELECTOR DE COLOR ───────────────────────────── */
     #colorSection { margin-bottom:22px; }
     .color-options { display:flex; gap:10px; flex-wrap:wrap; }
+    /* ── Color buttons ── */
+    .color-options { display:flex; flex-wrap:wrap; gap:12px; margin-bottom:24px; align-items:flex-start; }
+    .color-wrap {
+      display:flex; flex-direction:column; align-items:center; gap:5px; cursor:pointer;
+    }
     .color-btn {
       width:34px; height:34px; border-radius:50%;
       border:2.5px solid transparent; cursor:pointer;
-      transition:border-color .2s, transform .2s; outline:3px solid transparent;
-      outline-offset:2px;
+      transition:border-color .2s, transform .2s, opacity .2s;
+      outline:3px solid transparent; outline-offset:2px;
+      position:relative;
     }
     .color-btn:hover { transform:scale(1.1); }
     .color-btn.active { outline-color:var(--accent); border-color:var(--bg); }
+    .color-btn.out-of-stock { opacity:.35; cursor:not-allowed; }
+    .color-btn.out-of-stock::after {
+      content:''; position:absolute; top:50%; left:50%;
+      width:130%; height:1.5px; background:rgba(255,255,255,.5);
+      transform:translate(-50%,-50%) rotate(-45deg);
+    }
+    .color-btn.stock-low { outline-color:rgba(224,123,57,.5); }
+
+    /* Etiqueta de nombre + stock debajo del círculo */
+    .color-label-text {
+      font-size:9px; letter-spacing:.06em; text-transform:uppercase;
+      color:var(--muted); text-align:center; line-height:1.3;
+      max-width:52px; word-break:break-word;
+    }
+    .color-stock-info {
+      font-size:9px; font-weight:600; text-align:center;
+    }
+    .color-stock-info.sok  { color:#4db87a; }
+    .color-stock-info.slow { color:#e07b39; }
+    .color-stock-info.sout { color:var(--red); }
 
     /* ─── BOTONES DE ACCIÓN ────────────────────────────── */
     .action-buttons { display:flex; gap:10px; margin-bottom:16px; }
@@ -1320,57 +1346,47 @@ function renderizarProducto() {
     }
   }
 
-  // Talles con stock
+  // ── Talles con stock (usa stockMap si hay color seleccionado) ──
   const talles = p.tallesDisponibles || p.talles || [];
   const stockTalles = p.stockTalles || {};
   const sizeEl = document.getElementById('sizeOptions');
   sizeEl.innerHTML = '';
 
-  // Calcular disponibilidad general para el resumen
   let hayStock = false, hayStockBajo = false;
 
   talles.forEach(t => {
     const nombre_t = typeof t === 'object' ? t.nombre : t;
-    const agotado  = t.agotado === true || (typeof t === 'object' && t.stock === 0);
 
-    // Obtener stock: primero del objeto talle, luego de stockTalles
-    let stock = null;
-    if (typeof t === 'object' && t.stock !== undefined) {
-      stock = t.stock;
-    } else if (stockTalles[nombre_t] !== undefined && stockTalles[nombre_t] !== null) {
-      stock = stockTalles[nombre_t];
-    }
+    // Stock: prioridad stockMap (cruzado con color si hay), luego objeto talle, luego stockTalles
+    let stock = getStockTalleColor(nombre_t, selectedColor, p);
 
+    const agotado = stock === 0;
     const btn = document.createElement('button');
     let cls = 'size-btn';
-    if (agotado || stock === 0) cls += ' out-of-stock';
+    if (agotado) cls += ' out-of-stock';
     else if (stock !== null && stock <= 3) { cls += ' stock-low'; hayStockBajo = true; hayStock = true; }
     else { hayStock = true; }
     btn.className = cls;
 
-    // Nombre del talle
     const nameSpan = document.createElement('span');
     nameSpan.textContent = nombre_t;
     btn.appendChild(nameSpan);
 
-    // Info de stock debajo
+    // Info stock debajo del nombre
     if (stock !== null) {
       const infoSpan = document.createElement('span');
       infoSpan.className = 'size-stock-info';
-      if (agotado || stock === 0) {
-        infoSpan.textContent = 'Agotado';
-        infoSpan.className += ' sout';
+      if (agotado) {
+        infoSpan.textContent = 'Agotado'; infoSpan.className += ' sout';
       } else if (stock <= 3) {
-        infoSpan.textContent = `¡Últimas ${stock}!`;
-        infoSpan.className += ' slow';
+        infoSpan.textContent = `¡Últimas ${stock}!`; infoSpan.className += ' slow';
       } else if (stock <= 10) {
-        infoSpan.textContent = `${stock} disp.`;
-        infoSpan.className += ' sok';
+        infoSpan.textContent = `${stock} disp.`; infoSpan.className += ' sok';
       }
       btn.appendChild(infoSpan);
     }
 
-    if (!agotado && stock !== 0) {
+    if (!agotado) {
       btn.onclick = () => seleccionarTalle(nombre_t, btn, stock);
     }
     sizeEl.appendChild(btn);
@@ -1393,19 +1409,62 @@ function renderizarProducto() {
     summaryEl.innerHTML = '';
   }
 
-  // Colores
+  // ── Colores con stock ──
   if (p.colores && p.colores.length > 0) {
     document.getElementById('colorSection').style.display = 'block';
     const colEl = document.getElementById('colorOptions');
     colEl.innerHTML = '';
     p.colores.forEach(color => {
       const nombre = typeof color === 'object' ? color.nombre : color;
+      const codigo = (typeof color === 'object' && color.codigo) ? color.codigo : getColorCode(nombre);
+
+      // Stock total del color (suma stockMap de todos los talles)
+      const stockColor = calcularStockColor(nombre, p);
+
+      const wrap = document.createElement('div');
+      wrap.className = 'color-wrap';
+      wrap.title = nombre;
+
       const btn = document.createElement('button');
       btn.className = 'color-btn';
-      btn.style.backgroundColor = getColorCode(nombre);
-      btn.title = nombre;
-      btn.onclick = () => seleccionarColor(nombre, btn);
-      colEl.appendChild(btn);
+      btn.dataset.color = nombre;
+      btn.style.backgroundColor = codigo;
+
+      if (stockColor === 0) {
+        btn.classList.add('out-of-stock');
+      } else if (stockColor !== null && stockColor <= 3) {
+        btn.classList.add('stock-low');
+      }
+
+      if (stockColor !== 0) {
+        btn.onclick = () => seleccionarColor(nombre, btn);
+      }
+
+      // Nombre del color
+      const labelEl = document.createElement('span');
+      labelEl.className = 'color-label-text';
+      labelEl.textContent = nombre;
+
+      // Info de stock
+      const stockEl = document.createElement('span');
+      if (stockColor === null) {
+        stockEl.className = 'color-stock-info';
+        stockEl.textContent = '';
+      } else if (stockColor === 0) {
+        stockEl.className = 'color-stock-info sout';
+        stockEl.textContent = 'Agotado';
+      } else if (stockColor <= 3) {
+        stockEl.className = 'color-stock-info slow';
+        stockEl.textContent = `¡Últimas ${stockColor}!`;
+      } else {
+        stockEl.className = 'color-stock-info sok';
+        stockEl.textContent = `${stockColor} disp.`;
+      }
+
+      wrap.appendChild(btn);
+      wrap.appendChild(labelEl);
+      wrap.appendChild(stockEl);
+      colEl.appendChild(wrap);
     });
   }
 
@@ -1467,6 +1526,116 @@ function seleccionarColor(color, btn) {
   btn.classList.add('active');
   selectedColor = color;
   document.getElementById('selectedColorLabel').textContent = '— ' + color;
+
+  // Re-renderizar talles con el stock cruzado para este color
+  if (currentProduct) actualizarTallesParaColor(color);
+}
+
+// ─── HELPERS DE STOCK ──────────────────────────────────────────
+
+// Devuelve stock de una combinación Color__Talle desde stockMap
+// Si no hay stockMap, cae en stockTalles o en null
+function getStockTalleColor(talle, color, p) {
+  const sm = p.stockMap;
+  if (sm && color) {
+    const key = `${color}__${talle}`;
+    if (key in sm) {
+      const v = sm[key];
+      return v === null ? 0 : v; // null en el JSON = sin stock
+    }
+  }
+  // fallback: stockTalles
+  const st = p.stockTalles || {};
+  if (talle in st) return st[talle];
+  return null;
+}
+
+// Suma el stock de todos los talles para un color dado
+function calcularStockColor(color, p) {
+  const sm = p.stockMap;
+  if (!sm) {
+    // fallback: stock directo del objeto color
+    const c = (p.colores || []).find(c => (typeof c === 'object' ? c.nombre : c) === color);
+    if (c && typeof c === 'object' && c.stock !== undefined) return c.stock;
+    return null;
+  }
+  let total = 0;
+  let tieneClaves = false;
+  Object.entries(sm).forEach(([key, val]) => {
+    if (key.startsWith(color + '__')) {
+      tieneClaves = true;
+      if (val !== null) total += val;
+    }
+  });
+  return tieneClaves ? total : null;
+}
+
+// Re-renderiza los botones de talle según el color seleccionado
+function actualizarTallesParaColor(color) {
+  const p = currentProduct;
+  if (!p) return;
+  const talles = p.tallesDisponibles || p.talles || [];
+  const sizeEl = document.getElementById('sizeOptions');
+  const prevSelected = selectedSize;
+  sizeEl.innerHTML = '';
+  let hayStock = false, hayStockBajo = false;
+
+  talles.forEach(t => {
+    const nombre_t = typeof t === 'object' ? t.nombre : t;
+    const stock = getStockTalleColor(nombre_t, color, p);
+    const agotado = stock === 0;
+
+    const btn = document.createElement('button');
+    let cls = 'size-btn';
+    if (agotado) { cls += ' out-of-stock'; }
+    else if (stock !== null && stock <= 3) { cls += ' stock-low'; hayStockBajo = true; hayStock = true; }
+    else { hayStock = true; }
+    btn.className = cls;
+
+    const nameSpan = document.createElement('span');
+    nameSpan.textContent = nombre_t;
+    btn.appendChild(nameSpan);
+
+    if (stock !== null) {
+      const infoSpan = document.createElement('span');
+      infoSpan.className = 'size-stock-info';
+      if (agotado) {
+        infoSpan.textContent = 'Agotado'; infoSpan.className += ' sout';
+      } else if (stock <= 3) {
+        infoSpan.textContent = `¡Últimas ${stock}!`; infoSpan.className += ' slow';
+      } else if (stock <= 10) {
+        infoSpan.textContent = `${stock} disp.`; infoSpan.className += ' sok';
+      }
+      btn.appendChild(infoSpan);
+    }
+
+    if (!agotado) {
+      btn.onclick = () => seleccionarTalle(nombre_t, btn, stock);
+    }
+
+    // Restaurar selección si el talle sigue disponible
+    if (nombre_t === prevSelected && !agotado) {
+      btn.classList.add('active');
+    } else if (nombre_t === prevSelected && agotado) {
+      selectedSize = null;
+      document.getElementById('selectedSizeLabel').textContent = '';
+    }
+
+    sizeEl.appendChild(btn);
+  });
+
+  // Actualizar resumen
+  const summaryEl = document.getElementById('stockSummary');
+  if (summaryEl) {
+    if (hayStock) {
+      const cls = hayStockBajo ? 'low' : 'ok';
+      summaryEl.innerHTML = hayStockBajo
+        ? `<span class="dot ${cls}"></span> Stock limitado en algunos talles para ${color}`
+        : `<span class="dot ${cls}"></span> Todos los talles disponibles en ${color}`;
+    } else {
+      summaryEl.innerHTML = `<span class="dot" style="background:var(--red)"></span> Sin stock en ${color}`;
+    }
+  }
 }
 
 function getColorCode(color) {
