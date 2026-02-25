@@ -1,5 +1,48 @@
 [
   {
+    "id": "camisa-beneton-floret-1772020043619",
+    "nombre": "Camisa Beneton Floret",
+    "precio": 35000,
+    "precioAnterior": 50000,
+    "categoria": "hombre",
+    "subcategoria": "Camisas",
+    "descripcion": "",
+    "imagen": "https://i.ibb.co/DfHx56M7/Cam-Beneton-Floret.webp",
+    "imagenes": [
+      "https://i.ibb.co/DfHx56M7/Cam-Beneton-Floret.webp"
+    ],
+    "tallesDisponibles": [
+      "XL"
+    ],
+    "colores": [
+      {
+        "nombre": "Azul",
+        "codigo": "#1E88E5",
+        "stock": 1
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": true,
+    "stockMap": {
+      "Azul__XL": 1
+    },
+    "stockTalles": null,
+    "stock": 1,
+    "sku": "CAMISA-BENETON-FLORET",
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "camisa-beneton-mil-raya-1772019921619",
     "nombre": "Camisa Beneton Mil Raya",
     "precio": 35000,
