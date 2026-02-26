@@ -5935,8 +5935,8 @@
   {
     "id": "remera-smile",
     "nombre": "Remera Smile",
-    "precio": 22000,
-    "precioAnterior": null,
+    "precio": 16000,
+    "precioAnterior": 22000,
     "categoria": "hombre",
     "subcategoria": "Remeras",
     "descripcion": "",
@@ -5948,19 +5948,29 @@
       "https://i.ibb.co/Nnk9WRdJ/Remera-1771-3.webp"
     ],
     "tallesDisponibles": [
-      "S",
-      "M",
       "L",
       "XL"
     ],
-    "colores": [],
+    "colores": [
+      {
+        "nombre": "Negro",
+        "codigo": "#111111",
+        "stock": 0
+      },
+      {
+        "nombre": "Blanco",
+        "codigo": "#FFFFFF",
+        "stock": 0
+      }
+    ],
     "activo": true,
     "destacado": false,
     "outlet": false,
     "stockMap": {
-      "Negro__S": 1,
-      "Negro__M": 1,
-      "Negro__L": 1
+      "Negro__L": 1,
+      "Negro__XL": 1,
+      "Blanco__L": null,
+      "Blanco__XL": null
     },
     "stockTalles": {
       "S": null,
@@ -5968,7 +5978,7 @@
       "L": null,
       "XL": null
     },
-    "stock": 10,
+    "stock": 2,
     "sku": "REMERA-SMILE",
     "marca": null,
     "tags": null,
