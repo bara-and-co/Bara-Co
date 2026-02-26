@@ -5810,28 +5810,35 @@
       "https://i.ibb.co/svbfXVYb/Remera-Over-Size-1911-1.webp"
     ],
     "tallesDisponibles": [
-      "S",
       "M",
-      "L",
-      "XL"
+      "L"
     ],
-    "colores": [],
+    "colores": [
+      {
+        "nombre": "Negro",
+        "codigo": "#111111",
+        "stock": 0
+      },
+      {
+        "nombre": "Blanco",
+        "codigo": "#FFFFFF",
+        "stock": 0
+      }
+    ],
     "activo": true,
     "destacado": false,
     "outlet": false,
     "stockMap": {
-      "Negro__L": 1,
-      "Negro__XL": null,
-      "Blanco__L": null,
-      "Blanco__XL": 1
+      "Negro__M": 1,
+      "Negro__L": 0,
+      "Blanco__M": null,
+      "Blanco__L": 1
     },
     "stockTalles": {
-      "S": null,
-      "M": null,
-      "L": null,
-      "XL": 2
+      "M": 0,
+      "L": null
     },
-    "stock": 10,
+    "stock": 2,
     "sku": "REMERA-OVERSIZE-1911",
     "marca": null,
     "tags": null,
