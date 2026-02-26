@@ -1037,7 +1037,7 @@
   {
     "id": "baggy-bordado-atom-1771873581656",
     "nombre": "Baggy Bordado ATOM",
-    "precio": 49000,
+    "precio": 50000,
     "precioAnterior": 70000,
     "categoria": "hombre",
     "subcategoria": "Pantalones",
@@ -1072,8 +1072,24 @@
       "Azul__44": null,
       "Azul__46": null
     },
+    "stockTalles": {
+      "M": 0,
+      "L": null
+    },
     "stock": 5,
-    "sku": "BAGGY-BORDADO-ATOM"
+    "sku": "BAGGY-BORDADO-ATOM",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
   },
   {
     "id": "camo-baggy-gabardina-1771873166614",
