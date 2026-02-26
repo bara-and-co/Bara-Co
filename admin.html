@@ -2801,6 +2801,7 @@ function cpAddColor() {
   }
   addColorChip(name, hex, true, 0);
   document.getElementById('cpName').value = '';
+  buildStockGrid(); // ← actualiza la grilla de stock automáticamente
   toast(`Color "${name}" agregado ✓`);
 }
 
