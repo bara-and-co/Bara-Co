@@ -1217,7 +1217,10 @@
     "imagen": "https://i.ibb.co/4wr70yB4/LLAMAS-BAGGY-JEANH.webp",
     "imagenes": [
       "https://i.ibb.co/4wr70yB4/LLAMAS-BAGGY-JEANH.webp",
-      "https://i.ibb.co/WWGLzNtt/LLAMAS-BAGGY-JEAN.webp"
+      "https://i.ibb.co/WWGLzNtt/LLAMAS-BAGGY-JEAN.webp",
+      "https://i.ibb.co/p6c5tGbz/IMG-2307.jpg",
+      "https://i.ibb.co/YBpYbcXs/IMG-2308.jpg",
+      "https://i.ibb.co/tp7Ltgrr/IMG-2309.jpg"
     ],
     "tallesDisponibles": [
       "42"
@@ -1235,8 +1238,26 @@
     "stockMap": {
       "Jean__42": null
     },
+    "stockTalles": {
+      "S": null,
+      "M": 0,
+      "L": null,
+      "XL": null
+    },
     "stock": 1,
-    "sku": "LLAMAS-–-BAGGY-JEAN"
+    "sku": "LLAMAS-–-BAGGY-JEAN",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
   },
   {
     "id": "jeans-galaxy-xido-1771872932078",
