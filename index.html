@@ -467,38 +467,27 @@
     .outlet-note::before { content:''; display:inline-block; width:22px; height:1px; background:rgba(201,169,110,.2); }
 
     /* ── NEWSLETTER ── */
-    .nl-section { padding:100px 52px; display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center; border-top:1px solid var(--border); }
-    .nl-title { font-family:var(--serif); font-size:clamp(32px,4vw,52px); font-weight:300; line-height:1.1; }
-    .nl-title em { font-style:italic; color:var(--accent); }
-    .nl-sub { margin-top:14px; font-size:13px; color:var(--muted); line-height:1.8; }
-    .nl-form { display:flex; gap:0; }
-    .nl-form input {
-      flex:1; background:rgba(255,255,255,.05); border:1px solid var(--border); border-right:none;
-      color:var(--text); padding:14px 18px; font-size:13px; font-family:var(--sans); outline:none; transition:border-color .25s;
-    }
-    .nl-form input::placeholder { color:var(--muted); }
-    .nl-form input:focus { border-color:var(--accent); }
-    .nl-form button { background:var(--accent); border:none; cursor:pointer; padding:14px 22px; color:var(--bg); font-family:var(--sans); font-size:9px; font-weight:500; letter-spacing:.2em; text-transform:uppercase; transition:background .25s; white-space:nowrap; }
-    .nl-form button:hover { background:var(--adk); }
-    .nl-note { margin-top:12px; font-size:11px; color:var(--muted); }
+
 
     /* ── SHIPPING BAR ── */
     .shipping-bar { margin-top:80px; background:var(--accent); color:var(--bg); text-align:center; font-size:10px; font-weight:500; letter-spacing:.22em; text-transform:uppercase; padding:11px; position:relative; }
 
     /* ── FOOTER ── */
-    footer { background:var(--surface); border-top:1px solid var(--border); padding:80px 52px 40px; display:grid; grid-template-columns:1.6fr 1fr 1fr 1.2fr; gap:52px; }
-    .footer-logo-img { height:56px !important; width:auto !important; object-fit:contain; filter:brightness(0) invert(1); }
-    .footer-text { margin-top:14px; font-size:13px; color:var(--muted); line-height:1.8; max-width:200px; }
+    footer { background:var(--surface) !important; border-top:1px solid var(--border) !important; padding:80px 52px 40px !important; display:grid !important; grid-template-columns:1.6fr 1fr 1fr 1.2fr !important; gap:52px !important; margin-top:0 !important; }
+    .footer-logo-img { height:56px !important; width:auto !important; object-fit:contain !important; filter:brightness(0) invert(1) !important; }
+    .footer-text { margin-top:14px !important; font-size:13px !important; color:var(--muted) !important; line-height:1.8 !important; max-width:200px !important; font-family:var(--sans) !important; }
     .social-icons { display:flex; gap:16px; margin-top:20px; }
     .social-icons i { font-size:16px; color:var(--muted); cursor:pointer; transition:color .25s; }
     .social-icons i:hover { color:var(--accent); }
-    .footer-title { font-size:8px; letter-spacing:.25em; text-transform:uppercase; color:var(--muted); margin-bottom:20px; padding-bottom:10px; border-bottom:1px solid var(--border); }
-    .footer-links li + li { margin-top:10px; }
-    .footer-links a { font-size:13px; color:rgba(237,233,225,.45); transition:color .25s; }
-    .footer-links a:hover { color:var(--accent); }
-    .footer-bottom { padding:22px 52px; border-top:1px solid var(--border); display:flex; align-items:center; justify-content:space-between; font-size:10px; color:var(--muted); flex-wrap:wrap; gap:8px; }
-    .footer-bottom a { color:var(--muted); transition:color .2s; }
-    .footer-bottom a:hover { color:var(--text); }
+    .footer-title { font-size:8px !important; letter-spacing:.25em !important; text-transform:uppercase !important; color:var(--muted) !important; margin-bottom:20px !important; padding-bottom:10px !important; border-bottom:1px solid var(--border) !important; font-family:var(--sans) !important; font-weight:600 !important; }
+    .footer-links { list-style:none !important; padding:0 !important; margin:0 !important; }
+    .footer-links li { margin-bottom:0 !important; padding-left:0 !important; }
+    .footer-links li + li { margin-top:10px !important; }
+    .footer-links a { font-size:13px !important; color:rgba(237,233,225,.45) !important; transition:color .25s !important; }
+    .footer-links a:hover { color:var(--accent) !important; }
+    .footer-bottom { padding:22px 52px !important; border-top:1px solid var(--border) !important; display:flex !important; align-items:center !important; justify-content:space-between !important; font-size:10px !important; color:var(--muted) !important; flex-wrap:wrap !important; gap:8px !important; background:var(--surface) !important; }
+    .footer-bottom a { color:var(--muted) !important; transition:color .2s !important; }
+    .footer-bottom a:hover { color:var(--text) !important; }
     .legal-info { display:flex; gap:20px; }
 
     /* ── WHATSAPP ── */
@@ -614,7 +603,7 @@
       .editorial-text { padding:48px 28px; }
       .testimonios { padding:64px 22px; }
       .testi-grid { grid-template-columns:1fr 1fr; }
-      .nl-section { grid-template-columns:1fr; padding:64px 22px; gap:36px; }
+
       footer { grid-template-columns:1fr 1fr; padding:56px 22px 32px; }
       .footer-bottom { padding:16px 22px; flex-direction:column; text-align:center; }
       .shipping-bar { margin-top:68px; }
@@ -946,21 +935,6 @@
 </section>
 
 <!-- NEWSLETTER -->
-<section class="nl-section">
-  <div>
-    <p class="section-eyebrow">Comunidad Bara & Co</p>
-    <h2 class="nl-title">Sumate a <em>Bara & Co</em></h2>
-    <p class="nl-sub">Acceso 48hs antes a cada colección nueva. Descuentos exclusivos de temporada y 10% OFF en tu primera compra.</p>
-  </div>
-  <div>
-    <form class="nl-form" onsubmit="suscribirse(event)">
-      <input type="email" id="nlEmail" placeholder="tu@email.com" required aria-label="Tu email"/>
-      <button type="submit">Suscribirme</button>
-    </form>
-    <p class="nl-note">Sin spam. Podés darte de baja cuando quieras.</p>
-  </div>
-</section>
-
 <!-- FOOTER -->
 <footer>
   <div>
@@ -986,19 +960,27 @@
   <div>
     <h4 class="footer-title">Ayuda</h4>
     <ul class="footer-links">
-      <li><a href="pages/envios.html">Envíos</a></li>
-      <li><a href="pages/cambios.html">Cambios y devoluciones</a></li>
-      <li><a href="pages/faq.html">Preguntas frecuentes</a></li>
+      <li><a href="envios.html">Envíos</a></li>
+      <li><a href="cambios.html">Cambios y devoluciones</a></li>
+      <li><a href="faq.html">Preguntas frecuentes</a></li>
       <li><a href="contacto.html">Contacto</a></li>
     </ul>
   </div>
   <div>
-    <h4 class="footer-title">Newsletter</h4>
-    <p class="footer-text">10% OFF en tu primera compra</p>
-    <form class="nl-form" style="margin-top:14px" onsubmit="suscribirse(event)">
-      <input type="email" placeholder="tu@email.com" required style="padding:10px 14px;font-size:12px;"/>
-      <button type="submit" style="padding:10px 14px;font-size:11px;">→</button>
-    </form>
+    <h4 class="footer-title">Seguinos</h4>
+    <p class="footer-text" style="margin-bottom:16px;">Encontranos en redes para ver las últimas novedades y outfits.</p>
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      <a href="https://instagram.com/bara.and.co" target="_blank" rel="noopener"
+        style="display:flex;align-items:center;gap:10px;font-size:12px;color:rgba(237,233,225,.45);transition:color .2s;"
+        onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='rgba(237,233,225,.45)'">
+        <i class="fab fa-instagram" style="font-size:16px;width:18px;"></i> @bara.and.co
+      </a>
+      <a href="https://wa.me/5493525614281" target="_blank" rel="noopener"
+        style="display:flex;align-items:center;gap:10px;font-size:12px;color:rgba(237,233,225,.45);transition:color .2s;"
+        onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='rgba(237,233,225,.45)'">
+        <i class="fab fa-whatsapp" style="font-size:16px;width:18px;"></i> Consultá por WhatsApp
+      </a>
+    </div>
   </div>
 </footer>
 <div class="footer-bottom">
@@ -1108,18 +1090,7 @@ function mostrarAnnBar() {
   document.body.classList.add('ann-on');
 }
 
-// ── NEWSLETTER ──
-function suscribirse(e) {
-  e.preventDefault();
-  const input = e.target.querySelector('input[type=email]');
-  if (!input || !input.value) return;
-  const btn = e.target.querySelector('button');
-  const orig = btn.textContent;
-  btn.textContent = '✓ Listo!';
-  btn.style.background = '#4db87a';
-  input.value = '';
-  setTimeout(() => { btn.textContent = orig; btn.style.background = ''; }, 3000);
-}
+
 
 // ── PRODUCTOS DESTACADOS ──
 const FALLBACK = [
