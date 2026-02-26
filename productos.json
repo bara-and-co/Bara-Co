@@ -677,7 +677,7 @@
         "stock": 0
       }
     ],
-    "activo": true,
+    "activo": false,
     "destacado": false,
     "outlet": true,
     "stockMap": {
@@ -4765,27 +4765,25 @@
       "https://i.ibb.co/23cFZ0Th/Pantalo-Baggy-Cielo.jpg"
     ],
     "tallesDisponibles": [
-      "S",
-      "M",
-      "L",
-      "XL"
+      "40",
+      "44",
+      "46"
     ],
     "colores": [],
     "activo": true,
     "destacado": false,
     "outlet": false,
     "stockMap": {
-      "Bordo__M": null,
-      "Bordo__XXL": null
+      "Jean__42": null
     },
     "stockTalles": {
-      "S": null,
-      "M": null,
-      "L": null,
-      "XL": null
+      "40": 1,
+      "44": 1,
+      "46": 1
     },
-    "stock": 10,
+    "stock": 3,
     "sku": "PANTALO-BAGGY-CIELO",
+    "marca": null,
     "tags": null,
     "fabrica": null,
     "cuidados": null,
