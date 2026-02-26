@@ -5831,7 +5831,7 @@
     "stockMap": {
       "Negro__M": 1,
       "Negro__L": 0,
-      "Blanco__M": null,
+      "Blanco__M": 0,
       "Blanco__L": 1
     },
     "stockTalles": {
