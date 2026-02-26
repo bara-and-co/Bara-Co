@@ -1193,7 +1193,6 @@
       "https://i.ibb.co/x8Y36G0h/KUNAI-BAGGY.webp"
     ],
     "tallesDisponibles": [
-      "36",
       "38",
       "40",
       "42",
@@ -1211,16 +1210,21 @@
     "destacado": false,
     "outlet": false,
     "stockMap": {
-      "Jean__36": 1,
       "Jean__38": 1,
       "Jean__40": 1,
       "Jean__42": 1,
       "Jean__44": 1,
       "Jean__46": 1
     },
-    "stockTalles": null,
-    "stock": 6,
+    "stockTalles": {
+      "40": null,
+      "42": null,
+      "44": null,
+      "46": null
+    },
+    "stock": 5,
     "sku": "KUNAI-–-BAGGY",
+    "marca": null,
     "tags": null,
     "fabrica": null,
     "cuidados": null,
