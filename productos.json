@@ -1014,7 +1014,11 @@
     "descripcion": "",
     "imagen": "https://i.ibb.co/qYLCDPts/SHADOW-2-0-BAGGY-GABARDINA.png",
     "imagenes": [
-      "https://i.ibb.co/qYLCDPts/SHADOW-2-0-BAGGY-GABARDINA.png"
+      "https://i.ibb.co/qYLCDPts/SHADOW-2-0-BAGGY-GABARDINA.png",
+      "https://i.ibb.co/bg6sSxrp/IMG-2312.jpg",
+      "https://i.ibb.co/5gt5yqjY/IMG-2313.jpg",
+      "https://i.ibb.co/1Y2qPSkS/IMG-2310.jpg",
+      "https://i.ibb.co/wrBG1whh/IMG-2311.jpg"
     ],
     "tallesDisponibles": [
       "38",
@@ -1037,9 +1041,10 @@
       "Gris__42": 2
     },
     "stockTalles": {
-      "38": 1,
-      "40": 1,
-      "42": 2
+      "S": null,
+      "M": 0,
+      "L": null,
+      "XL": null
     },
     "stock": 4,
     "sku": "SHADOW-2.0-–-BAGGY-GABARDINA",
@@ -1612,7 +1617,7 @@
         "stock": 1
       }
     ],
-    "activo": true,
+    "activo": false,
     "destacado": false,
     "outlet": false,
     "stockMap": {
@@ -4810,7 +4815,7 @@
       "46"
     ],
     "colores": [],
-    "activo": true,
+    "activo": false,
     "destacado": false,
     "outlet": false,
     "stockMap": {
