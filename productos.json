@@ -785,6 +785,7 @@
     ],
     "tallesDisponibles": [
       "38",
+      "40",
       "44",
       "46"
     ],
@@ -800,16 +801,25 @@
     "outlet": true,
     "stockMap": {
       "Jean__38": 1,
+      "Jean__40": 1,
       "Jean__44": 1,
-      "Jean__46": null
+      "Jean__46": 1
     },
-    "stockTalles": {
-      "36": 1,
-      "38": 1,
-      "44": 1
-    },
+    "stockTalles": null,
     "stock": 4,
-    "sku": "SHORT-VELSTON"
+    "sku": "SHORT-VELSTON",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
   },
   {
     "id": "remera-oversize-lisa-1771875807220",
@@ -1298,12 +1308,9 @@
     "imagen": "https://i.ibb.co/JXY1ttb/chalecoarena.webp",
     "imagenes": [
       "https://i.ibb.co/JXY1ttb/chalecoarena.webp",
-      "https://i.ibb.co/S45wPpYw/Chalecoarenadetalle.webp",
-      "https://i.ibb.co/NdrS7tXW/image-42fe0d91.png",
-      "https://i.ibb.co/xKkSgNJq/chalecodetalle.webp"
+      "https://i.ibb.co/S45wPpYw/Chalecoarenadetalle.webp"
     ],
     "tallesDisponibles": [
-      "S",
       "L"
     ],
     "colores": [
@@ -1311,26 +1318,19 @@
         "nombre": "Beige",
         "codigo": "#D4B896",
         "stock": 1
-      },
-      {
-        "nombre": "#345130",
-        "codigo": "#345130",
-        "stock": 1
       }
     ],
     "activo": true,
     "destacado": false,
     "outlet": false,
     "stockMap": {
-      "Beige__S": null,
-      "Beige__L": 1,
-      "#345130__S": 1,
-      "#345130__L": null
+      "Beige__L": 1
     },
-    "stockTalles": null,
+    "stockTalles": {
+      "L": null
+    },
     "stock": 1,
     "sku": "CHALECO-RÚSTICO-PROCESADO",
-    "marca": null,
     "tags": null,
     "fabrica": null,
     "cuidados": null,
@@ -1342,6 +1342,38 @@
     "notas": null,
     "costo": null,
     "link": null
+  },
+  {
+    "id": "chaleco-r-stico-procesado-1771871244375",
+    "nombre": "Chaleco Rústico Procesado",
+    "precio": 35000,
+    "precioAnterior": 55000,
+    "categoria": "hombre",
+    "subcategoria": "Buzos",
+    "descripcion": "",
+    "imagen": "https://i.ibb.co/7xPS1Qxw/chaleco-verde.webp",
+    "imagenes": [
+      "https://i.ibb.co/7xPS1Qxw/chaleco-verde.webp",
+      "https://i.ibb.co/4nPpRGf3/chalecodetalle.webp"
+    ],
+    "tallesDisponibles": [
+      "S"
+    ],
+    "colores": [
+      {
+        "nombre": "Verde oliva",
+        "codigo": "#827717",
+        "stock": 0
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Verde oliva__S": null
+    },
+    "stock": 1,
+    "sku": "CHALECO-RÚSTICO-PROCESADO"
   },
   {
     "id": "sudadera-surf-1771870925207",
@@ -3216,9 +3248,6 @@
       "https://d22fxaf9t8d39k.cloudfront.net/d96714644466596d09ed9ffb84226e2b318859a866be9604788cf4154aa52650404368.jpg"
     ],
     "tallesDisponibles": [
-      "S",
-      "M",
-      "L",
       "XL"
     ],
     "colores": [],
@@ -3226,21 +3255,17 @@
     "destacado": false,
     "outlet": false,
     "stockMap": {
-      "Jean__36": 1,
       "Jean__38": 1,
       "Jean__40": 1,
-      "Jean__42": 1,
       "Jean__44": 1,
       "Jean__46": 1
     },
     "stockTalles": {
-      "S": 1,
-      "M": 1,
-      "L": 1,
-      "XL": 1
+      "XL": 2
     },
-    "stock": 4,
+    "stock": 2,
     "sku": "CAMPERA-JEAN-CLASICA",
+    "marca": null,
     "tags": null,
     "fabrica": null,
     "cuidados": null,
@@ -3677,7 +3702,6 @@
     ],
     "tallesDisponibles": [
       "S",
-      "M",
       "L",
       "XL"
     ],
@@ -3698,22 +3722,18 @@
     "outlet": false,
     "stockMap": {
       "Marrón__S": null,
-      "Marrón__M": null,
-      "Marrón__L": null,
+      "Marrón__L": 1,
       "Marrón__XL": 1,
-      "Verde oliva__S": null,
-      "Verde oliva__M": null,
+      "Verde oliva__S": 1,
       "Verde oliva__L": null,
       "Verde oliva__XL": null
     },
     "stockTalles": {
-      "S": 1,
-      "M": 2,
-      "L": 1,
       "XL": 2
     },
-    "stock": 10,
+    "stock": 3,
     "sku": "REMERA-INTER-TEJIDA",
+    "marca": null,
     "tags": null,
     "fabrica": null,
     "cuidados": null,
@@ -4918,23 +4938,28 @@
     ],
     "tallesDisponibles": [
       "S",
-      "M",
-      "L",
-      "XL"
+      "L"
     ],
-    "colores": [],
+    "colores": [
+      {
+        "nombre": "Negro",
+        "codigo": "#111111",
+        "stock": 0
+      },
+      {
+        "nombre": "Blanco",
+        "codigo": "#FFFFFF",
+        "stock": 0
+      }
+    ],
     "activo": true,
     "destacado": false,
     "outlet": false,
     "stockMap": {
-      "Marrón__S": null,
-      "Marrón__M": null,
-      "Marrón__L": null,
-      "Marrón__XL": 1,
-      "Verde oliva__S": null,
-      "Verde oliva__M": null,
-      "Verde oliva__L": null,
-      "Verde oliva__XL": null
+      "Negro__S": null,
+      "Negro__L": 1,
+      "Blanco__S": 1,
+      "Blanco__L": null
     },
     "stockTalles": {
       "S": 1,
@@ -4944,6 +4969,7 @@
     },
     "stock": 10,
     "sku": "CHOMBA-VOGUE",
+    "marca": null,
     "tags": null,
     "fabrica": null,
     "cuidados": null,
@@ -4970,27 +4996,32 @@
       "https://i.ibb.co/CpCJ344B/Bermuda-MOM-gabardina.webp"
     ],
     "tallesDisponibles": [
-      "S",
-      "M",
-      "L",
-      "XL"
+      "44",
+      "46"
     ],
-    "colores": [],
+    "colores": [
+      {
+        "nombre": "Rosa",
+        "codigo": "#F48FB1",
+        "stock": 0
+      }
+    ],
     "activo": true,
     "destacado": false,
     "outlet": false,
     "stockMap": {
-      "Bordo__M": null,
-      "Bordo__XXL": null
+      "Rosa__44": 1,
+      "Rosa__46": 1
     },
     "stockTalles": {
       "S": null,
       "M": null,
       "L": null,
-      "XL": null
+      "XL": 2
     },
-    "stock": 10,
+    "stock": 2,
     "sku": "BERMUDA-MOM-GABARDINA",
+    "marca": null,
     "tags": null,
     "fabrica": null,
     "cuidados": null,
@@ -6078,7 +6109,7 @@
     ],
     "sku": "JEAN-CARGO-BAGGY",
     "stock": 10,
-    "activo": true
+    "activo": false
   },
   {
     "id": "short-engomado",
