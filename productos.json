@@ -5771,18 +5771,13 @@
     "precioAnterior": null,
     "categoria": "hombre",
     "subcategoria": "Remeras",
-    "imagen": "https://d22fxaf9t8d39k.cloudfront.net/948ed6933293905985731ad60259a75597508901cf3be8f1610a9038232cf1fb404368.webp",
-    "imagenes": [
-      "https://d22fxaf9t8d39k.cloudfront.net/948ed6933293905985731ad60259a75597508901cf3be8f1610a9038232cf1fb404368.webp"
-    ],
     "descripcion": "",
-    "composicion": "",
-    "cuidado": "",
-    "talles": [
-      "S",
-      "M",
-      "L",
-      "XL"
+    "imagen": "https://i.ibb.co/CKBjT90F/Remera-Boxy1916-2.webp",
+    "imagenes": [
+      "https://i.ibb.co/CKBjT90F/Remera-Boxy1916-2.webp",
+      "https://i.ibb.co/Q3fbpZ3t/Remera-Boxy1916-3.webp",
+      "https://i.ibb.co/B2rtmjpq/Remera-Boxy1916.webp",
+      "https://i.ibb.co/yF85tzLD/Remera-Boxy1916-1.webp"
     ],
     "tallesDisponibles": [
       "S",
@@ -5790,9 +5785,36 @@
       "L",
       "XL"
     ],
-    "sku": "REMERA-OVERSIZE-1916",
+    "colores": [],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Blanco__M": 1,
+      "Blanco__XL": 0,
+      "Verde__M": null,
+      "Verde__XL": 1
+    },
+    "stockTalles": {
+      "S": null,
+      "M": null,
+      "L": null,
+      "XL": 2
+    },
     "stock": 10,
-    "activo": true
+    "sku": "REMERA-OVERSIZE-1916",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
   },
   {
     "id": "remera-boxy-1940",
