@@ -1269,7 +1269,11 @@
     "descripcion": "",
     "imagen": "https://i.ibb.co/C37MzwNB/GALAXY-OXIDO-JEAN-RECTO-1.webp",
     "imagenes": [
-      "https://i.ibb.co/C37MzwNB/GALAXY-OXIDO-JEAN-RECTO-1.webp"
+      "https://i.ibb.co/C37MzwNB/GALAXY-OXIDO-JEAN-RECTO-1.webp",
+      "https://i.ibb.co/ZpYsvwc2/IMG-2298.jpg",
+      "https://i.ibb.co/svsDBgcF/IMG-2299.jpg",
+      "https://i.ibb.co/BHSWvBy0/IMG-2301.jpg",
+      "https://i.ibb.co/QFTwDMGX/IMG-2300.jpg"
     ],
     "tallesDisponibles": [
       "44"
@@ -1287,8 +1291,26 @@
     "stockMap": {
       "Jean__44": null
     },
+    "stockTalles": {
+      "S": null,
+      "M": 0,
+      "L": null,
+      "XL": null
+    },
     "stock": 1,
-    "sku": "JEANS-GALAXY-ÓXIDO"
+    "sku": "JEANS-GALAXY-ÓXIDO",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
   },
   {
     "id": "rompeviento-soacha-1771871652463",
