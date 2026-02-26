@@ -109,9 +109,37 @@
     .sort-select:hover,.sort-select:focus { border-color:var(--accent); color:var(--text); outline:none; }
     .sort-select option { background:#131310; color:var(--text); }
 
+    /* ── CATEGORY LANDING ── */
+    .cat-landing { display:none; padding:0 48px 80px; }
+    .cat-landing.active { display:block; }
+    .cat-grid-cards { display:grid; grid-template-columns:repeat(2,1fr); gap:3px; margin-bottom:3px; }
+    .cat-big-card { position:relative; overflow:hidden; cursor:pointer; aspect-ratio:3/2; background:var(--surface); }
+    .cat-big-card:first-child:nth-last-child(1),
+    .cat-big-card:first-child:nth-last-child(1) ~ .cat-big-card { grid-column:1/-1; aspect-ratio:16/7; }
+    .cat-big-card img { width:100%; height:100%; object-fit:cover; transition:transform .8s var(--ease); filter:brightness(.65); }
+    .cat-big-card:hover img { transform:scale(1.04); filter:brightness(.75); }
+    .cat-big-info { position:absolute; inset:0; display:flex; flex-direction:column; justify-content:flex-end; padding:36px 32px; }
+    .cat-big-label { font-size:9px; letter-spacing:.35em; text-transform:uppercase; color:var(--accent); margin-bottom:8px; }
+    .cat-big-title { font-family:var(--serif); font-size:clamp(28px,4vw,52px); font-weight:300; line-height:1; margin-bottom:20px; }
+    .cat-big-cta { display:inline-flex; align-items:center; gap:10px; font-size:10px; letter-spacing:.2em; text-transform:uppercase; color:var(--white); border-bottom:1px solid rgba(255,255,255,.4); padding-bottom:3px; width:fit-content; transition:color .25s,border-color .25s; }
+    .cat-big-card:hover .cat-big-cta { color:var(--accent); border-color:var(--accent); }
+
     /* ── GRID ── */
-    .shop-body { padding:8px 48px 80px; }
-    .prod-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:2px; }
+    .shop-body { padding:0 48px 80px; }
+    .prod-grid { display:none; }
+    .prod-grid.active { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+
+    /* Banded sections */
+    .cat-section { display:none; }
+    .cat-section.active { display:block; }
+    .cat-section-header { display:flex; align-items:center; justify-content:space-between; padding:48px 0 24px; }
+    .cat-section-title { font-family:var(--serif); font-size:clamp(28px,3.5vw,44px); font-weight:300; }
+    .cat-section-line { flex:1; height:1px; background:var(--border); margin:0 24px; }
+    .cat-section-count { font-size:11px; color:var(--muted); }
+    .cat-section-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; padding-bottom:60px; }
+    .cat-section-band { border-top:1px solid var(--border); }
+    .cat-section-band:nth-child(even) { background:rgba(255,255,255,.013); padding:0 24px; margin:0 -24px; }
+
     .cat-heading { grid-column:1/-1; padding:40px 0 8px; display:flex; align-items:center; gap:16px; }
     .cat-heading h2 { font-family:var(--serif); font-size:clamp(22px,3vw,34px); font-weight:400; }
     .cat-heading::after { content:''; flex:1; height:1px; background:var(--border); }
@@ -125,7 +153,7 @@
     .prod-img img { width:100%; height:100%; object-fit:cover; transition:transform .7s var(--ease); }
     .prod-card:hover .prod-img img { transform:scale(1.06); }
 
-    .badge { position:absolute; top:12px; left:12px; z-index:2; font-size:8px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; padding:4px 9px; }
+    .badge { position:absolute; top:14px; left:14px; z-index:2; font-size:8px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; padding:5px 10px; }
     .badge-new   { background:var(--accent); color:var(--bg); }
     .badge-sale  { background:#b83030; color:var(--white); }
     .badge-outlet{ background:#e07b39; color:#fff; }
@@ -142,10 +170,10 @@
     .ov-view { background:transparent; border:1px solid rgba(255,255,255,.35); color:var(--white); }
     .ov-view:hover { background:rgba(255,255,255,.1); border-color:var(--white); }
 
-    .prod-info { padding:14px 16px 20px; }
-    .prod-cat  { font-size:8px; letter-spacing:.18em; text-transform:uppercase; color:var(--muted); margin-bottom:4px; }
-    .prod-name { font-family:var(--serif); font-size:15px; font-weight:400; line-height:1.2; margin-bottom:5px; }
-    .prod-price { font-size:13px; color:var(--accent); }
+    .prod-info { padding:18px 20px 24px; }
+    .prod-cat  { font-size:8px; letter-spacing:.18em; text-transform:uppercase; color:var(--muted); margin-bottom:6px; }
+    .prod-name { font-family:var(--serif); font-size:17px; font-weight:400; line-height:1.2; margin-bottom:7px; }
+    .prod-price { font-size:14px; color:var(--accent); }
     .prod-price del { color:var(--muted); margin-right:5px; font-size:11px; }
     .prod-price .agotado-label { font-size:11px; color:var(--muted); margin-left:6px; }
     .empty-msg { grid-column:1/-1; text-align:center; padding:80px 0; color:var(--muted); display:none; }
@@ -265,12 +293,15 @@
     @keyframes scrollDrop { 0%{top:-100%} 100%{top:100%} }
 
     /* ── RESPONSIVE ── */
-    @media (max-width:1100px) { .prod-grid{grid-template-columns:repeat(3,1fr);} }
+    @media (max-width:1100px) { .cat-section-grid,.prod-grid.active{grid-template-columns:repeat(2,1fr);} }
     @media (max-width:900px) {
       #header{padding:0 22px;height:68px;} .nav-menu{display:none;} .logo-img{height:64px!important;} #header.scrolled .logo-img{height:52px!important;} .menu-toggle{display:flex;}
       .filters{padding:14px 22px;top:68px;} .filters-right{width:100%;justify-content:space-between;}
-      .size-guide-bar{padding:10px 22px;} .shop-body{padding:8px 22px 60px;}
-      .prod-grid{grid-template-columns:repeat(2,1fr);}
+      .size-guide-bar{padding:10px 22px;} .shop-body{padding:0 22px 60px;}
+      .cat-landing{padding:0 22px 60px;}
+      .cat-section-grid,.prod-grid.active{grid-template-columns:repeat(2,1fr);}
+      .cat-grid-cards{grid-template-columns:1fr;}
+      .cat-big-card{aspect-ratio:4/3;}
       .shipping-bar{margin-top:68px;}
       .shop-hero{height:60vh;} .scroll-hint{display:none;}
       footer{grid-template-columns:1fr 1fr;padding:48px 22px 32px;}
@@ -279,7 +310,7 @@
       .review-score{padding-right:0;padding-bottom:20px;border-right:none;border-bottom:1px solid var(--border);}
     }
     @media (max-width:600px) { .filter-tabs{gap:4px;} .filter-tab{padding:7px 13px;font-size:9px;} .trust-item span{display:none;} .trust-item{padding:12px;} .sort-select{font-size:9px;padding:7px 24px 7px 10px;} }
-    @media (max-width:480px) { .prod-grid{grid-template-columns:1fr;} footer{grid-template-columns:1fr;gap:28px;} }
+    @media (max-width:480px) { .cat-section-grid,.prod-grid.active{grid-template-columns:1fr;} footer{grid-template-columns:1fr;gap:28px;} }
   </style>
 </head>
 <body>
@@ -331,7 +362,7 @@
 <div class="filters" id="productos">
   <div class="filters-left">
     <div class="filter-tabs">
-      <button class="filter-tab active" data-f="all">Todos</button>
+      <button class="filter-tab" data-f="all">Todos</button>
       <button class="filter-tab" data-f="new">New Collection</button>
       <button class="filter-tab" data-f="hombre">Hombre</button>
       <button class="filter-tab" data-f="mujer">Mujer</button>
@@ -369,6 +400,13 @@
     <span style="background:#eb001b;color:#fff;font-size:9px;font-weight:700;padding:3px 8px;border-radius:3px;">MC</span>
     <span style="background:#2557d6;color:#fff;font-size:9px;font-weight:700;padding:3px 8px;border-radius:3px;">AMEX</span>
     <span style="background:#009ee3;color:#fff;font-size:9px;font-weight:700;padding:3px 8px;border-radius:3px;">MP</span>
+  </div>
+</div>
+
+<!-- CATEGORY LANDING (vista por defecto) -->
+<div class="cat-landing active" id="catLanding">
+  <div class="cat-grid-cards" id="catCards">
+    <!-- Se genera por JS -->
   </div>
 </div>
 
@@ -505,9 +543,17 @@ function closeSizeGuide() { document.getElementById('sgModal').classList.remove(
 
 // ========== ESTADO GLOBAL ==========
 let productos = [];
-let activeFilter = 'all';
+let activeFilter = null; // null = landing view
 let activeSubcat = 'all';
 let activeSort   = 'default';
+
+// Config de categorías para las big cards
+const CAT_CONFIG = {
+  new:        { label:'Nueva colección', title:'New Collection', cta:'Descubrir', img:'images/fondo%20hero.png' },
+  hombre:     { label:'Moda masculina',  title:'Hombre',         cta:'Ver todo',  img:'images/fondo%20hero.png' },
+  mujer:      { label:'Moda femenina',   title:'Mujer',          cta:'Ver todo',  img:'images/fondo%20hero.png' },
+  accesorios: { label:'Complementos',    title:'Accesorios',     cta:'Explorar',  img:'images/fondo%20hero.png' },
+};
 
 // ========== CARGAR PRODUCTOS ==========
 async function cargarProductos() {
@@ -516,12 +562,55 @@ async function cargarProductos() {
     if (!r.ok) throw new Error();
     productos = (await r.json()).filter(p => p.activo !== false);
     renderizarProductos();
+    renderCatLanding();
     actualizarContador();
     const cat = new URLSearchParams(window.location.search).get('categoria');
     if (cat && ['hombre','mujer','accesorios','new','sale','outlet'].includes(cat)) filterBy(cat);
   } catch(e) {
     document.getElementById('prodCount').textContent = 'Error al cargar';
+    renderCatLanding();
   }
+}
+
+// ========== LANDING DE CATEGORÍAS ==========
+function renderCatLanding() {
+  const container = document.getElementById('catCards');
+  // Categorías disponibles con productos
+  const cats = Object.keys(CAT_CONFIG).filter(c => productos.some(p => p.categoria === c));
+  const allCats = [...cats];
+  // Agregar outlet si hay
+  const hasOutlet = productos.some(p => p.outlet || p.precioAnterior);
+  
+  let html = '';
+  allCats.forEach(cat => {
+    const cfg = CAT_CONFIG[cat];
+    const count = productos.filter(p => p.categoria === cat).length;
+    // Intentar obtener imagen del primer producto de esa categoría
+    const firstProd = productos.find(p => p.categoria === cat && p.imagen);
+    const imgSrc = firstProd ? firstProd.imagen : cfg.img;
+    html += `
+      <div class="cat-big-card" onclick="filterBy('${cat}')">
+        <img src="${imgSrc}" alt="${cfg.title}" loading="lazy"/>
+        <div class="cat-big-info">
+          <p class="cat-big-label">${cfg.label} · ${count} piezas</p>
+          <h2 class="cat-big-title">${cfg.title}</h2>
+          <span class="cat-big-cta">${cfg.cta} &nbsp;<i class="fas fa-arrow-right" style="font-size:9px"></i></span>
+        </div>
+      </div>`;
+  });
+
+  if (hasOutlet) {
+    html += `
+      <div class="cat-big-card" onclick="filterBy('outlet')" style="grid-column:1/-1;aspect-ratio:21/6;">
+        <img src="images/fondo%20hero.png" alt="Outlet" loading="lazy"/>
+        <div class="cat-big-info">
+          <p class="cat-big-label" style="color:#e07b39">Últimas unidades · Sale</p>
+          <h2 class="cat-big-title">Outlet <em style="font-style:italic;color:var(--accent)">& Sale</em></h2>
+          <span class="cat-big-cta">Ver descuentos &nbsp;<i class="fas fa-arrow-right" style="font-size:9px"></i></span>
+        </div>
+      </div>`;
+  }
+  container.innerHTML = html;
 }
 
 // ========== CONSTRUIR CARD ==========
@@ -615,7 +704,17 @@ function renderizarProductos() {
     outletItems.forEach(p => { html += buildCard(p); });
   }
   grid.innerHTML = html;
-  aplicarFiltro(activeFilter, activeSubcat);
+}
+
+// ========== MOSTRAR/OCULTAR VISTAS ==========
+function showLanding() {
+  document.getElementById('catLanding').classList.add('active');
+  document.getElementById('prodGrid').classList.remove('active');
+  document.getElementById('emptyMsg').style.display = 'none';
+}
+function showGrid() {
+  document.getElementById('catLanding').classList.remove('active');
+  document.getElementById('prodGrid').classList.add('active');
 }
 
 // ========== FILTROS ==========
@@ -623,6 +722,14 @@ function filterBy(categoria) {
   activeFilter = categoria; activeSubcat = 'all';
   document.querySelectorAll('.filter-tab').forEach(t => t.classList.toggle('active', t.dataset.f === categoria));
   renderSubcatTabs(categoria);
+
+  if (!categoria || categoria === 'all') {
+    showLanding();
+    actualizarContador(productos.length);
+    return;
+  }
+
+  showGrid();
   aplicarFiltro(categoria, 'all');
 }
 function filterBySub(subcat) {
@@ -632,7 +739,7 @@ function filterBySub(subcat) {
 }
 function renderSubcatTabs(categoria) {
   const container = document.getElementById('subcatTabs');
-  if (['all','sale','outlet'].includes(categoria)) { container.style.display='none'; return; }
+  if (['all','sale','outlet'].includes(categoria) || !categoria) { container.style.display='none'; return; }
   const subcats = [...new Set(productos.filter(p => p.categoria === categoria && p.subcategoria).map(p => p.subcategoria))].sort();
   if (!subcats.length) { container.style.display='none'; return; }
   container.innerHTML = `<button class="subcat-tab active" data-s="all" onclick="filterBySub('all')">Todas</button>`;
@@ -694,7 +801,9 @@ function actualizarContador(visibles=null) {
 
 document.addEventListener('DOMContentLoaded', () => {
   cargarProductos();
-  document.querySelectorAll('.filter-tab').forEach(tab => { tab.addEventListener('click', () => filterBy(tab.dataset.f)); });
+  document.querySelectorAll('.filter-tab').forEach(tab => {
+    tab.addEventListener('click', () => filterBy(tab.dataset.f));
+  });
   document.addEventListener('keydown', e => { if (e.key==='Escape') closeSizeGuide(); });
 });
 </script>
