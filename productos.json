@@ -1311,7 +1311,9 @@
     "imagen": "https://i.ibb.co/JXY1ttb/chalecoarena.webp",
     "imagenes": [
       "https://i.ibb.co/JXY1ttb/chalecoarena.webp",
-      "https://i.ibb.co/S45wPpYw/Chalecoarenadetalle.webp"
+      "https://i.ibb.co/S45wPpYw/Chalecoarenadetalle.webp",
+      "https://i.ibb.co/NdrS7tXW/image-42fe0d91.png",
+      "https://i.ibb.co/xKkSgNJq/chalecodetalle.webp"
     ],
     "tallesDisponibles": [
       "S",
@@ -1324,8 +1326,8 @@
         "stock": 1
       },
       {
-        "nombre": "#496a44",
-        "codigo": "#496a44",
+        "nombre": "#486b46",
+        "codigo": "#486b46",
         "stock": 1
       }
     ],
@@ -1335,8 +1337,8 @@
     "stockMap": {
       "Beige__S": null,
       "Beige__L": 1,
-      "#496a44__S": 1,
-      "#496a44__L": null
+      "#486b46__S": 1,
+      "#486b46__L": null
     },
     "stockTalles": null,
     "stock": 2,
@@ -1353,38 +1355,6 @@
     "notas": null,
     "costo": null,
     "link": null
-  },
-  {
-    "id": "chaleco-r-stico-procesado-1771871244375",
-    "nombre": "Chaleco Rústico Procesado",
-    "precio": 35000,
-    "precioAnterior": 55000,
-    "categoria": "hombre",
-    "subcategoria": "Buzos",
-    "descripcion": "",
-    "imagen": "https://i.ibb.co/7xPS1Qxw/chaleco-verde.webp",
-    "imagenes": [
-      "https://i.ibb.co/7xPS1Qxw/chaleco-verde.webp",
-      "https://i.ibb.co/4nPpRGf3/chalecodetalle.webp"
-    ],
-    "tallesDisponibles": [
-      "S"
-    ],
-    "colores": [
-      {
-        "nombre": "Verde oliva",
-        "codigo": "#827717",
-        "stock": 0
-      }
-    ],
-    "activo": true,
-    "destacado": false,
-    "outlet": false,
-    "stockMap": {
-      "Verde oliva__S": null
-    },
-    "stock": 1,
-    "sku": "CHALECO-RÚSTICO-PROCESADO"
   },
   {
     "id": "sudadera-surf-1771870925207",
