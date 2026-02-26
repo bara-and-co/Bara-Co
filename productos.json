@@ -5969,28 +5969,51 @@
     "precioAnterior": null,
     "categoria": "hombre",
     "subcategoria": "Camperas",
+    "descripcion": "",
     "imagen": "https://d22fxaf9t8d39k.cloudfront.net/c6628a3210b1324d76a0e43c6b72f9b63750c2b2de76236d67f5710bb059bcef404368.jpg",
     "imagenes": [
       "https://d22fxaf9t8d39k.cloudfront.net/c6628a3210b1324d76a0e43c6b72f9b63750c2b2de76236d67f5710bb059bcef404368.jpg"
     ],
-    "descripcion": "",
-    "composicion": "",
-    "cuidado": "",
-    "talles": [
-      "S",
-      "M",
-      "L",
-      "XL"
-    ],
     "tallesDisponibles": [
       "S",
       "M",
-      "L",
-      "XL"
+      "L"
     ],
+    "colores": [
+      {
+        "nombre": "Negro",
+        "codigo": "#111111",
+        "stock": 0
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Negro__S": 1,
+      "Negro__M": 1,
+      "Negro__L": 1
+    },
+    "stockTalles": {
+      "S": null,
+      "M": null,
+      "L": null,
+      "XL": null
+    },
+    "stock": 3,
     "sku": "CAMPERA-JEAN",
-    "stock": 10,
-    "activo": true
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
   },
   {
     "id": "body",
