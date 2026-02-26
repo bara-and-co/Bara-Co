@@ -5801,18 +5801,13 @@
     "precioAnterior": null,
     "categoria": "hombre",
     "subcategoria": "Remeras",
+    "descripcion": "",
     "imagen": "https://d22fxaf9t8d39k.cloudfront.net/4b835938eca84400a4964a0f77f8ee7f8656dd35f5b32398503dcd20c1700c13404368.webp",
     "imagenes": [
-      "https://d22fxaf9t8d39k.cloudfront.net/4b835938eca84400a4964a0f77f8ee7f8656dd35f5b32398503dcd20c1700c13404368.webp"
-    ],
-    "descripcion": "",
-    "composicion": "",
-    "cuidado": "",
-    "talles": [
-      "S",
-      "M",
-      "L",
-      "XL"
+      "https://d22fxaf9t8d39k.cloudfront.net/4b835938eca84400a4964a0f77f8ee7f8656dd35f5b32398503dcd20c1700c13404368.webp",
+      "https://i.ibb.co/xSV2QBxR/Remera-Over-Size-1911-3.webp",
+      "https://i.ibb.co/mChGXPdP/Remera-Over-Size-1911.webp",
+      "https://i.ibb.co/svbfXVYb/Remera-Over-Size-1911-1.webp"
     ],
     "tallesDisponibles": [
       "S",
@@ -5820,9 +5815,36 @@
       "L",
       "XL"
     ],
-    "sku": "REMERA-OVERSIZE-1911",
+    "colores": [],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Negro__L": 1,
+      "Negro__XL": null,
+      "Blanco__L": null,
+      "Blanco__XL": 1
+    },
+    "stockTalles": {
+      "S": null,
+      "M": null,
+      "L": null,
+      "XL": 2
+    },
     "stock": 10,
-    "activo": true
+    "sku": "REMERA-OVERSIZE-1911",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
   },
   {
     "id": "remera-oversize-1916",
