@@ -1313,8 +1313,8 @@
         "stock": 1
       },
       {
-        "nombre": "#3c6336",
-        "codigo": "#3c6336",
+        "nombre": "#345130",
+        "codigo": "#345130",
         "stock": 1
       }
     ],
@@ -1324,8 +1324,8 @@
     "stockMap": {
       "Beige__S": null,
       "Beige__L": 1,
-      "Verde oliva__S": 2,
-      "Verde oliva__L": null
+      "#345130__S": 1,
+      "#345130__L": null
     },
     "stockTalles": null,
     "stock": 1,
@@ -1342,38 +1342,6 @@
     "notas": null,
     "costo": null,
     "link": null
-  },
-  {
-    "id": "chaleco-r-stico-procesado-1771871244375",
-    "nombre": "Chaleco Rústico Procesado",
-    "precio": 35000,
-    "precioAnterior": 55000,
-    "categoria": "hombre",
-    "subcategoria": "Buzos",
-    "descripcion": "",
-    "imagen": "https://i.ibb.co/7xPS1Qxw/chaleco-verde.webp",
-    "imagenes": [
-      "https://i.ibb.co/7xPS1Qxw/chaleco-verde.webp",
-      "https://i.ibb.co/4nPpRGf3/chalecodetalle.webp"
-    ],
-    "tallesDisponibles": [
-      "S"
-    ],
-    "colores": [
-      {
-        "nombre": "Verde oliva",
-        "codigo": "#827717",
-        "stock": 0
-      }
-    ],
-    "activo": true,
-    "destacado": false,
-    "outlet": false,
-    "stockMap": {
-      "Verde oliva__S": null
-    },
-    "stock": 1,
-    "sku": "CHALECO-RÚSTICO-PROCESADO"
   },
   {
     "id": "sudadera-surf-1771870925207",
