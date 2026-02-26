@@ -1227,8 +1227,8 @@
     ],
     "colores": [
       {
-        "nombre": "Jean",
-        "codigo": "#5C7FA3",
+        "nombre": "Gris",
+        "codigo": "#9E9E9E",
         "stock": 0
       }
     ],
@@ -1236,7 +1236,7 @@
     "destacado": false,
     "outlet": false,
     "stockMap": {
-      "Jean__42": null
+      "Gris__42": 1
     },
     "stockTalles": {
       "S": null,
