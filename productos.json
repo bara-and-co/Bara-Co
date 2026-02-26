@@ -341,9 +341,12 @@
       "Rojo__S": 1,
       "Rojo__XXL": null
     },
-    "stockTalles": null,
+    "stockTalles": {
+      "XL": 2
+    },
     "stock": 2,
     "sku": "CAMISA-BENETON-MIL-RAYA",
+    "marca": null,
     "tags": null,
     "fabrica": null,
     "cuidados": null,
