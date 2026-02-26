@@ -1314,6 +1314,7 @@
       "https://i.ibb.co/S45wPpYw/Chalecoarenadetalle.webp"
     ],
     "tallesDisponibles": [
+      "S",
       "L"
     ],
     "colores": [
@@ -1321,19 +1322,26 @@
         "nombre": "Beige",
         "codigo": "#D4B896",
         "stock": 1
+      },
+      {
+        "nombre": "#496a44",
+        "codigo": "#496a44",
+        "stock": 1
       }
     ],
     "activo": true,
     "destacado": false,
     "outlet": false,
     "stockMap": {
-      "Beige__L": 1
+      "Beige__S": null,
+      "Beige__L": 1,
+      "#496a44__S": 1,
+      "#496a44__L": null
     },
-    "stockTalles": {
-      "L": null
-    },
-    "stock": 1,
+    "stockTalles": null,
+    "stock": 2,
     "sku": "CHALECO-RÚSTICO-PROCESADO",
+    "marca": null,
     "tags": null,
     "fabrica": null,
     "cuidados": null,
