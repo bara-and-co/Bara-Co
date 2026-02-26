@@ -1138,20 +1138,42 @@
       "44",
       "46"
     ],
-    "colores": [],
+    "colores": [
+      {
+        "nombre": "Verde oliva",
+        "codigo": "#827717",
+        "stock": 0
+      }
+    ],
     "activo": true,
     "destacado": false,
     "outlet": false,
     "stockMap": {
-      "Jean__36": null,
-      "Jean__38": null,
-      "Jean__40": null,
-      "Jean__42": null,
-      "Jean__44": null,
-      "Jean__46": null
+      "Verde oliva__40": 1,
+      "Verde oliva__42": 1,
+      "Verde oliva__44": 1,
+      "Verde oliva__46": 1
     },
-    "stock": 5,
-    "sku": "CAMO-–-BAGGY-GABARDINA"
+    "stockTalles": {
+      "40": null,
+      "42": null,
+      "44": null,
+      "46": null
+    },
+    "stock": 4,
+    "sku": "CAMO-–-BAGGY-GABARDINA",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
   },
   {
     "id": "kunai-baggy-1771873097430",
