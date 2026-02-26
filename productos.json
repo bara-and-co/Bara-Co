@@ -5767,8 +5767,8 @@
   {
     "id": "remera-oversize-1916",
     "nombre": "Remera oversize 1916",
-    "precio": 25000,
-    "precioAnterior": null,
+    "precio": 17000,
+    "precioAnterior": 25000,
     "categoria": "hombre",
     "subcategoria": "Remeras",
     "descripcion": "",
