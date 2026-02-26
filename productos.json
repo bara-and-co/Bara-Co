@@ -5627,20 +5627,29 @@
       "https://d22fxaf9t8d39k.cloudfront.net/ebfa9cee38da53473fd0dfea2295911779c4444c4baa62489bca2037e24d4ccf404368.webp"
     ],
     "tallesDisponibles": [
-      "S",
-      "M",
       "L",
       "XL"
     ],
-    "colores": [],
+    "colores": [
+      {
+        "nombre": "Negro",
+        "codigo": "#111111",
+        "stock": 0
+      },
+      {
+        "nombre": "Blanco",
+        "codigo": "#FFFFFF",
+        "stock": 0
+      }
+    ],
     "activo": true,
     "destacado": false,
     "outlet": false,
     "stockMap": {
-      "Blanco__M": 1,
-      "Blanco__XL": 0,
-      "Verde__M": null,
-      "Verde__XL": 1
+      "Negro__L": 1,
+      "Negro__XL": null,
+      "Blanco__L": null,
+      "Blanco__XL": 1
     },
     "stockTalles": {
       "S": null,
@@ -5648,7 +5657,7 @@
       "L": null,
       "XL": 2
     },
-    "stock": 10,
+    "stock": 2,
     "sku": "REMERA-OVERSIZE-BORADA-1885",
     "marca": null,
     "tags": null,
