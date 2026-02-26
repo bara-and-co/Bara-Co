@@ -5780,12 +5780,21 @@
       "https://i.ibb.co/yF85tzLD/Remera-Boxy1916-1.webp"
     ],
     "tallesDisponibles": [
-      "S",
       "M",
-      "L",
       "XL"
     ],
-    "colores": [],
+    "colores": [
+      {
+        "nombre": "Blanco",
+        "codigo": "#FFFFFF",
+        "stock": 0
+      },
+      {
+        "nombre": "Verde",
+        "codigo": "#43A047",
+        "stock": 0
+      }
+    ],
     "activo": true,
     "destacado": false,
     "outlet": false,
@@ -5801,7 +5810,7 @@
       "L": null,
       "XL": 2
     },
-    "stock": 10,
+    "stock": 2,
     "sku": "REMERA-OVERSIZE-1916",
     "marca": null,
     "tags": null,
