@@ -5802,7 +5802,7 @@
     ],
     "sku": "REMERA-OVERSIZE-1642",
     "stock": 10,
-    "activo": true
+    "activo": false
   },
   {
     "id": "remera-oversize-1922",
@@ -5832,13 +5832,13 @@
     ],
     "sku": "REMERA-OVERSIZE-1922",
     "stock": 10,
-    "activo": true
+    "activo": false
   },
   {
     "id": "remera-oversize-1911",
     "nombre": "Remera oversize 1911",
-    "precio": 25000,
-    "precioAnterior": null,
+    "precio": 17000,
+    "precioAnterior": 25000,
     "categoria": "hombre",
     "subcategoria": "Remeras",
     "descripcion": "",
@@ -5875,8 +5875,10 @@
       "Blanco__L": 1
     },
     "stockTalles": {
+      "S": null,
       "M": 0,
-      "L": null
+      "L": null,
+      "XL": null
     },
     "stock": 2,
     "sku": "REMERA-OVERSIZE-1911",
