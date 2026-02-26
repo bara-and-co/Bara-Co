@@ -5939,18 +5939,13 @@
     "precioAnterior": null,
     "categoria": "hombre",
     "subcategoria": "Remeras",
+    "descripcion": "",
     "imagen": "https://d22fxaf9t8d39k.cloudfront.net/8ab01882cbe633b7c039d020dbb0eb0a1fd89c5329362af6787e755e49450d18404368.jpg",
     "imagenes": [
-      "https://d22fxaf9t8d39k.cloudfront.net/8ab01882cbe633b7c039d020dbb0eb0a1fd89c5329362af6787e755e49450d18404368.jpg"
-    ],
-    "descripcion": "",
-    "composicion": "",
-    "cuidado": "",
-    "talles": [
-      "S",
-      "M",
-      "L",
-      "XL"
+      "https://d22fxaf9t8d39k.cloudfront.net/8ab01882cbe633b7c039d020dbb0eb0a1fd89c5329362af6787e755e49450d18404368.jpg",
+      "https://i.ibb.co/m5sTBK85/Remera-1771-2.webp",
+      "https://i.ibb.co/Cpz4dgK7/Remera-1771-1.webp",
+      "https://i.ibb.co/Nnk9WRdJ/Remera-1771-3.webp"
     ],
     "tallesDisponibles": [
       "S",
@@ -5958,9 +5953,35 @@
       "L",
       "XL"
     ],
-    "sku": "REMERA-SMILE",
+    "colores": [],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Negro__S": 1,
+      "Negro__M": 1,
+      "Negro__L": 1
+    },
+    "stockTalles": {
+      "S": null,
+      "M": null,
+      "L": null,
+      "XL": null
+    },
     "stock": 10,
-    "activo": true
+    "sku": "REMERA-SMILE",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
   },
   {
     "id": "campera-jean",
