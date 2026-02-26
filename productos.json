@@ -1050,7 +1050,6 @@
       "36",
       "38",
       "40",
-      "42",
       "44",
       "46"
     ],
@@ -1065,12 +1064,11 @@
     "destacado": false,
     "outlet": false,
     "stockMap": {
-      "Azul__36": null,
-      "Azul__38": null,
-      "Azul__40": null,
-      "Azul__42": null,
-      "Azul__44": null,
-      "Azul__46": null
+      "Azul__36": 1,
+      "Azul__38": 1,
+      "Azul__40": 1,
+      "Azul__44": 1,
+      "Azul__46": 1
     },
     "stockTalles": {
       "M": 0,
