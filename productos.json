@@ -1311,12 +1311,9 @@
     "imagen": "https://i.ibb.co/JXY1ttb/chalecoarena.webp",
     "imagenes": [
       "https://i.ibb.co/JXY1ttb/chalecoarena.webp",
-      "https://i.ibb.co/S45wPpYw/Chalecoarenadetalle.webp",
-      "https://i.ibb.co/NdrS7tXW/image-42fe0d91.png",
-      "https://i.ibb.co/xKkSgNJq/chalecodetalle.webp"
+      "https://i.ibb.co/S45wPpYw/Chalecoarenadetalle.webp"
     ],
     "tallesDisponibles": [
-      "S",
       "L"
     ],
     "colores": [
@@ -1324,26 +1321,19 @@
         "nombre": "Beige",
         "codigo": "#D4B896",
         "stock": 1
-      },
-      {
-        "nombre": "#486b46",
-        "codigo": "#486b46",
-        "stock": 1
       }
     ],
     "activo": true,
     "destacado": false,
     "outlet": false,
     "stockMap": {
-      "Beige__S": null,
-      "Beige__L": 1,
-      "#486b46__S": 1,
-      "#486b46__L": null
+      "Beige__L": 1
     },
-    "stockTalles": null,
-    "stock": 2,
+    "stockTalles": {
+      "L": null
+    },
+    "stock": 1,
     "sku": "CHALECO-RÚSTICO-PROCESADO",
-    "marca": null,
     "tags": null,
     "fabrica": null,
     "cuidados": null,
@@ -1355,6 +1345,38 @@
     "notas": null,
     "costo": null,
     "link": null
+  },
+  {
+    "id": "chaleco-r-stico-procesado-1771871244375",
+    "nombre": "Chaleco Rústico Procesado",
+    "precio": 35000,
+    "precioAnterior": 55000,
+    "categoria": "hombre",
+    "subcategoria": "Buzos",
+    "descripcion": "",
+    "imagen": "https://i.ibb.co/7xPS1Qxw/chaleco-verde.webp",
+    "imagenes": [
+      "https://i.ibb.co/7xPS1Qxw/chaleco-verde.webp",
+      "https://i.ibb.co/4nPpRGf3/chalecodetalle.webp"
+    ],
+    "tallesDisponibles": [
+      "S"
+    ],
+    "colores": [
+      {
+        "nombre": "Verde oliva",
+        "codigo": "#827717",
+        "stock": 0
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Verde oliva__S": null
+    },
+    "stock": 1,
+    "sku": "CHALECO-RÚSTICO-PROCESADO"
   },
   {
     "id": "sudadera-surf-1771870925207",
@@ -5595,22 +5617,14 @@
   {
     "id": "remera-oversize-borada-1885",
     "nombre": "Remera oversize borada 1885",
-    "precio": 25000,
-    "precioAnterior": null,
+    "precio": 17000,
+    "precioAnterior": 25000,
     "categoria": "hombre",
     "subcategoria": "Remeras",
+    "descripcion": "",
     "imagen": "https://d22fxaf9t8d39k.cloudfront.net/ebfa9cee38da53473fd0dfea2295911779c4444c4baa62489bca2037e24d4ccf404368.webp",
     "imagenes": [
       "https://d22fxaf9t8d39k.cloudfront.net/ebfa9cee38da53473fd0dfea2295911779c4444c4baa62489bca2037e24d4ccf404368.webp"
-    ],
-    "descripcion": "",
-    "composicion": "",
-    "cuidado": "",
-    "talles": [
-      "S",
-      "M",
-      "L",
-      "XL"
     ],
     "tallesDisponibles": [
       "S",
@@ -5618,9 +5632,36 @@
       "L",
       "XL"
     ],
-    "sku": "REMERA-OVERSIZE-BORADA-1885",
+    "colores": [],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Blanco__M": 1,
+      "Blanco__XL": 0,
+      "Verde__M": null,
+      "Verde__XL": 1
+    },
+    "stockTalles": {
+      "S": null,
+      "M": null,
+      "L": null,
+      "XL": 2
+    },
     "stock": 10,
-    "activo": true
+    "sku": "REMERA-OVERSIZE-BORADA-1885",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
   },
   {
     "id": "remera-oversize-1851",
