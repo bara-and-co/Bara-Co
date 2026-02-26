@@ -1118,7 +1118,7 @@
     <a href="tienda.html" target="_blank" class="btn btn-ghost btn-sm">
       <i class="fas fa-store"></i> Ver tienda
     </a>
-    <button class="btn btn-ghost btn-sm" onclick="openConfig()">
+    <button class="btn btn-ghost btn-sm" onclick="openConfig()" title="Configuración">
       <i class="fas fa-cog"></i>
     </button>
     <button class="btn btn-ghost btn-sm" onclick="logout()" title="Cerrar sesión">
@@ -2536,7 +2536,22 @@ function renderExtraImgs(urls) {
   grid.appendChild(add);
 }
 
-
+function renderExtraImgs(urls) {
+  const grid = document.getElementById('extraImgsGrid');
+  grid.innerHTML = '';
+  urls.forEach((url, i) => {
+    const div = document.createElement('div');
+    div.className = 'extra-img-item';
+    div.innerHTML = `<img src="${url}" alt=""/><button class="extra-img-remove" onclick="removeImage(${i})" title="Quitar"><i class="fas fa-times"></i></button>`;
+    grid.appendChild(div);
+  });
+  // Add button always last
+  const add = document.createElement('div');
+  add.className = 'extra-add-btn';
+  add.onclick = abrirSelectorFotoExtra;
+  add.innerHTML = '<i class="fas fa-plus"></i><span>Agregar</span>';
+  grid.appendChild(add);
+}
 
 function addCustomSize() {
   const val = document.getElementById('customSize').value.trim();
