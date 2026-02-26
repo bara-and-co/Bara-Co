@@ -1021,18 +1021,40 @@
       "40",
       "42"
     ],
-    "colores": [],
+    "colores": [
+      {
+        "nombre": "Gris",
+        "codigo": "#9E9E9E",
+        "stock": 0
+      }
+    ],
     "activo": true,
     "destacado": false,
     "outlet": false,
-    "stockMap": {},
+    "stockMap": {
+      "Gris__38": 1,
+      "Gris__40": 1,
+      "Gris__42": 2
+    },
     "stockTalles": {
       "38": 1,
       "40": 1,
       "42": 2
     },
     "stock": 4,
-    "sku": "SHADOW-2.0-–-BAGGY-GABARDINA"
+    "sku": "SHADOW-2.0-–-BAGGY-GABARDINA",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
   },
   {
     "id": "baggy-bordado-atom-1771873581656",
