@@ -5968,15 +5968,12 @@
     "outlet": false,
     "stockMap": {
       "Negro__L": 1,
-      "Negro__XL": 1,
+      "Negro__XL": 0,
       "Blanco__L": null,
-      "Blanco__XL": null
+      "Blanco__XL": 1
     },
     "stockTalles": {
-      "S": null,
-      "M": null,
-      "L": null,
-      "XL": null
+      "XL": 2
     },
     "stock": 2,
     "sku": "REMERA-SMILE",
