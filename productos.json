@@ -1359,6 +1359,7 @@
       "https://i.ibb.co/LX9NRFM9/rompevientonegra.webp"
     ],
     "tallesDisponibles": [
+      "L",
       "XL"
     ],
     "colores": [
@@ -1366,16 +1367,37 @@
         "nombre": "Negro",
         "codigo": "#111111",
         "stock": 0
+      },
+      {
+        "nombre": "Azul",
+        "codigo": "#1E88E5",
+        "stock": 0
       }
     ],
     "activo": true,
     "destacado": false,
     "outlet": false,
     "stockMap": {
-      "Negro__XL": null
+      "Negro__L": 1,
+      "Negro__XL": 1,
+      "Azul__L": null,
+      "Azul__XL": 1
     },
-    "stock": 1,
-    "sku": "ROMPEVIENTO-SOACHA"
+    "stockTalles": null,
+    "stock": 3,
+    "sku": "ROMPEVIENTO-SOACHA",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
   },
   {
     "id": "rompeviento-soacha-1771871613383",
@@ -1887,95 +1909,6 @@
     "stock": 5,
     "sku": "MUSCULOSA-MORLEY",
     "marca": null,
-    "tags": null,
-    "fabrica": null,
-    "cuidados": null,
-    "temporada": null,
-    "genero": null,
-    "peso": null,
-    "origen": null,
-    "proveedor": null,
-    "notas": null,
-    "costo": null,
-    "link": null
-  },
-  {
-    "id": "musculosa-morley-1771852276765",
-    "nombre": "MUSCULOSA MORLEY",
-    "precio": 17500,
-    "precioAnterior": null,
-    "categoria": "hombre",
-    "subcategoria": "Musculosa",
-    "descripcion": "",
-    "imagen": "https://i.ibb.co/1tSCknmZ/MUSCULOSA-MORLEYBORDO2.webp",
-    "imagenes": [
-      "https://i.ibb.co/1tSCknmZ/MUSCULOSA-MORLEYBORDO2.webp",
-      "https://i.ibb.co/NnTxJ0pW/MUSCULOSA-MORLEYBordo.webp"
-    ],
-    "tallesDisponibles": [
-      "M",
-      "XXL"
-    ],
-    "colores": [
-      {
-        "nombre": "Bordo",
-        "codigo": "#7B1C2A",
-        "stock": 0
-      }
-    ],
-    "activo": true,
-    "destacado": false,
-    "outlet": false,
-    "stockMap": {
-      "Bordo__M": null,
-      "Bordo__XXL": null
-    },
-    "stockTalles": {
-      "XXL": null
-    },
-    "stock": 10,
-    "sku": "MUSCULOSA-MORLEY",
-    "tags": null,
-    "fabrica": null,
-    "cuidados": null,
-    "temporada": null,
-    "genero": null,
-    "peso": null,
-    "origen": null,
-    "proveedor": null,
-    "notas": null,
-    "costo": null,
-    "link": null
-  },
-  {
-    "id": "musculosa-morley-1771852119470",
-    "nombre": "MUSCULOSA MORLEY",
-    "precio": 17500,
-    "precioAnterior": null,
-    "categoria": "hombre",
-    "subcategoria": "Musculosa",
-    "descripcion": "",
-    "imagen": "https://i.ibb.co/nNjD5h1T/11-254499c18cd6d6d70b17665946571526-1024-1024.webp",
-    "imagenes": [
-      "https://i.ibb.co/nNjD5h1T/11-254499c18cd6d6d70b17665946571526-1024-1024.webp",
-      "https://i.ibb.co/SXmxy2hG/MUSCULOSA-MORLEYVerde2.webp"
-    ],
-    "tallesDisponibles": [
-      "XXL"
-    ],
-    "colores": [],
-    "activo": true,
-    "destacado": false,
-    "outlet": false,
-    "stockMap": {
-      "Bordo__M": null,
-      "Bordo__XXL": null
-    },
-    "stockTalles": {
-      "XXL": null
-    },
-    "stock": 10,
-    "sku": "MUSCULOSA-MORLEY",
     "tags": null,
     "fabrica": null,
     "cuidados": null,
