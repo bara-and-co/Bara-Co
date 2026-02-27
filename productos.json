@@ -1479,7 +1479,9 @@
     "imagen": "https://i.ibb.co/7xPS1Qxw/chaleco-verde.webp",
     "imagenes": [
       "https://i.ibb.co/7xPS1Qxw/chaleco-verde.webp",
-      "https://i.ibb.co/4nPpRGf3/chalecodetalle.webp"
+      "https://i.ibb.co/4nPpRGf3/chalecodetalle.webp",
+      "https://i.ibb.co/Ps6QdXPx/chalecoarena.webp",
+      "https://i.ibb.co/KjFJGrss/Chalecoarenadetalle.webp"
     ],
     "tallesDisponibles": [
       "S"
@@ -1497,8 +1499,26 @@
     "stockMap": {
       "Verde oliva__S": null
     },
+    "stockTalles": {
+      "40": null,
+      "42": null,
+      "44": null,
+      "46": null
+    },
     "stock": 1,
-    "sku": "CHALECO-RÚSTICO-PROCESADO"
+    "sku": "CHALECO-RÚSTICO-PROCESADO",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
   },
   {
     "id": "sudadera-surf-1771870925207",
