@@ -1378,13 +1378,13 @@
     "destacado": false,
     "outlet": false,
     "stockMap": {
-      "Negro__L": 1,
+      "Negro__L": 0,
       "Negro__XL": 1,
-      "Azul__L": null,
+      "Azul__L": 1,
       "Azul__XL": 1
     },
     "stockTalles": null,
-    "stock": 3,
+    "stock": 2,
     "sku": "ROMPEVIENTO-SOACHA",
     "marca": null,
     "tags": null,
