@@ -1462,54 +1462,6 @@
     "link": null
   },
   {
-    "id": "sudadera-surf-1771870925207",
-    "nombre": "Sudadera SURF",
-    "precio": 12000,
-    "precioAnterior": 20000,
-    "categoria": "hombre",
-    "subcategoria": "Remeras",
-    "descripcion": "",
-    "imagen": "https://i.ibb.co/xbDVkMp/surfmarronn.webp",
-    "imagenes": [
-      "https://i.ibb.co/xbDVkMp/surfmarronn.webp"
-    ],
-    "tallesDisponibles": [],
-    "colores": [
-      {
-        "nombre": "Marrón",
-        "codigo": "#795548",
-        "stock": 1
-      },
-      {
-        "nombre": "Salmón",
-        "codigo": "#FF8A65",
-        "stock": 1
-      }
-    ],
-    "activo": true,
-    "destacado": false,
-    "outlet": false,
-    "stockMap": {
-      "Salmón__M": 1
-    },
-    "stockTalles": {
-      "L": null
-    },
-    "stock": 2,
-    "sku": "SUDADERA-SURF",
-    "tags": null,
-    "fabrica": null,
-    "cuidados": null,
-    "temporada": null,
-    "genero": null,
-    "peso": null,
-    "origen": null,
-    "proveedor": null,
-    "notas": null,
-    "costo": null,
-    "link": null
-  },
-  {
     "id": "sudadera-surf-1771870574736",
     "nombre": "Sudadera SURF",
     "precio": 12000,
@@ -1573,52 +1525,6 @@
     "link": null
   },
   {
-    "id": "sudadera-safari-1771870321224",
-    "nombre": "Sudadera safari",
-    "precio": 12000,
-    "precioAnterior": 20000,
-    "categoria": "hombre",
-    "subcategoria": "Remeras",
-    "descripcion": "",
-    "imagen": "https://i.ibb.co/rRPf6qZJ/remerasafari.webp",
-    "imagenes": [
-      "https://i.ibb.co/rRPf6qZJ/remerasafari.webp",
-      "https://i.ibb.co/Y7rpP4Kt/remerasafaritrasera.webp"
-    ],
-    "tallesDisponibles": [
-      "M"
-    ],
-    "colores": [
-      {
-        "nombre": "Salmón",
-        "codigo": "#FF8A65",
-        "stock": 1
-      }
-    ],
-    "activo": true,
-    "destacado": false,
-    "outlet": false,
-    "stockMap": {
-      "Salmón__M": 1
-    },
-    "stockTalles": {
-      "L": null
-    },
-    "stock": 1,
-    "sku": "SUDADERA-SAFARI",
-    "tags": null,
-    "fabrica": null,
-    "cuidados": null,
-    "temporada": null,
-    "genero": null,
-    "peso": null,
-    "origen": null,
-    "proveedor": null,
-    "notas": null,
-    "costo": null,
-    "link": null
-  },
-  {
     "id": "oversize-el-veme-1771870063640",
     "nombre": "Oversize Eléveme",
     "precio": 17000,
@@ -1652,51 +1558,6 @@
     "sku": "OVERSIZE-ELÉVEME"
   },
   {
-    "id": "remera-over-print-stone-1771869729056",
-    "nombre": "Remera Over Print Stone",
-    "precio": 12000,
-    "precioAnterior": 18000,
-    "categoria": "hombre",
-    "subcategoria": "Remeras",
-    "descripcion": "",
-    "imagen": "https://i.ibb.co/rfMMxTh6/Stone34.webp",
-    "imagenes": [
-      "https://i.ibb.co/rfMMxTh6/Stone34.webp"
-    ],
-    "tallesDisponibles": [
-      "L"
-    ],
-    "colores": [
-      {
-        "nombre": "Blanco",
-        "codigo": "#FFFFFF",
-        "stock": 1
-      }
-    ],
-    "activo": false,
-    "destacado": false,
-    "outlet": false,
-    "stockMap": {
-      "Blanco__L": 1
-    },
-    "stockTalles": {
-      "L": null
-    },
-    "stock": 1,
-    "sku": "REMERA-OVER-PRINT-STONE",
-    "tags": null,
-    "fabrica": null,
-    "cuidados": null,
-    "temporada": null,
-    "genero": null,
-    "peso": null,
-    "origen": null,
-    "proveedor": null,
-    "notas": null,
-    "costo": null,
-    "link": null
-  },
-  {
     "id": "remera-over-print-stone-1771869688560",
     "nombre": "Remera Over Print Stone",
     "precio": 12000,
@@ -1709,9 +1570,15 @@
       "https://i.ibb.co/YBz9kSNg/Remera-Stone2.webp"
     ],
     "tallesDisponibles": [
+      "S",
       "M"
     ],
     "colores": [
+      {
+        "nombre": "Gris",
+        "codigo": "#9E9E9E",
+        "stock": 0
+      },
       {
         "nombre": "Azul marino",
         "codigo": "#1A237E",
@@ -1722,13 +1589,15 @@
     "destacado": false,
     "outlet": false,
     "stockMap": {
+      "Gris__S": 1,
+      "Gris__M": null,
+      "Azul marino__S": null,
       "Azul marino__M": 1
     },
-    "stockTalles": {
-      "L": null
-    },
-    "stock": 1,
+    "stockTalles": null,
+    "stock": 2,
     "sku": "REMERA-OVER-PRINT-STONE",
+    "marca": null,
     "tags": null,
     "fabrica": null,
     "cuidados": null,
