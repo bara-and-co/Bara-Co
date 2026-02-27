@@ -1484,9 +1484,15 @@
       "https://i.ibb.co/KjFJGrss/Chalecoarenadetalle.webp"
     ],
     "tallesDisponibles": [
-      "S"
+      "S",
+      "L"
     ],
     "colores": [
+      {
+        "nombre": "Salmón",
+        "codigo": "#FF8A65",
+        "stock": 0
+      },
       {
         "nombre": "Verde oliva",
         "codigo": "#827717",
@@ -1497,7 +1503,10 @@
     "destacado": false,
     "outlet": false,
     "stockMap": {
-      "Verde oliva__S": null
+      "Salmón__S": null,
+      "Salmón__L": 1,
+      "Verde oliva__S": 1,
+      "Verde oliva__L": null
     },
     "stockTalles": {
       "40": null,
@@ -1505,7 +1514,7 @@
       "44": null,
       "46": null
     },
-    "stock": 1,
+    "stock": 2,
     "sku": "CHALECO-RÚSTICO-PROCESADO",
     "marca": null,
     "tags": null,
