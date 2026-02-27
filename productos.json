@@ -1401,51 +1401,6 @@
     "link": null
   },
   {
-    "id": "rompeviento-soacha-1771871613383",
-    "nombre": "Rompeviento Soacha",
-    "precio": 50000,
-    "precioAnterior": null,
-    "categoria": "hombre",
-    "subcategoria": "Camperas",
-    "descripcion": "",
-    "imagen": "https://i.ibb.co/Hf3R8m2b/image-afb197.png",
-    "imagenes": [
-      "https://i.ibb.co/Hf3R8m2b/image-afb197.png"
-    ],
-    "tallesDisponibles": [
-      "L"
-    ],
-    "colores": [
-      {
-        "nombre": "Azul",
-        "codigo": "#1E88E5",
-        "stock": 1
-      }
-    ],
-    "activo": true,
-    "destacado": false,
-    "outlet": false,
-    "stockMap": {
-      "Azul__L": 1
-    },
-    "stockTalles": {
-      "L": null
-    },
-    "stock": 1,
-    "sku": "ROMPEVIENTO-SOACHA",
-    "tags": null,
-    "fabrica": null,
-    "cuidados": null,
-    "temporada": null,
-    "genero": null,
-    "peso": null,
-    "origen": null,
-    "proveedor": null,
-    "notas": null,
-    "costo": null,
-    "link": null
-  },
-  {
     "id": "chaleco-r-stico-procesado-1771871244375",
     "nombre": "Chaleco Rústico Procesado",
     "precio": 35000,
@@ -1567,26 +1522,41 @@
       "https://i.ibb.co/tp5S5G08/Whats-App-Image-2026-02-23-at-08-58-36-1.webp"
     ],
     "tallesDisponibles": [
-      "S"
+      "S",
+      "M"
     ],
     "colores": [
+      {
+        "nombre": "Marrón",
+        "codigo": "#795548",
+        "stock": 0
+      },
       {
         "nombre": "Rosa",
         "codigo": "#F48FB1",
         "stock": 1
+      },
+      {
+        "nombre": "Salmón",
+        "codigo": "#FF8A65",
+        "stock": 0
       }
     ],
     "activo": true,
     "destacado": false,
     "outlet": false,
     "stockMap": {
-      "Rosa__S": 1
+      "Marrón__S": null,
+      "Marrón__M": 1,
+      "Rosa__S": 0,
+      "Rosa__M": 1,
+      "Salmón__S": 1,
+      "Salmón__M": null
     },
-    "stockTalles": {
-      "L": null
-    },
-    "stock": 1,
+    "stockTalles": null,
+    "stock": 3,
     "sku": "SUDADERA-SURF",
+    "marca": null,
     "tags": null,
     "fabrica": null,
     "cuidados": null,
