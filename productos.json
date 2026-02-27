@@ -1837,12 +1837,30 @@
       "https://i.ibb.co/YT2rzd5L/musculosa-Morley-blanca.webp"
     ],
     "tallesDisponibles": [
-      "XL"
+      "M",
+      "L",
+      "XL",
+      "XXL"
     ],
     "colores": [
       {
+        "nombre": "Blanco",
+        "codigo": "#FFFFFF",
+        "stock": 0
+      },
+      {
         "nombre": "Gris",
         "codigo": "#9E9E9E",
+        "stock": 0
+      },
+      {
+        "nombre": "Bordo",
+        "codigo": "#7B1C2A",
+        "stock": 0
+      },
+      {
+        "nombre": "Verde oliva",
+        "codigo": "#827717",
         "stock": 0
       }
     ],
@@ -1850,10 +1868,25 @@
     "destacado": true,
     "outlet": false,
     "stockMap": {
-      "Gris__XL": null
+      "Blanco__M": null,
+      "Blanco__L": 1,
+      "Blanco__XL": null,
+      "Blanco__XXL": null,
+      "Gris__M": null,
+      "Gris__L": null,
+      "Gris__XL": 1,
+      "Gris__XXL": null,
+      "Bordo__M": 1,
+      "Bordo__L": null,
+      "Bordo__XL": 1,
+      "Bordo__XXL": null,
+      "Verde oliva__M": null,
+      "Verde oliva__L": null,
+      "Verde oliva__XL": null,
+      "Verde oliva__XXL": 1
     },
     "stockTalles": null,
-    "stock": 10,
+    "stock": 5,
     "sku": "MUSCULOSA-MORLEY",
     "marca": null,
     "tags": null,
