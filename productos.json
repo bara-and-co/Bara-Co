@@ -1,5 +1,70 @@
 [
   {
+    "id": "conjunto-la-rioja-1772286038655",
+    "nombre": "Conjunto La Rioja",
+    "precio": 35000,
+    "precioAnterior": 50000,
+    "categoria": "hombre",
+    "subcategoria": "Conjuntos",
+    "descripcion": "",
+    "imagen": "https://i.ibb.co/vxhDqfsm/Conjunto-La-Rioja.jpg",
+    "imagenes": [
+      "https://i.ibb.co/vxhDqfsm/Conjunto-La-Rioja.jpg",
+      "https://i.ibb.co/Zp4CJwxk/Conjunto-La-Rioja-2.jpg",
+      "https://i.ibb.co/VZv88Tg/Conjunto-La-Rioja-1.jpg"
+    ],
+    "tallesDisponibles": [
+      "M",
+      "L"
+    ],
+    "colores": [
+      {
+        "nombre": "Beige",
+        "codigo": "#D4B896",
+        "stock": 0
+      },
+      {
+        "nombre": "Amarillo",
+        "codigo": "#FDD835",
+        "stock": 0
+      },
+      {
+        "nombre": "Celeste",
+        "codigo": "#81D4FA",
+        "stock": 0
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Beige__M": null,
+      "Beige__L": 1,
+      "Amarillo__M": 1,
+      "Amarillo__L": null,
+      "Celeste__M": null,
+      "Celeste__L": 1
+    },
+    "stockTalles": {
+      "M": null,
+      "L": null
+    },
+    "stock": 3,
+    "sku": "CONJUNTO-LA-RIOJA",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": "masculino",
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "remera-boxy-1939-1772285268477",
     "nombre": "Remera Boxy 1939",
     "precio": 17000,
