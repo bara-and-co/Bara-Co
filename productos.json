@@ -1681,14 +1681,15 @@
     "categoria": "hombre",
     "subcategoria": "Remeras",
     "descripcion": "",
-    "imagen": "https://i.ibb.co/YBz9kSNg/Remera-Stone2.webp",
+    "imagen": "https://i.ibb.co/rKBtRhhb/IMG-8072.jpg",
     "imagenes": [
-      "https://i.ibb.co/YBz9kSNg/Remera-Stone2.webp",
+      "https://i.ibb.co/rKBtRhhb/IMG-8072.jpg",
       "https://i.ibb.co/XfSCrrk9/Remera-Stone.webp"
     ],
     "tallesDisponibles": [
       "S",
-      "M"
+      "M",
+      "L"
     ],
     "colores": [
       {
@@ -1700,6 +1701,11 @@
         "nombre": "Azul marino",
         "codigo": "#1A237E",
         "stock": 1
+      },
+      {
+        "nombre": "#f3f0f0",
+        "codigo": "#f3f0f0",
+        "stock": 0
       }
     ],
     "activo": true,
@@ -1708,11 +1714,21 @@
     "stockMap": {
       "Gris__S": 1,
       "Gris__M": null,
+      "Gris__L": null,
       "Azul marino__S": null,
-      "Azul marino__M": 1
+      "Azul marino__M": 1,
+      "Azul marino__L": null,
+      "#f3f0f0__S": null,
+      "#f3f0f0__M": null,
+      "#f3f0f0__L": 1
     },
-    "stockTalles": null,
-    "stock": 2,
+    "stockTalles": {
+      "S": 1,
+      "M": 2,
+      "L": 1,
+      "XL": 2
+    },
+    "stock": 3,
     "sku": "REMERA-OVER-PRINT-STONE",
     "marca": null,
     "tags": null,
