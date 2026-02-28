@@ -3807,10 +3807,10 @@
     "outlet": false,
     "stockMap": {
       "Gris__M": null,
-      "Gris__XL": 1,
+      "Gris__XL": 0,
       "Gris__XXL": 1,
       "Beige__M": 1,
-      "Beige__XL": null,
+      "Beige__XL": 1,
       "Beige__XXL": 1
     },
     "stockTalles": {
