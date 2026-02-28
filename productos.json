@@ -1667,11 +1667,29 @@
     "destacado": false,
     "outlet": false,
     "stockMap": {
-      "Negro__M": null,
-      "Negro__XL": null
+      "Negro__M": 1,
+      "Negro__XL": 1
+    },
+    "stockTalles": {
+      "S": 1,
+      "M": 2,
+      "L": 1,
+      "XL": 2
     },
     "stock": 2,
-    "sku": "OVERSIZE-ELÉVEME"
+    "sku": "OVERSIZE-ELÉVEME",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
   },
   {
     "id": "remera-over-print-stone-1771869688560",
