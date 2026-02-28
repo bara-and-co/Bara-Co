@@ -2528,23 +2528,42 @@
     "imagenes": [
       "https://i.ibb.co/PsF3h1XB/Buzo-Over-Tocadiscos-Frente-Rosa.webp",
       "https://i.ibb.co/rGrk5j5s/Buzo-Over-Tocadiscos-Rosa.webp",
-      "https://i.ibb.co/pvhPWPMf/Buzo-Over-Tocadiscos-Frente.webp"
+      "https://i.ibb.co/pvhPWPMf/Buzo-Over-Tocadiscos-Frente.webp",
+      "https://i.ibb.co/Ps6GyH3N/Buzo-Over-Tocadiscos-Crudo-Frente-1.webp",
+      "https://i.ibb.co/Ps6GyH3N/Buzo-Over-Tocadiscos-Crudo-Frente-1.webp"
     ],
     "tallesDisponibles": [
+      "M",
       "L"
     ],
-    "colores": [],
+    "colores": [
+      {
+        "nombre": "Blanco",
+        "codigo": "#FFFFFF",
+        "stock": 0
+      },
+      {
+        "nombre": "Rosa",
+        "codigo": "#F48FB1",
+        "stock": 0
+      }
+    ],
     "activo": true,
     "destacado": true,
     "outlet": false,
     "stockMap": {
-      "Beige__XL": null
+      "Blanco__M": 1,
+      "Blanco__L": null,
+      "Rosa__M": null,
+      "Rosa__L": 1
     },
     "stockTalles": {
+      "M": null,
       "L": null
     },
     "stock": 10,
     "sku": "BUZO-OVER-TOCADISCOS",
+    "marca": null,
     "tags": null,
     "fabrica": null,
     "cuidados": null,
