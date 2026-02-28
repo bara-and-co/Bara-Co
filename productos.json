@@ -1703,7 +1703,7 @@
         "stock": 1
       },
       {
-        "nombre": "#f3f0f0",
+        "nombre": "blanco",
         "codigo": "#f3f0f0",
         "stock": 0
       }
@@ -1718,9 +1718,9 @@
       "Azul marino__S": null,
       "Azul marino__M": 1,
       "Azul marino__L": null,
-      "#f3f0f0__S": null,
-      "#f3f0f0__M": null,
-      "#f3f0f0__L": 1
+      "blanco__S": null,
+      "blanco__M": null,
+      "blanco__L": 1
     },
     "stockTalles": {
       "S": 1,
