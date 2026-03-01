@@ -573,21 +573,11 @@
 </div>
 
 <script>
-const CART_KEY='bc_cart', MP_LINK='https://link.mercadopago.com.ar/baraandco', WA_NUMBER='5493525614281', ENVIO_GRATIS=80000;
-let modoEnvio='envio', metodoPago='mp', posnetTarjeta='cordobesa';
-
-/* Google Forms — INSTRUCCIONES:
-   1. Crear Google Form con campos: nombre, email, telefono, items, total, envio, pago, fecha
-   2. Publicar el form y copiar la URL de acción (termina en /formResponse)
-   3. Reemplazar FORM_ID y los entry.XXXXXXXX con los valores reales del form
-      (se ven haciendo clic derecho > inspeccionar en los campos del form publicado)
-*/
-const GFORM={
-  action:'https://docs.google.com/forms/d/e/REEMPLAZAR_FORM_ID/formResponse',
-  f:{nombre:'entry.000000001',email:'entry.000000002',telefono:'entry.000000003',
-     items:'entry.000000004',total:'entry.000000005',envio:'entry.000000006',
-     pago:'entry.000000007',fecha:'entry.000000008'}
-};
+const CART_KEY    = 'bc_cart';
+const BACKEND_URL = 'https://bara-backend.onrender.com';
+const WA_NUMBER   = '5493525614281';
+const ENVIO_GRATIS = 80000;
+let modoEnvio = 'envio', metodoPago = 'mp', posnetTarjeta = 'cordobesa';
 
 const fmt=n=>'$'+Number(n).toLocaleString('es-AR');
 function getCart(){try{return JSON.parse(localStorage.getItem(CART_KEY))||[];}catch(e){return[];}}
@@ -718,81 +708,111 @@ function armarMsgCliente(cart,sub,nombre,envioStr){
   return encodeURIComponent(`¡Hola! Quiero hacer un pedido en Bara & Co 🛍️\n\n👤 *${nombre}*\n\n*Productos:*\n${items}\n\n💰 *Total: ${fmt(sub)}*\n📦 *Envío:* ${envioStr}\n💳 *Pago:* ${ml[metodoPago]||metodoPago}`);
 }
 
-function notificarLocal(cart,sub,nombre,envioStr,email,tel){
-  const tl={cordobesa:'T. Cordobesa','naranja-card':'Naranja',tacataca:'Taca Taca',visa:'Visa',master:'Mastercard'};
-  const ml={mp:'MercadoPago',naranja:'Naranja X (transfer)',transfer:'Transferencia',posnet:'Posnet · '+(tl[posnetTarjeta]||posnetTarjeta),cash:'Efectivo',wa:'Por coordinar'};
-  const items=cart.map(i=>`• ${i.nombre}${i.talle?' ('+i.talle+')':''}${i.color?' · '+i.color:''} ×${i.qty||1} — ${fmt(i.precio*(i.qty||1))}`).join('\n');
-  const msg=encodeURIComponent(`🔔 *NUEVO PEDIDO — Bara & Co*\n\n👤 *${nombre}*\n📧 ${email}`+(tel?`\n📱 ${tel}`:'')+`\n\n*Productos:*\n${items}\n\n💰 *Total: ${fmt(sub)}*\n📦 *Envío:* ${envioStr}\n💳 *Pago:* ${ml[metodoPago]||metodoPago}\n\n_${new Date().toLocaleString('es-AR')}_`);
-  window.open(`https://wa.me/${WA_NUMBER}?text=${msg}`,'_blank');
-}
-
-function registrarGForm(pedido){
-  if(GFORM.action.includes('REEMPLAZAR'))return;
-  try{
-    const body=new FormData();
-    const res=pedido.items.map(i=>`${i.nombre}${i.talle?' ('+i.talle+')':''} x${i.qty||1}`).join(' | ');
-    body.append(GFORM.f.nombre,pedido.nombre);body.append(GFORM.f.email,pedido.email);
-    body.append(GFORM.f.telefono,pedido.telefono||'-');body.append(GFORM.f.items,res);
-    body.append(GFORM.f.total,fmt(pedido.total));body.append(GFORM.f.envio,pedido.modoEnvio);
-    body.append(GFORM.f.pago,pedido.metodoPago+(pedido.posnetTarjeta?' · '+pedido.posnetTarjeta:''));
-    body.append(GFORM.f.fecha,pedido.fecha);
-    fetch(GFORM.action,{method:'POST',mode:'no-cors',body});
-  }catch(e){}
-}
-
 function btnLoading(sel){const b=document.querySelector(sel);if(b){b.classList.add('loading');b.disabled=true;}return b;}
+function btnReset(sel){const b=document.querySelector(sel);if(b){b.classList.remove('loading');b.disabled=false;}}
 
-function pagar(metodo){
-  if(!validarForm()){document.getElementById('nombre').scrollIntoView({behavior:'smooth',block:'center'});return;}
-  const cart=getCart();
-  const sub=cart.reduce((a,i)=>a+i.precio*(i.qty||1),0);
-  const nombre=document.getElementById('nombre').value.trim();
-  const email=document.getElementById('email').value.trim();
-  const tel=document.getElementById('telefono').value.trim();
-  const esRetiro=modoEnvio==='retiro';
-  const envioStr=esRetiro
-    ?'Retiro en local — Ing. Olmos 139, Jesús María'
-    :[document.getElementById('direccion').value.trim(),document.getElementById('ciudad').value.trim(),document.getElementById('provincia').value.trim(),document.getElementById('cp').value.trim()].filter(Boolean).join(', ');
-  const pedido={nombre,email,telefono:tel,modoEnvio,metodoPago,posnetTarjeta,envio:envioStr,total:sub,items:cart,fecha:new Date().toISOString()};
-  localStorage.setItem('bc_pedido',JSON.stringify(pedido));
-  localStorage.setItem('bc_nombre_cliente',nombre);
-  registrarGForm(pedido);
+/* ══════════════════════════════════════════
+   PAGAR — llama al backend para todo
+══════════════════════════════════════════ */
+async function pagar(metodo) {
+  if (!validarForm()) {
+    document.getElementById('nombre').scrollIntoView({behavior:'smooth',block:'center'});
+    return;
+  }
 
-  if(metodo==='wa'){window.open(`https://wa.me/${WA_NUMBER}?text=${armarMsgCliente(cart,sub,nombre,envioStr)}`,'_blank');return;}
+  const cart   = getCart();
+  const sub    = cart.reduce((a,i) => a + i.precio*(i.qty||1), 0);
+  const nombre = document.getElementById('nombre').value.trim();
+  const email  = document.getElementById('email').value.trim();
+  const tel    = document.getElementById('telefono').value.trim();
+  const esRetiro = modoEnvio === 'retiro';
+  const envioStr = esRetiro
+    ? 'Retiro en local — Ing. Olmos 139, Jesús María'
+    : [document.getElementById('direccion').value.trim(),
+       document.getElementById('ciudad').value.trim(),
+       document.getElementById('provincia').value.trim(),
+       document.getElementById('cp').value.trim()
+      ].filter(Boolean).join(', ');
 
-  if(metodo==='mp'){
-    localStorage.removeItem(CART_KEY);
-    btnLoading('#btnMp');
-    setTimeout(()=>notificarLocal(cart,sub,nombre,envioStr,email,tel),100);
-    setTimeout(()=>{window.location.href=MP_LINK;},900);return;
+  // WhatsApp directo — no necesita backend
+  if (metodo === 'wa') {
+    window.open(`https://wa.me/${WA_NUMBER}?text=${armarMsgCliente(cart,sub,nombre,envioStr)}`, '_blank');
+    return;
   }
-  if(metodo==='naranja'){
+
+  // Selector de botón según método
+  const btnSelectors = {
+    mp:       '#btnMp',
+    naranja:  '#panelNaranja .btn-primary',
+    transfer: '#panelTransfer .btn-primary',
+    posnet:   '#panelPosnet .btn-primary',
+    cash:     '#panelCash .btn-primary',
+  };
+  const btnSel = btnSelectors[metodo];
+  btnLoading(btnSel);
+
+  try {
+    // ── Llamar al backend ──────────────────────
+    const res = await fetch(`${BACKEND_URL}/api/crear-pedido`, {
+      method:  'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        nombre, email, telefono: tel,
+        items: cart, total: sub,
+        envio: envioStr, modoEnvio,
+        metodoPago: metodo, posnetTarjeta,
+      })
+    });
+
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(err.error || `Error del servidor (${res.status})`);
+    }
+
+    const data = await res.json();
+
+    // Guardar pedido localmente
+    localStorage.setItem('bc_pedido_id', data.pedidoId);
+    localStorage.setItem('bc_nombre_cliente', nombre);
+
+    // ── MercadoPago → redirigir al checkout de MP ──
+    if (metodo === 'mp') {
+      localStorage.removeItem(CART_KEY);
+      // Usar sandbox en desarrollo, init_point en producción
+      const mpUrl = data.initPoint || data.sandbox;
+      if (!mpUrl) throw new Error('No se recibió el link de MercadoPago. ¿Está configurado el Access Token?');
+      window.location.href = mpUrl;
+      return;
+    }
+
+    // ── Otros métodos: abrir WA al cliente + notif local ──
     localStorage.removeItem(CART_KEY);
-    btnLoading('#panelNaranja .btn-primary');
-    const mc=armarMsgCliente(cart,sub,nombre,envioStr)+encodeURIComponent('\n\n_Te adjunto el comprobante de Naranja X 🍊_');
-    setTimeout(()=>window.open(`https://wa.me/${WA_NUMBER}?text=${mc}`,'_blank'),100);
-    setTimeout(()=>notificarLocal(cart,sub,nombre,envioStr,email,tel),400);
-    setTimeout(()=>{window.location.href='success.html';},1000);return;
-  }
-  if(metodo==='transfer'){
-    localStorage.removeItem(CART_KEY);
-    btnLoading('#panelTransfer .btn-primary');
-    const mc=armarMsgCliente(cart,sub,nombre,envioStr)+encodeURIComponent('\n\n_Te envío el comprobante de transferencia 📎_');
-    setTimeout(()=>window.open(`https://wa.me/${WA_NUMBER}?text=${mc}`,'_blank'),100);
-    setTimeout(()=>notificarLocal(cart,sub,nombre,envioStr,email,tel),400);
-    setTimeout(()=>{window.location.href='success.html';},1000);return;
-  }
-  if(metodo==='posnet'){
-    localStorage.removeItem(CART_KEY);
-    btnLoading('#panelPosnet .btn-primary');
-    setTimeout(()=>notificarLocal(cart,sub,nombre,envioStr,email,tel),100);
-    setTimeout(()=>{window.location.href='success.html';},900);return;
-  }
-  if(metodo==='cash'){
-    localStorage.removeItem(CART_KEY);
-    btnLoading('#panelCash .btn-primary');
-    setTimeout(()=>notificarLocal(cart,sub,nombre,envioStr,email,tel),100);
-    setTimeout(()=>{window.location.href='success.html';},900);return;
+
+    // Abrir WA al cliente con el resumen
+    const sufijos = {
+      naranja:  '\n\n_Te adjunto el comprobante de Naranja X 🍊_',
+      transfer: '\n\n_Te envío el comprobante de transferencia 📎_',
+      posnet:   '',
+      cash:     '',
+    };
+    if (metodo === 'naranja' || metodo === 'transfer') {
+      const msgCliente = armarMsgCliente(cart,sub,nombre,envioStr)
+        + encodeURIComponent(sufijos[metodo]);
+      window.open(`https://wa.me/${WA_NUMBER}?text=${msgCliente}`, '_blank');
+    }
+
+    // Abrir WA al local (URL generada por el backend)
+    if (data.waNotifUrl) {
+      setTimeout(() => window.open(data.waNotifUrl, '_blank'), 400);
+    }
+
+    // Redirigir a success
+    setTimeout(() => { window.location.href = 'success.html?pedido=' + data.pedidoId; }, 900);
+
+  } catch(err) {
+    console.error('Error al procesar pago:', err);
+    btnReset(btnSel);
+    toast('⚠️ ' + (err.message || 'Error al conectar con el servidor. Intentá de nuevo.'));
   }
 }
 </script>
