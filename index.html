@@ -192,7 +192,9 @@
     .hero-half {
       position:absolute; top:0; width:50%; height:100%;
       overflow:hidden; will-change:transform; z-index:2;
-      background:transparent; transition:transform 0.1s linear;
+      background:transparent;
+      /* Sin transition: el JS anima frame a frame con rAF, cualquier
+         transition CSS genera un lag que hace que el efecto "ventana" se vea trabado */
     }
     .hero-half-left  { left:0; }
     .hero-half-right { right:0; }
@@ -201,9 +203,10 @@
       position:absolute; top:50%; left:50%; width:100%; height:100%;
       object-fit:cover; object-position:center 20%;
       transform:translate(-50%,-50%) scale(1.05);
-      transition:transform 0.1s linear; will-change:transform; z-index:1;
+      /* Sin transition en la imagen tampoco: el JS controla cada frame */
+      will-change:transform; z-index:1;
     }
-    .hero-half:hover img { transform:translate(-50%,-50%) scale(1.0); }
+    /* hover: solo oscurecer la imagen, NO tocar el transform (lo controla JS) */
     .hero-half::before {
       content:''; position:absolute; inset:0; z-index:3;
       background:rgba(0,0,0,.38); transition:background .6s;
@@ -560,8 +563,27 @@
     .pay-mp:hover { background:#0083c7; transform:translateY(-1px); }
     .pay-wa { background:rgba(37,211,102,.1); border:1px solid rgba(37,211,102,.25); color:#25d366; }
     .pay-wa:hover { background:rgba(37,211,102,.18); }
+    /* Taca Taca */
+    .pay-taca { background:rgba(12,117,183,.12); border:1px solid rgba(12,117,183,.3); color:#3baee2; }
+    .pay-taca:hover { background:rgba(12,117,183,.22); border-color:#3baee2; }
+    /* Tarjeta Naranja */
+    .pay-naranja { background:rgba(255,102,0,.1); border:1px solid rgba(255,102,0,.28); color:#ff7a2e; }
+    .pay-naranja:hover { background:rgba(255,102,0,.18); border-color:#ff6600; }
+    /* Separador de métodos */
+    .pay-separator { display:flex; align-items:center; gap:8px; font-size:10px; color:var(--muted); letter-spacing:.1em; text-transform:uppercase; margin:4px 0 2px; }
+    .pay-separator::before, .pay-separator::after { content:''; flex:1; height:1px; background:rgba(255,255,255,.06); }
+    /* Logos en carrito */
+    .pay-logos { display:flex; align-items:center; justify-content:center; gap:12px; margin-top:10px; flex-wrap:wrap; }
+    .pay-logo-chip { display:inline-flex; align-items:center; gap:5px; padding:4px 10px; border:1px solid rgba(255,255,255,.07); border-radius:20px; font-size:10px; color:var(--muted); background:rgba(255,255,255,.03); }
+    .pay-logo-chip svg { flex-shrink:0; }
     .pay-note { text-align:center; font-size:11px; color:var(--muted); display:flex; align-items:center; justify-content:center; gap:5px; }
     .pay-note i { color:#4db87a; }
+    /* Métodos en footer */
+    .footer-pay-section { margin-top:20px; }
+    .footer-pay-title { font-size:9px; letter-spacing:.2em; text-transform:uppercase; color:var(--muted); margin-bottom:10px; }
+    .footer-pay-logos { display:flex; flex-wrap:wrap; gap:8px; }
+    .footer-pay-chip { display:inline-flex; align-items:center; gap:6px; padding:5px 10px; border:1px solid rgba(255,255,255,.08); border-radius:4px; font-size:10px; color:rgba(237,233,225,.4); background:rgba(255,255,255,.03); transition:border-color .2s; }
+    .footer-pay-chip:hover { border-color:rgba(201,169,110,.25); color:rgba(237,233,225,.65); }
 
     /* ── TOAST ── */
     .cart-notification {
@@ -700,8 +722,24 @@
 </nav>
 
 <!-- SHIPPING BAR -->
-<div class="shipping-bar">
-  Envíos a todo el país · Retiro en local · Ing. Olmos 139, Jesús María · Compra segura
+<div class="shipping-bar" style="display:flex;align-items:center;justify-content:center;gap:18px;flex-wrap:wrap;padding:9px 20px;">
+  <span style="white-space:nowrap;">Envíos a todo el país · Retiro en local · Jesús María</span>
+  <span style="opacity:.4;font-size:8px;">|</span>
+  <span style="display:flex;align-items:center;gap:10px;font-size:9px;letter-spacing:.15em;">
+    Aceptamos:
+    <span style="display:inline-flex;align-items:center;gap:4px;background:rgba(0,0,0,.18);padding:3px 8px;border-radius:3px;">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#0c75b7"/><text x="12" y="16" text-anchor="middle" fill="#fff" font-size="9" font-weight="bold" font-family="sans-serif">TT</text></svg>
+      Taca Taca
+    </span>
+    <span style="display:inline-flex;align-items:center;gap:4px;background:rgba(0,0,0,.18);padding:3px 8px;border-radius:3px;">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="4" fill="#ff6600"/><text x="12" y="16" text-anchor="middle" fill="#fff" font-size="7" font-weight="bold" font-family="sans-serif">N</text></svg>
+      Naranja
+    </span>
+    <span style="display:inline-flex;align-items:center;gap:4px;background:rgba(0,0,0,.18);padding:3px 8px;border-radius:3px;">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="4" fill="#009ee3"/><text x="12" y="16" text-anchor="middle" fill="#fff" font-size="7" font-weight="bold" font-family="sans-serif">MP</text></svg>
+      MercadoPago
+    </span>
+  </span>
 </div>
 
 <!-- HERO -->
@@ -852,6 +890,31 @@
   <div>
     <img src="images/logoN&D.png" alt="Bara & Co" class="footer-logo-img"/>
     <p class="footer-text">Indumentaria urbana con personalidad. Diseño y confort para tu día a día.</p>
+    <div class="footer-pay-section">
+      <p class="footer-pay-title">Medios de pago</p>
+      <div class="footer-pay-logos">
+        <span class="footer-pay-chip">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#0c75b7"/><text x="12" y="16" text-anchor="middle" fill="#fff" font-size="9" font-weight="bold" font-family="sans-serif">TT</text></svg>
+          Taca Taca
+        </span>
+        <span class="footer-pay-chip">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="4" fill="#ff6600"/><text x="12" y="16" text-anchor="middle" fill="#fff" font-size="8" font-weight="bold" font-family="sans-serif">N</text></svg>
+          Tarjeta Naranja
+        </span>
+        <span class="footer-pay-chip">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="4" fill="#009ee3"/><text x="12" y="16" text-anchor="middle" fill="#fff" font-size="7" font-weight="bold" font-family="sans-serif">MP</text></svg>
+          MercadoPago
+        </span>
+        <span class="footer-pay-chip">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="4" fill="#1a1a1a" stroke="rgba(255,255,255,.3)" stroke-width="1.5"/><text x="12" y="16" text-anchor="middle" fill="#fff" font-size="7" font-weight="bold" font-family="sans-serif">EF</text></svg>
+          Efectivo
+        </span>
+        <span class="footer-pay-chip">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="4" fill="#2c3e50"/><text x="12" y="16" text-anchor="middle" fill="#fff" font-size="6.5" font-weight="bold" font-family="sans-serif">TRF</text></svg>
+          Transferencia
+        </span>
+      </div>
+    </div>
     <div class="social-icons">
       <i class="fab fa-instagram" onclick="window.open('https://instagram.com/bara.and.co','_blank')" title="Instagram"></i>
       <i class="fab fa-facebook-f" title="Facebook"></i>
@@ -942,6 +1005,168 @@
 <script src="js/carrito-ui.js"></script>
 <script src="js/search.js"></script>
 
+<!-- ── INYECCIÓN DE MÉTODOS DE PAGO TACA TACA + NARANJA ── -->
+<script>
+(function() {
+  // Espera a que el carrito-ui inyecte el panel en el DOM
+  function inyectarBotonesPago() {
+    const footer = document.querySelector('.cart-footer');
+    if (!footer) return;
+
+    // Evitar doble inyección
+    if (footer.querySelector('.pay-taca')) return;
+
+    // Buscar la sección de botones existente
+    const btnsWrap = footer.querySelector('.cart-checkout-btns');
+    if (!btnsWrap) return;
+
+    // Agregar separador + nuevos botones
+    const separador = document.createElement('div');
+    separador.className = 'pay-separator';
+    separador.textContent = 'Más formas de pago';
+
+    const btnTaca = document.createElement('button');
+    btnTaca.className = 'pay-btn pay-taca';
+    btnTaca.innerHTML = `
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" style="flex-shrink:0">
+        <circle cx="12" cy="12" r="11" fill="#0c75b7"/>
+        <text x="12" y="16" text-anchor="middle" fill="#fff" font-size="9" font-weight="bold" font-family="sans-serif">TT</text>
+      </svg>
+      Pagar con Taca Taca
+    `;
+    btnTaca.onclick = function() {
+      const total = calcularTotal();
+      const productos = obtenerItemsTexto();
+      const msg = encodeURIComponent(
+        '¡Hola! Quiero pagar con Taca Taca 🛍️
+
+' +
+        productos + '
+' +
+        '💰 Total: $' + total.toLocaleString('es-AR') + '
+
+' +
+        '¿Me indicás los datos para el pago con Taca Taca?'
+      );
+      window.open('https://wa.me/5493525614281?text=' + msg, '_blank');
+    };
+
+    const btnNaranja = document.createElement('button');
+    btnNaranja.className = 'pay-btn pay-naranja';
+    btnNaranja.innerHTML = `
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" style="flex-shrink:0">
+        <rect width="24" height="24" rx="4" fill="#ff6600"/>
+        <text x="12" y="16" text-anchor="middle" fill="#fff" font-size="8" font-weight="bold" font-family="sans-serif">N</text>
+      </svg>
+      Pagar con Tarjeta Naranja
+    `;
+    btnNaranja.onclick = function() {
+      const total = calcularTotal();
+      const productos = obtenerItemsTexto();
+      const msg = encodeURIComponent(
+        '¡Hola! Quiero pagar con Tarjeta Naranja 🛍️
+
+' +
+        productos + '
+' +
+        '💰 Total: $' + total.toLocaleString('es-AR') + '
+
+' +
+        '¿Me indicás los datos para el pago con Tarjeta Naranja?'
+      );
+      window.open('https://wa.me/5493525614281?text=' + msg, '_blank');
+    };
+
+    // Logos de medios aceptados
+    const logosWrap = document.createElement('div');
+    logosWrap.className = 'pay-logos';
+    logosWrap.innerHTML = `
+      <span class="pay-logo-chip" title="Taca Taca">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#0c75b7"/><text x="12" y="16" text-anchor="middle" fill="#fff" font-size="9" font-weight="bold" font-family="sans-serif">TT</text></svg>
+        Taca Taca
+      </span>
+      <span class="pay-logo-chip" title="Tarjeta Naranja">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="4" fill="#ff6600"/><text x="12" y="16" text-anchor="middle" fill="#fff" font-size="8" font-weight="bold" font-family="sans-serif">N</text></svg>
+        Naranja
+      </span>
+      <span class="pay-logo-chip" title="MercadoPago">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="4" fill="#009ee3"/><text x="12" y="16" text-anchor="middle" fill="#fff" font-size="7" font-weight="bold" font-family="sans-serif">MP</text></svg>
+        MercadoPago
+      </span>
+      <span class="pay-logo-chip" title="WhatsApp">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#25d366"/><text x="12" y="16" text-anchor="middle" fill="#fff" font-size="8" font-weight="bold" font-family="sans-serif">W</text></svg>
+        WhatsApp
+      </span>
+    `;
+
+    btnsWrap.appendChild(separador);
+    btnsWrap.appendChild(btnTaca);
+    btnsWrap.appendChild(btnNaranja);
+
+    // Insertar logos DESPUÉS del note
+    const note = footer.querySelector('.pay-note');
+    if (note) note.after(logosWrap);
+    else footer.appendChild(logosWrap);
+  }
+
+  // Helpers para calcular total y armar texto del pedido
+  function calcularTotal() {
+    // Intentar leer desde el DOM del carrito
+    const subtotalEl = document.querySelector('.subtotal span:last-child');
+    if (subtotalEl) {
+      const txt = subtotalEl.textContent.replace(/[^\d]/g, '');
+      if (txt) return parseInt(txt);
+    }
+    // Fallback: leer del localStorage/carrito
+    try {
+      const cart = JSON.parse(localStorage.getItem('bc_cart') || '[]');
+      return cart.reduce((s, i) => s + (i.precio * (i.cantidad || 1)), 0);
+    } catch(e) { return 0; }
+  }
+
+  function obtenerItemsTexto() {
+    try {
+      const cart = JSON.parse(localStorage.getItem('bc_cart') || '[]');
+      if (!cart.length) return '(sin productos)';
+      return cart.map(i =>
+        `• ${i.nombre}${i.talle ? ' - Talle ' + i.talle : ''}${i.color ? ' - ' + i.color : ''} x${i.cantidad || 1} → $${((i.precio || 0) * (i.cantidad || 1)).toLocaleString('es-AR')}`
+      ).join('
+');
+    } catch(e) { return '(ver productos en carrito)'; }
+  }
+
+  // Observer para cuando carrito-ui.js inyecte el DOM
+  var observer = new MutationObserver(function(mutations) {
+    for (var m of mutations) {
+      for (var n of m.addedNodes) {
+        if (n.nodeType === 1) {
+          if (n.classList && n.classList.contains('cart-panel')) {
+            setTimeout(inyectarBotonesPago, 100);
+          }
+          // Si el panel ya existía y se modifica su footer
+          var fp = n.querySelector && n.querySelector('.cart-footer');
+          if (fp) setTimeout(inyectarBotonesPago, 100);
+        }
+      }
+    }
+    // También intentar en cada cambio por si el panel ya existe
+    setTimeout(function() {
+      if (document.querySelector('.cart-footer') && !document.querySelector('.pay-taca')) {
+        inyectarBotonesPago();
+      }
+    }, 200);
+  });
+
+  observer.observe(document.body, { childList: true, subtree: true });
+
+  // Intento directo después de que cargue todo
+  window.addEventListener('load', function() {
+    setTimeout(inyectarBotonesPago, 500);
+    setTimeout(inyectarBotonesPago, 1500); // reintento
+  });
+})();
+</script>
+
 <script>
 // ── HEADER SCROLL + ANN BAR SYNC ──
 window.addEventListener('scroll', function() {
@@ -962,44 +1187,82 @@ window.addEventListener('scroll', function() {
   const sh = document.getElementById('scrollHint');
   if (!pl || !pr) return;
 
-  // Asegurar estado inicial visible
-  pl.style.transform = 'translateX(0%)';
-  pr.style.transform = 'translateX(0%)';
+  const imgL = pl.querySelector('img');
+  const imgR = pr.querySelector('img');
 
-  let ticking = false;
-  function update() {
-    const s = window.scrollY, h = window.innerHeight;
-    const prog = Math.min(s / (h * .8), 1);
-    pl.style.transform = `translateX(-${prog * 85}%)`;
-    pr.style.transform = `translateX(${prog * 85}%)`;
-    const imgL = pl.querySelector('img'), imgR = pr.querySelector('img');
-    if (imgL) imgL.style.transform = `translate(-50%,calc(-50% + ${prog*30}px)) scale(1.05)`;
-    if (imgR) imgR.style.transform = `translate(-50%,calc(-50% + ${prog*30}px)) scale(1.05)`;
-    if (hc) hc.style.opacity = Math.max(0, 1 - prog * 1.5);
-    if (sh) sh.style.opacity = Math.max(0, 1 - prog * 2);
-    ticking = false;
+  // Lerp: suaviza el movimiento entre frames sin que el CSS compita con JS
+  const LERP  = 0.10;   // 0 = sin movimiento, 1 = instantáneo
+  const SPLIT = 85;     // % máximo de apertura de cada mitad
+  const DRIFT = 28;     // px de parallax vertical de la imagen interna
+
+  let current = 0;
+  let target  = 0;
+  let rafId   = null;
+  let scrolling = false;
+
+  function calcTarget() {
+    return Math.min(window.scrollY / (window.innerHeight * 0.75), 1);
+  }
+
+  function applyProg(p) {
+    pl.style.transform = 'translateX(-' + (p * SPLIT) + '%)';
+    pr.style.transform = 'translateX(' + (p * SPLIT) + '%)';
+    if (imgL) imgL.style.transform = 'translate(-50%, calc(-50% + ' + (p * DRIFT) + 'px)) scale(1.06)';
+    if (imgR) imgR.style.transform = 'translate(-50%, calc(-50% + ' + (p * DRIFT) + 'px)) scale(1.06)';
+    if (hc) hc.style.opacity = Math.max(0, 1 - p * 1.6).toFixed(3);
+    if (sh) sh.style.opacity = Math.max(0, 1 - p * 2.5).toFixed(3);
+  }
+
+  function loop() {
+    target = calcTarget();
+    var diff = target - current;
+    if (Math.abs(diff) > 0.0005) {
+      current += diff * LERP;
+    } else {
+      current = target;
+    }
+    applyProg(current);
+    if (Math.abs(diff) > 0.0005 || scrolling) {
+      rafId = requestAnimationFrame(loop);
+    } else {
+      rafId = null;
+    }
+  }
+
+  function startLoop() {
+    if (!rafId) rafId = requestAnimationFrame(loop);
   }
 
   window.addEventListener('scroll', function() {
-    if (!ticking) { requestAnimationFrame(update); ticking = true; }
+    scrolling = true;
+    startLoop();
+    clearTimeout(window._heroScrollTimer);
+    window._heroScrollTimer = setTimeout(function() { scrolling = false; }, 150);
   }, { passive: true });
-  window.addEventListener('resize', update);
 
-  // Ejecutar update cuando el preloader termina
+  window.addEventListener('resize', function() {
+    target = calcTarget();
+    applyProg(current);
+  });
+
+  // Cuando el preloader cierra, aplicar estado real sin animar
   var preloader = document.getElementById('preloader');
   if (preloader) {
-    var obs = new MutationObserver(function(mutations) {
-      mutations.forEach(function(m) {
-        if (preloader.style.display === 'none' || preloader.style.visibility === 'hidden') {
-          update();
-          obs.disconnect();
-        }
-      });
+    var obs = new MutationObserver(function() {
+      if (preloader.style.display === 'none' || preloader.style.visibility === 'hidden') {
+        obs.disconnect();
+        target = calcTarget();
+        current = target;
+        applyProg(current);
+      }
     });
     obs.observe(preloader, { attributes: true, attributeFilter: ['style'] });
   }
 
-  update();
+  // Estado inicial (por si la página carga con scroll > 0)
+  target = calcTarget();
+  current = target;
+  applyProg(current);
 })();
 
 // ── MOBILE MENU ──
