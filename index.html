@@ -721,7 +721,7 @@
   <div class="hero-divider"></div>
   <div class="hero-center" id="heroContent">
     <p class="hero-pre">New Collection 2026</p>
-    <h1 class="hero-h1">Bara <em>&amp; Co</em></h1>
+    <img src="images/LogoB&D.png" alt="Bara & Co" class="hero-h1" style="height:clamp(60px,10vw,130px);width:auto;object-fit:contain;filter:none;"/>
     <p class="hero-sub">Esencia urbana · Confort atemporal</p>
     <a class="hero-cta" href="tienda.html">Descubrir colección <i class="fas fa-arrow-right"></i></a>
   </div>
@@ -826,7 +826,7 @@
 </section>
 
 <!-- OUTLET SECTION -->
-<section id="outletSection" style="display:none">
+<section id="outletSection">
   <div class="outlet-banner">
     <div class="outlet-banner-left">
       <div class="outlet-tag"><i class="fas fa-tag" style="font-size:9px;"></i> Outlet &amp; Sale</div>
@@ -912,7 +912,7 @@
 </div>
 
 <!-- PRELOADER JS -->
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 (function() {
   var DURACION = 1500;
   var saliendo = false;
@@ -1060,8 +1060,10 @@ async function cargarOutlet() {
     const r = await fetch('productos.json?t=' + Date.now());
     if (!r.ok) return;
     const todos = await r.json();
-    const items = todos.filter(p => p.activo !== false && (p.outlet || p.precioAnterior));
-    if (!items.length) return;
+    const activos = todos.filter(p => p.activo !== false);
+    const items = activos.filter(p => p.outlet || p.precioAnterior);
+    const sorted_items = items.length ? items : activos.slice(0, 4);
+    if (!sorted_items.length) return;
 
     section.style.display = 'block';
     mostrarAnnBar();
@@ -1072,10 +1074,10 @@ async function cargarOutlet() {
       const maxD = items.reduce((m,p) => { if (!p.precioAnterior) return m; const d=Math.round((1-p.precio/p.precioAnterior)*100); return d>m?d:m; }, 0);
       const elD = document.getElementById('statDescuento'), elP = document.getElementById('statProductos');
       if (elD) elD.textContent = maxD > 0 ? maxD+'%' : 'OFF';
-      if (elP) elP.textContent = items.length;
+      if (elP) elP.textContent = sorted_items.length;
     }
 
-    const sorted = [...items.filter(p=>p.outlet), ...items.filter(p=>!p.outlet&&p.precioAnterior)].slice(0,4);
+    const sorted = sorted_items.slice(0,4);
     grid.innerHTML = sorted.map(p => {
       const d = p.precioAnterior ? Math.round((1-p.precio/p.precioAnterior)*100) : 0;
       return `
