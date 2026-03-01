@@ -239,8 +239,8 @@
     }
     .hero-h1 {
       font-family:'Cormorant Garamond',Georgia,serif;
-      /* Tamaño muy grande para el logo central */
-      height: clamp(120px, 20vw, 300px);
+      /* Logo aún más grande */
+      height: clamp(180px, 28vw, 450px);
       width: auto;
       max-width: 95vw;
       object-fit: contain;
@@ -334,7 +334,7 @@
     }
     .section-link:hover { color:var(--accent); border-color:var(--accent); }
 
-    /* ── PRODUCT GRID ── */
+    /* ── PRODUCT GRID (mantenemos los estilos por si acaso, aunque no se usan) ── */
     .prod-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:2px; }
     .prod-card { position:relative; overflow:hidden; background:var(--surface); cursor:pointer; opacity:0; transform:translateY(20px); }
     .prod-card.visible { animation:fadeUp .65s var(--ease) forwards; }
@@ -395,8 +395,8 @@
     }
     .cat-tile:hover .cat-tile-link { color:var(--accent); border-color:var(--accent); }
 
-    /* ── OUTLET TILE ── */
-    .cat-outlet-tile { grid-column:1/-1; position:relative; height:500px; overflow:hidden; cursor:pointer; background:#0a0a08; display:none; }
+    /* ── OUTLET TILE (eliminada la lógica de stats, pero mantenemos el estilo por si se usa) ── */
+    .cat-outlet-tile { grid-column:1/-1; position:relative; height:500px; overflow:hidden; cursor:pointer; background:#0a0a08; display:block; }
     .cat-outlet-tile::before { content:''; position:absolute; inset:0; z-index:0; background-image:radial-gradient(ellipse 80% 60% at 70% 50%,rgba(201,169,110,.06) 0%,transparent 70%); background-size:cover; }
     .cat-outlet-tile::after { content:''; position:absolute; left:72px; top:15%; bottom:15%; width:1px; background:linear-gradient(to bottom,transparent,rgba(201,169,110,.3) 30%,rgba(201,169,110,.3) 70%,transparent); z-index:1; }
     .cat-outlet-inner { position:absolute; inset:0; z-index:2; display:flex; align-items:center; padding:0 100px; gap:80px; }
@@ -427,56 +427,6 @@
     .marquee-item { display:inline-flex; align-items:center; gap:28px; padding:0 28px; font-size:10px; letter-spacing:.25em; text-transform:uppercase; color:var(--muted); flex-shrink:0; }
     .marquee-item span { color:var(--accent); font-size:14px; }
     @keyframes marqueeRoll { from{transform:translateX(0)} to{transform:translateX(-50%)} }
-
-    /* ── EDITORIAL ── */
-    .editorial { display:grid; grid-template-columns:1fr 1fr; gap:2px; background:var(--surface); }
-    .editorial-text { padding:80px 64px; display:flex; flex-direction:column; justify-content:center; }
-    .editorial-kicker { font-size:8px; letter-spacing:.35em; text-transform:uppercase; color:var(--accent); margin-bottom:24px; }
-    .editorial-title { font-family:var(--serif); font-size:clamp(36px,4vw,64px); font-weight:300; line-height:1.05; color:var(--text); margin-bottom:28px; }
-    .editorial-body { font-size:14px; color:var(--muted); line-height:1.9; max-width:340px; margin-bottom:36px; }
-    .editorial-btn { display:inline-flex; align-items:center; gap:10px; align-self:flex-start; padding:13px 28px; background:var(--accent); color:var(--bg); font-size:9px; font-weight:500; letter-spacing:.22em; text-transform:uppercase; border:none; cursor:pointer; transition:background .25s; }
-    .editorial-btn:hover { background:var(--adk); }
-    .editorial-image { aspect-ratio:1; overflow:hidden; }
-    .editorial-image img { width:100%; height:100%; object-fit:cover; transition:transform 1s var(--ease); }
-    .editorial:hover .editorial-image img { transform:scale(1.03); }
-
-    /* ── ACCESORIOS ── */
-    .acc-strip { display:grid; grid-template-columns:repeat(4,1fr); gap:2px; }
-    .acc-tile { position:relative; aspect-ratio:1; overflow:hidden; cursor:pointer; background:var(--surface); }
-    .acc-tile img { width:100%; height:100%; object-fit:cover; transition:transform .8s var(--ease); }
-    .acc-tile:hover img { transform:scale(1.06); }
-    .acc-tile-info { position:absolute; bottom:0; left:0; right:0; padding:20px 18px; background:linear-gradient(to top,rgba(0,0,0,.75) 0%,transparent 100%); }
-    .acc-tile-name  { font-family:var(--serif); font-size:15px; font-weight:400; color:var(--white); }
-    .acc-tile-price { font-size:12px; color:var(--accent); margin-top:3px; }
-
-    /* ── TESTIMONIOS ── */
-    .testimonios { padding:80px 52px; background:var(--surface); border-top:1px solid var(--border); }
-    .testimonios .section-header { margin-bottom:48px; }
-    .testi-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:2px; }
-    .testi-card { background:rgba(255,255,255,.02); border:1px solid var(--border); padding:28px 24px; display:flex; flex-direction:column; gap:14px; transition:border-color .25s; }
-    .testi-card:hover { border-color:rgba(201,169,110,.4); }
-    .testi-stars { color:var(--accent); font-size:12px; letter-spacing:2px; }
-    .testi-text { font-size:13px; line-height:1.8; color:var(--text); font-style:italic; flex:1; }
-    .testi-author { font-size:11px; color:var(--muted); padding-top:12px; border-top:1px solid var(--border); }
-    .testi-product { font-size:10px; color:var(--accent); margin-top:4px; letter-spacing:.05em; }
-
-    /* ── OUTLET SECTION ── */
-    #outletSection { background:var(--surface); border-top:1px solid var(--border); }
-    .outlet-banner { display:flex; align-items:center; justify-content:space-between; gap:24px; padding:32px 52px; border-bottom:1px solid rgba(201,169,110,.08); flex-wrap:wrap; }
-    .outlet-banner-left { display:flex; align-items:center; gap:22px; }
-    .outlet-tag { display:inline-flex; align-items:center; gap:7px; padding:7px 16px; border:1px solid rgba(201,169,110,.25); font-size:8px; font-weight:600; letter-spacing:.3em; text-transform:uppercase; color:var(--accent); white-space:nowrap; flex-shrink:0; }
-    .outlet-heading { display:flex; flex-direction:column; gap:5px; }
-    .outlet-eyebrow { font-size:8px; letter-spacing:.3em; text-transform:uppercase; color:var(--muted); }
-    .outlet-title { font-family:var(--serif); font-size:clamp(24px,3vw,38px); font-weight:300; color:var(--text); line-height:1; }
-    .outlet-title em { font-style:italic; color:var(--accent); }
-    .outlet-cta { display:inline-flex; align-items:center; gap:9px; padding:12px 26px; border:1px solid rgba(201,169,110,.25); color:rgba(201,169,110,.65); font-size:9px; font-weight:500; letter-spacing:.2em; text-transform:uppercase; transition:all .3s; white-space:nowrap; flex-shrink:0; }
-    .outlet-cta:hover { border-color:var(--accent); color:var(--accent); background:rgba(201,169,110,.04); }
-    .outlet-grid-wrap { padding:36px 52px 72px; }
-    .outlet-note { font-size:10px; letter-spacing:.12em; color:var(--muted); margin-bottom:32px; display:flex; align-items:center; gap:10px; }
-    .outlet-note::before { content:''; display:inline-block; width:22px; height:1px; background:rgba(201,169,110,.2); }
-
-    /* ── NEWSLETTER ── */
-
 
     /* ── SHIPPING BAR ── */
     .shipping-bar { margin-top:80px; background:var(--accent); color:var(--bg); text-align:center; font-size:10px; font-weight:500; letter-spacing:.22em; text-transform:uppercase; padding:11px; position:relative; }
@@ -715,7 +665,7 @@
   <div class="hero-background">
     <img src="images/fondo-hero.webp" alt="Fondo Bara & Co" loading="eager">
   </div>
-  <!-- Eliminados los onclick inline, ahora se manejan con event listeners en JS -->
+  <!-- Mitades con event listeners en JS -->
   <div class="hero-half hero-half-left" id="panelLeft" role="link" aria-label="Ver colección Mujer" tabindex="0">
     <div class="hero-image-wrapper">
       <img src="images/modeloportizq-_1_.webp" alt="Mujer" loading="eager"/>
@@ -731,7 +681,7 @@
   <div class="hero-divider"></div>
   <div class="hero-center" id="heroContent">
     <p class="hero-pre">New Collection 2026</p>
-    <!-- Logo mucho más grande -->
+    <!-- Logo enorme -->
     <img src="images/LogoB&D.png" alt="Bara & Co" class="hero-h1">
     <p class="hero-sub">Esencia urbana · Confort atemporal</p>
     <a class="hero-cta" href="tienda.html">Descubrir colección <i class="fas fa-arrow-right"></i></a>
@@ -788,7 +738,7 @@
       <span class="cat-tile-link">Ver todo <i class="fas fa-arrow-right"></i></span>
     </div>
   </div>
-  <!-- OUTLET TILE -->
+  <!-- OUTLET TILE (se mantiene pero sin stats dinámicos) -->
   <div class="cat-outlet-tile" onclick="location.href='tienda.html?categoria=outlet'" id="outletTile">
     <div class="cat-outlet-inner">
       <div class="cat-outlet-deco">
@@ -822,37 +772,7 @@
   </div>
 </div>
 
-<!-- DESTACADOS -->
-<section class="section" id="featured">
-  <div class="section-header">
-    <div>
-      <p class="section-eyebrow">Lo más nuevo</p>
-      <h2 class="section-title">Novedades <em>2026</em></h2>
-    </div>
-    <a class="section-link" href="tienda.html">Ver todos <i class="fas fa-arrow-right"></i></a>
-  </div>
-  <div class="prod-grid" id="productosDestacados">
-    <!-- cargado dinámicamente -->
-  </div>
-</section>
-
-<!-- OUTLET SECTION -->
-<section id="outletSection">
-  <div class="outlet-banner">
-    <div class="outlet-banner-left">
-      <div class="outlet-tag"><i class="fas fa-tag" style="font-size:9px;"></i> Outlet &amp; Sale</div>
-      <div class="outlet-heading">
-        <p class="outlet-eyebrow">Últimas unidades · Precios especiales</p>
-        <h2 class="outlet-title">Oportunidades <em>de temporada</em></h2>
-      </div>
-    </div>
-    <a class="outlet-cta" href="tienda.html?categoria=outlet">Ver todo el outlet <i class="fas fa-arrow-right"></i></a>
-  </div>
-  <div class="outlet-grid-wrap">
-    <p class="outlet-note">Stock limitado — una vez agotado no se repone</p>
-    <div class="prod-grid" id="productosOutlet"></div>
-  </div>
-</section>
+<!-- SECCIONES ELIMINADAS: Novedades y Outlet (ya no están) -->
 
 <!-- FOOTER -->
 <footer>
@@ -938,10 +858,9 @@
       pre.style.pointerEvents = 'none';
     }, 700);
   }
-  // Múltiples disparadores para garantizar que cierre
   window.addEventListener('load', function() { setTimeout(salir, DURACION); });
   document.addEventListener('DOMContentLoaded', function() { setTimeout(salir, DURACION + 500); });
-  setTimeout(salir, 2000); // fallback absoluto
+  setTimeout(salir, 2000);
 })();
 </script>
 
@@ -954,7 +873,6 @@
 window.addEventListener('scroll', function() {
   const scrolled = window.scrollY > 40;
   document.getElementById('header').classList.toggle('scrolled', scrolled);
-  // Sync ann-bar: follows header height
   const annBar = document.getElementById('annBar');
   if (annBar && !annBar.classList.contains('hidden')) {
     annBar.style.top = scrolled ? '68px' : '80px';
@@ -986,7 +904,7 @@ window.addEventListener('scroll', function() {
   update();
 })();
 
-// ── CLICK EN MITADES DEL HERO (solución para que funcionen los enlaces) ──
+// ── CLICK EN MITADES DEL HERO ──
 document.getElementById('panelLeft').addEventListener('click', function() {
   window.location.href = 'tienda.html?categoria=mujer';
 });
@@ -1001,11 +919,6 @@ document.getElementById('menuToggle').addEventListener('click', function() {
 });
 
 // ── ANN BAR ──
-function initAnnBar() {
-  if (sessionStorage.getItem('bc_ann_closed')) {
-    document.getElementById('annBar')?.classList.add('hidden');
-  }
-}
 function cerrarAnnBar() {
   document.getElementById('annBar')?.classList.add('hidden');
   document.body.classList.remove('ann-on');
@@ -1016,116 +929,6 @@ function mostrarAnnBar() {
   document.getElementById('annBar')?.classList.remove('hidden');
   document.body.classList.add('ann-on');
 }
-
-// ── PRODUCTOS DESTACADOS ──
-const FALLBACK = [
-  { id:'campera-jean-clasica', nombre:'Campera JEAN clásica', precio:75000, precioAnterior:null, imagen:'https://d22fxaf9t8d39k.cloudfront.net/d96714644466596d09ed9ffb84226e2b318859a866be9604788cf4154aa52650404368.jpg', categoria:'new' },
-  { id:'sastrero-rialto', nombre:'Sastrero RIALTO', precio:70000, precioAnterior:null, imagen:'hombre/Rialto.png', categoria:'new' },
-  { id:'abanico-orgullo', nombre:'Abanico ORGULLO', precio:20000, precioAnterior:null, imagen:'accesorios/AbanicoOrgullo.png', categoria:'accesorios' },
-  { id:'bermuda-real-tree', nombre:'Bermuda REAL TREE baggy', precio:45000, precioAnterior:75000, imagen:'https://d22fxaf9t8d39k.cloudfront.net/fa693e785f22af48e6822e56319cf73a27c346b8426073564ae246e592af33b9404368.jpg', categoria:'hombre' }
-];
-
-async function cargarDestacados() {
-  const grid = document.getElementById('productosDestacados');
-  if (!grid) return;
-  let prods = FALLBACK;
-  try {
-    const r = await fetch('productos.json?t=' + Date.now());
-    if (r.ok) {
-      const todos = await r.json();
-      const activos = todos.filter(p => p.activo !== false).slice(0,4);
-      if (activos.length) prods = activos;
-    }
-  } catch(e) {}
-  renderDestacados(prods, grid);
-}
-
-function renderDestacados(productos, grid) {
-  grid.innerHTML = productos.map(p => {
-    const desc = p.precioAnterior ? Math.round((1 - p.precio/p.precioAnterior)*100) : 0;
-    return `
-      <div class="prod-card visible" onclick="location.href='producto.html?id=${p.id}'">
-        <div class="prod-img">
-          ${p.categoria === 'new' ? '<span class="prod-badge badge-new">New</span>' : ''}
-          ${p.precioAnterior ? `<span class="prod-badge badge-sale">-${desc}%</span>` : ''}
-          <img src="${p.imagen}" alt="${p.nombre}" loading="lazy"/>
-          <div class="prod-overlay">
-            <button class="ov-btn ov-add" onclick="event.stopPropagation();agregarAlCarrito('${p.id}','${p.nombre}',${p.precio},'${p.imagen}')">
-              <i class="fas fa-shopping-bag"></i> Agregar
-            </button>
-            <button class="ov-btn ov-view" onclick="event.stopPropagation();location.href='producto.html?id=${p.id}'">
-              <i class="fas fa-eye"></i> Ver detalle
-            </button>
-          </div>
-        </div>
-        <div class="prod-info">
-          <p class="prod-cat">${p.categoria}</p>
-          <h3 class="prod-name">${p.nombre}</h3>
-          <p class="prod-price">${p.precioAnterior ? `<del>$${p.precioAnterior.toLocaleString('es-AR')}</del> ` : ''}$${p.precio.toLocaleString('es-AR')}</p>
-        </div>
-      </div>`;
-  }).join('');
-}
-
-// ── OUTLET ──
-async function cargarOutlet() {
-  const grid = document.getElementById('productosOutlet');
-  const section = document.getElementById('outletSection');
-  if (!grid || !section) return;
-  try {
-    const r = await fetch('productos.json?t=' + Date.now());
-    if (!r.ok) return;
-    const todos = await r.json();
-    const activos = todos.filter(p => p.activo !== false);
-    const items = activos.filter(p => p.outlet || p.precioAnterior);
-    const sorted_items = items.length ? items : activos.slice(0, 4);
-    if (!sorted_items.length) return;
-
-    section.style.display = 'block';
-    mostrarAnnBar();
-
-    const tile = document.getElementById('outletTile');
-    if (tile) {
-      tile.style.display = 'block';
-      const maxD = items.reduce((m,p) => { if (!p.precioAnterior) return m; const d=Math.round((1-p.precio/p.precioAnterior)*100); return d>m?d:m; }, 0);
-      const elD = document.getElementById('statDescuento'), elP = document.getElementById('statProductos');
-      if (elD) elD.textContent = maxD > 0 ? maxD+'%' : 'OFF';
-      if (elP) elP.textContent = sorted_items.length;
-    }
-
-    const sorted = sorted_items.slice(0,4);
-    grid.innerHTML = sorted.map(p => {
-      const d = p.precioAnterior ? Math.round((1-p.precio/p.precioAnterior)*100) : 0;
-      return `
-        <div class="prod-card visible" onclick="location.href='producto.html?id=${p.id}'">
-          <div class="prod-img">
-            ${p.outlet ? '<span class="prod-badge" style="top:14px;left:14px;background:rgba(0,0,0,.55);color:var(--accent);border:1px solid rgba(201,169,110,.3);">Outlet</span>' : ''}
-            ${p.precioAnterior ? `<span class="prod-badge badge-sale" style="${p.outlet?'top:46px;':''}">-${d}%</span>` : ''}
-            <img src="${p.imagen}" alt="${p.nombre}" loading="lazy"/>
-            <div class="prod-overlay">
-              <button class="ov-btn ov-add" onclick="event.stopPropagation();agregarAlCarrito('${p.id}','${p.nombre}',${p.precio},'${p.imagen}')">
-                <i class="fas fa-shopping-bag"></i> Agregar
-              </button>
-              <button class="ov-btn ov-view" onclick="event.stopPropagation();location.href='producto.html?id=${p.id}'">
-                <i class="fas fa-eye"></i> Ver detalle
-              </button>
-            </div>
-          </div>
-          <div class="prod-info">
-            <p class="prod-cat">${p.subcategoria||p.categoria}</p>
-            <h3 class="prod-name">${p.nombre}</h3>
-            <p class="prod-price">${p.precioAnterior ? `<del>$${p.precioAnterior.toLocaleString('es-AR')}</del> ` : ''}$${p.precio.toLocaleString('es-AR')}</p>
-          </div>
-        </div>`;
-    }).join('');
-  } catch (e) {
-    console.error('Error cargando outlet:', e);
-  }
-}
-
-// Inicializar carga de productos
-cargarDestacados();
-cargarOutlet();
 </script>
 </body>
 </html>
