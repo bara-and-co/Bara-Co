@@ -961,6 +961,11 @@ window.addEventListener('scroll', function() {
   const hc = document.getElementById('heroContent');
   const sh = document.getElementById('scrollHint');
   if (!pl || !pr) return;
+
+  // Asegurar estado inicial visible
+  pl.style.transform = 'translateX(0%)';
+  pr.style.transform = 'translateX(0%)';
+
   let ticking = false;
   function update() {
     const s = window.scrollY, h = window.innerHeight;
@@ -974,8 +979,26 @@ window.addEventListener('scroll', function() {
     if (sh) sh.style.opacity = Math.max(0, 1 - prog * 2);
     ticking = false;
   }
-  window.addEventListener('scroll', function() { if (!ticking) { requestAnimationFrame(update); ticking = true; } }, { passive: true });
+
+  window.addEventListener('scroll', function() {
+    if (!ticking) { requestAnimationFrame(update); ticking = true; }
+  }, { passive: true });
   window.addEventListener('resize', update);
+
+  // Ejecutar update cuando el preloader termina
+  var preloader = document.getElementById('preloader');
+  if (preloader) {
+    var obs = new MutationObserver(function(mutations) {
+      mutations.forEach(function(m) {
+        if (preloader.style.display === 'none' || preloader.style.visibility === 'hidden') {
+          update();
+          obs.disconnect();
+        }
+      });
+    });
+    obs.observe(preloader, { attributes: true, attributeFilter: ['style'] });
+  }
+
   update();
 })();
 
