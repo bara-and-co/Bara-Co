@@ -8,579 +8,792 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
   <style>
     :root {
-      --bg:      #0b0b09;
-      --surface: #131310;
-      --surface2:#1a1a17;
-      --border:  rgba(255,255,255,.07);
-      --border2: rgba(255,255,255,.11);
-      --text:    #ede9e1;
-      --muted:   #6b6760;
-      --muted2:  #9a9591;
-      --accent:  #c9a96e;
-      --adk:     #a07e48;
-      --red:     #c0392b;
-      --serif:   'Cormorant Garamond', Georgia, serif;
-      --sans:    'DM Sans', sans-serif;
-      --ease:    cubic-bezier(.16,1,.3,1);
+      --bg:#0b0b09; --surface:#131310; --surface2:#1a1a17;
+      --border:rgba(255,255,255,.07); --border2:rgba(255,255,255,.12);
+      --text:#ede9e1; --muted:#6b6760; --muted2:#9a9591;
+      --accent:#c9a96e; --adk:#a07e48; --green:#4db87a; --red:#c0392b;
+      --serif:'Cormorant Garamond',Georgia,serif;
+      --sans:'DM Sans',sans-serif;
+      --ease:cubic-bezier(.16,1,.3,1); --r:4px;
     }
-    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
-    html { scroll-behavior:smooth; }
-    body {
-      background:var(--bg); color:var(--text);
-      font-family:var(--sans); font-size:14px; line-height:1.6;
-      -webkit-font-smoothing:antialiased;
-      padding-top:112px; min-height:100vh;
-    }
-    a { color:inherit; text-decoration:none; }
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
+    body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:14px;line-height:1.6;-webkit-font-smoothing:antialiased;padding-top:68px;min-height:100vh;}
+    a{color:inherit;text-decoration:none;}
+    button{font-family:var(--sans);}
 
-    /* ── HEADER ──────────────────────── */
-    #header {
-      position:fixed; top:0; left:0; right:0; z-index:500;
-      height:68px; display:flex; align-items:center;
-      justify-content:space-between; padding:0 48px;
-      background:rgba(11,11,9,.97); backdrop-filter:blur(24px);
-      border-bottom:1px solid var(--border);
-    }
-    .logo-img { height:52px; width:auto; object-fit:contain; }
-    .back-link {
-      display:flex; align-items:center; gap:7px;
-      font-size:10px; font-weight:600; letter-spacing:.14em;
-      text-transform:uppercase; color:var(--muted); transition:color .25s;
-    }
-    .back-link:hover { color:var(--accent); }
-    .back-link i { font-size:9px; }
+    /* HEADER */
+    #header{position:fixed;top:0;left:0;right:0;z-index:500;height:68px;display:flex;align-items:center;justify-content:space-between;padding:0 40px;background:rgba(11,11,9,.98);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
+    .logo-img{height:48px;width:auto;object-fit:contain;}
+    .back-link{display:flex;align-items:center;gap:7px;font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);transition:color .25s;}
+    .back-link:hover{color:var(--accent);}
 
-    /* ── BARRA DE PASOS ──────────────── */
-    .steps-bar {
-      position:fixed; top:68px; left:0; right:0; z-index:400;
-      height:44px; background:var(--surface); border-bottom:1px solid var(--border);
-      display:flex; align-items:center; padding:0 48px; gap:0;
-    }
-    .step {
-      display:flex; align-items:center; gap:8px; flex-shrink:0;
-      font-size:9px; font-weight:600; letter-spacing:.16em; text-transform:uppercase;
-      color:var(--muted); padding-right:22px; position:relative;
-    }
-    .step:not(:last-child)::after {
-      content:''; position:absolute; right:8px; top:50%;
-      transform:translateY(-50%);
-      border-top:3px solid transparent;
-      border-bottom:3px solid transparent;
-      border-left:4px solid rgba(255,255,255,.12);
-    }
-    .step.done  { color:var(--accent); }
-    .step.active{ color:var(--text); }
-    .step-num {
-      width:19px; height:19px; border-radius:50%;
-      border:1.5px solid currentColor;
-      display:grid; place-items:center; font-size:8px; flex-shrink:0;
-    }
-    .step.done .step-num { background:var(--accent); border-color:var(--accent); color:var(--bg); }
+    /* PROGRESS */
+    .progress-wrap{background:var(--surface);border-bottom:1px solid var(--border);padding:0 40px;}
+    .progress-steps{max-width:1080px;margin:0 auto;display:flex;align-items:center;height:48px;}
+    .ps{display:flex;align-items:center;gap:8px;font-size:10px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);}
+    .ps+.ps::before{content:'';width:28px;height:1px;background:var(--border2);margin:0 12px;flex-shrink:0;}
+    .ps.done{color:var(--accent);}
+    .ps.active{color:var(--text);}
+    .ps-num{width:20px;height:20px;border-radius:50%;border:1.5px solid currentColor;display:grid;place-items:center;font-size:8px;flex-shrink:0;}
+    .ps.done .ps-num{background:var(--accent);border-color:var(--accent);color:var(--bg);}
 
-    /* ── PAGE ────────────────────────── */
-    .page { max-width:1080px; margin:0 auto; padding:44px 24px 100px; }
+    /* LAYOUT */
+    .page{max-width:1080px;margin:0 auto;padding:28px 24px 80px;}
+    .checkout-grid{display:grid;grid-template-columns:1fr 360px;gap:36px;align-items:start;}
 
-    /* ── ESTADO VACÍO ────────────────── */
-    .empty-wrap {
-      text-align:center; padding:90px 24px;
-    }
-    .empty-wrap i { font-size:52px; color:var(--muted); opacity:.2; display:block; margin-bottom:22px; }
-    .empty-wrap p { color:var(--muted); font-size:15px; margin-bottom:28px; }
-    .btn-explorar {
-      display:inline-flex; align-items:center; gap:9px;
-      padding:13px 30px; background:var(--accent); color:var(--bg);
-      font-size:10px; font-weight:700; letter-spacing:.14em; text-transform:uppercase;
-      transition:background .25s;
-    }
-    .btn-explorar:hover { background:var(--adk); }
+    /* SECCIONES */
+    .section{background:var(--surface);border:1px solid var(--border);margin-bottom:14px;border-radius:var(--r);overflow:hidden;}
+    .section-header{padding:16px 22px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;}
+    .section-icon{width:30px;height:30px;border-radius:50%;background:rgba(201,169,110,.1);display:grid;place-items:center;color:var(--accent);font-size:12px;flex-shrink:0;}
+    .section-title{font-family:var(--serif);font-size:18px;font-weight:400;}
+    .section-body{padding:18px 22px;}
 
-    /* ── GRID ────────────────────────── */
-    .checkout-grid {
-      display:grid; grid-template-columns:1fr 370px; gap:44px; align-items:start;
-    }
+    /* CAMPOS */
+    .row{display:grid;gap:11px;margin-bottom:11px;}
+    .row:last-child{margin-bottom:0;}
+    .row2{grid-template-columns:1fr 1fr;}
+    .row3{grid-template-columns:1fr 1fr 1fr;}
+    .fld{display:flex;flex-direction:column;gap:4px;}
+    .fld label{font-size:9px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);}
+    .fld input{background:var(--surface2);border:1.5px solid var(--border2);color:var(--text);font-family:var(--sans);font-size:14px;padding:11px 13px;transition:border-color .2s,background .2s;border-radius:var(--r);outline:none;-webkit-appearance:none;}
+    .fld input::placeholder{color:var(--muted);}
+    .fld input:focus{border-color:var(--accent);background:rgba(201,169,110,.03);}
+    .fld input.err{border-color:var(--red);}
+    .fld input[readonly]{opacity:.4;cursor:default;}
+    .err-msg{font-size:11px;color:#e07b6a;min-height:14px;display:flex;align-items:center;gap:4px;}
+    .field-hint{font-size:10px;color:var(--muted);margin-top:1px;}
 
-    /* ── SECCIONES FORM ──────────────── */
-    .fs { margin-bottom:36px; }
-    .fs-title {
-      font-family:var(--serif); font-size:21px; font-weight:400;
-      display:flex; align-items:center; gap:10px;
-      padding-bottom:14px; margin-bottom:20px; border-bottom:1px solid var(--border);
-    }
-    .fs-title i { font-size:15px; color:var(--accent); }
+    /* ENVÍO */
+    .envio-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;}
+    .envio-card{border:1.5px solid var(--border2);padding:14px 16px;cursor:pointer;transition:border-color .2s,background .2s;position:relative;user-select:none;border-radius:var(--r);}
+    .envio-card:hover{border-color:rgba(201,169,110,.4);}
+    .envio-card.sel{border-color:var(--accent);background:rgba(201,169,110,.04);}
+    .envio-card input[type=radio]{position:absolute;opacity:0;pointer-events:none;}
+    .ec-icon{font-size:20px;margin-bottom:6px;}
+    .ec-title{font-size:13px;font-weight:600;margin-bottom:2px;}
+    .ec-sub{font-size:11px;color:var(--muted);line-height:1.4;}
+    .ec-price{font-size:12px;color:var(--accent);margin-top:6px;font-weight:600;}
+    .ec-check{position:absolute;top:10px;right:10px;width:18px;height:18px;border-radius:50%;border:1.5px solid var(--border2);display:grid;place-items:center;font-size:8px;color:var(--bg);transition:all .25s;}
+    .envio-card.sel .ec-check{background:var(--accent);border-color:var(--accent);}
+    .retiro-info{background:rgba(201,169,110,.05);border-left:2px solid var(--accent);padding:11px 15px;border-radius:0 var(--r) var(--r) 0;font-size:12px;color:var(--muted2);line-height:1.7;}
+    .retiro-info strong{color:var(--text);}
 
-    .row  { display:grid; gap:12px; margin-bottom:12px; }
-    .row2 { grid-template-columns:1fr 1fr; }
+    /* MÉTODOS DE PAGO */
+    .pm-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:14px;}
+    .pm-card{border:1.5px solid var(--border2);padding:12px 13px;cursor:pointer;transition:border-color .25s,background .25s,transform .15s;position:relative;user-select:none;border-radius:var(--r);display:flex;align-items:flex-start;gap:10px;}
+    .pm-card:hover:not(.disabled-pm){border-color:rgba(201,169,110,.45);transform:translateY(-1px);}
+    .pm-card.sel{border-color:var(--accent);background:rgba(201,169,110,.05);}
+    .pm-card.disabled-pm{opacity:.32;pointer-events:none;}
+    .pm-icon{width:36px;height:36px;border-radius:8px;flex-shrink:0;display:grid;place-items:center;font-size:18px;}
+    .pm-body{flex:1;min-width:0;}
+    .pm-title{font-size:12px;font-weight:700;line-height:1.2;margin-bottom:2px;}
+    .pm-sub{font-size:10px;color:var(--muted);line-height:1.35;}
+    .pm-check{position:absolute;top:8px;right:8px;width:17px;height:17px;border-radius:50%;border:1.5px solid var(--border2);display:grid;place-items:center;font-size:8px;color:var(--bg);transition:all .25s;}
+    .pm-card.sel .pm-check{background:var(--accent);border-color:var(--accent);}
+    .pm-tag{display:inline-block;margin-top:5px;font-size:8px;font-weight:700;letter-spacing:.04em;padding:2px 7px;border-radius:20px;}
+    .pm-local-note{display:flex;align-items:center;gap:4px;margin-top:4px;font-size:9px;color:var(--muted);}
 
-    .fld { display:flex; flex-direction:column; gap:5px; }
-    .fld label {
-      font-size:9px; font-weight:600; letter-spacing:.16em;
-      text-transform:uppercase; color:var(--muted);
-    }
-    .fld input {
-      background:var(--surface2); border:1px solid var(--border2);
-      color:var(--text); font-family:var(--sans); font-size:14px;
-      padding:12px 14px; transition:border-color .25s, background .2s;
-    }
-    .fld input::placeholder { color:var(--muted); }
-    .fld input:focus { outline:none; border-color:var(--accent); background:rgba(201,169,110,.04); }
-    .fld input.err { border-color:var(--red); }
-    .fld input[readonly] { opacity:.45; cursor:default; }
-    .err-msg {
-      font-size:11px; color:#e07b6a; min-height:15px;
-      display:flex; align-items:center; gap:4px;
-    }
-    .err-msg i { font-size:9px; }
+    /* PANELES */
+    .pm-panel{display:none;animation:fadeIn .3s var(--ease);}
+    .pm-panel.active{display:block;}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(5px);}to{opacity:1;transform:none;}}
+    .pm-box{border:1px solid var(--border2);border-radius:var(--r);padding:18px 20px;margin-bottom:14px;background:var(--surface2);}
+    .pm-box-title{font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);display:flex;align-items:center;gap:7px;margin-bottom:14px;}
 
-    /* Opciones envío */
-    .envio-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:16px; }
-    .envio-card {
-      border:1.5px solid var(--border2); padding:14px 16px;
-      cursor:pointer; transition:border-color .2s, background .2s;
-      position:relative; user-select:none;
-    }
-    .envio-card:hover { border-color:rgba(201,169,110,.4); }
-    .envio-card.sel { border-color:var(--accent); background:rgba(201,169,110,.04); }
-    .envio-card input[type=radio] { position:absolute; opacity:0; pointer-events:none; }
-    .ec-title { font-size:12px; font-weight:600; margin-bottom:3px; }
-    .ec-sub   { font-size:11px; color:var(--muted); }
-    .ec-price { font-size:12px; color:var(--accent); margin-top:7px; font-weight:500; }
-    .ec-check {
-      position:absolute; top:10px; right:10px;
-      width:16px; height:16px; border-radius:50%; border:1.5px solid var(--border2);
-      display:grid; place-items:center; font-size:8px; color:var(--bg); transition:all .2s;
-    }
-    .envio-card.sel .ec-check { background:var(--accent); border-color:var(--accent); }
+    /* Naranja pasos */
+    .naranja-steps{}
+    .ns{display:flex;align-items:flex-start;gap:11px;padding:10px 0;border-bottom:1px solid var(--border);}
+    .ns:last-child{border-bottom:none;}
+    .ns-n{width:23px;height:23px;border-radius:50%;background:rgba(255,100,0,.15);color:#ff6400;font-size:11px;font-weight:700;display:grid;place-items:center;flex-shrink:0;margin-top:1px;}
+    .ns-t{font-size:13px;line-height:1.5;}
+    .ns-t strong{color:var(--text);}
+    .ns-t small{display:block;color:var(--muted);font-size:11px;}
 
-    /* Pago info */
-    .pay-info {
-      font-size:13px; color:var(--muted2); line-height:1.85; margin-bottom:16px;
-    }
-    .pay-pills { display:flex; gap:7px; flex-wrap:wrap; margin-bottom:22px; }
-    .pp {
-      font-size:9.5px; font-weight:700; padding:5px 11px; border-radius:3px; letter-spacing:.03em;
-    }
+    /* Datos bancarios */
+    .bank-row{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border);}
+    .bank-row:first-child{border-top:1px solid var(--border);}
+    .bl{font-size:9.5px;color:var(--muted);font-weight:700;letter-spacing:.08em;text-transform:uppercase;}
+    .bv{font-size:13px;font-weight:600;}
+    .btn-copy{background:none;border:1px solid var(--border2);color:var(--muted2);font-size:9px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:5px 11px;cursor:pointer;transition:all .2s;border-radius:3px;font-family:var(--sans);margin-left:10px;white-space:nowrap;}
+    .btn-copy:hover{border-color:var(--accent);color:var(--accent);}
+    .btn-copy.ok{border-color:var(--green);color:var(--green);}
+    .bank-note{margin-top:13px;font-size:12px;color:var(--muted2);line-height:1.7;background:rgba(77,184,122,.06);border-left:2px solid var(--green);padding:10px 14px;border-radius:0 var(--r) var(--r) 0;}
 
-    /* Botón pagar */
-    .btn-pay {
-      width:100%; height:52px; background:var(--accent); color:var(--bg); border:none;
-      cursor:pointer; font-family:var(--sans); font-size:11px; font-weight:700;
-      letter-spacing:.18em; text-transform:uppercase;
-      display:flex; align-items:center; justify-content:center; gap:9px;
-      transition:background .25s, transform .15s;
-    }
-    .btn-pay:hover:not(:disabled) { background:var(--adk); transform:translateY(-1px); }
-    .btn-pay:active { transform:none; }
-    .btn-pay:disabled { opacity:.5; cursor:not-allowed; }
-    .btn-pay.loading .txt { display:none; }
-    .btn-pay .spin { display:none; }
-    .btn-pay.loading .spin { display:flex; align-items:center; gap:8px; }
+    /* Posnet chips */
+    .posnet-chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px;}
+    .posnet-chip{display:flex;align-items:center;gap:8px;border:1.5px solid var(--border2);padding:8px 13px;cursor:pointer;transition:all .2s;border-radius:var(--r);user-select:none;}
+    .posnet-chip:hover{border-color:rgba(201,169,110,.5);}
+    .posnet-chip.active{border-color:var(--accent);background:rgba(201,169,110,.06);}
+    .pc-logo{width:32px;height:20px;border-radius:3px;display:grid;place-items:center;font-size:8px;font-weight:800;letter-spacing:-.3px;flex-shrink:0;}
+    .pc-name{font-size:12px;font-weight:600;}
 
-    .ssl-note {
-      text-align:center; font-size:10.5px; color:var(--muted);
-      margin-top:12px; display:flex; align-items:center; justify-content:center; gap:5px;
-    }
-    .ssl-note i { color:#4db87a; }
+    /* Efectivo y WA */
+    .cash-info, .wa-info{font-size:13px;color:var(--muted2);line-height:1.75;margin-bottom:14px;}
+    .cash-info strong, .wa-info strong{color:var(--text);}
 
-    /* ── RESUMEN ─────────────────────── */
-    .summary { background:var(--surface); border:1px solid var(--border); position:sticky; top:128px; }
-    .sum-head {
-      padding:17px 22px; border-bottom:1px solid var(--border);
-      display:flex; align-items:center; justify-content:space-between;
-      font-size:9px; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:var(--muted);
-    }
-    .sum-count {
-      background:var(--accent); color:var(--bg);
-      width:19px; height:19px; border-radius:50%;
-      display:grid; place-items:center; font-size:8.5px; font-weight:700;
-    }
-    .sum-items { padding:14px 22px; max-height:280px; overflow-y:auto; }
-    .sum-items::-webkit-scrollbar { width:3px; }
-    .sum-items::-webkit-scrollbar-thumb { background:var(--accent); border-radius:2px; }
+    /* MP pills */
+    .mp-pills{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px;}
+    .mp-pill{font-size:9px;font-weight:800;padding:4px 10px;border-radius:3px;letter-spacing:.03em;}
+    .mp-note{font-size:11px;color:var(--muted2);display:flex;align-items:center;gap:6px;margin-bottom:14px;}
+    .mp-note i{color:var(--accent);}
 
-    .si {
-      display:flex; gap:12px; padding:11px 0;
-      border-bottom:1px solid var(--border);
-    }
-    .si:last-child { border-bottom:none; }
-    .si-img {
-      width:52px; height:68px; flex-shrink:0;
-      background:var(--surface2); overflow:hidden; position:relative;
-    }
-    .si-img img { width:100%; height:100%; object-fit:cover; }
-    .si-qty {
-      position:absolute; top:-5px; right:-5px;
-      background:var(--accent); color:var(--bg);
-      width:17px; height:17px; border-radius:50%;
-      font-size:8.5px; font-weight:700; display:grid; place-items:center;
-    }
-    .si-body { flex:1; min-width:0; }
-    .si-name {
-      font-family:var(--serif); font-size:14px; line-height:1.2;
-      margin-bottom:2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
-    }
-    .si-meta { font-size:10px; color:var(--muted); margin-bottom:5px; letter-spacing:.03em; }
-    .si-price { font-size:13px; color:var(--accent); }
+    /* BOTONES */
+    .btn-primary{width:100%;height:52px;background:var(--accent);color:var(--bg);border:none;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;display:flex;align-items:center;justify-content:center;gap:9px;transition:background .25s,transform .15s;border-radius:var(--r);}
+    .btn-primary:hover:not(:disabled){background:var(--adk);transform:translateY(-1px);}
+    .btn-primary:active{transform:none;}
+    .btn-primary:disabled{opacity:.5;cursor:not-allowed;}
+    .btn-primary .spin{display:none;}
+    .btn-primary.loading .lbl{display:none;}
+    .btn-primary.loading .spin{display:flex;align-items:center;gap:8px;}
+    .btn-wa-big{width:100%;height:50px;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;display:flex;align-items:center;justify-content:center;gap:9px;background:rgba(37,211,102,.1);border:1.5px solid rgba(37,211,102,.3);color:#25d366;transition:all .2s;border-radius:var(--r);}
+    .btn-wa-big:hover{background:rgba(37,211,102,.18);border-color:#25d366;}
 
-    .sum-calcs { padding:16px 22px; border-top:1px solid var(--border); }
-    .sc-row {
-      display:flex; justify-content:space-between; align-items:center;
-      font-size:13px; margin-bottom:9px; color:var(--muted2);
-    }
-    .sc-row.total {
-      color:var(--text); font-size:14px; font-weight:600;
-      margin:13px 0 0; padding-top:13px; border-top:1px solid var(--border2);
-    }
-    .sc-row.total span:last-child {
-      font-family:var(--serif); font-size:22px; color:var(--accent);
-    }
-    .free-ship {
-      font-size:11px; color:#4db87a; font-weight:500;
-      display:none; align-items:center; gap:5px; margin-bottom:10px;
-    }
-    .free-ship.on { display:flex; }
-    .free-ship i { font-size:12px; }
+    .notif-banner{display:flex;align-items:center;gap:9px;background:rgba(37,211,102,.05);border:1px solid rgba(37,211,102,.15);padding:10px 14px;border-radius:var(--r);font-size:11px;color:var(--green);margin-bottom:14px;}
+    .notif-banner i{font-size:14px;flex-shrink:0;}
+    .ssl-note{text-align:center;font-size:10px;color:var(--muted);display:flex;align-items:center;justify-content:center;gap:5px;}
+    .ssl-note i{color:var(--green);}
 
-    /* ── RESPONSIVE ──────────────────── */
-    @media (max-width:900px) {
-      body { padding-top:112px; }
-      #header, .steps-bar { padding-left:20px; padding-right:20px; }
-      .checkout-grid { grid-template-columns:1fr; }
-      .summary { position:relative; top:0; order:-1; }
+    /* RESUMEN */
+    .summary{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);position:sticky;top:88px;overflow:hidden;}
+    .sum-head{padding:15px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+    .sum-head-title{font-family:var(--serif);font-size:17px;font-weight:400;}
+    .sum-badge{background:var(--accent);color:var(--bg);width:20px;height:20px;border-radius:50%;display:grid;place-items:center;font-size:9px;font-weight:700;}
+    .ship-bar{padding:12px 20px 0;}
+    .ship-msg{font-size:11px;color:var(--muted);margin-bottom:7px;line-height:1.5;}
+    .ship-msg strong{color:var(--accent);}
+    .ship-track{height:3px;background:rgba(255,255,255,.08);border-radius:2px;overflow:hidden;}
+    .ship-fill{height:100%;background:var(--accent);border-radius:2px;transition:width .6s var(--ease);}
+    .sum-items{padding:10px 20px;max-height:290px;overflow-y:auto;}
+    .sum-items::-webkit-scrollbar{width:3px;}
+    .sum-items::-webkit-scrollbar-thumb{background:rgba(255,255,255,.1);}
+    .si{display:flex;gap:11px;padding:10px 0;border-bottom:1px solid var(--border);}
+    .si:last-child{border-bottom:none;}
+    .si-img{width:48px;height:64px;flex-shrink:0;background:var(--surface2);overflow:hidden;position:relative;border-radius:var(--r);}
+    .si-img img{width:100%;height:100%;object-fit:cover;}
+    .si-qty{position:absolute;top:-5px;right:-5px;background:var(--accent);color:var(--bg);width:17px;height:17px;border-radius:50%;font-size:8.5px;font-weight:700;display:grid;place-items:center;}
+    .si-body{flex:1;min-width:0;}
+    .si-name{font-family:var(--serif);font-size:14px;line-height:1.2;margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+    .si-meta{font-size:10px;color:var(--muted);margin-bottom:4px;}
+    .si-price{font-size:13px;color:var(--accent);font-weight:500;}
+    .sum-calcs{padding:13px 20px;border-top:1px solid var(--border);}
+    .sc-row{display:flex;justify-content:space-between;align-items:center;font-size:13px;margin-bottom:7px;color:var(--muted2);}
+    .sc-row.total{color:var(--text);font-size:14px;font-weight:600;margin:11px 0 0;padding-top:11px;border-top:1px solid var(--border2);}
+    .sc-row.total span:last-child{font-family:var(--serif);font-size:24px;color:var(--accent);}
+    .free-note{display:none;font-size:11px;color:var(--green);align-items:center;gap:5px;margin-bottom:7px;font-weight:500;}
+    .free-note.on{display:flex;}
+
+    /* VACÍO */
+    .empty-wrap{text-align:center;padding:100px 24px;}
+    .empty-wrap i{font-size:52px;color:var(--muted);opacity:.2;display:block;margin-bottom:22px;}
+    .empty-wrap p{color:var(--muted);font-size:15px;margin-bottom:28px;}
+    .btn-explorar{display:inline-flex;align-items:center;gap:9px;padding:13px 30px;background:var(--accent);color:var(--bg);font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;transition:background .25s;border-radius:var(--r);}
+    .btn-explorar:hover{background:var(--adk);}
+
+    /* RESPONSIVE */
+    @media(max-width:900px){
+      #header,.progress-wrap{padding-left:20px;padding-right:20px;}
+      .checkout-grid{grid-template-columns:1fr;}
+      .summary{position:relative;top:0;order:-1;}
     }
-    @media (max-width:520px) {
-      .row2       { grid-template-columns:1fr; }
-      .envio-grid { grid-template-columns:1fr; }
+    @media(max-width:560px){
+      .row2,.row3,.envio-grid{grid-template-columns:1fr;}
+      .pm-grid{grid-template-columns:1fr;}
     }
   </style>
 </head>
 <body>
 
-<!-- HEADER -->
 <header id="header">
-  <a href="index.html">
-    <img src="images/LogoB&D.png" alt="Bara & Co" class="logo-img"/>
-  </a>
-  <a href="tienda.html" class="back-link">
-    <i class="fas fa-arrow-left"></i> Seguir comprando
-  </a>
+  <a href="index.html"><img src="images/LogoB&D.png" alt="Bara & Co" class="logo-img"/></a>
+  <a href="tienda.html" class="back-link"><i class="fas fa-arrow-left"></i> Seguir comprando</a>
 </header>
 
-<!-- PASOS -->
-<div class="steps-bar">
-  <div class="step done">
-    <span class="step-num"><i class="fas fa-check" style="font-size:7px"></i></span>
-    Carrito
-  </div>
-  <div class="step active">
-    <span class="step-num">2</span>
-    Datos &amp; Envío
-  </div>
-  <div class="step">
-    <span class="step-num">3</span>
-    Pago
-  </div>
-  <div class="step">
-    <span class="step-num">4</span>
-    Confirmación
+<div class="progress-wrap">
+  <div class="progress-steps">
+    <div class="ps done"><span class="ps-num"><i class="fas fa-check" style="font-size:7px"></i></span> Carrito</div>
+    <div class="ps active"><span class="ps-num">2</span> Datos &amp; Envío</div>
+    <div class="ps"><span class="ps-num">3</span> Pago</div>
+    <div class="ps"><span class="ps-num">4</span> Confirmación</div>
   </div>
 </div>
 
 <div class="page">
-
-  <!-- Carrito vacío -->
   <div class="empty-wrap" id="emptyWrap" style="display:none">
     <i class="fas fa-shopping-bag"></i>
     <p>Tu carrito está vacío</p>
     <a href="tienda.html" class="btn-explorar"><i class="fas fa-arrow-left"></i> Explorar tienda</a>
   </div>
 
-  <!-- Contenido principal -->
   <div class="checkout-grid" id="checkoutGrid">
-
-    <!-- FORMULARIO -->
     <div>
 
-      <!-- Contacto -->
-      <div class="fs">
-        <h2 class="fs-title"><i class="fas fa-user"></i> Contacto</h2>
-        <div class="row row2">
-          <div class="fld">
-            <label>Nombre completo *</label>
-            <input type="text" id="nombre" placeholder="Tu nombre y apellido"/>
-            <span class="err-msg" id="errNombre"></span>
-          </div>
-          <div class="fld">
-            <label>Email *</label>
-            <input type="email" id="email" placeholder="tu@email.com"/>
-            <span class="err-msg" id="errEmail"></span>
-          </div>
+      <!-- ① CONTACTO -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-icon"><i class="fas fa-user"></i></div>
+          <div class="section-title">Tus datos</div>
         </div>
-        <div class="row">
-          <div class="fld">
-            <label>Teléfono / WhatsApp (opcional)</label>
-            <input type="tel" id="telefono" placeholder="+54 9 351 000 0000"/>
+        <div class="section-body">
+          <div class="row row2">
+            <div class="fld">
+              <label>Nombre completo *</label>
+              <input type="text" id="nombre" placeholder="Ej: María González" autocomplete="name"/>
+              <span class="err-msg" id="errNombre"></span>
+            </div>
+            <div class="fld">
+              <label>Email *</label>
+              <input type="email" id="email" placeholder="tu@email.com" autocomplete="email"/>
+              <span class="err-msg" id="errEmail"></span>
+            </div>
           </div>
-        </div>
-      </div>
-
-      <!-- Envío -->
-      <div class="fs">
-        <h2 class="fs-title"><i class="fas fa-truck"></i> Envío</h2>
-        <div class="envio-grid">
-          <label class="envio-card sel" id="cardEnvio" onclick="elegirEnvio('envio',this)">
-            <input type="radio" name="envio" value="envio" checked/>
-            <div class="ec-title">Envío a domicilio</div>
-            <div class="ec-sub">2–7 días hábiles</div>
-            <div class="ec-price" id="lblEnvioCosto">—</div>
-            <span class="ec-check"><i class="fas fa-check"></i></span>
-          </label>
-          <label class="envio-card" id="cardRetiro" onclick="elegirEnvio('retiro',this)">
-            <input type="radio" name="envio" value="retiro"/>
-            <div class="ec-title">Retiro en local</div>
-            <div class="ec-sub">Ing. Olmos 139 · Jesús María</div>
-            <div class="ec-price">Gratis</div>
-            <span class="ec-check"><i class="fas fa-check"></i></span>
-          </label>
-        </div>
-
-        <div id="bloqDireccion">
           <div class="row">
             <div class="fld">
-              <label>Dirección *</label>
-              <input type="text" id="direccion" placeholder="Calle y número, piso/depto"/>
-              <span class="err-msg" id="errDir"></span>
-            </div>
-          </div>
-          <div class="row row2">
-            <div class="fld">
-              <label>Ciudad</label>
-              <input type="text" id="ciudad" placeholder="Ciudad"/>
-            </div>
-            <div class="fld">
-              <label>Provincia</label>
-              <input type="text" id="provincia" placeholder="Córdoba"/>
-            </div>
-          </div>
-          <div class="row row2">
-            <div class="fld">
-              <label>Código postal</label>
-              <input type="text" id="cp" placeholder="5220"/>
-            </div>
-            <div class="fld">
-              <label>País</label>
-              <input type="text" value="Argentina" readonly/>
+              <label>WhatsApp <span style="color:var(--muted);font-weight:400;text-transform:none;letter-spacing:0;font-size:9px">(recomendado — te avisamos cuando tu pedido esté listo)</span></label>
+              <input type="tel" id="telefono" placeholder="+54 9 351 000 0000" autocomplete="tel"/>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Pago -->
-      <div class="fs">
-        <h2 class="fs-title"><i class="fas fa-shield-alt"></i> Pago seguro</h2>
-        <p class="pay-info">
-          Tu pago es procesado por <strong style="color:var(--text)">MercadoPago</strong> con encriptación
-          SSL 256-bit. Aceptamos tarjetas de crédito, débito y saldo MP. Podés pagar en cuotas según tu banco.
-        </p>
-        <div class="pay-pills">
-          <span class="pp" style="background:#1a1f71;color:#fff">VISA</span>
-          <span class="pp" style="background:#eb001b;color:#fff">Mastercard</span>
-          <span class="pp" style="background:#016fd0;color:#fff">AMEX</span>
-          <span class="pp" style="background:#009ee3;color:#fff">MercadoPago</span>
+      <!-- ② ENVÍO -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-icon"><i class="fas fa-truck"></i></div>
+          <div class="section-title">Envío</div>
         </div>
+        <div class="section-body">
+          <div class="envio-grid">
+            <label class="envio-card sel" id="cardEnvio" onclick="elegirEnvio('envio',this)">
+              <input type="radio" name="envio" value="envio" checked/>
+              <div class="ec-icon">📦</div>
+              <div class="ec-title">Envío a domicilio</div>
+              <div class="ec-sub">Correo Argentino · 2–7 días hábiles</div>
+              <div class="ec-price" id="lblEnvioCosto">Gratis desde $80.000</div>
+              <span class="ec-check"><i class="fas fa-check" style="font-size:7px"></i></span>
+            </label>
+            <label class="envio-card" id="cardRetiro" onclick="elegirEnvio('retiro',this)">
+              <input type="radio" name="envio" value="retiro"/>
+              <div class="ec-icon">🏪</div>
+              <div class="ec-title">Retiro en local</div>
+              <div class="ec-sub">Ing. Olmos 139 · Jesús María</div>
+              <div class="ec-price">Siempre gratis</div>
+              <span class="ec-check"><i class="fas fa-check" style="font-size:7px"></i></span>
+            </label>
+          </div>
 
-        <button class="btn-pay" id="btnPagar" onclick="pagar()">
-          <span class="txt"><i class="fas fa-lock" style="font-size:11px"></i> Pagar con MercadoPago</span>
-          <span class="spin"><i class="fas fa-circle-notch fa-spin"></i> Redirigiendo...</span>
-        </button>
-        <p class="ssl-note"><i class="fas fa-lock"></i> Compra protegida · SSL 256-bit · Datos encriptados</p>
+          <div id="bloqDireccion">
+            <div class="row">
+              <div class="fld">
+                <label>Calle y número *</label>
+                <input type="text" id="direccion" placeholder="Ej: San Martín 456, Piso 3 Dto B" autocomplete="street-address"/>
+                <span class="err-msg" id="errDir"></span>
+              </div>
+            </div>
+            <div class="row row3">
+              <div class="fld">
+                <label>Ciudad</label>
+                <input type="text" id="ciudad" placeholder="Córdoba" autocomplete="address-level2"/>
+              </div>
+              <div class="fld">
+                <label>Provincia</label>
+                <input type="text" id="provincia" placeholder="Córdoba" autocomplete="address-level1"/>
+              </div>
+              <div class="fld">
+                <label>Código postal</label>
+                <input type="text" id="cp" placeholder="5220" autocomplete="postal-code"/>
+              </div>
+            </div>
+          </div>
+
+          <div id="bloqRetiroInfo" style="display:none">
+            <div class="retiro-info">
+              <strong>📍 Ing. Olmos 139, Jesús María, Córdoba</strong><br>
+              Lunes a sábado · 9:00–13:00 y 16:00–20:00<br>
+              Te avisamos por WhatsApp cuando tu pedido esté listo para retirar.
+            </div>
+          </div>
+        </div>
       </div>
 
-    </div>
+      <!-- ③ MÉTODO DE PAGO -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-icon"><i class="fas fa-credit-card"></i></div>
+          <div class="section-title">Método de pago</div>
+        </div>
+        <div class="section-body">
+
+          <div class="pm-grid" id="pmGrid">
+
+            <!-- MercadoPago -->
+            <div class="pm-card sel" onclick="selPago('mp',this)">
+              <div class="pm-icon" style="background:rgba(0,158,227,.1)"><i class="fas fa-credit-card" style="color:#009ee3"></i></div>
+              <div class="pm-body">
+                <div class="pm-title">MercadoPago</div>
+                <div class="pm-sub">Crédito, débito, saldo MP</div>
+                <span class="pm-tag" style="background:rgba(0,158,227,.12);color:#009ee3">Hasta 12 cuotas</span>
+              </div>
+              <span class="pm-check"><i class="fas fa-check" style="font-size:7px"></i></span>
+            </div>
+
+            <!-- Naranja X -->
+            <div class="pm-card" onclick="selPago('naranja',this)">
+              <div class="pm-icon" style="background:rgba(255,100,0,.1)"><i class="fas fa-mobile-alt" style="color:#ff6400"></i></div>
+              <div class="pm-body">
+                <div class="pm-title">Naranja X</div>
+                <div class="pm-sub">App o tarjeta Naranja</div>
+                <span class="pm-tag" style="background:rgba(255,100,0,.12);color:#ff6400">Cuotas sin interés</span>
+              </div>
+              <span class="pm-check"><i class="fas fa-check" style="font-size:7px"></i></span>
+            </div>
+
+            <!-- Transferencia -->
+            <div class="pm-card" onclick="selPago('transfer',this)">
+              <div class="pm-icon" style="background:rgba(77,184,122,.1)"><i class="fas fa-university" style="color:#4db87a"></i></div>
+              <div class="pm-body">
+                <div class="pm-title">Transferencia</div>
+                <div class="pm-sub">CBU / Alias — cualquier banco</div>
+                <span class="pm-tag" style="background:rgba(77,184,122,.12);color:#4db87a">Sin costo extra</span>
+              </div>
+              <span class="pm-check"><i class="fas fa-check" style="font-size:7px"></i></span>
+            </div>
+
+            <!-- Posnet -->
+            <div class="pm-card disabled-pm" id="cardPosnet" onclick="selPago('posnet',this)">
+              <div class="pm-icon" style="background:rgba(201,169,110,.1)"><i class="fas fa-store" style="color:var(--accent)"></i></div>
+              <div class="pm-body">
+                <div class="pm-title">Posnet en local</div>
+                <div class="pm-sub">Cordobesa · Naranja · Taca Taca · Visa</div>
+                <div class="pm-local-note"><i class="fas fa-map-marker-alt" style="font-size:8px"></i> Solo retiro en local</div>
+              </div>
+              <span class="pm-check"><i class="fas fa-check" style="font-size:7px"></i></span>
+            </div>
+
+            <!-- Efectivo -->
+            <div class="pm-card disabled-pm" id="cardEfectivo" onclick="selPago('cash',this)">
+              <div class="pm-icon" style="background:rgba(255,255,255,.05)"><i class="fas fa-money-bill-wave" style="color:var(--muted)"></i></div>
+              <div class="pm-body">
+                <div class="pm-title">Efectivo</div>
+                <div class="pm-sub">Al momento del retiro</div>
+                <div class="pm-local-note"><i class="fas fa-map-marker-alt" style="font-size:8px"></i> Solo retiro en local</div>
+              </div>
+              <span class="pm-check"><i class="fas fa-check" style="font-size:7px"></i></span>
+            </div>
+
+            <!-- WhatsApp -->
+            <div class="pm-card" onclick="selPago('wa',this)">
+              <div class="pm-icon" style="background:rgba(37,211,102,.08)"><i class="fab fa-whatsapp" style="color:#25d366;font-size:20px"></i></div>
+              <div class="pm-body">
+                <div class="pm-title">WhatsApp</div>
+                <div class="pm-sub">Coordinamos juntos</div>
+                <span class="pm-tag" style="background:rgba(37,211,102,.1);color:#25d366">Más flexible</span>
+              </div>
+              <span class="pm-check"><i class="fas fa-check" style="font-size:7px"></i></span>
+            </div>
+
+          </div>
+
+          <!-- PANEL MP -->
+          <div class="pm-panel active" id="panelMp">
+            <div class="pm-box">
+              <div class="pm-box-title"><i class="fas fa-credit-card"></i> Pagar con MercadoPago</div>
+              <div class="mp-pills">
+                <span class="mp-pill" style="background:#1a1f71;color:#fff">VISA</span>
+                <span class="mp-pill" style="background:#eb001b;color:#fff">Mastercard</span>
+                <span class="mp-pill" style="background:#016fd0;color:#fff">AMEX</span>
+                <span class="mp-pill" style="background:#009ee3;color:#fff">MercadoPago</span>
+                <span class="mp-pill" style="background:#00bcb4;color:#fff">Cabal</span>
+              </div>
+              <div class="mp-note"><i class="fas fa-info-circle"></i> Hasta 12 cuotas según tu banco · SSL 256-bit</div>
+              <button class="btn-primary" id="btnMp" onclick="pagar('mp')">
+                <span class="lbl"><i class="fas fa-lock" style="font-size:10px"></i> Ir a pagar con MercadoPago</span>
+                <span class="spin"><i class="fas fa-circle-notch fa-spin"></i> Redirigiendo...</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- PANEL NARANJA X -->
+          <div class="pm-panel" id="panelNaranja">
+            <div class="pm-box">
+              <div class="pm-box-title" style="color:#ff6400"><i class="fas fa-mobile-alt"></i> Pagar con Naranja X</div>
+              <div class="naranja-steps">
+                <div class="ns">
+                  <div class="ns-n">1</div>
+                  <div class="ns-t"><strong>Abrí la app Naranja X</strong><small>Iniciá sesión con tu cuenta</small></div>
+                </div>
+                <div class="ns">
+                  <div class="ns-n">2</div>
+                  <div class="ns-t"><strong>Tocá "Transferir" o "Pagar con QR"</strong><small>Usá el CBU/Alias del local o escaneá el QR</small></div>
+                </div>
+                <div class="ns">
+                  <div class="ns-n">3</div>
+                  <div class="ns-t"><strong>Ingresá el monto exacto del pedido</strong><small>Lo ves en el resumen de la derecha</small></div>
+                </div>
+                <div class="ns">
+                  <div class="ns-n">4</div>
+                  <div class="ns-t"><strong>Confirmá y envianos el comprobante</strong><small>El botón de abajo abre WhatsApp directo</small></div>
+                </div>
+              </div>
+              <div style="margin-top:14px;">
+                <div class="bank-row"><span class="bl">CBU</span><div style="display:flex;align-items:center;"><span class="bv" id="naranjaAliasCbu">0000003100012345678901</span><button class="btn-copy" onclick="copiar('naranjaAliasCbu',this)">Copiar</button></div></div>
+                <div class="bank-row"><span class="bl">Alias</span><div style="display:flex;align-items:center;"><span class="bv" id="naranjaAliasStr">BARA.CO.PAGOS</span><button class="btn-copy" onclick="copiar('naranjaAliasStr',this)">Copiar</button></div></div>
+                <div class="bank-row"><span class="bl">Titular</span><span class="bv">Bara &amp; Co</span></div>
+              </div>
+              <div style="margin-top:14px;">
+                <button class="btn-primary" style="background:#ff6400;" onclick="pagar('naranja')">
+                  <span class="lbl"><i class="fab fa-whatsapp"></i> Confirmar y enviar comprobante por WhatsApp</span>
+                  <span class="spin"><i class="fas fa-circle-notch fa-spin"></i> Preparando...</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- PANEL TRANSFERENCIA -->
+          <div class="pm-panel" id="panelTransfer">
+            <div class="pm-box">
+              <div class="pm-box-title"><i class="fas fa-university"></i> Datos para transferencia</div>
+              <div class="bank-row"><span class="bl">Titular</span><span class="bv">Bara &amp; Co</span></div>
+              <div class="bank-row"><span class="bl">CBU</span><div style="display:flex;align-items:center;"><span class="bv" id="cbuVal">0000003100012345678901</span><button class="btn-copy" onclick="copiar('cbuVal',this)">Copiar</button></div></div>
+              <div class="bank-row"><span class="bl">Alias</span><div style="display:flex;align-items:center;"><span class="bv" id="aliasVal">BARA.CO.PAGOS</span><button class="btn-copy" onclick="copiar('aliasVal',this)">Copiar</button></div></div>
+              <div class="bank-row"><span class="bl">Banco</span><span class="bv" style="color:var(--muted2)">— Tu banco —</span></div>
+              <div class="bank-note">
+                <i class="fas fa-info-circle" style="color:var(--green)"></i>
+                Después de transferir, el botón de abajo abre WhatsApp para enviarnos el comprobante. Tu pedido queda reservado apenas confirmás.
+              </div>
+              <div style="margin-top:14px;">
+                <button class="btn-primary" onclick="pagar('transfer')">
+                  <span class="lbl"><i class="fab fa-whatsapp"></i> Confirmar y enviar comprobante por WhatsApp</span>
+                  <span class="spin"><i class="fas fa-circle-notch fa-spin"></i> Preparando...</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- PANEL POSNET -->
+          <div class="pm-panel" id="panelPosnet">
+            <div class="pm-box">
+              <div class="pm-box-title"><i class="fas fa-store"></i> Pago con posnet al retirar</div>
+              <p style="font-size:12px;color:var(--muted2);line-height:1.65;margin-bottom:14px;">
+                Elegí tu tarjeta. Pagás al retirar en el local con nuestro posnet de <strong style="color:var(--text)">Tarjeta Cordobesa</strong>.
+                Acepta Naranja, Taca Taca, Visa y Mastercard. Podés pagar en cuotas.
+              </p>
+              <div class="posnet-chips" id="posnetChips">
+                <div class="posnet-chip active" onclick="selPosnet(this,'cordobesa')">
+                  <div class="pc-logo" style="background:#006bb6;color:#fff">COR</div>
+                  <span class="pc-name">T. Cordobesa</span>
+                </div>
+                <div class="posnet-chip" onclick="selPosnet(this,'naranja-card')">
+                  <div class="pc-logo" style="background:#ff6400;color:#fff">NAR</div>
+                  <span class="pc-name">Naranja</span>
+                </div>
+                <div class="posnet-chip" onclick="selPosnet(this,'tacataca')">
+                  <div class="pc-logo" style="background:#c8102e;color:#fff">TT</div>
+                  <span class="pc-name">Taca Taca</span>
+                </div>
+                <div class="posnet-chip" onclick="selPosnet(this,'visa')">
+                  <div class="pc-logo" style="background:#1a1f71;color:#fff">VISA</div>
+                  <span class="pc-name">Visa</span>
+                </div>
+                <div class="posnet-chip" onclick="selPosnet(this,'master')">
+                  <div class="pc-logo" style="display:flex;overflow:hidden;padding:0"><div style="flex:1;background:#eb001b;"></div><div style="flex:1;background:#f79e1b;"></div></div>
+                  <span class="pc-name">Mastercard</span>
+                </div>
+              </div>
+              <button class="btn-primary" onclick="pagar('posnet')">
+                <span class="lbl"><i class="fas fa-check"></i> Confirmar pedido (pago en el local)</span>
+                <span class="spin"><i class="fas fa-circle-notch fa-spin"></i> Enviando...</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- PANEL EFECTIVO -->
+          <div class="pm-panel" id="panelCash">
+            <div class="pm-box">
+              <div class="pm-box-title"><i class="fas fa-money-bill-wave"></i> Pago en efectivo al retirar</div>
+              <div class="cash-info">
+                Pagás en <strong>pesos</strong> al momento de retirar en:<br>
+                <strong>📍 Ing. Olmos 139, Jesús María, Córdoba</strong><br><br>
+                Te contactamos por WhatsApp para coordinar el horario.<br>
+                <span style="color:var(--muted);font-size:11px;">Lun–Sáb · 9:00–13:00 / 16:00–20:00</span>
+              </div>
+              <button class="btn-primary" onclick="pagar('cash')">
+                <span class="lbl"><i class="fas fa-check"></i> Confirmar pedido (pago al retirar)</span>
+                <span class="spin"><i class="fas fa-circle-notch fa-spin"></i> Enviando...</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- PANEL WHATSAPP -->
+          <div class="pm-panel" id="panelWa">
+            <div class="pm-box">
+              <div class="pm-box-title" style="color:#25d366"><i class="fab fa-whatsapp"></i> Coordinar por WhatsApp</div>
+              <div class="wa-info">
+                Te mandamos el detalle del pedido directo al chat con el local.
+                Podés consultar cuotas, stock, formas de pago y lo coordinamos juntos.<br>
+                <strong>La opción más rápida y flexible.</strong>
+              </div>
+              <button class="btn-wa-big" onclick="pagar('wa')">
+                <i class="fab fa-whatsapp" style="font-size:18px"></i> Enviar pedido por WhatsApp
+              </button>
+            </div>
+          </div>
+
+          <!-- Notif banner -->
+          <div class="notif-banner">
+            <i class="fab fa-whatsapp"></i>
+            El local recibe una notificación automática por WhatsApp con cada pedido confirmado.
+          </div>
+          <p class="ssl-note"><i class="fas fa-lock"></i> Compra protegida · Datos encriptados · SSL 256-bit</p>
+
+        </div>
+      </div>
+    </div><!-- /left col -->
 
     <!-- RESUMEN -->
     <div class="summary">
       <div class="sum-head">
-        <span>Tu pedido</span>
-        <span class="sum-count" id="sumCount">0</span>
+        <span class="sum-head-title">Tu pedido</span>
+        <span class="sum-badge" id="sumCount">0</span>
+      </div>
+      <div class="ship-bar" id="shipBar">
+        <p class="ship-msg" id="shipMsg"></p>
+        <div class="ship-track"><div class="ship-fill" id="shipFill" style="width:0%"></div></div>
       </div>
       <div class="sum-items" id="sumItems"></div>
       <div class="sum-calcs">
-        <div class="sc-row">
-          <span>Subtotal</span>
-          <span id="scSubtotal">$0</span>
-        </div>
-        <div class="sc-row" id="rowEnvio">
-          <span>Envío</span>
-          <span id="scEnvio">—</span>
-        </div>
-        <div class="free-ship" id="freeShip">
-          <i class="fas fa-truck"></i> ¡Envío gratis incluido!
-        </div>
-        <div class="sc-row total">
-          <span>Total</span>
-          <span id="scTotal">$0</span>
-        </div>
+        <div class="sc-row"><span>Subtotal</span><span id="scSubtotal">$0</span></div>
+        <div class="sc-row" id="rowEnvio"><span>Envío</span><span id="scEnvio">—</span></div>
+        <div class="free-note" id="freeNote"><i class="fas fa-truck"></i> ¡Envío gratis!</div>
+        <div class="sc-row total"><span>Total</span><span id="scTotal">$0</span></div>
       </div>
     </div>
 
-  </div><!-- fin .checkout-grid -->
-</div><!-- fin .page -->
+  </div>
+</div>
 
 <script>
-/* ════════════════════════════════
-   CHECKOUT — BARA & CO
-════════════════════════════════ */
-const CART_KEY     = 'bc_cart';
-const MP_LINK      = 'https://link.mercadopago.com.ar/baraandco';
-const ENVIO_GRATIS = 80000; // monto mínimo para envío gratis
-let   modoEnvio    = 'envio';
+const CART_KEY='bc_cart', MP_LINK='https://link.mercadopago.com.ar/baraandco', WA_NUMBER='5493525614281', ENVIO_GRATIS=80000;
+let modoEnvio='envio', metodoPago='mp', posnetTarjeta='cordobesa';
 
-// ── Utilidades ──────────────────
-function getCart() {
-  try { return JSON.parse(localStorage.getItem(CART_KEY)) || []; }
-  catch(e) { return []; }
-}
+/* Google Forms — INSTRUCCIONES:
+   1. Crear Google Form con campos: nombre, email, telefono, items, total, envio, pago, fecha
+   2. Publicar el form y copiar la URL de acción (termina en /formResponse)
+   3. Reemplazar FORM_ID y los entry.XXXXXXXX con los valores reales del form
+      (se ven haciendo clic derecho > inspeccionar en los campos del form publicado)
+*/
+const GFORM={
+  action:'https://docs.google.com/forms/d/e/REEMPLAZAR_FORM_ID/formResponse',
+  f:{nombre:'entry.000000001',email:'entry.000000002',telefono:'entry.000000003',
+     items:'entry.000000004',total:'entry.000000005',envio:'entry.000000006',
+     pago:'entry.000000007',fecha:'entry.000000008'}
+};
 
-// ── Init ────────────────────────
-document.addEventListener('DOMContentLoaded', () => {
-  const cart = getCart();
-  if (!cart.length) {
-    document.getElementById('emptyWrap').style.display  = 'block';
-    document.getElementById('checkoutGrid').style.display = 'none';
+const fmt=n=>'$'+Number(n).toLocaleString('es-AR');
+function getCart(){try{return JSON.parse(localStorage.getItem(CART_KEY))||[];}catch(e){return[];}}
+
+document.addEventListener('DOMContentLoaded',()=>{
+  const cart=getCart();
+  if(!cart.length){
+    document.getElementById('emptyWrap').style.display='block';
+    document.getElementById('checkoutGrid').style.display='none';
     return;
   }
   renderResumen(cart);
   recalcTotales(cart);
 });
 
-// ── Render items resumen ─────────
-function renderResumen(cart) {
-  const total = cart.reduce((a, i) => a + (i.qty || 1), 0);
-  document.getElementById('sumCount').textContent = total;
-
-  document.getElementById('sumItems').innerHTML = cart.map(item => {
-    const meta = [item.talle, item.color].filter(Boolean).join(' · ');
-    const sub  = item.precio * (item.qty || 1);
-    return `
-      <div class="si">
-        <div class="si-img">
-          <img src="${item.imagen || ''}" alt="${item.nombre}"
-               onerror="this.style.display='none'"/>
-          <span class="si-qty">${item.qty || 1}</span>
-        </div>
-        <div class="si-body">
-          <div class="si-name">${item.nombre}</div>
-          ${meta ? `<div class="si-meta">${meta}</div>` : ''}
-          <div class="si-price">$${sub.toLocaleString('es-AR')}</div>
-        </div>
-      </div>`;
+function renderResumen(cart){
+  document.getElementById('sumCount').textContent=cart.reduce((a,i)=>a+(i.qty||1),0);
+  document.getElementById('sumItems').innerHTML=cart.map(item=>{
+    const meta=[item.talle,item.color].filter(Boolean).join(' · ');
+    return`<div class="si"><div class="si-img"><img src="${item.imagen||''}" alt="${item.nombre}" onerror="this.style.display='none'"/><span class="si-qty">${item.qty||1}</span></div><div class="si-body"><div class="si-name">${item.nombre}</div>${meta?`<div class="si-meta">${meta}</div>`:''}<div class="si-price">${fmt(item.precio*(item.qty||1))}</div></div></div>`;
   }).join('');
 }
 
-// ── Recalcular totales ───────────
-function recalcTotales(cart) {
-  cart = cart || getCart();
-  const subtotal  = cart.reduce((a, i) => a + i.precio * (i.qty || 1), 0);
-  const esRetiro  = modoEnvio === 'retiro';
-  const gratis    = subtotal >= ENVIO_GRATIS || esRetiro;
-
-  document.getElementById('scSubtotal').textContent  = '$' + subtotal.toLocaleString('es-AR');
-  document.getElementById('scEnvio').textContent     = gratis ? 'Gratis' : 'A calcular';
-  document.getElementById('scTotal').textContent     = '$' + subtotal.toLocaleString('es-AR');
-  document.getElementById('rowEnvio').style.display  = esRetiro ? 'none' : '';
-  document.getElementById('freeShip').classList.toggle('on', gratis);
-  document.getElementById('lblEnvioCosto').textContent = gratis ? 'Gratis' : 'A calcular';
+function recalcTotales(cart){
+  cart=cart||getCart();
+  const sub=cart.reduce((a,i)=>a+i.precio*(i.qty||1),0);
+  const esRetiro=modoEnvio==='retiro';
+  const gratis=sub>=ENVIO_GRATIS||esRetiro;
+  const falta=Math.max(0,ENVIO_GRATIS-sub);
+  const pct=Math.min(100,(sub/ENVIO_GRATIS)*100);
+  document.getElementById('scSubtotal').textContent=fmt(sub);
+  document.getElementById('scTotal').textContent=fmt(sub);
+  document.getElementById('rowEnvio').style.display=esRetiro?'none':'';
+  document.getElementById('scEnvio').textContent=gratis?'Gratis':'A calcular';
+  document.getElementById('freeNote').classList.toggle('on',gratis&&!esRetiro);
+  document.getElementById('lblEnvioCosto').textContent=gratis?'¡Envío gratis!':'A calcular';
+  const sb=document.getElementById('shipBar');
+  if(esRetiro){sb.style.display='none';}else{
+    sb.style.display='';
+    document.getElementById('shipMsg').innerHTML=gratis?'🎉 ¡Tenés <strong>envío gratis</strong>!':
+      `Te faltan <strong>${fmt(falta)}</strong> para envío gratis`;
+    document.getElementById('shipFill').style.width=pct+'%';
+  }
 }
 
-// ── Elegir modo envío ────────────
-function elegirEnvio(tipo, el) {
-  modoEnvio = tipo;
-  document.querySelectorAll('.envio-card').forEach(c => c.classList.remove('sel'));
+function setError(iId,mId,msg){
+  const i=document.getElementById(iId),e=document.getElementById(mId);
+  if(i)i.classList.toggle('err',!!msg);
+  if(e)e.innerHTML=msg?`<i class="fas fa-exclamation-circle"></i> ${msg}`:'';
+}
+
+function elegirEnvio(tipo,el){
+  modoEnvio=tipo;
+  document.querySelectorAll('.envio-card').forEach(c=>c.classList.remove('sel'));
   el.classList.add('sel');
-  document.getElementById('bloqDireccion').style.display = tipo === 'retiro' ? 'none' : '';
+  document.getElementById('bloqDireccion').style.display=tipo==='envio'?'':'none';
+  document.getElementById('bloqRetiroInfo').style.display=tipo==='retiro'?'':'none';
+  // Habilitar/deshabilitar métodos de solo retiro
+  ['cardPosnet','cardEfectivo'].forEach(id=>{
+    const c=document.getElementById(id);
+    if(!c)return;
+    c.classList.toggle('disabled-pm',tipo!=='retiro');
+    if(tipo!=='retiro'&&(metodoPago==='posnet'||metodoPago==='cash')){
+      selPago('mp',document.querySelector('.pm-card'));
+    }
+  });
   recalcTotales();
 }
 
-// ── Validación y errores ─────────
-function setError(inputId, msgId, msg) {
-  const inp = document.getElementById(inputId);
-  const el  = document.getElementById(msgId);
-  if (inp) inp.classList.toggle('err', !!msg);
-  if (el)  el.innerHTML = msg ? `<i class="fas fa-exclamation-circle"></i> ${msg}` : '';
+function selPago(metodo,el){
+  if((metodo==='posnet'||metodo==='cash')&&modoEnvio!=='retiro'){
+    toast('Primero elegí "Retiro en local" en la sección de envío ↑');return;
+  }
+  metodoPago=metodo;
+  document.querySelectorAll('.pm-card').forEach(c=>c.classList.remove('sel'));
+  el.classList.add('sel');
+  ['Mp','Naranja','Transfer','Posnet','Cash','Wa'].forEach(p=>{
+    const panel=document.getElementById('panel'+p);
+    if(panel)panel.classList.remove('active');
+  });
+  const map={mp:'panelMp',naranja:'panelNaranja',transfer:'panelTransfer',posnet:'panelPosnet',cash:'panelCash',wa:'panelWa'};
+  const panel=document.getElementById(map[metodo]);
+  if(panel)panel.classList.add('active');
+  if(window.innerWidth<900&&panel)setTimeout(()=>panel.scrollIntoView({behavior:'smooth',block:'nearest'}),80);
 }
 
-// ── Proceder al pago ─────────────
-function pagar() {
-  const nombre  = document.getElementById('nombre').value.trim();
-  const email   = document.getElementById('email').value.trim();
-  const esRetiro = modoEnvio === 'retiro';
-  let valido = true;
+function selPosnet(el,t){
+  posnetTarjeta=t;
+  document.querySelectorAll('.posnet-chip').forEach(c=>c.classList.remove('active'));
+  el.classList.add('active');
+}
 
-  // Validar nombre
-  if (nombre.length < 3) {
-    setError('nombre', 'errNombre', 'Ingresá tu nombre completo');
-    valido = false;
-  } else {
-    setError('nombre', 'errNombre', '');
+function copiar(elId,btn){
+  navigator.clipboard.writeText(document.getElementById(elId).textContent.trim()).then(()=>{
+    btn.textContent='✓ Copiado';btn.classList.add('ok');
+    setTimeout(()=>{btn.textContent='Copiar';btn.classList.remove('ok');},2200);
+  });
+}
+
+function toast(msg){
+  let t=document.getElementById('_ckToast');
+  if(!t){t=document.createElement('div');t.id='_ckToast';t.style.cssText='position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);background:#1a1a17;border:1px solid rgba(201,169,110,.3);color:#ede9e1;padding:11px 20px;font-family:"DM Sans",sans-serif;font-size:12px;z-index:9999;border-radius:4px;transition:transform .3s;white-space:nowrap;pointer-events:none;';document.body.appendChild(t);}
+  t.textContent=msg;t.style.transform='translateX(-50%) translateY(0)';
+  clearTimeout(t._t);t._t=setTimeout(()=>{t.style.transform='translateX(-50%) translateY(80px)';},2800);
+}
+
+function validarForm(){
+  const nombre=document.getElementById('nombre').value.trim();
+  const email=document.getElementById('email').value.trim();
+  const esRetiro=modoEnvio==='retiro';
+  let ok=true;
+  if(nombre.length<3){setError('nombre','errNombre','Ingresá tu nombre completo');ok=false;}
+  else setError('nombre','errNombre','');
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){setError('email','errEmail','Email inválido');ok=false;}
+  else setError('email','errEmail','');
+  if(!esRetiro){
+    const dir=document.getElementById('direccion').value.trim();
+    if(dir.length<5){setError('direccion','errDir','Ingresá tu dirección de entrega');ok=false;}
+    else setError('direccion','errDir','');
   }
+  return ok;
+}
 
-  // Validar email
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-    setError('email', 'errEmail', 'Ingresá un email válido');
-    valido = false;
-  } else {
-    setError('email', 'errEmail', '');
+function armarMsgCliente(cart,sub,nombre,envioStr){
+  const tl={cordobesa:'T. Cordobesa','naranja-card':'Naranja',tacataca:'Taca Taca',visa:'Visa',master:'Mastercard'};
+  const ml={mp:'MercadoPago',naranja:'Naranja X',transfer:'Transferencia bancaria',posnet:'Posnet · '+(tl[posnetTarjeta]||posnetTarjeta),cash:'Efectivo al retirar',wa:'A coordinar'};
+  const items=cart.map(i=>`• ${i.nombre}${i.talle?' ('+i.talle+')':''}${i.color?' · '+i.color:''} ×${i.qty||1} — ${fmt(i.precio*(i.qty||1))}`).join('\n');
+  return encodeURIComponent(`¡Hola! Quiero hacer un pedido en Bara & Co 🛍️\n\n👤 *${nombre}*\n\n*Productos:*\n${items}\n\n💰 *Total: ${fmt(sub)}*\n📦 *Envío:* ${envioStr}\n💳 *Pago:* ${ml[metodoPago]||metodoPago}`);
+}
+
+function notificarLocal(cart,sub,nombre,envioStr,email,tel){
+  const tl={cordobesa:'T. Cordobesa','naranja-card':'Naranja',tacataca:'Taca Taca',visa:'Visa',master:'Mastercard'};
+  const ml={mp:'MercadoPago',naranja:'Naranja X (transfer)',transfer:'Transferencia',posnet:'Posnet · '+(tl[posnetTarjeta]||posnetTarjeta),cash:'Efectivo',wa:'Por coordinar'};
+  const items=cart.map(i=>`• ${i.nombre}${i.talle?' ('+i.talle+')':''}${i.color?' · '+i.color:''} ×${i.qty||1} — ${fmt(i.precio*(i.qty||1))}`).join('\n');
+  const msg=encodeURIComponent(`🔔 *NUEVO PEDIDO — Bara & Co*\n\n👤 *${nombre}*\n📧 ${email}`+(tel?`\n📱 ${tel}`:'')+`\n\n*Productos:*\n${items}\n\n💰 *Total: ${fmt(sub)}*\n📦 *Envío:* ${envioStr}\n💳 *Pago:* ${ml[metodoPago]||metodoPago}\n\n_${new Date().toLocaleString('es-AR')}_`);
+  window.open(`https://wa.me/${WA_NUMBER}?text=${msg}`,'_blank');
+}
+
+function registrarGForm(pedido){
+  if(GFORM.action.includes('REEMPLAZAR'))return;
+  try{
+    const body=new FormData();
+    const res=pedido.items.map(i=>`${i.nombre}${i.talle?' ('+i.talle+')':''} x${i.qty||1}`).join(' | ');
+    body.append(GFORM.f.nombre,pedido.nombre);body.append(GFORM.f.email,pedido.email);
+    body.append(GFORM.f.telefono,pedido.telefono||'-');body.append(GFORM.f.items,res);
+    body.append(GFORM.f.total,fmt(pedido.total));body.append(GFORM.f.envio,pedido.modoEnvio);
+    body.append(GFORM.f.pago,pedido.metodoPago+(pedido.posnetTarjeta?' · '+pedido.posnetTarjeta:''));
+    body.append(GFORM.f.fecha,pedido.fecha);
+    fetch(GFORM.action,{method:'POST',mode:'no-cors',body});
+  }catch(e){}
+}
+
+function btnLoading(sel){const b=document.querySelector(sel);if(b){b.classList.add('loading');b.disabled=true;}return b;}
+
+function pagar(metodo){
+  if(!validarForm()){document.getElementById('nombre').scrollIntoView({behavior:'smooth',block:'center'});return;}
+  const cart=getCart();
+  const sub=cart.reduce((a,i)=>a+i.precio*(i.qty||1),0);
+  const nombre=document.getElementById('nombre').value.trim();
+  const email=document.getElementById('email').value.trim();
+  const tel=document.getElementById('telefono').value.trim();
+  const esRetiro=modoEnvio==='retiro';
+  const envioStr=esRetiro
+    ?'Retiro en local — Ing. Olmos 139, Jesús María'
+    :[document.getElementById('direccion').value.trim(),document.getElementById('ciudad').value.trim(),document.getElementById('provincia').value.trim(),document.getElementById('cp').value.trim()].filter(Boolean).join(', ');
+  const pedido={nombre,email,telefono:tel,modoEnvio,metodoPago,posnetTarjeta,envio:envioStr,total:sub,items:cart,fecha:new Date().toISOString()};
+  localStorage.setItem('bc_pedido',JSON.stringify(pedido));
+  localStorage.setItem('bc_nombre_cliente',nombre);
+  registrarGForm(pedido);
+
+  if(metodo==='wa'){window.open(`https://wa.me/${WA_NUMBER}?text=${armarMsgCliente(cart,sub,nombre,envioStr)}`,'_blank');return;}
+
+  if(metodo==='mp'){
+    localStorage.removeItem(CART_KEY);
+    btnLoading('#btnMp');
+    setTimeout(()=>notificarLocal(cart,sub,nombre,envioStr,email,tel),100);
+    setTimeout(()=>{window.location.href=MP_LINK;},900);return;
   }
-
-  // Validar dirección si no es retiro
-  if (!esRetiro) {
-    const dir = document.getElementById('direccion').value.trim();
-    if (dir.length < 5) {
-      setError('direccion', 'errDir', 'Ingresá tu dirección de entrega');
-      valido = false;
-    } else {
-      setError('direccion', 'errDir', '');
-    }
+  if(metodo==='naranja'){
+    localStorage.removeItem(CART_KEY);
+    btnLoading('#panelNaranja .btn-primary');
+    const mc=armarMsgCliente(cart,sub,nombre,envioStr)+encodeURIComponent('\n\n_Te adjunto el comprobante de Naranja X 🍊_');
+    setTimeout(()=>window.open(`https://wa.me/${WA_NUMBER}?text=${mc}`,'_blank'),100);
+    setTimeout(()=>notificarLocal(cart,sub,nombre,envioStr,email,tel),400);
+    setTimeout(()=>{window.location.href='success.html';},1000);return;
   }
-
-  if (!valido) return;
-
-  const cart     = getCart();
-  const subtotal = cart.reduce((a, i) => a + i.precio * (i.qty || 1), 0);
-
-  // Guardar pedido para success.html
-  const pedido = {
-    nombre,
-    email,
-    telefono:  document.getElementById('telefono').value.trim(),
-    modoEnvio,
-    envio: esRetiro
-      ? 'Retiro en local — Ing. Olmos 139, Jesús María'
-      : [
-          document.getElementById('direccion').value.trim(),
-          document.getElementById('ciudad').value.trim(),
-          document.getElementById('provincia').value.trim(),
-          document.getElementById('cp').value.trim()
-        ].filter(Boolean).join(', '),
-    total: subtotal,
-    items: cart,
-    fecha: new Date().toISOString()
-  };
-
-  localStorage.setItem('bc_pedido', JSON.stringify(pedido));
-  localStorage.setItem('bc_nombre_cliente', nombre);
-
-  // ⚠️ Limpiar el carrito ANTES de redirigir
-  localStorage.removeItem(CART_KEY);
-
-  // Animación botón → redirección
-  const btn = document.getElementById('btnPagar');
-  btn.classList.add('loading');
-  btn.disabled = true;
-
-  setTimeout(() => {
-    window.location.href = MP_LINK;
-  }, 650);
+  if(metodo==='transfer'){
+    localStorage.removeItem(CART_KEY);
+    btnLoading('#panelTransfer .btn-primary');
+    const mc=armarMsgCliente(cart,sub,nombre,envioStr)+encodeURIComponent('\n\n_Te envío el comprobante de transferencia 📎_');
+    setTimeout(()=>window.open(`https://wa.me/${WA_NUMBER}?text=${mc}`,'_blank'),100);
+    setTimeout(()=>notificarLocal(cart,sub,nombre,envioStr,email,tel),400);
+    setTimeout(()=>{window.location.href='success.html';},1000);return;
+  }
+  if(metodo==='posnet'){
+    localStorage.removeItem(CART_KEY);
+    btnLoading('#panelPosnet .btn-primary');
+    setTimeout(()=>notificarLocal(cart,sub,nombre,envioStr,email,tel),100);
+    setTimeout(()=>{window.location.href='success.html';},900);return;
+  }
+  if(metodo==='cash'){
+    localStorage.removeItem(CART_KEY);
+    btnLoading('#panelCash .btn-primary');
+    setTimeout(()=>notificarLocal(cart,sub,nombre,envioStr,email,tel),100);
+    setTimeout(()=>{window.location.href='success.html';},900);return;
+  }
 }
 </script>
 </body>
