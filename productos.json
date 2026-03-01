@@ -1,51 +1,5 @@
 [
   {
-    "id": "sudadera-safari-1772323620627",
-    "nombre": "Sudadera SAFARI",
-    "precio": 20000,
-    "precioAnterior": null,
-    "categoria": "hombre",
-    "subcategoria": "",
-    "descripcion": "",
-    "imagen": "https://i.ibb.co/Hf1xVY1k/IMG-8074.jpg",
-    "imagenes": [
-      "https://i.ibb.co/Hf1xVY1k/IMG-8074.jpg"
-    ],
-    "tallesDisponibles": [
-      "M"
-    ],
-    "colores": [
-      {
-        "nombre": "Salmón",
-        "codigo": "#FF8A65",
-        "stock": 0
-      }
-    ],
-    "activo": true,
-    "destacado": false,
-    "outlet": false,
-    "stockMap": {
-      "Salmón__M": 1
-    },
-    "stockTalles": {
-      "M": 1
-    },
-    "stock": 1,
-    "sku": "SUDADERA-SAFARI",
-    "marca": null,
-    "tags": null,
-    "fabrica": null,
-    "cuidados": null,
-    "temporada": null,
-    "genero": null,
-    "peso": null,
-    "origen": null,
-    "proveedor": null,
-    "notas": null,
-    "costo": null,
-    "link": null
-  },
-  {
     "id": "conjunto-la-rioja-1772286038655",
     "nombre": "Conjunto La Rioja",
     "precio": 35000,
@@ -1625,7 +1579,7 @@
   },
   {
     "id": "sudadera-surf-1771870574736",
-    "nombre": "Sudadera SURF",
+    "nombre": "Sudadera SURF/SAFARI",
     "precio": 12000,
     "precioAnterior": 20000,
     "categoria": "hombre",
