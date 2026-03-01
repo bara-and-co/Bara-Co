@@ -6,6 +6,7 @@
   <title>Checkout · Bara & Co</title>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <script src="https://sdk.mercadopago.com/js/v2"></script>
   <style>
     :root {
       --bg:#0b0b09; --surface:#131310; --surface2:#1a1a17;
@@ -326,13 +327,24 @@
 
           <div class="pm-grid" id="pmGrid">
 
-            <!-- MercadoPago -->
-            <div class="pm-card sel" onclick="selPago('mp',this)">
-              <div class="pm-icon" style="background:rgba(0,158,227,.1)"><i class="fas fa-credit-card" style="color:#009ee3"></i></div>
+            <!-- Tarjeta crédito/débito (Bricks) -->
+            <div class="pm-card sel" onclick="selPago('card',this)">
+              <div class="pm-icon" style="background:rgba(201,169,110,.12)"><i class="fas fa-credit-card" style="color:var(--accent)"></i></div>
+              <div class="pm-body">
+                <div class="pm-title">Tarjeta</div>
+                <div class="pm-sub">Crédito o débito</div>
+                <span class="pm-tag" style="background:rgba(201,169,110,.12);color:var(--accent)">Hasta 12 cuotas</span>
+              </div>
+              <span class="pm-check"><i class="fas fa-check" style="font-size:7px"></i></span>
+            </div>
+
+            <!-- MercadoPago (saldo / QR) -->
+            <div class="pm-card" onclick="selPago('mp',this)">
+              <div class="pm-icon" style="background:rgba(0,158,227,.1)"><i class="fas fa-wallet" style="color:#009ee3"></i></div>
               <div class="pm-body">
                 <div class="pm-title">MercadoPago</div>
-                <div class="pm-sub">Crédito, débito, saldo MP</div>
-                <span class="pm-tag" style="background:rgba(0,158,227,.12);color:#009ee3">Hasta 12 cuotas</span>
+                <div class="pm-sub">Saldo MP · QR · Link</div>
+                <span class="pm-tag" style="background:rgba(0,158,227,.12);color:#009ee3">Rápido</span>
               </div>
               <span class="pm-check"><i class="fas fa-check" style="font-size:7px"></i></span>
             </div>
@@ -394,18 +406,45 @@
 
           </div>
 
-          <!-- PANEL MP -->
-          <div class="pm-panel active" id="panelMp">
+          <!-- PANEL TARJETA (MP Checkout Bricks) -->
+          <div class="pm-panel active" id="panelCard">
             <div class="pm-box">
-              <div class="pm-box-title"><i class="fas fa-credit-card"></i> Pagar con MercadoPago</div>
-              <div class="mp-pills">
+              <div class="pm-box-title"><i class="fas fa-credit-card"></i> Pagar con tarjeta</div>
+              <!-- Logos de tarjetas aceptadas -->
+              <div class="mp-pills" style="margin-bottom:16px;">
                 <span class="mp-pill" style="background:#1a1f71;color:#fff">VISA</span>
                 <span class="mp-pill" style="background:#eb001b;color:#fff">Mastercard</span>
                 <span class="mp-pill" style="background:#016fd0;color:#fff">AMEX</span>
-                <span class="mp-pill" style="background:#009ee3;color:#fff">MercadoPago</span>
+                <span class="mp-pill" style="background:#ff6400;color:#fff">Naranja</span>
+                <span class="mp-pill" style="background:#006bb6;color:#fff">Cordobesa</span>
+                <span class="mp-pill" style="background:#c8102e;color:#fff">Taca Taca</span>
                 <span class="mp-pill" style="background:#00bcb4;color:#fff">Cabal</span>
+                <span class="mp-pill" style="background:#3d3d3d;color:#fff">Débito</span>
               </div>
-              <div class="mp-note"><i class="fas fa-info-circle"></i> Hasta 12 cuotas según tu banco · SSL 256-bit</div>
+              <!-- Contenedor donde MP Bricks inyecta el formulario de tarjeta -->
+              <div id="cardBrickContainer">
+                <!-- Estado inicial: muestra skeleton hasta que carguen las credenciales -->
+                <div id="cardBrickPlaceholder" style="text-align:center;padding:28px 0;color:var(--muted);font-size:13px;">
+                  <i class="fas fa-circle-notch fa-spin" style="font-size:22px;margin-bottom:12px;display:block;color:var(--accent);opacity:.5;"></i>
+                  Cargando formulario de pago seguro...
+                </div>
+              </div>
+              <!-- Se muestra si las credenciales no están configuradas aún -->
+              <div id="cardBrickFallback" style="display:none;">
+                <div class="bank-note" style="margin-bottom:14px;">
+                  <i class="fas fa-info-circle" style="color:var(--accent)"></i>
+                  El pago con tarjeta estará disponible en breve. Por ahora podés usar MercadoPago, transferencia o WhatsApp.
+                </div>
+              </div>
+              <div class="mp-note" style="margin-top:12px;"><i class="fas fa-lock" style="color:var(--green)"></i> Pago 100% seguro · SSL 256-bit · Procesado por MercadoPago</div>
+            </div>
+          </div>
+
+          <!-- PANEL MP (saldo / QR) -->
+          <div class="pm-panel" id="panelMp">
+            <div class="pm-box">
+              <div class="pm-box-title"><i class="fas fa-wallet"></i> Pagar con MercadoPago</div>
+              <div class="mp-note" style="margin-bottom:14px;"><i class="fas fa-info-circle"></i> Usá tu saldo de MercadoPago, QR o link de pago</div>
               <button class="btn-primary" id="btnMp" onclick="pagar('mp')">
                 <span class="lbl"><i class="fas fa-lock" style="font-size:10px"></i> Ir a pagar con MercadoPago</span>
                 <span class="spin"><i class="fas fa-circle-notch fa-spin"></i> Redirigiendo...</span>
@@ -577,7 +616,135 @@ const CART_KEY    = 'bc_cart';
 const BACKEND_URL = 'https://bara-backend.onrender.com';
 const WA_NUMBER   = '5493525614281';
 const ENVIO_GRATIS = 80000;
-let modoEnvio = 'envio', metodoPago = 'mp', posnetTarjeta = 'cordobesa';
+let modoEnvio = 'envio', metodoPago = 'card', posnetTarjeta = 'cordobesa';
+
+/* ── MP Checkout Bricks ─────────────────────────────────
+   Formulario de tarjeta embebido en el sitio.
+   Se inicializa cuando el usuario selecciona "Tarjeta".
+   Requiere MP_PUBLIC_KEY desde el backend.
+──────────────────────────────────────────────────────── */
+let mpBricksReady = false;
+let mpBricksController = null;
+
+async function initMPBricks() {
+  const container = document.getElementById('cardBrickContainer');
+  const placeholder = document.getElementById('cardBrickPlaceholder');
+  const fallback = document.getElementById('cardBrickFallback');
+
+  if (mpBricksReady) return; // Ya inicializado
+
+  try {
+    // Obtener la Public Key desde el backend
+    const res = await fetch(`${BACKEND_URL}/api/mp-public-key`);
+    if (!res.ok) throw new Error('Sin credenciales');
+    const { publicKey } = await res.json();
+
+    if (!publicKey || publicKey.includes('REEMPLAZAR')) throw new Error('Credenciales no configuradas');
+
+    const mp = new MercadoPago(publicKey, { locale: 'es-AR' });
+    const bricks = mp.bricks();
+
+    // Obtener preferencia según el carrito actual
+    const cart = getCart();
+    const nombre = document.getElementById('nombre')?.value?.trim() || '';
+    const email = document.getElementById('email')?.value?.trim() || '';
+
+    if (placeholder) placeholder.style.display = 'none';
+
+    mpBricksController = await bricks.create('cardPayment', 'cardBrickContainer', {
+      initialization: {
+        amount: cart.reduce((a,i) => a + i.precio*(i.qty||1), 0),
+        payer: { email: email || undefined },
+      },
+      customization: {
+        visual: {
+          style: {
+            theme: 'dark',
+            customVariables: {
+              baseColor:           '#c9a96e',
+              baseColorFirstVariant: '#a07e48',
+              baseColorSecondVariant: '#c9a96e',
+              errorColor:          '#c0392b',
+              textPrimaryColor:    '#ede9e1',
+              textSecondaryColor:  '#9a9591',
+              inputBackgroundColor:'#1a1a17',
+              formBackgroundColor: '#131310',
+              inputFocusedBorderColor: '#c9a96e',
+            },
+          },
+          texts: { formTitle: ' ', cardNumber: { label: 'Número de tarjeta' }, expirationDate: { label: 'Vencimiento' }, securityCode: { label: 'Código de seguridad' }, cardholderName: { label: 'Nombre en la tarjeta', placeholder: 'Como figura en la tarjeta' }, cardholderIdentification: { label: 'DNI' }, installmentsSectionTitle: 'Cuotas', selectInstallments: 'Seleccioná las cuotas', selectIssuerBank: 'Banco emisor' },
+        },
+        paymentMethods: { maxInstallments: 12 },
+      },
+      callbacks: {
+        onReady: () => { mpBricksReady = true; },
+        onSubmit: async (cardFormData) => { await procesarPagoTarjeta(cardFormData); },
+        onError: (err) => {
+          console.error('Bricks error:', err);
+          if (err.type !== 'non_critical') toast('⚠️ Error en el formulario de tarjeta. Revisá los datos.');
+        },
+      },
+    });
+
+  } catch(err) {
+    console.warn('MP Bricks no disponible:', err.message);
+    if (placeholder) placeholder.style.display = 'none';
+    if (fallback) fallback.style.display = 'block';
+  }
+}
+
+async function procesarPagoTarjeta(cardFormData) {
+  if (!validarForm()) {
+    document.getElementById('nombre').scrollIntoView({behavior:'smooth',block:'center'});
+    return;
+  }
+  const cart = getCart();
+  const sub  = cart.reduce((a,i) => a + i.precio*(i.qty||1), 0);
+  const nombre = document.getElementById('nombre').value.trim();
+  const email  = document.getElementById('email').value.trim();
+  const tel    = document.getElementById('telefono').value.trim();
+  const esRetiro = modoEnvio === 'retiro';
+  const envioStr = esRetiro
+    ? 'Retiro en local — Ing. Olmos 139, Jesús María'
+    : [document.getElementById('direccion').value.trim(), document.getElementById('ciudad').value.trim(), document.getElementById('provincia').value.trim(), document.getElementById('cp').value.trim()].filter(Boolean).join(', ');
+
+  try {
+    const res = await fetch(`${BACKEND_URL}/api/pagar-tarjeta`, {
+      method:  'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        token:           cardFormData.token,
+        issuer_id:       cardFormData.issuer_id,
+        payment_method_id: cardFormData.payment_method_id,
+        transaction_amount: sub,
+        installments:    cardFormData.installments,
+        payer:           { email, identification: cardFormData.payer?.identification },
+        nombre, telefono: tel,
+        items: cart, envio: envioStr, modoEnvio,
+        metodoPago: 'card',
+      })
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) throw new Error(data.error || 'Error al procesar el pago');
+
+    if (data.status === 'approved') {
+      localStorage.removeItem(CART_KEY);
+      localStorage.setItem('bc_pedido_id', data.pedidoId);
+      localStorage.setItem('bc_nombre_cliente', nombre);
+      if (data.waNotifUrl) window.open(data.waNotifUrl, '_blank');
+      window.location.href = 'success.html?pedido=' + data.pedidoId + '&estado=aprobado';
+    } else if (data.status === 'in_process' || data.status === 'pending') {
+      localStorage.removeItem(CART_KEY);
+      window.location.href = 'success.html?pedido=' + data.pedidoId + '&estado=pendiente';
+    } else {
+      toast('⚠️ ' + (data.detail || 'El pago no fue aprobado. Revisá los datos de la tarjeta.'));
+    }
+  } catch(err) {
+    toast('⚠️ ' + (err.message || 'Error al procesar el pago'));
+  }
+}
 
 const fmt=n=>'$'+Number(n).toLocaleString('es-AR');
 function getCart(){try{return JSON.parse(localStorage.getItem(CART_KEY))||[];}catch(e){return[];}}
@@ -654,14 +821,16 @@ function selPago(metodo,el){
   metodoPago=metodo;
   document.querySelectorAll('.pm-card').forEach(c=>c.classList.remove('sel'));
   el.classList.add('sel');
-  ['Mp','Naranja','Transfer','Posnet','Cash','Wa'].forEach(p=>{
+  ['Card','Mp','Naranja','Transfer','Posnet','Cash','Wa'].forEach(p=>{
     const panel=document.getElementById('panel'+p);
     if(panel)panel.classList.remove('active');
   });
-  const map={mp:'panelMp',naranja:'panelNaranja',transfer:'panelTransfer',posnet:'panelPosnet',cash:'panelCash',wa:'panelWa'};
+  const map={card:'panelCard',mp:'panelMp',naranja:'panelNaranja',transfer:'panelTransfer',posnet:'panelPosnet',cash:'panelCash',wa:'panelWa'};
   const panel=document.getElementById(map[metodo]);
   if(panel)panel.classList.add('active');
   if(window.innerWidth<900&&panel)setTimeout(()=>panel.scrollIntoView({behavior:'smooth',block:'nearest'}),80);
+  // Inicializar formulario de tarjeta MP Bricks
+  if(metodo==='card') setTimeout(initMPBricks, 100);
 }
 
 function selPosnet(el,t){
@@ -733,6 +902,13 @@ async function pagar(metodo) {
        document.getElementById('provincia').value.trim(),
        document.getElementById('cp').value.trim()
       ].filter(Boolean).join(', ');
+
+  // Tarjeta — el submit lo maneja MP Bricks directamente (callback onSubmit)
+  if (metodo === 'card') {
+    if (!mpBricksReady) { toast('El formulario de tarjeta todavía está cargando, esperá un momento.'); return; }
+    // Bricks maneja el submit internamente via onSubmit callback
+    return;
+  }
 
   // WhatsApp directo — no necesita backend
   if (metodo === 'wa') {
