@@ -1619,13 +1619,18 @@
     "stockMap": {
       "Marrón__S": null,
       "Marrón__M": 1,
-      "Rosa__S": 0,
+      "Rosa__S": 1,
       "Rosa__M": 1,
-      "Salmón__S": 1,
+      "Salmón__S": 0,
       "Salmón__M": null
     },
-    "stockTalles": null,
-    "stock": 3,
+    "stockTalles": {
+      "S": 1,
+      "M": 2,
+      "L": 1,
+      "XL": 2
+    },
+    "stock": 2,
     "sku": "SUDADERA-SURF",
     "marca": null,
     "tags": null,
