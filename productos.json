@@ -2204,12 +2204,24 @@
       "https://i.ibb.co/Y4ctWsYG/Buzo-Madrid-Azuldetalle.webp"
     ],
     "tallesDisponibles": [
+      "M",
+      "L",
       "XL"
     ],
     "colores": [
       {
+        "nombre": "Negro",
+        "codigo": "#111111",
+        "stock": 0
+      },
+      {
         "nombre": "Beige",
         "codigo": "#D4B896",
+        "stock": 0
+      },
+      {
+        "nombre": "Azul",
+        "codigo": "#1E88E5",
         "stock": 0
       }
     ],
@@ -2217,12 +2229,20 @@
     "destacado": true,
     "outlet": false,
     "stockMap": {
-      "Beige__XL": 1
+      "Negro__M": 1,
+      "Negro__L": 0,
+      "Negro__XL": null,
+      "Beige__M": null,
+      "Beige__L": null,
+      "Beige__XL": 1,
+      "Azul__M": null,
+      "Azul__L": 1,
+      "Azul__XL": null
     },
     "stockTalles": {
       "M": 2
     },
-    "stock": 10,
+    "stock": 3,
     "sku": "BUZO-MADRID",
     "marca": null,
     "tags": null,
