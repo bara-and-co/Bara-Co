@@ -2067,12 +2067,30 @@
       "https://i.ibb.co/XxmnRpxH/Buzo-Waffle-Frentecrudo.webp"
     ],
     "tallesDisponibles": [
-      "XL"
+      "S",
+      "L",
+      "XL",
+      "XXL"
     ],
     "colores": [
       {
+        "nombre": "Negro",
+        "codigo": "#111111",
+        "stock": 0
+      },
+      {
         "nombre": "Beige",
         "codigo": "#D4B896",
+        "stock": 0
+      },
+      {
+        "nombre": "Rosa",
+        "codigo": "#F48FB1",
+        "stock": 0
+      },
+      {
+        "nombre": "Verde",
+        "codigo": "#43A047",
         "stock": 0
       }
     ],
@@ -2080,13 +2098,29 @@
     "destacado": true,
     "outlet": false,
     "stockMap": {
-      "Beige__XL": null
+      "Negro__S": 1,
+      "Negro__L": null,
+      "Negro__XL": null,
+      "Negro__XXL": null,
+      "Beige__S": null,
+      "Beige__L": null,
+      "Beige__XL": 1,
+      "Beige__XXL": null,
+      "Rosa__S": null,
+      "Rosa__L": 1,
+      "Rosa__XL": null,
+      "Rosa__XXL": null,
+      "Verde__S": null,
+      "Verde__L": null,
+      "Verde__XL": null,
+      "Verde__XXL": 1
     },
     "stockTalles": {
-      "L": null
+      "M": 2
     },
     "stock": 10,
     "sku": "BUZO-WAFFLE",
+    "marca": null,
     "tags": null,
     "fabrica": null,
     "cuidados": null,
