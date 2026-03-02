@@ -2140,52 +2140,6 @@
     "link": null
   },
   {
-    "id": "buzo-madrid-1771846274594",
-    "nombre": "Buzo Madrid",
-    "precio": 40000,
-    "precioAnterior": null,
-    "categoria": "hombre",
-    "subcategoria": "Buzos",
-    "descripcion": "",
-    "imagen": "https://i.ibb.co/0yn9H7Gv/Buzo-Madrid-Azul-Frente.webp",
-    "imagenes": [
-      "https://i.ibb.co/0yn9H7Gv/Buzo-Madrid-Azul-Frente.webp",
-      "https://i.ibb.co/GQcxZDnq/Buzo-Madrid-Azuldetalle.webp"
-    ],
-    "tallesDisponibles": [
-      "L"
-    ],
-    "colores": [
-      {
-        "nombre": "Azul",
-        "codigo": "#1E88E5",
-        "stock": 0
-      }
-    ],
-    "activo": true,
-    "destacado": true,
-    "outlet": false,
-    "stockMap": {
-      "Azul__L": null
-    },
-    "stockTalles": {
-      "L": null
-    },
-    "stock": 10,
-    "sku": "BUZO-MADRID",
-    "tags": null,
-    "fabrica": null,
-    "cuidados": null,
-    "temporada": null,
-    "genero": null,
-    "peso": null,
-    "origen": null,
-    "proveedor": null,
-    "notas": null,
-    "costo": null,
-    "link": null
-  },
-  {
     "id": "buzo-madrid-1771846165730",
     "nombre": "Buzo Madrid",
     "precio": 40000,
@@ -2245,53 +2199,6 @@
     "stock": 3,
     "sku": "BUZO-MADRID",
     "marca": null,
-    "tags": null,
-    "fabrica": null,
-    "cuidados": null,
-    "temporada": null,
-    "genero": null,
-    "peso": null,
-    "origen": null,
-    "proveedor": null,
-    "notas": null,
-    "costo": null,
-    "link": null
-  },
-  {
-    "id": "buzo-madrid-1771846097786",
-    "nombre": "Buzo Madrid",
-    "precio": 40000,
-    "precioAnterior": null,
-    "categoria": "hombre",
-    "subcategoria": "Buzos",
-    "descripcion": "",
-    "imagen": "https://i.ibb.co/jkHrTjSY/Buzo-Madrid-Frente.webp",
-    "imagenes": [
-      "https://i.ibb.co/jkHrTjSY/Buzo-Madrid-Frente.webp",
-      "https://i.ibb.co/QvVvmKYB/Buzo-Madrid-Frente2.webp",
-      "https://i.ibb.co/YBnYkZZn/Buzo-Madrid-Espalda.webp"
-    ],
-    "tallesDisponibles": [
-      "M"
-    ],
-    "colores": [
-      {
-        "nombre": "Negro",
-        "codigo": "#111111",
-        "stock": 0
-      }
-    ],
-    "activo": true,
-    "destacado": false,
-    "outlet": false,
-    "stockMap": {
-      "Negro__M": null
-    },
-    "stockTalles": {
-      "L": null
-    },
-    "stock": 10,
-    "sku": "BUZO-MADRID",
     "tags": null,
     "fabrica": null,
     "cuidados": null,
