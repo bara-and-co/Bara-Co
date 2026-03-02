@@ -2197,7 +2197,11 @@
     "imagenes": [
       "https://i.ibb.co/BH8sDCmx/Buzo-Madrid.webp",
       "https://i.ibb.co/4nmmnvYc/Buzo-Madrid-Frentecrudo3.webp",
-      "https://i.ibb.co/9mB51P05/Buzo-Madrid-Crudo-detalle.webp"
+      "https://i.ibb.co/9mB51P05/Buzo-Madrid-Crudo-detalle.webp",
+      "https://i.ibb.co/8gY1kBKv/Buzo-Madrid-Frente2.webp",
+      "https://i.ibb.co/ccr94Fmc/Buzo-Madrid-Espalda.webp",
+      "https://i.ibb.co/DftMWswq/Buzo-Madrid-Azul-Frente.webp",
+      "https://i.ibb.co/Y4ctWsYG/Buzo-Madrid-Azuldetalle.webp"
     ],
     "tallesDisponibles": [
       "XL"
@@ -2213,13 +2217,14 @@
     "destacado": true,
     "outlet": false,
     "stockMap": {
-      "Beige__XL": null
+      "Beige__XL": 1
     },
     "stockTalles": {
-      "L": null
+      "M": 2
     },
     "stock": 10,
     "sku": "BUZO-MADRID",
+    "marca": null,
     "tags": null,
     "fabrica": null,
     "cuidados": null,
