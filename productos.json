@@ -4237,34 +4237,28 @@
     "precioAnterior": null,
     "categoria": "accesorios",
     "subcategoria": "Abanicos",
-    "descripcion": "",
     "imagen": "accesorios/AbanicoMusic.png",
     "imagenes": [
       "accesorios/AbanicoMusic.png"
     ],
-    "tallesDisponibles": [],
-    "colores": [],
-    "activo": true,
-    "destacado": false,
-    "outlet": false,
-    "stockMap": {},
-    "stockTalles": {
-      "XL": null
-    },
-    "stock": 10,
+    "descripcion": "",
+    "composicion": "",
+    "cuidado": "",
+    "talles": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "tallesDisponibles": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
     "sku": "ABANICO-MUSIC",
-    "marca": null,
-    "tags": null,
-    "fabrica": null,
-    "cuidados": null,
-    "temporada": null,
-    "genero": null,
-    "peso": null,
-    "origen": null,
-    "proveedor": null,
-    "notas": null,
-    "costo": null,
-    "link": null
+    "stock": 10,
+    "activo": true
   },
   {
     "id": "abanicos-a-mi-aire",
@@ -4278,18 +4272,28 @@
     "imagenes": [
       "https://i.ibb.co/tM02pnDG/amiaire.png"
     ],
-    "tallesDisponibles": [],
+    "tallesDisponibles": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
     "colores": [],
     "activo": true,
     "destacado": false,
     "outlet": false,
-    "stockMap": {},
+    "stockMap": {
+      "Bordo__M": null,
+      "Bordo__XXL": null
+    },
     "stockTalles": {
+      "S": null,
+      "M": null,
+      "L": null,
       "XL": null
     },
     "stock": 10,
     "sku": "ABANICOS-A-MI-AIRE",
-    "marca": null,
     "tags": null,
     "fabrica": null,
     "cuidados": null,
