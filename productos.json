@@ -4235,28 +4235,34 @@
     "precioAnterior": null,
     "categoria": "accesorios",
     "subcategoria": "Abanicos",
+    "descripcion": "",
     "imagen": "accesorios/AbanicoMusic.png",
     "imagenes": [
       "accesorios/AbanicoMusic.png"
     ],
-    "descripcion": "",
-    "composicion": "",
-    "cuidado": "",
-    "talles": [
-      "S",
-      "M",
-      "L",
-      "XL"
-    ],
-    "tallesDisponibles": [
-      "S",
-      "M",
-      "L",
-      "XL"
-    ],
-    "sku": "ABANICO-MUSIC",
+    "tallesDisponibles": [],
+    "colores": [],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {},
+    "stockTalles": {
+      "XL": null
+    },
     "stock": 10,
-    "activo": true
+    "sku": "ABANICO-MUSIC",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
   },
   {
     "id": "abanicos-a-mi-aire",
