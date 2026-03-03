@@ -1144,6 +1144,9 @@
   </div>
   <div class="topbar-right">
     <div class="import-export">
+      <button class="btn btn-ghost btn-sm" onclick="downloadJSON()" title="Descargar productos.json">
+        <i class="fas fa-download"></i>
+      </button>
       <button class="btn btn-ghost btn-sm" onclick="exportCSV()" title="Exportar a CSV">
         <i class="fas fa-file-export"></i>
       </button>
@@ -1208,9 +1211,14 @@
       <strong id="bannerCount">1 cambio</strong> sin publicar en la tienda
       <small>Los cambios se guardan cuando presionás "Publicar"</small>
     </div>
-    <button class="btn btn-primary" onclick="publish()" id="publishBtn">
-      <i class="fas fa-cloud-upload-alt"></i> Publicar ahora
-    </button>
+    <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+      <button class="btn btn-primary" onclick="publish()" id="publishBtn">
+        <i class="fas fa-cloud-upload-alt"></i> Publicar en GitHub
+      </button>
+      <button class="btn btn-ghost btn-sm" onclick="downloadJSON()" title="Descargar productos.json para subirlo manualmente">
+        <i class="fas fa-download"></i> Descargar JSON
+      </button>
+    </div>
   </div>
 
   <!-- Toolbar -->
@@ -1991,15 +1999,23 @@ async function init() {
   if (t) document.getElementById('cfgToken').value = t;
   document.getElementById('cfgRepo').value = r;
 
-  // Cargar borrador local primero
-  const draft = localStorage.getItem('bc_draft');
-  if (draft) { try { products = JSON.parse(draft); } catch(e){} }
+  // Siempre cargar la versión publicada primero (la fuente de verdad)
+  let loaded = false;
+  for (const url of ['productos.json', 'https://bara-and-co.github.io/Bara-Co/productos.json']) {
+    try {
+      const res = await fetch(url+'?t='+Date.now());
+      if (res.ok) { products = await res.json(); loaded = true; break; }
+    } catch(e) {}
+  }
 
-  // Si no hay borrador, cargar del repo
-  if (!products.length) {
-    for (const url of ['productos.json', 'https://bara-and-co.github.io/Bara-Co/productos.json']) {
-      try { const res = await fetch(url+'?t='+Date.now()); if(res.ok){ products = await res.json(); break; } } catch(e){}
-    }
+  // Solo usar draft si no se pudo cargar del servidor (offline / primera vez)
+  if (!loaded) {
+    const draft = localStorage.getItem('bc_draft');
+    if (draft) { try { products = JSON.parse(draft); } catch(e){} }
+  } else {
+    // Hay datos del servidor — borrar draft viejo para que no interfiera
+    localStorage.removeItem('bc_draft');
+    pending = 0;
   }
   renderGrid();
   updateStats();
@@ -3042,7 +3058,7 @@ function saveProduct(skipDupCheck = false) {
   if (token) {
     setTimeout(() => publish(), 300);
   } else {
-    toast('Guardado localmente. Configurá el token de GitHub para publicar.', 'info');
+    toast('Guardado. Sin token de GitHub — usá "Descargar JSON" para actualizar la tienda manualmente.', 'info');
   }
 }
 
@@ -3086,6 +3102,18 @@ function dirty() {
 }
 
 /* ─── EXPORT/IMPORT ─── */
+function downloadJSON() {
+  const json = JSON.stringify(products, null, 2);
+  const blob = new Blob([json], {type:'application/json'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'productos.json';
+  a.click();
+  URL.revokeObjectURL(url);
+  toast('productos.json descargado — subilo a tu servidor / GitHub para actualizar la tienda', 'ok');
+}
+
 function exportCSV() {
   const csv = ['nombre,precio,precioAnterior,categoria,subcategoria,activo,descripcion,talles,colores,imagen'];
   products.forEach(p => {
