@@ -4204,14 +4204,16 @@
     "imagenes": [
       "accesorios/AbanicoOrgullo.png"
     ],
-    "tallesDisponibles": [],
+    "tallesDisponibles": [
+      "Único"
+    ],
     "colores": [],
     "activo": true,
     "destacado": false,
     "outlet": false,
     "stockMap": {},
     "stockTalles": {
-      "XL": null
+      "Único": null
     },
     "stock": 10,
     "sku": "ABANICO-ORGULLO",
