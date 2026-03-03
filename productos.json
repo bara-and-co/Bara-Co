@@ -4276,28 +4276,18 @@
     "imagenes": [
       "https://i.ibb.co/tM02pnDG/amiaire.png"
     ],
-    "tallesDisponibles": [
-      "S",
-      "M",
-      "L",
-      "XL"
-    ],
+    "tallesDisponibles": [],
     "colores": [],
     "activo": true,
     "destacado": false,
     "outlet": false,
-    "stockMap": {
-      "Bordo__M": null,
-      "Bordo__XXL": null
-    },
+    "stockMap": {},
     "stockTalles": {
-      "S": null,
-      "M": null,
-      "L": null,
       "XL": null
     },
     "stock": 10,
     "sku": "ABANICOS-A-MI-AIRE",
+    "marca": null,
     "tags": null,
     "fabrica": null,
     "cuidados": null,
