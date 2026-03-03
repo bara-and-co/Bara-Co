@@ -946,17 +946,18 @@
         <div class="care-icons" id="careIcons"></div>
       </div>
 
-      <div class="divider"></div>
-
       <!-- Selector talle -->
-      <div class="section-label">
-        <span>Talle <span class="selected-indicator" id="selectedSizeLabel"></span></span>
-        <span class="size-guide-link" onclick="openSizeGuide()">
-          <i class="fas fa-ruler-horizontal" style="font-size:9px;margin-right:3px;"></i> Guía de talles
-        </span>
+      <div id="sizeSection">
+        <div class="divider"></div>
+        <div class="section-label">
+          <span>Talle <span class="selected-indicator" id="selectedSizeLabel"></span></span>
+          <span class="size-guide-link" onclick="openSizeGuide()">
+            <i class="fas fa-ruler-horizontal" style="font-size:9px;margin-right:3px;"></i> Guía de talles
+          </span>
+        </div>
+        <div class="size-options" id="sizeOptions"></div>
+        <p id="sizeError"></p>
       </div>
-      <div class="size-options" id="sizeOptions"></div>
-      <p id="sizeError"></p>
 
       <!-- Selector color -->
       <div id="colorSection" style="display:none;">
@@ -1351,6 +1352,11 @@ function renderizarProducto() {
   const stockTalles = p.stockTalles || {};
   const sizeEl = document.getElementById('sizeOptions');
   sizeEl.innerHTML = '';
+
+  // Determinar si hay talles reales (no vacío ni solo 'Unico')
+  const tienetallesReales = talles.length > 0 &&
+    !(talles.length === 1 && (typeof talles[0] === 'string' ? talles[0] === 'Unico' : (talles[0].nombre || '') === 'Unico'));
+  document.getElementById('sizeSection').style.display = tienetallesReales ? '' : 'none';
 
   let hayStock = false, hayStockBajo = false;
 
