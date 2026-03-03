@@ -1019,9 +1019,31 @@
       "https://i.ibb.co/YGcMxKp/Remera-oversizeamarillooro.webp"
     ],
     "tallesDisponibles": [
+      "M",
+      "L",
       "XL"
     ],
     "colores": [
+      {
+        "nombre": "Negro",
+        "codigo": "#111111",
+        "stock": 0
+      },
+      {
+        "nombre": "Blanco",
+        "codigo": "#FFFFFF",
+        "stock": 0
+      },
+      {
+        "nombre": "Gris",
+        "codigo": "#9E9E9E",
+        "stock": 0
+      },
+      {
+        "nombre": "Camel",
+        "codigo": "#C19A6B",
+        "stock": 0
+      },
       {
         "nombre": "Amarillo",
         "codigo": "#FDD835",
@@ -1032,15 +1054,39 @@
     "destacado": false,
     "outlet": false,
     "stockMap": {
+      "Negro__M": 1,
+      "Negro__L": null,
+      "Negro__XL": null,
+      "Blanco__M": null,
+      "Blanco__L": 1,
+      "Blanco__XL": null,
+      "Gris__M": 1,
+      "Gris__L": null,
+      "Gris__XL": null,
+      "Camel__M": null,
+      "Camel__L": 1,
+      "Camel__XL": null,
+      "Amarillo__M": null,
+      "Amarillo__L": null,
       "Amarillo__XL": 1
     },
     "stockTalles": {
-      "38": 1,
-      "40": 1,
-      "42": 2
+      "M": 2
     },
-    "stock": 1,
-    "sku": "REMERA-OVERSIZE-LISA"
+    "stock": 5,
+    "sku": "REMERA-OVERSIZE-LISA",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
   },
   {
     "id": "remera-oversize-lisa-1771875608949",
