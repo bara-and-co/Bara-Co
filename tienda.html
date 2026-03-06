@@ -77,6 +77,43 @@
     .mobile-nav a:hover,.mobile-nav a.active { color:var(--accent); }
     .shipping-bar { margin-top:80px; background:var(--accent); color:var(--bg); text-align:center; font-size:10px; font-weight:500; letter-spacing:.22em; text-transform:uppercase; padding:11px; }
 
+    /* ── BANNER OFERTAS ── */
+    .ofertas-strip {
+      background:linear-gradient(135deg,rgba(201,169,110,.12),rgba(201,169,110,.05));
+      border-top:1px solid rgba(201,169,110,.15);
+      border-bottom:1px solid rgba(201,169,110,.15);
+      padding:14px 52px; display:none; overflow:hidden;
+    }
+    .ofertas-strip.visible { display:block; }
+    .ofertas-strip-inner {
+      max-width:1200px; margin:0 auto;
+      display:flex; align-items:center; gap:12px; flex-wrap:wrap;
+    }
+    .ofertas-strip-label {
+      font-size:9px; font-weight:700; letter-spacing:.16em; text-transform:uppercase;
+      color:var(--accent); display:flex; align-items:center; gap:6px; white-space:nowrap; flex-shrink:0;
+    }
+    .ofertas-strip-label i { font-size:11px; }
+    .oferta-pill {
+      display:inline-flex; align-items:center; gap:7px;
+      background:rgba(201,169,110,.12); border:1px solid rgba(201,169,110,.25);
+      color:var(--text); padding:6px 14px; border-radius:20px; font-size:12px; font-weight:500;
+      cursor:default; transition:all .2s; white-space:nowrap;
+    }
+    .oferta-pill:hover { background:rgba(201,169,110,.22); }
+    .oferta-pill-badge {
+      background:var(--accent); color:var(--bg); font-size:8px; font-weight:700;
+      padding:1px 6px; border-radius:10px; letter-spacing:.04em;
+    }
+
+    /* ── BADGE OFERTA EN CARD ── */
+    .badge-oferta {
+      position:absolute; bottom:10px; left:10px; z-index:3;
+      background:rgba(201,169,110,.92); color:var(--bg);
+      font-size:9px; font-weight:700; padding:4px 9px; border-radius:4px;
+      letter-spacing:.04em; backdrop-filter:blur(4px);
+    }
+
     /* ── HERO ── */
     .shop-hero { height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; position:relative; overflow:hidden; background:#000; border-bottom:1px solid var(--border); }
     .shop-hero-bg { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 30%; opacity:.5; filter:brightness(.6); }
@@ -346,6 +383,14 @@
 </nav>
 
 <div class="shipping-bar">Envíos a todo el país · Retiro en local · Ing. Olmos 139, Jesús María · Compra segura</div>
+
+<!-- BANNER OFERTAS ACTIVAS -->
+<div class="ofertas-strip" id="ofertasStrip">
+  <div class="ofertas-strip-inner">
+    <div class="ofertas-strip-label"><i class="fas fa-bolt"></i> Ofertas activas</div>
+    <div id="ofertasPills" style="display:flex;flex-wrap:wrap;gap:8px;"></div>
+  </div>
+</div>
 
 <div class="shop-hero">
   <img class="shop-hero-bg" src="images/fondo%20hero.png" alt="Bara & Co Tienda" loading="eager"/>
@@ -651,6 +696,8 @@ function buildCard(p) {
 
   const agotadoOverlay = agotado ? `<div class="badge-agotado"><span>Agotado</span></div>` : '';
 
+  const ofertaBadge = !agotado ? getOfertaBadgeForProduct(p) : null;
+
   const tallesData = p.tallesDisponibles || p.talles || null;
   const btnAgregar = agotado ? '' :
     tallesData
@@ -670,6 +717,7 @@ function buildCard(p) {
       <div class="prod-img">
         ${topBadge}
         ${agotadoOverlay}
+        ${ofertaBadge ? `<span class="badge-oferta">${ofertaBadge}</span>` : ''}
         <img src="${p.imagen}" alt="${p.nombre}" loading="lazy"/>
         <div class="prod-overlay">
           ${btnAgregar}
@@ -801,11 +849,76 @@ function actualizarContador(visibles=null) {
 
 document.addEventListener('DOMContentLoaded', () => {
   cargarProductos();
+  cargarOfertas();
   document.querySelectorAll('.filter-tab').forEach(tab => {
     tab.addEventListener('click', () => filterBy(tab.dataset.f));
   });
   document.addEventListener('keydown', e => { if (e.key==='Escape') closeSizeGuide(); });
 });
+
+// ═══════════════════════════════════════
+// SISTEMA DE OFERTAS
+// ═══════════════════════════════════════
+const OFERTAS_KEY = 'bc_ofertas';
+
+function getOfertasActivas() {
+  try {
+    const todas = JSON.parse(localStorage.getItem(OFERTAS_KEY)) || [];
+    const now = Date.now();
+    return todas.filter(o => {
+      if (!o.activa) return false;
+      if (o.fechaInicio && now < new Date(o.fechaInicio).getTime()) return false;
+      if (o.fechaFin && now > new Date(o.fechaFin).getTime()) return false;
+      if (o.stockLimite && o.usosActuales >= o.stockLimite) return false;
+      return true;
+    });
+  } catch(e) { return []; }
+}
+
+function cargarOfertas() {
+  const strip = document.getElementById('ofertasStrip');
+  const pills = document.getElementById('ofertasPills');
+  if (!strip || !pills) return;
+
+  // Verificar si el admin ocultó el panel para tienda
+  const stripVisible = localStorage.getItem('bc_ofertas_strip_tienda') !== 'oculto';
+  if (!stripVisible) { strip.classList.remove('visible'); return; }
+
+  // Solo ofertas que aplican a tienda o ambas
+  const activas = getOfertasActivas().filter(o => !o.mostrarEn || o.mostrarEn === 'tienda' || o.mostrarEn === 'ambos');
+  if (!activas.length) { strip.classList.remove('visible'); return; }
+
+  strip.classList.add('visible');
+  pills.innerHTML = activas.map(o => {
+    const scopeText = o.todasCategorias ? 'Toda la tienda'
+      : (o.categorias || []).slice(0,2).join(', ') + (o.categorias && o.categorias.length > 2 ? '...' : '');
+    return `<span class="oferta-pill">
+      ${o.badge ? `<span class="oferta-pill-badge">${o.badge}</span>` : ''}
+      <strong>${o.nombre}</strong>
+      <span style="color:var(--muted);font-size:11px;">· ${scopeText}</span>
+    </span>`;
+  }).join('');
+}
+
+function getTipoLabel(o) {
+  if (o.tipo === '2x1') return '2×1';
+  if (o.tipo === '3x2') return '3×2';
+  if (o.tipo === 'nxm') return `${o.n}×${o.m}`;
+  if (o.tipo === 'pct') return `${o.valor}% Off`;
+  if (o.tipo === 'fijo') return `$${(o.valor||0).toLocaleString('es-AR')} Off`;
+  return 'Promo';
+}
+
+function getOfertaBadgeForProduct(p) {
+  const activas = getOfertasActivas().filter(o => !o.mostrarEn || o.mostrarEn === 'tienda' || o.mostrarEn === 'ambos');
+  for (const o of activas) {
+    const cats = o.todasCategorias ? null : (o.categorias || []);
+    if (cats && !cats.includes(p.categoria)) continue;
+    if (o.badge) return o.badge;
+    return getTipoLabel(o);
+  }
+  return null;
+}
 </script>
 </body>
 </html>
