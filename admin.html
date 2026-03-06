@@ -4099,12 +4099,14 @@ function deleteOferta(id) {
 let editingOfertaIdx = null;
 let selectedTipo = '2x1';
 let selectedCats = [];
+let _pendingMostrarEn = 'ambos'; // se setea en openOfertaModal y se aplica al final
 
 function openOfertaModal(idx = null) {
   // Guardamos el ID (string) para que no se rompa si el array cambia de orden
   editingOfertaIdx = idx !== null ? (getOfertas()[idx]?.id ?? null) : null;
   selectedTipo = '2x1';
   selectedCats = [];
+  _pendingMostrarEn = 'ambos'; // valor por defecto; se sobreescribe si se edita
 
   const modal = document.getElementById('mOferta');
   const title = document.getElementById('ofertaModalTitle');
@@ -4155,16 +4157,9 @@ function openOfertaModal(idx = null) {
       selectedCats = o.categorias;
     }
     // Restore mostrarEn — validar que el valor sea uno de los permitidos
-    const radioVal = (['tienda','inicio','ambos'].includes(o.mostrarEn)) ? o.mostrarEn : 'ambos';
-    const radioMap = { tienda:'ofMostrarTienda', inicio:'ofMostrarInicio', ambos:'ofMostrarAmbos' };
-    const radioEl = document.getElementById(radioMap[radioVal]);
-    if (radioEl) {
-      // Primero desmarcar todos para evitar estado inconsistente
-      document.querySelectorAll('input[name="ofMostrarEn"]').forEach(r => r.checked = false);
-      radioEl.checked = true;
-      radioEl.dispatchEvent(new Event('change'));
-      updateMostrarEnStyle();
-    }
+    // Se guarda en variable y se aplica AL FINAL (después de selOfertaTipo/renderCatPills)
+    // para evitar que cualquier re-render posterior lo sobreescriba
+    _pendingMostrarEn = (['tienda','inicio','ambos'].includes(o.mostrarEn)) ? o.mostrarEn : 'ambos';
     // Restore image
     if (o.imagen) {
       ofertaImgData = o.imagen;
@@ -4178,6 +4173,19 @@ function openOfertaModal(idx = null) {
 
   selOfertaTipo(selectedTipo);
   renderCatPills();
+
+  // Aplicar mostrarEn AL ÚLTIMO MOMENTO — después de selOfertaTipo y renderCatPills
+  // para garantizar que nada lo sobreescriba antes de que el modal sea visible
+  {
+    const radioMap = { tienda:'ofMostrarTienda', inicio:'ofMostrarInicio', ambos:'ofMostrarAmbos' };
+    document.querySelectorAll('input[name="ofMostrarEn"]').forEach(r => r.checked = false);
+    const targetId = radioMap[_pendingMostrarEn] || 'ofMostrarAmbos';
+    const targetEl = document.getElementById(targetId);
+    if (targetEl) { targetEl.checked = true; }
+    updateMostrarEnStyle();
+    console.log('[openOfertaModal] mostrarEn aplicado:', _pendingMostrarEn, '→ checked:', targetEl?.checked);
+  }
+
   modal.classList.add('open');
 }
 
