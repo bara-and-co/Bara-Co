@@ -107,6 +107,7 @@
 
     /* Slide */
     .oc-slide {
+      min-width:100%;
       position:relative; overflow:hidden;
       background:linear-gradient(110deg, var(--ot-bg1) 0%, var(--ot-bg2) 100%);
     }
@@ -535,6 +536,18 @@
 
 <div class="shipping-bar">Envíos a todo el país · Retiro en local · Ing. Olmos 139, Jesús María · Compra segura</div>
 
+<!-- CARRUSEL DE OFERTAS -->
+<div class="oc-wrap oc-hidden" id="ocWrap">
+  <div class="oc-track" id="ocTrack"></div>
+  <div class="oc-controls">
+    <div class="oc-dots" id="ocDots"></div>
+    <div class="oc-arrows">
+      <button class="oc-arrow" id="ocPrev" onclick="ocMove(-1)" aria-label="Anterior"><i class="fas fa-chevron-left"></i></button>
+      <button class="oc-arrow" id="ocNext" onclick="ocMove(1)"  aria-label="Siguiente"><i class="fas fa-chevron-right"></i></button>
+    </div>
+  </div>
+  <div class="oc-strip" id="ocStrip"></div>
+</div>
 
 <div class="shop-hero">
   <img class="shop-hero-bg" src="images/fondo%20hero.png" alt="Bara & Co Tienda" loading="eager"/>
@@ -1048,37 +1061,36 @@ function getOfertasActivas() {
 function _ocBuildSlide(o, idx, page) {
   const theme    = getOfertaTheme(o.tipo);
   const accent   = getOfertaAccentColor(o.tipo);
-  const txtColor = theme === 'premium' ? '#0c0c0a' : '#fff';
+  const badgeTxt = theme === 'premium' ? '#0e0d09' : '#fff';
   const tipoLbl  = getOfertaTipoLabel(o);
   const scope    = o.todasCategorias ? 'Toda la tienda'
     : (o.categorias||[]).slice(0,3).map(c=>c.charAt(0).toUpperCase()+c.slice(1)).join(' · ');
   const fecha    = o.fechaFin
     ? `<span class="oc-date"><i class="fas fa-clock"></i> Hasta ${new Date(o.fechaFin).toLocaleDateString('es-AR',{day:'2-digit',month:'2-digit'})}</span>` : '';
   const imgHtml  = o.imagen
-    ? `<div class="oc-img"><img src="${o.imagen}" alt="${o.nombre}" loading="lazy"/></div>` : '';
-  const noImg    = o.imagen ? '' : 'oc-no-img';
+    ? `<div class="oc-img has-img"><img src="${o.imagen}" alt="${o.nombre}" loading="lazy"/></div>` : '';
   const ctaHref  = page==='tienda' ? '#productos' : 'tienda.html';
   const ctaLabel = page==='tienda' ? 'Ver productos <i class="fas fa-arrow-down" style="font-size:8px"></i>' : 'Ver tienda <i class="fas fa-arrow-right" style="font-size:8px"></i>';
-  // Build inline CSS vars (avoid color-mix for compatibility)
-  const hexToRgb = h => { const r=parseInt(h.slice(1,3),16),g=parseInt(h.slice(3,5),16),b=parseInt(h.slice(5,7),16); return `${r},${g},${b}`; };
-  const rgb = hexToRgb(accent);
   return `
-  <div class="oc-slide ${noImg} oc-theme-${theme}" data-idx="${idx}"
-       style="--oc:${accent};--oc-glow:rgba(${rgb},.18);--oc-btn:${accent};--oc-badge-txt:${txtColor}">
-    <div class="oc-slide-bg"></div>
-    <div class="oc-slide-noise"></div>
-    <div class="oc-slide-grid"></div>
+  <div class="oc-slide oc-${theme}" data-idx="${idx}"
+       style="--ot-accent:${accent};--ot-glow:rgba(0,0,0,0);--oc-si-color:${accent}">
     ${imgHtml}
-    <div class="oc-content">
-      <p class="oc-eyebrow"><span class="oc-eyebrow-line"></span><i class="oc-icon">${getOfertaIcon(o.tipo)}</i>${getOfertaEyebrow(o.tipo)}</p>
-      <h2 class="oc-title">${o.nombre}</h2>
-      ${o.descripcion ? `<p class="oc-desc">${o.descripcion}</p>` : ''}
-      <div class="oc-meta">
-        <span class="oc-badge">${tipoLbl}</span>
-        <span class="oc-pill">${scope}</span>
-        ${fecha}
+    <div class="oc-inner">
+      <div class="oc-body">
+        <i class="oc-symbol">${getOfertaIcon(o.tipo)}</i>
+        <div class="oc-texts">
+          <p class="oc-eyebrow">${getOfertaEyebrow(o.tipo)}</p>
+          <h2 class="oc-title">${o.nombre}</h2>
+          ${o.descripcion ? `<p class="oc-desc">${o.descripcion}</p>` : ''}
+        </div>
+        <div class="oc-divider"></div>
+        <div class="oc-pills">
+          <span class="oc-badge" style="--ot-badge-color:${badgeTxt}">${tipoLbl}</span>
+          <span class="oc-scope">${scope}</span>
+          ${fecha}
+        </div>
+        <a class="oc-cta" href="${ctaHref}">${ctaLabel} <i class="fas fa-arrow-${page==='tienda'?'down':'right'}"></i></a>
       </div>
-      <a class="oc-cta" href="${ctaHref}">${ctaLabel}</a>
     </div>
   </div>`;
 }
@@ -1090,7 +1102,7 @@ function _ocGoTo(idx) {
   _ocCurrent = idx;
   const track = document.getElementById('ocTrack');
   if (track) track.style.transform = `translateX(-${idx*100}%)`;
-  document.querySelectorAll('.oc-dot').forEach((d,i) => d.classList.toggle('oc-active', i===idx));
+  document.querySelectorAll('.oc-dot').forEach((d,i) => d.classList.toggle('active', i===idx));
   document.querySelectorAll('.oc-strip-item').forEach((s,i) => s.classList.toggle('oc-strip-active', i===idx));
   document.querySelectorAll('.oc-slide').forEach((s,i) => {
     s.setAttribute('aria-hidden', i!==idx);
@@ -1112,7 +1124,7 @@ function cargarOfertas() {
   document.getElementById('ocTrack').innerHTML = activas.map((o,i) => _ocBuildSlide(o,i,'tienda')).join('');
   const dotsEl = document.getElementById('ocDots');
   dotsEl.innerHTML = activas.length > 1
-    ? activas.map((_,i) => `<button class="oc-dot${i===0?' oc-active':''}" onclick="_ocGoTo(${i})" aria-label="Oferta ${i+1}"></button>`).join('')
+    ? activas.map((_,i) => `<button class="oc-dot${i===0?' active':''}" onclick="_ocGoTo(${i})" aria-label="Oferta ${i+1}"></button>`).join('')
     : '';
   const prevEl = document.getElementById('ocPrev'), nextEl = document.getElementById('ocNext');
   if (prevEl) prevEl.style.display = activas.length>1?'':'none';
