@@ -922,18 +922,23 @@ function getOfertaEyebrow(tipo) {
   return {'2x1':'Oferta especial','3x2':'Llevá más','nxm':'Promo especial','pct':'Oferta especial','fijo':'Beneficio exclusivo','combo':'Combo único'}[tipo]||'Oferta especial';
 }
 
+// Cache en memoria para uso sincrónico (badges en cards)
+let _ofertasCache = [];
+
+function _filtrarActivas(todas) {
+  const now = Date.now();
+  return todas.filter(o => {
+    if (!o.activa) return false;
+    if (o.fechaInicio && now < new Date(o.fechaInicio).getTime()) return false;
+    if (o.fechaFin    && now > new Date(o.fechaFin).getTime())    return false;
+    if (o.stockLimite && o.usosActuales >= o.stockLimite)         return false;
+    return true;
+  });
+}
+
 function getOfertasActivas() {
-  try {
-    const todas = JSON.parse(localStorage.getItem(OFERTAS_KEY)) || [];
-    const now = Date.now();
-    return todas.filter(o => {
-      if (!o.activa) return false;
-      if (o.fechaInicio && now < new Date(o.fechaInicio).getTime()) return false;
-      if (o.fechaFin    && now > new Date(o.fechaFin).getTime())    return false;
-      if (o.stockLimite && o.usosActuales >= o.stockLimite)         return false;
-      return true;
-    });
-  } catch(e) { return []; }
+  // usa la caché en memoria, poblada por cargarOfertas()
+  return _ofertasCache;
 }
 
 // ── Construir slide HTML ─────────────────────────
@@ -997,33 +1002,54 @@ function cargarOfertas() {
   const wrap = document.getElementById('ocWrap');
   if (!wrap) return;
   if (localStorage.getItem('bc_ofertas_strip_tienda') === 'oculto') { wrap.classList.add('oc-hidden'); return; }
-  const activas = getOfertasActivas().filter(o => !o.mostrarEn || o.mostrarEn==='tienda' || o.mostrarEn==='ambos');
-  if (!activas.length) { wrap.classList.add('oc-hidden'); return; }
-  _ocSlides = activas; _ocCurrent = 0;
-  wrap.classList.remove('oc-hidden');
-  document.getElementById('ocTrack').innerHTML = activas.map((o,i) => _ocBuildSlide(o,i,'tienda')).join('');
-  const dotsEl = document.getElementById('ocDots');
-  dotsEl.innerHTML = activas.length > 1
-    ? activas.map((_,i) => `<button class="oc-dot${i===0?' oc-active':''}" onclick="_ocGoTo(${i})" aria-label="Oferta ${i+1}"></button>`).join('')
-    : '';
-  const prevEl = document.getElementById('ocPrev'), nextEl = document.getElementById('ocNext');
-  if (prevEl) prevEl.style.display = activas.length>1?'':'none';
-  if (nextEl) nextEl.style.display = activas.length>1?'':'none';
-  const stripEl = document.getElementById('ocStrip');
-  if (activas.length > 1) {
-    stripEl.classList.add('oc-strip-show');
-    stripEl.innerHTML = activas.map((o,i) => {
-      const col = getOfertaAccentColor(o.tipo);
-      return `<div class="oc-strip-item${i===0?' oc-strip-active':''}" style="--oc-si-color:${col}" onclick="_ocGoTo(${i})"><span class="oc-si-dot"></span><span class="oc-si-name">${o.nombre}</span><span class="oc-si-badge">${getOfertaTipoLabel(o)}</span></div>`;
-    }).join('');
-  } else { stripEl.classList.remove('oc-strip-show'); }
-  setTimeout(() => _ocGoTo(0), 40);
-  // Swipe & hover
-  let _tx = 0;
-  wrap.addEventListener('touchstart', e => { _tx = e.touches[0].clientX; }, {passive:true});
-  wrap.addEventListener('touchend',   e => { const dx=_tx-e.changedTouches[0].clientX; if(Math.abs(dx)>40) ocMove(dx>0?1:-1); }, {passive:true});
-  wrap.addEventListener('mouseenter', () => clearInterval(_ocTimer));
-  wrap.addEventListener('mouseleave', () => { if(_ocSlides.length>1) _ocTimer=setInterval(()=>_ocGoTo((_ocCurrent+1)%_ocSlides.length),5200); });
+
+  const repo = localStorage.getItem('bc_gh_repo') || 'bara-and-co/Bara-Co';
+  const ghUrl = `https://raw.githubusercontent.com/${repo}/main/ofertas.json`;
+
+  function renderOfertas(todasRaw) {
+    _ofertasCache = _filtrarActivas(todasRaw);
+    const activas = _ofertasCache.filter(o => !o.mostrarEn || o.mostrarEn==='tienda' || o.mostrarEn==='ambos');
+    if (!activas.length) { wrap.classList.add('oc-hidden'); return; }
+    _ocSlides = activas; _ocCurrent = 0;
+    wrap.classList.remove('oc-hidden');
+    document.getElementById('ocTrack').innerHTML = activas.map((o,i) => _ocBuildSlide(o,i,'tienda')).join('');
+    const dotsEl = document.getElementById('ocDots');
+    dotsEl.innerHTML = activas.length > 1
+      ? activas.map((_,i) => `<button class="oc-dot${i===0?' oc-active':''}" onclick="_ocGoTo(${i})" aria-label="Oferta ${i+1}"></button>`).join('')
+      : '';
+    const prevEl = document.getElementById('ocPrev'), nextEl = document.getElementById('ocNext');
+    if (prevEl) prevEl.style.display = activas.length>1?'':'none';
+    if (nextEl) nextEl.style.display = activas.length>1?'':'none';
+    const stripEl = document.getElementById('ocStrip');
+    if (activas.length > 1) {
+      stripEl.classList.add('oc-strip-show');
+      stripEl.innerHTML = activas.map((o,i) => {
+        const col = getOfertaAccentColor(o.tipo);
+        return `<div class="oc-strip-item${i===0?' oc-strip-active':''}" style="--oc-si-color:${col}" onclick="_ocGoTo(${i})"><span class="oc-si-dot"></span><span class="oc-si-name">${o.nombre}</span><span class="oc-si-badge">${getOfertaTipoLabel(o)}</span></div>`;
+      }).join('');
+    } else { stripEl.classList.remove('oc-strip-show'); }
+    setTimeout(() => _ocGoTo(0), 40);
+    // Swipe & hover
+    let _tx = 0;
+    wrap.addEventListener('touchstart', e => { _tx = e.touches[0].clientX; }, {passive:true});
+    wrap.addEventListener('touchend',   e => { const dx=_tx-e.changedTouches[0].clientX; if(Math.abs(dx)>40) ocMove(dx>0?1:-1); }, {passive:true});
+    wrap.addEventListener('mouseenter', () => clearInterval(_ocTimer));
+    wrap.addEventListener('mouseleave', () => { if(_ocSlides.length>1) _ocTimer=setInterval(()=>_ocGoTo((_ocCurrent+1)%_ocSlides.length),5200); });
+  }
+
+  // Intentar desde GitHub (fuente compartida), luego localStorage como fallback
+  fetch(ghUrl + '?_=' + Date.now())
+    .then(r => r.ok ? r.json() : Promise.reject('gh-err'))
+    .then(todas => {
+      localStorage.setItem(OFERTAS_KEY, JSON.stringify(todas));
+      renderOfertas(todas);
+    })
+    .catch(() => {
+      try {
+        const todas = JSON.parse(localStorage.getItem(OFERTAS_KEY)) || [];
+        renderOfertas(todas);
+      } catch(e) { wrap.classList.add('oc-hidden'); }
+    });
 }
 
 // Badge en cards de producto (sin cambio de interfaz)
