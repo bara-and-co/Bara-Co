@@ -1448,7 +1448,7 @@
             <span style="font-size:11px;" id="stripTiendaLabel">Visible</span>
           </div>
           <label class="toggle" title="Mostrar u ocultar el banner de ofertas en tienda.html">
-            <input type="checkbox" id="toggleStripTienda" onchange="toggleOfertasStrip('tienda', this.checked)"/>
+            <input type="checkbox" id="toggleStripTienda" checked onchange="toggleOfertasStrip('tienda', this.checked)"/>
             <span class="t-track"></span>
             <span class="t-thumb"></span>
           </label>
@@ -1461,7 +1461,7 @@
             <span style="font-size:11px;" id="stripInicioLabel">Visible</span>
           </div>
           <label class="toggle" title="Mostrar u ocultar el banner de ofertas en index.html">
-            <input type="checkbox" id="toggleStripInicio" onchange="toggleOfertasStrip('inicio', this.checked)"/>
+            <input type="checkbox" id="toggleStripInicio" checked onchange="toggleOfertasStrip('inicio', this.checked)"/>
             <span class="t-track"></span>
             <span class="t-thumb"></span>
           </label>
@@ -4267,8 +4267,12 @@ function saveOferta() {
 
   const mostrarEn = document.querySelector('input[name="ofMostrarEn"]:checked')?.value || 'ambos';
 
+  // Read array ONCE to avoid any inconsistency
+  const arr = getOfertas();
+  const original = editingOfertaIdx !== null ? arr[editingOfertaIdx] : null;
+
   const oferta = {
-    id: editingOfertaIdx !== null ? getOfertas()[editingOfertaIdx].id : 'of_' + Date.now(),
+    id: original ? original.id : 'of_' + Date.now(),
     nombre,
     descripcion: document.getElementById('ofDesc').value.trim(),
     badge: document.getElementById('ofBadge').value.trim(),
@@ -4283,18 +4287,17 @@ function saveOferta() {
     fechaFin: useFecha && document.getElementById('ofFechaFin').value
       ? new Date(document.getElementById('ofFechaFin').value).toISOString() : null,
     stockLimite: useStock ? (parseInt(document.getElementById('ofStockLimite').value) || 0) : null,
-    usosActuales: editingOfertaIdx !== null ? (getOfertas()[editingOfertaIdx].usosActuales || 0) : 0,
+    usosActuales: original ? (original.usosActuales || 0) : 0,
     mostrarEn,
-    imagen: ofertaImgData !== null ? ofertaImgData : (editingOfertaIdx !== null ? (getOfertas()[editingOfertaIdx]?.imagen || null) : null),
-    activa: editingOfertaIdx !== null ? (getOfertas()[editingOfertaIdx]?.activa ?? true) : true,
-    creada: editingOfertaIdx !== null ? getOfertas()[editingOfertaIdx].creada : new Date().toISOString(),
+    imagen: ofertaImgData !== null ? ofertaImgData : (original ? (original.imagen || null) : null),
+    activa: original ? (original.activa ?? true) : true,
+    creada: original ? original.creada : new Date().toISOString(),
   };
 
   // Auto-set tipo label
   if (selectedTipo === '2x1') { oferta.n = 2; oferta.m = 1; }
   if (selectedTipo === '3x2') { oferta.n = 3; oferta.m = 2; }
 
-  const arr = getOfertas();
   if (editingOfertaIdx !== null) arr[editingOfertaIdx] = oferta;
   else arr.push(oferta);
 
@@ -4314,24 +4317,30 @@ function editOferta(id) {
 
 // Init on load
 document.addEventListener('DOMContentLoaded', () => {
-  setTimeout(() => {
-    renderOfertaGrid();
-    updateOfertasBadge();
-    // Init toggle states
-    ['tienda','inicio'].forEach(page => {
-      const visible = localStorage.getItem(`bc_ofertas_strip_${page}`) !== 'oculto';
-      const chk = document.getElementById(`toggleStrip${page.charAt(0).toUpperCase()+page.slice(1)}`);
-      if (chk) chk.checked = visible;
-      updateStripLabel(page, visible);
-    });
-  }, 200);
+  renderOfertaGrid();
+  updateOfertasBadge();
+  // Init toggle states - sync, no delay
+  ['tienda','inicio'].forEach(page => {
+    const stored = localStorage.getItem(`bc_ofertas_strip_${page}`);
+    // If never set, default to visible and write it
+    if (stored === null) localStorage.setItem(`bc_ofertas_strip_${page}`, 'visible');
+    const visible = localStorage.getItem(`bc_ofertas_strip_${page}`) !== 'oculto';
+    const chk = document.getElementById(`toggleStrip${page.charAt(0).toUpperCase()+page.slice(1)}`);
+    if (chk) chk.checked = visible;
+    updateStripLabel(page, visible);
+  });
 });
 
 function toggleOfertasStrip(page, visible) {
   localStorage.setItem(`bc_ofertas_strip_${page}`, visible ? 'visible' : 'oculto');
   updateStripLabel(page, visible);
   const pageName = page === 'tienda' ? 'Tienda' : 'Inicio';
-  showToast(visible ? `👁 Panel visible en ${pageName}` : `🙈 Panel oculto en ${pageName}`, 'info');
+  showToast(
+    visible
+      ? `👁 Banner ACTIVADO en ${pageName} — los clientes lo verán`
+      : `🙈 Banner DESACTIVADO en ${pageName} — los clientes NO lo verán`,
+    visible ? 'ok' : 'err'
+  );
 }
 
 function updateStripLabel(page, visible) {
