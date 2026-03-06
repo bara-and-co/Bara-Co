@@ -89,25 +89,8 @@
     .oc-confianza  { --ot-bg1:#060c18; --ot-bg2:#0a1428; --ot-accent:#2979ff; --ot-txt:#82b1ff; --ot-glow:rgba(41,121,255,.18); }
     .oc-creatividad{ --ot-bg1:#0d060e; --ot-bg2:#180a1a; --ot-accent:#9b59b6; --ot-txt:#d7aee8; --ot-glow:rgba(155,89,182,.18); }
 
-    /* Carousel wrapper */
-    .oc-wrap { position:relative; overflow:hidden; background:var(--surface,#131310); border-bottom:1px solid var(--border,rgba(255,255,255,.06)); }
-    .oc-wrap.oc-hidden { display:none; }
-    .oc-track { display:flex; transition:transform .72s cubic-bezier(.77,0,.18,1); will-change:transform; }
-    .oc-strip { display:none; border-top:1px solid rgba(255,255,255,.06); overflow-x:auto; scrollbar-width:none; }
-    .oc-strip::-webkit-scrollbar { display:none; }
-    .oc-strip.oc-strip-show { display:flex; }
-    .oc-strip-item { flex:1; min-width:130px; padding:11px 22px; display:flex; align-items:center; gap:9px; border-right:1px solid rgba(255,255,255,.06); cursor:pointer; transition:background .2s; position:relative; }
-    .oc-strip-item:last-child { border-right:none; }
-    .oc-strip-item:hover { background:rgba(255,255,255,.03); }
-    .oc-strip-item.oc-strip-active { background:rgba(255,255,255,.04); }
-    .oc-strip-item.oc-strip-active::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:var(--oc-si-color,#c9a96e); }
-    .oc-si-dot { width:5px; height:5px; border-radius:50%; background:var(--oc-si-color,#c9a96e); flex-shrink:0; }
-    .oc-si-name { font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:rgba(255,255,255,.4); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; flex:1; }
-    .oc-si-badge { padding:2px 8px; font-size:8px; font-weight:700; letter-spacing:.1em; color:#fff; background:var(--oc-si-color,#c9a96e); flex-shrink:0; }
-
     /* Slide */
     .oc-slide {
-      min-width:100%;
       position:relative; overflow:hidden;
       background:linear-gradient(110deg, var(--ot-bg1) 0%, var(--ot-bg2) 100%);
     }
@@ -542,12 +525,14 @@
   <div class="oc-controls">
     <div class="oc-dots" id="ocDots"></div>
     <div class="oc-arrows">
-      <button class="oc-arrow" id="ocPrev" onclick="ocMove(-1)" aria-label="Anterior"><i class="fas fa-chevron-left"></i></button>
-      <button class="oc-arrow" id="ocNext" onclick="ocMove(1)"  aria-label="Siguiente"><i class="fas fa-chevron-right"></i></button>
+      <button class="oc-arrow" id="ocPrev" onclick="ocMove(-1)" aria-label="Anterior">&#8592;</button>
+      <button class="oc-arrow" id="ocNext" onclick="ocMove(1)" aria-label="Siguiente">&#8594;</button>
     </div>
   </div>
   <div class="oc-strip" id="ocStrip"></div>
 </div>
+
+
 
 <div class="shop-hero">
   <img class="shop-hero-bg" src="images/fondo%20hero.png" alt="Bara & Co Tienda" loading="eager"/>
@@ -1061,36 +1046,37 @@ function getOfertasActivas() {
 function _ocBuildSlide(o, idx, page) {
   const theme    = getOfertaTheme(o.tipo);
   const accent   = getOfertaAccentColor(o.tipo);
-  const badgeTxt = theme === 'premium' ? '#0e0d09' : '#fff';
+  const txtColor = theme === 'premium' ? '#0c0c0a' : '#fff';
   const tipoLbl  = getOfertaTipoLabel(o);
   const scope    = o.todasCategorias ? 'Toda la tienda'
     : (o.categorias||[]).slice(0,3).map(c=>c.charAt(0).toUpperCase()+c.slice(1)).join(' · ');
   const fecha    = o.fechaFin
     ? `<span class="oc-date"><i class="fas fa-clock"></i> Hasta ${new Date(o.fechaFin).toLocaleDateString('es-AR',{day:'2-digit',month:'2-digit'})}</span>` : '';
   const imgHtml  = o.imagen
-    ? `<div class="oc-img has-img"><img src="${o.imagen}" alt="${o.nombre}" loading="lazy"/></div>` : '';
+    ? `<div class="oc-img"><img src="${o.imagen}" alt="${o.nombre}" loading="lazy"/></div>` : '';
+  const noImg    = o.imagen ? '' : 'oc-no-img';
   const ctaHref  = page==='tienda' ? '#productos' : 'tienda.html';
   const ctaLabel = page==='tienda' ? 'Ver productos <i class="fas fa-arrow-down" style="font-size:8px"></i>' : 'Ver tienda <i class="fas fa-arrow-right" style="font-size:8px"></i>';
+  // Build inline CSS vars (avoid color-mix for compatibility)
+  const hexToRgb = h => { const r=parseInt(h.slice(1,3),16),g=parseInt(h.slice(3,5),16),b=parseInt(h.slice(5,7),16); return `${r},${g},${b}`; };
+  const rgb = hexToRgb(accent);
   return `
-  <div class="oc-slide oc-${theme}" data-idx="${idx}"
-       style="--ot-accent:${accent};--ot-glow:rgba(0,0,0,0);--oc-si-color:${accent}">
+  <div class="oc-slide ${noImg} oc-theme-${theme}" data-idx="${idx}"
+       style="--oc:${accent};--oc-glow:rgba(${rgb},.18);--oc-btn:${accent};--oc-badge-txt:${txtColor}">
+    <div class="oc-slide-bg"></div>
+    <div class="oc-slide-noise"></div>
+    <div class="oc-slide-grid"></div>
     ${imgHtml}
-    <div class="oc-inner">
-      <div class="oc-body">
-        <i class="oc-symbol">${getOfertaIcon(o.tipo)}</i>
-        <div class="oc-texts">
-          <p class="oc-eyebrow">${getOfertaEyebrow(o.tipo)}</p>
-          <h2 class="oc-title">${o.nombre}</h2>
-          ${o.descripcion ? `<p class="oc-desc">${o.descripcion}</p>` : ''}
-        </div>
-        <div class="oc-divider"></div>
-        <div class="oc-pills">
-          <span class="oc-badge" style="--ot-badge-color:${badgeTxt}">${tipoLbl}</span>
-          <span class="oc-scope">${scope}</span>
-          ${fecha}
-        </div>
-        <a class="oc-cta" href="${ctaHref}">${ctaLabel} <i class="fas fa-arrow-${page==='tienda'?'down':'right'}"></i></a>
+    <div class="oc-content">
+      <p class="oc-eyebrow"><span class="oc-eyebrow-line"></span><i class="oc-icon">${getOfertaIcon(o.tipo)}</i>${getOfertaEyebrow(o.tipo)}</p>
+      <h2 class="oc-title">${o.nombre}</h2>
+      ${o.descripcion ? `<p class="oc-desc">${o.descripcion}</p>` : ''}
+      <div class="oc-meta">
+        <span class="oc-badge">${tipoLbl}</span>
+        <span class="oc-pill">${scope}</span>
+        ${fecha}
       </div>
+      <a class="oc-cta" href="${ctaHref}">${ctaLabel}</a>
     </div>
   </div>`;
 }
@@ -1102,7 +1088,7 @@ function _ocGoTo(idx) {
   _ocCurrent = idx;
   const track = document.getElementById('ocTrack');
   if (track) track.style.transform = `translateX(-${idx*100}%)`;
-  document.querySelectorAll('.oc-dot').forEach((d,i) => d.classList.toggle('active', i===idx));
+  document.querySelectorAll('.oc-dot').forEach((d,i) => d.classList.toggle('oc-active', i===idx));
   document.querySelectorAll('.oc-strip-item').forEach((s,i) => s.classList.toggle('oc-strip-active', i===idx));
   document.querySelectorAll('.oc-slide').forEach((s,i) => {
     s.setAttribute('aria-hidden', i!==idx);
@@ -1124,7 +1110,7 @@ function cargarOfertas() {
   document.getElementById('ocTrack').innerHTML = activas.map((o,i) => _ocBuildSlide(o,i,'tienda')).join('');
   const dotsEl = document.getElementById('ocDots');
   dotsEl.innerHTML = activas.length > 1
-    ? activas.map((_,i) => `<button class="oc-dot${i===0?' active':''}" onclick="_ocGoTo(${i})" aria-label="Oferta ${i+1}"></button>`).join('')
+    ? activas.map((_,i) => `<button class="oc-dot${i===0?' oc-active':''}" onclick="_ocGoTo(${i})" aria-label="Oferta ${i+1}"></button>`).join('')
     : '';
   const prevEl = document.getElementById('ocPrev'), nextEl = document.getElementById('ocNext');
   if (prevEl) prevEl.style.display = activas.length>1?'':'none';
