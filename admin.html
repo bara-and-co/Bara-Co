@@ -4123,7 +4123,8 @@ function openOfertaModal(idx = null) {
   document.getElementById('ofTodasCats').checked = true;
   document.getElementById('ofFechaCheck').checked = false;
   document.getElementById('ofStockCheck').checked = false;
-  // Reset mostrarEn
+  // Reset mostrarEn — desmarcar todos primero para evitar estado residual
+  document.querySelectorAll('input[name="ofMostrarEn"]').forEach(r => r.checked = false);
   const defRadio = document.getElementById('ofMostrarAmbos');
   if (defRadio) { defRadio.checked = true; updateMostrarEnStyle(); }
   resetOfertaImg();
@@ -4153,11 +4154,17 @@ function openOfertaModal(idx = null) {
       document.getElementById('ofTodasCats').checked = false;
       selectedCats = o.categorias;
     }
-    // Restore mostrarEn
-    const radioVal = o.mostrarEn || 'ambos';
+    // Restore mostrarEn — validar que el valor sea uno de los permitidos
+    const radioVal = (['tienda','inicio','ambos'].includes(o.mostrarEn)) ? o.mostrarEn : 'ambos';
     const radioMap = { tienda:'ofMostrarTienda', inicio:'ofMostrarInicio', ambos:'ofMostrarAmbos' };
     const radioEl = document.getElementById(radioMap[radioVal]);
-    if (radioEl) { radioEl.checked = true; updateMostrarEnStyle(); }
+    if (radioEl) {
+      // Primero desmarcar todos para evitar estado inconsistente
+      document.querySelectorAll('input[name="ofMostrarEn"]').forEach(r => r.checked = false);
+      radioEl.checked = true;
+      radioEl.dispatchEvent(new Event('change'));
+      updateMostrarEnStyle();
+    }
     // Restore image
     if (o.imagen) {
       ofertaImgData = o.imagen;
@@ -4253,7 +4260,26 @@ function saveOferta() {
     toast('⚠️ Ingresá el valor del descuento', 'err'); return;
   }
 
-  const mostrarEn = document.querySelector('input[name="ofMostrarEn"]:checked')?.value || 'ambos';
+  let mostrarEn = document.querySelector('input[name="ofMostrarEn"]:checked')?.value;
+  if (!mostrarEn || !['tienda','inicio','ambos'].includes(mostrarEn)) {
+    mostrarEn = 'ambos';
+    console.warn('[saveOferta] mostrarEn inválido o no marcado, se usó "ambos"');
+  }
+
+  // Validar fechas si están activas
+  if (useFecha) {
+    const fi = document.getElementById('ofFechaInicio').value;
+    const ff = document.getElementById('ofFechaFin').value;
+    if (!fi && !ff) {
+      toast('⚠️ Ingresá al menos una fecha (inicio o fin)', 'err'); return;
+    }
+    if (fi && ff && new Date(fi) >= new Date(ff)) {
+      toast('⚠️ La fecha de inicio debe ser anterior a la de fin', 'err'); return;
+    }
+  }
+
+  // Log de diagnóstico (podés quitar esto una vez confirmado el fix)
+  console.log('[saveOferta] mostrarEn:', mostrarEn, '| tipo:', selectedTipo, '| useFecha:', useFecha, '| imagen:', ofertaImgData ? 'presente' : 'null');
 
   // Leer el array UNA sola vez y buscar por ID (no por índice)
   const arr      = getOfertas();
