@@ -78,40 +78,127 @@
     .shipping-bar { margin-top:80px; background:var(--accent); color:var(--bg); text-align:center; font-size:10px; font-weight:500; letter-spacing:.22em; text-transform:uppercase; padding:11px; }
 
     /* ── BANNER OFERTAS ── */
-    .ofertas-strip {
-      background:linear-gradient(135deg,rgba(201,169,110,.12),rgba(201,169,110,.05));
-      border-top:1px solid rgba(201,169,110,.15);
-      border-bottom:1px solid rgba(201,169,110,.15);
-      padding:14px 52px; display:none; overflow:hidden;
-    }
+    .ofertas-strip { display:none; position:relative; overflow:hidden; }
     .ofertas-strip.visible { display:block; }
-    .ofertas-strip-inner {
+
+    /* Paleta psicología del color por tipo */
+    .oferta-theme-urgencia  { --ot-bg1:#1a0a00; --ot-bg2:#2d0e00; --ot-accent:#ff5722; --ot-txt:#ff8a65; --ot-glow:rgba(255,87,34,.25); }
+    .oferta-theme-abundancia{ --ot-bg1:#001a0a; --ot-bg2:#002d12; --ot-accent:#00c853; --ot-txt:#69f0ae; --ot-glow:rgba(0,200,83,.25); }
+    .oferta-theme-premium   { --ot-bg1:#14100a; --ot-bg2:#231a0e; --ot-accent:#c9a96e; --ot-txt:#f5d99a; --ot-glow:rgba(201,169,110,.25); }
+    .oferta-theme-confianza { --ot-bg1:#001020; --ot-bg2:#001a36; --ot-accent:#2979ff; --ot-txt:#82b1ff; --ot-glow:rgba(41,121,255,.25); }
+    .oferta-theme-creatividad{--ot-bg1:#150015; --ot-bg2:#250025; --ot-accent:#aa00ff; --ot-txt:#ea80fc; --ot-glow:rgba(170,0,255,.25); }
+
+    .oferta-banner-wrap {
+      background:linear-gradient(135deg, var(--ot-bg1) 0%, var(--ot-bg2) 100%);
+      border-top:1px solid color-mix(in srgb, var(--ot-accent) 20%, transparent);
+      border-bottom:1px solid color-mix(in srgb, var(--ot-accent) 20%, transparent);
+      position:relative; overflow:hidden;
+    }
+    .oferta-banner-wrap::before {
+      content:''; position:absolute; inset:0;
+      background:radial-gradient(ellipse 60% 100% at 80% 50%, var(--ot-glow) 0%, transparent 70%);
+      pointer-events:none;
+    }
+    /* Contenido del banner */
+    .oferta-banner-inner {
       max-width:1200px; margin:0 auto;
-      display:flex; align-items:center; gap:12px; flex-wrap:wrap;
+      display:flex; align-items:stretch; gap:0;
+      min-height:100px;
     }
-    .ofertas-strip-label {
-      font-size:9px; font-weight:700; letter-spacing:.16em; text-transform:uppercase;
-      color:var(--accent); display:flex; align-items:center; gap:6px; white-space:nowrap; flex-shrink:0;
+    /* Lado imagen */
+    .oferta-banner-img {
+      width:180px; flex-shrink:0; position:relative; overflow:hidden;
+      display:none;
     }
-    .ofertas-strip-label i { font-size:11px; }
-    .oferta-pill {
-      display:inline-flex; align-items:center; gap:7px;
-      background:rgba(201,169,110,.12); border:1px solid rgba(201,169,110,.25);
-      color:var(--text); padding:6px 14px; border-radius:20px; font-size:12px; font-weight:500;
-      cursor:default; transition:all .2s; white-space:nowrap;
+    .oferta-banner-img.has-img { display:block; }
+    .oferta-banner-img img {
+      width:100%; height:100%; object-fit:cover;
     }
-    .oferta-pill:hover { background:rgba(201,169,110,.22); }
-    .oferta-pill-badge {
-      background:var(--accent); color:var(--bg); font-size:8px; font-weight:700;
-      padding:1px 6px; border-radius:10px; letter-spacing:.04em;
+    .oferta-banner-img::after {
+      content:''; position:absolute; top:0; right:0; bottom:0; width:60px;
+      background:linear-gradient(to right, transparent, var(--ot-bg2));
     }
+    /* Lado texto */
+    .oferta-banner-content {
+      flex:1; padding:22px 32px; display:flex;
+      align-items:center; gap:24px; flex-wrap:wrap;
+    }
+    .oferta-banner-icon {
+      font-size:36px; flex-shrink:0; filter:drop-shadow(0 0 14px var(--ot-glow));
+      animation:ofertaPulse 2.5s ease-in-out infinite;
+    }
+    @keyframes ofertaPulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.12)} }
+    .oferta-banner-texts { flex:1; min-width:0; }
+    .oferta-banner-eyebrow {
+      font-size:9px; font-weight:700; letter-spacing:.22em; text-transform:uppercase;
+      color:var(--ot-accent); margin-bottom:5px;
+      display:flex; align-items:center; gap:8px;
+    }
+    .oferta-banner-eyebrow::before {
+      content:''; display:inline-block; width:20px; height:1px; background:var(--ot-accent); opacity:.5;
+    }
+    .oferta-banner-title {
+      font-family:'Cormorant Garamond', Georgia, serif;
+      font-size:clamp(20px,2.5vw,30px); font-weight:400; color:#fff;
+      line-height:1.2; margin-bottom:5px;
+    }
+    .oferta-banner-title em { font-style:italic; color:var(--ot-txt); }
+    .oferta-banner-desc {
+      font-size:12px; color:rgba(255,255,255,.55); line-height:1.5;
+    }
+    /* Pills de categorías */
+    .oferta-banner-pills { display:flex; flex-wrap:wrap; gap:6px; align-items:center; }
+    .oferta-banner-pill {
+      padding:5px 13px; border-radius:20px; font-size:10px; font-weight:600;
+      background:color-mix(in srgb, var(--ot-accent) 15%, transparent);
+      border:1px solid color-mix(in srgb, var(--ot-accent) 30%, transparent);
+      color:var(--ot-txt); white-space:nowrap; transition:background .2s;
+    }
+    /* Badge tipo */
+    .oferta-banner-tipo {
+      display:inline-flex; align-items:center; gap:6px;
+      padding:6px 14px; border-radius:4px;
+      background:var(--ot-accent); color:#000;
+      font-size:11px; font-weight:800; letter-spacing:.06em;
+      box-shadow:0 0 20px var(--ot-glow);
+      white-space:nowrap; flex-shrink:0;
+    }
+    /* Countdown / urgencia */
+    .oferta-banner-end {
+      display:flex; align-items:center; gap:6px; flex-shrink:0;
+      font-size:11px; color:rgba(255,255,255,.5);
+      padding:8px 14px; border-radius:4px;
+      border:1px solid rgba(255,255,255,.08);
+      background:rgba(255,255,255,.04);
+    }
+    .oferta-banner-end i { color:var(--ot-accent); }
+    /* CTA */
+    .oferta-banner-cta {
+      flex-shrink:0; padding:10px 22px;
+      background:var(--ot-accent); color:#000;
+      font-size:10px; font-weight:700; letter-spacing:.12em; text-transform:uppercase;
+      border:none; cursor:pointer; transition:all .2s;
+      text-decoration:none; display:inline-flex; align-items:center; gap:7px;
+    }
+    .oferta-banner-cta:hover { filter:brightness(1.12); transform:translateY(-1px); }
+    /* Múltiples ofertas: slider compacto */
+    .ofertas-multi { padding:10px 32px; background:var(--ot-bg1); border-top:1px solid rgba(255,255,255,.04); }
+    .ofertas-multi-inner { max-width:1200px; margin:0 auto; display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+    .ofertas-multi-label { font-size:9px; font-weight:700; letter-spacing:.15em; text-transform:uppercase; color:rgba(255,255,255,.3); flex-shrink:0; }
+    .ofertas-mini-pill {
+      display:inline-flex; align-items:center; gap:6px; padding:4px 11px;
+      border-radius:20px; font-size:11px; font-weight:500;
+      border:1px solid rgba(255,255,255,.1); color:rgba(255,255,255,.5);
+      transition:all .2s; cursor:default;
+    }
+    .ofertas-mini-pill:hover { border-color:rgba(255,255,255,.25); color:rgba(255,255,255,.8); }
+    .omp-dot { width:6px; height:6px; border-radius:50%; flex-shrink:0; }
 
     /* ── BADGE OFERTA EN CARD ── */
     .badge-oferta {
       position:absolute; bottom:10px; left:10px; z-index:3;
-      background:rgba(201,169,110,.92); color:var(--bg);
-      font-size:9px; font-weight:700; padding:4px 9px; border-radius:4px;
-      letter-spacing:.04em; backdrop-filter:blur(4px);
+      font-size:9px; font-weight:800; padding:4px 10px; border-radius:3px;
+      letter-spacing:.05em; box-shadow:0 2px 8px rgba(0,0,0,.4);
     }
 
     /* ── HERO ── */
@@ -385,12 +472,7 @@
 <div class="shipping-bar">Envíos a todo el país · Retiro en local · Ing. Olmos 139, Jesús María · Compra segura</div>
 
 <!-- BANNER OFERTAS ACTIVAS -->
-<div class="ofertas-strip" id="ofertasStrip">
-  <div class="ofertas-strip-inner">
-    <div class="ofertas-strip-label"><i class="fas fa-bolt"></i> Ofertas activas</div>
-    <div id="ofertasPills" style="display:flex;flex-wrap:wrap;gap:8px;"></div>
-  </div>
-</div>
+<div class="ofertas-strip" id="ofertasStrip"></div>
 
 <div class="shop-hero">
   <img class="shop-hero-bg" src="images/fondo%20hero.png" alt="Bara & Co Tienda" loading="eager"/>
@@ -697,6 +779,9 @@ function buildCard(p) {
   const agotadoOverlay = agotado ? `<div class="badge-agotado"><span>Agotado</span></div>` : '';
 
   const ofertaBadge = !agotado ? getOfertaBadgeForProduct(p) : null;
+  const badgeHtml = ofertaBadge
+    ? `<span class="badge-oferta" style="background:${ofertaBadge.color};color:${ofertaBadge.theme==='premium'?'#0e0e0c':'#fff'}">${ofertaBadge.text}</span>`
+    : '';
 
   const tallesData = p.tallesDisponibles || p.talles || null;
   const btnAgregar = agotado ? '' :
@@ -717,7 +802,7 @@ function buildCard(p) {
       <div class="prod-img">
         ${topBadge}
         ${agotadoOverlay}
-        ${ofertaBadge ? `<span class="badge-oferta">${ofertaBadge}</span>` : ''}
+        ${badgeHtml}
         <img src="${p.imagen}" alt="${p.nombre}" loading="lazy"/>
         <div class="prod-overlay">
           ${btnAgregar}
@@ -877,45 +962,89 @@ function getOfertasActivas() {
 
 function cargarOfertas() {
   const strip = document.getElementById('ofertasStrip');
-  const pills = document.getElementById('ofertasPills');
-  if (!strip || !pills) return;
-
-  // Verificar si el admin ocultó el panel para tienda
-  const stripVisible = localStorage.getItem('bc_ofertas_strip_tienda') !== 'oculto';
-  if (!stripVisible) { strip.classList.remove('visible'); return; }
-
-  // Solo ofertas que aplican a tienda o ambas
+  if (!strip) return;
+  if (localStorage.getItem('bc_ofertas_strip_tienda') === 'oculto') { strip.classList.remove('visible'); return; }
   const activas = getOfertasActivas().filter(o => !o.mostrarEn || o.mostrarEn === 'tienda' || o.mostrarEn === 'ambos');
   if (!activas.length) { strip.classList.remove('visible'); return; }
-
   strip.classList.add('visible');
-  pills.innerHTML = activas.map(o => {
-    const scopeText = o.todasCategorias ? 'Toda la tienda'
-      : (o.categorias || []).slice(0,2).join(', ') + (o.categorias && o.categorias.length > 2 ? '...' : '');
-    return `<span class="oferta-pill">
-      ${o.badge ? `<span class="oferta-pill-badge">${o.badge}</span>` : ''}
-      <strong>${o.nombre}</strong>
-      <span style="color:var(--muted);font-size:11px;">· ${scopeText}</span>
-    </span>`;
-  }).join('');
+  strip.innerHTML = buildOfertaBanner(activas, 'tienda');
 }
 
-function getTipoLabel(o) {
-  if (o.tipo === '2x1') return '2×1';
-  if (o.tipo === '3x2') return '3×2';
-  if (o.tipo === 'nxm') return `${o.n}×${o.m}`;
-  if (o.tipo === 'pct') return `${o.valor}% Off`;
-  if (o.tipo === 'fijo') return `$${(o.valor||0).toLocaleString('es-AR')} Off`;
-  return 'Promo';
+// ─ PSICOLOGÍA DEL COLOR ─
+// Rojo/naranja = urgencia (desc %, 2x1) | Verde = abundancia (3x2, nxm) | Dorado = premium (monto fijo) | Azul = confianza | Violeta = creatividad (combo)
+function getOfertaTheme(tipo) {
+  return { '2x1':'urgencia','3x2':'abundancia','nxm':'abundancia','pct':'urgencia','fijo':'premium','combo':'creatividad' }[tipo] || 'premium';
+}
+function getOfertaIcon(tipo) {
+  return { '2x1':'🎁','3x2':'🎉','nxm':'🔥','pct':'⚡','fijo':'💰','combo':'🎀' }[tipo] || '🏷️';
+}
+function getOfertaTipoLabel(o) {
+  if (o.tipo==='2x1') return '2 × 1';
+  if (o.tipo==='3x2') return '3 × 2';
+  if (o.tipo==='nxm') return `${o.n} × ${o.m}`;
+  if (o.tipo==='pct') return `${o.valor}% OFF`;
+  if (o.tipo==='fijo') return `$${Number(o.valor||0).toLocaleString('es-AR')} OFF`;
+  return 'PROMO';
+}
+function getOfertaAccentColor(tipo) {
+  return { '2x1':'#ff5722','3x2':'#00c853','nxm':'#00c853','pct':'#ff5722','fijo':'#c9a96e','combo':'#aa00ff' }[tipo] || '#c9a96e';
+}
+
+function buildOfertaBanner(ofertas, page) {
+  const principal = ofertas[0];
+  const resto     = ofertas.slice(1);
+  const theme     = getOfertaTheme(principal.tipo);
+  const icon      = getOfertaIcon(principal.tipo);
+  const tipoLabel = getOfertaTipoLabel(principal);
+  const accentCol = getOfertaAccentColor(principal.tipo);
+  const scopeText = principal.todasCategorias ? 'Toda la tienda'
+    : (principal.categorias||[]).slice(0,3).map(c=>c.charAt(0).toUpperCase()+c.slice(1)).join(' · ');
+  const endDate = principal.fechaFin
+    ? `<span class="oferta-banner-end"><i class="fas fa-clock"></i> Hasta ${new Date(principal.fechaFin).toLocaleDateString('es-AR',{day:'2-digit',month:'2-digit'})}</span>`
+    : '';
+  const ctaHref  = page === 'tienda' ? '#productos' : 'tienda.html';
+  const ctaLabel = page === 'tienda' ? 'Ver productos <i class="fas fa-arrow-down" style="font-size:8px"></i>' : 'Ver tienda <i class="fas fa-arrow-right" style="font-size:8px"></i>';
+  const imgHtml = principal.imagen
+    ? `<div class="oferta-banner-img has-img"><img src="${principal.imagen}" alt="${principal.nombre}"/></div>` : '';
+
+  let restHtml = '';
+  if (resto.length) {
+    const pills = resto.map(o => {
+      const col = getOfertaAccentColor(o.tipo);
+      return `<span class="ofertas-mini-pill"><span class="omp-dot" style="background:${col}"></span>${o.nombre}</span>`;
+    }).join('');
+    restHtml = `<div class="ofertas-multi"><div class="ofertas-multi-inner"><span class="ofertas-multi-label">Más promos</span>${pills}</div></div>`;
+  }
+
+  return `
+  <div class="oferta-banner-wrap oferta-theme-${theme}">
+    <div class="oferta-banner-inner">
+      ${imgHtml}
+      <div class="oferta-banner-content">
+        <div class="oferta-banner-icon">${icon}</div>
+        <div class="oferta-banner-texts">
+          <div class="oferta-banner-eyebrow">Oferta especial</div>
+          <div class="oferta-banner-title">${principal.nombre}</div>
+          ${principal.descripcion ? `<div class="oferta-banner-desc">${principal.descripcion}</div>` : ''}
+        </div>
+        <div class="oferta-banner-pills">
+          <span class="oferta-banner-tipo">${tipoLabel}</span>
+          <span class="oferta-banner-pill">${scopeText}</span>
+          ${endDate}
+        </div>
+        <a class="oferta-banner-cta" href="${ctaHref}" style="background:${accentCol};color:${theme==='premium'?'#0e0e0c':'#fff'}">${ctaLabel}</a>
+      </div>
+    </div>
+    ${restHtml}
+  </div>`;
 }
 
 function getOfertaBadgeForProduct(p) {
   const activas = getOfertasActivas().filter(o => !o.mostrarEn || o.mostrarEn === 'tienda' || o.mostrarEn === 'ambos');
   for (const o of activas) {
-    const cats = o.todasCategorias ? null : (o.categorias || []);
+    const cats = o.todasCategorias ? null : (o.categorias||[]);
     if (cats && !cats.includes(p.categoria)) continue;
-    if (o.badge) return o.badge;
-    return getTipoLabel(o);
+    return { text: o.badge || getOfertaTipoLabel(o), color: getOfertaAccentColor(o.tipo), theme: getOfertaTheme(o.tipo) };
   }
   return null;
 }
