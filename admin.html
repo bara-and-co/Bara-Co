@@ -1097,9 +1097,126 @@
     .dup-btn-new:hover { border-color: var(--accent); color: var(--accent); }
 
     /* PRINT LABEL */
-    @media print {
-      .topbar, .toolbar, .stats-panel, .save-banner, .add-card { display: none !important; }
+    /* ─── PAGE NAV TABS ─── */
+    .page-nav {
+      display:flex; gap:4px; margin-bottom:24px;
+      border-bottom:2px solid var(--border); padding-bottom:0;
     }
+    .page-nav-btn {
+      padding:10px 20px; font-size:13px; font-weight:600;
+      border:none; background:none; cursor:pointer; color:var(--muted);
+      border-bottom:2px solid transparent; margin-bottom:-2px;
+      font-family:var(--sans); transition:all .2s;
+      display:flex; align-items:center; gap:7px; border-radius:6px 6px 0 0;
+    }
+    .page-nav-btn:hover { color:var(--text); background:rgba(0,0,0,.03); }
+    .page-nav-btn.active { color:var(--accent); border-bottom-color:var(--accent); }
+    .page-section { display:none; }
+    .page-section.active { display:block; }
+
+    /* ─── OFERTAS ─── */
+    .ofertas-header {
+      display:flex; align-items:center; justify-content:space-between;
+      margin-bottom:20px; flex-wrap:wrap; gap:12px;
+    }
+    .ofertas-header h2 { font-family:var(--serif); font-size:22px; font-weight:500; }
+    .oferta-grid {
+      display:grid; grid-template-columns:repeat(auto-fill,minmax(320px,1fr));
+      gap:16px; margin-bottom:32px;
+    }
+    .oferta-card {
+      background:var(--surface); border:1px solid var(--border);
+      border-radius:var(--radius); overflow:hidden; transition:all .2s;
+      position:relative;
+    }
+    .oferta-card:hover { box-shadow:var(--shadow); }
+    .oferta-card.inactive-offer { opacity:.6; }
+    .oferta-card-head {
+      padding:14px 16px; display:flex; align-items:flex-start;
+      justify-content:space-between; gap:10px;
+    }
+    .oferta-tipo-badge {
+      font-size:9px; font-weight:700; letter-spacing:.1em; text-transform:uppercase;
+      padding:3px 9px; border-radius:20px; flex-shrink:0; margin-top:2px;
+    }
+    .ot-2x1    { background:rgba(45,138,94,.12); color:var(--green); }
+    .ot-3x2    { background:rgba(201,169,110,.12); color:var(--accent); }
+    .ot-nxm    { background:rgba(61,107,206,.12); color:var(--blue); }
+    .ot-pct    { background:rgba(192,57,43,.12); color:var(--red); }
+    .ot-fijo   { background:rgba(142,68,173,.12); color:var(--purple); }
+    .ot-combo  { background:rgba(0,0,0,.07); color:var(--text); }
+    .oferta-name { font-weight:600; font-size:15px; line-height:1.3; margin-bottom:3px; }
+    .oferta-desc { font-size:12px; color:var(--muted); line-height:1.5; }
+    .oferta-card-body { padding:0 16px 14px; }
+    .oferta-meta {
+      display:flex; flex-wrap:wrap; gap:8px; margin-bottom:10px;
+    }
+    .oferta-meta-item {
+      display:flex; align-items:center; gap:5px; font-size:11px; color:var(--muted);
+      background:var(--bg); padding:4px 9px; border-radius:20px; border:1px solid var(--border);
+    }
+    .oferta-meta-item i { font-size:10px; color:var(--accent); }
+    .oferta-meta-item.warn i { color:var(--red); }
+    .oferta-card-foot {
+      padding:10px 16px; border-top:1px solid var(--border);
+      display:flex; align-items:center; justify-content:space-between; gap:8px;
+    }
+    .oferta-status-badge {
+      font-size:10px; font-weight:600; padding:3px 9px; border-radius:20px;
+      display:flex; align-items:center; gap:5px;
+    }
+    .osb-activa    { background:rgba(45,138,94,.1); color:var(--green); }
+    .osb-pausada   { background:rgba(0,0,0,.06); color:var(--muted); }
+    .osb-programada{ background:rgba(61,107,206,.1); color:var(--blue); }
+    .osb-vencida   { background:rgba(192,57,43,.08); color:var(--red); }
+    .oferta-prog-bar {
+      height:3px; background:var(--border); border-radius:2px;
+      overflow:hidden; margin-top:8px;
+    }
+    .oferta-prog-fill { height:100%; background:var(--accent); border-radius:2px; transition:width .4s; }
+
+    /* ─── MODAL OFERTA ─── */
+    .oferta-tipo-grid {
+      display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-bottom:4px;
+    }
+    .oferta-tipo-card {
+      border:1.5px solid var(--border); border-radius:var(--radius);
+      padding:12px 10px; cursor:pointer; text-align:center;
+      transition:all .2s; user-select:none;
+    }
+    .oferta-tipo-card:hover { border-color:var(--accent); }
+    .oferta-tipo-card.sel { border-color:var(--accent); background:rgba(201,169,110,.06); }
+    .otc-icon { font-size:22px; margin-bottom:5px; }
+    .otc-label { font-size:11px; font-weight:700; }
+    .otc-sub { font-size:10px; color:var(--muted); margin-top:2px; line-height:1.3; }
+    .oferta-config-section {
+      border:1px solid var(--border); border-radius:var(--radius);
+      padding:16px; background:var(--bg); margin-bottom:16px;
+    }
+    .oferta-config-title {
+      font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase;
+      color:var(--muted); margin-bottom:12px; display:flex; align-items:center; gap:6px;
+    }
+    .check-row {
+      display:flex; align-items:center; gap:10px; margin-bottom:8px; cursor:pointer;
+    }
+    .check-row input[type=checkbox] { width:16px; height:16px; accent-color:var(--accent); cursor:pointer; }
+    .check-row label { font-size:13px; cursor:pointer; }
+    .cat-pills-wrap { display:flex; flex-wrap:wrap; gap:6px; margin-top:6px; }
+    .cat-pill {
+      padding:5px 12px; border-radius:20px; font-size:12px; font-weight:500;
+      border:1px solid var(--border); background:var(--surface); color:var(--muted);
+      cursor:pointer; transition:all .2s; user-select:none;
+    }
+    .cat-pill:hover { border-color:var(--accent); color:var(--accent); }
+    .cat-pill.sel { background:var(--accent); color:#fff; border-color:var(--accent); }
+
+    @media(max-width:640px){
+      .oferta-tipo-grid { grid-template-columns:repeat(2,1fr); }
+      .oferta-grid { grid-template-columns:1fr; }
+    }
+
+  
 
     @media(max-width:640px){
       .topbar { padding:0 16px; flex-wrap:wrap; height:auto; padding:12px; gap:10px; }
@@ -1221,47 +1338,129 @@
     </div>
   </div>
 
-  <!-- Toolbar -->
-  <div class="toolbar">
-    <div class="search-box">
-      <i class="fas fa-search"></i>
-      <input type="text" placeholder="Buscar por nombre, marca, SKU, tipo de prenda..." id="searchInput" oninput="renderGrid()"/>
-    </div>
-    <div class="cat-tabs">
-      <div class="cat-tab active" onclick="setFilter(this,'')">Todos</div>
-      <div class="cat-tab" onclick="setFilter(this,'new')">✨ New</div>
-      <div class="cat-tab" onclick="setFilter(this,'hombre')">👔 Hombre</div>
-      <div class="cat-tab" onclick="setFilter(this,'mujer')">👗 Mujer</div>
-      <div class="cat-tab" onclick="setFilter(this,'accesorios')">👜 Accesorios</div>
-      <div class="cat-tab" onclick="setFilter(this,'lentes')">🕶️ Lentes</div>
-      <div class="cat-tab" onclick="setFilter(this,'bijouterie')">💍 Bijouterie</div>
-      <div class="cat-tab" onclick="setFilter(this,'billeteras')">👝 Billeteras</div>
-      <div class="cat-tab" onclick="setFilter(this,'medias')">🧦 Medias</div>
-      <div class="cat-tab" onclick="setFilter(this,'boxers')">🩲 Boxers</div>
-      <div class="cat-tab" onclick="setFilter(this,'zapatillas')">👟 Zapatillas</div>
-      <div class="cat-tab" onclick="setFilter(this,'sale')">🏷️ Sale</div>
-      <div class="cat-tab" onclick="setFilter(this,'sin-stock')" title="Sin stock">⚠️ Sin stock</div>
-    </div>
-    <div class="sort-indicator">
-      <span>Ordenar:</span>
-      <button class="sort-btn active" onclick="setSort(this,'recent')">Reciente</button>
-      <button class="sort-btn" onclick="setSort(this,'nombre')">A-Z</button>
-      <button class="sort-btn" onclick="setSort(this,'precio-asc')">$ ↑</button>
-      <button class="sort-btn" onclick="setSort(this,'precio-desc')">$ ↓</button>
-    </div>
+  <!-- NAV TABS -->
+  <div class="page-nav">
+    <button class="page-nav-btn active" onclick="switchPageTab(this,'secProductos')">
+      <i class="fas fa-tshirt"></i> Productos
+    </button>
+    <button class="page-nav-btn" onclick="switchPageTab(this,'secOfertas')">
+      <i class="fas fa-bolt"></i> Ofertas
+      <span id="ofertasActivasBadge" style="display:none;background:var(--green);color:#fff;font-size:9px;font-weight:700;padding:1px 6px;border-radius:10px;margin-left:2px;">0</span>
+    </button>
   </div>
 
-  <!-- Bulk bar -->
-  <div class="bulk-bar" id="bulkBar">
-    <span class="bulk-count"><strong id="bulkCount">0</strong> seleccionados</span>
-    <button class="btn btn-ghost btn-sm" onclick="bulkToggleActive(true)"><i class="fas fa-eye"></i> Mostrar todos</button>
-    <button class="btn btn-ghost btn-sm" onclick="bulkToggleActive(false)"><i class="fas fa-eye-slash"></i> Ocultar todos</button>
-    <button class="btn btn-danger btn-sm" onclick="bulkDelete()"><i class="fas fa-trash"></i> Eliminar seleccionados</button>
-    <button class="btn btn-ghost btn-sm" onclick="clearSelection()" style="margin-left:auto"><i class="fas fa-times"></i> Cancelar</button>
+  <!-- ══════════════ SECCIÓN PRODUCTOS ══════════════ -->
+  <div class="page-section active" id="secProductos">
+    <!-- Toolbar -->
+    <div class="toolbar">
+      <div class="search-box">
+        <i class="fas fa-search"></i>
+        <input type="text" placeholder="Buscar por nombre, marca, SKU, tipo de prenda..." id="searchInput" oninput="renderGrid()"/>
+      </div>
+      <div class="cat-tabs">
+        <div class="cat-tab active" onclick="setFilter(this,'')">Todos</div>
+        <div class="cat-tab" onclick="setFilter(this,'new')">✨ New</div>
+        <div class="cat-tab" onclick="setFilter(this,'hombre')">👔 Hombre</div>
+        <div class="cat-tab" onclick="setFilter(this,'mujer')">👗 Mujer</div>
+        <div class="cat-tab" onclick="setFilter(this,'accesorios')">👜 Accesorios</div>
+        <div class="cat-tab" onclick="setFilter(this,'lentes')">🕶️ Lentes</div>
+        <div class="cat-tab" onclick="setFilter(this,'bijouterie')">💍 Bijouterie</div>
+        <div class="cat-tab" onclick="setFilter(this,'billeteras')">👝 Billeteras</div>
+        <div class="cat-tab" onclick="setFilter(this,'medias')">🧦 Medias</div>
+        <div class="cat-tab" onclick="setFilter(this,'boxers')">🩲 Boxers</div>
+        <div class="cat-tab" onclick="setFilter(this,'zapatillas')">👟 Zapatillas</div>
+        <div class="cat-tab" onclick="setFilter(this,'sale')">🏷️ Sale</div>
+        <div class="cat-tab" onclick="setFilter(this,'sin-stock')" title="Sin stock">⚠️ Sin stock</div>
+      </div>
+      <div class="sort-indicator">
+        <span>Ordenar:</span>
+        <button class="sort-btn active" onclick="setSort(this,'recent')">Reciente</button>
+        <button class="sort-btn" onclick="setSort(this,'nombre')">A-Z</button>
+        <button class="sort-btn" onclick="setSort(this,'precio-asc')">$ ↑</button>
+        <button class="sort-btn" onclick="setSort(this,'precio-desc')">$ ↓</button>
+      </div>
+    </div>
+    <!-- Bulk bar -->
+    <div class="bulk-bar" id="bulkBar">
+      <span class="bulk-count"><strong id="bulkCount">0</strong> seleccionados</span>
+      <button class="btn btn-ghost btn-sm" onclick="bulkToggleActive(true)"><i class="fas fa-eye"></i> Mostrar todos</button>
+      <button class="btn btn-ghost btn-sm" onclick="bulkToggleActive(false)"><i class="fas fa-eye-slash"></i> Ocultar todos</button>
+      <button class="btn btn-danger btn-sm" onclick="bulkDelete()"><i class="fas fa-trash"></i> Eliminar seleccionados</button>
+      <button class="btn btn-ghost btn-sm" onclick="clearSelection()" style="margin-left:auto"><i class="fas fa-times"></i> Cancelar</button>
+    </div>
+    <!-- Grid -->
+    <div class="prod-grid" id="prodGrid"></div>
   </div>
 
-  <!-- Grid -->
-  <div class="prod-grid" id="prodGrid"></div>
+  <!-- ══════════════ SECCIÓN OFERTAS ══════════════ -->
+  <div class="page-section" id="secOfertas">
+    <div class="ofertas-header">
+      <div>
+        <h2>Ofertas &amp; Promociones</h2>
+        <p style="font-size:13px;color:var(--muted);margin-top:4px;">Creá promociones especiales que se muestran automáticamente en la tienda</p>
+      </div>
+      <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;">
+        <!-- Toggle visibilidad TIENDA -->
+        <div style="display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:9px 14px;">
+          <i class="fas fa-store" style="color:var(--accent);font-size:13px;"></i>
+          <div style="display:flex;flex-direction:column;line-height:1.3;">
+            <span style="font-size:12px;font-weight:600;color:var(--text);">Panel en Tienda</span>
+            <span style="font-size:11px;" id="stripTiendaLabel">Visible</span>
+          </div>
+          <label class="toggle" title="Mostrar u ocultar el banner de ofertas en tienda.html">
+            <input type="checkbox" id="toggleStripTienda" onchange="toggleOfertasStrip('tienda', this.checked)"/>
+            <span class="t-track"></span>
+            <span class="t-thumb"></span>
+          </label>
+        </div>
+        <!-- Toggle visibilidad INICIO -->
+        <div style="display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:9px 14px;">
+          <i class="fas fa-home" style="color:var(--blue);font-size:13px;"></i>
+          <div style="display:flex;flex-direction:column;line-height:1.3;">
+            <span style="font-size:12px;font-weight:600;color:var(--text);">Panel en Inicio</span>
+            <span style="font-size:11px;" id="stripInicioLabel">Visible</span>
+          </div>
+          <label class="toggle" title="Mostrar u ocultar el banner de ofertas en index.html">
+            <input type="checkbox" id="toggleStripInicio" onchange="toggleOfertasStrip('inicio', this.checked)"/>
+            <span class="t-track"></span>
+            <span class="t-thumb"></span>
+          </label>
+        </div>
+        <button class="btn btn-primary" onclick="openOfertaModal()">
+          <i class="fas fa-plus"></i> Nueva oferta
+        </button>
+      </div>
+    </div>
+
+    <!-- Resumen rápido -->
+    <div class="stats-panel" style="margin-bottom:24px;" id="ofertasStats">
+      <div class="stat-card">
+        <div class="stat-icon" style="background:rgba(45,138,94,.1);color:var(--green)"><i class="fas fa-bolt"></i></div>
+        <div class="stat-content"><h3 id="oStatActivas">0</h3><p>Activas ahora</p></div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon" style="background:rgba(61,107,206,.1);color:var(--blue)"><i class="fas fa-clock"></i></div>
+        <div class="stat-content"><h3 id="oStatProgramadas">0</h3><p>Programadas</p></div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon" style="background:rgba(201,169,110,.1);color:var(--accent)"><i class="fas fa-list"></i></div>
+        <div class="stat-content"><h3 id="oStatTotal">0</h3><p>Total creadas</p></div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon" style="background:rgba(192,57,43,.1);color:var(--red)"><i class="fas fa-history"></i></div>
+        <div class="stat-content"><h3 id="oStatVencidas">0</h3><p>Vencidas</p></div>
+      </div>
+    </div>
+
+    <!-- Grid de ofertas -->
+    <div class="oferta-grid" id="ofertaGrid">
+      <div style="grid-column:1/-1;text-align:center;padding:60px 0;color:var(--muted);" id="ofertasEmpty">
+        <i class="fas fa-bolt" style="font-size:36px;opacity:.2;display:block;margin-bottom:16px;"></i>
+        <p style="margin-bottom:20px;">Todavía no hay ofertas creadas</p>
+        <button class="btn btn-primary" onclick="openOfertaModal()"><i class="fas fa-plus"></i> Crear primera oferta</button>
+      </div>
+    </div>
+  </div>
 
 </div>
 
@@ -3675,12 +3874,564 @@ document.addEventListener('keydown', e => {
   if(e.key==='Escape'){ 
     closeModal(); 
     closeDupModal();
+    closeOfertaModal();
     document.getElementById('mCfg').classList.remove('open'); 
   }
 });
 
 // Verificar autenticación al cargar
 if (checkAuth()) init();
+
+/* ═══════════════════════════════════════════════════════
+   SISTEMA DE OFERTAS
+═══════════════════════════════════════════════════════ */
+const OFERTAS_KEY = 'bc_ofertas';
+
+function getOfertas() {
+  try { return JSON.parse(localStorage.getItem(OFERTAS_KEY)) || []; }
+  catch(e) { return []; }
+}
+function saveOfertas(arr) {
+  localStorage.setItem(OFERTAS_KEY, JSON.stringify(arr));
+  renderOfertaGrid();
+  updateOfertasBadge();
+}
+
+function switchPageTab(btn, secId) {
+  document.querySelectorAll('.page-nav-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById(secId).classList.add('active');
+}
+
+function updateOfertasBadge() {
+  const activas = getOfertas().filter(o => getOfertaEstado(o) === 'activa').length;
+  const badge = document.getElementById('ofertasActivasBadge');
+  if (!badge) return;
+  badge.textContent = activas;
+  badge.style.display = activas > 0 ? 'inline-block' : 'none';
+}
+
+function getOfertaEstado(o) {
+  if (!o.activa) return 'pausada';
+  const now = Date.now();
+  if (o.fechaInicio && now < new Date(o.fechaInicio).getTime()) return 'programada';
+  if (o.fechaFin && now > new Date(o.fechaFin).getTime()) return 'vencida';
+  if (o.stockLimite && o.usosActuales >= o.stockLimite) return 'vencida';
+  return 'activa';
+}
+
+function getOfertaEstadoHtml(estado) {
+  const map = {
+    activa:     { cls:'osb-activa',    icon:'fa-circle',  label:'Activa' },
+    pausada:    { cls:'osb-pausada',   icon:'fa-pause',   label:'Pausada' },
+    programada: { cls:'osb-programada',icon:'fa-clock',   label:'Programada' },
+    vencida:    { cls:'osb-vencida',   icon:'fa-times',   label:'Vencida' },
+  };
+  const m = map[estado] || map.pausada;
+  return `<span class="oferta-status-badge ${m.cls}"><i class="fas ${m.icon}" style="font-size:8px"></i> ${m.label}</span>`;
+}
+
+function getTipoBadge(tipo) {
+  const map = {
+    '2x1':   { cls:'ot-2x1',  label:'2×1' },
+    '3x2':   { cls:'ot-3x2',  label:'3×2' },
+    'nxm':   { cls:'ot-nxm',  label:'N×M' },
+    'pct':   { cls:'ot-pct',  label:'% Off' },
+    'fijo':  { cls:'ot-fijo', label:'$ Fijo' },
+    'combo': { cls:'ot-combo',label:'Combo' },
+  };
+  const m = map[tipo] || { cls:'ot-combo', label:tipo };
+  return `<span class="oferta-tipo-badge ${m.cls}">${m.label}</span>`;
+}
+
+function renderOfertaGrid() {
+  const ofertas = getOfertas();
+  const grid = document.getElementById('ofertaGrid');
+  const empty = document.getElementById('ofertasEmpty');
+  if (!grid) return;
+
+  // Stats
+  const estados = ofertas.map(o => getOfertaEstado(o));
+  const activas = estados.filter(e => e === 'activa').length;
+  const prog = estados.filter(e => e === 'programada').length;
+  const venc = estados.filter(e => e === 'vencida').length;
+  const el = id => document.getElementById(id);
+  if(el('oStatActivas'))     el('oStatActivas').textContent = activas;
+  if(el('oStatProgramadas')) el('oStatProgramadas').textContent = prog;
+  if(el('oStatTotal'))       el('oStatTotal').textContent = ofertas.length;
+  if(el('oStatVencidas'))    el('oStatVencidas').textContent = venc;
+
+  if (!ofertas.length) {
+    if(empty) empty.style.display = 'block';
+    // Clear existing cards but keep empty message
+    [...grid.children].forEach(c => { if(c !== empty) c.remove(); });
+    return;
+  }
+  if(empty) empty.style.display = 'none';
+
+  const cards = ofertas.map((o, idx) => {
+    const estado = getOfertaEstado(o);
+    const hasEnd = o.fechaFin;
+    const hasStart = o.fechaInicio;
+    const hasStock = o.stockLimite;
+    const pct = hasStock && o.stockLimite > 0 ? Math.round((o.usosActuales||0) / o.stockLimite * 100) : 0;
+
+    const scopeLabel = o.todasCategorias ? 'Todas las categorías'
+      : o.categorias && o.categorias.length ? o.categorias.join(', ')
+      : 'Sin categoría';
+
+    const paginaIcons = { tienda:'🛍️ Tienda', inicio:'🏠 Inicio', ambos:'🌐 Ambas páginas' };
+    const metaItems = [
+      `<span class="oferta-meta-item"><i class="fas fa-tag"></i> ${scopeLabel}</span>`,
+      `<span class="oferta-meta-item"><i class="fas fa-eye"></i> ${paginaIcons[o.mostrarEn||'ambos']||'Ambas páginas'}</span>`,
+      hasStart ? `<span class="oferta-meta-item"><i class="fas fa-calendar-check"></i> Desde ${fmtDate(o.fechaInicio)}</span>` : '',
+      hasEnd   ? `<span class="oferta-meta-item ${estado==='vencida'?'warn':''}"><i class="fas fa-calendar-times"></i> Hasta ${fmtDate(o.fechaFin)}</span>` : '',
+      hasStock ? `<span class="oferta-meta-item ${pct>=90?'warn':''}"><i class="fas fa-layer-group"></i> ${o.usosActuales||0}/${o.stockLimite} usos</span>` : '',
+    ].filter(Boolean).join('');
+
+    return `
+    <div class="oferta-card ${estado==='pausada'||estado==='vencida'?'inactive-offer':''}">
+      <div class="oferta-card-head">
+        <div>
+          <p class="oferta-name">${o.nombre}</p>
+          <p class="oferta-desc">${o.descripcion || ''}</p>
+        </div>
+        ${getTipoBadge(o.tipo)}
+      </div>
+      <div class="oferta-card-body">
+        <div class="oferta-meta">${metaItems}</div>
+        ${o.badge ? `<div style="display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:700;background:rgba(201,169,110,.12);color:var(--accent);padding:3px 10px;border-radius:20px;"><i class="fas fa-tag" style="font-size:9px"></i> Badge: "${o.badge}"</div>` : ''}
+        ${hasStock && o.stockLimite > 0 ? `<div class="oferta-prog-bar" style="margin-top:10px;"><div class="oferta-prog-fill" style="width:${pct}%"></div></div>` : ''}
+      </div>
+      <div class="oferta-card-foot">
+        ${getOfertaEstadoHtml(estado)}
+        <div style="display:flex;gap:6px;">
+          <button class="btn btn-ghost btn-sm" onclick="editOferta(${idx})" title="Editar"><i class="fas fa-pencil-alt"></i></button>
+          <button class="btn btn-ghost btn-sm" onclick="toggleOferta(${idx})" title="${o.activa?'Pausar':'Activar'}">
+            <i class="fas fa-${o.activa?'pause':'play'}"></i>
+          </button>
+          <button class="btn btn-danger btn-sm" onclick="deleteOferta(${idx})" title="Eliminar"><i class="fas fa-trash"></i></button>
+        </div>
+      </div>
+    </div>`;
+  });
+
+  [...grid.children].forEach(c => { if(c !== empty) c.remove(); });
+  grid.insertAdjacentHTML('afterbegin', cards.join(''));
+  updateOfertasBadge();
+}
+
+function fmtDate(iso) {
+  if (!iso) return '';
+  const d = new Date(iso);
+  return d.toLocaleDateString('es-AR', { day:'2-digit', month:'2-digit', year:'numeric' });
+}
+
+function toggleOferta(idx) {
+  const arr = getOfertas();
+  arr[idx].activa = !arr[idx].activa;
+  saveOfertas(arr);
+  showToast(arr[idx].activa ? '▶ Oferta activada' : '⏸ Oferta pausada', 'ok');
+}
+
+function deleteOferta(idx) {
+  if (!confirm('¿Eliminar esta oferta?')) return;
+  const arr = getOfertas();
+  arr.splice(idx, 1);
+  saveOfertas(arr);
+  showToast('🗑 Oferta eliminada', 'info');
+}
+
+// ── MODAL OFERTA ──
+let editingOfertaIdx = null;
+let selectedTipo = '2x1';
+let selectedCats = [];
+
+function openOfertaModal(idx = null) {
+  editingOfertaIdx = idx;
+  selectedTipo = '2x1';
+  selectedCats = [];
+
+  const modal = document.getElementById('mOferta');
+  const title = document.getElementById('ofertaModalTitle');
+  title.textContent = idx !== null ? 'Editar oferta' : 'Nueva oferta';
+
+  // Reset form
+  document.getElementById('ofNombre').value = '';
+  document.getElementById('ofDesc').value = '';
+  document.getElementById('ofBadge').value = '';
+  document.getElementById('ofN').value = '3';
+  document.getElementById('ofM').value = '2';
+  document.getElementById('ofValor').value = '';
+  document.getElementById('ofFechaInicio').value = '';
+  document.getElementById('ofFechaFin').value = '';
+  document.getElementById('ofStockLimite').value = '';
+  document.getElementById('ofTodasCats').checked = true;
+  document.getElementById('ofFechaCheck').checked = false;
+  document.getElementById('ofStockCheck').checked = false;
+  // Reset mostrarEn
+  const defRadio = document.getElementById('ofMostrarAmbos');
+  if (defRadio) { defRadio.checked = true; updateMostrarEnStyle(); }
+  toggleFechaFields(false);
+  toggleStockField(false);
+
+  if (idx !== null) {
+    const o = getOfertas()[idx];
+    document.getElementById('ofNombre').value = o.nombre || '';
+    document.getElementById('ofDesc').value = o.descripcion || '';
+    document.getElementById('ofBadge').value = o.badge || '';
+    document.getElementById('ofN').value = o.n || 3;
+    document.getElementById('ofM').value = o.m || 2;
+    document.getElementById('ofValor').value = o.valor || '';
+    if (o.fechaInicio || o.fechaFin) {
+      document.getElementById('ofFechaCheck').checked = true;
+      document.getElementById('ofFechaInicio').value = o.fechaInicio ? o.fechaInicio.slice(0,16) : '';
+      document.getElementById('ofFechaFin').value = o.fechaFin ? o.fechaFin.slice(0,16) : '';
+      toggleFechaFields(true);
+    }
+    if (o.stockLimite) {
+      document.getElementById('ofStockCheck').checked = true;
+      document.getElementById('ofStockLimite').value = o.stockLimite;
+      toggleStockField(true);
+    }
+    if (!o.todasCategorias && o.categorias) {
+      document.getElementById('ofTodasCats').checked = false;
+      selectedCats = o.categorias;
+    }
+    // Restore mostrarEn
+    const radioVal = o.mostrarEn || 'ambos';
+    const radioMap = { tienda:'ofMostrarTienda', inicio:'ofMostrarInicio', ambos:'ofMostrarAmbos' };
+    const radioEl = document.getElementById(radioMap[radioVal]);
+    if (radioEl) { radioEl.checked = true; updateMostrarEnStyle(); }
+    selectedTipo = o.tipo || '2x1';
+  }
+
+  selOfertaTipo(selectedTipo);
+  renderCatPills();
+  modal.classList.add('open');
+}
+
+function closeOfertaModal() {
+  document.getElementById('mOferta').classList.remove('open');
+}
+
+function selOfertaTipo(tipo) {
+  selectedTipo = tipo;
+  document.querySelectorAll('.oferta-tipo-card').forEach(c => {
+    c.classList.toggle('sel', c.dataset.tipo === tipo);
+  });
+  // Show/hide relevant config
+  document.getElementById('cfgNxM').style.display = (tipo === 'nxm') ? 'block' : 'none';
+  document.getElementById('cfgValor').style.display = (tipo === 'pct' || tipo === 'fijo') ? 'block' : 'none';
+  // Auto-fill badge suggestion
+  const suggestions = {
+    '2x1':'🎁 2×1', '3x2':'🎁 3×2', 'nxm':'🎁 Promo',
+    'pct':'🏷️ % Off', 'fijo':'💰 Desc. especial', 'combo':'🎀 Combo'
+  };
+  const badgeEl = document.getElementById('ofBadge');
+  if (!badgeEl.value || Object.values(suggestions).includes(badgeEl.value)) {
+    badgeEl.value = suggestions[tipo] || '';
+  }
+  // Update valor label
+  const vl = document.getElementById('valorLabel');
+  const vh = document.getElementById('valorHint');
+  if (tipo === 'pct') {
+    if(vl) vl.textContent = 'Porcentaje (%)';
+    if(vh) vh.textContent = 'Ej: 20 para un 20% de descuento';
+  } else if (tipo === 'fijo') {
+    if(vl) vl.textContent = 'Monto de descuento ($)';
+    if(vh) vh.textContent = 'Ej: 5000 para $5.000 de descuento';
+  }
+}
+
+function toggleFechaFields(show) {
+  document.getElementById('fechaFields').style.display = show ? 'grid' : 'none';
+}
+function toggleStockField(show) {
+  document.getElementById('stockField').style.display = show ? 'block' : 'none';
+}
+
+const TODAS_CATS = ['new','hombre','mujer','accesorios','lentes','bijouterie','billeteras','medias','boxers','zapatillas','sale'];
+const CAT_LABELS = { new:'✨ New', hombre:'👔 Hombre', mujer:'👗 Mujer', accesorios:'👜 Accesorios', lentes:'🕶️ Lentes', bijouterie:'💍 Bijouterie', billeteras:'👝 Billeteras', medias:'🧦 Medias', boxers:'🩲 Boxers', zapatillas:'👟 Zapatillas', sale:'🏷️ Sale' };
+
+function renderCatPills() {
+  const wrap = document.getElementById('catPillsWrap');
+  const todasChecked = document.getElementById('ofTodasCats').checked;
+  wrap.style.display = todasChecked ? 'none' : 'flex';
+  wrap.innerHTML = TODAS_CATS.map(c => `
+    <span class="cat-pill ${selectedCats.includes(c)?'sel':''}" onclick="toggleCatPill(this,'${c}')">${CAT_LABELS[c]||c}</span>
+  `).join('');
+}
+
+function toggleCatPill(el, cat) {
+  if (selectedCats.includes(cat)) {
+    selectedCats = selectedCats.filter(c => c !== cat);
+    el.classList.remove('sel');
+  } else {
+    selectedCats.push(cat);
+    el.classList.add('sel');
+  }
+}
+
+function saveOferta() {
+  const nombre = document.getElementById('ofNombre').value.trim();
+  if (!nombre) { showToast('⚠️ Ingresá un nombre para la oferta', 'err'); return; }
+
+  const useFecha = document.getElementById('ofFechaCheck').checked;
+  const useStock = document.getElementById('ofStockCheck').checked;
+  const todasCats = document.getElementById('ofTodasCats').checked;
+
+  if (!todasCats && !selectedCats.length) {
+    showToast('⚠️ Elegí al menos una categoría', 'err'); return;
+  }
+  if ((selectedTipo === 'pct' || selectedTipo === 'fijo') && !document.getElementById('ofValor').value) {
+    showToast('⚠️ Ingresá el valor del descuento', 'err'); return;
+  }
+
+  const mostrarEn = document.querySelector('input[name="ofMostrarEn"]:checked')?.value || 'ambos';
+
+  const oferta = {
+    id: editingOfertaIdx !== null ? getOfertas()[editingOfertaIdx].id : 'of_' + Date.now(),
+    nombre,
+    descripcion: document.getElementById('ofDesc').value.trim(),
+    badge: document.getElementById('ofBadge').value.trim(),
+    tipo: selectedTipo,
+    n: parseInt(document.getElementById('ofN').value) || 3,
+    m: parseInt(document.getElementById('ofM').value) || 2,
+    valor: parseFloat(document.getElementById('ofValor').value) || 0,
+    todasCategorias: todasCats,
+    categorias: todasCats ? TODAS_CATS : selectedCats,
+    fechaInicio: useFecha && document.getElementById('ofFechaInicio').value
+      ? new Date(document.getElementById('ofFechaInicio').value).toISOString() : null,
+    fechaFin: useFecha && document.getElementById('ofFechaFin').value
+      ? new Date(document.getElementById('ofFechaFin').value).toISOString() : null,
+    stockLimite: useStock ? (parseInt(document.getElementById('ofStockLimite').value) || 0) : null,
+    usosActuales: editingOfertaIdx !== null ? (getOfertas()[editingOfertaIdx].usosActuales || 0) : 0,
+    mostrarEn,
+    activa: true,
+    creada: editingOfertaIdx !== null ? getOfertas()[editingOfertaIdx].creada : new Date().toISOString(),
+  };
+
+  // Auto-set tipo label
+  if (selectedTipo === '2x1') { oferta.n = 2; oferta.m = 1; }
+  if (selectedTipo === '3x2') { oferta.n = 3; oferta.m = 2; }
+
+  const arr = getOfertas();
+  if (editingOfertaIdx !== null) arr[editingOfertaIdx] = oferta;
+  else arr.push(oferta);
+
+  saveOfertas(arr);
+  closeOfertaModal();
+  showToast('✅ Oferta guardada', 'ok');
+}
+
+function editOferta(idx) {
+  openOfertaModal(idx);
+}
+
+// Init on load
+document.addEventListener('DOMContentLoaded', () => {
+  setTimeout(() => {
+    renderOfertaGrid();
+    updateOfertasBadge();
+    // Init toggle states
+    ['tienda','inicio'].forEach(page => {
+      const visible = localStorage.getItem(`bc_ofertas_strip_${page}`) !== 'oculto';
+      const chk = document.getElementById(`toggleStrip${page.charAt(0).toUpperCase()+page.slice(1)}`);
+      if (chk) chk.checked = visible;
+      updateStripLabel(page, visible);
+    });
+  }, 200);
+});
+
+function toggleOfertasStrip(page, visible) {
+  localStorage.setItem(`bc_ofertas_strip_${page}`, visible ? 'visible' : 'oculto');
+  updateStripLabel(page, visible);
+  const pageName = page === 'tienda' ? 'Tienda' : 'Inicio';
+  showToast(visible ? `👁 Panel visible en ${pageName}` : `🙈 Panel oculto en ${pageName}`, 'info');
+}
+
+function updateStripLabel(page, visible) {
+  const lbl = document.getElementById(`strip${page.charAt(0).toUpperCase()+page.slice(1)}Label`);
+  if (!lbl) return;
+  lbl.textContent = visible ? 'Visible' : 'Oculto';
+  lbl.style.color = visible ? 'var(--green)' : 'var(--red)';
+}
+
+function updateMostrarEnStyle() {
+  ['Tienda','Inicio','Ambos'].forEach(v => {
+    const lbl = document.getElementById(`lblMostrar${v}`);
+    const inp = document.getElementById(`ofMostrar${v}`);
+    if (!lbl || !inp) return;
+    lbl.style.borderColor = inp.checked ? 'var(--accent)' : 'var(--border)';
+    lbl.style.background   = inp.checked ? 'rgba(201,169,110,.06)' : '';
+  });
+}
 </script>
+
+<!-- MODAL OFERTA -->
+<div class="backdrop" id="mOferta" onclick="onBd(event,'mOferta',closeOfertaModal)">
+  <div class="modal" onclick="event.stopPropagation()" style="max-width:680px;">
+    <div class="modal-head">
+      <h2 class="modal-title" id="ofertaModalTitle">Nueva oferta</h2>
+      <button class="modal-close" onclick="closeOfertaModal()">✕</button>
+    </div>
+    <div class="modal-body">
+
+      <!-- Nombre y descripción -->
+      <div class="form-row">
+        <label class="form-label">Nombre de la oferta *</label>
+        <input type="text" class="form-input" id="ofNombre" placeholder="ej: Promo Verano 2×1 en Remeras"/>
+      </div>
+      <div class="form-row">
+        <label class="form-label">Descripción (visible al cliente)</label>
+        <input type="text" class="form-input" id="ofDesc" placeholder="ej: Llevás 2 remeras y pagás solo 1"/>
+      </div>
+
+      <!-- Tipo de oferta -->
+      <div class="form-row">
+        <label class="form-label">Tipo de oferta *</label>
+        <div class="oferta-tipo-grid">
+          <div class="oferta-tipo-card sel" data-tipo="2x1" onclick="selOfertaTipo('2x1')">
+            <div class="otc-icon">2️⃣</div>
+            <div class="otc-label">2 × 1</div>
+            <div class="otc-sub">Llevás 2, pagás 1</div>
+          </div>
+          <div class="oferta-tipo-card" data-tipo="3x2" onclick="selOfertaTipo('3x2')">
+            <div class="otc-icon">3️⃣</div>
+            <div class="otc-label">3 × 2</div>
+            <div class="otc-sub">Llevás 3, pagás 2</div>
+          </div>
+          <div class="oferta-tipo-card" data-tipo="nxm" onclick="selOfertaTipo('nxm')">
+            <div class="otc-icon">🔢</div>
+            <div class="otc-label">N × M</div>
+            <div class="otc-sub">Personalizado</div>
+          </div>
+          <div class="oferta-tipo-card" data-tipo="pct" onclick="selOfertaTipo('pct')">
+            <div class="otc-icon">%</div>
+            <div class="otc-label">% Descuento</div>
+            <div class="otc-sub">Ej: 20% off</div>
+          </div>
+          <div class="oferta-tipo-card" data-tipo="fijo" onclick="selOfertaTipo('fijo')">
+            <div class="otc-icon">💰</div>
+            <div class="otc-label">Monto fijo</div>
+            <div class="otc-sub">Ej: $5.000 off</div>
+          </div>
+          <div class="oferta-tipo-card" data-tipo="combo" onclick="selOfertaTipo('combo')">
+            <div class="otc-icon">🎀</div>
+            <div class="otc-label">Combo</div>
+            <div class="otc-sub">Packs especiales</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Config N×M -->
+      <div id="cfgNxM" style="display:none;">
+        <div class="oferta-config-section">
+          <div class="oferta-config-title"><i class="fas fa-sliders-h"></i> Configuración N × M</div>
+          <div class="form-grid">
+            <div class="form-row" style="margin:0">
+              <label class="form-label">Llevás (N)</label>
+              <input type="number" class="form-input" id="ofN" value="3" min="2"/>
+            </div>
+            <div class="form-row" style="margin:0">
+              <label class="form-label">Pagás (M)</label>
+              <input type="number" class="form-input" id="ofM" value="2" min="1"/>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Config % o fijo -->
+      <div id="cfgValor" style="display:none;">
+        <div class="oferta-config-section">
+          <div class="oferta-config-title"><i class="fas fa-percent"></i> Valor del descuento</div>
+          <div class="form-row" style="margin:0">
+            <label class="form-label" id="valorLabel">Porcentaje (%)</label>
+            <input type="number" class="form-input" id="ofValor" placeholder="20"/>
+            <div class="form-hint"><i class="fas fa-info-circle"></i> <span id="valorHint">Ej: 20 para un 20% de descuento</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dónde mostrar -->
+      <div class="form-row">
+        <label class="form-label"><i class="fas fa-eye" style="margin-right:5px;opacity:.6"></i> Mostrar en</label>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;">
+          <label style="display:flex;align-items:center;gap:8px;padding:10px 13px;border:1.5px solid var(--border);border-radius:var(--radius);cursor:pointer;transition:all .2s;font-size:13px;" id="lblMostrarTienda">
+            <input type="radio" name="ofMostrarEn" value="tienda" id="ofMostrarTienda" style="accent-color:var(--accent);" onchange="updateMostrarEnStyle()"/>
+            <i class="fas fa-store" style="color:var(--accent);font-size:12px;"></i> Tienda
+          </label>
+          <label style="display:flex;align-items:center;gap:8px;padding:10px 13px;border:1.5px solid var(--border);border-radius:var(--radius);cursor:pointer;transition:all .2s;font-size:13px;" id="lblMostrarInicio">
+            <input type="radio" name="ofMostrarEn" value="inicio" id="ofMostrarInicio" style="accent-color:var(--accent);" onchange="updateMostrarEnStyle()"/>
+            <i class="fas fa-home" style="color:var(--blue);font-size:12px;"></i> Inicio
+          </label>
+          <label style="display:flex;align-items:center;gap:8px;padding:10px 13px;border:1.5px solid var(--border);border-radius:var(--radius);cursor:pointer;transition:all .2s;font-size:13px;" id="lblMostrarAmbos">
+            <input type="radio" name="ofMostrarEn" value="ambos" id="ofMostrarAmbos" style="accent-color:var(--accent);" checked onchange="updateMostrarEnStyle()"/>
+            <i class="fas fa-globe" style="color:var(--green);font-size:12px;"></i> Ambas
+          </label>
+        </div>
+        <div class="form-hint"><i class="fas fa-info-circle"></i> En qué páginas se muestra el banner y el badge del producto</div>
+      </div>
+
+      <!-- Badge en tarjeta -->
+      <div class="form-row">
+        <label class="form-label">Badge en la tarjeta del producto</label>
+        <input type="text" class="form-input" id="ofBadge" placeholder="ej: 🎁 2×1" maxlength="30"/>
+        <div class="form-hint"><i class="fas fa-info-circle"></i> Texto corto que aparece sobre la foto del producto</div>
+      </div>
+
+      <!-- Categorías -->
+      <div class="oferta-config-section">
+        <div class="oferta-config-title"><i class="fas fa-tag"></i> Categorías donde aplica</div>
+        <label class="check-row">
+          <input type="checkbox" id="ofTodasCats" checked onchange="renderCatPills()"/>
+          <label for="ofTodasCats">Aplica a todas las categorías</label>
+        </label>
+        <div class="cat-pills-wrap" id="catPillsWrap" style="display:none;"></div>
+      </div>
+
+      <!-- Programación temporal -->
+      <div class="oferta-config-section">
+        <div class="oferta-config-title"><i class="fas fa-calendar-alt"></i> Programación</div>
+        <label class="check-row">
+          <input type="checkbox" id="ofFechaCheck" onchange="toggleFechaFields(this.checked)"/>
+          <label for="ofFechaCheck">Programar fechas de inicio y fin</label>
+        </label>
+        <div id="fechaFields" style="display:none;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px;">
+          <div>
+            <label class="form-label">Fecha de inicio</label>
+            <input type="datetime-local" class="form-input" id="ofFechaInicio"/>
+          </div>
+          <div>
+            <label class="form-label">Fecha de fin</label>
+            <input type="datetime-local" class="form-input" id="ofFechaFin"/>
+          </div>
+        </div>
+      </div>
+
+      <!-- Límite de stock/usos -->
+      <div class="oferta-config-section">
+        <div class="oferta-config-title"><i class="fas fa-layer-group"></i> Límite de usos</div>
+        <label class="check-row">
+          <input type="checkbox" id="ofStockCheck" onchange="toggleStockField(this.checked)"/>
+          <label for="ofStockCheck">Limitar cantidad de usos (hasta agotar)</label>
+        </label>
+        <div id="stockField" style="display:none;margin-top:12px;">
+          <label class="form-label">Número máximo de usos</label>
+          <input type="number" class="form-input" id="ofStockLimite" placeholder="ej: 50" min="1"/>
+          <div class="form-hint"><i class="fas fa-info-circle"></i> La oferta se desactiva automáticamente al alcanzar este límite</div>
+        </div>
+      </div>
+
+    </div>
+    <div class="modal-foot">
+      <button class="btn btn-ghost" onclick="closeOfertaModal()">Cancelar</button>
+      <button class="btn btn-primary" onclick="saveOferta()"><i class="fas fa-check"></i> Guardar oferta</button>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>
