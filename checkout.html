@@ -61,6 +61,8 @@
     .fld input:focus{border-color:var(--accent);background:rgba(201,169,110,.03);}
     .fld input.err{border-color:var(--red);}
     .fld input[readonly]{opacity:.4;cursor:default;}
+    .fld select{background:var(--surface2);border:1.5px solid var(--border2);color:var(--text);font-family:var(--sans);font-size:14px;padding:11px 36px 11px 13px;transition:border-color .2s,background .2s;border-radius:var(--r);outline:none;-webkit-appearance:none;appearance:none;cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b6760' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 13px center;}
+    .fld select:focus{border-color:var(--accent);background-color:rgba(201,169,110,.03);}
     .err-msg{font-size:11px;color:#e07b6a;min-height:14px;display:flex;align-items:center;gap:4px;}
     .field-hint{font-size:10px;color:var(--muted);margin-top:1px;}
 
@@ -104,12 +106,6 @@
     .bancor-badge{display:inline-flex;align-items:center;gap:5px;background:rgba(0,107,182,.15);color:#4da6e8;font-size:8px;font-weight:700;letter-spacing:.06em;padding:3px 8px;border-radius:20px;margin-top:5px;}
     .bancor-cards{display:flex;gap:5px;margin-top:7px;flex-wrap:wrap;}
     .bc-pill{font-size:8px;font-weight:800;padding:2px 7px;border-radius:3px;}
-
-    /* MP secundario */
-    .mp-secondary-wrap{margin-top:6px;margin-bottom:14px;}
-    .btn-mp-secondary{width:100%;height:38px;background:rgba(0,158,227,.07);border:1.5px solid rgba(0,158,227,.2);color:#4cb8e8;font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;border-radius:var(--r);display:flex;align-items:center;justify-content:center;gap:7px;transition:all .2s;}
-    .btn-mp-secondary:hover{background:rgba(0,158,227,.14);border-color:rgba(0,158,227,.4);}
-    .mp-sec-label{font-size:9px;color:var(--muted);text-align:center;margin-bottom:6px;letter-spacing:.06em;text-transform:uppercase;}
 
     /* PANELES */
     .pm-panel{display:none;animation:fadeIn .3s var(--ease);}
@@ -434,60 +430,96 @@
               <span class="pm-check"><i class="fas fa-check" style="font-size:7px"></i></span>
             </div>
 
-          </div>
+            <!-- MercadoPago — última opción -->
+            <div class="pm-card" id="cardMp" onclick="selPago('mp',this)" style="grid-column:1/-1;border-color:rgba(0,158,227,.25);background:rgba(0,158,227,.03);">
+              <div class="pm-icon" style="background:rgba(0,158,227,.1)"><i class="fas fa-wallet" style="color:#009fe3"></i></div>
+              <div class="pm-body">
+                <div class="pm-title" style="color:#4cb8e8">MercadoPago</div>
+                <div class="pm-sub">Saldo MP · QR · Link de pago</div>
+                <span class="pm-tag" style="background:rgba(0,158,227,.12);color:#4cb8e8">Todas las tarjetas</span>
+              </div>
+              <span class="pm-check" style="border-color:rgba(0,158,227,.3)"><i class="fas fa-check" style="font-size:7px"></i></span>
+            </div>
 
-          <!-- MP secundario -->
-          <div class="mp-secondary-wrap">
-            <div class="mp-sec-label">o también podés pagar con</div>
-            <button class="btn-mp-secondary" onclick="selPago('mp', this)" id="btnMpSecondary">
-              <i class="fas fa-wallet"></i> MercadoPago · Saldo MP / QR / Link
-            </button>
           </div>
 
           <!-- PANEL BANCOR -->
           <div class="pm-panel active" id="panelBancor">
             <div class="pm-box" style="border-color:rgba(0,107,182,.3);background:rgba(0,107,182,.03);">
-              <div class="pm-box-title" style="color:#4da6e8"><i class="fas fa-credit-card"></i> Pago con tarjeta · Banco de Córdoba</div>
-              <div class="bancor-flow">
-                <strong>Cliente paga</strong>
-                <span class="arr">→</span>
-                <strong>Bancor procesa</strong>
-                <span class="arr">→</span>
-                <strong>Dinero acreditado en cuenta</strong>
-                <span class="arr">→</span>
-                <strong>Notificación al comercio</strong>
-              </div>
-              <div class="bancor-steps">
-                <div class="bcs">
-                  <div class="bcs-n">1</div>
-                  <div class="bcs-t"><strong>Ingresás los datos de tu tarjeta</strong><small>Visa, Mastercard, Cordobesa, Naranja, Taca Taca — crédito o débito</small></div>
-                </div>
-                <div class="bcs">
-                  <div class="bcs-n">2</div>
-                  <div class="bcs-t"><strong>Bancor procesa el pago de forma segura</strong><small>Pasarela oficial de Banco de Córdoba — sin intermediarios</small></div>
-                </div>
-                <div class="bcs">
-                  <div class="bcs-n">3</div>
-                  <div class="bcs-t"><strong>El dinero va directo a la cuenta del comercio</strong><small>Acreditación en cuenta Bancor en días hábiles</small></div>
-                </div>
-                <div class="bcs">
-                  <div class="bcs-n">4</div>
-                  <div class="bcs-t"><strong>Recibís confirmación del pedido</strong><small>Notificación automática al local · Tu pedido queda reservado</small></div>
-                </div>
-              </div>
-              <div class="mp-pills" style="margin:14px 0 10px;">
+              <div class="pm-box-title" style="color:#4da6e8"><i class="fas fa-credit-card"></i> Datos de tarjeta · Banco de Córdoba</div>
+
+              <!-- Tarjetas aceptadas -->
+              <div class="mp-pills" style="margin:0 0 16px;">
                 <span class="mp-pill" style="background:#1a1f71;color:#fff">VISA</span>
                 <span class="mp-pill" style="background:#eb001b;color:#fff">Mastercard</span>
                 <span class="mp-pill" style="background:#006bb6;color:#fff">Cordobesa</span>
                 <span class="mp-pill" style="background:#c8102e;color:#fff">Taca Taca</span>
                 <span class="mp-pill" style="background:#ff6400;color:#fff">Naranja</span>
-                <span class="mp-pill" style="background:#3d3d3d;color:#fff">+ Débito</span>
+                <span class="mp-pill" style="background:#3d3d3d;color:#fff">Débito</span>
               </div>
-              <button class="btn-primary" id="btnBancor" onclick="pagar('bancor')" style="background:#006bb6;margin-top:4px;">
+
+              <!-- Campos de tarjeta -->
+              <div class="row" style="margin-bottom:11px;">
+                <div class="fld">
+                  <label>Nombre en la tarjeta</label>
+                  <input type="text" id="cardNombre" placeholder="JUAN PEREZ" autocomplete="cc-name" maxlength="26" style="text-transform:uppercase;" oninput="this.value=this.value.toUpperCase()"/>
+                </div>
+              </div>
+              <div class="row" style="margin-bottom:11px;">
+                <div class="fld">
+                  <label>Número de tarjeta</label>
+                  <div style="position:relative;">
+                    <input type="text" id="cardNumero" placeholder="0000 0000 0000 0000" autocomplete="cc-number" maxlength="19" inputmode="numeric" oninput="fmtCard(this)" style="padding-right:48px;letter-spacing:.08em;"/>
+                    <span id="cardBrandIcon" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);font-size:20px;color:var(--muted);pointer-events:none;"><i class="fas fa-credit-card"></i></span>
+                  </div>
+                </div>
+              </div>
+              <div class="row row2" style="margin-bottom:11px;">
+                <div class="fld">
+                  <label>Vencimiento</label>
+                  <input type="text" id="cardVenc" placeholder="MM / AA" autocomplete="cc-exp" maxlength="7" inputmode="numeric" oninput="fmtVenc(this)"/>
+                </div>
+                <div class="fld">
+                  <label>CVV / CVC <span title="Los 3 dígitos al dorso de tu tarjeta (Amex: 4 al frente)" style="cursor:help;color:var(--muted2)">?</span></label>
+                  <div style="position:relative;">
+                    <input type="password" id="cardCvv" placeholder="···" autocomplete="cc-csc" maxlength="4" inputmode="numeric"/>
+                    <button type="button" aria-label="Mostrar/ocultar CVV" onclick="toggleCvv(this)" style="position:absolute;right:11px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:var(--muted);padding:4px;font-size:13px;line-height:1;"><i class="fas fa-eye-slash"></i></button>
+                  </div>
+                </div>
+              </div>
+              <div class="row" style="margin-bottom:16px;">
+                <div class="fld">
+                  <label>Cuotas</label>
+                  <select id="cardCuotas">
+                    <option value="1">1 cuota (pago contado)</option>
+                    <option value="3">3 cuotas</option>
+                    <option value="6">6 cuotas</option>
+                    <option value="12">12 cuotas</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Badges de seguridad -->
+              <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px;padding:12px;background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:var(--r);">
+                <div style="display:flex;align-items:center;gap:5px;font-size:10px;color:var(--muted2);font-weight:600;">
+                  <i class="fas fa-lock" style="color:var(--green);font-size:11px;"></i> SSL 256-bit
+                </div>
+                <div style="display:flex;align-items:center;gap:5px;font-size:10px;color:var(--muted2);font-weight:600;">
+                  <i class="fas fa-shield-alt" style="color:#4da6e8;font-size:11px;"></i> 3D Secure
+                </div>
+                <div style="display:flex;align-items:center;gap:5px;font-size:10px;color:var(--muted2);font-weight:600;">
+                  <i class="fas fa-check-circle" style="color:var(--accent);font-size:11px;"></i> PCI DSS
+                </div>
+                <div style="display:flex;align-items:center;gap:5px;font-size:10px;color:var(--muted2);font-weight:600;">
+                  <i class="fas fa-university" style="color:#006bb6;font-size:11px;"></i> Pasarela Bancor
+                </div>
+              </div>
+
+              <button class="btn-primary" id="btnBancor" onclick="pagarBancor()" style="background:#006bb6;">
                 <span class="lbl"><i class="fas fa-lock" style="font-size:10px"></i> Pagar con tarjeta vía Bancor</span>
                 <span class="spin"><i class="fas fa-circle-notch fa-spin"></i> Redirigiendo...</span>
               </button>
-              <p class="ssl-note" style="margin-top:10px;"><i class="fas fa-lock"></i> Seguridad gestionada por Banco de Córdoba · SSL 256-bit</p>
+              <p class="ssl-note" style="margin-top:10px;"><i class="fas fa-lock"></i> Datos encriptados · Procesado por Banco de Córdoba · No almacenamos datos de tarjeta</p>
             </div>
           </div>
 
@@ -526,9 +558,9 @@
                 </div>
               </div>
               <div style="margin-top:14px;">
-                <div class="bank-row"><span class="bl">CBU</span><div style="display:flex;align-items:center;"><span class="bv" id="naranjaAliasCbu">0000003100012345678901</span><button class="btn-copy" onclick="copiar('naranjaAliasCbu',this)">Copiar</button></div></div>
-                <div class="bank-row"><span class="bl">Alias</span><div style="display:flex;align-items:center;"><span class="bv" id="naranjaAliasStr">BARA.CO.PAGOS</span><button class="btn-copy" onclick="copiar('naranjaAliasStr',this)">Copiar</button></div></div>
-                <div class="bank-row"><span class="bl">Titular</span><span class="bv">Bara &amp; Co</span></div>
+                <div class="bank-row"><span class="bl">CBU</span><div style="display:flex;align-items:center;"><span class="bv" id="naranjaAliasCbu">4530000800011005892477</span><button class="btn-copy" aria-label="Copiar CBU Naranja X" onclick="copiar('naranjaAliasCbu',this)">Copiar</button></div></div>
+                <div class="bank-row"><span class="bl">Alias</span><div style="display:flex;align-items:center;"><span class="bv" id="naranjaAliasStr">BARA.INDUMENTARIA</span><button class="btn-copy" aria-label="Copiar Alias Naranja X" onclick="copiar('naranjaAliasStr',this)">Copiar</button></div></div>
+                <div class="bank-row"><span class="bl">Titular</span><span class="bv">Cristian Gaston Castanarez</span></div>
               </div>
               <div style="margin-top:14px;">
                 <button class="btn-primary" style="background:#ff6400;" onclick="pagar('naranja')">
@@ -543,10 +575,10 @@
           <div class="pm-panel" id="panelTransfer">
             <div class="pm-box">
               <div class="pm-box-title"><i class="fas fa-university"></i> Datos para transferencia</div>
-              <div class="bank-row"><span class="bl">Titular</span><span class="bv">Bara &amp; Co</span></div>
-              <div class="bank-row"><span class="bl">CBU</span><div style="display:flex;align-items:center;"><span class="bv" id="cbuVal">0000003100012345678901</span><button class="btn-copy" onclick="copiar('cbuVal',this)">Copiar</button></div></div>
-              <div class="bank-row"><span class="bl">Alias</span><div style="display:flex;align-items:center;"><span class="bv" id="aliasVal">BARA.CO.PAGOS</span><button class="btn-copy" onclick="copiar('aliasVal',this)">Copiar</button></div></div>
-              <div class="bank-row"><span class="bl">Banco</span><span class="bv" style="color:var(--muted2)">— Tu banco —</span></div>
+              <div class="bank-row"><span class="bl">Titular</span><span class="bv">Castanarez Cristian Gaston</span></div>
+              <div class="bank-row"><span class="bl">CBU</span><div style="display:flex;align-items:center;"><span class="bv" id="cbuVal">0200308311000020161376</span><button class="btn-copy" aria-label="Copiar CBU" onclick="copiar('cbuVal',this)">Copiar</button></div></div>
+              <div class="bank-row"><span class="bl">Alias</span><div style="display:flex;align-items:center;"><span class="bv" id="aliasVal">bara.co</span><button class="btn-copy" aria-label="Copiar Alias" onclick="copiar('aliasVal',this)">Copiar</button></div></div>
+              <div class="bank-row"><span class="bl">Banco</span><span class="bv" style="color:var(--muted2)">Bancor · CA $ 308-0020161307</span></div>
               <div class="bank-note">
                 <i class="fas fa-info-circle" style="color:var(--green)"></i>
                 Después de transferir, el botón de abajo abre WhatsApp para enviarnos el comprobante. Tu pedido queda reservado apenas confirmás.
@@ -744,13 +776,17 @@ function selPago(metodo,el){
     toast('Primero elegí "Retiro en local" en la sección de envío ↑');return;
   }
   metodoPago=metodo;
+  // Limpiar errores de campos de tarjeta al cambiar método
+  ['cardNombre','cardNumero','cardVenc','cardCvv'].forEach(id=>{
+    const inp=document.getElementById(id);
+    if(inp)inp.classList.remove('err');
+  });
   // Deselect all pm-cards and the bancor hero card
   document.querySelectorAll('.pm-card,.pm-card-bancor').forEach(c=>c.classList.remove('sel'));
-  // Highlight clicked element (could be btn-mp-secondary or a card)
+  // Highlight clicked element
   if(el && (el.classList.contains('pm-card') || el.classList.contains('pm-card-bancor'))){
     el.classList.add('sel');
   }
-  // If MP selected via secondary button, highlight nothing special (it's a button, not a card)
   ['Bancor','Mp','Naranja','Transfer','Posnet','Cash','Wa'].forEach(p=>{
     const panel=document.getElementById('panel'+p);
     if(panel)panel.classList.remove('active');
@@ -805,8 +841,79 @@ function armarMsgCliente(cart,sub,nombre,envioStr){
   return encodeURIComponent(`¡Hola! Quiero hacer un pedido en Bara & Co 🛍️\n\n👤 *${nombre}*\n\n*Productos:*\n${items}\n\n💰 *Total: ${fmt(sub)}*\n📦 *Envío:* ${envioStr}\n💳 *Pago:* ${ml[metodoPago]||metodoPago}`);
 }
 
-function btnLoading(sel){const b=document.querySelector(sel);if(b){b.classList.add('loading');b.disabled=true;}return b;}
-function btnReset(sel){const b=document.querySelector(sel);if(b){b.classList.remove('loading');b.disabled=false;}}
+/* ══════════════════════════════════════════
+   FORMATEO DE TARJETA
+══════════════════════════════════════════ */
+function fmtCard(inp) {
+  let v = inp.value.replace(/\D/g, '').slice(0, 16);
+  inp.value = v.replace(/(.{4})/g, '$1 ').trim();
+  // Detectar marca
+  const icon = document.getElementById('cardBrandIcon');
+  if (!icon) return;
+  if (/^4/.test(v))        icon.innerHTML = '<i class="fab fa-cc-visa" style="color:#1a1f71"></i>';
+  else if (/^5[1-5]/.test(v)||/^2[2-7]/.test(v)) icon.innerHTML = '<i class="fab fa-cc-mastercard" style="color:#eb001b"></i>';
+  else if (/^34|^37/.test(v)) icon.innerHTML = '<i class="fab fa-cc-amex" style="color:#2671b2"></i>';
+  else icon.innerHTML = '<i class="fas fa-credit-card" style="color:var(--muted)"></i>';
+}
+function fmtVenc(inp) {
+  const prev = inp._prev || '';
+  let raw = inp.value.replace(/\D/g, '').slice(0, 4);
+  // Si está borrando, no forzar el separador
+  const isDeleting = inp.value.length < prev.length;
+  let formatted = raw;
+  if (!isDeleting && raw.length >= 3) {
+    formatted = raw.slice(0,2) + ' / ' + raw.slice(2);
+  } else if (!isDeleting && raw.length === 2) {
+    formatted = raw + ' / ';
+  }
+  inp.value = formatted;
+  inp._prev = formatted;
+}
+function toggleCvv(btn) {
+  const inp = document.getElementById('cardCvv');
+  const isHidden = inp.type === 'password';
+  inp.type = isHidden ? 'text' : 'password';
+  btn.innerHTML = isHidden ? '<i class="fas fa-eye"></i>' : '<i class="fas fa-eye-slash"></i>';
+  btn.style.color = isHidden ? 'var(--accent)' : 'var(--muted)';
+}
+
+/* ══════════════════════════════════════════
+   PAGO CON TARJETA — VALIDACIÓN + REDIRECT
+══════════════════════════════════════════ */
+function pagarBancor() {
+  const nombre = (document.getElementById('cardNombre')?.value || '').trim();
+  const numero = (document.getElementById('cardNumero')?.value || '').replace(/\s/g, '');
+  const venc   = (document.getElementById('cardVenc')?.value || '').trim();
+  const cvv    = (document.getElementById('cardCvv')?.value || '').trim();
+
+  const fields = [
+    { id: 'cardNombre', ok: nombre.length >= 3,         msg: 'Ingresá el nombre como figura en la tarjeta' },
+    { id: 'cardNumero', ok: numero.length >= 15,         msg: 'Número de tarjeta inválido' },
+    { id: 'cardVenc',   ok: /^\d{2}\s*\/\s*\d{2}$/.test(venc), msg: 'Ingresá la fecha de vencimiento (MM/AA)' },
+    { id: 'cardCvv',    ok: cvv.length >= 3,             msg: 'CVV inválido' },
+  ];
+
+  for (const f of fields) {
+    const el = document.getElementById(f.id);
+    if (!f.ok) {
+      if (el) { el.classList.add('err'); el.focus(); }
+      toast('⚠️ ' + f.msg);
+      return;
+    } else {
+      if (el) el.classList.remove('err');
+    }
+  }
+
+  if (!validarForm()) {
+    document.getElementById('nombre').scrollIntoView({behavior:'smooth',block:'center'});
+    return;
+  }
+
+  btnLoading('#btnBancor');
+  localStorage.removeItem(CART_KEY);
+  setTimeout(() => { window.location.href = BANCOR_LINK; }, 600);
+}
+
 
 /* ══════════════════════════════════════════
    PAGAR — llama al backend para todo
