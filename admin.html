@@ -1129,8 +1129,27 @@
       border-radius:var(--radius); overflow:hidden; transition:all .2s;
       position:relative;
     }
-    .oferta-card:hover { box-shadow:var(--shadow); }
-    .oferta-card.inactive-offer { opacity:.6; }
+    .oferta-card:hover { box-shadow:var(--shadow); transform:translateY(-2px); }
+    .oferta-card.inactive-offer { opacity:.55; }
+    /* Imagen de la oferta en la card del admin */
+    .oferta-card-img {
+      position:relative; height:110px; overflow:hidden;
+      background:linear-gradient(135deg,#1a1a17,#252520);
+    }
+    .oferta-card-img img {
+      width:100%; height:100%; object-fit:cover;
+      transition:transform .5s var(--ease);
+    }
+    .oferta-card:hover .oferta-card-img img { transform:scale(1.05); }
+    .oferta-card-img-placeholder {
+      width:100%; height:100%; display:flex; align-items:center; justify-content:center;
+      flex-direction:column; gap:6px; color:var(--muted); font-size:11px;
+    }
+    .oferta-card-img-placeholder i { font-size:22px; opacity:.3; }
+    /* Color accent bar per tipo */
+    .oferta-card-accentbar {
+      position:absolute; bottom:0; left:0; right:0; height:3px;
+    }
     .oferta-card-head {
       padding:14px 16px; display:flex; align-items:flex-start;
       justify-content:space-between; gap:10px;
@@ -1174,6 +1193,27 @@
       overflow:hidden; margin-top:8px;
     }
     .oferta-prog-fill { height:100%; background:var(--accent); border-radius:2px; transition:width .4s; }
+
+    /* ─── OFERTA IMAGE UPLOAD ─── */
+    .oferta-img-zone {
+      border:2px dashed var(--border); border-radius:var(--radius);
+      background:var(--bg); cursor:pointer; transition:all .2s;
+      overflow:hidden; position:relative;
+    }
+    .oferta-img-zone:hover,.oferta-img-zone.drag-over { border-color:var(--accent); background:rgba(201,169,110,.04); }
+    .oferta-img-zone.has-img { border-style:solid; border-color:var(--accent); }
+    .oferta-img-idle { padding:24px; text-align:center; pointer-events:none; }
+    .oferta-img-idle i { font-size:28px; color:var(--accent); opacity:.5; display:block; margin-bottom:8px; }
+    .oferta-img-idle p { font-size:12px; color:var(--muted); }
+    .oferta-img-idle small { font-size:10px; color:var(--muted); opacity:.7; }
+    .oferta-img-preview { display:none; position:relative; }
+    .oferta-img-preview img { width:100%; max-height:160px; object-fit:cover; display:block; }
+    .oferta-img-clear {
+      position:absolute; top:6px; right:6px; width:26px; height:26px; border-radius:50%;
+      background:rgba(0,0,0,.6); color:#fff; border:none; cursor:pointer;
+      font-size:11px; display:grid; place-items:center; transition:background .2s;
+    }
+    .oferta-img-clear:hover { background:var(--red); }
 
     /* ─── MODAL OFERTA ─── */
     .oferta-tipo-grid {
@@ -3990,8 +4030,19 @@ function renderOfertaGrid() {
       hasStock ? `<span class="oferta-meta-item ${pct>=90?'warn':''}"><i class="fas fa-layer-group"></i> ${o.usosActuales||0}/${o.stockLimite} usos</span>` : '',
     ].filter(Boolean).join('');
 
+    const tipoColors = { '2x1':'#2d8a5e','3x2':'#c9a96e','nxm':'#3d6bce','pct':'#c0392b','fijo':'#8e44ad','combo':'#555' };
+    const accentColor = tipoColors[o.tipo] || '#c9a96e';
     return `
     <div class="oferta-card ${estado==='pausada'||estado==='vencida'?'inactive-offer':''}">
+      ${o.imagen ? `
+      <div class="oferta-card-img">
+        <img src="${o.imagen}" alt="${o.nombre}"/>
+        <div class="oferta-card-accentbar" style="background:${accentColor};opacity:.9;"></div>
+      </div>` : `
+      <div class="oferta-card-img">
+        <div class="oferta-card-img-placeholder"><i class="fas fa-image"></i><span>Sin imagen</span></div>
+        <div class="oferta-card-accentbar" style="background:${accentColor};"></div>
+      </div>`}
       <div class="oferta-card-head">
         <div>
           <p class="oferta-name">${o.nombre}</p>
@@ -4002,7 +4053,7 @@ function renderOfertaGrid() {
       <div class="oferta-card-body">
         <div class="oferta-meta">${metaItems}</div>
         ${o.badge ? `<div style="display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:700;background:rgba(201,169,110,.12);color:var(--accent);padding:3px 10px;border-radius:20px;"><i class="fas fa-tag" style="font-size:9px"></i> Badge: "${o.badge}"</div>` : ''}
-        ${hasStock && o.stockLimite > 0 ? `<div class="oferta-prog-bar" style="margin-top:10px;"><div class="oferta-prog-fill" style="width:${pct}%"></div></div>` : ''}
+        ${hasStock && o.stockLimite > 0 ? `<div class="oferta-prog-bar" style="margin-top:10px;"><div class="oferta-prog-fill" style="width:${pct}%;background:${accentColor};"></div></div>` : ''}
       </div>
       <div class="oferta-card-foot">
         ${getOfertaEstadoHtml(estado)}
@@ -4073,6 +4124,7 @@ function openOfertaModal(idx = null) {
   // Reset mostrarEn
   const defRadio = document.getElementById('ofMostrarAmbos');
   if (defRadio) { defRadio.checked = true; updateMostrarEnStyle(); }
+  resetOfertaImg();
   toggleFechaFields(false);
   toggleStockField(false);
 
@@ -4104,6 +4156,14 @@ function openOfertaModal(idx = null) {
     const radioMap = { tienda:'ofMostrarTienda', inicio:'ofMostrarInicio', ambos:'ofMostrarAmbos' };
     const radioEl = document.getElementById(radioMap[radioVal]);
     if (radioEl) { radioEl.checked = true; updateMostrarEnStyle(); }
+    // Restore image
+    if (o.imagen) {
+      ofertaImgData = o.imagen;
+      document.getElementById('ofImgPreviewImg').src = o.imagen;
+      document.getElementById('ofImgIdle').style.display = 'none';
+      document.getElementById('ofImgPreview').style.display = 'block';
+      document.getElementById('ofImgZone').classList.add('has-img');
+    }
     selectedTipo = o.tipo || '2x1';
   }
 
@@ -4209,6 +4269,7 @@ function saveOferta() {
     stockLimite: useStock ? (parseInt(document.getElementById('ofStockLimite').value) || 0) : null,
     usosActuales: editingOfertaIdx !== null ? (getOfertas()[editingOfertaIdx].usosActuales || 0) : 0,
     mostrarEn,
+    imagen: ofertaImgData || null,
     activa: true,
     creada: editingOfertaIdx !== null ? getOfertas()[editingOfertaIdx].creada : new Date().toISOString(),
   };
@@ -4259,7 +4320,47 @@ function updateStripLabel(page, visible) {
   lbl.style.color = visible ? 'var(--green)' : 'var(--red)';
 }
 
-function updateMostrarEnStyle() {
+// ── IMAGEN OFERTA ──
+let ofertaImgData = null; // base64
+
+function handleOfertaImgFile(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+  loadOfertaImg(file);
+}
+function handleOfertaImgDrop(e) {
+  e.preventDefault();
+  document.getElementById('ofImgZone').classList.remove('drag-over');
+  const file = e.dataTransfer.files[0];
+  if (file && file.type.startsWith('image/')) loadOfertaImg(file);
+}
+function loadOfertaImg(file) {
+  const reader = new FileReader();
+  reader.onload = ev => {
+    ofertaImgData = ev.target.result;
+    const zone = document.getElementById('ofImgZone');
+    document.getElementById('ofImgPreviewImg').src = ofertaImgData;
+    document.getElementById('ofImgIdle').style.display = 'none';
+    document.getElementById('ofImgPreview').style.display = 'block';
+    zone.classList.add('has-img');
+  };
+  reader.readAsDataURL(file);
+}
+function clearOfertaImg() {
+  ofertaImgData = null;
+  document.getElementById('ofImgPreviewImg').src = '';
+  document.getElementById('ofImgIdle').style.display = 'block';
+  document.getElementById('ofImgPreview').style.display = 'none';
+  document.getElementById('ofImgZone').classList.remove('has-img');
+  document.getElementById('ofImgFile').value = '';
+}
+
+function resetOfertaImg() {
+  ofertaImgData = null;
+  clearOfertaImg();
+}
+
+// ── IMAGEN OFERTA ──
   ['Tienda','Inicio','Ambos'].forEach(v => {
     const lbl = document.getElementById(`lblMostrar${v}`);
     const inp = document.getElementById(`ofMostrar${v}`);
@@ -4287,6 +4388,28 @@ function updateMostrarEnStyle() {
       <div class="form-row">
         <label class="form-label">Descripción (visible al cliente)</label>
         <input type="text" class="form-input" id="ofDesc" placeholder="ej: Llevás 2 remeras y pagás solo 1"/>
+      </div>
+
+      <!-- Imagen de la oferta -->
+      <div class="form-row">
+        <label class="form-label"><i class="fas fa-image" style="margin-right:5px;opacity:.6"></i> Imagen de la oferta <span style="color:var(--muted);font-weight:400">(opcional)</span></label>
+        <div class="oferta-img-zone" id="ofImgZone"
+          onclick="document.getElementById('ofImgFile').click()"
+          ondragover="event.preventDefault();this.classList.add('drag-over')"
+          ondragleave="this.classList.remove('drag-over')"
+          ondrop="handleOfertaImgDrop(event)">
+          <div class="oferta-img-idle" id="ofImgIdle">
+            <i class="fas fa-image"></i>
+            <p>Arrastrá una imagen o hacé clic para subir</p>
+            <small>JPG, PNG, WEBP · Recomendado 16:6 o panorámica</small>
+          </div>
+          <div class="oferta-img-preview" id="ofImgPreview">
+            <img id="ofImgPreviewImg" src="" alt=""/>
+            <button class="oferta-img-clear" onclick="event.stopPropagation();clearOfertaImg()" title="Quitar imagen">✕</button>
+          </div>
+          <input type="file" id="ofImgFile" accept="image/*" style="display:none" onchange="handleOfertaImgFile(event)"/>
+        </div>
+        <div class="form-hint"><i class="fas fa-info-circle"></i> Se muestra en el banner de la oferta en la tienda y el inicio</div>
       </div>
 
       <!-- Tipo de oferta -->
