@@ -220,7 +220,7 @@
     }
     .modal-close:hover { border-color:var(--red); color:var(--red); }
     .modal-body { padding:20px 26px; }
-    .modal-foot { padding:16px 26px 24px; display:flex; justify-content:flex-end; gap:10px; border-top:1px solid var(--border); }
+    .modal-foot { padding:16px 26px 24px; display:flex; justify-content:flex-end; gap:10px; border-top:1px solid var(--border); position:sticky; bottom:0; background:var(--surface); z-index:10; }
 
     /* FORM */
     .form-row { margin-bottom:20px; }
@@ -3932,9 +3932,19 @@ function getOfertas() {
   catch(e) { return []; }
 }
 function saveOfertas(arr) {
-  localStorage.setItem(OFERTAS_KEY, JSON.stringify(arr));
+  try {
+    localStorage.setItem(OFERTAS_KEY, JSON.stringify(arr));
+  } catch(e) {
+    if (e.name === 'QuotaExceededError' || e.code === 22) {
+      showToast('⚠️ Las imágenes ocupan demasiado espacio. Intentá con imágenes más pequeñas (< 500KB).', 'err');
+      return false;
+    }
+    showToast('❌ Error al guardar: ' + e.message, 'err');
+    return false;
+  }
   renderOfertaGrid();
   updateOfertasBadge();
+  return true;
 }
 
 function switchPageTab(btn, secId) {
@@ -4184,13 +4194,13 @@ function selOfertaTipo(tipo) {
   // Show/hide relevant config
   document.getElementById('cfgNxM').style.display = (tipo === 'nxm') ? 'block' : 'none';
   document.getElementById('cfgValor').style.display = (tipo === 'pct' || tipo === 'fijo') ? 'block' : 'none';
-  // Auto-fill badge suggestion
+  // Auto-fill badge suggestion only for new offers
   const suggestions = {
     '2x1':'🎁 2×1', '3x2':'🎁 3×2', 'nxm':'🎁 Promo',
     'pct':'🏷️ % Off', 'fijo':'💰 Desc. especial', 'combo':'🎀 Combo'
   };
   const badgeEl = document.getElementById('ofBadge');
-  if (!badgeEl.value || Object.values(suggestions).includes(badgeEl.value)) {
+  if (editingOfertaIdx === null && (!badgeEl.value || Object.values(suggestions).includes(badgeEl.value))) {
     badgeEl.value = suggestions[tipo] || '';
   }
   // Update valor label
@@ -4269,7 +4279,7 @@ function saveOferta() {
     stockLimite: useStock ? (parseInt(document.getElementById('ofStockLimite').value) || 0) : null,
     usosActuales: editingOfertaIdx !== null ? (getOfertas()[editingOfertaIdx].usosActuales || 0) : 0,
     mostrarEn,
-    imagen: ofertaImgData || null,
+    imagen: ofertaImgData !== null ? ofertaImgData : (editingOfertaIdx !== null ? (getOfertas()[editingOfertaIdx]?.imagen || null) : null),
     activa: true,
     creada: editingOfertaIdx !== null ? getOfertas()[editingOfertaIdx].creada : new Date().toISOString(),
   };
@@ -4282,9 +4292,11 @@ function saveOferta() {
   if (editingOfertaIdx !== null) arr[editingOfertaIdx] = oferta;
   else arr.push(oferta);
 
-  saveOfertas(arr);
-  closeOfertaModal();
-  showToast('✅ Oferta guardada', 'ok');
+  const ok = saveOfertas(arr);
+  if (ok !== false) {
+    closeOfertaModal();
+    showToast('✅ Oferta guardada', 'ok');
+  }
 }
 
 function editOferta(idx) {
