@@ -2,6 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8"/>
+  <link rel="icon" href="data:,">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Panel Admin · Bara & Co</title>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
@@ -3936,10 +3937,10 @@ function saveOfertas(arr) {
     localStorage.setItem(OFERTAS_KEY, JSON.stringify(arr));
   } catch(e) {
     if (e.name === 'QuotaExceededError' || e.code === 22) {
-      showToast('⚠️ Las imágenes ocupan demasiado espacio. Intentá con imágenes más pequeñas (< 500KB).', 'err');
+      toast('⚠️ Las imágenes ocupan demasiado espacio. Intentá con imágenes más pequeñas (< 500KB).', 'err');
       return false;
     }
-    showToast('❌ Error al guardar: ' + e.message, 'err');
+    toast('❌ Error al guardar: ' + e.message, 'err');
     return false;
   }
   renderOfertaGrid();
@@ -4097,7 +4098,7 @@ function toggleOferta(id) {
   if (idx === -1) return;
   arr[idx].activa = !arr[idx].activa;
   saveOfertas(arr);
-  showToast(arr[idx].activa ? '▶ Oferta activada' : '⏸ Oferta pausada', 'ok');
+  toast(arr[idx].activa ? '▶ Oferta activada' : '⏸ Oferta pausada', 'ok');
 }
 
 function deleteOferta(id) {
@@ -4107,7 +4108,7 @@ function deleteOferta(id) {
   if (idx === -1) return;
   arr.splice(idx, 1);
   saveOfertas(arr);
-  showToast('🗑 Oferta eliminada', 'info');
+  toast('🗑 Oferta eliminada', 'info');
 }
 
 // ── MODAL OFERTA ──
@@ -4252,17 +4253,17 @@ function toggleCatPill(el, cat) {
 
 function saveOferta() {
   const nombre = document.getElementById('ofNombre').value.trim();
-  if (!nombre) { showToast('⚠️ Ingresá un nombre para la oferta', 'err'); return; }
+  if (!nombre) { toast('⚠️ Ingresá un nombre para la oferta', 'err'); return; }
 
   const useFecha = document.getElementById('ofFechaCheck').checked;
   const useStock = document.getElementById('ofStockCheck').checked;
   const todasCats = document.getElementById('ofTodasCats').checked;
 
   if (!todasCats && !selectedCats.length) {
-    showToast('⚠️ Elegí al menos una categoría', 'err'); return;
+    toast('⚠️ Elegí al menos una categoría', 'err'); return;
   }
   if ((selectedTipo === 'pct' || selectedTipo === 'fijo') && !document.getElementById('ofValor').value) {
-    showToast('⚠️ Ingresá el valor del descuento', 'err'); return;
+    toast('⚠️ Ingresá el valor del descuento', 'err'); return;
   }
 
   const mostrarEn = document.querySelector('input[name="ofMostrarEn"]:checked')?.value || 'ambos';
@@ -4304,7 +4305,7 @@ function saveOferta() {
   const ok = saveOfertas(arr);
   if (ok !== false) {
     closeOfertaModal();
-    showToast('✅ Oferta guardada', 'ok');
+    toast('✅ Oferta guardada', 'ok');
   }
 }
 
@@ -4335,7 +4336,7 @@ function toggleOfertasStrip(page, visible) {
   localStorage.setItem(`bc_ofertas_strip_${page}`, visible ? 'visible' : 'oculto');
   updateStripLabel(page, visible);
   const pageName = page === 'tienda' ? 'Tienda' : 'Inicio';
-  showToast(
+  toast(
     visible
       ? `👁 Banner ACTIVADO en ${pageName} — los clientes lo verán`
       : `🙈 Banner DESACTIVADO en ${pageName} — los clientes NO lo verán`,
