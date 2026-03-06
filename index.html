@@ -431,6 +431,33 @@
     /* ── SHIPPING BAR ── */
     .shipping-bar { margin-top:80px; background:var(--accent); color:var(--bg); text-align:center; font-size:10px; font-weight:500; letter-spacing:.22em; text-transform:uppercase; padding:11px; position:relative; }
 
+    /* ── BANNER OFERTAS ── */
+    .ofertas-strip {
+      background:linear-gradient(135deg,rgba(201,169,110,.1),rgba(201,169,110,.04));
+      border-bottom:1px solid rgba(201,169,110,.12);
+      padding:12px 52px; display:none; overflow:hidden;
+    }
+    .ofertas-strip.visible { display:block; }
+    .ofertas-strip-inner {
+      max-width:1200px; margin:0 auto;
+      display:flex; align-items:center; gap:12px; flex-wrap:wrap;
+    }
+    .ofertas-strip-label {
+      font-size:9px; font-weight:700; letter-spacing:.16em; text-transform:uppercase;
+      color:var(--accent); display:flex; align-items:center; gap:6px; white-space:nowrap; flex-shrink:0;
+    }
+    .oferta-pill {
+      display:inline-flex; align-items:center; gap:7px;
+      background:rgba(201,169,110,.1); border:1px solid rgba(201,169,110,.2);
+      color:var(--text); padding:5px 13px; border-radius:20px; font-size:12px; font-weight:500;
+      white-space:nowrap; transition:background .2s; cursor:default;
+    }
+    .oferta-pill:hover { background:rgba(201,169,110,.2); }
+    .oferta-pill-badge {
+      background:var(--accent); color:var(--bg); font-size:8px; font-weight:700;
+      padding:1px 6px; border-radius:10px;
+    }
+
     /* ── FOOTER ── */
     footer { background:var(--surface) !important; border-top:1px solid var(--border) !important; padding:80px 52px 40px !important; display:grid !important; grid-template-columns:1.6fr 1fr 1fr 1.2fr !important; gap:52px !important; margin-top:0 !important; }
     .footer-logo-img { height:56px !important; width:auto !important; object-fit:contain !important; filter:brightness(0) invert(1) !important; }
@@ -658,6 +685,14 @@
 <!-- SHIPPING BAR -->
 <div class="shipping-bar">
   Envíos a todo el país · Retiro en local · Ing. Olmos 139, Jesús María · Compra segura
+</div>
+
+<!-- BANNER OFERTAS INICIO -->
+<div class="ofertas-strip" id="ofertasStrip">
+  <div class="ofertas-strip-inner">
+    <div class="ofertas-strip-label"><i class="fas fa-bolt"></i> Ofertas activas</div>
+    <div id="ofertasPills" style="display:flex;flex-wrap:wrap;gap:8px;"></div>
+  </div>
 </div>
 
 <!-- HERO -->
@@ -925,7 +960,49 @@ function mostrarAnnBar() {
   document.getElementById('annBar')?.classList.remove('hidden');
   document.body.classList.add('ann-on');
 }
-document.addEventListener('DOMContentLoaded', mostrarAnnBar);
+document.addEventListener('DOMContentLoaded', () => {
+  mostrarAnnBar();
+  cargarOfertasInicio();
+});
+
+/* ══════════════════════════════════════
+   OFERTAS EN INICIO
+══════════════════════════════════════ */
+function cargarOfertasInicio() {
+  const strip = document.getElementById('ofertasStrip');
+  const pills = document.getElementById('ofertasPills');
+  if (!strip || !pills) return;
+
+  // Verificar toggle de admin para inicio
+  if (localStorage.getItem('bc_ofertas_strip_inicio') === 'oculto') {
+    strip.classList.remove('visible'); return;
+  }
+
+  try {
+    const todas = JSON.parse(localStorage.getItem('bc_ofertas')) || [];
+    const now = Date.now();
+    const activas = todas.filter(o => {
+      if (!o.activa) return false;
+      if (o.fechaInicio && now < new Date(o.fechaInicio).getTime()) return false;
+      if (o.fechaFin   && now > new Date(o.fechaFin).getTime())   return false;
+      if (o.stockLimite && o.usosActuales >= o.stockLimite)        return false;
+      // Solo las que aplican a inicio o ambas
+      return !o.mostrarEn || o.mostrarEn === 'inicio' || o.mostrarEn === 'ambos';
+    });
+
+    if (!activas.length) { strip.classList.remove('visible'); return; }
+    strip.classList.add('visible');
+
+    pills.innerHTML = activas.map(o => {
+      const tipoLabel = { '2x1':'2×1','3x2':'3×2','pct':`${o.valor}% Off`,'fijo':`$${(o.valor||0).toLocaleString('es-AR')} Off` }[o.tipo] || 'Promo';
+      return `<span class="oferta-pill">
+        ${o.badge ? `<span class="oferta-pill-badge">${o.badge}</span>` : ''}
+        <strong>${o.nombre}</strong>
+        <a href="tienda.html" style="color:var(--accent);font-size:11px;margin-left:4px;">Ver tienda →</a>
+      </span>`;
+    }).join('');
+  } catch(e) { strip.classList.remove('visible'); }
+}
 </script>
 </body>
 </html>
