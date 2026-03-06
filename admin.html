@@ -4068,17 +4068,19 @@ function renderOfertaGrid() {
       <div class="oferta-card-foot">
         ${getOfertaEstadoHtml(estado)}
         <div style="display:flex;gap:6px;">
-          <button class="btn btn-ghost btn-sm" onclick="editOferta(${idx})" title="Editar"><i class="fas fa-pencil-alt"></i></button>
-          <button class="btn btn-ghost btn-sm" onclick="toggleOferta(${idx})" title="${o.activa?'Pausar':'Activar'}">
+          <button class="btn btn-ghost btn-sm" onclick="editOferta('${o.id}')" title="Editar"><i class="fas fa-pencil-alt"></i></button>
+          <button class="btn btn-ghost btn-sm" onclick="toggleOferta('${o.id}')" title="${o.activa?'Pausar':'Activar'}">
             <i class="fas fa-${o.activa?'pause':'play'}"></i>
           </button>
-          <button class="btn btn-danger btn-sm" onclick="deleteOferta(${idx})" title="Eliminar"><i class="fas fa-trash"></i></button>
+          <button class="btn btn-danger btn-sm" onclick="deleteOferta('${o.id}')" title="Eliminar"><i class="fas fa-trash"></i></button>
         </div>
       </div>
     </div>`;
   });
 
-  [...grid.children].forEach(c => { if(c !== empty) c.remove(); });
+  // Preserve empty message element, rebuild grid cleanly
+  grid.innerHTML = '';
+  if (empty) grid.appendChild(empty);
   grid.insertAdjacentHTML('afterbegin', cards.join(''));
   updateOfertasBadge();
 }
@@ -4089,16 +4091,20 @@ function fmtDate(iso) {
   return d.toLocaleDateString('es-AR', { day:'2-digit', month:'2-digit', year:'numeric' });
 }
 
-function toggleOferta(idx) {
+function toggleOferta(id) {
   const arr = getOfertas();
+  const idx = arr.findIndex(o => o.id === id);
+  if (idx === -1) return;
   arr[idx].activa = !arr[idx].activa;
   saveOfertas(arr);
   showToast(arr[idx].activa ? '▶ Oferta activada' : '⏸ Oferta pausada', 'ok');
 }
 
-function deleteOferta(idx) {
+function deleteOferta(id) {
   if (!confirm('¿Eliminar esta oferta?')) return;
   const arr = getOfertas();
+  const idx = arr.findIndex(o => o.id === id);
+  if (idx === -1) return;
   arr.splice(idx, 1);
   saveOfertas(arr);
   showToast('🗑 Oferta eliminada', 'info');
@@ -4280,7 +4286,7 @@ function saveOferta() {
     usosActuales: editingOfertaIdx !== null ? (getOfertas()[editingOfertaIdx].usosActuales || 0) : 0,
     mostrarEn,
     imagen: ofertaImgData !== null ? ofertaImgData : (editingOfertaIdx !== null ? (getOfertas()[editingOfertaIdx]?.imagen || null) : null),
-    activa: true,
+    activa: editingOfertaIdx !== null ? (getOfertas()[editingOfertaIdx]?.activa ?? true) : true,
     creada: editingOfertaIdx !== null ? getOfertas()[editingOfertaIdx].creada : new Date().toISOString(),
   };
 
@@ -4299,7 +4305,10 @@ function saveOferta() {
   }
 }
 
-function editOferta(idx) {
+function editOferta(id) {
+  const arr = getOfertas();
+  const idx = arr.findIndex(o => o.id === id);
+  if (idx === -1) return;
   openOfertaModal(idx);
 }
 
