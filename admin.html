@@ -1434,6 +1434,17 @@
 
   <!-- ══════════════ SECCIÓN OFERTAS ══════════════ -->
   <div class="page-section" id="secOfertas">
+
+    <!-- Aviso: sin token GitHub las ofertas no se ven en otros dispositivos -->
+    <div id="ofertasNoTokenWarn" style="display:none;align-items:center;gap:12px;background:rgba(192,57,43,.08);border:1px solid rgba(192,57,43,.25);border-radius:var(--radius);padding:14px 20px;margin-bottom:20px;">
+      <i class="fas fa-exclamation-triangle" style="color:var(--red);font-size:18px;flex-shrink:0;"></i>
+      <div style="flex:1;">
+        <strong style="font-size:13px;color:var(--red);">Las ofertas no se verán en otros dispositivos</strong>
+        <p style="font-size:12px;color:var(--muted);margin-top:2px;">Configurá tu token de GitHub para que las ofertas se publiquen y sean visibles en todos los navegadores y celulares.</p>
+      </div>
+      <button class="btn btn-danger btn-sm" onclick="openConfig()"><i class="fas fa-key"></i> Configurar token</button>
+    </div>
+
     <div class="ofertas-header">
       <div>
         <h2>Ofertas &amp; Promociones</h2>
@@ -3935,6 +3946,37 @@ function saveOfertas(arr) {
   localStorage.setItem(OFERTAS_KEY, JSON.stringify(arr));
   renderOfertaGrid();
   updateOfertasBadge();
+  // Publicar también en GitHub para que todos los dispositivos vean las ofertas
+  publishOfertas(arr);
+}
+
+async function publishOfertas(arr) {
+  const token = localStorage.getItem('bc_gh_token');
+  const repo  = localStorage.getItem('bc_gh_repo') || 'bara-and-co/Bara-Co';
+  if (!token) return; // Sin token no se puede publicar; se muestra aviso en badge
+
+  try {
+    const getR = await fetch(`https://api.github.com/repos/${repo}/contents/ofertas.json`, {
+      headers:{ Authorization:`token ${token}`, Accept:'application/vnd.github.v3+json' }
+    });
+    const sha = getR.ok ? (await getR.json()).sha : null;
+    const json = JSON.stringify(arr, null, 2);
+    const b64  = btoa(unescape(encodeURIComponent(json)));
+    const now  = new Date().toLocaleString('es-AR');
+    const putR = await fetch(`https://api.github.com/repos/${repo}/contents/ofertas.json`, {
+      method:'PUT',
+      headers:{ Authorization:`token ${token}`, Accept:'application/vnd.github.v3+json', 'Content-Type':'application/json' },
+      body: JSON.stringify({ message:`Admin: actualizar ofertas — ${now}`, content:b64, ...(sha?{sha}:{}) })
+    });
+    if (putR.ok) {
+      toast('Ofertas guardadas y publicadas 🎉', 'ok');
+    } else {
+      const e = await putR.json();
+      toast('Ofertas guardadas localmente. Error al publicar: ' + (e.message||putR.status), 'err');
+    }
+  } catch(e) {
+    toast('Ofertas guardadas localmente. Sin conexión a GitHub.', 'err');
+  }
 }
 
 function switchPageTab(btn, secId) {
@@ -3950,6 +3992,13 @@ function updateOfertasBadge() {
   if (!badge) return;
   badge.textContent = activas;
   badge.style.display = activas > 0 ? 'inline-block' : 'none';
+
+  // Aviso si no hay token configurado y hay ofertas activas
+  const noTokenWarn = document.getElementById('ofertasNoTokenWarn');
+  if (noTokenWarn) {
+    const token = localStorage.getItem('bc_gh_token');
+    noTokenWarn.style.display = (!token && activas > 0) ? 'flex' : 'none';
+  }
 }
 
 function getOfertaEstado(o) {
