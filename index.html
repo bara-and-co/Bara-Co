@@ -1125,8 +1125,11 @@ function cargarOfertasInicio() {
   const wrap = document.getElementById('ocWrap');
   if (!wrap) return;
   if (localStorage.getItem('bc_ofertas_strip_inicio') === 'oculto') { wrap.classList.add('oc-hidden'); return; }
-  try {
-    const todas = JSON.parse(localStorage.getItem('bc_ofertas')) || [];
+
+  const repo = localStorage.getItem('bc_gh_repo') || 'bara-and-co/Bara-Co';
+  const ghUrl = `https://raw.githubusercontent.com/${repo}/main/ofertas.json`;
+
+  function renderOfertas(todas) {
     const now = Date.now();
     const activas = todas.filter(o => {
       if (!o.activa) return false;
@@ -1160,7 +1163,21 @@ function cargarOfertasInicio() {
     wrap.addEventListener('touchend',   e => { const dx=_tx-e.changedTouches[0].clientX; if(Math.abs(dx)>40) ocMove(dx>0?1:-1); }, {passive:true});
     wrap.addEventListener('mouseenter', () => clearInterval(_ocTimer));
     wrap.addEventListener('mouseleave', () => { if(_ocSlides.length>1) _ocTimer=setInterval(()=>_ocGoTo((_ocCurrent+1)%_ocSlides.length),5200); });
-  } catch(e) { wrap.classList.add('oc-hidden'); }
+  }
+
+  // Intentar desde GitHub (fuente compartida), luego localStorage como fallback
+  fetch(ghUrl + '?_=' + Date.now())
+    .then(r => r.ok ? r.json() : Promise.reject('gh-err'))
+    .then(todas => {
+      localStorage.setItem('bc_ofertas', JSON.stringify(todas)); // actualizar caché
+      renderOfertas(todas);
+    })
+    .catch(() => {
+      try {
+        const todas = JSON.parse(localStorage.getItem('bc_ofertas')) || [];
+        renderOfertas(todas);
+      } catch(e) { wrap.classList.add('oc-hidden'); }
+    });
 }
 </script>
 </body>
