@@ -2,7 +2,6 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8"/>
-  <link rel="icon" href="data:,">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Panel Admin · Bara & Co</title>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
@@ -221,7 +220,7 @@
     }
     .modal-close:hover { border-color:var(--red); color:var(--red); }
     .modal-body { padding:20px 26px; }
-    .modal-foot { padding:16px 26px 24px; display:flex; justify-content:flex-end; gap:10px; border-top:1px solid var(--border); position:sticky; bottom:0; background:var(--surface); z-index:10; }
+    .modal-foot { padding:16px 26px 24px; display:flex; justify-content:flex-end; gap:10px; border-top:1px solid var(--border); }
 
     /* FORM */
     .form-row { margin-bottom:20px; }
@@ -1449,7 +1448,7 @@
             <span style="font-size:11px;" id="stripTiendaLabel">Visible</span>
           </div>
           <label class="toggle" title="Mostrar u ocultar el banner de ofertas en tienda.html">
-            <input type="checkbox" id="toggleStripTienda" checked onchange="toggleOfertasStrip('tienda', this.checked)"/>
+            <input type="checkbox" id="toggleStripTienda" onchange="toggleOfertasStrip('tienda', this.checked)"/>
             <span class="t-track"></span>
             <span class="t-thumb"></span>
           </label>
@@ -1462,7 +1461,7 @@
             <span style="font-size:11px;" id="stripInicioLabel">Visible</span>
           </div>
           <label class="toggle" title="Mostrar u ocultar el banner de ofertas en index.html">
-            <input type="checkbox" id="toggleStripInicio" checked onchange="toggleOfertasStrip('inicio', this.checked)"/>
+            <input type="checkbox" id="toggleStripInicio" onchange="toggleOfertasStrip('inicio', this.checked)"/>
             <span class="t-track"></span>
             <span class="t-thumb"></span>
           </label>
@@ -3933,19 +3932,9 @@ function getOfertas() {
   catch(e) { return []; }
 }
 function saveOfertas(arr) {
-  try {
-    localStorage.setItem(OFERTAS_KEY, JSON.stringify(arr));
-  } catch(e) {
-    if (e.name === 'QuotaExceededError' || e.code === 22) {
-      toast('⚠️ Las imágenes ocupan demasiado espacio. Intentá con imágenes más pequeñas (< 500KB).', 'err');
-      return false;
-    }
-    toast('❌ Error al guardar: ' + e.message, 'err');
-    return false;
-  }
+  localStorage.setItem(OFERTAS_KEY, JSON.stringify(arr));
   renderOfertaGrid();
   updateOfertasBadge();
-  return true;
 }
 
 function switchPageTab(btn, secId) {
@@ -4079,9 +4068,7 @@ function renderOfertaGrid() {
     </div>`;
   });
 
-  // Preserve empty message element, rebuild grid cleanly
-  grid.innerHTML = '';
-  if (empty) grid.appendChild(empty);
+  [...grid.children].forEach(c => { if(c !== empty) c.remove(); });
   grid.insertAdjacentHTML('afterbegin', cards.join(''));
   updateOfertasBadge();
 }
@@ -4094,19 +4081,16 @@ function fmtDate(iso) {
 
 function toggleOferta(id) {
   const arr = getOfertas();
-  const idx = arr.findIndex(o => o.id === id);
-  if (idx === -1) return;
-  arr[idx].activa = !arr[idx].activa;
+  const o   = arr.find(x => x.id === id);
+  if (!o) { toast('❌ Oferta no encontrada', 'err'); return; }
+  o.activa = !o.activa;
   saveOfertas(arr);
-  toast(arr[idx].activa ? '▶ Oferta activada' : '⏸ Oferta pausada', 'ok');
+  toast(o.activa ? '▶ Oferta activada' : '⏸ Oferta pausada', 'ok');
 }
 
 function deleteOferta(id) {
   if (!confirm('¿Eliminar esta oferta?')) return;
-  const arr = getOfertas();
-  const idx = arr.findIndex(o => o.id === id);
-  if (idx === -1) return;
-  arr.splice(idx, 1);
+  const arr = getOfertas().filter(o => o.id !== id);
   saveOfertas(arr);
   toast('🗑 Oferta eliminada', 'info');
 }
@@ -4117,7 +4101,8 @@ let selectedTipo = '2x1';
 let selectedCats = [];
 
 function openOfertaModal(idx = null) {
-  editingOfertaIdx = idx;
+  // Guardamos el ID (string) para que no se rompa si el array cambia de orden
+  editingOfertaIdx = idx !== null ? (getOfertas()[idx]?.id ?? null) : null;
   selectedTipo = '2x1';
   selectedCats = [];
 
@@ -4201,15 +4186,17 @@ function selOfertaTipo(tipo) {
   // Show/hide relevant config
   document.getElementById('cfgNxM').style.display = (tipo === 'nxm') ? 'block' : 'none';
   document.getElementById('cfgValor').style.display = (tipo === 'pct' || tipo === 'fijo') ? 'block' : 'none';
-  // Auto-fill badge suggestion only for new offers
+  // Auto-fill badge suggestion SOLO en nueva oferta
+  if (editingOfertaIdx === null) {
   const suggestions = {
     '2x1':'🎁 2×1', '3x2':'🎁 3×2', 'nxm':'🎁 Promo',
     'pct':'🏷️ % Off', 'fijo':'💰 Desc. especial', 'combo':'🎀 Combo'
   };
   const badgeEl = document.getElementById('ofBadge');
-  if (editingOfertaIdx === null && (!badgeEl.value || Object.values(suggestions).includes(badgeEl.value))) {
+  if (!badgeEl.value || Object.values(suggestions).includes(badgeEl.value)) {
     badgeEl.value = suggestions[tipo] || '';
-  }
+  }  }
+
   // Update valor label
   const vl = document.getElementById('valorLabel');
   const vh = document.getElementById('valorHint');
@@ -4255,8 +4242,8 @@ function saveOferta() {
   const nombre = document.getElementById('ofNombre').value.trim();
   if (!nombre) { toast('⚠️ Ingresá un nombre para la oferta', 'err'); return; }
 
-  const useFecha = document.getElementById('ofFechaCheck').checked;
-  const useStock = document.getElementById('ofStockCheck').checked;
+  const useFecha  = document.getElementById('ofFechaCheck').checked;
+  const useStock  = document.getElementById('ofStockCheck').checked;
   const todasCats = document.getElementById('ofTodasCats').checked;
 
   if (!todasCats && !selectedCats.length) {
@@ -4268,80 +4255,72 @@ function saveOferta() {
 
   const mostrarEn = document.querySelector('input[name="ofMostrarEn"]:checked')?.value || 'ambos';
 
-  // Read array ONCE to avoid any inconsistency
-  const arr = getOfertas();
-  const original = editingOfertaIdx !== null ? arr[editingOfertaIdx] : null;
+  // Leer el array UNA sola vez y buscar por ID (no por índice)
+  const arr      = getOfertas();
+  const origIdx  = editingOfertaIdx !== null ? arr.findIndex(o => o.id === editingOfertaIdx) : -1;
+  const original = origIdx >= 0 ? arr[origIdx] : null;
 
   const oferta = {
-    id: original ? original.id : 'of_' + Date.now(),
+    id:             original ? original.id : ('of_' + Date.now()),
     nombre,
-    descripcion: document.getElementById('ofDesc').value.trim(),
-    badge: document.getElementById('ofBadge').value.trim(),
-    tipo: selectedTipo,
-    n: parseInt(document.getElementById('ofN').value) || 3,
-    m: parseInt(document.getElementById('ofM').value) || 2,
-    valor: parseFloat(document.getElementById('ofValor').value) || 0,
+    descripcion:    document.getElementById('ofDesc').value.trim(),
+    badge:          document.getElementById('ofBadge').value.trim(),
+    tipo:           selectedTipo,
+    n:              parseInt(document.getElementById('ofN').value) || 3,
+    m:              parseInt(document.getElementById('ofM').value) || 2,
+    valor:          parseFloat(document.getElementById('ofValor').value) || 0,
     todasCategorias: todasCats,
-    categorias: todasCats ? TODAS_CATS : selectedCats,
-    fechaInicio: useFecha && document.getElementById('ofFechaInicio').value
-      ? new Date(document.getElementById('ofFechaInicio').value).toISOString() : null,
-    fechaFin: useFecha && document.getElementById('ofFechaFin').value
-      ? new Date(document.getElementById('ofFechaFin').value).toISOString() : null,
-    stockLimite: useStock ? (parseInt(document.getElementById('ofStockLimite').value) || 0) : null,
-    usosActuales: original ? (original.usosActuales || 0) : 0,
+    categorias:     todasCats ? TODAS_CATS : [...selectedCats],
+    fechaInicio:    useFecha && document.getElementById('ofFechaInicio').value
+                      ? new Date(document.getElementById('ofFechaInicio').value).toISOString() : null,
+    fechaFin:       useFecha && document.getElementById('ofFechaFin').value
+                      ? new Date(document.getElementById('ofFechaFin').value).toISOString() : null,
+    stockLimite:    useStock ? (parseInt(document.getElementById('ofStockLimite').value) || 0) : null,
+    usosActuales:   original ? (original.usosActuales || 0) : 0,
     mostrarEn,
-    imagen: ofertaImgData !== null ? ofertaImgData : (original ? (original.imagen || null) : null),
-    activa: original ? (original.activa ?? true) : true,
-    creada: original ? original.creada : new Date().toISOString(),
+    imagen:         ofertaImgData !== null ? ofertaImgData : (original ? (original.imagen || null) : null),
+    activa:         original ? (original.activa !== false) : true,
+    creada:         original ? original.creada : new Date().toISOString(),
   };
 
-  // Auto-set tipo label
   if (selectedTipo === '2x1') { oferta.n = 2; oferta.m = 1; }
   if (selectedTipo === '3x2') { oferta.n = 3; oferta.m = 2; }
 
-  if (editingOfertaIdx !== null) arr[editingOfertaIdx] = oferta;
+  if (origIdx >= 0) arr[origIdx] = oferta;
   else arr.push(oferta);
 
-  const ok = saveOfertas(arr);
-  if (ok !== false) {
-    closeOfertaModal();
-    toast('✅ Oferta guardada', 'ok');
-  }
+  saveOfertas(arr);
+  closeOfertaModal();
+  toast('✅ Oferta guardada', 'ok');
 }
 
 function editOferta(id) {
   const arr = getOfertas();
   const idx = arr.findIndex(o => o.id === id);
-  if (idx === -1) return;
+  if (idx === -1) { toast('❌ Oferta no encontrada', 'err'); return; }
   openOfertaModal(idx);
 }
 
 // Init on load
 document.addEventListener('DOMContentLoaded', () => {
-  renderOfertaGrid();
-  updateOfertasBadge();
-  // Init toggle states - sync, no delay
-  ['tienda','inicio'].forEach(page => {
-    const stored = localStorage.getItem(`bc_ofertas_strip_${page}`);
-    // If never set, default to visible and write it
-    if (stored === null) localStorage.setItem(`bc_ofertas_strip_${page}`, 'visible');
-    const visible = localStorage.getItem(`bc_ofertas_strip_${page}`) !== 'oculto';
-    const chk = document.getElementById(`toggleStrip${page.charAt(0).toUpperCase()+page.slice(1)}`);
-    if (chk) chk.checked = visible;
-    updateStripLabel(page, visible);
-  });
+  setTimeout(() => {
+    renderOfertaGrid();
+    updateOfertasBadge();
+    // Init toggle states
+    ['tienda','inicio'].forEach(page => {
+      const visible = localStorage.getItem(`bc_ofertas_strip_${page}`) !== 'oculto';
+      const chk = document.getElementById(`toggleStrip${page.charAt(0).toUpperCase()+page.slice(1)}`);
+      if (chk) chk.checked = visible;
+      updateStripLabel(page, visible);
+    });
+  }, 200);
 });
 
 function toggleOfertasStrip(page, visible) {
   localStorage.setItem(`bc_ofertas_strip_${page}`, visible ? 'visible' : 'oculto');
   updateStripLabel(page, visible);
   const pageName = page === 'tienda' ? 'Tienda' : 'Inicio';
-  toast(
-    visible
-      ? `👁 Banner ACTIVADO en ${pageName} — los clientes lo verán`
-      : `🙈 Banner DESACTIVADO en ${pageName} — los clientes NO lo verán`,
-    visible ? 'ok' : 'err'
-  );
+  toast(visible ? `👁 Panel visible en ${pageName}` : `🙈 Panel oculto en ${pageName}`, 'info');
 }
 
 function updateStripLabel(page, visible) {
