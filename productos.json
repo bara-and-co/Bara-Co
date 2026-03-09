@@ -65,51 +65,6 @@
     "link": null
   },
   {
-    "id": "remera-boxy-1939-1772285268477",
-    "nombre": "Remera Boxy 1939",
-    "precio": 17000,
-    "precioAnterior": 25000,
-    "categoria": "hombre",
-    "subcategoria": "Remeras",
-    "descripcion": "",
-    "imagen": "https://i.ibb.co/ffsKWm2/Remera-Boxy1939.webp",
-    "imagenes": [
-      "https://i.ibb.co/ffsKWm2/Remera-Boxy1939.webp",
-      "https://i.ibb.co/tPndrVjh/Remera-Boxy1939-1.webp"
-    ],
-    "tallesDisponibles": [
-      "S"
-    ],
-    "colores": [
-      {
-        "nombre": "Blanco",
-        "codigo": "#FFFFFF",
-        "stock": 0
-      }
-    ],
-    "activo": true,
-    "destacado": false,
-    "outlet": false,
-    "stockMap": {
-      "Blanco__S": 1
-    },
-    "stockTalles": null,
-    "stock": 1,
-    "sku": "REMERA-BOXY-1939",
-    "marca": null,
-    "tags": null,
-    "fabrica": null,
-    "cuidados": null,
-    "temporada": null,
-    "genero": null,
-    "peso": null,
-    "origen": null,
-    "proveedor": null,
-    "notas": null,
-    "costo": null,
-    "link": null
-  },
-  {
     "id": "pantalon-viena-1772021582962",
     "nombre": "Pantalon Viena",
     "precio": 60000,
@@ -592,8 +547,8 @@
       "https://i.ibb.co/WWwqdcz3/Pantalon-Drift.webp"
     ],
     "tallesDisponibles": [
-      "44",
-      "46"
+      "40",
+      "44"
     ],
     "colores": [
       {
@@ -606,12 +561,15 @@
     "destacado": false,
     "outlet": true,
     "stockMap": {
-      "Jean__44": 1,
-      "Jean__46": 1
+      "Jean__40": null,
+      "Jean__44": null
     },
-    "stockTalles": null,
+    "stockTalles": {
+      "M": 2
+    },
     "stock": 2,
     "sku": "PANTALON-DRIFT",
+    "marca": null,
     "tags": [
       "MI WARA"
     ],
