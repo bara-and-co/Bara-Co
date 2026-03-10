@@ -1,5 +1,81 @@
 [
   {
+    "id": "su-ter-rayas-1773100912624",
+    "nombre": "Suéter Rayas",
+    "precio": 35000,
+    "precioAnterior": null,
+    "categoria": "new",
+    "subcategoria": "",
+    "descripcion": "",
+    "imagen": "https://i.ibb.co/HD7t0rKG/Sueter-Rayas.png",
+    "imagenes": [
+      "https://i.ibb.co/HD7t0rKG/Sueter-Rayas.png",
+      "https://i.ibb.co/CKWZR0jj/Sueter-Raya-1.png",
+      "https://i.ibb.co/vCKKkWGC/Sueter-Raya-2.png"
+    ],
+    "tallesDisponibles": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colores": [
+      {
+        "nombre": "Negro",
+        "codigo": "#111111",
+        "stock": 0
+      },
+      {
+        "nombre": "Camel",
+        "codigo": "#C19A6B",
+        "stock": 0
+      },
+      {
+        "nombre": "Celeste",
+        "codigo": "#81D4FA",
+        "stock": 0
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Negro__S": 1,
+      "Negro__M": null,
+      "Negro__L": 1,
+      "Negro__XL": null,
+      "Negro__XXL": null,
+      "Camel__S": null,
+      "Camel__M": 1,
+      "Camel__L": null,
+      "Camel__XL": null,
+      "Camel__XXL": 1,
+      "Celeste__S": null,
+      "Celeste__M": null,
+      "Celeste__L": null,
+      "Celeste__XL": 1,
+      "Celeste__XXL": null
+    },
+    "stockTalles": {
+      "M": 2
+    },
+    "stock": 5,
+    "sku": "SUÉTER-RAYAS",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "su-ter-liso-1773100721136",
     "nombre": "Suéter Liso",
     "precio": 35000,
