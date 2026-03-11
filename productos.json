@@ -3603,7 +3603,6 @@
     ],
     "tallesDisponibles": [
       "M",
-      "XL",
       "XXL"
     ],
     "colores": [
@@ -3623,17 +3622,12 @@
     "outlet": false,
     "stockMap": {
       "Gris__M": null,
-      "Gris__XL": 0,
       "Gris__XXL": 1,
       "Beige__M": 1,
-      "Beige__XL": 1,
       "Beige__XXL": 1
     },
     "stockTalles": {
-      "S": 1,
-      "M": 2,
-      "L": 1,
-      "XL": 2
+      "M": 2
     },
     "stock": 10,
     "sku": "BERMUDA-WONDER-LINO",
