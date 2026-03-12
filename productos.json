@@ -788,38 +788,6 @@
     "sku": "MINI-MARFIL"
   },
   {
-    "id": "canguro-denim-crop-1771892792654",
-    "nombre": "Canguro Denim Crop",
-    "precio": 30000,
-    "precioAnterior": 45000,
-    "categoria": "mujer",
-    "subcategoria": "Remeras",
-    "descripcion": "",
-    "imagen": "https://i.ibb.co/VYb70y5L/Top-Capuchajeans.png",
-    "imagenes": [
-      "https://i.ibb.co/VYb70y5L/Top-Capuchajeans.png"
-    ],
-    "tallesDisponibles": [
-      "M"
-    ],
-    "colores": [
-      {
-        "nombre": "Jean",
-        "codigo": "#5C7FA3",
-        "stock": 0
-      }
-    ],
-    "activo": true,
-    "destacado": false,
-    "outlet": true,
-    "stockMap": {
-      "Jean__M": 1
-    },
-    "stockTalles": null,
-    "stock": 1,
-    "sku": "CANGURO-DENIM-CROP"
-  },
-  {
     "id": "jean-cargo-bolsillo-largo-1771892180264",
     "nombre": "Jean Cargo Bolsillo Largo",
     "precio": 40000,
@@ -2846,7 +2814,6 @@
     "tallesDisponibles": [
       "38",
       "40",
-      "42",
       "46"
     ],
     "colores": [
@@ -2872,15 +2839,12 @@
     "stockMap": {
       "Negro__38": 1,
       "Negro__40": null,
-      "Negro__42": 0,
       "Negro__46": null,
       "Beige__38": null,
       "Beige__40": null,
-      "Beige__42": 1,
       "Beige__46": 1,
       "Camel__38": null,
       "Camel__40": 1,
-      "Camel__42": null,
       "Camel__46": null
     },
     "stockTalles": {
@@ -4366,36 +4330,6 @@
     "sku": "ABANICO-MANANA-VOY-A-TENER-RESACA"
   },
   {
-    "id": "abanico-floral",
-    "nombre": "Abanico FLORAL",
-    "precio": 20000,
-    "precioAnterior": null,
-    "categoria": "accesorios",
-    "subcategoria": "Abanicos",
-    "imagen": "https://d22fxaf9t8d39k.cloudfront.net/58dd07e55d61f8ef6bfce53e625056e06146dd6880ca33e7666396b57397e407404368.png",
-    "imagenes": [
-      "https://d22fxaf9t8d39k.cloudfront.net/58dd07e55d61f8ef6bfce53e625056e06146dd6880ca33e7666396b57397e407404368.png"
-    ],
-    "descripcion": "",
-    "composicion": "",
-    "cuidado": "",
-    "talles": [
-      "S",
-      "M",
-      "L",
-      "XL"
-    ],
-    "tallesDisponibles": [
-      "S",
-      "M",
-      "L",
-      "XL"
-    ],
-    "sku": "ABANICO-FLORAL",
-    "stock": 10,
-    "activo": true
-  },
-  {
     "id": "abanico-sobrados",
     "nombre": "Abanico SOBRADOS",
     "precio": 20000,
@@ -4538,57 +4472,6 @@
     "sku": "ABANICO-TIRANDO-LOS-PROHIBIDOS",
     "stock": 10,
     "activo": true
-  },
-  {
-    "id": "pantalo-baggy-cielo",
-    "nombre": "Pantalo Baggy Cielo",
-    "precio": 40000,
-    "precioAnterior": 60000,
-    "categoria": "hombre",
-    "subcategoria": "Pantalones",
-    "descripcion": "",
-    "imagen": "https://i.ibb.co/hRhjNkxF/Pantalo-Baggy-Cielo.webp",
-    "imagenes": [
-      "https://i.ibb.co/hRhjNkxF/Pantalo-Baggy-Cielo.webp",
-      "https://i.ibb.co/23cFZ0Th/Pantalo-Baggy-Cielo.jpg"
-    ],
-    "tallesDisponibles": [
-      "40",
-      "44"
-    ],
-    "colores": [
-      {
-        "nombre": "Celeste",
-        "codigo": "#81D4FA",
-        "stock": 0
-      }
-    ],
-    "activo": false,
-    "destacado": false,
-    "outlet": false,
-    "stockMap": {
-      "Celeste__40": 1,
-      "Celeste__44": 1
-    },
-    "stockTalles": {
-      "40": 1,
-      "44": 1,
-      "46": 1
-    },
-    "stock": 2,
-    "sku": "PANTALO-BAGGY-CIELO",
-    "marca": null,
-    "tags": null,
-    "fabrica": null,
-    "cuidados": null,
-    "temporada": null,
-    "genero": null,
-    "peso": null,
-    "origen": null,
-    "proveedor": null,
-    "notas": null,
-    "costo": null,
-    "link": null
   },
   {
     "id": "collar-snake-multiuso",
