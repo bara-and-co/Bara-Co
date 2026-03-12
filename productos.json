@@ -4640,10 +4640,9 @@
       "Blanco__L": null
     },
     "stockTalles": {
-      "S": 1,
-      "M": 2,
-      "L": 1,
-      "XL": 2
+      "40": 1,
+      "44": 1,
+      "46": 1
     },
     "stock": 2,
     "sku": "CHOMBA-VOGUE",
