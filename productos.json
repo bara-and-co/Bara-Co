@@ -4557,22 +4557,28 @@
     ],
     "tallesDisponibles": [
       "40",
-      "44",
-      "46"
+      "44"
     ],
-    "colores": [],
+    "colores": [
+      {
+        "nombre": "Celeste",
+        "codigo": "#81D4FA",
+        "stock": 0
+      }
+    ],
     "activo": false,
     "destacado": false,
     "outlet": false,
     "stockMap": {
-      "Jean__42": null
+      "Celeste__40": 1,
+      "Celeste__44": 1
     },
     "stockTalles": {
       "40": 1,
       "44": 1,
       "46": 1
     },
-    "stock": 3,
+    "stock": 2,
     "sku": "PANTALO-BAGGY-CIELO",
     "marca": null,
     "tags": null,
