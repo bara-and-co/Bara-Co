@@ -2844,13 +2844,9 @@
       "hombre/Rialto.png"
     ],
     "tallesDisponibles": [
-      "S",
-      "M",
-      "L",
-      "XL",
+      "38",
       "40",
       "42",
-      "44",
       "46"
     ],
     "colores": [
@@ -2863,37 +2859,38 @@
         "nombre": "Beige",
         "codigo": "#D4B896",
         "stock": 0
+      },
+      {
+        "nombre": "Camel",
+        "codigo": "#C19A6B",
+        "stock": 0
       }
     ],
     "activo": true,
     "destacado": false,
     "outlet": false,
     "stockMap": {
-      "Negro__S": null,
-      "Negro__M": null,
-      "Negro__L": null,
-      "Negro__XL": null,
-      "Negro__40": 1,
-      "Negro__42": 1,
-      "Negro__44": 1,
+      "Negro__38": 1,
+      "Negro__40": null,
+      "Negro__42": 0,
       "Negro__46": null,
-      "Beige__S": null,
-      "Beige__M": null,
-      "Beige__L": null,
-      "Beige__XL": null,
-      "Beige__40": 1,
-      "Beige__42": null,
-      "Beige__44": null,
-      "Beige__46": 1
+      "Beige__38": null,
+      "Beige__40": null,
+      "Beige__42": 1,
+      "Beige__46": 1,
+      "Camel__38": null,
+      "Camel__40": 1,
+      "Camel__42": null,
+      "Camel__46": null
     },
     "stockTalles": {
-      "S": null,
-      "M": null,
-      "L": null,
-      "XL": null
+      "40": 1,
+      "44": 1,
+      "46": 1
     },
-    "stock": 10,
+    "stock": 4,
     "sku": "SASTRERO-RIALTO",
+    "marca": null,
     "tags": null,
     "fabrica": null,
     "cuidados": null,
