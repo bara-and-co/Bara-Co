@@ -2814,6 +2814,8 @@
     "tallesDisponibles": [
       "38",
       "40",
+      "42",
+      "44",
       "46"
     ],
     "colores": [
@@ -2839,12 +2841,18 @@
     "stockMap": {
       "Negro__38": 1,
       "Negro__40": null,
+      "Negro__42": 1,
+      "Negro__44": 1,
       "Negro__46": null,
       "Beige__38": null,
       "Beige__40": null,
+      "Beige__42": null,
+      "Beige__44": null,
       "Beige__46": 1,
       "Camel__38": null,
       "Camel__40": 1,
+      "Camel__42": null,
+      "Camel__44": null,
       "Camel__46": null
     },
     "stockTalles": {
