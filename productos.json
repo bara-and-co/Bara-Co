@@ -4615,15 +4615,9 @@
       "https://i.ibb.co/fz05QFZK/Chomba-VOGUE.webp"
     ],
     "tallesDisponibles": [
-      "S",
-      "L"
+      "S"
     ],
     "colores": [
-      {
-        "nombre": "Negro",
-        "codigo": "#111111",
-        "stock": 0
-      },
       {
         "nombre": "Blanco",
         "codigo": "#FFFFFF",
@@ -4634,17 +4628,14 @@
     "destacado": false,
     "outlet": false,
     "stockMap": {
-      "Negro__S": null,
-      "Negro__L": 1,
-      "Blanco__S": 1,
-      "Blanco__L": null
+      "Blanco__S": 1
     },
     "stockTalles": {
       "40": 1,
       "44": 1,
       "46": 1
     },
-    "stock": 2,
+    "stock": 1,
     "sku": "CHOMBA-VOGUE",
     "marca": null,
     "tags": null,
