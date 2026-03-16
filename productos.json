@@ -3679,9 +3679,11 @@
     "categoria": "hombre",
     "subcategoria": "Buzos",
     "descripcion": "",
-    "imagen": "https://d22fxaf9t8d39k.cloudfront.net/63916cc7ca35026ef56aa0ca267d1043c9ca7fb0513e69e535a82aeea68bf7fa404368.jpg",
+    "imagen": "https://i.ibb.co/q3jJG8XF/Sweater-ARRAIAL1.webp",
     "imagenes": [
-      "https://d22fxaf9t8d39k.cloudfront.net/63916cc7ca35026ef56aa0ca267d1043c9ca7fb0513e69e535a82aeea68bf7fa404368.jpg"
+      "https://i.ibb.co/q3jJG8XF/Sweater-ARRAIAL1.webp",
+      "https://i.ibb.co/0Vz0z5YW/Sweater-ARRAIAL2.webp",
+      "https://i.ibb.co/JFWtgJM8/Sweater-ARRAIAL3.webp"
     ],
     "tallesDisponibles": [
       "S",
@@ -3691,8 +3693,8 @@
     ],
     "colores": [
       {
-        "nombre": "Azul marino",
-        "codigo": "#1A237E",
+        "nombre": "#48559e",
+        "codigo": "#48559e",
         "stock": 1
       }
     ],
@@ -3700,10 +3702,10 @@
     "destacado": false,
     "outlet": false,
     "stockMap": {
-      "Azul marino__S": null,
-      "Azul marino__M": 1,
-      "Azul marino__L": null,
-      "Azul marino__XL": null
+      "#48559e__S": null,
+      "#48559e__M": 1,
+      "#48559e__L": null,
+      "#48559e__XL": null
     },
     "stockTalles": {
       "S": null,
