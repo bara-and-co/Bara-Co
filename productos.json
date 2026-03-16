@@ -456,11 +456,11 @@
     "precio": 35000,
     "precioAnterior": 50000,
     "categoria": "hombre",
-    "subcategoria": "Camisas",
+    "subcategoria": "",
     "descripcion": "",
-    "imagen": "https://i.ibb.co/93dBkJT7/Camisa-Graffiti-Mega.webp",
+    "imagen": "https://i.ibb.co/Rkh3fF4v/camisa-fibrana.png",
     "imagenes": [
-      "https://i.ibb.co/93dBkJT7/Camisa-Graffiti-Mega.webp"
+      "https://i.ibb.co/Rkh3fF4v/camisa-fibrana.png"
     ],
     "tallesDisponibles": [
       "XL"
@@ -470,13 +470,28 @@
     "destacado": false,
     "outlet": true,
     "stockMap": {
-      "Azul__XL": 1
+      "Negro__38": 1,
+      "Negro__40": null,
+      "Negro__42": 1,
+      "Negro__44": 1,
+      "Negro__46": null,
+      "Beige__38": null,
+      "Beige__40": null,
+      "Beige__42": null,
+      "Beige__44": null,
+      "Beige__46": 1,
+      "Camel__38": null,
+      "Camel__40": 1,
+      "Camel__42": null,
+      "Camel__44": null,
+      "Camel__46": null
     },
     "stockTalles": {
       "XL": 1
     },
     "stock": 1,
     "sku": "CAMISA-GRAFITI",
+    "marca": null,
     "tags": null,
     "fabrica": null,
     "cuidados": null,
