@@ -4085,8 +4085,8 @@
   {
     "id": "remera-new-york-boxy",
     "nombre": "Remera NEW YORK boxy",
-    "precio": 25000,
-    "precioAnterior": null,
+    "precio": 17000,
+    "precioAnterior": 25000,
     "categoria": "hombre",
     "subcategoria": "Remeras",
     "descripcion": "",
@@ -4098,13 +4098,7 @@
     "tallesDisponibles": [
       "S"
     ],
-    "colores": [
-      {
-        "nombre": "#e0e007",
-        "codigo": "#e0e007",
-        "stock": 1
-      }
-    ],
+    "colores": [],
     "activo": true,
     "destacado": false,
     "outlet": false,
@@ -4113,10 +4107,7 @@
       "#dcdc04__S": null
     },
     "stockTalles": {
-      "S": 1,
-      "M": 2,
-      "L": 1,
-      "XL": 2
+      "S": 1
     },
     "stock": 1,
     "sku": "REMERA-NEW-YORK-BOXY",
