@@ -4096,20 +4096,21 @@
       "https://i.ibb.co/MDr68dm2/Remera-boxy-NY-pistacho.jpg"
     ],
     "tallesDisponibles": [
-      "S",
-      "M",
-      "L",
-      "XL"
+      "S"
     ],
-    "colores": [],
+    "colores": [
+      {
+        "nombre": "#e0e007",
+        "codigo": "#e0e007",
+        "stock": 1
+      }
+    ],
     "activo": true,
     "destacado": false,
     "outlet": false,
     "stockMap": {
-      "Crema__42": null,
-      "Crema__46": 1,
-      "Marrón__42": 1,
-      "Marrón__46": null
+      "#e0e007__S": 1,
+      "#dcdc04__S": null
     },
     "stockTalles": {
       "S": 1,
@@ -4117,7 +4118,7 @@
       "L": 1,
       "XL": 2
     },
-    "stock": 10,
+    "stock": 1,
     "sku": "REMERA-NEW-YORK-BOXY",
     "marca": null,
     "tags": null,
