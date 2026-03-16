@@ -1,5 +1,43 @@
 [
   {
+    "id": "abanico-1773699910026",
+    "nombre": "Abanico",
+    "precio": 10000,
+    "precioAnterior": null,
+    "categoria": "hombre",
+    "subcategoria": "",
+    "descripcion": "",
+    "imagen": "https://i.ibb.co/q3jJG8XF/Sweater-ARRAIAL1.webp",
+    "imagenes": [
+      "https://i.ibb.co/q3jJG8XF/Sweater-ARRAIAL1.webp"
+    ],
+    "tallesDisponibles": [
+      "M"
+    ],
+    "colores": [],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {},
+    "stockTalles": {
+      "M": null
+    },
+    "stock": null,
+    "sku": "ABANICO",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "su-ter-rayas-1773100912624",
     "nombre": "Suéter Rayas",
     "precio": 35000,
@@ -243,7 +281,6 @@
     ],
     "tallesDisponibles": [
       "40",
-      "42",
       "44",
       "48"
     ],
@@ -264,20 +301,17 @@
     "outlet": false,
     "stockMap": {
       "Beige__40": 1,
-      "Beige__42": null,
       "Beige__44": null,
       "Beige__48": 1,
-      "Azul__40": 0,
-      "Azul__42": 1,
+      "Azul__40": 1,
       "Azul__44": 1,
       "Azul__48": null
     },
     "stockTalles": {
-      "S": 1
+      "XL": 1
     },
     "stock": 4,
     "sku": "PANTALON-VIENA",
-    "marca": null,
     "tags": null,
     "fabrica": null,
     "cuidados": null,
@@ -3682,18 +3716,12 @@
     "precioAnterior": null,
     "categoria": "hombre",
     "subcategoria": "Buzos",
-    "imagen": "https://d22fxaf9t8d39k.cloudfront.net/63916cc7ca35026ef56aa0ca267d1043c9ca7fb0513e69e535a82aeea68bf7fa404368.jpg",
-    "imagenes": [
-      "https://d22fxaf9t8d39k.cloudfront.net/63916cc7ca35026ef56aa0ca267d1043c9ca7fb0513e69e535a82aeea68bf7fa404368.jpg"
-    ],
     "descripcion": "",
-    "composicion": "",
-    "cuidado": "",
-    "talles": [
-      "S",
-      "M",
-      "L",
-      "XL"
+    "imagen": "https://i.ibb.co/q3jJG8XF/Sweater-ARRAIAL1.webp",
+    "imagenes": [
+      "https://i.ibb.co/q3jJG8XF/Sweater-ARRAIAL1.webp",
+      "https://i.ibb.co/0Vz0z5YW/Sweater-ARRAIAL2.webp",
+      "https://i.ibb.co/JFWtgJM8/Sweater-ARRAIAL3.webp"
     ],
     "tallesDisponibles": [
       "S",
@@ -3701,9 +3729,42 @@
       "L",
       "XL"
     ],
+    "colores": [
+      {
+        "nombre": "#48559e",
+        "codigo": "#48559e",
+        "stock": 1
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "#48559e__S": null,
+      "#48559e__M": 1,
+      "#48559e__L": null,
+      "#48559e__XL": null
+    },
+    "stockTalles": {
+      "S": null,
+      "M": null,
+      "L": null,
+      "XL": null
+    },
+    "stock": 1,
     "sku": "SWEATER-ARRAIAL",
-    "stock": 10,
-    "activo": true
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
   },
   {
     "id": "remera-home-is-a-feeling",
