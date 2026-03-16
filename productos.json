@@ -472,7 +472,7 @@
         "stock": 0
       }
     ],
-    "activo": false,
+    "activo": true,
     "destacado": false,
     "outlet": true,
     "stockMap": {
@@ -670,13 +670,13 @@
     ],
     "colores": [
       {
-        "nombre": "Marrón",
-        "codigo": "#795548",
-        "stock": 1
+        "nombre": "Crema",
+        "codigo": "#F5F0E8",
+        "stock": 0
       },
       {
-        "nombre": "#e8d9ba",
-        "codigo": "#e8d9ba",
+        "nombre": "Marrón",
+        "codigo": "#795548",
         "stock": 1
       }
     ],
@@ -684,14 +684,17 @@
     "destacado": false,
     "outlet": true,
     "stockMap": {
+      "Crema__42": null,
+      "Crema__46": 1,
       "Marrón__42": 1,
-      "Marrón__46": null,
-      "#e8d9ba__42": null,
-      "#e8d9ba__46": 1
+      "Marrón__46": null
     },
-    "stockTalles": null,
+    "stockTalles": {
+      "XL": 1
+    },
     "stock": 2,
     "sku": "PANTALON-ELIPSE",
+    "marca": null,
     "tags": null,
     "fabrica": null,
     "cuidados": null,
