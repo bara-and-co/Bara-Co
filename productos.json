@@ -465,26 +465,18 @@
     "tallesDisponibles": [
       "XL"
     ],
-    "colores": [],
+    "colores": [
+      {
+        "nombre": "Negro",
+        "codigo": "#111111",
+        "stock": 0
+      }
+    ],
     "activo": false,
     "destacado": false,
     "outlet": true,
     "stockMap": {
-      "Negro__38": 1,
-      "Negro__40": null,
-      "Negro__42": 1,
-      "Negro__44": 1,
-      "Negro__46": null,
-      "Beige__38": null,
-      "Beige__40": null,
-      "Beige__42": null,
-      "Beige__44": null,
-      "Beige__46": 1,
-      "Camel__38": null,
-      "Camel__40": 1,
-      "Camel__42": null,
-      "Camel__44": null,
-      "Camel__46": null
+      "Negro__XL": 1
     },
     "stockTalles": {
       "XL": 1
