@@ -1,43 +1,5 @@
 [
   {
-    "id": "pc-1773682692596",
-    "nombre": "Pc",
-    "precio": 10000,
-    "precioAnterior": null,
-    "categoria": "hombre",
-    "subcategoria": "Abanicos",
-    "descripcion": "",
-    "imagen": "https://i.ibb.co/84sdMGc6/elegiragencia.jpg",
-    "imagenes": [
-      "https://i.ibb.co/84sdMGc6/elegiragencia.jpg"
-    ],
-    "tallesDisponibles": [
-      "Único"
-    ],
-    "colores": [],
-    "activo": true,
-    "destacado": true,
-    "outlet": true,
-    "stockMap": {},
-    "stockTalles": {
-      "Único": null
-    },
-    "stock": 1,
-    "sku": "PC",
-    "marca": null,
-    "tags": null,
-    "fabrica": null,
-    "cuidados": null,
-    "temporada": null,
-    "genero": null,
-    "peso": null,
-    "origen": null,
-    "proveedor": null,
-    "notas": null,
-    "costo": null,
-    "link": null
-  },
-  {
     "id": "su-ter-rayas-1773100912624",
     "nombre": "Suéter Rayas",
     "precio": 35000,
