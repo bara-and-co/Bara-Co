@@ -2728,33 +2728,56 @@
   },
   {
     "id": "jean-ancho",
-    "nombre": "Jean Ancho",
+    "nombre": "Jean hojas",
     "precio": 50000,
     "precioAnterior": 70000,
     "categoria": "mujer",
     "subcategoria": "Pantalones",
+    "descripcion": "",
     "imagen": "mujer/Jean Ancho.png",
     "imagenes": [
       "mujer/Jean Ancho.png"
     ],
-    "descripcion": "",
-    "composicion": "",
-    "cuidado": "",
-    "talles": [
-      "S",
-      "M",
-      "L",
-      "XL"
-    ],
     "tallesDisponibles": [
-      "S",
-      "M",
-      "L",
-      "XL"
+      "36",
+      "38",
+      "40"
     ],
+    "colores": [
+      {
+        "nombre": "Verde oliva",
+        "codigo": "#827717",
+        "stock": 0
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Verde oliva__36": 1,
+      "Verde oliva__38": 1,
+      "Verde oliva__40": 1
+    },
+    "stockTalles": {
+      "S": null,
+      "M": null,
+      "L": null,
+      "XL": null
+    },
+    "stock": 3,
     "sku": "JEAN-ANCHO",
-    "stock": 10,
-    "activo": true
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
   },
   {
     "id": "remera-crop-top",
