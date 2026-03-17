@@ -5706,26 +5706,27 @@
       "https://i.ibb.co/4RJXfsch/Pantalon-CAMUFLADO.webp"
     ],
     "tallesDisponibles": [
-      "S",
-      "M",
-      "L",
-      "XL"
+      "40"
     ],
-    "colores": [],
+    "colores": [
+      {
+        "nombre": "Verde oliva",
+        "codigo": "#827717",
+        "stock": 0
+      }
+    ],
     "activo": true,
     "destacado": false,
     "outlet": false,
     "stockMap": {
-      "Blanco__L": 1
+      "Verde oliva__40": null
     },
     "stockTalles": {
-      "S": null,
-      "M": null,
-      "L": null,
-      "XL": null
+      "40": 1
     },
-    "stock": 10,
+    "stock": 1,
     "sku": "PANTALON-CAMUFLADO",
+    "marca": null,
     "tags": null,
     "fabrica": null,
     "cuidados": null,
