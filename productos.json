@@ -875,17 +875,24 @@
       "https://i.ibb.co/Tqmm1rn7/cargobolsilloslargos.png"
     ],
     "tallesDisponibles": [
-      "38",
+      "36",
       "40",
       "42"
     ],
-    "colores": [],
+    "colores": [
+      {
+        "nombre": "Celeste",
+        "codigo": "#81D4FA",
+        "stock": 0
+      }
+    ],
     "activo": true,
     "destacado": false,
     "outlet": true,
     "stockMap": {
-      "Crema__38": 1,
-      "Crema__40": 1
+      "Celeste__36": 1,
+      "Celeste__40": 1,
+      "Celeste__42": 1
     },
     "stockTalles": {
       "38": 1,
@@ -893,7 +900,19 @@
       "42": 1
     },
     "stock": 3,
-    "sku": "JEAN-CARGO-BOLSILLO-LARGO"
+    "sku": "JEAN-CARGO-BOLSILLO-LARGO",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
   },
   {
     "id": "jean-cargo-bolsillo-doble-1771892100614",
