@@ -2849,7 +2849,7 @@
     ],
     "sku": "CAMPERA-LAMPARD",
     "stock": 10,
-    "activo": true
+    "activo": false
   },
   {
     "id": "sastrero-rialto",
@@ -2908,11 +2908,9 @@
       "Camel__46": null
     },
     "stockTalles": {
-      "40": 1,
-      "44": 1,
-      "46": 1
+      "Único": 1
     },
-    "stock": 4,
+    "stock": 5,
     "sku": "SASTRERO-RIALTO",
     "marca": null,
     "tags": null,
