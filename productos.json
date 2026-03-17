@@ -1293,8 +1293,8 @@
     ],
     "colores": [
       {
-        "nombre": "Azul",
-        "codigo": "#1E88E5",
+        "nombre": "Jean",
+        "codigo": "#5C7FA3",
         "stock": 0
       }
     ],
@@ -1302,15 +1302,16 @@
     "destacado": false,
     "outlet": false,
     "stockMap": {
-      "Azul__36": 1,
-      "Azul__38": 1,
-      "Azul__40": 1,
-      "Azul__44": 1,
-      "Azul__46": 1
+      "Jean__36": 1,
+      "Jean__38": 1,
+      "Jean__40": 1,
+      "Jean__44": 1,
+      "Jean__46": 1
     },
     "stockTalles": {
-      "M": 0,
-      "L": null
+      "38": 1,
+      "40": null,
+      "44": 1
     },
     "stock": 5,
     "sku": "BAGGY-BORDADO-ATOM",
