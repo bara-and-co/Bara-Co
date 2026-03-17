@@ -5134,9 +5134,9 @@
     "categoria": "hombre",
     "subcategoria": "Pantalones",
     "descripcion": "",
-    "imagen": "https://i.ibb.co/ymbgwg41/Pantalon-CUSTOM-FACE.webp",
+    "imagen": "https://i.ibb.co/bR65cwR6/Gemini-Generated-Image-rreyrhrreyrhrrey.png",
     "imagenes": [
-      "https://i.ibb.co/ymbgwg41/Pantalon-CUSTOM-FACE.webp",
+      "https://i.ibb.co/bR65cwR6/Gemini-Generated-Image-rreyrhrreyrhrrey.png",
       "https://i.ibb.co/N6yw6zSq/Pantalon-CUSTOM-FACE.webp"
     ],
     "tallesDisponibles": [
@@ -5156,10 +5156,9 @@
       "Negro__44": 2
     },
     "stockTalles": {
-      "S": null,
-      "M": 2,
-      "L": null,
-      "XL": null
+      "38": 1,
+      "40": null,
+      "44": 1
     },
     "stock": 10,
     "sku": "PANTALON-CUSTOM-FACE",
