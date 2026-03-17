@@ -1867,7 +1867,9 @@
       "Verde oliva__XL": null,
       "Verde oliva__XXL": 1
     },
-    "stockTalles": null,
+    "stockTalles": {
+      "40": 1
+    },
     "stock": 5,
     "sku": "MUSCULOSA-MORLEY",
     "marca": null,
