@@ -659,7 +659,7 @@
     "precio": 60000,
     "precioAnterior": null,
     "categoria": "hombre",
-    "subcategoria": "Camisas",
+    "subcategoria": "",
     "descripcion": "",
     "imagen": "https://i.ibb.co/1tVkT4W1/camisasatennegra2.webp",
     "imagenes": [
@@ -693,9 +693,15 @@
       "Dorado__XL": null,
       "Dorado__XXL": 1
     },
-    "stockTalles": null,
+    "stockTalles": {
+      "S": null,
+      "M": null,
+      "L": null,
+      "XL": null
+    },
     "stock": 2,
     "sku": "CAMISA-SATÉN",
+    "marca": null,
     "tags": null,
     "fabrica": null,
     "cuidados": null,
