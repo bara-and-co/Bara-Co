@@ -3252,28 +3252,65 @@
     "precioAnterior": null,
     "categoria": "accesorios",
     "subcategoria": "Cintos",
+    "descripcion": "",
     "imagen": "accesorios/cinto.png",
     "imagenes": [
       "accesorios/cinto.png"
     ],
-    "descripcion": "",
-    "composicion": "",
-    "cuidado": "",
-    "talles": [
-      "S",
-      "M",
-      "L",
-      "XL"
-    ],
     "tallesDisponibles": [
-      "S",
-      "M",
-      "L",
-      "XL"
+      "Único"
     ],
+    "colores": [
+      {
+        "nombre": "Negro",
+        "codigo": "#111111",
+        "stock": 0
+      },
+      {
+        "nombre": "Crema",
+        "codigo": "#F5F0E8",
+        "stock": 0
+      },
+      {
+        "nombre": "Verde oliva",
+        "codigo": "#827717",
+        "stock": 0
+      },
+      {
+        "nombre": "Azul marino",
+        "codigo": "#1A237E",
+        "stock": 0
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Negro__Único": 1,
+      "Crema__Único": 1,
+      "Verde oliva__Único": 1,
+      "Azul marino__Único": 1
+    },
+    "stockTalles": {
+      "S": null,
+      "M": null,
+      "L": null,
+      "XL": null
+    },
+    "stock": 4,
     "sku": "CINTO-TEJIDO-ELASTIZADO",
-    "stock": 10,
-    "activo": true
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
   },
   {
     "id": "short-de-bano-elastizado-soft",
