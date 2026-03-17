@@ -1037,8 +1037,8 @@
     ],
     "colores": [
       {
-        "nombre": "Jean",
-        "codigo": "#5C7FA3",
+        "nombre": "Gris",
+        "codigo": "#9E9E9E",
         "stock": 0
       }
     ],
@@ -1046,17 +1046,29 @@
     "destacado": false,
     "outlet": true,
     "stockMap": {
-      "Jean__38": 1,
-      "Jean__40": 1,
-      "Jean__44": 1
+      "Gris__38": 1,
+      "Gris__40": 1,
+      "Gris__44": 1
     },
     "stockTalles": {
-      "36": 1,
       "38": 1,
+      "40": null,
       "44": 1
     },
     "stock": 3,
-    "sku": "SHORT-RAVNEY"
+    "sku": "SHORT-RAVNEY",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
   },
   {
     "id": "short-velston-1771891324503",
