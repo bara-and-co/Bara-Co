@@ -1106,7 +1106,11 @@
       "Jean__44": 1,
       "Jean__46": 1
     },
-    "stockTalles": null,
+    "stockTalles": {
+      "38": 1,
+      "40": null,
+      "44": 1
+    },
     "stock": 4,
     "sku": "SHORT-VELSTON",
     "marca": null,
