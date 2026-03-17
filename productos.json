@@ -6160,28 +6160,53 @@
     "precioAnterior": 60000,
     "categoria": "mujer",
     "subcategoria": "Pantalones",
+    "descripcion": "",
     "imagen": "https://d22fxaf9t8d39k.cloudfront.net/9484d980edea7b18404467f395d63fe84a07cb77086574ef5ad9966904e69dbf404368.jpg",
     "imagenes": [
       "https://d22fxaf9t8d39k.cloudfront.net/9484d980edea7b18404467f395d63fe84a07cb77086574ef5ad9966904e69dbf404368.jpg"
     ],
-    "descripcion": "",
-    "composicion": "",
-    "cuidado": "",
-    "talles": [
-      "S",
-      "M",
-      "L",
-      "XL"
-    ],
     "tallesDisponibles": [
-      "S",
-      "M",
-      "L",
-      "XL"
+      "36",
+      "38",
+      "40",
+      "42"
     ],
+    "colores": [
+      {
+        "nombre": "Celeste",
+        "codigo": "#81D4FA",
+        "stock": 0
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Celeste__36": 1,
+      "Celeste__38": 1,
+      "Celeste__40": 1,
+      "Celeste__42": 1
+    },
+    "stockTalles": {
+      "S": 1,
+      "M": 2,
+      "L": 1,
+      "XL": 2
+    },
+    "stock": 4,
     "sku": "JEAN-CARGO-BAGGY",
-    "stock": 10,
-    "activo": false
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
   },
   {
     "id": "short-engomado",
