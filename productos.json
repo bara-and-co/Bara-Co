@@ -5097,27 +5097,21 @@
       "https://i.ibb.co/JWrPRjkz/Pantalon-CUSTOM-FACES.webp"
     ],
     "tallesDisponibles": [
-      "S",
-      "M",
-      "L",
-      "XL"
+      "42",
+      "44"
     ],
     "colores": [],
     "activo": true,
     "destacado": false,
     "outlet": false,
-    "stockMap": {
-      "Bordo__M": null,
-      "Bordo__XXL": null
-    },
+    "stockMap": {},
     "stockTalles": {
-      "S": null,
-      "M": null,
-      "L": null,
-      "XL": null
+      "42": 1,
+      "44": 1
     },
-    "stock": 10,
+    "stock": 2,
     "sku": "PANTALON-CUSTOM-FACES",
+    "marca": null,
     "tags": null,
     "fabrica": null,
     "cuidados": null,
