@@ -929,14 +929,22 @@
     "tallesDisponibles": [
       "36",
       "38",
-      "44"
+      "42"
     ],
-    "colores": [],
+    "colores": [
+      {
+        "nombre": "Azul marino",
+        "codigo": "#1A237E",
+        "stock": 0
+      }
+    ],
     "activo": true,
     "destacado": false,
     "outlet": true,
     "stockMap": {
-      "Jean__M": 1
+      "Azul marino__36": 1,
+      "Azul marino__38": 1,
+      "Azul marino__42": 1
     },
     "stockTalles": {
       "36": 1,
@@ -944,7 +952,19 @@
       "44": 1
     },
     "stock": 3,
-    "sku": "JEAN-CARGO-BOLSILLO-DOBLE"
+    "sku": "JEAN-CARGO-BOLSILLO-DOBLE",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
   },
   {
     "id": "short-harvin-n-1771891980062",
