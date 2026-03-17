@@ -2781,33 +2781,45 @@
   },
   {
     "id": "remera-crop-top",
-    "nombre": "Remera crop top",
+    "nombre": "Remera crop top reptil",
     "precio": 15000,
     "precioAnterior": 25000,
     "categoria": "mujer",
     "subcategoria": "Remeras",
+    "descripcion": "",
     "imagen": "mujer/Croptop.png",
     "imagenes": [
       "mujer/Croptop.png"
     ],
-    "descripcion": "",
-    "composicion": "",
-    "cuidado": "",
-    "talles": [
-      "S",
-      "M",
-      "L",
-      "XL"
-    ],
     "tallesDisponibles": [
-      "S",
-      "M",
-      "L",
-      "XL"
+      "Único"
     ],
+    "colores": [],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Verde oliva__36": 1,
+      "Verde oliva__38": 1,
+      "Verde oliva__40": 1
+    },
+    "stockTalles": {
+      "Único": 1
+    },
+    "stock": 1,
     "sku": "REMERA-CROP-TOP",
-    "stock": 10,
-    "activo": true
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
   },
   {
     "id": "campera-lampard",
