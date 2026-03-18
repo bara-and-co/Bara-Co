@@ -476,7 +476,7 @@
       "Negro__XXL": null,
       "Blanco__S": null,
       "Blanco__M": null,
-      "Blanco__L": 1,
+      "Blanco__L": 0,
       "Blanco__XL": null,
       "Blanco__XXL": 1,
       "Marrón__S": null,
@@ -491,9 +491,12 @@
       "Azul__XXL": null
     },
     "stockTalles": {
-      "S": 1
+      "S": 1,
+      "M": 2,
+      "L": 1,
+      "XL": 2
     },
-    "stock": 5,
+    "stock": 4,
     "sku": "REMERA-BASIC-MW",
     "marca": null,
     "tags": null,
