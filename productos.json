@@ -1,5 +1,57 @@
 [
   {
+    "id": "campera-oversize-rustico-1773934969117",
+    "nombre": "Campera Oversize Rustico",
+    "precio": 70000,
+    "precioAnterior": null,
+    "categoria": "new",
+    "subcategoria": "",
+    "descripcion": "",
+    "imagen": "https://i.ibb.co/qMZM2z2W/CAMPERITA-OVERSIZE-RUSTICO-WASHED-3.jpg",
+    "imagenes": [
+      "https://i.ibb.co/qMZM2z2W/CAMPERITA-OVERSIZE-RUSTICO-WASHED-3.jpg",
+      "https://i.ibb.co/b5h59Sfk/CAMPERITA-OVERSIZE-RUSTICO-WASHED-4.png"
+    ],
+    "tallesDisponibles": [
+      "M",
+      "L"
+    ],
+    "colores": [
+      {
+        "nombre": "Negro",
+        "codigo": "#111111",
+        "stock": 0
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Negro__M": 1,
+      "Negro__L": 1
+    },
+    "stockTalles": {
+      "S": 1,
+      "M": 2,
+      "L": 1,
+      "XL": 2
+    },
+    "stock": 2,
+    "sku": "CAMPERA-OVERSIZE-RUSTICO",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "baggy-jean-snake-blue-1773781205492",
     "nombre": "Baggy Jean Snake Blue",
     "precio": 49000,
