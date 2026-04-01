@@ -1,5 +1,51 @@
 [
   {
+    "id": "body-espalda-abierta-1775076544838",
+    "nombre": "Body Espalda abierta",
+    "precio": 30000,
+    "precioAnterior": null,
+    "categoria": "new",
+    "subcategoria": "",
+    "descripcion": "",
+    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1775076512/cqvt1hgmczxksraar2zc.webp",
+    "imagenes": [
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1775076512/cqvt1hgmczxksraar2zc.webp",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1775076528/fptwbsuhhekdqmdzdaes.webp",
+      "__loading__blob:https://baraandco.com.ar/55b23e1a-d1d3-4046-a41b-e50ee610f642"
+    ],
+    "tallesDisponibles": [
+      "Único"
+    ],
+    "colores": [
+      {
+        "nombre": "Negro",
+        "codigo": "#111111",
+        "stock": 0
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Negro__Único": 1
+    },
+    "stockTalles": null,
+    "stock": 1,
+    "sku": "BODY-ESPALDA-ABIERTA",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "body-escote-en-v-1775076016956",
     "nombre": "Body escote en V",
     "precio": 30000,
@@ -32,52 +78,6 @@
     "stockTalles": null,
     "stock": 1,
     "sku": "BODY-ESCOTE-EN-V",
-    "marca": null,
-    "tags": null,
-    "fabrica": null,
-    "cuidados": null,
-    "temporada": null,
-    "genero": null,
-    "peso": null,
-    "origen": null,
-    "proveedor": null,
-    "notas": null,
-    "costo": null,
-    "link": null
-  },
-  {
-    "id": "body-cuello-americano-1775075467653",
-    "nombre": "Body Cuello Americano (copia)",
-    "precio": 25000,
-    "precioAnterior": null,
-    "categoria": "new",
-    "subcategoria": "",
-    "descripcion": "",
-    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1775070346/uul8ybrwt2t985mavl4i.webp",
-    "imagenes": [
-      "https://res.cloudinary.com/djk1znvr7/image/upload/v1775070346/uul8ybrwt2t985mavl4i.webp",
-      "https://res.cloudinary.com/djk1znvr7/image/upload/v1775070359/xd3tsfjjelimdmegf2e0.webp",
-      "https://res.cloudinary.com/djk1znvr7/image/upload/v1775070369/oyrhcujhbl5vyonba567.webp"
-    ],
-    "tallesDisponibles": [
-      "Único"
-    ],
-    "colores": [
-      {
-        "nombre": "Negro",
-        "codigo": "#111111",
-        "stock": 0
-      }
-    ],
-    "activo": false,
-    "destacado": false,
-    "outlet": false,
-    "stockMap": {
-      "Negro__Único": 1
-    },
-    "stockTalles": null,
-    "stock": 1,
-    "sku": "BODY-CUELLO-AMERICANO",
     "marca": null,
     "tags": null,
     "fabrica": null,
