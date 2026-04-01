@@ -1,5 +1,56 @@
 [
   {
+    "id": "baggy-skater-negro-1775053221224",
+    "nombre": "Baggy Skater Negro",
+    "precio": 65000,
+    "precioAnterior": null,
+    "categoria": "hombre",
+    "subcategoria": "",
+    "descripcion": "",
+    "imagen": "https://i.ibb.co/nsGMBjK8/Gemini-Generated-Image-lz5ujclz5ujclz5u.png",
+    "imagenes": [
+      "https://i.ibb.co/nsGMBjK8/Gemini-Generated-Image-lz5ujclz5ujclz5u.png",
+      "https://i.ibb.co/HpgyR2R7/IMG-8507.jpg"
+    ],
+    "tallesDisponibles": [
+      "38",
+      "40",
+      "42",
+      "44"
+    ],
+    "colores": [
+      {
+        "nombre": "Negro",
+        "codigo": "#111111",
+        "stock": 0
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Negro__38": 1,
+      "Negro__40": 1,
+      "Negro__42": 1,
+      "Negro__44": 1
+    },
+    "stockTalles": null,
+    "stock": 4,
+    "sku": "BAGGY-SKATER-NEGRO",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "baggy-recto-arbol-1775052026440",
     "nombre": "Baggy Recto Arbol",
     "precio": 65000,
