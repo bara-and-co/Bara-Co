@@ -2122,7 +2122,7 @@
       <button class="btn btn-ghost" onclick="duplicateFromModal()" id="duplicateBtn" style="display:none;">
         <i class="fas fa-copy"></i> Duplicar
       </button>
-      <button class="btn btn-primary" id="btnGuardar" onclick="saveProduct()"><i class="fas fa-check"></i> Guardar</button>
+      <button class="btn btn-primary" onclick="saveProduct()"><i class="fas fa-check"></i> Guardar</button>
     </div>
   </div>
 </div>
@@ -2259,7 +2259,43 @@ async function init() {
   if (t) document.getElementById('cfgToken').value = t;
   document.getElementById('cfgRepo').value = r;
 
-  // Siempre cargar la versión publicada primero (la fuente de verdad)
+  // Verificar si hay un draft con cambios pendientes ANTES de cargar del servidor
+  const draftRaw = localStorage.getItem('bc_draft');
+  const draftTimestamp = parseInt(localStorage.getItem('bc_draft_ts') || '0');
+  let draft = null;
+  if (draftRaw) { try { draft = JSON.parse(draftRaw); } catch(e){} }
+
+  // Si hay draft con cambios guardados hace menos de 24h, usarlo directamente
+  const draftAge = Date.now() - draftTimestamp;
+  const DRAFT_MAX_AGE = 24 * 60 * 60 * 1000; // 24 horas
+  if (draft && draftTimestamp > 0 && draftAge < DRAFT_MAX_AGE) {
+    products = draft;
+    pending = 1; // marcar como pendiente para que el banner se muestre
+    const b = document.getElementById('saveBanner');
+    b.classList.add('show');
+    document.getElementById('bannerCount').textContent = 'Cambios sin publicar';
+    renderGrid();
+    updateStats();
+    // Cargar del servidor en segundo plano para detectar conflictos
+    (async () => {
+      for (const url of ['productos.json', 'https://bara-and-co.github.io/Bara-Co/productos.json']) {
+        try {
+          const res = await fetch(url+'?t='+Date.now());
+          if (res.ok) {
+            // Solo avisar si el servidor tiene más productos que el draft
+            const serverProds = await res.json();
+            if (serverProds.length > draft.length) {
+              toast('⚠️ El servidor tiene cambios más nuevos. Publicá para no perder nada.', 'info');
+            }
+            break;
+          }
+        } catch(e) {}
+      }
+    })();
+    return;
+  }
+
+  // Sin draft reciente — cargar la versión publicada del servidor
   let loaded = false;
   for (const url of ['productos.json', 'https://bara-and-co.github.io/Bara-Co/productos.json']) {
     try {
@@ -2270,11 +2306,11 @@ async function init() {
 
   // Solo usar draft si no se pudo cargar del servidor (offline / primera vez)
   if (!loaded) {
-    const draft = localStorage.getItem('bc_draft');
-    if (draft) { try { products = JSON.parse(draft); } catch(e){} }
+    if (draft) { products = draft; }
   } else {
-    // Hay datos del servidor — borrar draft viejo para que no interfiera
+    // Hay datos del servidor y no hay draft reciente — limpiar
     localStorage.removeItem('bc_draft');
+    localStorage.removeItem('bc_draft_ts');
     pending = 0;
   }
   renderGrid();
@@ -2701,20 +2737,6 @@ function removeImage(index) {
 
 /* ─── UPLOADER ─── */
 let extraImgUrls = [];
-let uploadingCount = 0;
-
-function setUploadingState(delta) {
-  uploadingCount = Math.max(0, uploadingCount + delta);
-  const btn = document.getElementById('btnGuardar');
-  if (!btn) return;
-  if (uploadingCount > 0) {
-    btn.disabled = true;
-    btn.innerHTML = '<div class="spinner" style="width:14px;height:14px;border-color:rgba(255,255,255,.3);border-top-color:#fff;display:inline-block;margin-right:6px"></div> Subiendo...';
-  } else {
-    btn.disabled = false;
-    btn.innerHTML = '<i class="fas fa-check"></i> Guardar';
-  }
-}
 
 function abrirSelectorFoto() {
   setTimeout(function() {
@@ -2751,19 +2773,12 @@ function onFileSelect(e) {
   e.target.value = '';
 }
 
-/* ─── SUBIR IMAGEN A CLOUDINARY ─── */
-// ⚙️ CONFIGURACIÓN: reemplazá estos valores con los de tu cuenta Cloudinary
-const CLOUDINARY_CLOUD_NAME = 'djk1znvr7';
-const CLOUDINARY_UPLOAD_PRESET = 'baraandco_unsigned';
+/* ─── SUBIR IMAGEN A IMGBB ─── */
+const IMGBB_KEY = 'ba5e9f7a2a99a96d1862a0561896c870';
 
 async function subirImagen(file, isMain) {
   if (file.size > 10 * 1024 * 1024) {
     toast('La imagen no debe superar 10MB', 'err');
-    return;
-  }
-
-  if (CLOUDINARY_CLOUD_NAME === 'TU_CLOUD_NAME') {
-    toast('⚙️ Configurá tu cuenta Cloudinary en el código (CLOUDINARY_CLOUD_NAME)', 'err');
     return;
   }
 
@@ -2775,23 +2790,19 @@ async function subirImagen(file, isMain) {
     addExtraImageLoading(localUrl);
   }
 
-  // Bloquear botón Guardar hasta que termine el upload
-  setUploadingState(+1);
-
-  // Subir a Cloudinary (upload sin firma)
+  // Subir a ImgBB
   const formData = new FormData();
-  formData.append('file', file);
-  formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
+  formData.append('image', file);
 
   try {
-    const res = await fetch(`https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/image/upload`, {
+    const res = await fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_KEY}`, {
       method: 'POST',
       body: formData
     });
     const data = await res.json();
-    if (data.error) throw new Error(data.error.message || 'Error al subir');
+    if (!data.success) throw new Error(data.error?.message || 'Error al subir');
 
-    const url = data.secure_url;
+    const url = data.data.url;
     if (isMain) {
       setMainImage(url);
     } else {
@@ -2804,9 +2815,6 @@ async function subirImagen(file, isMain) {
     if (isMain) clearImage();
     else removeExtraImageLoading(localUrl);
     URL.revokeObjectURL(localUrl);
-  } finally {
-    // Desbloquear botón Guardar
-    setUploadingState(-1);
   }
 }
 
@@ -3387,6 +3395,7 @@ function dirty() {
   b.classList.add('show');
   document.getElementById('bannerCount').textContent = pending === 1 ? '1 cambio' : `${pending} cambios`;
   localStorage.setItem('bc_draft', JSON.stringify(products));
+  localStorage.setItem('bc_draft_ts', Date.now().toString());
 }
 
 /* ─── EXPORT/IMPORT ─── */
@@ -3517,6 +3526,7 @@ async function publish() {
     pending = 0;
     document.getElementById('saveBanner').classList.remove('show');
     localStorage.removeItem('bc_draft');
+    localStorage.removeItem('bc_draft_ts');
     toast('¡Publicado! La tienda se actualiza en ~1 minuto 🎉','ok');
 
   } catch(e) {
