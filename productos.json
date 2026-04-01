@@ -1,5 +1,58 @@
 [
   {
+    "id": "baggy-skater-celeste-1775054078355",
+    "nombre": "Baggy Skater Celeste",
+    "precio": 65000,
+    "precioAnterior": null,
+    "categoria": "new",
+    "subcategoria": "",
+    "descripcion": "",
+    "imagen": "https://i.ibb.co/0j7b8b55/IMG-8497.jpg",
+    "imagenes": [
+      "https://i.ibb.co/0j7b8b55/IMG-8497.jpg",
+      "https://i.ibb.co/7xYVY0HD/IMG-8498.jpg"
+    ],
+    "tallesDisponibles": [
+      "38",
+      "40",
+      "42",
+      "44",
+      "46"
+    ],
+    "colores": [
+      {
+        "nombre": "Celeste",
+        "codigo": "#81D4FA",
+        "stock": 0
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Celeste__38": 1,
+      "Celeste__40": 1,
+      "Celeste__42": 1,
+      "Celeste__44": 1,
+      "Celeste__46": 1
+    },
+    "stockTalles": null,
+    "stock": 5,
+    "sku": "BAGGY-SKATER-CELESTE",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "baggy-skater-negro-1775053221224",
     "nombre": "Baggy Skater Negro",
     "precio": 65000,
