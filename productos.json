@@ -27,11 +27,9 @@
     "destacado": false,
     "outlet": false,
     "stockMap": {
-      "Azul__Único": null
+      "Azul__Único": 1
     },
-    "stockTalles": {
-      "Único": 1
-    },
+    "stockTalles": null,
     "stock": 1,
     "sku": "BLAZER-RAYAS",
     "marca": null,
