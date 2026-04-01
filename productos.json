@@ -1,5 +1,57 @@
 [
   {
+    "id": "top-cuello-buche-manga-oxford-1775082547535",
+    "nombre": "Top Cuello Buche Manga Oxford",
+    "precio": 30000,
+    "precioAnterior": null,
+    "categoria": "new",
+    "subcategoria": "",
+    "descripcion": "",
+    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1775082489/tksi6bedtkc1rccjqrzn.webp",
+    "imagenes": [
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1775082489/tksi6bedtkc1rccjqrzn.webp",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1775082504/ziexjn7kdwa5qmzlnop7.webp",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1775082516/kibhgmfagqutb2ak7nsh.webp"
+    ],
+    "tallesDisponibles": [
+      "Único"
+    ],
+    "colores": [
+      {
+        "nombre": "Marrón",
+        "codigo": "#795548",
+        "stock": 0
+      },
+      {
+        "nombre": "Bordo",
+        "codigo": "#7B1C2A",
+        "stock": 0
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Marrón__Único": 1,
+      "Bordo__Único": 1
+    },
+    "stockTalles": null,
+    "stock": 2,
+    "sku": "TOP-CUELLO-BUCHE-MANGA-OXFORD",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "mini-frunse-costado-1775081468373",
     "nombre": "Mini Frunse Costado",
     "precio": 25000,
