@@ -2737,12 +2737,19 @@ function onFileSelect(e) {
   e.target.value = '';
 }
 
-/* ─── SUBIR IMAGEN A IMGBB ─── */
-const IMGBB_KEY = 'ba5e9f7a2a99a96d1862a0561896c870';
+/* ─── SUBIR IMAGEN A CLOUDINARY ─── */
+// ⚙️ CONFIGURACIÓN: reemplazá estos valores con los de tu cuenta Cloudinary
+const CLOUDINARY_CLOUD_NAME = 'djk1znvr7';
+const CLOUDINARY_UPLOAD_PRESET = 'baraandco_unsigned';
 
 async function subirImagen(file, isMain) {
   if (file.size > 10 * 1024 * 1024) {
     toast('La imagen no debe superar 10MB', 'err');
+    return;
+  }
+
+  if (CLOUDINARY_CLOUD_NAME === 'TU_CLOUD_NAME') {
+    toast('⚙️ Configurá tu cuenta Cloudinary en el código (CLOUDINARY_CLOUD_NAME)', 'err');
     return;
   }
 
@@ -2754,19 +2761,20 @@ async function subirImagen(file, isMain) {
     addExtraImageLoading(localUrl);
   }
 
-  // Subir a ImgBB
+  // Subir a Cloudinary (upload sin firma)
   const formData = new FormData();
-  formData.append('image', file);
+  formData.append('file', file);
+  formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
 
   try {
-    const res = await fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_KEY}`, {
+    const res = await fetch(`https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/image/upload`, {
       method: 'POST',
       body: formData
     });
     const data = await res.json();
-    if (!data.success) throw new Error(data.error?.message || 'Error al subir');
+    if (data.error) throw new Error(data.error.message || 'Error al subir');
 
-    const url = data.data.url;
+    const url = data.secure_url;
     if (isMain) {
       setMainImage(url);
     } else {
