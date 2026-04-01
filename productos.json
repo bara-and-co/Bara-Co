@@ -104,9 +104,10 @@
     "categoria": "new",
     "subcategoria": "",
     "descripcion": "",
-    "imagen": "https://i.ibb.co/DyKF2R3/pantalonpaceverdefrente.png",
+    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1775067080/vbsxjjnzsuy84yci8sbr.webp",
     "imagenes": [
-      "https://i.ibb.co/DyKF2R3/pantalonpaceverdefrente.png"
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1775067080/vbsxjjnzsuy84yci8sbr.webp",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1775067076/k6je6s0es4u7l4brgeix.webp"
     ],
     "tallesDisponibles": [
       "Único"
