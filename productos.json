@@ -1,5 +1,53 @@
 [
   {
+    "id": "blazer-rayas-1775055463136",
+    "nombre": "Blazer Rayas",
+    "precio": 50000,
+    "precioAnterior": null,
+    "categoria": "new",
+    "subcategoria": "",
+    "descripcion": "",
+    "imagen": "https://i.ibb.co/rLt3H6c/blazer-rayado.webp",
+    "imagenes": [
+      "https://i.ibb.co/rLt3H6c/blazer-rayado.webp",
+      "https://i.ibb.co/bgVBRnR5/blazer-rayado-2.webp",
+      "https://i.ibb.co/TxygfpXk/blazer-rayado-1.webp"
+    ],
+    "tallesDisponibles": [
+      "Único"
+    ],
+    "colores": [
+      {
+        "nombre": "Azul",
+        "codigo": "#1E88E5",
+        "stock": 0
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Azul__Único": null
+    },
+    "stockTalles": {
+      "Único": 1
+    },
+    "stock": 1,
+    "sku": "BLAZER-RAYAS",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "baggy-skater-celeste-1775054078355",
     "nombre": "Baggy Skater Celeste",
     "precio": 65000,
@@ -786,7 +834,7 @@
         "stock": 1
       }
     ],
-    "activo": true,
+    "activo": false,
     "destacado": false,
     "outlet": true,
     "stockMap": {
@@ -836,7 +884,7 @@
         "stock": 1
       }
     ],
-    "activo": true,
+    "activo": false,
     "destacado": false,
     "outlet": true,
     "stockMap": {
@@ -3627,7 +3675,7 @@
       "XL"
     ],
     "colores": [],
-    "activo": true,
+    "activo": false,
     "destacado": false,
     "outlet": false,
     "stockMap": {
@@ -3674,7 +3722,7 @@
       "XL"
     ],
     "colores": [],
-    "activo": true,
+    "activo": false,
     "destacado": false,
     "outlet": false,
     "stockMap": {
@@ -3721,7 +3769,7 @@
       "XL"
     ],
     "colores": [],
-    "activo": true,
+    "activo": false,
     "destacado": false,
     "outlet": false,
     "stockMap": {
@@ -3768,7 +3816,7 @@
       "XL"
     ],
     "colores": [],
-    "activo": true,
+    "activo": false,
     "destacado": false,
     "outlet": false,
     "stockMap": {
@@ -3869,7 +3917,7 @@
       "XL"
     ],
     "colores": [],
-    "activo": true,
+    "activo": false,
     "destacado": false,
     "outlet": false,
     "stockMap": {
@@ -3974,7 +4022,7 @@
       "XL"
     ],
     "colores": [],
-    "activo": true,
+    "activo": false,
     "destacado": false,
     "outlet": false,
     "stockMap": {
@@ -5027,7 +5075,7 @@
       "XL"
     ],
     "colores": [],
-    "activo": true,
+    "activo": false,
     "destacado": false,
     "outlet": false,
     "stockMap": {
@@ -5263,7 +5311,7 @@
       "XL"
     ],
     "colores": [],
-    "activo": true,
+    "activo": false,
     "destacado": false,
     "outlet": false,
     "stockMap": {
@@ -5309,7 +5357,7 @@
       "XL"
     ],
     "colores": [],
-    "activo": true,
+    "activo": false,
     "destacado": false,
     "outlet": false,
     "stockMap": {
@@ -5495,7 +5543,7 @@
         "stock": 0
       }
     ],
-    "activo": true,
+    "activo": false,
     "destacado": false,
     "outlet": false,
     "stockMap": {
@@ -5541,7 +5589,7 @@
       "XL"
     ],
     "colores": [],
-    "activo": true,
+    "activo": false,
     "destacado": false,
     "outlet": false,
     "stockMap": {
@@ -5593,7 +5641,7 @@
       "XL"
     ],
     "colores": [],
-    "activo": true,
+    "activo": false,
     "destacado": false,
     "outlet": false,
     "stockMap": {
@@ -6446,7 +6494,7 @@
     ],
     "sku": "SHORT-ENGOMADO",
     "stock": 10,
-    "activo": true
+    "activo": false
   },
   {
     "id": "short-cinturon",
