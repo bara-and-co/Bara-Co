@@ -1,5 +1,51 @@
 [
   {
+    "id": "body-escote-en-v-1775076016956",
+    "nombre": "Body escote en V",
+    "precio": 30000,
+    "precioAnterior": null,
+    "categoria": "new",
+    "subcategoria": "",
+    "descripcion": "",
+    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1775075975/heqccklp2gxgojohsdjs.webp",
+    "imagenes": [
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1775075975/heqccklp2gxgojohsdjs.webp",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1775075998/lc9f09jrzcwd840hz8by.webp",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1775076009/ctulgl66yp7vkqmmtwik.webp"
+    ],
+    "tallesDisponibles": [
+      "Único"
+    ],
+    "colores": [
+      {
+        "nombre": "Negro",
+        "codigo": "#111111",
+        "stock": 0
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Negro__Único": 1
+    },
+    "stockTalles": null,
+    "stock": 1,
+    "sku": "BODY-ESCOTE-EN-V",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "body-cuello-americano-1775075467653",
     "nombre": "Body Cuello Americano (copia)",
     "precio": 25000,
