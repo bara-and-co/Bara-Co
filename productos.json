@@ -1,7 +1,7 @@
 [
   {
-    "id": "body-con-cierre-manga-tul-1775056114016",
-    "nombre": "Body con Cierre manga Tul",
+    "id": "body-c-cierre-manga-tul-1775056363688",
+    "nombre": "Body C/ Cierre manga Tul",
     "precio": 25000,
     "precioAnterior": null,
     "categoria": "new",
@@ -9,9 +9,7 @@
     "descripcion": "",
     "imagen": "https://i.ibb.co/XrDsQjx8/body-con-cierre-manga-tul.webp",
     "imagenes": [
-      "https://i.ibb.co/XrDsQjx8/body-con-cierre-manga-tul.webp",
-      "https://i.ibb.co/K14c1J0/body-con-cierre-manga-tul-1.webp",
-      "https://i.ibb.co/d4Z6DvNx/body-con-cierre-manga-tul-2.webp"
+      "https://i.ibb.co/XrDsQjx8/body-con-cierre-manga-tul.webp"
     ],
     "tallesDisponibles": [
       "Único"
@@ -31,7 +29,7 @@
     },
     "stockTalles": null,
     "stock": 1,
-    "sku": "BODY-CON-CIERRE-MANGA-TUL",
+    "sku": "BODY-C/-CIERRE-MANGA-TUL",
     "marca": null,
     "tags": null,
     "fabrica": null,
@@ -832,7 +830,7 @@
         "stock": 0
       }
     ],
-    "activo": false,
+    "activo": true,
     "destacado": false,
     "outlet": true,
     "stockMap": {
@@ -1774,7 +1772,7 @@
         "stock": 0
       }
     ],
-    "activo": false,
+    "activo": true,
     "destacado": false,
     "outlet": false,
     "stockMap": {
@@ -2294,7 +2292,7 @@
         "stock": 0
       }
     ],
-    "activo": false,
+    "activo": true,
     "destacado": true,
     "outlet": false,
     "stockMap": {
