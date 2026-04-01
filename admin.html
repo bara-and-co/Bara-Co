@@ -2259,21 +2259,36 @@ async function init() {
   if (t) document.getElementById('cfgToken').value = t;
   document.getElementById('cfgRepo').value = r;
 
-  // Siempre cargar la versión publicada primero (la fuente de verdad)
+  // Siempre cargar desde GitHub API (fuente de verdad, siempre actualizado)
   let loaded = false;
-  for (const url of ['productos.json', 'https://bara-and-co.github.io/Bara-Co/productos.json']) {
+  if (t) {
     try {
-      const res = await fetch(url+'?t='+Date.now());
-      if (res.ok) { products = await res.json(); loaded = true; break; }
+      const ghRes = await fetch(`https://api.github.com/repos/${r}/contents/productos.json`, {
+        headers: { Authorization: `token ${t}`, Accept: 'application/vnd.github.v3+json' }
+      });
+      if (ghRes.ok) {
+        const ghData = await ghRes.json();
+        products = JSON.parse(atob(ghData.content.replace(/\n/g, '')));
+        loaded = true;
+      }
     } catch(e) {}
   }
 
-  // Solo usar draft si no se pudo cargar del servidor (offline / primera vez)
+  // Fallback: GitHub Pages si no hay token o falló la API
+  if (!loaded) {
+    for (const url of ['https://bara-and-co.github.io/Bara-Co/productos.json']) {
+      try {
+        const res = await fetch(url + '?t=' + Date.now());
+        if (res.ok) { products = await res.json(); loaded = true; break; }
+      } catch(e) {}
+    }
+  }
+
+  // Último recurso: draft local (offline / primera vez)
   if (!loaded) {
     const draft = localStorage.getItem('bc_draft');
     if (draft) { try { products = JSON.parse(draft); } catch(e){} }
   } else {
-    // Hay datos del servidor — borrar draft viejo para que no interfiera
     localStorage.removeItem('bc_draft');
     pending = 0;
   }
