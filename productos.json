@@ -57,9 +57,11 @@
     "categoria": "new",
     "subcategoria": "",
     "descripcion": "",
-    "imagen": "https://i.ibb.co/Z64jJmZz/body-cuello-americano.webp",
+    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1775070346/uul8ybrwt2t985mavl4i.webp",
     "imagenes": [
-      "https://i.ibb.co/Z64jJmZz/body-cuello-americano.webp"
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1775070346/uul8ybrwt2t985mavl4i.webp",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1775070359/xd3tsfjjelimdmegf2e0.webp",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1775070369/oyrhcujhbl5vyonba567.webp"
     ],
     "tallesDisponibles": [
       "Único"
