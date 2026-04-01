@@ -2122,7 +2122,7 @@
       <button class="btn btn-ghost" onclick="duplicateFromModal()" id="duplicateBtn" style="display:none;">
         <i class="fas fa-copy"></i> Duplicar
       </button>
-      <button class="btn btn-primary" onclick="saveProduct()"><i class="fas fa-check"></i> Guardar</button>
+      <button class="btn btn-primary" id="btnGuardar" onclick="saveProduct()"><i class="fas fa-check"></i> Guardar</button>
     </div>
   </div>
 </div>
@@ -2701,6 +2701,20 @@ function removeImage(index) {
 
 /* ─── UPLOADER ─── */
 let extraImgUrls = [];
+let uploadingCount = 0;
+
+function setUploadingState(delta) {
+  uploadingCount = Math.max(0, uploadingCount + delta);
+  const btn = document.getElementById('btnGuardar');
+  if (!btn) return;
+  if (uploadingCount > 0) {
+    btn.disabled = true;
+    btn.innerHTML = '<div class="spinner" style="width:14px;height:14px;border-color:rgba(255,255,255,.3);border-top-color:#fff;display:inline-block;margin-right:6px"></div> Subiendo...';
+  } else {
+    btn.disabled = false;
+    btn.innerHTML = '<i class="fas fa-check"></i> Guardar';
+  }
+}
 
 function abrirSelectorFoto() {
   setTimeout(function() {
@@ -2761,6 +2775,9 @@ async function subirImagen(file, isMain) {
     addExtraImageLoading(localUrl);
   }
 
+  // Bloquear botón Guardar hasta que termine el upload
+  setUploadingState(+1);
+
   // Subir a Cloudinary (upload sin firma)
   const formData = new FormData();
   formData.append('file', file);
@@ -2787,6 +2804,9 @@ async function subirImagen(file, isMain) {
     if (isMain) clearImage();
     else removeExtraImageLoading(localUrl);
     URL.revokeObjectURL(localUrl);
+  } finally {
+    // Desbloquear botón Guardar
+    setUploadingState(-1);
   }
 }
 
