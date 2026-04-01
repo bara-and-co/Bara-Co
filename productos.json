@@ -1,5 +1,57 @@
 [
   {
+    "id": "body-tul-estampado-1775080508329",
+    "nombre": "Body Tul Estampado",
+    "precio": 30000,
+    "precioAnterior": null,
+    "categoria": "new",
+    "subcategoria": "",
+    "descripcion": "",
+    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1775080415/bzqfoibacimvj6l3wszq.webp",
+    "imagenes": [
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1775080415/bzqfoibacimvj6l3wszq.webp",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1775080441/pwfbr8cqmoz1j8gutr2v.webp",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1775080455/cqu9faizldej6etci3bt.webp"
+    ],
+    "tallesDisponibles": [
+      "Único"
+    ],
+    "colores": [
+      {
+        "nombre": "Gris",
+        "codigo": "#9E9E9E",
+        "stock": 0
+      },
+      {
+        "nombre": "Naranja",
+        "codigo": "#FB8C00",
+        "stock": 0
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Gris__Único": 1,
+      "Naranja__Único": 1
+    },
+    "stockTalles": null,
+    "stock": 2,
+    "sku": "BODY-TUL-ESTAMPADO",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "body-manga-princesa-1775080205561",
     "nombre": "Body Manga Princesa",
     "precio": 25000,
