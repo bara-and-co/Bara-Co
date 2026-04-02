@@ -1,5 +1,50 @@
 [
   {
+    "id": "top-frunce-diamante-1775094403390",
+    "nombre": "Top Frunce diamante",
+    "precio": 25000,
+    "precioAnterior": null,
+    "categoria": "new",
+    "subcategoria": "",
+    "descripcion": "Top Frunce Diamante",
+    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1775086164/bladlamb1q2liuswrzxq.webp",
+    "imagenes": [
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1775086164/bladlamb1q2liuswrzxq.webp",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1775094395/fryrijvnxtdx46iyaaoe.webp"
+    ],
+    "tallesDisponibles": [
+      "Único"
+    ],
+    "colores": [
+      {
+        "nombre": "Negro",
+        "codigo": "#111111",
+        "stock": 0
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Negro__Único": 1
+    },
+    "stockTalles": null,
+    "stock": 2,
+    "sku": "TOP-FRUNCE-DIAMANTE",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "top-espalda-abierta-1775084686668",
     "nombre": "Top Espalda Abierta",
     "precio": 25000,
