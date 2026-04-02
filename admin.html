@@ -2767,19 +2767,24 @@ async function subirImagen(file, isMain) {
     addExtraImageLoading(localUrl);
   }
 
-  // Subir a /upload.php en el propio servidor
+  // Subir a Cloudinary (sin servidor)
+  const CLOUDINARY_CLOUD = 'djk1znvr7';
+  const CLOUDINARY_PRESET = 'baraandco_unsigned';
+
   const formData = new FormData();
   formData.append('file', file);
+  formData.append('upload_preset', CLOUDINARY_PRESET);
+  formData.append('folder', 'bara/productos');
 
   try {
-    const res = await fetch('/upload.php', {
+    const res = await fetch(`https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD}/image/upload`, {
       method: 'POST',
       body: formData
     });
     const data = await res.json();
-    if (!res.ok || data.error) throw new Error(data.error || `Error ${res.status}`);
+    if (!res.ok || data.error) throw new Error((data.error && data.error.message) || `Error ${res.status}`);
 
-    const url = data.url;
+    const url = data.secure_url;
     if (isMain) {
       setMainImage(url);
     } else {
