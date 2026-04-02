@@ -1370,7 +1370,7 @@
     </div>
     <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
       <button class="btn btn-primary" onclick="publish()" id="publishBtn">
-        <i class="fas fa-cloud-upload-alt"></i> Publicar en GitHub
+        <i class="fas fa-save"></i> Publicar
       </button>
       <button class="btn btn-ghost btn-sm" onclick="downloadJSON()" title="Descargar productos.json para subirlo manualmente">
         <i class="fas fa-download"></i> Descargar JSON
@@ -2122,7 +2122,7 @@
       <button class="btn btn-ghost" onclick="duplicateFromModal()" id="duplicateBtn" style="display:none;">
         <i class="fas fa-copy"></i> Duplicar
       </button>
-      <button class="btn btn-primary" id="btnGuardar" onclick="saveProduct()"><i class="fas fa-check"></i> Guardar</button>
+      <button class="btn btn-primary" onclick="saveProduct()"><i class="fas fa-check"></i> Guardar</button>
     </div>
   </div>
 </div>
@@ -2259,9 +2259,18 @@ async function init() {
   if (t) document.getElementById('cfgToken').value = t;
   document.getElementById('cfgRepo').value = r;
 
-  // Siempre cargar desde GitHub API (fuente de verdad, siempre actualizado)
+  // 1. Fuente de verdad: /productos.json del propio servidor (sin CORS)
   let loaded = false;
-  if (t) {
+  try {
+    const res = await fetch('/productos.json?t=' + Date.now());
+    if (res.ok) {
+      products = await res.json();
+      loaded = true;
+    }
+  } catch(e) {}
+
+  // 2. Fallback: GitHub API (si hay token configurado)
+  if (!loaded && t) {
     try {
       const ghRes = await fetch(`https://api.github.com/repos/${r}/contents/productos.json`, {
         headers: { Authorization: `token ${t}`, Accept: 'application/vnd.github.v3+json' }
@@ -2274,20 +2283,7 @@ async function init() {
     } catch(e) {}
   }
 
-  // Fallback: GitHub API sin token (funciona sin CORS en repos públicos)
-  if (!loaded) {
-    try {
-      const apiUrl = `https://api.github.com/repos/${r}/contents/productos.json`;
-      const res = await fetch(apiUrl, { headers: { Accept: 'application/vnd.github.v3+json' } });
-      if (res.ok) {
-        const data = await res.json();
-        products = JSON.parse(atob(data.content.replace(/\n/g, '')));
-        loaded = true;
-      }
-    } catch(e) {}
-  }
-
-  // Último recurso: draft local (offline / primera vez)
+  // 3. Último recurso: draft local (offline / primera vez)
   if (!loaded) {
     const draft = localStorage.getItem('bc_draft');
     if (draft) { try { products = JSON.parse(draft); } catch(e){} }
@@ -2719,19 +2715,6 @@ function removeImage(index) {
 
 /* ─── UPLOADER ─── */
 let extraImgUrls = [];
-let uploadingCount = 0;
-function setUploadingState(delta) {
-  uploadingCount = Math.max(0, uploadingCount + delta);
-  const btn = document.getElementById('btnGuardar');
-  if (!btn) return;
-  if (uploadingCount > 0) {
-    btn.disabled = true;
-    btn.innerHTML = '<div class="spinner" style="width:14px;height:14px;border-color:rgba(255,255,255,.3);border-top-color:#fff;display:inline-block;margin-right:6px"></div> Subiendo...';
-  } else {
-    btn.disabled = false;
-    btn.innerHTML = '<i class="fas fa-check"></i> Guardar';
-  }
-}
 
 function abrirSelectorFoto() {
   setTimeout(function() {
@@ -2768,9 +2751,7 @@ function onFileSelect(e) {
   e.target.value = '';
 }
 
-/* ─── SUBIR IMAGEN A IMGBB ─── */
-const CLOUDINARY_CLOUD = 'djk1znvr7';
-const CLOUDINARY_PRESET = 'baraandco_unsigned';
+/* ─── SUBIR IMAGEN AL SERVIDOR PROPIO ─── */
 
 async function subirImagen(file, isMain) {
   if (file.size > 10 * 1024 * 1024) {
@@ -2786,22 +2767,19 @@ async function subirImagen(file, isMain) {
     addExtraImageLoading(localUrl);
   }
 
-  setUploadingState(+1);
-
-  // Subir a Cloudinary
+  // Subir a /upload.php en el propio servidor
   const formData = new FormData();
   formData.append('file', file);
-  formData.append('upload_preset', CLOUDINARY_PRESET);
 
   try {
-    const res = await fetch(`https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD}/image/upload`, {
+    const res = await fetch('/upload.php', {
       method: 'POST',
       body: formData
     });
     const data = await res.json();
-    if (data.error) throw new Error(data.error.message || 'Error al subir');
+    if (!res.ok || data.error) throw new Error(data.error || `Error ${res.status}`);
 
-    const url = data.secure_url;
+    const url = data.url;
     if (isMain) {
       setMainImage(url);
     } else {
@@ -2814,8 +2792,6 @@ async function subirImagen(file, isMain) {
     if (isMain) clearImage();
     else removeExtraImageLoading(localUrl);
     URL.revokeObjectURL(localUrl);
-  } finally {
-    setUploadingState(-1);
   }
 }
 
@@ -3476,12 +3452,8 @@ function importFile(e) {
   e.target.value = '';
 }
 
-/* ─── PUBLICAR EN GITHUB ─── */
+/* ─── PUBLICAR EN SERVIDOR ─── */
 async function publish() {
-  const token = localStorage.getItem('bc_gh_token');
-  const repo  = localStorage.getItem('bc_gh_repo') || 'bara-and-co/Bara-Co';
-  if (!token) { openConfig(); toast('Primero configurá tu token de GitHub','err'); return; }
-
   const btn = document.getElementById('publishBtn');
   btn.disabled = true;
   btn.innerHTML = '<div class="spinner"></div> Publicando...';
@@ -3492,48 +3464,33 @@ async function publish() {
     if (conBase64.length) {
       toast(`⚠️ ${conBase64.length} producto(s) tienen imagen sin subir. Editálos y volvé a cargar la foto.`, 'err');
       btn.disabled = false;
-      btn.innerHTML = '<i class="fas fa-cloud-upload-alt"></i> Publicar ahora';
+      btn.innerHTML = '<i class="fas fa-save"></i> Publicar';
       return;
     }
 
-    const getR = await fetch(`https://api.github.com/repos/${repo}/contents/productos.json`, {
-      headers:{ Authorization:`token ${token}`, Accept:'application/vnd.github.v3+json' }
-    });
-
-    if (!getR.ok && getR.status !== 404) {
-      if (getR.status === 401) throw new Error('Token vencido. Generá uno nuevo en GitHub → Settings → Developer settings.');
-      if (getR.status === 403) throw new Error('Sin permisos. El token necesita el permiso "repo".');
-      throw new Error(`Error ${getR.status} al acceder al repositorio.`);
-    }
-
-    const sha = getR.ok ? (await getR.json()).sha : null;
     const json = JSON.stringify(products, null, 2);
-    const b64  = btoa(unescape(encodeURIComponent(json)));
-    const now  = new Date().toLocaleString('es-AR');
-
-    const putR = await fetch(`https://api.github.com/repos/${repo}/contents/productos.json`, {
-      method:'PUT',
-      headers:{ Authorization:`token ${token}`, Accept:'application/vnd.github.v3+json', 'Content-Type':'application/json' },
-      body: JSON.stringify({ message:`Admin: actualizar productos — ${now}`, content:b64, ...(sha?{sha}:{}) })
+    const res = await fetch('/save.php', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: json
     });
 
-    if (!putR.ok) {
-      const e = await putR.json();
-      if (putR.status === 422) throw new Error('Archivo demasiado grande. Revisá que las imágenes sean URLs, no archivos.');
-      throw new Error(e.message || `Error ${putR.status} al publicar`);
+    if (!res.ok) {
+      const txt = await res.text().catch(() => `Error ${res.status}`);
+      throw new Error(txt || `Error ${res.status} al guardar`);
     }
 
     pending = 0;
     document.getElementById('saveBanner').classList.remove('show');
     localStorage.removeItem('bc_draft');
-    toast('¡Publicado! La tienda se actualiza en ~1 minuto 🎉','ok');
+    toast('¡Publicado! La tienda se actualizó al instante 🎉', 'ok');
 
   } catch(e) {
-    toast('Error: ' + e.message, 'err');
+    toast('Error al publicar: ' + e.message, 'err');
     console.error('Publish error:', e);
   } finally {
     btn.disabled = false;
-    btn.innerHTML = '<i class="fas fa-cloud-upload-alt"></i> Publicar ahora';
+    btn.innerHTML = '<i class="fas fa-save"></i> Publicar';
   }
 }
 
