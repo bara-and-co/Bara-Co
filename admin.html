@@ -3474,15 +3474,36 @@ async function publish() {
     }
 
     const json = JSON.stringify(products, null, 2);
-    const res = await fetch('/save.php', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: json
+
+    // ── Guardar en GitHub (sin servidor) ──
+    const GH_TOKEN = localStorage.getItem('bc_gh_token');
+    const GH_REPO  = localStorage.getItem('bc_gh_repo') || 'bara-and-co/Bara-Co';
+    if (!GH_TOKEN) { toast('⚠️ Configurá tu token de GitHub en ⚙️ Configuración antes de publicar.', 'err'); btn.disabled=false; btn.innerHTML='<i class="fas fa-save"></i> Publicar'; return; }
+    const GH_FILE  = 'productos.json';
+    const GH_API   = `https://api.github.com/repos/${GH_REPO}/contents/${GH_FILE}`;
+    const GH_HEADS = { Authorization: `token ${GH_TOKEN}`, Accept: 'application/vnd.github.v3+json', 'Content-Type': 'application/json' };
+
+    // Obtener SHA actual del archivo (necesario para actualizar)
+    const getR = await fetch(GH_API, { headers: GH_HEADS });
+    const sha  = getR.ok ? (await getR.json()).sha : null;
+
+    // Convertir JSON a base64
+    const b64  = btoa(unescape(encodeURIComponent(json)));
+    const now  = new Date().toLocaleString('es-AR');
+
+    const putR = await fetch(GH_API, {
+      method: 'PUT',
+      headers: GH_HEADS,
+      body: JSON.stringify({
+        message: `Admin: actualizar productos — ${now}`,
+        content: b64,
+        ...(sha ? { sha } : {})
+      })
     });
 
-    if (!res.ok) {
-      const txt = await res.text().catch(() => `Error ${res.status}`);
-      throw new Error(txt || `Error ${res.status} al guardar`);
+    if (!putR.ok) {
+      const e = await putR.json().catch(() => ({}));
+      throw new Error(e.message || `Error ${putR.status} al guardar en GitHub`);
     }
 
     pending = 0;
