@@ -1190,7 +1190,7 @@
         "stock": 0
       }
     ],
-    "activo": true,
+    "activo": false,
     "destacado": false,
     "outlet": false,
     "stockMap": {
@@ -1792,7 +1792,7 @@
         "stock": 0
       }
     ],
-    "activo": true,
+    "activo": false,
     "destacado": true,
     "outlet": true,
     "stockMap": {
@@ -1931,7 +1931,7 @@
         "stock": 0
       }
     ],
-    "activo": true,
+    "activo": false,
     "destacado": false,
     "outlet": true,
     "stockMap": {
@@ -1983,7 +1983,7 @@
         "stock": 0
       }
     ],
-    "activo": true,
+    "activo": false,
     "destacado": false,
     "outlet": true,
     "stockMap": {
@@ -2038,7 +2038,7 @@
         "stock": 0
       }
     ],
-    "activo": true,
+    "activo": false,
     "destacado": false,
     "outlet": true,
     "stockMap": {
@@ -2650,7 +2650,7 @@
         "stock": 0
       }
     ],
-    "activo": true,
+    "activo": false,
     "destacado": false,
     "outlet": false,
     "stockMap": {
@@ -2872,7 +2872,7 @@
         "stock": 0
       }
     ],
-    "activo": true,
+    "activo": false,
     "destacado": true,
     "outlet": false,
     "stockMap": {
@@ -3875,7 +3875,7 @@
     ],
     "sku": "CAMPERA-LAMPARD",
     "stock": 10,
-    "activo": false
+    "activo": true
   },
   {
     "id": "sastrero-rialto",
@@ -3979,7 +3979,7 @@
     ],
     "sku": "KIMONO",
     "stock": 10,
-    "activo": true
+    "activo": false
   },
   {
     "id": "remeron-tejido-86",
@@ -4009,7 +4009,7 @@
     ],
     "sku": "REMERON-TEJIDO-86",
     "stock": 10,
-    "activo": true
+    "activo": false
   },
   {
     "id": "musculosa-tejida-venecia",
@@ -4039,7 +4039,7 @@
     ],
     "sku": "MUSCULOSA-TEJIDA-VENECIA",
     "stock": 10,
-    "activo": true
+    "activo": false
   },
   {
     "id": "crop-tejido-kendi",
@@ -4069,7 +4069,7 @@
     ],
     "sku": "CROP-TEJIDO-KENDI",
     "stock": 10,
-    "activo": true
+    "activo": false
   },
   {
     "id": "campera-jean-clasica",
@@ -4137,7 +4137,7 @@
         "stock": 0
       }
     ],
-    "activo": true,
+    "activo": false,
     "destacado": false,
     "outlet": false,
     "stockMap": {
@@ -4190,7 +4190,7 @@
         "stock": 0
       }
     ],
-    "activo": true,
+    "activo": false,
     "destacado": false,
     "outlet": false,
     "stockMap": {
@@ -4243,7 +4243,7 @@
         "stock": 0
       }
     ],
-    "activo": true,
+    "activo": false,
     "destacado": false,
     "outlet": false,
     "stockMap": {
@@ -4545,7 +4545,7 @@
       "XL"
     ],
     "colores": [],
-    "activo": true,
+    "activo": false,
     "destacado": false,
     "outlet": false,
     "stockMap": {
@@ -4657,7 +4657,7 @@
         "stock": 0
       }
     ],
-    "activo": true,
+    "activo": false,
     "destacado": false,
     "outlet": false,
     "stockMap": {
@@ -4766,7 +4766,7 @@
         "stock": 0
       }
     ],
-    "activo": true,
+    "activo": false,
     "destacado": false,
     "outlet": false,
     "stockMap": {
