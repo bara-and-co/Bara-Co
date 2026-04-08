@@ -109,21 +109,6 @@
         "nombre": "Negro",
         "codigo": "#111111",
         "stock": 0
-      },
-      {
-        "nombre": "Chocolate",
-        "codigo": "#20170c",
-        "stock": 0
-      },
-      {
-        "nombre": "Crudo",
-        "codigo": "#f0e1cf",
-        "stock": 0
-      },
-      {
-        "nombre": "Vison",
-        "codigo": "#916f45",
-        "stock": 0
       }
     ],
     "activo": true,
@@ -133,19 +118,7 @@
       "Negro__S": null,
       "Negro__M": null,
       "Negro__L": 1,
-      "Negro__XL": null,
-      "Chocolate__S": null,
-      "Chocolate__M": 1,
-      "Chocolate__L": null,
-      "Chocolate__XL": null,
-      "Crudo__S": 1,
-      "Crudo__M": null,
-      "Crudo__L": null,
-      "Crudo__XL": null,
-      "Vison__S": null,
-      "Vison__M": null,
-      "Vison__L": null,
-      "Vison__XL": 1
+      "Negro__XL": null
     },
     "stockTalles": null,
     "stock": 4,
