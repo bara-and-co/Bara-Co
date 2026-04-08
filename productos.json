@@ -1,5 +1,46 @@
 [
   {
+    "id": "pa-uelo-1775689605975",
+    "nombre": "Pañuelo",
+    "precio": 17000,
+    "precioAnterior": null,
+    "categoria": "accesorios",
+    "subcategoria": "",
+    "descripcion": "",
+    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1775689598/bara/productos/yj6hzxis1dvxkftkrkk0.jpg",
+    "imagenes": [
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1775689598/bara/productos/yj6hzxis1dvxkftkrkk0.jpg"
+    ],
+    "tallesDisponibles": [
+      "Único"
+    ],
+    "colores": [],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Negro__Único": 1,
+      "Beige__Único": 1
+    },
+    "stockTalles": {
+      "Único": 1
+    },
+    "stock": 1,
+    "sku": "PAÑUELO",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "panuelo-1775689533844",
     "nombre": "Panuelo",
     "precio": 17000,
