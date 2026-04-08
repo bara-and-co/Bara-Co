@@ -1,5 +1,84 @@
 [
   {
+    "id": "sueter-nordico-1775659927660",
+    "nombre": "Sueter Nordico",
+    "precio": 60000,
+    "precioAnterior": null,
+    "categoria": "new",
+    "subcategoria": "",
+    "descripcion": "",
+    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1775659903/bara/productos/genjdijhn9epf3gcxere.webp",
+    "imagenes": [
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1775659903/bara/productos/genjdijhn9epf3gcxere.webp",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1775659918/bara/productos/uguq92g12su0kdlhdmvm.webp",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1775659926/bara/productos/bixizm768vxgqblgdsyv.webp"
+    ],
+    "tallesDisponibles": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "colores": [
+      {
+        "nombre": "Negro",
+        "codigo": "#111111",
+        "stock": 0
+      },
+      {
+        "nombre": "Vison",
+        "codigo": "#9e6f36",
+        "stock": 0
+      },
+      {
+        "nombre": "Chocolate",
+        "codigo": "#533818",
+        "stock": 0
+      },
+      {
+        "nombre": "Crudo",
+        "codigo": "#e9d1b4",
+        "stock": 0
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Negro__S": null,
+      "Negro__M": null,
+      "Negro__L": 1,
+      "Negro__XL": null,
+      "Vison__S": null,
+      "Vison__M": null,
+      "Vison__L": null,
+      "Vison__XL": 1,
+      "Chocolate__S": null,
+      "Chocolate__M": 1,
+      "Chocolate__L": null,
+      "Chocolate__XL": null,
+      "Crudo__S": 1,
+      "Crudo__M": null,
+      "Crudo__L": null,
+      "Crudo__XL": null
+    },
+    "stockTalles": null,
+    "stock": 4,
+    "sku": "SUETER-NORDICO",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "top-frunce-diamante-1775094403390",
     "nombre": "Top Frunce diamante",
     "precio": 25000,
