@@ -1,5 +1,59 @@
 [
   {
+    "id": "kate-1775682142189",
+    "nombre": "Kate",
+    "precio": 60000,
+    "precioAnterior": null,
+    "categoria": "new",
+    "subcategoria": "",
+    "descripcion": "",
+    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1775682119/bara/productos/xmdyv7evg9wrbgii7x44.webp",
+    "imagenes": [
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1775682119/bara/productos/xmdyv7evg9wrbgii7x44.webp",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1775682136/bara/productos/srydzdolvv2udeclgrfc.webp"
+    ],
+    "tallesDisponibles": [
+      "S",
+      "M"
+    ],
+    "colores": [
+      {
+        "nombre": "Gris",
+        "codigo": "#9E9E9E",
+        "stock": 1
+      },
+      {
+        "nombre": "Mostaza",
+        "codigo": "#F9A825",
+        "stock": 1
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Gris__S": 1,
+      "Gris__M": 1,
+      "Mostaza__S": 1,
+      "Mostaza__M": null
+    },
+    "stockTalles": null,
+    "stock": 3,
+    "sku": "KATE",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "lupin-1775681779727",
     "nombre": "Lupin",
     "precio": 65000,
