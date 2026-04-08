@@ -1,5 +1,75 @@
 [
   {
+    "id": "campera-suavage-1775661479469",
+    "nombre": "Campera Suavage",
+    "precio": 85000,
+    "precioAnterior": null,
+    "categoria": "new",
+    "subcategoria": "",
+    "descripcion": "",
+    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1775661417/bara/productos/vucgdwhrxdrn3whm4scm.webp",
+    "imagenes": [
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1775661417/bara/productos/vucgdwhrxdrn3whm4scm.webp",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1775661445/bara/productos/oxr24bkzmshlw1qlejgi.png",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1775661466/bara/productos/nzqbbqwp9ztm7etdijq4.png"
+    ],
+    "tallesDisponibles": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "colores": [
+      {
+        "nombre": "Negro",
+        "codigo": "#111111",
+        "stock": 1
+      },
+      {
+        "nombre": "Gris",
+        "codigo": "#9E9E9E",
+        "stock": 1
+      },
+      {
+        "nombre": "Chocolate",
+        "codigo": "#1e160c",
+        "stock": 2
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Negro__S": null,
+      "Negro__M": 1,
+      "Negro__L": null,
+      "Negro__XL": null,
+      "Gris__S": null,
+      "Gris__M": null,
+      "Gris__L": 1,
+      "Gris__XL": null,
+      "Chocolate__S": 1,
+      "Chocolate__M": null,
+      "Chocolate__L": null,
+      "Chocolate__XL": 1
+    },
+    "stockTalles": null,
+    "stock": 4,
+    "sku": "CAMPERA-SUAVAGE",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "sueter-panal-liviano-1775660504524",
     "nombre": "Sueter Panal Liviano",
     "precio": 20000,
