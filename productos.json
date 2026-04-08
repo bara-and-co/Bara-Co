@@ -70,7 +70,6 @@
     "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1775688200/bara/productos/jlilr33f8eibu8vywqng.jpg",
     "imagenes": [
       "https://res.cloudinary.com/djk1znvr7/image/upload/v1775688200/bara/productos/jlilr33f8eibu8vywqng.jpg",
-      "https://res.cloudinary.com/djk1znvr7/image/upload/v1775688217/bara/productos/fmsuwgp12lqwiixphybk.jpg",
       "https://res.cloudinary.com/djk1znvr7/image/upload/v1775688239/bara/productos/zsvoziobpth7p63oo0vx.jpg",
       "https://res.cloudinary.com/djk1znvr7/image/upload/v1775688310/bara/productos/t82mxjslcyjsnotskg5n.jpg",
       "https://res.cloudinary.com/djk1znvr7/image/upload/v1775688339/bara/productos/uky6ov3in2qutxaiu1ij.jpg"
@@ -93,11 +92,6 @@
         "nombre": "Azul",
         "codigo": "#1E88E5",
         "stock": 1
-      },
-      {
-        "nombre": "pasteles",
-        "codigo": "#f1e7d9",
-        "stock": 1
       }
     ],
     "activo": true,
@@ -106,8 +100,7 @@
     "stockMap": {
       "Negro__Único": 1,
       "Rosa__Único": 1,
-      "Azul__Único": 1,
-      "pasteles__Único": null
+      "Azul__Único": 1
     },
     "stockTalles": {
       "Único": 4
