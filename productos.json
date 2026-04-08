@@ -1,5 +1,88 @@
 [
   {
+    "id": "sueter-panal-liviano-1775660504524",
+    "nombre": "Sueter Panal Liviano",
+    "precio": 20000,
+    "precioAnterior": null,
+    "categoria": "new",
+    "subcategoria": "",
+    "descripcion": "",
+    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1775660484/bara/productos/vinxgeaikwys7yfl0c7l.webp",
+    "imagenes": [
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1775660484/bara/productos/vinxgeaikwys7yfl0c7l.webp",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1775660496/bara/productos/ivupdpsxaifzfzhrpfqq.webp"
+    ],
+    "tallesDisponibles": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colores": [
+      {
+        "nombre": "Blanco",
+        "codigo": "#FFFFFF",
+        "stock": 0
+      },
+      {
+        "nombre": "Gris",
+        "codigo": "#9E9E9E",
+        "stock": 0
+      },
+      {
+        "nombre": "Bordo",
+        "codigo": "#7B1C2A",
+        "stock": 0
+      },
+      {
+        "nombre": "Azul marino",
+        "codigo": "#1A237E",
+        "stock": 0
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Blanco__S": 1,
+      "Blanco__M": null,
+      "Blanco__L": null,
+      "Blanco__XL": null,
+      "Blanco__XXL": 1,
+      "Gris__S": null,
+      "Gris__M": 1,
+      "Gris__L": 1,
+      "Gris__XL": null,
+      "Gris__XXL": null,
+      "Bordo__S": null,
+      "Bordo__M": null,
+      "Bordo__L": null,
+      "Bordo__XL": 2,
+      "Bordo__XXL": null,
+      "Azul marino__S": 1,
+      "Azul marino__M": 1,
+      "Azul marino__L": null,
+      "Azul marino__XL": null,
+      "Azul marino__XXL": null
+    },
+    "stockTalles": null,
+    "stock": 9,
+    "sku": "SUETER-PANAL-LIVIANO",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "sueter-nordico-1775659927660",
     "nombre": "Sueter Nordico",
     "precio": 60000,
