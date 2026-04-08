@@ -402,22 +402,16 @@
         "nombre": "Negro",
         "codigo": "#111111",
         "stock": 0
-      },
-      {
-        "nombre": "Azul marino",
-        "codigo": "#1A237E",
-        "stock": 0
       }
     ],
     "activo": true,
     "destacado": false,
     "outlet": false,
     "stockMap": {
-      "Negro__Único": 1,
-      "Azul marino__Único": 1
+      "Negro__Único": 1
     },
     "stockTalles": null,
-    "stock": 2,
+    "stock": 1,
     "sku": "BODY-MANGA-PRINCESA",
     "marca": null,
     "tags": null,
