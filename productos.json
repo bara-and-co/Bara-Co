@@ -1,5 +1,75 @@
 [
   {
+    "id": "lupin-1775681779727",
+    "nombre": "Lupin",
+    "precio": 65000,
+    "precioAnterior": null,
+    "categoria": "new",
+    "subcategoria": "",
+    "descripcion": "",
+    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1775681738/bara/productos/fhffzldmikkwfjwcifcp.webp",
+    "imagenes": [
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1775681738/bara/productos/fhffzldmikkwfjwcifcp.webp",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1775681753/bara/productos/eysjncbz5echihq2tdze.webp",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1775681775/bara/productos/zw6p5azv1frvi3zdzlem.webp"
+    ],
+    "tallesDisponibles": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "colores": [
+      {
+        "nombre": "Negro",
+        "codigo": "#111111",
+        "stock": 0
+      },
+      {
+        "nombre": "Verde",
+        "codigo": "#43A047",
+        "stock": 0
+      },
+      {
+        "nombre": "crudo",
+        "codigo": "#f9efe4",
+        "stock": 0
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Negro__S": 1,
+      "Negro__M": null,
+      "Negro__L": null,
+      "Negro__XL": 1,
+      "Verde__S": null,
+      "Verde__M": 1,
+      "Verde__L": null,
+      "Verde__XL": null,
+      "crudo__S": null,
+      "crudo__M": null,
+      "crudo__L": 1,
+      "crudo__XL": null
+    },
+    "stockTalles": null,
+    "stock": 4,
+    "sku": "LUPIN",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "campera-suavage-1775661479469",
     "nombre": "Campera Suavage",
     "precio": 85000,
