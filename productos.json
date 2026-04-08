@@ -1,5 +1,66 @@
 [
   {
+    "id": "alter-1775682806096",
+    "nombre": "Alter",
+    "precio": 30000,
+    "precioAnterior": null,
+    "categoria": "new",
+    "subcategoria": "",
+    "descripcion": "",
+    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1775682763/bara/productos/ygvsevscmzjffph8n1xb.webp",
+    "imagenes": [
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1775682763/bara/productos/ygvsevscmzjffph8n1xb.webp",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1775682778/bara/productos/y7fjbaulneaqgowbueuc.webp",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1775682801/bara/productos/jghalcnoj3kwmc6xpkhc.webp"
+    ],
+    "tallesDisponibles": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "colores": [
+      {
+        "nombre": "Negro",
+        "codigo": "#111111",
+        "stock": 2
+      },
+      {
+        "nombre": "Blanco",
+        "codigo": "#FFFFFF",
+        "stock": 2
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Negro__S": 1,
+      "Negro__M": null,
+      "Negro__L": 1,
+      "Negro__XL": null,
+      "Blanco__S": 0,
+      "Blanco__M": 1,
+      "Blanco__L": null,
+      "Blanco__XL": 1
+    },
+    "stockTalles": null,
+    "stock": 4,
+    "sku": "ALTER",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "kate-1775682142189",
     "nombre": "Kate",
     "precio": 60000,
