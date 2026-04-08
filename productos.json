@@ -1,5 +1,73 @@
 [
   {
+    "id": "bufandon-1775688346216",
+    "nombre": "Bufandon",
+    "precio": 20000,
+    "precioAnterior": null,
+    "categoria": "accesorios",
+    "subcategoria": "",
+    "descripcion": "",
+    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1775688200/bara/productos/jlilr33f8eibu8vywqng.jpg",
+    "imagenes": [
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1775688200/bara/productos/jlilr33f8eibu8vywqng.jpg",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1775688217/bara/productos/fmsuwgp12lqwiixphybk.jpg",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1775688239/bara/productos/zsvoziobpth7p63oo0vx.jpg",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1775688310/bara/productos/t82mxjslcyjsnotskg5n.jpg",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1775688339/bara/productos/uky6ov3in2qutxaiu1ij.jpg"
+    ],
+    "tallesDisponibles": [
+      "Único"
+    ],
+    "colores": [
+      {
+        "nombre": "Negro",
+        "codigo": "#111111",
+        "stock": 1
+      },
+      {
+        "nombre": "Rosa",
+        "codigo": "#F48FB1",
+        "stock": 1
+      },
+      {
+        "nombre": "Azul",
+        "codigo": "#1E88E5",
+        "stock": 1
+      },
+      {
+        "nombre": "pasteles",
+        "codigo": "#f1e7d9",
+        "stock": 1
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Negro__Único": 1,
+      "Rosa__Único": 1,
+      "Azul__Único": 1,
+      "pasteles__Único": null
+    },
+    "stockTalles": {
+      "Único": 4
+    },
+    "stock": 4,
+    "sku": "BUFANDON",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "alter-1775682806096",
     "nombre": "Alter",
     "precio": 30000,
