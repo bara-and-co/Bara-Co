@@ -94,7 +94,9 @@
     "imagenes": [
       "https://res.cloudinary.com/djk1znvr7/image/upload/v1775659903/bara/productos/genjdijhn9epf3gcxere.webp",
       "https://res.cloudinary.com/djk1znvr7/image/upload/v1775659918/bara/productos/uguq92g12su0kdlhdmvm.webp",
-      "https://res.cloudinary.com/djk1znvr7/image/upload/v1775659926/bara/productos/bixizm768vxgqblgdsyv.webp"
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1775659926/bara/productos/bixizm768vxgqblgdsyv.webp",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1775660529/bara/productos/evjrenibnmh50bl8nqix.webp",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1775660536/bara/productos/schdxw8mccoqn2ftge5j.webp"
     ],
     "tallesDisponibles": [
       "S",
@@ -109,18 +111,18 @@
         "stock": 0
       },
       {
-        "nombre": "Vison",
-        "codigo": "#9e6f36",
-        "stock": 0
-      },
-      {
         "nombre": "Chocolate",
-        "codigo": "#533818",
+        "codigo": "#20170c",
         "stock": 0
       },
       {
         "nombre": "Crudo",
-        "codigo": "#e9d1b4",
+        "codigo": "#f0e1cf",
+        "stock": 0
+      },
+      {
+        "nombre": "Vison",
+        "codigo": "#916f45",
         "stock": 0
       }
     ],
@@ -132,10 +134,6 @@
       "Negro__M": null,
       "Negro__L": 1,
       "Negro__XL": null,
-      "Vison__S": null,
-      "Vison__M": null,
-      "Vison__L": null,
-      "Vison__XL": 1,
       "Chocolate__S": null,
       "Chocolate__M": 1,
       "Chocolate__L": null,
@@ -143,7 +141,11 @@
       "Crudo__S": 1,
       "Crudo__M": null,
       "Crudo__L": null,
-      "Crudo__XL": null
+      "Crudo__XL": null,
+      "Vison__S": null,
+      "Vison__M": null,
+      "Vison__L": null,
+      "Vison__XL": 1
     },
     "stockTalles": null,
     "stock": 4,
