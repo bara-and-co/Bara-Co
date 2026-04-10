@@ -1,5 +1,58 @@
 [
   {
+    "id": "faja-hebilla-cuadrada-1775858342506",
+    "nombre": "Faja Hebilla Cuadrada",
+    "precio": 20000,
+    "precioAnterior": null,
+    "categoria": "accesorios",
+    "subcategoria": "",
+    "descripcion": "",
+    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1775858323/bara/productos/tiqds1r4yv06asgs2vz3.png",
+    "imagenes": [
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1775858323/bara/productos/tiqds1r4yv06asgs2vz3.png",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1775858337/bara/productos/dgji1nq3aie7ppecdqvv.jpg"
+    ],
+    "tallesDisponibles": [
+      "Único"
+    ],
+    "colores": [
+      {
+        "nombre": "suela",
+        "codigo": "#a5471b",
+        "stock": 1
+      },
+      {
+        "nombre": "negro",
+        "codigo": "#060606",
+        "stock": 1
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "suela__Único": 1,
+      "negro__Único": 1
+    },
+    "stockTalles": {
+      "Único": null
+    },
+    "stock": 2,
+    "sku": "FAJA-HEBILLA-CUADRADA",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "faja-hebilla-flores-1775857759501",
     "nombre": "Faja Hebilla Flores",
     "precio": 25000,
