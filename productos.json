@@ -1,5 +1,56 @@
 [
   {
+    "id": "guantes-gamusa-1775834052345",
+    "nombre": "Guantes Gamusa",
+    "precio": 25000,
+    "precioAnterior": null,
+    "categoria": "accesorios",
+    "subcategoria": "",
+    "descripcion": "",
+    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1775834036/bara/productos/a7et0ecyvvtgtrfcr9un.png",
+    "imagenes": [
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1775834036/bara/productos/a7et0ecyvvtgtrfcr9un.png",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1775834049/bara/productos/npuinyhzraqneojcliqj.png"
+    ],
+    "tallesDisponibles": [
+      "Único"
+    ],
+    "colores": [
+      {
+        "nombre": "Negro",
+        "codigo": "#111111",
+        "stock": 0
+      },
+      {
+        "nombre": "camel",
+        "codigo": "#b77728",
+        "stock": 0
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Negro__Único": 1,
+      "camel__Único": 1
+    },
+    "stockTalles": null,
+    "stock": 2,
+    "sku": "GUANTES-GAMUSA",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "gorra-corderoy-1775833304315",
     "nombre": "Gorra Corderoy",
     "precio": 15000,
