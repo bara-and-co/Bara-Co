@@ -1,5 +1,49 @@
 [
   {
+    "id": "faja-hebilla-redonda-suela-1775857097046",
+    "nombre": "Faja Hebilla redonda Suela",
+    "precio": 20000,
+    "precioAnterior": null,
+    "categoria": "accesorios",
+    "subcategoria": "",
+    "descripcion": "",
+    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1775857053/bara/productos/ft4ecr6dcdwb29rwoidf.png",
+    "imagenes": [
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1775857053/bara/productos/ft4ecr6dcdwb29rwoidf.png"
+    ],
+    "tallesDisponibles": [
+      "Único"
+    ],
+    "colores": [
+      {
+        "nombre": "Suela",
+        "codigo": "#782a06",
+        "stock": 1
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Suela__Único": 1
+    },
+    "stockTalles": null,
+    "stock": 1,
+    "sku": "FAJA-HEBILLA-REDONDA-SUELA",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "faja-circulo-1775856570130",
     "nombre": "Faja Hebilla redonda",
     "precio": 15000,
