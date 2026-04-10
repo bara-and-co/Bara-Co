@@ -1,5 +1,49 @@
 [
   {
+    "id": "bodychain-i-1775834290055",
+    "nombre": "Bodychain I",
+    "precio": 13000,
+    "precioAnterior": null,
+    "categoria": "accesorios",
+    "subcategoria": "",
+    "descripcion": "",
+    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1775834284/bara/productos/oulf6llaaqxu15a0lfez.jpg",
+    "imagenes": [
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1775834284/bara/productos/oulf6llaaqxu15a0lfez.jpg"
+    ],
+    "tallesDisponibles": [
+      "Único"
+    ],
+    "colores": [
+      {
+        "nombre": "Plateado",
+        "codigo": "#B0BEC5",
+        "stock": 1
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Plateado__Único": 1
+    },
+    "stockTalles": null,
+    "stock": 1,
+    "sku": "BODYCHAIN-I",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "guantes-gamusa-1775834052345",
     "nombre": "Guantes Gamusa",
     "precio": 25000,
