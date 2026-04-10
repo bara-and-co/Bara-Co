@@ -1,5 +1,49 @@
 [
   {
+    "id": "bodychain-iii-1775834479748",
+    "nombre": "Bodychain III",
+    "precio": 10000,
+    "precioAnterior": null,
+    "categoria": "accesorios",
+    "subcategoria": "",
+    "descripcion": "",
+    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1775834459/bara/productos/lq2xy9yh54fws6fxhh7d.jpg",
+    "imagenes": [
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1775834459/bara/productos/lq2xy9yh54fws6fxhh7d.jpg"
+    ],
+    "tallesDisponibles": [
+      "Único"
+    ],
+    "colores": [
+      {
+        "nombre": "Plateado",
+        "codigo": "#B0BEC5",
+        "stock": 1
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Plateado__Único": 1
+    },
+    "stockTalles": null,
+    "stock": 1,
+    "sku": "BODYCHAIN-III",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "bodychain-ii-1775834383256",
     "nombre": "Bodychain II",
     "precio": 10000,
