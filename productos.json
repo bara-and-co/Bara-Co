@@ -1,5 +1,58 @@
 [
   {
+    "id": "faja-hebilla-flores-1775857759501",
+    "nombre": "Faja Hebilla Flores",
+    "precio": 25000,
+    "precioAnterior": null,
+    "categoria": "accesorios",
+    "subcategoria": "",
+    "descripcion": "",
+    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1775857742/bara/productos/oopivfyknxy9qlxqpqxh.png",
+    "imagenes": [
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1775857742/bara/productos/oopivfyknxy9qlxqpqxh.png",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1775857758/bara/productos/cix0jf3nbjymee8omkjn.png"
+    ],
+    "tallesDisponibles": [
+      "Único"
+    ],
+    "colores": [
+      {
+        "nombre": "Marrón",
+        "codigo": "#795548",
+        "stock": 1
+      },
+      {
+        "nombre": "suela",
+        "codigo": "#a5471b",
+        "stock": 1
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Marrón__Único": 1,
+      "suela__Único": 1
+    },
+    "stockTalles": {
+      "Único": null
+    },
+    "stock": 2,
+    "sku": "FAJA-HEBILLA-FLORES",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "faja-gamuza-flecos-1775857525852",
     "nombre": "Faja Gamuza Flecos",
     "precio": 17500,
