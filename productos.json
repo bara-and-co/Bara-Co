@@ -1,5 +1,65 @@
 [
   {
+    "id": "faja-estribo-1775859335554",
+    "nombre": "Faja Estribo",
+    "precio": 25000,
+    "precioAnterior": null,
+    "categoria": "accesorios",
+    "subcategoria": "",
+    "descripcion": "",
+    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1775859301/bara/productos/aki2ahjbw6hi8peynhmf.png",
+    "imagenes": [
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1775859301/bara/productos/aki2ahjbw6hi8peynhmf.png",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1775859322/bara/productos/gdxdpdvdyhy6brwckj75.png",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1775859334/bara/productos/r1rlebzrakvdyecn8ae2.png"
+    ],
+    "tallesDisponibles": [
+      "Único"
+    ],
+    "colores": [
+      {
+        "nombre": "Negro",
+        "codigo": "#111111",
+        "stock": 1
+      },
+      {
+        "nombre": "Marrón",
+        "codigo": "#795548",
+        "stock": 1
+      },
+      {
+        "nombre": "suela",
+        "codigo": "#b9671a",
+        "stock": 1
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Negro__Único": 1,
+      "Marrón__Único": 1,
+      "suela__Único": 1
+    },
+    "stockTalles": {
+      "Único": null
+    },
+    "stock": 3,
+    "sku": "FAJA-ESTRIBO",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "faja-hebilla-estrella-1775858641324",
     "nombre": "Faja Hebilla Estrella",
     "precio": 25000,
