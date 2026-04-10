@@ -1,5 +1,57 @@
 [
   {
+    "id": "faja-aros-1775861409955",
+    "nombre": "Faja Aros",
+    "precio": 17500,
+    "precioAnterior": null,
+    "categoria": "accesorios",
+    "subcategoria": "",
+    "descripcion": "",
+    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1775861408/bara/productos/mnwmksvuzawygpvh9ako.webp",
+    "imagenes": [
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1775861408/bara/productos/mnwmksvuzawygpvh9ako.webp"
+    ],
+    "tallesDisponibles": [
+      "Único"
+    ],
+    "colores": [
+      {
+        "nombre": "Marrón",
+        "codigo": "#795548",
+        "stock": 1
+      },
+      {
+        "nombre": "Chocolate",
+        "codigo": "#362412",
+        "stock": 1
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Marrón__Único": 1,
+      "Chocolate__Único": 1
+    },
+    "stockTalles": {
+      "Único": null
+    },
+    "stock": 2,
+    "sku": "FAJA-AROS",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "faja-aros-gamuza-1775861113926",
     "nombre": "Faja Aros Gamuza",
     "precio": 25000,
