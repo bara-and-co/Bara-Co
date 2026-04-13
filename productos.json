@@ -2805,8 +2805,8 @@
   {
     "id": "baggy-jean-snake-blue-1773781205492",
     "nombre": "Baggy Jean Snake Blue",
-    "precio": 49000,
-    "precioAnterior": 70000,
+    "precio": 70000,
+    "precioAnterior": null,
     "categoria": "mujer",
     "subcategoria": "Pantalones",
     "descripcion": "",
@@ -2835,12 +2835,7 @@
       "Celeste__40": 1,
       "Celeste__42": 1
     },
-    "stockTalles": {
-      "S": null,
-      "M": null,
-      "L": null,
-      "XL": null
-    },
+    "stockTalles": null,
     "stock": 3,
     "sku": "BAGGY-JEAN-SNAKE-BLUE",
     "marca": null,
