@@ -1,5 +1,91 @@
 [
   {
+    "id": "sueter-capucha-1776121605456",
+    "nombre": "Sueter Capucha",
+    "precio": 55000,
+    "precioAnterior": null,
+    "categoria": "new",
+    "subcategoria": "",
+    "descripcion": "",
+    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1776121585/bara/productos/x6amcjq7qk90ubzejooq.jpg",
+    "imagenes": [
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1776121585/bara/productos/x6amcjq7qk90ubzejooq.jpg",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1776121599/bara/productos/l1ujxfbugdkig44sqcal.jpg"
+    ],
+    "tallesDisponibles": [
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colores": [
+      {
+        "nombre": "Negro",
+        "codigo": "#111111",
+        "stock": 0
+      },
+      {
+        "nombre": "Crema",
+        "codigo": "#F5F0E8",
+        "stock": 0
+      },
+      {
+        "nombre": "Camel",
+        "codigo": "#C19A6B",
+        "stock": 0
+      },
+      {
+        "nombre": "Verde",
+        "codigo": "#43A047",
+        "stock": 0
+      },
+      {
+        "nombre": "Azul marino",
+        "codigo": "#1A237E",
+        "stock": 0
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Negro__L": 1,
+      "Negro__XL": null,
+      "Negro__XXL": null,
+      "Crema__L": null,
+      "Crema__XL": 1,
+      "Crema__XXL": 1,
+      "Camel__L": 1,
+      "Camel__XL": null,
+      "Camel__XXL": null,
+      "Verde__L": 1,
+      "Verde__XL": null,
+      "Verde__XXL": null,
+      "Azul marino__L": null,
+      "Azul marino__XL": 1,
+      "Azul marino__XXL": null
+    },
+    "stockTalles": {
+      "S": null,
+      "M": 2,
+      "L": null,
+      "XL": 1
+    },
+    "stock": 6,
+    "sku": "SUETER-CAPUCHA",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "sastrero-corderoy-baggy-1776120960539",
     "nombre": "Sastrero Corderoy Baggy",
     "precio": 60000,
