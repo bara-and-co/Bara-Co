@@ -4439,23 +4439,12 @@
       "https://i.ibb.co/fdLy8pZ2/remerasafaritrasera.webp"
     ],
     "tallesDisponibles": [
-      "S",
       "M"
     ],
     "colores": [
       {
-        "nombre": "Marrón",
-        "codigo": "#795548",
-        "stock": 0
-      },
-      {
-        "nombre": "Rosa",
-        "codigo": "#F48FB1",
-        "stock": 1
-      },
-      {
-        "nombre": "Salmón",
-        "codigo": "#FF8A65",
+        "nombre": "Negro",
+        "codigo": "#111111",
         "stock": 0
       }
     ],
@@ -4463,17 +4452,10 @@
     "destacado": false,
     "outlet": false,
     "stockMap": {
-      "Marrón__S": null,
-      "Marrón__M": 1,
-      "Rosa__S": 1,
-      "Rosa__M": 0,
-      "Salmón__S": 0,
-      "Salmón__M": 1
+      "Negro__M": 1
     },
-    "stockTalles": {
-      "M": 2
-    },
-    "stock": 2,
+    "stockTalles": null,
+    "stock": 1,
     "sku": "SUDADERA-SURF",
     "marca": null,
     "tags": null,
