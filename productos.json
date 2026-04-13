@@ -3279,8 +3279,8 @@
   {
     "id": "pantalon-elipse-1772019558555",
     "nombre": "Pantalon Elipse",
-    "precio": 40000,
-    "precioAnterior": 60000,
+    "precio": 60000,
+    "precioAnterior": null,
     "categoria": "hombre",
     "subcategoria": "Pantalones",
     "descripcion": "",
@@ -3317,6 +3317,9 @@
       "Marrón__46": null
     },
     "stockTalles": {
+      "S": null,
+      "M": 2,
+      "L": null,
       "XL": 1
     },
     "stock": 2,
