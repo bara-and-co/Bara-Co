@@ -3833,8 +3833,8 @@
   {
     "id": "baggy-bordado-atom-1771873581656",
     "nombre": "Baggy Bordado ATOM",
-    "precio": 50000,
-    "precioAnterior": 70000,
+    "precio": 75000,
+    "precioAnterior": null,
     "categoria": "hombre",
     "subcategoria": "Pantalones",
     "descripcion": "",
@@ -3871,9 +3871,10 @@
       "Jean__46": 1
     },
     "stockTalles": {
-      "38": 1,
-      "40": null,
-      "44": 1
+      "S": null,
+      "M": null,
+      "L": null,
+      "XL": null
     },
     "stock": 5,
     "sku": "BAGGY-BORDADO-ATOM",
