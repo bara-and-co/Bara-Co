@@ -8373,8 +8373,8 @@
   {
     "id": "pantalon-cargo-gris",
     "nombre": "Pantalon cargo Gris",
-    "precio": 42000,
-    "precioAnterior": 70000,
+    "precio": 70000,
+    "precioAnterior": null,
     "categoria": "hombre",
     "subcategoria": "Pantalones",
     "descripcion": "",
@@ -8392,9 +8392,7 @@
     "activo": true,
     "destacado": false,
     "outlet": false,
-    "stockMap": {
-      "Blanco__L": 1
-    },
+    "stockMap": {},
     "stockTalles": {
       "S": null,
       "M": null,
@@ -8403,6 +8401,7 @@
     },
     "stock": 10,
     "sku": "PANTALON-CARGO-GRIS",
+    "marca": null,
     "tags": null,
     "fabrica": null,
     "cuidados": null,
@@ -8437,7 +8436,7 @@
         "stock": 0
       }
     ],
-    "activo": true,
+    "activo": false,
     "destacado": false,
     "outlet": false,
     "stockMap": {
@@ -8874,7 +8873,7 @@
       "XL"
     ],
     "colores": [],
-    "activo": true,
+    "activo": false,
     "destacado": false,
     "outlet": false,
     "stockMap": {
