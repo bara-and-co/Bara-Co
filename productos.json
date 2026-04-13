@@ -7732,7 +7732,7 @@
   {
     "id": "pantalon-jean-paint",
     "nombre": "Pantalon Jean Paint",
-    "precio": 60000,
+    "precio": 80000,
     "precioAnterior": 100000,
     "categoria": "hombre",
     "subcategoria": "Pantalones",
@@ -7753,8 +7753,7 @@
     "destacado": false,
     "outlet": false,
     "stockMap": {
-      "Bordo__M": null,
-      "Bordo__XXL": null
+      "Negro__44": 2
     },
     "stockTalles": {
       "S": null,
@@ -7764,6 +7763,7 @@
     },
     "stock": 10,
     "sku": "PANTALON-JEAN-PAINT",
+    "marca": null,
     "tags": null,
     "fabrica": null,
     "cuidados": null,
