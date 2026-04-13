@@ -4491,8 +4491,8 @@
   {
     "id": "oversize-el-veme-1771870063640",
     "nombre": "Oversize Eléveme",
-    "precio": 17000,
-    "precioAnterior": 25000,
+    "precio": 25000,
+    "precioAnterior": null,
     "categoria": "hombre",
     "subcategoria": "",
     "descripcion": "",
@@ -4518,12 +4518,7 @@
       "Negro__M": 1,
       "Negro__XL": 1
     },
-    "stockTalles": {
-      "S": 1,
-      "M": 2,
-      "L": 1,
-      "XL": 2
-    },
+    "stockTalles": null,
     "stock": 2,
     "sku": "OVERSIZE-ELÉVEME",
     "marca": null,
