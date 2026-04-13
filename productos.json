@@ -3222,8 +3222,8 @@
   {
     "id": "remera-basic-mw-1772020647938",
     "nombre": "Remera Basic MW",
-    "precio": 10500,
-    "precioAnterior": 15000,
+    "precio": 15000,
+    "precioAnterior": null,
     "categoria": "hombre",
     "subcategoria": "Remeras",
     "descripcion": "",
@@ -3288,12 +3288,7 @@
       "Azul__XL": null,
       "Azul__XXL": null
     },
-    "stockTalles": {
-      "S": 1,
-      "M": 2,
-      "L": 1,
-      "XL": 2
-    },
+    "stockTalles": null,
     "stock": 4,
     "sku": "REMERA-BASIC-MW",
     "marca": null,
