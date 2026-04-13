@@ -3923,8 +3923,8 @@
   {
     "id": "remera-oversize-lisa-1771875664412",
     "nombre": "Remera Oversize Lisa",
-    "precio": 14000,
-    "precioAnterior": 20000,
+    "precio": 20000,
+    "precioAnterior": null,
     "categoria": "hombre",
     "subcategoria": "Remeras",
     "descripcion": "Amarillo Oro",
@@ -3974,7 +3974,7 @@
     "stockMap": {
       "Negro__M": 1,
       "Negro__L": null,
-      "Negro__XL": null,
+      "Negro__XL": 0,
       "Blanco__M": null,
       "Blanco__L": 1,
       "Blanco__XL": null,
@@ -3988,9 +3988,7 @@
       "Amarillo__L": null,
       "Amarillo__XL": 1
     },
-    "stockTalles": {
-      "M": 2
-    },
+    "stockTalles": null,
     "stock": 5,
     "sku": "REMERA-OVERSIZE-LISA",
     "marca": null,
