@@ -3777,8 +3777,8 @@
   {
     "id": "shadow-2-0-baggy-gabardina-1771873647606",
     "nombre": "SHADOW 2.0 – BAGGY GABARDINA",
-    "precio": 49000,
-    "precioAnterior": 70000,
+    "precio": 70000,
+    "precioAnterior": null,
     "categoria": "hombre",
     "subcategoria": "Pantalones",
     "descripcion": "",
@@ -3811,9 +3811,10 @@
       "Gris__42": 2
     },
     "stockTalles": {
-      "38": 1,
-      "40": null,
-      "44": 1
+      "S": null,
+      "M": null,
+      "L": null,
+      "XL": null
     },
     "stock": 4,
     "sku": "SHADOW-2.0-–-BAGGY-GABARDINA",
