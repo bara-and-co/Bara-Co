@@ -1,5 +1,70 @@
 [
   {
+    "id": "canguro-rustico-obezise-1776122166050",
+    "nombre": "Canguro Rustico Obezise",
+    "precio": 60000,
+    "precioAnterior": null,
+    "categoria": "new",
+    "subcategoria": "",
+    "descripcion": "",
+    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1776122149/bara/productos/fvjyin4fk65d1mbn4fey.jpg",
+    "imagenes": [
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1776122149/bara/productos/fvjyin4fk65d1mbn4fey.jpg",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1776122159/bara/productos/bgpsxutu7aqxwmkcbyin.jpg"
+    ],
+    "tallesDisponibles": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "colores": [
+      {
+        "nombre": "verde c",
+        "codigo": "#bae98d",
+        "stock": 1
+      },
+      {
+        "nombre": "gris C",
+        "codigo": "#313230",
+        "stock": 0
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "verde c__S": 1,
+      "verde c__M": null,
+      "verde c__L": 1,
+      "verde c__XL": null,
+      "gris C__S": 1,
+      "gris C__M": 1,
+      "gris C__L": null,
+      "gris C__XL": null
+    },
+    "stockTalles": {
+      "S": null,
+      "M": 2,
+      "L": null,
+      "XL": 1
+    },
+    "stock": 4,
+    "sku": "CANGURO-RUSTICO-OBEZISE",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "sueter-capucha-1776121605456",
     "nombre": "Sueter Capucha",
     "precio": 55000,
