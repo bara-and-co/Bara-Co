@@ -3720,8 +3720,8 @@
   {
     "id": "jean-cargo-bolsillo-doble-1771892100614",
     "nombre": "Jean Cargo Bolsillo Doble",
-    "precio": 40000,
-    "precioAnterior": 65000,
+    "precio": 65000,
+    "precioAnterior": null,
     "categoria": "mujer",
     "subcategoria": "Pantalones",
     "descripcion": "",
@@ -3749,11 +3749,7 @@
       "Azul marino__38": 1,
       "Azul marino__42": 1
     },
-    "stockTalles": {
-      "36": 1,
-      "38": 1,
-      "44": 1
-    },
+    "stockTalles": null,
     "stock": 3,
     "sku": "JEAN-CARGO-BOLSILLO-DOBLE",
     "marca": null,
