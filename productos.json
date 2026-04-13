@@ -3672,8 +3672,8 @@
   {
     "id": "jean-cargo-bolsillo-largo-1771892180264",
     "nombre": "Jean Cargo Bolsillo Largo",
-    "precio": 40000,
-    "precioAnterior": 65000,
+    "precio": 60000,
+    "precioAnterior": null,
     "categoria": "mujer",
     "subcategoria": "Pantalones",
     "descripcion": "",
@@ -3701,11 +3701,7 @@
       "Celeste__40": 1,
       "Celeste__42": 1
     },
-    "stockTalles": {
-      "38": 1,
-      "40": 1,
-      "42": 1
-    },
+    "stockTalles": null,
     "stock": 3,
     "sku": "JEAN-CARGO-BOLSILLO-LARGO",
     "marca": null,
