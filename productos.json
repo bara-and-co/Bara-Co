@@ -3893,8 +3893,8 @@
   {
     "id": "camo-baggy-gabardina-1771873166614",
     "nombre": "CAMO – BAGGY GABARDINA",
-    "precio": 49000,
-    "precioAnterior": 70000,
+    "precio": 70000,
+    "precioAnterior": null,
     "categoria": "hombre",
     "subcategoria": "Pantalones",
     "descripcion": "",
@@ -3929,9 +3929,10 @@
       "Verde oliva__46": 1
     },
     "stockTalles": {
-      "38": 1,
-      "40": null,
-      "44": 1
+      "S": null,
+      "M": null,
+      "L": null,
+      "XL": null
     },
     "stock": 4,
     "sku": "CAMO-–-BAGGY-GABARDINA",
