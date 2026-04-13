@@ -260,7 +260,7 @@
     "nombre": "Faja Hebilla Estrella",
     "precio": 25000,
     "precioAnterior": null,
-    "categoria": "hombre",
+    "categoria": "accesorios",
     "subcategoria": "",
     "descripcion": "",
     "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1775858522/bara/productos/miubykxcgb9qvylgv3z7.png",
@@ -291,7 +291,10 @@
       "Marrón__Único": 1
     },
     "stockTalles": {
-      "Único": null
+      "S": null,
+      "M": 2,
+      "L": null,
+      "XL": 1
     },
     "stock": 2,
     "sku": "FAJA-HEBILLA-ESTRELLA",
