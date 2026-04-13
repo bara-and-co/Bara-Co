@@ -7932,8 +7932,8 @@
   {
     "id": "pantalon-jean-0541",
     "nombre": "Pantalon jean 0541",
-    "precio": 49000,
-    "precioAnterior": 70000,
+    "precio": 70000,
+    "precioAnterior": null,
     "categoria": "hombre",
     "subcategoria": "Pantalones",
     "descripcion": "",
@@ -7953,8 +7953,7 @@
     "destacado": false,
     "outlet": false,
     "stockMap": {
-      "Bordo__M": null,
-      "Bordo__XXL": null
+      "Negro__44": 2
     },
     "stockTalles": {
       "S": null,
@@ -7964,6 +7963,7 @@
     },
     "stock": 10,
     "sku": "PANTALON-JEAN-0541",
+    "marca": null,
     "tags": null,
     "fabrica": null,
     "cuidados": null,
