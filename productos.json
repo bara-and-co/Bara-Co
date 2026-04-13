@@ -7425,7 +7425,7 @@
         "stock": 0
       }
     ],
-    "activo": true,
+    "activo": false,
     "destacado": false,
     "outlet": false,
     "stockMap": {
@@ -7476,7 +7476,7 @@
         "stock": 0
       }
     ],
-    "activo": true,
+    "activo": false,
     "destacado": false,
     "outlet": false,
     "stockMap": {
@@ -7506,7 +7506,7 @@
   {
     "id": "pantalon-custom-face-2",
     "nombre": "Pantalon CUSTOM FACE 2",
-    "precio": 70000,
+    "precio": 90000,
     "precioAnterior": 110000,
     "categoria": "hombre",
     "subcategoria": "Pantalones",
@@ -7523,7 +7523,9 @@
     "activo": true,
     "destacado": false,
     "outlet": false,
-    "stockMap": {},
+    "stockMap": {
+      "Negro__44": 2
+    },
     "stockTalles": {
       "42": 1
     },
