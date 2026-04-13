@@ -3337,8 +3337,8 @@
   {
     "id": "pantalon-drift-1772019305811",
     "nombre": "Pantalon Drift",
-    "precio": 40000,
-    "precioAnterior": 60000,
+    "precio": 60000,
+    "precioAnterior": null,
     "categoria": "hombre",
     "subcategoria": "Pantalones",
     "descripcion": "",
@@ -3366,7 +3366,10 @@
       "Jean__44": null
     },
     "stockTalles": {
-      "M": 2
+      "S": null,
+      "M": 2,
+      "L": null,
+      "XL": null
     },
     "stock": 2,
     "sku": "PANTALON-DRIFT",
