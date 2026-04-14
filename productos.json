@@ -3933,7 +3933,9 @@
       "Celeste__40": 1,
       "Celeste__42": 1
     },
-    "stockTalles": null,
+    "stockTalles": {
+      "S": 1
+    },
     "stock": 3,
     "sku": "JEAN-CARGO-BOLSILLO-LARGO",
     "marca": null,
