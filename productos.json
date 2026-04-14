@@ -1,5 +1,73 @@
 [
   {
+    "id": "buzo-bordado-1776200725652",
+    "nombre": "Buzo Bordado",
+    "precio": 50000,
+    "precioAnterior": null,
+    "categoria": "new",
+    "subcategoria": "",
+    "descripcion": "",
+    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1776200718/bara/productos/pn1ye3b5mtsw4u69iutq.jpg",
+    "imagenes": [
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1776200718/bara/productos/pn1ye3b5mtsw4u69iutq.jpg"
+    ],
+    "tallesDisponibles": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "colores": [
+      {
+        "nombre": "Negro",
+        "codigo": "#111111",
+        "stock": 1
+      },
+      {
+        "nombre": "Beige",
+        "codigo": "#D4B896",
+        "stock": 1
+      },
+      {
+        "nombre": "chocolate",
+        "codigo": "#241604",
+        "stock": 1
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Negro__S": null,
+      "Negro__M": 1,
+      "Negro__L": null,
+      "Negro__XL": null,
+      "Beige__S": 1,
+      "Beige__M": null,
+      "Beige__L": null,
+      "Beige__XL": 1,
+      "chocolate__S": null,
+      "chocolate__M": null,
+      "chocolate__L": 1,
+      "chocolate__XL": null
+    },
+    "stockTalles": null,
+    "stock": 4,
+    "sku": "BUZO-BORDADO",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "remera-recorte-boxy-1776181717260",
     "nombre": "Remera Recorte Boxy",
     "precio": 35000,
