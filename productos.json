@@ -8510,8 +8510,8 @@
   {
     "id": "remera-oversize-1851",
     "nombre": "Remera oversize 1851",
-    "precio": 17000,
-    "precioAnterior": 25000,
+    "precio": 25000,
+    "precioAnterior": null,
     "categoria": "hombre",
     "subcategoria": "Remeras",
     "descripcion": "",
@@ -8548,9 +8548,9 @@
       "Blanco__XL": 1
     },
     "stockTalles": {
-      "S": null,
-      "M": null,
-      "L": null,
+      "S": 1,
+      "M": 1,
+      "L": 1,
       "XL": 2
     },
     "stock": 2,
