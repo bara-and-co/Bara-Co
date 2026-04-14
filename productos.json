@@ -9230,8 +9230,8 @@
   {
     "id": "remera-disco",
     "nombre": "Remera Disco",
-    "precio": 12000,
-    "precioAnterior": 20000,
+    "precio": 20000,
+    "precioAnterior": null,
     "categoria": "hombre",
     "subcategoria": "",
     "descripcion": "",
@@ -9248,8 +9248,33 @@
     "colores": [],
     "activo": true,
     "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Negro__L": 1,
+      "Negro__XL": 0,
+      "Blanco__L": null,
+      "Blanco__XL": 1
+    },
+    "stockTalles": {
+      "S": null,
+      "M": null,
+      "L": null,
+      "XL": null
+    },
     "stock": 10,
-    "sku": "REMERA-DISCO"
+    "sku": "REMERA-DISCO",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
   },
   {
     "id": "remera-love",
