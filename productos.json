@@ -8860,14 +8860,17 @@
         "stock": 0
       }
     ],
-    "activo": false,
+    "activo": true,
     "destacado": false,
     "outlet": false,
     "stockMap": {
-      "Verde oliva__40": null
+      "Verde oliva__40": 1
     },
     "stockTalles": {
-      "40": 1
+      "S": 1,
+      "M": 0,
+      "L": 1,
+      "XL": 2
     },
     "stock": 1,
     "sku": "PANTALON-CAMUFLADO",
