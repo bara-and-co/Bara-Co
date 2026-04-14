@@ -8063,7 +8063,7 @@
   {
     "id": "pantalon-custom-face",
     "nombre": "Pantalon CUSTOM FACE",
-    "precio": 78000,
+    "precio": 90000,
     "precioAnterior": 130000,
     "categoria": "hombre",
     "subcategoria": "Pantalones",
@@ -8090,9 +8090,10 @@
       "Negro__44": 2
     },
     "stockTalles": {
-      "38": 1,
-      "40": null,
-      "44": 1
+      "S": 1,
+      "M": 1,
+      "L": 1,
+      "XL": 1
     },
     "stock": 10,
     "sku": "PANTALON-CUSTOM-FACE",
@@ -9322,7 +9323,7 @@
         "stock": 0
       }
     ],
-    "activo": false,
+    "activo": true,
     "destacado": false,
     "outlet": false,
     "stockMap": {
