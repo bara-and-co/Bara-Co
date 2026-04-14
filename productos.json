@@ -4549,7 +4549,6 @@
       "https://res.cloudinary.com/djk1znvr7/image/upload/v1776201956/bara/productos/vvbolfg6ftacchgjfub8.jpg"
     ],
     "tallesDisponibles": [
-      "L",
       "XL"
     ],
     "colores": [
@@ -4557,24 +4556,16 @@
         "nombre": "Negro",
         "codigo": "#111111",
         "stock": 0
-      },
-      {
-        "nombre": "Azul",
-        "codigo": "#1E88E5",
-        "stock": 0
       }
     ],
     "activo": true,
     "destacado": false,
     "outlet": false,
     "stockMap": {
-      "Negro__L": 0,
-      "Negro__XL": 1,
-      "Azul__L": 1,
-      "Azul__XL": 0
+      "Negro__XL": 1
     },
     "stockTalles": null,
-    "stock": 2,
+    "stock": 1,
     "sku": "ROMPEVIENTO-SOACHA",
     "marca": null,
     "tags": null,
