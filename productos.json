@@ -4544,11 +4544,9 @@
     "categoria": "hombre",
     "subcategoria": "Camperas",
     "descripcion": "",
-    "imagen": "https://i.ibb.co/q3shbdHc/IMG-8087.jpg",
+    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1776201956/bara/productos/vvbolfg6ftacchgjfub8.jpg",
     "imagenes": [
-      "https://i.ibb.co/q3shbdHc/IMG-8087.jpg",
-      "https://i.ibb.co/ZRPtNLNG/rompeviento.png",
-      "https://i.ibb.co/XZ0J9KfW/IMG-8088.jpg"
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1776201956/bara/productos/vvbolfg6ftacchgjfub8.jpg"
     ],
     "tallesDisponibles": [
       "L",
@@ -4575,12 +4573,7 @@
       "Azul__L": 1,
       "Azul__XL": 0
     },
-    "stockTalles": {
-      "S": 1,
-      "M": 2,
-      "L": 1,
-      "XL": 2
-    },
+    "stockTalles": null,
     "stock": 2,
     "sku": "ROMPEVIENTO-SOACHA",
     "marca": null,
