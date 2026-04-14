@@ -2165,7 +2165,7 @@
   </div>
 </div>
 
-<!-- MODAL CONFIGURACIÓN -->
+<!-- MODAL CONFIGURACIÓN (AGREGAMOS PAGOS) -->
 <div class="backdrop" id="mCfg" onclick="onBd(event,'mCfg',closeConfig)">
   <div class="modal" onclick="event.stopPropagation()">
     <div class="modal-head">
@@ -2181,6 +2181,21 @@
         <label class="form-label">Repositorio</label>
         <input type="text" class="form-input" id="cfgRepo" value="bara-and-co/Bara-Co"/>
       </div>
+
+      <!-- NUEVO: Configuración de pagos -->
+      <div class="oferta-config-section" style="margin-top:16px;">
+        <div class="oferta-config-title"><i class="fas fa-credit-card"></i> Pagos</div>
+        <label class="check-row">
+          <input type="checkbox" id="cfg3Cuotas" onchange="savePaymentConfig()"/>
+          <label for="cfg3Cuotas">Activar 3 cuotas sin interés</label>
+        </label>
+        <div class="form-row" style="margin-top:8px;">
+          <label class="form-label">Monto mínimo para cuotas (opcional)</label>
+          <input type="number" class="form-input" id="cfgMinCuota" placeholder="Ej: 20000" min="0" step="1000" onchange="savePaymentConfig()"/>
+        </div>
+        <div class="form-hint"><i class="fas fa-info-circle"></i> Si se activa, en el checkout se mostrará la opción de pagar en 3 cuotas fijas sin interés.</div>
+      </div>
+
       <button class="btn btn-primary" style="width:100%" onclick="saveConfig()">
         <i class="fas fa-save"></i> Guardar configuración
       </button>
@@ -2258,6 +2273,8 @@ async function init() {
   const r = localStorage.getItem('bc_gh_repo')  || 'bara-and-co/Bara-Co';
   if (t) document.getElementById('cfgToken').value = t;
   document.getElementById('cfgRepo').value = r;
+  // Cargar configuración de pagos
+  loadPaymentConfig();
 
   // 1. Fuente de verdad: /productos.json del propio servidor (sin CORS)
   let loaded = false;
@@ -2293,6 +2310,21 @@ async function init() {
   }
   renderGrid();
   updateStats();
+}
+
+/* ─── CONFIGURACIÓN DE PAGOS (NUEVO) ─── */
+function loadPaymentConfig() {
+  const cfg = JSON.parse(localStorage.getItem('bc_payment_config') || '{"cuotas3":false,"minCuota":0}');
+  document.getElementById('cfg3Cuotas').checked = cfg.cuotas3;
+  document.getElementById('cfgMinCuota').value = cfg.minCuota || 0;
+}
+function savePaymentConfig() {
+  const cfg = {
+    cuotas3: document.getElementById('cfg3Cuotas').checked,
+    minCuota: parseInt(document.getElementById('cfgMinCuota').value) || 0
+  };
+  localStorage.setItem('bc_payment_config', JSON.stringify(cfg));
+  toast('Configuración de pagos guardada', 'ok');
 }
 
 /* ─── RENDER ─── */
@@ -2982,7 +3014,7 @@ function buildStockGrid() {
       <td style="display:flex;align-items:center;gap:6px;padding:7px 10px;">
         <span class="stock-dot" style="background:${c.codigo};${isLight?'border-color:rgba(0,0,0,.25)':''}"></span>
         ${c.nombre}
-      </td>`;
+       </td>`;
     let rowTotal = 0;
     talles.forEach(t => {
       const key = `${c.nombre}__${t}`;
@@ -3524,6 +3556,10 @@ async function publish() {
 function openConfig() { 
   document.getElementById('cfgOk').classList.remove('on'); 
   document.getElementById('cfgErr').classList.remove('on'); 
+  // Cargar valores actuales
+  const cfg = JSON.parse(localStorage.getItem('bc_payment_config') || '{"cuotas3":false,"minCuota":0}');
+  document.getElementById('cfg3Cuotas').checked = cfg.cuotas3;
+  document.getElementById('cfgMinCuota').value = cfg.minCuota;
   document.getElementById('mCfg').classList.add('open'); 
 }
 
@@ -3542,6 +3578,8 @@ function saveConfig() {
   }
   localStorage.setItem('bc_gh_token', t);
   localStorage.setItem('bc_gh_repo', r);
+  // Guardar también configuración de pagos
+  savePaymentConfig();
   document.getElementById('cfgOk').classList.add('on');
   document.getElementById('cfgErr').classList.remove('on');
 }
