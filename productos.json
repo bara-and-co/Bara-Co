@@ -8451,8 +8451,8 @@
   {
     "id": "remera-oversize-borada-1885",
     "nombre": "Remera oversize borada 1885",
-    "precio": 17000,
-    "precioAnterior": 25000,
+    "precio": 25000,
+    "precioAnterior": null,
     "categoria": "hombre",
     "subcategoria": "Remeras",
     "descripcion": "",
@@ -8462,15 +8462,9 @@
       "https://i.ibb.co/KBPt3dh/Remera-oversize-bordada-1885.webp"
     ],
     "tallesDisponibles": [
-      "L",
-      "XL"
+      "L"
     ],
     "colores": [
-      {
-        "nombre": "Negro",
-        "codigo": "#111111",
-        "stock": 0
-      },
       {
         "nombre": "Blanco",
         "codigo": "#FFFFFF",
@@ -8481,18 +8475,15 @@
     "destacado": false,
     "outlet": false,
     "stockMap": {
-      "Negro__L": 1,
-      "Negro__XL": null,
-      "Blanco__L": null,
-      "Blanco__XL": 1
+      "Blanco__L": 1
     },
     "stockTalles": {
-      "S": null,
-      "M": null,
-      "L": null,
+      "S": 1,
+      "M": 1,
+      "L": 1,
       "XL": 2
     },
-    "stock": 2,
+    "stock": 1,
     "sku": "REMERA-OVERSIZE-BORADA-1885",
     "marca": null,
     "tags": null,
