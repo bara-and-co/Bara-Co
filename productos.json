@@ -1,5 +1,65 @@
 [
   {
+    "id": "pantal-n-sastrero-1776179728270",
+    "nombre": "Pantalón Sastrero",
+    "precio": 60000,
+    "precioAnterior": null,
+    "categoria": "new",
+    "subcategoria": "",
+    "descripcion": "",
+    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1776179699/bara/productos/sqgn6bqwrdgrtidpm6gc.jpg",
+    "imagenes": [
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1776179699/bara/productos/sqgn6bqwrdgrtidpm6gc.jpg",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1776179722/bara/productos/szwvslh3uo2enhqofv6t.jpg"
+    ],
+    "tallesDisponibles": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "colores": [
+      {
+        "nombre": "Negro",
+        "codigo": "#111111",
+        "stock": 0
+      },
+      {
+        "nombre": "chocolate",
+        "codigo": "#7a511a",
+        "stock": 2
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Negro__S": 1,
+      "Negro__M": 1,
+      "Negro__L": 0,
+      "Negro__XL": 1,
+      "chocolate__S": 0,
+      "chocolate__M": 1,
+      "chocolate__L": 1,
+      "chocolate__XL": null
+    },
+    "stockTalles": null,
+    "stock": 5,
+    "sku": "PANTALÓN-SASTRERO",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "campera-combinada-bordada-1776177320679",
     "nombre": "Campera Combinada Bordada",
     "precio": 70000,
