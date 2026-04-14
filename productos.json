@@ -3983,7 +3983,9 @@
       "Azul marino__38": 1,
       "Azul marino__42": 1
     },
-    "stockTalles": null,
+    "stockTalles": {
+      "S": 1
+    },
     "stock": 3,
     "sku": "JEAN-CARGO-BOLSILLO-DOBLE",
     "marca": null,
