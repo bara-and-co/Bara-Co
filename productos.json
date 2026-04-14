@@ -3529,7 +3529,9 @@
       "Azul__XL": null,
       "Azul__XXL": null
     },
-    "stockTalles": null,
+    "stockTalles": {
+      "S": 1
+    },
     "stock": 4,
     "sku": "REMERA-BASIC-MW",
     "marca": null,
@@ -3792,10 +3794,7 @@
       "Marrón__46": null
     },
     "stockTalles": {
-      "S": null,
-      "M": 2,
-      "L": null,
-      "XL": 1
+      "S": 1
     },
     "stock": 2,
     "sku": "PANTALON-ELIPSE",
