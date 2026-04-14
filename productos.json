@@ -1,5 +1,74 @@
 [
   {
+    "id": "campera-combinada-bordada-1776177320679",
+    "nombre": "Campera Combinada Bordada",
+    "precio": 70000,
+    "precioAnterior": null,
+    "categoria": "new",
+    "subcategoria": "",
+    "descripcion": "",
+    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1776177287/bara/productos/i1osi4g6ujtx1uogqghr.jpg",
+    "imagenes": [
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1776177287/bara/productos/i1osi4g6ujtx1uogqghr.jpg",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1776177292/bara/productos/azvsxyzjonktz0ya9dsu.jpg"
+    ],
+    "tallesDisponibles": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "colores": [
+      {
+        "nombre": "Negro",
+        "codigo": "#111111",
+        "stock": 1
+      },
+      {
+        "nombre": "Crema",
+        "codigo": "#F5F0E8",
+        "stock": 2
+      },
+      {
+        "nombre": "arena",
+        "codigo": "#c1965e",
+        "stock": 1
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Negro__S": null,
+      "Negro__M": 1,
+      "Negro__L": null,
+      "Negro__XL": null,
+      "Crema__S": 1,
+      "Crema__M": null,
+      "Crema__L": null,
+      "Crema__XL": 1,
+      "arena__S": null,
+      "arena__M": 0,
+      "arena__L": 1,
+      "arena__XL": null
+    },
+    "stockTalles": null,
+    "stock": 4,
+    "sku": "CAMPERA-COMBINADA-BORDADA",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "canguro-rustico-obezise-1776122166050",
     "nombre": "Canguro Rustico Obezise",
     "precio": 60000,
