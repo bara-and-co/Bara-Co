@@ -8752,8 +8752,8 @@
   {
     "id": "remera-boxy-1940",
     "nombre": "Remera Boxy 1940",
-    "precio": 17500,
-    "precioAnterior": 25000,
+    "precio": 25000,
+    "precioAnterior": null,
     "categoria": "hombre",
     "subcategoria": "Remeras",
     "descripcion": "",
@@ -8777,14 +8777,10 @@
     "stockMap": {
       "Blanco__S": 1
     },
-    "stockTalles": {
-      "S": null,
-      "M": null,
-      "L": null,
-      "XL": null
-    },
+    "stockTalles": null,
     "stock": 1,
     "sku": "REMERA-BOXY-1940",
+    "marca": null,
     "tags": null,
     "fabrica": null,
     "cuidados": null,
