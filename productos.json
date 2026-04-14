@@ -8886,8 +8886,8 @@
   {
     "id": "remera-smile",
     "nombre": "Remera Smile",
-    "precio": 16000,
-    "precioAnterior": 22000,
+    "precio": 22000,
+    "precioAnterior": null,
     "categoria": "hombre",
     "subcategoria": "Remeras",
     "descripcion": "",
@@ -8923,9 +8923,7 @@
       "Blanco__L": null,
       "Blanco__XL": 1
     },
-    "stockTalles": {
-      "XL": 2
-    },
+    "stockTalles": null,
     "stock": 2,
     "sku": "REMERA-SMILE",
     "marca": null,
