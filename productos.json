@@ -1,5 +1,63 @@
 [
   {
+    "id": "sueter-media-polera-1776210350314",
+    "nombre": "Sueter Media Polera",
+    "precio": 60000,
+    "precioAnterior": null,
+    "categoria": "new",
+    "subcategoria": "",
+    "descripcion": "",
+    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1776210341/bara/productos/c6ua9yznjy51trwawrsg.jpg",
+    "imagenes": [
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1776210341/bara/productos/c6ua9yznjy51trwawrsg.jpg"
+    ],
+    "tallesDisponibles": [
+      "M",
+      "XL",
+      "XXL"
+    ],
+    "colores": [
+      {
+        "nombre": "Negro",
+        "codigo": "#111111",
+        "stock": 0
+      },
+      {
+        "nombre": "Crema",
+        "codigo": "#F5F0E8",
+        "stock": 0
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Negro__M": null,
+      "Negro__XL": 1,
+      "Negro__XXL": null,
+      "Crema__M": 1,
+      "Crema__XL": 1,
+      "Crema__XXL": 1
+    },
+    "stockTalles": {
+      "S": 1
+    },
+    "stock": 4,
+    "sku": "SUETER-MEDIA-POLERA",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "buzo-bordado-1776200725652",
     "nombre": "Buzo Bordado",
     "precio": 50000,
@@ -9289,7 +9347,7 @@
       "XL"
     ],
     "colores": [],
-    "activo": true,
+    "activo": false,
     "destacado": false,
     "stock": 10,
     "sku": "REMERA-LOVE"
