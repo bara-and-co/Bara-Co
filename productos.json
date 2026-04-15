@@ -1,5 +1,75 @@
 [
   {
+    "id": "sueter-panal-bordado-1776211331109",
+    "nombre": "Sueter Panal Bordado",
+    "precio": 50000,
+    "precioAnterior": null,
+    "categoria": "new",
+    "subcategoria": "",
+    "descripcion": "",
+    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1776211326/bara/productos/kr82rmovzg7afuh9mzqy.jpg",
+    "imagenes": [
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1776211326/bara/productos/kr82rmovzg7afuh9mzqy.jpg"
+    ],
+    "tallesDisponibles": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "colores": [
+      {
+        "nombre": "Negro",
+        "codigo": "#111111",
+        "stock": 0
+      },
+      {
+        "nombre": "Crema",
+        "codigo": "#F5F0E8",
+        "stock": 0
+      },
+      {
+        "nombre": "Camel",
+        "codigo": "#C19A6B",
+        "stock": 0
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Negro__S": null,
+      "Negro__M": null,
+      "Negro__L": null,
+      "Negro__XL": 1,
+      "Crema__S": 1,
+      "Crema__M": null,
+      "Crema__L": null,
+      "Crema__XL": null,
+      "Camel__S": null,
+      "Camel__M": 1,
+      "Camel__L": 1,
+      "Camel__XL": null
+    },
+    "stockTalles": {
+      "S": 1
+    },
+    "stock": 4,
+    "sku": "SUETER-PANAL-BORDADO",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "sueter-media-polera-1776210350314",
     "nombre": "Sueter Media Polera",
     "precio": 60000,
