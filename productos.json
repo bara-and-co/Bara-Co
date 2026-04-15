@@ -34,9 +34,9 @@
         "stock": 1
       },
       {
-        "nombre": "arena",
+        "nombre": "Arena",
         "codigo": "#a9804a",
-        "stock": 1
+        "stock": 0
       }
     ],
     "activo": true,
@@ -44,21 +44,21 @@
     "outlet": false,
     "stockMap": {
       "Negro__M": 1,
-      "Negro__L": 1,
+      "Negro__L": 0,
       "Negro__XL": null,
       "Negro__XXL": null,
       "Crema__M": null,
-      "Crema__L": null,
+      "Crema__L": 1,
       "Crema__XL": null,
       "Crema__XXL": null,
       "Verde oliva__M": null,
       "Verde oliva__L": null,
       "Verde oliva__XL": null,
       "Verde oliva__XXL": 1,
-      "arena__M": null,
-      "arena__L": null,
-      "arena__XL": 1,
-      "arena__XXL": null
+      "Arena__M": null,
+      "Arena__L": null,
+      "Arena__XL": 1,
+      "Arena__XXL": null
     },
     "stockTalles": null,
     "stock": 4,
