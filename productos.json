@@ -1,5 +1,70 @@
 [
   {
+    "id": "camisaco-pa-o-1776296919483",
+    "nombre": "Camisaco Paño",
+    "precio": 73000,
+    "precioAnterior": null,
+    "categoria": "new",
+    "subcategoria": "",
+    "descripcion": "",
+    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1776296903/bara/productos/woe0wwylmxygr0zr4pqp.jpg",
+    "imagenes": [
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1776296903/bara/productos/woe0wwylmxygr0zr4pqp.jpg",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1776296915/bara/productos/d4xdzgjqsovz51euqvpx.jpg"
+    ],
+    "tallesDisponibles": [
+      "M",
+      "L",
+      "XL"
+    ],
+    "colores": [
+      {
+        "nombre": "Negro",
+        "codigo": "#111111",
+        "stock": 0
+      },
+      {
+        "nombre": "Gris",
+        "codigo": "#9E9E9E",
+        "stock": 0
+      },
+      {
+        "nombre": "Crema",
+        "codigo": "#F5F0E8",
+        "stock": 0
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Negro__M": 1,
+      "Negro__L": null,
+      "Negro__XL": null,
+      "Gris__M": null,
+      "Gris__L": 1,
+      "Gris__XL": null,
+      "Crema__M": null,
+      "Crema__L": null,
+      "Crema__XL": 1
+    },
+    "stockTalles": null,
+    "stock": 3,
+    "sku": "CAMISACO-PAÑO",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "buzo-king-frisa-1776295338483",
     "nombre": "Buzo King Frisa",
     "precio": 55000,
