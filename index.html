@@ -446,11 +446,16 @@
     .oc-slide-grid { position:absolute;inset:0;z-index:1;pointer-events:none;background-image:repeating-linear-gradient(90deg,rgba(255,255,255,.022) 0,rgba(255,255,255,.022) 1px,transparent 1px,transparent 76px); }
     .oc-img { position:absolute;left:0;top:0;bottom:0;width:240px;z-index:2;overflow:hidden;opacity:0;transform:translateX(-10px);transition:opacity .6s cubic-bezier(.16,1,.3,1),transform .6s cubic-bezier(.16,1,.3,1); }
     .oc-slide.oc-in .oc-img { opacity:1;transform:none; }
-    .oc-img img { width:100%;height:100%;object-fit:cover;object-position:center top;filter:brightness(.82) saturate(.88); }
+    .oc-img img { width:100%;height:100%;object-fit:cover;object-position:center center;filter:brightness(.82) saturate(.88); }
     .oc-img::after { content:'';position:absolute;inset:0;background:linear-gradient(to right,transparent 38%,#0c0c0a 100%); }
     .oc-slide.oc-no-img .oc-img { display:none; }
+    /* Cuando hay imagen: el contenido se desplaza a la derecha de ella */
     .oc-content { position:relative;z-index:3;padding:0 52px;margin-left:200px;flex:1;display:flex;flex-direction:column;gap:9px; }
-    .oc-slide.oc-no-img .oc-content { margin-left:0; }
+    /* Sin imagen: contenido y texto centrado en todo el ancho del slide */
+    .oc-slide.oc-no-img .oc-content { margin-left:0;padding:0 52px;align-items:center;text-align:center;justify-content:center; }
+    .oc-slide.oc-no-img .oc-cta { align-self:center; }
+    .oc-slide.oc-no-img .oc-meta { justify-content:center; }
+    .oc-slide.oc-no-img .oc-eyebrow { justify-content:center; }
     .oc-content > * { opacity:0;transform:translateY(10px);transition:opacity .5s cubic-bezier(.16,1,.3,1),transform .5s cubic-bezier(.16,1,.3,1); }
     .oc-slide.oc-in .oc-content > *:nth-child(1){opacity:1;transform:none;transition-delay:.06s;}
     .oc-slide.oc-in .oc-content > *:nth-child(2){opacity:1;transform:none;transition-delay:.13s;}
@@ -511,7 +516,7 @@
     .oferta-banner-inner { max-width:1200px; margin:0 auto; display:flex; align-items:stretch; min-height:90px; }
     .oferta-banner-img { width:160px; flex-shrink:0; display:none; position:relative; overflow:hidden; }
     .oferta-banner-img.has-img { display:block; }
-    .oferta-banner-img img { width:100%; height:100%; object-fit:cover; }
+    .oferta-banner-img img { width:100%; height:100%; object-fit:cover; object-position:center center; }
     .oferta-banner-img::after { content:''; position:absolute; top:0; right:0; bottom:0; width:50px; background:linear-gradient(to right,transparent,var(--ot-bg2)); }
     .oferta-banner-content { flex:1; padding:20px 32px; display:flex; align-items:center; gap:20px; flex-wrap:wrap; }
     .oferta-banner-icon { font-size:32px; flex-shrink:0; filter:drop-shadow(0 0 12px var(--ot-glow)); animation:ofertaPulse 2.5s ease-in-out infinite; }
