@@ -1,5 +1,85 @@
 [
   {
+    "id": "buzo-mori-1776298767672",
+    "nombre": "Buzo Mori",
+    "precio": 40000,
+    "precioAnterior": null,
+    "categoria": "new",
+    "subcategoria": "",
+    "descripcion": "",
+    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1776298334/bara/productos/souyygect1hpeea9gfs9.jpg",
+    "imagenes": [
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1776298334/bara/productos/souyygect1hpeea9gfs9.jpg",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1776298356/bara/productos/jbitjeishhd352fcz5h4.jpg",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1776298365/bara/productos/mue6kztwqfq30qvhtsvi.jpg",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1776298752/bara/productos/g6gjfgbfhulbyvseqtwf.jpg"
+    ],
+    "tallesDisponibles": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "colores": [
+      {
+        "nombre": "Negro",
+        "codigo": "#111111",
+        "stock": 0
+      },
+      {
+        "nombre": "Crema",
+        "codigo": "#F5F0E8",
+        "stock": 0
+      },
+      {
+        "nombre": "arena",
+        "codigo": "#a9804a",
+        "stock": 0
+      },
+      {
+        "nombre": "cafe",
+        "codigo": "#69420f",
+        "stock": 0
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Negro__S": null,
+      "Negro__M": 1,
+      "Negro__L": null,
+      "Negro__XL": null,
+      "Crema__S": null,
+      "Crema__M": null,
+      "Crema__L": 1,
+      "Crema__XL": 0,
+      "arena__S": 1,
+      "arena__M": null,
+      "arena__L": null,
+      "arena__XL": null,
+      "cafe__S": null,
+      "cafe__M": null,
+      "cafe__L": null,
+      "cafe__XL": 1
+    },
+    "stockTalles": null,
+    "stock": 4,
+    "sku": "BUZO-MORI",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "camisaco-pa-o-1776296919483",
     "nombre": "Camisaco Paño",
     "precio": 73000,
