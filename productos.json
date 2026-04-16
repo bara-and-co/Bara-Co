@@ -1023,8 +1023,8 @@
     "nombre": "Campera Combinada Bordada",
     "precio": 70000,
     "precioAnterior": null,
-    "categoria": "new",
-    "subcategoria": "",
+    "categoria": "hombre",
+    "subcategoria": "Sweaters",
     "descripcion": "",
     "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1776177287/bara/productos/i1osi4g6ujtx1uogqghr.jpg",
     "imagenes": [
@@ -1047,11 +1047,6 @@
         "nombre": "Crema",
         "codigo": "#F5F0E8",
         "stock": 2
-      },
-      {
-        "nombre": "arena",
-        "codigo": "#c1965e",
-        "stock": 1
       }
     ],
     "activo": true,
@@ -1060,18 +1055,19 @@
     "stockMap": {
       "Negro__S": null,
       "Negro__M": 1,
-      "Negro__L": null,
+      "Negro__L": 1,
       "Negro__XL": null,
       "Crema__S": 1,
       "Crema__M": null,
       "Crema__L": null,
-      "Crema__XL": 1,
-      "arena__S": null,
-      "arena__M": 0,
-      "arena__L": 1,
-      "arena__XL": null
+      "Crema__XL": 1
     },
-    "stockTalles": null,
+    "stockTalles": {
+      "S": null,
+      "M": 2,
+      "L": null,
+      "XL": 1
+    },
     "stock": 4,
     "sku": "CAMPERA-COMBINADA-BORDADA",
     "marca": null,
