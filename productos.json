@@ -358,8 +358,8 @@
     "nombre": "Canguro Side",
     "precio": 40000,
     "precioAnterior": null,
-    "categoria": "new",
-    "subcategoria": "",
+    "categoria": "hombre",
+    "subcategoria": "Buzos",
     "descripcion": "",
     "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1776307704/bara/productos/mvqqxqcvdmtv8jgl19qs.jpg",
     "imagenes": [
@@ -394,16 +394,18 @@
     "outlet": false,
     "stockMap": {
       "Negro__S": 1,
-      "Negro__M": null,
-      "Negro__L": null,
+      "Negro__M": 1,
+      "Negro__L": 0,
       "Crema__S": 1,
       "Crema__M": null,
-      "Crema__L": null,
+      "Crema__L": 1,
       "Verde oliva__S": 1,
       "Verde oliva__M": null,
       "Verde oliva__L": null
     },
-    "stockTalles": null,
+    "stockTalles": {
+      "XL": 1
+    },
     "stock": 3,
     "sku": "CANGURO-SIDE",
     "marca": null,
