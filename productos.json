@@ -2577,8 +2577,8 @@
     "nombre": "Alter",
     "precio": 30000,
     "precioAnterior": null,
-    "categoria": "hombre",
-    "subcategoria": "Remeras",
+    "categoria": "new",
+    "subcategoria": "",
     "descripcion": "",
     "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1775682763/bara/productos/ygvsevscmzjffph8n1xb.webp",
     "imagenes": [
@@ -2617,9 +2617,7 @@
       "Blanco__L": null,
       "Blanco__XL": 1
     },
-    "stockTalles": {
-      "XL": 2
-    },
+    "stockTalles": null,
     "stock": 4,
     "sku": "ALTER",
     "marca": null,
@@ -2640,8 +2638,8 @@
     "nombre": "Kate",
     "precio": 60000,
     "precioAnterior": null,
-    "categoria": "hombre",
-    "subcategoria": "Camperas",
+    "categoria": "new",
+    "subcategoria": "",
     "descripcion": "",
     "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1775682119/bara/productos/xmdyv7evg9wrbgii7x44.webp",
     "imagenes": [
@@ -2673,9 +2671,7 @@
       "Mostaza__S": 1,
       "Mostaza__M": null
     },
-    "stockTalles": {
-      "XL": 2
-    },
+    "stockTalles": null,
     "stock": 3,
     "sku": "KATE",
     "marca": null,
@@ -2696,8 +2692,8 @@
     "nombre": "Lupin",
     "precio": 65000,
     "precioAnterior": null,
-    "categoria": "hombre",
-    "subcategoria": "Sweaters",
+    "categoria": "new",
+    "subcategoria": "",
     "descripcion": "",
     "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1775681738/bara/productos/fhffzldmikkwfjwcifcp.webp",
     "imagenes": [
@@ -2721,6 +2717,11 @@
         "nombre": "Verde",
         "codigo": "#43A047",
         "stock": 0
+      },
+      {
+        "nombre": "crudo",
+        "codigo": "#f9efe4",
+        "stock": 0
       }
     ],
     "activo": true,
@@ -2728,17 +2729,19 @@
     "outlet": false,
     "stockMap": {
       "Negro__S": 1,
-      "Negro__M": 1,
+      "Negro__M": null,
       "Negro__L": null,
       "Negro__XL": 1,
       "Verde__S": null,
       "Verde__M": 1,
       "Verde__L": null,
-      "Verde__XL": null
+      "Verde__XL": null,
+      "crudo__S": null,
+      "crudo__M": null,
+      "crudo__L": 1,
+      "crudo__XL": null
     },
-    "stockTalles": {
-      "XL": 2
-    },
+    "stockTalles": null,
     "stock": 4,
     "sku": "LUPIN",
     "marca": null,
@@ -2759,8 +2762,8 @@
     "nombre": "Campera Suavage",
     "precio": 85000,
     "precioAnterior": null,
-    "categoria": "hombre",
-    "subcategoria": "Camperas",
+    "categoria": "new",
+    "subcategoria": "",
     "descripcion": "",
     "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1775661417/bara/productos/vucgdwhrxdrn3whm4scm.webp",
     "imagenes": [
@@ -2784,6 +2787,11 @@
         "nombre": "Gris",
         "codigo": "#9E9E9E",
         "stock": 1
+      },
+      {
+        "nombre": "Chocolate",
+        "codigo": "#1e160c",
+        "stock": 2
       }
     ],
     "activo": true,
@@ -2795,13 +2803,15 @@
       "Negro__L": null,
       "Negro__XL": null,
       "Gris__S": null,
-      "Gris__M": 1,
+      "Gris__M": null,
       "Gris__L": 1,
-      "Gris__XL": null
+      "Gris__XL": null,
+      "Chocolate__S": 1,
+      "Chocolate__M": null,
+      "Chocolate__L": null,
+      "Chocolate__XL": 1
     },
-    "stockTalles": {
-      "XL": 2
-    },
+    "stockTalles": null,
     "stock": 4,
     "sku": "CAMPERA-SUAVAGE",
     "marca": null,
@@ -2822,8 +2832,8 @@
     "nombre": "Sueter Panal Liviano",
     "precio": 20000,
     "precioAnterior": null,
-    "categoria": "hombre",
-    "subcategoria": "Sweaters",
+    "categoria": "new",
+    "subcategoria": "",
     "descripcion": "",
     "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1775660484/bara/productos/vinxgeaikwys7yfl0c7l.webp",
     "imagenes": [
@@ -2884,9 +2894,7 @@
       "Azul marino__XL": null,
       "Azul marino__XXL": null
     },
-    "stockTalles": {
-      "XL": 2
-    },
+    "stockTalles": null,
     "stock": 9,
     "sku": "SUETER-PANAL-LIVIANO",
     "marca": null,
@@ -2907,8 +2915,8 @@
     "nombre": "Sueter Nordico",
     "precio": 60000,
     "precioAnterior": null,
-    "categoria": "hombre",
-    "subcategoria": "Sweaters",
+    "categoria": "new",
+    "subcategoria": "",
     "descripcion": "",
     "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1775659903/bara/productos/genjdijhn9epf3gcxere.webp",
     "imagenes": [
@@ -2940,9 +2948,7 @@
       "Negro__L": 1,
       "Negro__XL": null
     },
-    "stockTalles": {
-      "XL": 2
-    },
+    "stockTalles": null,
     "stock": 4,
     "sku": "SUETER-NORDICO",
     "marca": null,
@@ -2963,8 +2969,8 @@
     "nombre": "Top Frunce diamante",
     "precio": 25000,
     "precioAnterior": null,
-    "categoria": "mujer",
-    "subcategoria": "Tops",
+    "categoria": "new",
+    "subcategoria": "",
     "descripcion": "Top Frunce Diamante",
     "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1775086164/bladlamb1q2liuswrzxq.webp",
     "imagenes": [
@@ -2987,9 +2993,7 @@
     "stockMap": {
       "Negro__Único": 1
     },
-    "stockTalles": {
-      "XL": 2
-    },
+    "stockTalles": null,
     "stock": 2,
     "sku": "TOP-FRUNCE-DIAMANTE",
     "marca": null,
@@ -3010,8 +3014,8 @@
     "nombre": "Top Espalda Abierta",
     "precio": 25000,
     "precioAnterior": null,
-    "categoria": "mujer",
-    "subcategoria": "Tops",
+    "categoria": "new",
+    "subcategoria": "",
     "descripcion": "",
     "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1775084542/l11nizz5aw0jm4kv3mlt.webp",
     "imagenes": [
@@ -3036,9 +3040,7 @@
     "stockMap": {
       "Negro__Único": 2
     },
-    "stockTalles": {
-      "XL": 2
-    },
+    "stockTalles": null,
     "stock": 2,
     "sku": "TOP-ESPALDA-ABIERTA",
     "marca": null,
@@ -3059,8 +3061,8 @@
     "nombre": "Top Frunce",
     "precio": 25000,
     "precioAnterior": null,
-    "categoria": "mujer",
-    "subcategoria": "Tops",
+    "categoria": "new",
+    "subcategoria": "",
     "descripcion": "",
     "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1775084053/cxy71durpekypvdtqxxk.webp",
     "imagenes": [
@@ -3084,9 +3086,7 @@
     "stockMap": {
       "Negro__Único": 1
     },
-    "stockTalles": {
-      "XL": 2
-    },
+    "stockTalles": null,
     "stock": 1,
     "sku": "TOP-FRUNCE",
     "marca": null,
@@ -3107,8 +3107,8 @@
     "nombre": "Top Cuello Buche Manga Oxford",
     "precio": 30000,
     "precioAnterior": null,
-    "categoria": "mujer",
-    "subcategoria": "Tops",
+    "categoria": "new",
+    "subcategoria": "",
     "descripcion": "",
     "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1775082489/tksi6bedtkc1rccjqrzn.webp",
     "imagenes": [
@@ -3138,9 +3138,7 @@
       "Marrón__Único": 1,
       "Bordo__Único": 1
     },
-    "stockTalles": {
-      "XL": 2
-    },
+    "stockTalles": null,
     "stock": 2,
     "sku": "TOP-CUELLO-BUCHE-MANGA-OXFORD",
     "marca": null,
@@ -3161,8 +3159,8 @@
     "nombre": "Mini Frunse Costado",
     "precio": 25000,
     "precioAnterior": null,
-    "categoria": "mujer",
-    "subcategoria": "Polleras",
+    "categoria": "new",
+    "subcategoria": "",
     "descripcion": "",
     "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1775081359/r1itsxuop66welesyd68.webp",
     "imagenes": [
@@ -3200,9 +3198,7 @@
       "Bordo__Único": 1,
       "Plateado__Único": 1
     },
-    "stockTalles": {
-      "XL": 2
-    },
+    "stockTalles": null,
     "stock": 3,
     "sku": "MINI-FRUNSE-COSTADO",
     "marca": null,
@@ -4376,7 +4372,7 @@
     ],
     "activo": true,
     "destacado": false,
-    "outlet": true,
+    "outlet": false,
     "stockMap": {
       "Negro__S": 1,
       "Negro__M": null,
@@ -4399,9 +4395,7 @@
       "Azul__XL": null,
       "Azul__XXL": null
     },
-    "stockTalles": {
-      "S": 1
-    },
+    "stockTalles": null,
     "stock": 4,
     "sku": "REMERA-BASIC-MW",
     "marca": null,
