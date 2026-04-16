@@ -9872,18 +9872,10 @@
     "precioAnterior": 25000,
     "categoria": "mujer",
     "subcategoria": "Remeras",
+    "descripcion": "",
     "imagen": "https://d22fxaf9t8d39k.cloudfront.net/9ed84011c0f7f607432c187f40ec36f82b414e84b3d28269fc42305dd6efed95404368.jpg",
     "imagenes": [
       "https://d22fxaf9t8d39k.cloudfront.net/9ed84011c0f7f607432c187f40ec36f82b414e84b3d28269fc42305dd6efed95404368.jpg"
-    ],
-    "descripcion": "",
-    "composicion": "",
-    "cuidado": "",
-    "talles": [
-      "S",
-      "M",
-      "L",
-      "XL"
     ],
     "tallesDisponibles": [
       "S",
@@ -9891,9 +9883,41 @@
       "L",
       "XL"
     ],
-    "sku": "TOP-VERDE",
+    "colores": [],
+    "activo": true,
+    "destacado": false,
+    "outlet": true,
+    "stockMap": {
+      "Negro__S": 1,
+      "Negro__M": 1,
+      "Negro__L": 0,
+      "Crema__S": 1,
+      "Crema__M": null,
+      "Crema__L": 1,
+      "Verde oliva__S": 1,
+      "Verde oliva__M": null,
+      "Verde oliva__L": null
+    },
+    "stockTalles": {
+      "S": null,
+      "M": null,
+      "L": null,
+      "XL": 1
+    },
     "stock": 10,
-    "activo": true
+    "sku": "TOP-VERDE",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
   },
   {
     "id": "pantalon-mujer",
