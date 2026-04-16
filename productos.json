@@ -2832,8 +2832,8 @@
     "nombre": "Sueter Panal Liviano",
     "precio": 20000,
     "precioAnterior": null,
-    "categoria": "new",
-    "subcategoria": "",
+    "categoria": "hombre",
+    "subcategoria": "Sweaters",
     "descripcion": "",
     "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1775660484/bara/productos/vinxgeaikwys7yfl0c7l.webp",
     "imagenes": [
@@ -2894,7 +2894,9 @@
       "Azul marino__XL": null,
       "Azul marino__XXL": null
     },
-    "stockTalles": null,
+    "stockTalles": {
+      "XL": 2
+    },
     "stock": 9,
     "sku": "SUETER-PANAL-LIVIANO",
     "marca": null,
