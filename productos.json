@@ -1,5 +1,51 @@
 [
   {
+    "id": "gorra-bordada-always-1776308668655",
+    "nombre": "Gorra Bordada Always",
+    "precio": 20000,
+    "precioAnterior": null,
+    "categoria": "accesorios",
+    "subcategoria": "",
+    "descripcion": "",
+    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1776308638/bara/productos/jsahmychwr1gkyqscivb.webp",
+    "imagenes": [
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1776308638/bara/productos/jsahmychwr1gkyqscivb.webp"
+    ],
+    "tallesDisponibles": [
+      "Único"
+    ],
+    "colores": [
+      {
+        "nombre": "Amarillo",
+        "codigo": "#FDD835",
+        "stock": 0
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Amarillo__Único": 1
+    },
+    "stockTalles": {
+      "Único": 1
+    },
+    "stock": 1,
+    "sku": "GORRA-BORDADA-ALWAYS",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "gorra-ecocuero-1776308513163",
     "nombre": "Gorra Ecocuero",
     "precio": 30000,
