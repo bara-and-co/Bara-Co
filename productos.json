@@ -4020,8 +4020,8 @@
     "nombre": "Suéter Liso",
     "precio": 35000,
     "precioAnterior": null,
-    "categoria": "new",
-    "subcategoria": "",
+    "categoria": "hombre",
+    "subcategoria": "Sweaters",
     "descripcion": "",
     "imagen": "https://i.ibb.co/jkYzTqMs/Sueter-liso.png",
     "imagenes": [
@@ -4086,7 +4086,7 @@
       "Celeste__XXL": null
     },
     "stockTalles": {
-      "M": 2
+      "XL": 2
     },
     "stock": 5,
     "sku": "SUÉTER-LISO",
