@@ -424,8 +424,8 @@
     "nombre": "Buzo Mori",
     "precio": 40000,
     "precioAnterior": null,
-    "categoria": "new",
-    "subcategoria": "",
+    "categoria": "hombre",
+    "subcategoria": "Buzos",
     "descripcion": "",
     "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1776298334/bara/productos/souyygect1hpeea9gfs9.jpg",
     "imagenes": [
@@ -450,16 +450,6 @@
         "nombre": "Crema",
         "codigo": "#F5F0E8",
         "stock": 0
-      },
-      {
-        "nombre": "arena",
-        "codigo": "#a9804a",
-        "stock": 0
-      },
-      {
-        "nombre": "cafe",
-        "codigo": "#69420f",
-        "stock": 0
       }
     ],
     "activo": true,
@@ -468,22 +458,16 @@
     "stockMap": {
       "Negro__S": null,
       "Negro__M": 1,
-      "Negro__L": null,
+      "Negro__L": 0,
       "Negro__XL": null,
       "Crema__S": null,
       "Crema__M": null,
       "Crema__L": 1,
-      "Crema__XL": 0,
-      "arena__S": 1,
-      "arena__M": null,
-      "arena__L": null,
-      "arena__XL": null,
-      "cafe__S": null,
-      "cafe__M": null,
-      "cafe__L": null,
-      "cafe__XL": 1
+      "Crema__XL": 0
     },
-    "stockTalles": null,
+    "stockTalles": {
+      "XL": 1
+    },
     "stock": 4,
     "sku": "BUZO-MORI",
     "marca": null,
