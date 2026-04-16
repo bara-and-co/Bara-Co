@@ -963,8 +963,8 @@
     "nombre": "Pantalón Sastrero",
     "precio": 60000,
     "precioAnterior": null,
-    "categoria": "new",
-    "subcategoria": "",
+    "categoria": "hombre",
+    "subcategoria": "Pantalones",
     "descripcion": "",
     "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1776179699/bara/productos/sqgn6bqwrdgrtidpm6gc.jpg",
     "imagenes": [
@@ -982,11 +982,6 @@
         "nombre": "Negro",
         "codigo": "#111111",
         "stock": 0
-      },
-      {
-        "nombre": "chocolate",
-        "codigo": "#7a511a",
-        "stock": 2
       }
     ],
     "activo": true,
@@ -996,13 +991,14 @@
       "Negro__S": 1,
       "Negro__M": 1,
       "Negro__L": 0,
-      "Negro__XL": 1,
-      "chocolate__S": 0,
-      "chocolate__M": 1,
-      "chocolate__L": 1,
-      "chocolate__XL": null
+      "Negro__XL": 1
     },
-    "stockTalles": null,
+    "stockTalles": {
+      "S": null,
+      "M": 2,
+      "L": null,
+      "XL": 1
+    },
     "stock": 5,
     "sku": "PANTALÓN-SASTRERO",
     "marca": null,
