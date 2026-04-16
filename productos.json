@@ -7690,28 +7690,54 @@
     "precioAnterior": null,
     "categoria": "hombre",
     "subcategoria": "Buzos",
+    "descripcion": "",
     "imagen": "https://d22fxaf9t8d39k.cloudfront.net/63916cc7ca35026ef56aa0ca267d1043c9ca7fb0513e69e535a82aeea68bf7fa404368.jpg",
     "imagenes": [
       "https://d22fxaf9t8d39k.cloudfront.net/63916cc7ca35026ef56aa0ca267d1043c9ca7fb0513e69e535a82aeea68bf7fa404368.jpg"
     ],
-    "descripcion": "",
-    "composicion": "",
-    "cuidado": "",
-    "talles": [
-      "S",
-      "M",
-      "L",
-      "XL"
-    ],
     "tallesDisponibles": [
       "S",
-      "M",
-      "L",
-      "XL"
+      "M"
     ],
+    "colores": [
+      {
+        "nombre": "Crema",
+        "codigo": "#F5F0E8",
+        "stock": 0
+      },
+      {
+        "nombre": "Azul",
+        "codigo": "#1E88E5",
+        "stock": 0
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Crema__S": 1,
+      "Crema__M": null,
+      "Azul__S": null,
+      "Azul__M": 1
+    },
+    "stockTalles": {
+      "S": null,
+      "M": null
+    },
+    "stock": 2,
     "sku": "SWEATER-ARRAIAL",
-    "stock": 10,
-    "activo": true
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
   },
   {
     "id": "remera-home-is-a-feeling",
@@ -9948,7 +9974,7 @@
         "stock": 0
       }
     ],
-    "activo": true,
+    "activo": false,
     "destacado": false,
     "outlet": false,
     "stockMap": {
