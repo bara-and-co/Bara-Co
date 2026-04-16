@@ -3944,8 +3944,8 @@
     "nombre": "Suéter Rayas",
     "precio": 35000,
     "precioAnterior": null,
-    "categoria": "new",
-    "subcategoria": "",
+    "categoria": "hombre",
+    "subcategoria": "Sweaters",
     "descripcion": "",
     "imagen": "https://i.ibb.co/HD7t0rKG/Sueter-Rayas.png",
     "imagenes": [
@@ -3982,7 +3982,7 @@
     "outlet": false,
     "stockMap": {
       "Negro__S": 1,
-      "Negro__M": null,
+      "Negro__M": 1,
       "Negro__L": 1,
       "Negro__XL": null,
       "Negro__XXL": null,
@@ -3998,7 +3998,7 @@
       "Celeste__XXL": null
     },
     "stockTalles": {
-      "M": 2
+      "XL": 2
     },
     "stock": 5,
     "sku": "SUÉTER-RAYAS",
