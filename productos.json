@@ -6914,7 +6914,7 @@
     "nombre": "Campera JEAN clásica",
     "precio": 75000,
     "precioAnterior": null,
-    "categoria": "new",
+    "categoria": "hombre",
     "subcategoria": "",
     "descripcion": "",
     "imagen": "https://d22fxaf9t8d39k.cloudfront.net/d96714644466596d09ed9ffb84226e2b318859a866be9604788cf4154aa52650404368.jpg",
@@ -6924,15 +6924,18 @@
     "tallesDisponibles": [
       "XL"
     ],
-    "colores": [],
+    "colores": [
+      {
+        "nombre": "Celeste",
+        "codigo": "#81D4FA",
+        "stock": 0
+      }
+    ],
     "activo": true,
     "destacado": false,
     "outlet": false,
     "stockMap": {
-      "Jean__38": 1,
-      "Jean__40": 1,
-      "Jean__44": 1,
-      "Jean__46": 1
+      "Celeste__XL": 2
     },
     "stockTalles": {
       "XL": 2
