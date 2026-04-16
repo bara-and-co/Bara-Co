@@ -703,7 +703,8 @@
 const CART_KEY    = 'bc_cart';
 const BACKEND_URL = 'https://bara-backend.onrender.com';
 const MP_LINK     = 'https://link.mercadopago.com.ar/baraandco';
-const BANCOR_LINK = 'https://YOUR_BANCOR_GATEWAY_LINK'; // ← Reemplazar con el link real de Bancor
+// Reemplazar con el link real de Bancor cuando esté disponible
+const BANCOR_LINK = '#'; // ← Cambiar por el link de la pasarela de Bancor
 const WA_NUMBER   = '5493525614281';
 const ENVIO_GRATIS = 80000;
 let modoEnvio = 'envio', metodoPago = 'bancor', posnetTarjeta = 'cordobesa';
@@ -716,8 +717,8 @@ function getCart(){try{return JSON.parse(localStorage.getItem(CART_KEY))||[];}ca
 // ═══════════════════════════════════════════════════
 const OFERTAS_KEY = 'bc_ofertas';
 let _ofertasCache = [];
-let _descuentoOferta = 0;       // monto total descontado
-let _nombreOferta    = '';       // nombre para mostrar
+let _descuentoOferta = 0;
+let _nombreOferta    = '';
 
 function _filtrarActivas(todas) {
   const now = Date.now();
@@ -733,10 +734,8 @@ function _filtrarActivas(todas) {
 function productoAplicaOferta(item, oferta) {
   if (oferta.todasCategorias) return true;
   const cats = oferta.categorias || [];
-  // items del carrito pueden tener categoria/subcategoria si se guardan, sino matchean todas
   if (item.categoria && cats.includes(item.categoria)) return true;
   if (item.subcategoria && cats.includes(item.subcategoria)) return true;
-  // si el item no tiene categoría guardada → asumir que aplica (se verificó al mostrar la oferta)
   if (!item.categoria && !item.subcategoria) return true;
   return false;
 }
@@ -747,7 +746,7 @@ function cargarOfertasCheckout() {
 
   function procesar(todasRaw) {
     _ofertasCache = _filtrarActivas(todasRaw);
-    recalcTotales(); // recalcular con ofertas
+    recalcTotales();
   }
 
   fetch(ghUrl)
@@ -764,73 +763,45 @@ function cargarOfertasCheckout() {
     });
 }
 
-/**
- * Calcula el mejor descuento aplicable al carrito.
- * Devuelve { monto, nombre } o null.
- *
- * Para NxM: ordena precios de mayor a menor y aplica el
- * descuento sobre los productos más baratos.
- */
 function calcularMejorDescuento(cart, ofertas) {
   if (!ofertas.length || !cart.length) return null;
-
   let mejorMonto = 0;
   let mejorNombre = '';
-
   for (const o of ofertas) {
-    // Filtrar items que aplican a esta oferta
     const itemsAplican = cart.filter(item => productoAplicaOferta(item, o));
     if (!itemsAplican.length) continue;
-
     let descuento = 0;
-
     if (o.tipo === 'pct' && o.valor) {
-      // Porcentaje sobre todos los items que aplican
       const subAplica = itemsAplican.reduce((a, i) => a + i.precio * (i.qty || 1), 0);
       descuento = Math.round(subAplica * Number(o.valor) / 100);
-
     } else if (o.tipo === 'fijo' && o.valor) {
-      // Monto fijo por cada item que aplica (1 descuento por unidad)
       const totalQty = itemsAplican.reduce((a, i) => a + (i.qty || 1), 0);
       descuento = Math.round(Number(o.valor) * totalQty);
-
     } else if (['2x1', '3x2', 'nxm'].includes(o.tipo)) {
       let n, m;
       if (o.tipo === '2x1') { n = 2; m = 1; }
       else if (o.tipo === '3x2') { n = 3; m = 2; }
       else { n = Number(o.n) || 3; m = Number(o.m) || 2; }
-
-      // Expandir items a una lista de precios individuales
       const precios = [];
       itemsAplican.forEach(i => {
         for (let q = 0; q < (i.qty || 1); q++) precios.push(i.precio);
       });
-
-      // Ordenar de mayor a menor (pagás los más caros, los más baratos son gratis)
       precios.sort((a, b) => b - a);
-
-      // Por cada grupo de N, las (N - M) unidades más baratas son gratis
       const gruposCompletos = Math.floor(precios.length / n);
       const gratisPerGrupo = n - m;
-
       for (let g = 0; g < gruposCompletos; g++) {
-        // Los items gratis son los últimos del grupo (los más baratos)
         const grupoStart = g * n;
-        const grupoEnd   = grupoStart + n;
-        const grupoPrecios = precios.slice(grupoStart, grupoEnd);
-        // Los gratis son los últimos gratisPerGrupo del grupo
+        const grupoPrecios = precios.slice(grupoStart, grupoStart + n);
         for (let f = 0; f < gratisPerGrupo; f++) {
           descuento += grupoPrecios[n - 1 - f];
         }
       }
     }
-
     if (descuento > mejorMonto) {
       mejorMonto  = descuento;
       mejorNombre = o.nombre || getOfertaTipoLabelCk(o);
     }
   }
-
   return mejorMonto > 0 ? { monto: mejorMonto, nombre: mejorNombre } : null;
 }
 
@@ -842,17 +813,6 @@ function getOfertaTipoLabelCk(o) {
   if (o.tipo==='fijo') return `$${Number(o.valor||0).toLocaleString('es-AR')} OFF`;
   return 'Promo';
 }
-document.addEventListener('DOMContentLoaded',()=>{
-  const cart=getCart();
-  if(!cart.length){
-    document.getElementById('emptyWrap').style.display='block';
-    document.getElementById('checkoutGrid').style.display='none';
-    return;
-  }
-  renderResumen(cart);
-  recalcTotales(cart);
-  cargarOfertasCheckout(); // ← carga ofertas y recalcula con descuento
-});
 
 function renderResumen(cart){
   document.getElementById('sumCount').textContent=cart.reduce((a,i)=>a+(i.qty||1),0);
@@ -870,17 +830,13 @@ function recalcTotales(cart){
   const falta=Math.max(0,ENVIO_GRATIS-sub);
   const pct=Math.min(100,(sub/ENVIO_GRATIS)*100);
 
-  // ── Calcular descuento por oferta ──
   const descResult = calcularMejorDescuento(cart, _ofertasCache);
   _descuentoOferta = descResult ? descResult.monto : 0;
   _nombreOferta    = descResult ? descResult.nombre : '';
-
   const totalConDesc = Math.max(0, sub - _descuentoOferta);
 
   document.getElementById('scSubtotal').textContent=fmt(sub);
   document.getElementById('scTotal').textContent=fmt(totalConDesc);
-
-  // Mostrar/ocultar fila de descuento
   const rowDesc = document.getElementById('rowDescuento');
   if (rowDesc) {
     if (_descuentoOferta > 0) {
@@ -891,7 +847,6 @@ function recalcTotales(cart){
       rowDesc.style.display = 'none';
     }
   }
-
   document.getElementById('rowEnvio').style.display=esRetiro?'none':'';
   document.getElementById('scEnvio').textContent=gratis?'Gratis':'A calcular';
   document.getElementById('freeNote').classList.toggle('on',gratis&&!esRetiro);
@@ -917,7 +872,6 @@ function elegirEnvio(tipo,el){
   el.classList.add('sel');
   document.getElementById('bloqDireccion').style.display=tipo==='envio'?'':'none';
   document.getElementById('bloqRetiroInfo').style.display=tipo==='retiro'?'':'none';
-  // Habilitar/deshabilitar métodos de solo retiro
   ['cardPosnet','cardEfectivo'].forEach(id=>{
     const c=document.getElementById(id);
     if(!c)return;
@@ -934,14 +888,11 @@ function selPago(metodo,el){
     toast('Primero elegí "Retiro en local" en la sección de envío ↑');return;
   }
   metodoPago=metodo;
-  // Limpiar errores de campos de tarjeta al cambiar método
   ['cardNombre','cardNumero','cardVenc','cardCvv'].forEach(id=>{
     const inp=document.getElementById(id);
     if(inp)inp.classList.remove('err');
   });
-  // Deselect all pm-cards and the bancor hero card
   document.querySelectorAll('.pm-card,.pm-card-bancor').forEach(c=>c.classList.remove('sel'));
-  // Highlight clicked element
   if(el && (el.classList.contains('pm-card') || el.classList.contains('pm-card-bancor'))){
     el.classList.add('sel');
   }
@@ -1002,13 +953,9 @@ function armarMsgCliente(cart,sub,totalConDescuento,nombre,envioStr){
   return encodeURIComponent(`¡Hola! Quiero hacer un pedido en Bara & Co 🛍️\n\n👤 *${nombre}*\n\n*Productos:*\n${items}\n\n💵 Subtotal: ${fmt(sub)}${descLine}\n📦 *Envío:* ${envioStr}\n💳 *Pago:* ${ml[metodoPago]||metodoPago}`);
 }
 
-/* ══════════════════════════════════════════
-   FORMATEO DE TARJETA
-══════════════════════════════════════════ */
 function fmtCard(inp) {
   let v = inp.value.replace(/\D/g, '').slice(0, 16);
   inp.value = v.replace(/(.{4})/g, '$1 ').trim();
-  // Detectar marca
   const icon = document.getElementById('cardBrandIcon');
   if (!icon) return;
   if (/^4/.test(v))        icon.innerHTML = '<i class="fab fa-cc-visa" style="color:#1a1f71"></i>';
@@ -1019,7 +966,6 @@ function fmtCard(inp) {
 function fmtVenc(inp) {
   const prev = inp._prev || '';
   let raw = inp.value.replace(/\D/g, '').slice(0, 4);
-  // Si está borrando, no forzar el separador
   const isDeleting = inp.value.length < prev.length;
   let formatted = raw;
   if (!isDeleting && raw.length >= 3) {
@@ -1038,9 +984,33 @@ function toggleCvv(btn) {
   btn.style.color = isHidden ? 'var(--accent)' : 'var(--muted)';
 }
 
-/* ══════════════════════════════════════════
-   PAGO CON TARJETA — VALIDACIÓN + REDIRECT
-══════════════════════════════════════════ */
+// Funciones auxiliares para control de botones (spinner)
+function btnLoading(selector) {
+  const btn = document.querySelector(selector);
+  if (!btn) return;
+  if (btn.disabled) return;
+  btn.disabled = true;
+  btn.classList.add('loading');
+  if (!btn.hasAttribute('data-original-text')) {
+    const span = btn.querySelector('.lbl');
+    if (span) btn.setAttribute('data-original-text', span.innerHTML);
+    else btn.setAttribute('data-original-text', btn.innerHTML);
+  }
+}
+
+function btnReset(selector) {
+  const btn = document.querySelector(selector);
+  if (!btn) return;
+  btn.disabled = false;
+  btn.classList.remove('loading');
+  const orig = btn.getAttribute('data-original-text');
+  if (orig) {
+    const span = btn.querySelector('.lbl');
+    if (span) span.innerHTML = orig;
+    else btn.innerHTML = orig;
+  }
+}
+
 function pagarBancor() {
   const nombre = (document.getElementById('cardNombre')?.value || '').trim();
   const numero = (document.getElementById('cardNumero')?.value || '').replace(/\s/g, '');
@@ -1049,9 +1019,9 @@ function pagarBancor() {
 
   const fields = [
     { id: 'cardNombre', ok: nombre.length >= 3,         msg: 'Ingresá el nombre como figura en la tarjeta' },
-    { id: 'cardNumero', ok: numero.length >= 15,         msg: 'Número de tarjeta inválido' },
+    { id: 'cardNumero', ok: numero.length >= 15,        msg: 'Número de tarjeta inválido' },
     { id: 'cardVenc',   ok: /^\d{2}\s*\/\s*\d{2}$/.test(venc), msg: 'Ingresá la fecha de vencimiento (MM/AA)' },
-    { id: 'cardCvv',    ok: cvv.length >= 3,             msg: 'CVV inválido' },
+    { id: 'cardCvv',    ok: cvv.length >= 3,            msg: 'CVV inválido' },
   ];
 
   for (const f of fields) {
@@ -1070,15 +1040,17 @@ function pagarBancor() {
     return;
   }
 
+  // Validar que el link de Bancor esté configurado
+  if (!BANCOR_LINK || BANCOR_LINK === '#' || BANCOR_LINK === 'https://YOUR_BANCOR_GATEWAY_LINK') {
+    toast('⚠️ El link de pago con Bancor aún no está configurado. Por favor, elegí otro método de pago.');
+    return;
+  }
+
   btnLoading('#btnBancor');
   localStorage.removeItem(CART_KEY);
   setTimeout(() => { window.location.href = BANCOR_LINK; }, 600);
 }
 
-
-/* ══════════════════════════════════════════
-   PAGAR — llama al backend para todo
-══════════════════════════════════════════ */
 async function pagar(metodo) {
   if (!validarForm()) {
     document.getElementById('nombre').scrollIntoView({behavior:'smooth',block:'center'});
@@ -1100,39 +1072,16 @@ async function pagar(metodo) {
        document.getElementById('cp').value.trim()
       ].filter(Boolean).join(', ');
 
-  // Bancor (tarjeta directa) → redirige al link de Bancor
   if (metodo === 'bancor') {
-    btnLoading('#btnBancor');
-    localStorage.removeItem(CART_KEY);
-    setTimeout(() => { window.location.href = BANCOR_LINK; }, 600);
+    pagarBancor();
     return;
   }
 
-  // Tarjeta → redirige al link de MercadoPago (procesa todas las tarjetas)
-  // SIEMPRE redirige directo, sin pasar por el backend, independientemente del modo de envío
-  if (metodo === 'card') {
-    btnLoading('#btnCard');
-    localStorage.removeItem(CART_KEY);
-    setTimeout(() => { window.location.href = MP_LINK; }, 600);
-    return;
-  }
-
-  // MercadoPago → SIEMPRE redirige directo al link de MP, sin pasar por el backend
-  // Esto aplica tanto para retiro en local como para envío a domicilio
-  if (metodo === 'mp') {
-    btnLoading('#btnMp');
-    localStorage.removeItem(CART_KEY);
-    setTimeout(() => { window.location.href = MP_LINK; }, 600);
-    return;
-  }
-
-  // WhatsApp directo — no necesita backend
   if (metodo === 'wa') {
     window.open(`https://wa.me/${WA_NUMBER}?text=${armarMsgCliente(cart,sub,totalConDescuento,nombre,envioStr)}`, '_blank');
     return;
   }
 
-  // Selector de botón según método
   const btnSelectors = {
     bancor:   '#btnBancor',
     mp:       '#btnMp',
@@ -1142,10 +1091,9 @@ async function pagar(metodo) {
     cash:     '#panelCash .btn-primary',
   };
   const btnSel = btnSelectors[metodo];
-  btnLoading(btnSel);
+  if (btnSel) btnLoading(btnSel);
 
   try {
-    // ── Llamar al backend ──────────────────────
     const res = await fetch(`${BACKEND_URL}/api/crear-pedido`, {
       method:  'POST',
       headers: {'Content-Type': 'application/json'},
@@ -1167,14 +1115,19 @@ async function pagar(metodo) {
 
     const data = await res.json();
 
-    // Guardar pedido localmente
     localStorage.setItem('bc_pedido_id', data.pedidoId);
     localStorage.setItem('bc_nombre_cliente', nombre);
 
-    // ── Otros métodos: abrir WA al cliente + notif local ──
+    if (metodo === 'mp') {
+      localStorage.removeItem(CART_KEY);
+      const mpUrl = data.initPoint || data.sandbox;
+      if (!mpUrl) throw new Error('No se recibió el link de MercadoPago');
+      window.location.href = mpUrl;
+      return;
+    }
+
     localStorage.removeItem(CART_KEY);
 
-    // Abrir WA al cliente con el resumen
     const sufijos = {
       naranja:  '\n\n_Te adjunto el comprobante de Naranja X 🍊_',
       transfer: '\n\n_Te envío el comprobante de transferencia 📎_',
@@ -1187,20 +1140,30 @@ async function pagar(metodo) {
       window.open(`https://wa.me/${WA_NUMBER}?text=${msgCliente}`, '_blank');
     }
 
-    // Abrir WA al local (URL generada por el backend)
     if (data.waNotifUrl) {
       setTimeout(() => window.open(data.waNotifUrl, '_blank'), 400);
     }
 
-    // Redirigir a success
     setTimeout(() => { window.location.href = 'success.html?pedido=' + data.pedidoId; }, 900);
 
   } catch(err) {
     console.error('Error al procesar pago:', err);
-    btnReset(btnSel);
+    if (btnSel) btnReset(btnSel);
     toast('⚠️ ' + (err.message || 'Error al conectar con el servidor. Intentá de nuevo.'));
   }
 }
+
+document.addEventListener('DOMContentLoaded',()=>{
+  const cart=getCart();
+  if(!cart.length){
+    document.getElementById('emptyWrap').style.display='block';
+    document.getElementById('checkoutGrid').style.display='none';
+    return;
+  }
+  renderResumen(cart);
+  recalcTotales(cart);
+  cargarOfertasCheckout();
+});
 </script>
 </body>
 </html>
