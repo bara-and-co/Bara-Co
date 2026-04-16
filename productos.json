@@ -3692,8 +3692,8 @@
     "nombre": "Baggy Skater Celeste",
     "precio": 65000,
     "precioAnterior": null,
-    "categoria": "new",
-    "subcategoria": "",
+    "categoria": "hombre",
+    "subcategoria": "Pantalones",
     "descripcion": "",
     "imagen": "https://i.ibb.co/0j7b8b55/IMG-8497.jpg",
     "imagenes": [
@@ -3724,7 +3724,9 @@
       "Celeste__44": 1,
       "Celeste__46": 1
     },
-    "stockTalles": null,
+    "stockTalles": {
+      "XL": 2
+    },
     "stock": 5,
     "sku": "BAGGY-SKATER-CELESTE",
     "marca": null,
