@@ -1092,8 +1092,8 @@
     "nombre": "Canguro Rustico Obezise",
     "precio": 60000,
     "precioAnterior": null,
-    "categoria": "new",
-    "subcategoria": "",
+    "categoria": "hombre",
+    "subcategoria": "Buzos",
     "descripcion": "",
     "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1776122149/bara/productos/fvjyin4fk65d1mbn4fey.jpg",
     "imagenes": [
@@ -1106,30 +1106,26 @@
       "L",
       "XL"
     ],
-    "colores": [
-      {
-        "nombre": "verde c",
-        "codigo": "#bae98d",
-        "stock": 1
-      },
-      {
-        "nombre": "gris C",
-        "codigo": "#313230",
-        "stock": 0
-      }
-    ],
+    "colores": [],
     "activo": true,
     "destacado": false,
     "outlet": false,
     "stockMap": {
-      "verde c__S": 1,
-      "verde c__M": null,
-      "verde c__L": 1,
-      "verde c__XL": null,
-      "gris C__S": 1,
-      "gris C__M": 1,
-      "gris C__L": null,
-      "gris C__XL": null
+      "Negro__L": 1,
+      "Negro__XL": null,
+      "Negro__XXL": null,
+      "Crema__L": null,
+      "Crema__XL": 1,
+      "Crema__XXL": 1,
+      "Camel__L": 1,
+      "Camel__XL": null,
+      "Camel__XXL": null,
+      "Verde__L": 1,
+      "Verde__XL": null,
+      "Verde__XXL": null,
+      "Azul marino__L": null,
+      "Azul marino__XL": 1,
+      "Azul marino__XXL": null
     },
     "stockTalles": {
       "S": null,
