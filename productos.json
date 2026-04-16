@@ -4376,7 +4376,7 @@
     ],
     "activo": true,
     "destacado": false,
-    "outlet": true,
+    "outlet": false,
     "stockMap": {
       "Negro__S": 1,
       "Negro__M": null,
@@ -4400,7 +4400,7 @@
       "Azul__XXL": null
     },
     "stockTalles": {
-      "S": 1
+      "XL": 1
     },
     "stock": 4,
     "sku": "REMERA-BASIC-MW",
