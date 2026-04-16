@@ -1,5 +1,71 @@
 [
   {
+    "id": "canguro-side-1776307876082",
+    "nombre": "Canguro Side",
+    "precio": 40000,
+    "precioAnterior": null,
+    "categoria": "new",
+    "subcategoria": "",
+    "descripcion": "",
+    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1776307704/bara/productos/mvqqxqcvdmtv8jgl19qs.jpg",
+    "imagenes": [
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1776307704/bara/productos/mvqqxqcvdmtv8jgl19qs.jpg",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1776307713/bara/productos/yvpzplwksv8ag0uuef3z.jpg",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1776307875/bara/productos/ybvwfqszz1vbwxg1pzl7.jpg"
+    ],
+    "tallesDisponibles": [
+      "S",
+      "M",
+      "L"
+    ],
+    "colores": [
+      {
+        "nombre": "Negro",
+        "codigo": "#111111",
+        "stock": 0
+      },
+      {
+        "nombre": "Crema",
+        "codigo": "#F5F0E8",
+        "stock": 0
+      },
+      {
+        "nombre": "Verde oliva",
+        "codigo": "#827717",
+        "stock": 0
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Negro__S": 1,
+      "Negro__M": null,
+      "Negro__L": null,
+      "Crema__S": 1,
+      "Crema__M": null,
+      "Crema__L": null,
+      "Verde oliva__S": 1,
+      "Verde oliva__M": null,
+      "Verde oliva__L": null
+    },
+    "stockTalles": null,
+    "stock": 3,
+    "sku": "CANGURO-SIDE",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "buzo-mori-1776298767672",
     "nombre": "Buzo Mori",
     "precio": 40000,
