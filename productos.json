@@ -2638,8 +2638,8 @@
     "nombre": "Kate",
     "precio": 60000,
     "precioAnterior": null,
-    "categoria": "new",
-    "subcategoria": "",
+    "categoria": "hombre",
+    "subcategoria": "Camperas",
     "descripcion": "",
     "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1775682119/bara/productos/xmdyv7evg9wrbgii7x44.webp",
     "imagenes": [
@@ -2671,7 +2671,9 @@
       "Mostaza__S": 1,
       "Mostaza__M": null
     },
-    "stockTalles": null,
+    "stockTalles": {
+      "XL": 2
+    },
     "stock": 3,
     "sku": "KATE",
     "marca": null,
