@@ -3014,8 +3014,8 @@
     "nombre": "Top Espalda Abierta",
     "precio": 25000,
     "precioAnterior": null,
-    "categoria": "new",
-    "subcategoria": "",
+    "categoria": "mujer",
+    "subcategoria": "Tops",
     "descripcion": "",
     "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1775084542/l11nizz5aw0jm4kv3mlt.webp",
     "imagenes": [
@@ -3040,7 +3040,9 @@
     "stockMap": {
       "Negro__Único": 2
     },
-    "stockTalles": null,
+    "stockTalles": {
+      "XL": 2
+    },
     "stock": 2,
     "sku": "TOP-ESPALDA-ABIERTA",
     "marca": null,
