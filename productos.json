@@ -646,8 +646,8 @@
     "nombre": "Buzo Piel Negro",
     "precio": 40000,
     "precioAnterior": null,
-    "categoria": "new",
-    "subcategoria": "",
+    "categoria": "hombre",
+    "subcategoria": "Buzos",
     "descripcion": "",
     "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1776292128/bara/productos/rzhaabovll4tj4owondb.jpg",
     "imagenes": [
@@ -674,11 +674,6 @@
         "nombre": "Azul",
         "codigo": "#1E88E5",
         "stock": 2
-      },
-      {
-        "nombre": "uva",
-        "codigo": "#a94a4a",
-        "stock": 1
       }
     ],
     "activo": true,
@@ -696,13 +691,11 @@
       "Azul__38": 1,
       "Azul__40": 0,
       "Azul__42": 1,
-      "Azul__44": null,
-      "uva__38": null,
-      "uva__40": null,
-      "uva__42": 1,
-      "uva__44": null
+      "Azul__44": null
     },
-    "stockTalles": null,
+    "stockTalles": {
+      "XL": 1
+    },
     "stock": 6,
     "sku": "BUZO-PIEL-NEGRO",
     "marca": null,
