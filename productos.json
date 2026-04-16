@@ -851,8 +851,8 @@
     "nombre": "Buzo Bordado",
     "precio": 50000,
     "precioAnterior": null,
-    "categoria": "new",
-    "subcategoria": "",
+    "categoria": "hombre",
+    "subcategoria": "Buzos",
     "descripcion": "",
     "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1776200718/bara/productos/pn1ye3b5mtsw4u69iutq.jpg",
     "imagenes": [
@@ -874,31 +874,24 @@
         "nombre": "Beige",
         "codigo": "#D4B896",
         "stock": 1
-      },
-      {
-        "nombre": "chocolate",
-        "codigo": "#241604",
-        "stock": 1
       }
     ],
     "activo": true,
     "destacado": false,
     "outlet": false,
     "stockMap": {
-      "Negro__S": null,
+      "Negro__S": 1,
       "Negro__M": 1,
-      "Negro__L": null,
-      "Negro__XL": null,
+      "Negro__L": 0,
+      "Negro__XL": 1,
       "Beige__S": 1,
       "Beige__M": null,
       "Beige__L": null,
-      "Beige__XL": 1,
-      "chocolate__S": null,
-      "chocolate__M": null,
-      "chocolate__L": 1,
-      "chocolate__XL": null
+      "Beige__XL": 1
     },
-    "stockTalles": null,
+    "stockTalles": {
+      "XL": 1
+    },
     "stock": 4,
     "sku": "BUZO-BORDADO",
     "marca": null,
