@@ -2692,8 +2692,8 @@
     "nombre": "Lupin",
     "precio": 65000,
     "precioAnterior": null,
-    "categoria": "new",
-    "subcategoria": "",
+    "categoria": "hombre",
+    "subcategoria": "Sweaters",
     "descripcion": "",
     "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1775681738/bara/productos/fhffzldmikkwfjwcifcp.webp",
     "imagenes": [
@@ -2717,11 +2717,6 @@
         "nombre": "Verde",
         "codigo": "#43A047",
         "stock": 0
-      },
-      {
-        "nombre": "crudo",
-        "codigo": "#f9efe4",
-        "stock": 0
       }
     ],
     "activo": true,
@@ -2729,19 +2724,17 @@
     "outlet": false,
     "stockMap": {
       "Negro__S": 1,
-      "Negro__M": null,
+      "Negro__M": 1,
       "Negro__L": null,
       "Negro__XL": 1,
       "Verde__S": null,
       "Verde__M": 1,
       "Verde__L": null,
-      "Verde__XL": null,
-      "crudo__S": null,
-      "crudo__M": null,
-      "crudo__L": 1,
-      "crudo__XL": null
+      "Verde__XL": null
     },
-    "stockTalles": null,
+    "stockTalles": {
+      "XL": 2
+    },
     "stock": 4,
     "sku": "LUPIN",
     "marca": null,
