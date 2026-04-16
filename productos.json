@@ -1243,8 +1243,8 @@
     "nombre": "Sastrero Corderoy Baggy",
     "precio": 60000,
     "precioAnterior": null,
-    "categoria": "new",
-    "subcategoria": "",
+    "categoria": "hombre",
+    "subcategoria": "Pantalones",
     "descripcion": "",
     "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1776120816/bara/productos/lxtl30auxljbcuzx3rxg.jpg",
     "imagenes": [
@@ -1308,9 +1308,6 @@
       "Marrón__48": null
     },
     "stockTalles": {
-      "S": null,
-      "M": 2,
-      "L": null,
       "XL": 1
     },
     "stock": 5,
