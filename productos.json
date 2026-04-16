@@ -2577,8 +2577,8 @@
     "nombre": "Alter",
     "precio": 30000,
     "precioAnterior": null,
-    "categoria": "new",
-    "subcategoria": "",
+    "categoria": "hombre",
+    "subcategoria": "Remeras",
     "descripcion": "",
     "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1775682763/bara/productos/ygvsevscmzjffph8n1xb.webp",
     "imagenes": [
@@ -2617,7 +2617,9 @@
       "Blanco__L": null,
       "Blanco__XL": 1
     },
-    "stockTalles": null,
+    "stockTalles": {
+      "XL": 2
+    },
     "stock": 4,
     "sku": "ALTER",
     "marca": null,
