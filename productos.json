@@ -2762,8 +2762,8 @@
     "nombre": "Campera Suavage",
     "precio": 85000,
     "precioAnterior": null,
-    "categoria": "new",
-    "subcategoria": "",
+    "categoria": "hombre",
+    "subcategoria": "Camperas",
     "descripcion": "",
     "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1775661417/bara/productos/vucgdwhrxdrn3whm4scm.webp",
     "imagenes": [
@@ -2787,11 +2787,6 @@
         "nombre": "Gris",
         "codigo": "#9E9E9E",
         "stock": 1
-      },
-      {
-        "nombre": "Chocolate",
-        "codigo": "#1e160c",
-        "stock": 2
       }
     ],
     "activo": true,
@@ -2803,15 +2798,13 @@
       "Negro__L": null,
       "Negro__XL": null,
       "Gris__S": null,
-      "Gris__M": null,
+      "Gris__M": 1,
       "Gris__L": 1,
-      "Gris__XL": null,
-      "Chocolate__S": 1,
-      "Chocolate__M": null,
-      "Chocolate__L": null,
-      "Chocolate__XL": 1
+      "Gris__XL": null
     },
-    "stockTalles": null,
+    "stockTalles": {
+      "XL": 2
+    },
     "stock": 4,
     "sku": "CAMPERA-SUAVAGE",
     "marca": null,
