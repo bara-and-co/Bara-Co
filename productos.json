@@ -3159,8 +3159,8 @@
     "nombre": "Mini Frunse Costado",
     "precio": 25000,
     "precioAnterior": null,
-    "categoria": "new",
-    "subcategoria": "",
+    "categoria": "mujer",
+    "subcategoria": "Polleras",
     "descripcion": "",
     "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1775081359/r1itsxuop66welesyd68.webp",
     "imagenes": [
@@ -3198,7 +3198,9 @@
       "Bordo__Único": 1,
       "Plateado__Único": 1
     },
-    "stockTalles": null,
+    "stockTalles": {
+      "XL": 2
+    },
     "stock": 3,
     "sku": "MINI-FRUNSE-COSTADO",
     "marca": null,
