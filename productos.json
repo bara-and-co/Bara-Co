@@ -919,8 +919,8 @@
     "nombre": "Remera Recorte Boxy",
     "precio": 35000,
     "precioAnterior": null,
-    "categoria": "new",
-    "subcategoria": "",
+    "categoria": "hombre",
+    "subcategoria": "Remeras",
     "descripcion": "",
     "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1776181712/bara/productos/fj2uqp3ei04tv3tfhatf.jpg",
     "imagenes": [
@@ -929,20 +929,19 @@
     "tallesDisponibles": [
       "XL"
     ],
-    "colores": [
-      {
-        "nombre": "arena",
-        "codigo": "#e9d1b2",
-        "stock": 1
-      }
-    ],
+    "colores": [],
     "activo": true,
     "destacado": false,
     "outlet": false,
     "stockMap": {
-      "arena__XL": 1
+      "Negro__S": 1,
+      "Negro__M": 1,
+      "Negro__L": 0,
+      "Negro__XL": 1
     },
-    "stockTalles": null,
+    "stockTalles": {
+      "XL": 1
+    },
     "stock": 1,
     "sku": "REMERA-RECORTE-BOXY",
     "marca": null,
