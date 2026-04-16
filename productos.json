@@ -569,8 +569,8 @@
     "nombre": "Buzo King Frisa",
     "precio": 55000,
     "precioAnterior": null,
-    "categoria": "new",
-    "subcategoria": "",
+    "categoria": "hombre",
+    "subcategoria": "Buzos",
     "descripcion": "",
     "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1776295333/bara/productos/ngqffffxcp05vkxgnixh.jpg",
     "imagenes": [
@@ -597,11 +597,6 @@
         "nombre": "Verde oliva",
         "codigo": "#827717",
         "stock": 1
-      },
-      {
-        "nombre": "Arena",
-        "codigo": "#a9804a",
-        "stock": 0
       }
     ],
     "activo": true,
@@ -619,13 +614,11 @@
       "Verde oliva__M": null,
       "Verde oliva__L": null,
       "Verde oliva__XL": null,
-      "Verde oliva__XXL": 1,
-      "Arena__M": null,
-      "Arena__L": null,
-      "Arena__XL": 1,
-      "Arena__XXL": null
+      "Verde oliva__XXL": 1
     },
-    "stockTalles": null,
+    "stockTalles": {
+      "XL": 1
+    },
     "stock": 4,
     "sku": "BUZO-KING-FRISA",
     "marca": null,
