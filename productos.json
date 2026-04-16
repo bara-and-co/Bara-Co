@@ -1,5 +1,54 @@
 [
   {
+    "id": "gorra-animal-1776308288203",
+    "nombre": "Gorra Animal",
+    "precio": 25000,
+    "precioAnterior": null,
+    "categoria": "accesorios",
+    "subcategoria": "",
+    "descripcion": "",
+    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1776308277/bara/productos/wzbrdoehzq0cj551glwm.webp",
+    "imagenes": [
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1776308277/bara/productos/wzbrdoehzq0cj551glwm.webp",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1776308286/bara/productos/iixs2iqdtircnogrsumu.webp"
+    ],
+    "tallesDisponibles": [
+      "Único"
+    ],
+    "colores": [],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Negro__S": 1,
+      "Negro__M": null,
+      "Negro__L": null,
+      "Crema__S": 1,
+      "Crema__M": null,
+      "Crema__L": null,
+      "Verde oliva__S": 1,
+      "Verde oliva__M": null,
+      "Verde oliva__L": null
+    },
+    "stockTalles": {
+      "Único": 1
+    },
+    "stock": 3,
+    "sku": "GORRA-ANIMAL",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "canguro-side-1776307876082",
     "nombre": "Canguro Side",
     "precio": 40000,
