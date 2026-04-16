@@ -3843,8 +3843,8 @@
     "nombre": "Campera Oversize Rustico",
     "precio": 70000,
     "precioAnterior": null,
-    "categoria": "new",
-    "subcategoria": "",
+    "categoria": "hombre",
+    "subcategoria": "Camperas",
     "descripcion": "",
     "imagen": "https://i.ibb.co/qMZM2z2W/CAMPERITA-OVERSIZE-RUSTICO-WASHED-3.jpg",
     "imagenes": [
@@ -3870,9 +3870,6 @@
       "Negro__L": 1
     },
     "stockTalles": {
-      "S": 1,
-      "M": 2,
-      "L": 1,
       "XL": 2
     },
     "stock": 2,
