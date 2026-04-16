@@ -793,8 +793,8 @@
     "nombre": "Sueter Media Polera",
     "precio": 60000,
     "precioAnterior": null,
-    "categoria": "new",
-    "subcategoria": "",
+    "categoria": "hombre",
+    "subcategoria": "Sweaters",
     "descripcion": "",
     "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1776210341/bara/productos/c6ua9yznjy51trwawrsg.jpg",
     "imagenes": [
@@ -821,7 +821,7 @@
     "destacado": false,
     "outlet": false,
     "stockMap": {
-      "Negro__M": null,
+      "Negro__M": 1,
       "Negro__XL": 1,
       "Negro__XXL": null,
       "Crema__M": 1,
@@ -829,7 +829,7 @@
       "Crema__XXL": 1
     },
     "stockTalles": {
-      "S": 1
+      "XL": 1
     },
     "stock": 4,
     "sku": "SUETER-MEDIA-POLERA",
