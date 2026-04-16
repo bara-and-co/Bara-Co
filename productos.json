@@ -4707,13 +4707,13 @@
     ],
     "activo": true,
     "destacado": false,
-    "outlet": true,
+    "outlet": false,
     "stockMap": {
       "Jean__40": null,
       "Jean__44": null
     },
     "stockTalles": {
-      "S": 1
+      "XL": 1
     },
     "stock": 2,
     "sku": "PANTALON-DRIFT",
