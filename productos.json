@@ -3796,8 +3796,8 @@
     "nombre": "Baggy Recto Arbol",
     "precio": 65000,
     "precioAnterior": null,
-    "categoria": "new",
-    "subcategoria": "",
+    "categoria": "hombre",
+    "subcategoria": "Pantalones",
     "descripcion": "",
     "imagen": "https://i.ibb.co/cSSXvxCr/Gemini-Generated-Image-8eijdi8eijdi8eij.png",
     "imagenes": [
@@ -3822,7 +3822,9 @@
       "Beige__40": 1,
       "Beige__44": 1
     },
-    "stockTalles": null,
+    "stockTalles": {
+      "XL": 2
+    },
     "stock": 2,
     "sku": "BAGGY-RECTO-ARBOL",
     "marca": null,
