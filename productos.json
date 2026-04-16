@@ -2915,8 +2915,8 @@
     "nombre": "Sueter Nordico",
     "precio": 60000,
     "precioAnterior": null,
-    "categoria": "new",
-    "subcategoria": "",
+    "categoria": "hombre",
+    "subcategoria": "Sweaters",
     "descripcion": "",
     "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1775659903/bara/productos/genjdijhn9epf3gcxere.webp",
     "imagenes": [
@@ -2948,7 +2948,9 @@
       "Negro__L": 1,
       "Negro__XL": null
     },
-    "stockTalles": null,
+    "stockTalles": {
+      "XL": 2
+    },
     "stock": 4,
     "sku": "SUETER-NORDICO",
     "marca": null,
