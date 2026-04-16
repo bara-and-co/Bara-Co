@@ -3290,7 +3290,7 @@
         "stock": 0
       }
     ],
-    "activo": true,
+    "activo": false,
     "destacado": false,
     "outlet": false,
     "stockMap": {
@@ -3502,8 +3502,8 @@
     "nombre": "Bestido Buche Manga Oxfort",
     "precio": 50000,
     "precioAnterior": null,
-    "categoria": "new",
-    "subcategoria": "",
+    "categoria": "mujer",
+    "subcategoria": "Vestidos",
     "descripcion": "",
     "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1775070598/epyn324yrwbgkptk5bkh.webp",
     "imagenes": [
@@ -3533,7 +3533,9 @@
       "Gris__Único": 1,
       "Rojo__Único": 1
     },
-    "stockTalles": null,
+    "stockTalles": {
+      "XL": 2
+    },
     "stock": 2,
     "sku": "BESTIDO-BUCHE-MANGA-OXFORT",
     "marca": null,
