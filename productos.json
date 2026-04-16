@@ -3061,8 +3061,8 @@
     "nombre": "Top Frunce",
     "precio": 25000,
     "precioAnterior": null,
-    "categoria": "new",
-    "subcategoria": "",
+    "categoria": "mujer",
+    "subcategoria": "Tops",
     "descripcion": "",
     "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1775084053/cxy71durpekypvdtqxxk.webp",
     "imagenes": [
@@ -3086,7 +3086,9 @@
     "stockMap": {
       "Negro__Único": 1
     },
-    "stockTalles": null,
+    "stockTalles": {
+      "XL": 2
+    },
     "stock": 1,
     "sku": "TOP-FRUNCE",
     "marca": null,
