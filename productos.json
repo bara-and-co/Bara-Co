@@ -1,5 +1,47 @@
 [
   {
+    "id": "gorra-cebra-1776309020297",
+    "nombre": "Gorra Cebra",
+    "precio": 25000,
+    "precioAnterior": null,
+    "categoria": "accesorios",
+    "subcategoria": "",
+    "descripcion": "",
+    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1776309011/bara/productos/qcdkro0dv2hzoy0uifeq.webp",
+    "imagenes": [
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1776309011/bara/productos/qcdkro0dv2hzoy0uifeq.webp",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1776309020/bara/productos/loamal8vtglvhi9r3rzp.webp"
+    ],
+    "tallesDisponibles": [
+      "Único"
+    ],
+    "colores": [],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Gris__Único": 1,
+      "Celeste__Único": 1
+    },
+    "stockTalles": {
+      "Único": 2
+    },
+    "stock": 2,
+    "sku": "GORRA-CEBRA",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "gorra-pre-lavada-1776308884763",
     "nombre": "Gorra Pre Lavada",
     "precio": 15000,
