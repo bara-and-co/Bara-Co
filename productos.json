@@ -504,8 +504,8 @@
     "nombre": "Camisaco Paño",
     "precio": 73000,
     "precioAnterior": null,
-    "categoria": "new",
-    "subcategoria": "",
+    "categoria": "hombre",
+    "subcategoria": "Camperas",
     "descripcion": "",
     "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1776296903/bara/productos/woe0wwylmxygr0zr4pqp.jpg",
     "imagenes": [
@@ -539,16 +539,18 @@
     "outlet": false,
     "stockMap": {
       "Negro__M": 1,
-      "Negro__L": null,
+      "Negro__L": 0,
       "Negro__XL": null,
       "Gris__M": null,
       "Gris__L": 1,
       "Gris__XL": null,
       "Crema__M": null,
-      "Crema__L": null,
+      "Crema__L": 1,
       "Crema__XL": 1
     },
-    "stockTalles": null,
+    "stockTalles": {
+      "XL": 1
+    },
     "stock": 3,
     "sku": "CAMISACO-PAÑO",
     "marca": null,
