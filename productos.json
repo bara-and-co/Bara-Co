@@ -3745,8 +3745,8 @@
     "nombre": "Baggy Skater Negro",
     "precio": 65000,
     "precioAnterior": null,
-    "categoria": "new",
-    "subcategoria": "",
+    "categoria": "hombre",
+    "subcategoria": "Pantalones",
     "descripcion": "",
     "imagen": "https://i.ibb.co/nsGMBjK8/Gemini-Generated-Image-lz5ujclz5ujclz5u.png",
     "imagenes": [
@@ -3775,7 +3775,9 @@
       "Negro__42": 1,
       "Negro__44": 1
     },
-    "stockTalles": null,
+    "stockTalles": {
+      "XL": 2
+    },
     "stock": 4,
     "sku": "BAGGY-SKATER-NEGRO",
     "marca": null,
