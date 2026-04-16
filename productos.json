@@ -3219,8 +3219,8 @@
     "nombre": "Body Tul Estampado",
     "precio": 30000,
     "precioAnterior": null,
-    "categoria": "new",
-    "subcategoria": "",
+    "categoria": "mujer",
+    "subcategoria": "Bodies",
     "descripcion": "",
     "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1775080415/bzqfoibacimvj6l3wszq.webp",
     "imagenes": [
@@ -3250,7 +3250,9 @@
       "Gris__Único": 1,
       "Naranja__Único": 1
     },
-    "stockTalles": null,
+    "stockTalles": {
+      "XL": 2
+    },
     "stock": 2,
     "sku": "BODY-TUL-ESTAMPADO",
     "marca": null,
