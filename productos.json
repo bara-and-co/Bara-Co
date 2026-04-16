@@ -1157,8 +1157,8 @@
     "nombre": "Sueter Capucha",
     "precio": 55000,
     "precioAnterior": null,
-    "categoria": "new",
-    "subcategoria": "",
+    "categoria": "hombre",
+    "subcategoria": "Sweaters",
     "descripcion": "",
     "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1776121585/bara/productos/x6amcjq7qk90ubzejooq.jpg",
     "imagenes": [
@@ -1218,9 +1218,6 @@
       "Azul marino__XXL": null
     },
     "stockTalles": {
-      "S": null,
-      "M": 2,
-      "L": null,
       "XL": 1
     },
     "stock": 6,
