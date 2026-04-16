@@ -3646,8 +3646,8 @@
     "nombre": "Blazer Rayas",
     "precio": 50000,
     "precioAnterior": null,
-    "categoria": "new",
-    "subcategoria": "",
+    "categoria": "mujer",
+    "subcategoria": "Blazers",
     "descripcion": "",
     "imagen": "https://i.ibb.co/rLt3H6c/blazer-rayado.webp",
     "imagenes": [
@@ -3671,7 +3671,9 @@
     "stockMap": {
       "Azul__Único": 1
     },
-    "stockTalles": null,
+    "stockTalles": {
+      "XL": 2
+    },
     "stock": 1,
     "sku": "BLAZER-RAYAS",
     "marca": null,
