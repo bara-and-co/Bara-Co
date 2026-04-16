@@ -9663,11 +9663,13 @@
     ],
     "activo": true,
     "destacado": false,
-    "outlet": true,
+    "outlet": false,
     "stockMap": {
       "Blanco__S": 1
     },
-    "stockTalles": null,
+    "stockTalles": {
+      "XL": 2
+    },
     "stock": 1,
     "sku": "REMERA-BOXY-1940",
     "marca": null,
