@@ -6720,8 +6720,8 @@
     "nombre": "Sastrero RIALTO",
     "precio": 75000,
     "precioAnterior": null,
-    "categoria": "new",
-    "subcategoria": "",
+    "categoria": "hombre",
+    "subcategoria": "Pantalones",
     "descripcion": "",
     "imagen": "hombre/Rialto.png",
     "imagenes": [
@@ -6772,7 +6772,7 @@
       "Camel__46": null
     },
     "stockTalles": {
-      "Único": 1
+      "XL": 2
     },
     "stock": 5,
     "sku": "SASTRERO-RIALTO",
