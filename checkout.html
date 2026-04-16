@@ -1109,6 +1109,7 @@ async function pagar(metodo) {
   }
 
   // Tarjeta → redirige al link de MercadoPago (procesa todas las tarjetas)
+  // SIEMPRE redirige directo, sin pasar por el backend, independientemente del modo de envío
   if (metodo === 'card') {
     btnLoading('#btnCard');
     localStorage.removeItem(CART_KEY);
@@ -1116,7 +1117,8 @@ async function pagar(metodo) {
     return;
   }
 
-  // MercadoPago directo → redirige al mismo link sin pasar por el backend
+  // MercadoPago → SIEMPRE redirige directo al link de MP, sin pasar por el backend
+  // Esto aplica tanto para retiro en local como para envío a domicilio
   if (metodo === 'mp') {
     btnLoading('#btnMp');
     localStorage.removeItem(CART_KEY);
@@ -1168,16 +1170,6 @@ async function pagar(metodo) {
     // Guardar pedido localmente
     localStorage.setItem('bc_pedido_id', data.pedidoId);
     localStorage.setItem('bc_nombre_cliente', nombre);
-
-    // ── MercadoPago → redirigir al checkout de MP ──
-    if (metodo === 'mp') {
-      localStorage.removeItem(CART_KEY);
-      // Usar sandbox en desarrollo, init_point en producción
-      const mpUrl = data.initPoint || data.sandbox;
-      if (!mpUrl) throw new Error('No se recibió el link de MercadoPago. ¿Está configurado el Access Token?');
-      window.location.href = mpUrl;
-      return;
-    }
 
     // ── Otros métodos: abrir WA al cliente + notif local ──
     localStorage.removeItem(CART_KEY);
