@@ -635,10 +635,9 @@
       "https://res.cloudinary.com/djk1znvr7/image/upload/v1776292128/bara/productos/rzhaabovll4tj4owondb.jpg"
     ],
     "tallesDisponibles": [
-      "38",
-      "40",
-      "42",
-      "44"
+      "L",
+      "XL",
+      "XXL"
     ],
     "colores": [
       {
@@ -647,37 +646,32 @@
         "stock": 3
       },
       {
-        "nombre": "Marrón",
-        "codigo": "#795548",
-        "stock": 1
+        "nombre": "Beige",
+        "codigo": "#D4B896",
+        "stock": 0
       },
       {
-        "nombre": "Azul",
-        "codigo": "#1E88E5",
-        "stock": 2
+        "nombre": "Bordo",
+        "codigo": "#7B1C2A",
+        "stock": 0
       }
     ],
     "activo": true,
     "destacado": false,
     "outlet": false,
     "stockMap": {
-      "Negro__38": null,
-      "Negro__40": 1,
-      "Negro__42": 1,
-      "Negro__44": 1,
-      "Marrón__38": null,
-      "Marrón__40": 1,
-      "Marrón__42": null,
-      "Marrón__44": null,
-      "Azul__38": 1,
-      "Azul__40": 0,
-      "Azul__42": 1,
-      "Azul__44": null
+      "Negro__L": null,
+      "Negro__XL": null,
+      "Negro__XXL": 1,
+      "Beige__L": null,
+      "Beige__XL": 1,
+      "Beige__XXL": null,
+      "Bordo__L": 1,
+      "Bordo__XL": null,
+      "Bordo__XXL": null
     },
-    "stockTalles": {
-      "XL": 1
-    },
-    "stock": 6,
+    "stockTalles": null,
+    "stock": 3,
     "sku": "BUZO-PIEL-NEGRO",
     "marca": null,
     "tags": null,
