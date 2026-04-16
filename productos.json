@@ -3600,8 +3600,8 @@
     "nombre": "Body con Cierre manga Tul",
     "precio": 25000,
     "precioAnterior": null,
-    "categoria": "new",
-    "subcategoria": "",
+    "categoria": "mujer",
+    "subcategoria": "Bodies",
     "descripcion": "",
     "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1775070302/vobbadeq3ghim1brwjz7.webp",
     "imagenes": [
@@ -3625,7 +3625,9 @@
     "stockMap": {
       "Negro__Único": 1
     },
-    "stockTalles": null,
+    "stockTalles": {
+      "XL": 2
+    },
     "stock": 1,
     "sku": "BODY-CON-CIERRE-MANGA-TUL",
     "marca": null,
