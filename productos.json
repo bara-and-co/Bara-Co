@@ -4797,14 +4797,14 @@
     ],
     "activo": true,
     "destacado": false,
-    "outlet": true,
+    "outlet": false,
     "stockMap": {
       "Celeste__36": 1,
       "Celeste__40": 1,
       "Celeste__42": 1
     },
     "stockTalles": {
-      "S": 1
+      "XL": 2
     },
     "stock": 3,
     "sku": "JEAN-CARGO-BOLSILLO-LARGO",
