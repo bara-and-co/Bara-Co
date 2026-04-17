@@ -1,5 +1,64 @@
 [
   {
+    "id": "conjunto-plush-mdt-1776388975554",
+    "nombre": "Conjunto Plush MdT",
+    "precio": 55000,
+    "precioAnterior": null,
+    "categoria": "hombre",
+    "subcategoria": "Conjuntos",
+    "descripcion": "",
+    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1776388962/bara/productos/wtited7pua6yj9lytadw.png",
+    "imagenes": [
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1776388962/bara/productos/wtited7pua6yj9lytadw.png"
+    ],
+    "tallesDisponibles": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "colores": [
+      {
+        "nombre": "Negro",
+        "codigo": "#111111",
+        "stock": 2
+      },
+      {
+        "nombre": "Gris",
+        "codigo": "#9E9E9E",
+        "stock": 2
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Negro__S": 0,
+      "Negro__M": 1,
+      "Negro__L": 0,
+      "Negro__XL": 1,
+      "Gris__S": 1,
+      "Gris__M": 0,
+      "Gris__L": 1,
+      "Gris__XL": null
+    },
+    "stockTalles": null,
+    "stock": 4,
+    "sku": "CONJUNTO-PLUSH-MDT",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "faja-gamuza-1776309779180",
     "nombre": "Faja Gamuza",
     "precio": 15000,
