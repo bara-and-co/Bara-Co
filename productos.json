@@ -1,5 +1,62 @@
 [
   {
+    "id": "buzo-oversize-1776390304814",
+    "nombre": "Buzo Oversize",
+    "precio": 65000,
+    "precioAnterior": null,
+    "categoria": "hombre",
+    "subcategoria": "Buzos",
+    "descripcion": "",
+    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1776390255/bara/productos/kgv965zuejq6rbtonode.jpg",
+    "imagenes": [
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1776390255/bara/productos/kgv965zuejq6rbtonode.jpg",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1776390277/bara/productos/fl3wjlnhkmuv6rxgrynl.jpg",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1776390285/bara/productos/rihpvtertw2ubfhtozm6.jpg"
+    ],
+    "tallesDisponibles": [],
+    "colores": [
+      {
+        "nombre": "Negro",
+        "codigo": "#111111",
+        "stock": 0
+      },
+      {
+        "nombre": "Marrón",
+        "codigo": "#795548",
+        "stock": 0
+      },
+      {
+        "nombre": "Celeste",
+        "codigo": "#81D4FA",
+        "stock": 0
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Gris__40": 1,
+      "Gris__42": 1,
+      "Gris__44": 1,
+      "Gris__46": 1
+    },
+    "stockTalles": null,
+    "stock": 6,
+    "sku": "BUZO-OVERSIZE",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "conjunto-plush-mdt-1776388975554",
     "nombre": "Conjunto Plush MdT",
     "precio": 55000,
