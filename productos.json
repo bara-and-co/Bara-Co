@@ -1,5 +1,55 @@
 [
   {
+    "id": "capa-tul-stras-1776549753270",
+    "nombre": "Capa Tul Stras",
+    "precio": 20000,
+    "precioAnterior": null,
+    "categoria": "new",
+    "subcategoria": "",
+    "descripcion": "",
+    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1776549751/bara/productos/uppiqvbjuzhh2wvgwdx7.png",
+    "imagenes": [
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1776549751/bara/productos/uppiqvbjuzhh2wvgwdx7.png"
+    ],
+    "tallesDisponibles": [
+      "Único"
+    ],
+    "colores": [
+      {
+        "nombre": "Marrón",
+        "codigo": "#795548",
+        "stock": 0
+      },
+      {
+        "nombre": "Bordo",
+        "codigo": "#7B1C2A",
+        "stock": 0
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Marrón__Único": 1,
+      "Bordo__Único": 1
+    },
+    "stockTalles": null,
+    "stock": 2,
+    "sku": "CAPA-TUL-STRAS",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "baggy-sastrero-1776548746361",
     "nombre": "Baggy Sastrero",
     "precio": 60000,
