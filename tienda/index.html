@@ -4,7 +4,7 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Tienda · Bara & Co</title>
-  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="/css/global.css">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
   
@@ -92,13 +92,7 @@
     .oc-slide-grid { position:absolute;inset:0;z-index:1;pointer-events:none;background-image:repeating-linear-gradient(90deg,rgba(255,255,255,.022) 0,rgba(255,255,255,.022) 1px,transparent 1px,transparent 76px); }
     .oc-img { position:absolute;left:0;top:0;bottom:0;width:240px;z-index:2;overflow:hidden;opacity:0;transform:translateX(-10px);transition:opacity .6s cubic-bezier(.16,1,.3,1),transform .6s cubic-bezier(.16,1,.3,1); }
     .oc-slide.oc-in .oc-img { opacity:1;transform:none; }
-    .oc-img img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center center;
-  filter: brightness(.82) saturate(.88);
-}
+    .oc-img img { width:100%;height:100%;object-fit:cover;object-position:center center;filter:brightness(.82) saturate(.88); }
     .oc-img::after { content:'';position:absolute;inset:0;background:linear-gradient(to right,transparent 38%,#0c0c0a 100%); }
     .oc-slide.oc-no-img .oc-img { display:none; }
     .oc-content { position:relative;z-index:3;padding:0 52px;margin-left:200px;flex:1;display:flex;flex-direction:column;gap:9px; }
@@ -395,13 +389,13 @@
 <div class="cur-ring" id="curRing"></div>
 
 <header id="header">
-  <a href="index.html"><img src="images/LogoB&D.png" alt="Bara & Co" class="logo-img"/></a>
+  <a href="/"><img src="/images/LogoB&D.png" alt="Bara & Co" class="logo-img"/></a>
   <nav class="nav-menu">
     <ul>
-      <li><a href="index.html">Inicio</a></li>
-      <li><a href="/" class="active">Tienda</a></li>
-      <li><a href="lookbook.html">Lookbook</a></li>
-      <li><a href="contacto.html">Contacto</a></li>
+      <li><a href="/">Inicio</a></li>
+      <li><a href="/tienda/" class="active">Tienda</a></li>
+      <li><a href="/lookbook.html">Lookbook</a></li>
+      <li><a href="/contacto.html">Contacto</a></li>
     </ul>
   </nav>
   <div class="header-icons">
@@ -415,10 +409,10 @@
 </header>
 
 <nav class="mobile-nav" id="mobileNav">
-  <a href="index.html">Inicio</a>
-  <a href="/" class="active">Tienda</a>
-  <a href="lookbook.html">Lookbook</a>
-  <a href="contacto.html">Contacto</a>
+  <a href="/">Inicio</a>
+  <a href="/tienda/" class="active">Tienda</a>
+  <a href="/lookbook.html">Lookbook</a>
+  <a href="/contacto.html">Contacto</a>
 </nav>
 
 <div class="shipping-bar">Envíos a todo el país · Retiro en local · Ing. Olmos 139, Jesús María · Compra segura</div>
@@ -435,7 +429,7 @@
 
 
 <div class="shop-hero">
-  <img class="shop-hero-bg" src="images/fondo%20hero.png" alt="Bara & Co Tienda" loading="eager"/>
+  <img class="shop-hero-bg" src="/images/fondo%20hero.png" alt="Bara & Co Tienda" loading="eager"/>
   <div class="shop-hero-content">
     <p class="shop-eyebrow">New Collection 2026</p>
     <h1 class="shop-title">Nuestra <em>Tienda</em></h1>
@@ -532,7 +526,7 @@
 
 <footer>
   <div>
-    <img src="images/logoN&D.png" alt="Bara & Co" class="footer-logo-img"/>
+    <img src="/images/logoN&D.png" alt="Bara & Co" class="footer-logo-img"/>
     <p class="footer-text">Indumentaria urbana con personalidad. Diseño y confort para tu día a día.</p>
     <div class="social-icons">
       <i class="fab fa-instagram" onclick="window.open('https://instagram.com/bara.and.co','_blank')"></i>
@@ -543,29 +537,29 @@
   <div>
     <h4 class="footer-title">Categorías</h4>
     <ul class="footer-links">
-      <li><a href="tienda.html?categoria=hombre">Hombre</a></li>
-      <li><a href="tienda.html?categoria=mujer">Mujer</a></li>
-      <li><a href="tienda.html?categoria=accesorios">Accesorios</a></li>
-      <li><a href="tienda.html?categoria=new">New Collection</a></li>
-      <li><a href="tienda.html?categoria=sale">Sale</a></li>
-      <li><a href="tienda.html?categoria=outlet" style="color:#e07b39;">🏷️ Outlet</a></li>
+      <li><a href="/tienda/?categoria=hombre">Hombre</a></li>
+      <li><a href="/tienda/?categoria=mujer">Mujer</a></li>
+      <li><a href="/tienda/?categoria=accesorios">Accesorios</a></li>
+      <li><a href="/tienda/?categoria=new">New Collection</a></li>
+      <li><a href="/tienda/?categoria=sale">Sale</a></li>
+      <li><a href="/tienda/?categoria=outlet" style="color:#e07b39;">🏷️ Outlet</a></li>
     </ul>
   </div>
   <div>
     <h4 class="footer-title">Ayuda</h4>
     <ul class="footer-links">
-      <li><a href="envios.html">Envíos</a></li>
-      <li><a href="cambios.html">Cambios y devoluciones</a></li>
-      <li><a href="faq.html">Preguntas frecuentes</a></li>
-      <li><a href="contacto.html">Contacto</a></li>
+      <li><a href="/envios.html">Envíos</a></li>
+      <li><a href="/cambios.html">Cambios y devoluciones</a></li>
+      <li><a href="/faq.html">Preguntas frecuentes</a></li>
+      <li><a href="/contacto.html">Contacto</a></li>
     </ul>
   </div>
 </footer>
 <div class="footer-bottom">
   <span>© 2026 Bara & Co · Ing. Olmos 139 – Jesús María</span>
   <div class="legal-info">
-    <a href="pages/terminos.html">Términos y condiciones</a>
-    <a href="pages/privacidad.html">Política de privacidad</a>
+    <a href="/pages/terminos/">Términos y condiciones</a>
+    <a href="/pages/privacidad/">Política de privacidad</a>
   </div>
 </div>
 
@@ -636,16 +630,22 @@ let activeSort   = 'default';
 
 // Config de categorías para las big cards
 const CAT_CONFIG = {
-  new:        { label:'Nueva colección', title:'New Collection', cta:'Descubrir', img:'images/fondo%20hero.png' },
-  hombre:     { label:'Moda masculina',  title:'Hombre',         cta:'Ver todo',  img:'images/fondo%20hero.png' },
-  mujer:      { label:'Moda femenina',   title:'Mujer',          cta:'Ver todo',  img:'images/fondo%20hero.png' },
-  accesorios: { label:'Complementos',    title:'Accesorios',     cta:'Explorar',  img:'images/fondo%20hero.png' },
+  new:        { label:'Nueva colección', title:'New Collection', cta:'Descubrir', img:'/images/fondo%20hero.png' },
+  hombre:     { label:'Moda masculina',  title:'Hombre',         cta:'Ver todo',  img:'/images/fondo%20hero.png' },
+  mujer:      { label:'Moda femenina',   title:'Mujer',          cta:'Ver todo',  img:'/images/fondo%20hero.png' },
+  accesorios: { label:'Complementos',    title:'Accesorios',     cta:'Explorar',  img:'/images/fondo%20hero.png' },
 };
+
+function normalizeAssetPath(path) {
+  if (!path) return '';
+  if (/^(https?:)?\/\//.test(path) || path.startsWith('/')) return path;
+  return '/' + path.replace(/^\.?\//, '');
+}
 
 // ========== CARGAR PRODUCTOS ==========
 async function cargarProductos() {
   try {
-    const r = await fetch('productos.json?t=' + Date.now());
+    const r = await fetch('/productos.json?t=' + Date.now());
     if (!r.ok) throw new Error();
     productos = (await r.json()).filter(p => p.activo !== false);
     renderizarProductos();
@@ -674,7 +674,7 @@ function renderCatLanding() {
     const count = productos.filter(p => p.categoria === cat).length;
     // Intentar obtener imagen del primer producto de esa categoría
     const firstProd = productos.find(p => p.categoria === cat && p.imagen);
-    const imgSrc = firstProd ? firstProd.imagen : cfg.img;
+    const imgSrc = firstProd ? normalizeAssetPath(firstProd.imagen) : cfg.img;
     html += `
       <div class="cat-big-card" onclick="filterBy('${cat}')">
         <img src="${imgSrc}" alt="${cfg.title}" loading="lazy"/>
@@ -689,7 +689,7 @@ function renderCatLanding() {
   if (hasOutlet) {
     html += `
       <div class="cat-big-card" onclick="filterBy('outlet')" style="grid-column:1/-1;aspect-ratio:21/6;">
-        <img src="images/outletbaraandco.webp" alt="Outlet" loading="lazy"/>
+        <img src="/images/outletbaraandco.webp" alt="Outlet" loading="lazy"/>
         <div class="cat-big-info">
           <p class="cat-big-label" style="color:#e07b39">Últimas unidades · Sale</p>
           <h2 class="cat-big-title">Outlet <em style="font-style:italic;color:var(--accent)">& Sale</em></h2>
@@ -757,16 +757,16 @@ function buildCard(p) {
       data-precio="${p.precio}"
       data-fecha="${p.fechaCreacion||p.id}"
       data-descuento="${descuento}"
-      onclick="location.href='producto.html?id=${p.id}'"
+      onclick="location.href='/producto.html?id=${p.id}'"
     >
       <div class="prod-img">
         ${topBadge}
         ${agotadoOverlay}
         ${badgeHtml}
-        <img src="${p.imagen}" alt="${p.nombre}" loading="lazy"/>
+        <img src="${normalizeAssetPath(p.imagen)}" alt="${p.nombre}" loading="lazy"/>
         <div class="prod-overlay">
           ${btnAgregar}
-          <button class="ov-btn ov-view" onclick="event.stopPropagation();location.href='producto.html?id=${p.id}'">
+          <button class="ov-btn ov-view" onclick="event.stopPropagation();location.href='/producto.html?id=${p.id}'">
             <i class="fas fa-eye"></i> Ver detalle
           </button>
         </div>
