@@ -4,223 +4,646 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Preguntas frecuentes · Bara & Co</title>
-  
-  <!-- CSS GLOBAL -->
-  <link rel="stylesheet" href="css/global.css">
-  
-  <!-- Fuentes e iconos -->
+
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
-  
+
   <style>
-    .page-content {
-      max-width: 900px;
-      margin: 120px auto 80px;
-      padding: 0 20px;
+    :root{
+      --bg:#0e0e0c;
+      --surface:#161614;
+      --border:rgba(255,255,255,.07);
+      --text:#f0ece4;
+      --muted:#7a7872;
+      --accent:#c9a96e;
+      --adk:#9e7a3e;
+      --white:#fff;
+      --serif:'Playfair Display', serif;
+      --sans:'Inter', sans-serif;
+      --ease:cubic-bezier(.16,1,.3,1);
     }
-    .page-title {
-      font-family: var(--font-serif);
-      font-size: 42px;
-      font-weight: 400;
-      margin-bottom: 40px;
-      color: var(--color-text);
+
+    *{ box-sizing:border-box; margin:0; padding:0; }
+    html{ scroll-behavior:smooth; }
+    body{
+      background:var(--bg);
+      color:var(--text);
+      font-family:var(--sans);
+      font-size:15px;
+      line-height:1.6;
+      -webkit-font-smoothing:antialiased;
+      overflow-x:hidden;
     }
-    .faq-item {
-      background: var(--color-surface);
-      border: 1px solid var(--color-border);
-      margin-bottom: 15px;
+
+    a{ color:inherit; text-decoration:none; }
+    img{ display:block; max-width:100%; }
+
+    /* HEADER */
+    #header{
+      position:fixed;
+      top:0;
+      left:0;
+      right:0;
+      z-index:200;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:0 48px;
+      height:80px;
+      background:rgba(14,14,12,.93);
+      backdrop-filter:blur(20px);
+      border-bottom:1px solid var(--border);
     }
-    .faq-question {
-      padding: 20px;
-      cursor: pointer;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-weight: 500;
-      color: var(--color-text);
+
+    .logo-header{
+      height:80px;
+      width:auto;
+      object-fit:contain;
+      display:block;
     }
-    .faq-question i {
-      transition: transform 0.3s;
+
+    .header-nav ul{
+      display:flex;
+      gap:36px;
+      list-style:none;
     }
-    .faq-question.active i {
-      transform: rotate(180deg);
+
+    .header-nav a{
+      font-size:11px;
+      font-weight:500;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      color:var(--muted);
+      position:relative;
+      transition:color .25s;
     }
-    .faq-answer {
-      padding: 0 20px 20px;
-      color: var(--color-text-secondary);
-      line-height: 1.8;
-      display: none;
+
+    .header-nav a::after{
+      content:'';
+      position:absolute;
+      bottom:-4px;
+      left:0;
+      right:0;
+      height:1px;
+      background:var(--accent);
+      transform:scaleX(0);
+      transform-origin:left;
+      transition:transform .3s var(--ease);
     }
-    .faq-answer.show {
-      display: block;
+
+    .header-nav a:hover,
+    .header-nav a.active{
+      color:var(--text);
+    }
+
+    .header-nav a:hover::after,
+    .header-nav a.active::after{
+      transform:scaleX(1);
+    }
+
+    .header-icons{
+      display:flex;
+      align-items:center;
+      gap:20px;
+    }
+
+    .header-icons i{
+      font-size:16px;
+      color:var(--muted);
+      cursor:pointer;
+      transition:color .25s;
+    }
+
+    .header-icons i:hover{
+      color:var(--accent);
+    }
+
+    .cart-icon-wrap{
+      position:relative;
+      cursor:pointer;
+    }
+
+    .cart-badge{
+      position:absolute;
+      top:-7px;
+      right:-9px;
+      background:var(--accent);
+      color:var(--bg);
+      font-size:9px;
+      font-weight:700;
+      width:17px;
+      height:17px;
+      border-radius:50%;
+      display:none;
+      place-items:center;
+    }
+
+    .cart-badge.on{
+      display:grid;
+    }
+
+    /* SHIPPING BAR */
+    .shipping-bar{
+      margin-top:80px;
+      background:var(--accent);
+      color:var(--bg);
+      text-align:center;
+      font-size:11px;
+      font-weight:600;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      padding:10px 16px;
+    }
+
+    /* HERO */
+    .page-hero{
+      height:180px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      border-bottom:1px solid var(--border);
+      position:relative;
+      overflow:hidden;
+    }
+
+    .page-hero::before{
+      content:'';
+      position:absolute;
+      inset:0;
+      background:radial-gradient(ellipse at center, rgba(201,169,110,.07) 0%, transparent 65%);
+      pointer-events:none;
+    }
+
+    .page-eyebrow{
+      font-size:9px;
+      letter-spacing:.35em;
+      text-transform:uppercase;
+      color:var(--accent);
+      margin-bottom:10px;
+      position:relative;
+      z-index:1;
+    }
+
+    .page-title{
+      font-family:var(--serif);
+      font-size:clamp(32px,5vw,52px);
+      font-weight:400;
+      line-height:1;
+      position:relative;
+      z-index:1;
+    }
+
+    /* FAQ */
+    .faq-wrap{
+      max-width:1060px;
+      margin:0 auto;
+      padding:64px 48px 100px;
+      position:relative;
+      z-index:2;
+    }
+
+    .faq-list{
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+    }
+
+    .faq-item{
+      background:var(--surface);
+      border:1px solid var(--border);
+      overflow:hidden;
+    }
+
+    .faq-question{
+      width:100%;
+      background:none;
+      border:none;
+      color:var(--text);
+      padding:22px 24px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      text-align:left;
+      font-size:16px;
+      font-weight:500;
+      cursor:pointer;
+      font-family:var(--sans);
+    }
+
+    .faq-question span{
+      flex:1;
+      pointer-events:none;
+    }
+
+    .faq-question i{
+      color:var(--accent);
+      transition:transform .25s ease;
+      pointer-events:none;
+      flex-shrink:0;
+    }
+
+    .faq-item.active .faq-question i{
+      transform:rotate(180deg);
+    }
+
+    .faq-answer{
+      display:grid;
+      grid-template-rows:0fr;
+      transition:grid-template-rows .28s ease;
+    }
+
+    .faq-item.active .faq-answer{
+      grid-template-rows:1fr;
+    }
+
+    .faq-answer-inner{
+      overflow:hidden;
+    }
+
+    .faq-answer-content{
+      padding:0 24px 22px;
+      color:var(--muted);
+      line-height:1.8;
+      font-size:14px;
+    }
+
+    .faq-answer-content a{
+      color:var(--accent);
+    }
+
+    /* FOOTER */
+    footer{
+      padding:60px 48px 36px;
+      border-top:1px solid var(--border);
+      display:grid;
+      grid-template-columns:1.4fr 1fr 1fr 1.2fr;
+      gap:44px;
+      background:#11110f;
+      position:relative;
+      z-index:1;
+    }
+
+    .logo-footer{
+      height:70px;
+      width:auto;
+      object-fit:contain;
+      display:block;
+      filter:brightness(0) invert(1);
+    }
+
+    .foot-tag{
+      margin-top:10px;
+      font-size:13px;
+      color:var(--muted);
+      line-height:1.7;
+      max-width:220px;
+    }
+
+    .foot-social{
+      display:flex;
+      gap:14px;
+      margin-top:16px;
+    }
+
+    .foot-social i{
+      font-size:16px;
+      cursor:pointer;
+      color:var(--muted);
+      transition:color .22s;
+    }
+
+    .foot-social i:hover{
+      color:var(--accent);
+    }
+
+    .foot-col h4{
+      font-size:9px;
+      letter-spacing:.2em;
+      text-transform:uppercase;
+      color:var(--muted);
+      margin-bottom:16px;
+    }
+
+    .foot-col ul{
+      list-style:none;
+    }
+
+    .foot-col li + li{
+      margin-top:8px;
+    }
+
+    .foot-col a{
+      font-size:13px;
+      color:rgba(240,236,228,.65);
+      transition:color .22s;
+    }
+
+    .foot-col a:hover,
+    .foot-col a.active{
+      color:var(--accent);
+    }
+
+    .nl-form{
+      display:flex;
+      margin-top:4px;
+    }
+
+    .nl-form input{
+      flex:1;
+      background:rgba(255,255,255,.04);
+      border:1px solid var(--border);
+      border-right:none;
+      color:var(--text);
+      padding:9px 12px;
+      font-size:12px;
+      font-family:var(--sans);
+      outline:none;
+    }
+
+    .nl-form button{
+      background:var(--accent);
+      border:none;
+      cursor:pointer;
+      padding:9px 14px;
+      color:var(--bg);
+    }
+
+    .foot-bot{
+      padding:18px 48px;
+      border-top:1px solid var(--border);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      font-size:11px;
+      color:var(--muted);
+      flex-wrap:wrap;
+      gap:8px;
+      background:#11110f;
+    }
+
+    .foot-links{
+      display:flex;
+      gap:18px;
+      flex-wrap:wrap;
+    }
+
+    .foot-links a{
+      color:var(--muted);
+      transition:color .2s;
+    }
+
+    .foot-links a:hover{
+      color:var(--text);
+    }
+
+    /* WHATSAPP */
+    .wa-float{
+      position:fixed;
+      bottom:26px;
+      right:26px;
+      z-index:300;
+      width:50px;
+      height:50px;
+      border-radius:50%;
+      background:#25d366;
+      border:none;
+      cursor:pointer;
+      display:grid;
+      place-items:center;
+      box-shadow:0 4px 18px rgba(37,211,102,.35);
+    }
+
+    .wa-float i{
+      font-size:22px;
+      color:#fff;
+    }
+
+    /* MOBILE */
+    @media (max-width: 900px){
+      #header{
+        padding:0 20px;
+      }
+
+      .header-nav{
+        display:none;
+      }
+
+      .shipping-bar{
+        margin-top:80px;
+      }
+
+      .faq-wrap{
+        padding:40px 20px 70px;
+      }
+
+      footer{
+        grid-template-columns:1fr;
+        padding:40px 20px 24px;
+      }
+
+      .foot-bot{
+        padding:16px 20px 24px;
+        flex-direction:column;
+        align-items:flex-start;
+      }
     }
   </style>
 </head>
-<body class="interior">
+<body>
 
-<!-- HEADER -->
-<header id="header">
-  <a href="index.html" class="logo">
-    <img src="images/LogoB&D.png" alt="Bara & Co" class="logo-img"/>
-  </a>
-  <nav class="nav-menu">
-    <ul>
-      <li><a href="index.html" class="nav-link">Inicio</a></li>
-      <li><a href="tienda.html" class="nav-link">Tienda</a></li>
-      <li><a href="lookbook.html" class="nav-link">Lookbook</a></li>
-      <li><a href="contacto.html" class="nav-link">Contacto</a></li>
-    </ul>
-  </nav>
-  <div class="header-icons">
-    <i class="fas fa-search" id="searchIcon"></i>
-    <div class="cart-icon-wrap" onclick="toggleCart()">
-      <i class="fas fa-shopping-bag"></i>
-      <span class="cart-badge cart-count">0</span>
-    </div>
-    <button class="menu-toggle" id="menuToggle">
-      <i class="fas fa-bars"></i>
-    </button>
-  </div>
-</header>
+  <header id="header">
+    <a href="index.html" class="logo">
+      <img src="images/LogoB&D.png" alt="Bara & Co" class="logo-header"/>
+    </a>
 
-<!-- CONTENIDO -->
-<div class="page-content">
-  <h1 class="page-title">Preguntas frecuentes</h1>
-  
-  <div class="faq-item">
-    <div class="faq-question" onclick="toggleFaq(this)">
-      <span>¿Cómo puedo saber mi talle?</span>
-      <i class="fas fa-chevron-down"></i>
-    </div>
-    <div class="faq-answer">
-      En cada producto encontrarás una guía de talles específica. También podés consultar nuestra <a href="#" style="color: var(--color-accent);">guía general de talles</a> o escribirnos por WhatsApp para asesoramiento personalizado.
-    </div>
-  </div>
-  
-  <div class="faq-item">
-    <div class="faq-question" onclick="toggleFaq(this)">
-      <span>¿Cuánto tarda el envío?</span>
-      <i class="fas fa-chevron-down"></i>
-    </div>
-    <div class="faq-answer">
-      El tiempo de entrega depende de tu ubicación: para CABA y GBA es de 3 a 5 días hábiles, para el resto del país de 5 a 10 días hábiles. Los envíos express llegan en 24/48 hs.
-    </div>
-  </div>
-  
-  <div class="faq-item">
-    <div class="faq-question" onclick="toggleFaq(this)">
-      <span>¿Cómo realizo un cambio?</span>
-      <i class="fas fa-chevron-down"></i>
-    </div>
-    <div class="faq-answer">
-      Tenés 30 días para realizar cambios. Contactanos por WhatsApp con tu número de pedido y te indicaremos los pasos a seguir. Los cambios están sujetos a disponibilidad de stock.
-    </div>
-  </div>
-  
-  <div class="faq-item">
-    <div class="faq-question" onclick="toggleFaq(this)">
-      <span>¿Qué medios de pago aceptan?</span>
-      <i class="fas fa-chevron-down"></i>
-    </div>
-    <div class="faq-answer">
-    Aceptamos pago a través de MercadoPago (tarjetas de crédito, débito, Rapipago, Pago Fácil, transferencia y más), con hasta 6 cuotas sin interés con tarjetas seleccionadas. También podés coordinar el pago por WhatsApp.
-    </div>
-  </div>
-  
-  <div class="faq-item">
-    <div class="faq-question" onclick="toggleFaq(this)">
-      <span>¿El envío es gratis?</span>
-      <i class="fas fa-chevron-down"></i>
-    </div>
-    <div class="faq-answer">
-    Sí, el envío es gratis para compras superiores a $80.000 dentro de Argentina. Para compras menores, el costo es de $1.200 para CABA/GBA y $2.500 para el resto del país.
-    </div>
-  </div>
-  
-  <div class="faq-item">
-    <div class="faq-question" onclick="toggleFaq(this)">
-      <span>¿Puedo retirar mi compra en el local?</span>
-      <i class="fas fa-chevron-down"></i>
-    </div>
-    <div class="faq-answer">
-      ¡Claro que sí! Podés retirar tu compra sin cargo en nuestro local de Ing. Olmos 139, Jesús María. Escribinos por WhatsApp para coordinar el horario de retiro.
-    </div>
-  </div>
-</div>
+    <nav class="header-nav">
+      <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="tienda.html">Tienda</a></li>
+        <li><a href="lookbook.html">Lookbook</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+      </ul>
+    </nav>
 
-<!-- FOOTER -->
-<footer>
-  <div>
-    <img src="images/logoN&D.png" alt="Bara & Co" class="footer-logo-img"/>
-    <p class="footer-text">Indumentaria urbana con personalidad. Diseño y confort para tu día a día.</p>
-    <div class="social-icons">
-      <i class="fab fa-instagram" onclick="window.open('https://instagram.com/bara.and.co','_blank')"></i>
-      <i class="fab fa-facebook-f"></i>
-      <i class="fab fa-tiktok"></i>
+    <div class="header-icons">
+      <i class="fas fa-search" id="searchIcon"></i>
+      <div class="cart-icon-wrap" onclick="toggleCart?.()">
+        <i class="fas fa-shopping-bag"></i>
+        <span class="cart-badge cart-count">0</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="shipping-bar">Envíos a todo el país · Atención personalizada · Comprá online</div>
+
+  <section class="page-hero">
+    <div class="page-eyebrow">Ayuda</div>
+    <h1 class="page-title">Preguntas frecuentes</h1>
+  </section>
+
+  <main class="faq-wrap">
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-question" type="button">
+          <span>¿Cómo puedo saber mi talle?</span>
+          <i class="fas fa-chevron-down"></i>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            <div class="faq-answer-content">
+              En cada producto encontrarás una guía de talles específica. También podés consultar nuestra guía general de talles o escribirnos por WhatsApp para asesoramiento personalizado.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" type="button">
+          <span>¿Cuánto tarda el envío?</span>
+          <i class="fas fa-chevron-down"></i>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            <div class="faq-answer-content">
+              El tiempo de entrega depende de tu ubicación. Para Córdoba y alrededores suele demorar entre 24 y 72 hs hábiles, y para el resto del país entre 3 y 7 días hábiles, según el operador logístico.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" type="button">
+          <span>¿Cómo realizo un cambio?</span>
+          <i class="fas fa-chevron-down"></i>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            <div class="faq-answer-content">
+              Tenés hasta 30 días desde que recibís el pedido. Escribinos por WhatsApp con tu número de compra y el motivo del cambio, y te indicamos cómo seguir.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" type="button">
+          <span>¿Qué medios de pago aceptan?</span>
+          <i class="fas fa-chevron-down"></i>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            <div class="faq-answer-content">
+              Aceptamos pagos mediante Mercado Pago, tarjetas de crédito y débito, transferencia y otros medios habilitados al momento del checkout.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" type="button">
+          <span>¿El envío es gratis?</span>
+          <i class="fas fa-chevron-down"></i>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            <div class="faq-answer-content">
+              El envío gratis aplica cuando la compra supera el monto promocional vigente informado en la tienda o durante campañas específicas.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" type="button">
+          <span>¿Puedo retirar mi compra en persona?</span>
+          <i class="fas fa-chevron-down"></i>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            <div class="faq-answer-content">
+              Sí. Si tenés retiro disponible, lo coordinamos directamente por WhatsApp una vez realizada la compra.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div>
+      <img src="images/logoN&D.png" alt="Bara & Co" class="logo-footer"/>
+      <p class="foot-tag">Indumentaria urbana con personalidad. Diseño y confort para tu día a día.</p>
+      <div class="foot-social">
+        <i class="fab fa-instagram" onclick="window.open('https://instagram.com/bara.and.co','_blank')"></i>
+        <i class="fab fa-facebook-f"></i>
+        <i class="fab fa-tiktok"></i>
+      </div>
+    </div>
+
+    <div class="foot-col">
+      <h4>Categorías</h4>
+      <ul>
+        <li><a href="tienda.html?categoria=hombre">Hombre</a></li>
+        <li><a href="tienda.html?categoria=mujer">Mujer</a></li>
+        <li><a href="tienda.html?categoria=accesorios">Accesorios</a></li>
+        <li><a href="tienda.html?categoria=sale">Sale</a></li>
+      </ul>
+    </div>
+
+    <div class="foot-col">
+      <h4>Ayuda</h4>
+      <ul>
+        <li><a href="envios.html">Envíos</a></li>
+        <li><a href="cambios.html">Cambios y devoluciones</a></li>
+        <li><a href="faq.html" class="active">Preguntas frecuentes</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+      </ul>
+    </div>
+
+    <div class="foot-col">
+      <h4>Newsletter</h4>
+      <p class="foot-tag">10% OFF en tu primera compra.</p>
+      <form class="nl-form">
+        <input type="email" placeholder="tu@email.com">
+        <button type="submit"><i class="fas fa-arrow-right"></i></button>
+      </form>
+    </div>
+  </footer>
+
+  <div class="foot-bot">
+    <span>© 2026 Bara & Co · Ing. Olmos 139 – Jesús María</span>
+    <div class="foot-links">
+      <a href="terminos.html">Términos y condiciones</a>
+      <a href="privacidad.html">Política de privacidad</a>
     </div>
   </div>
-  <div>
-    <h4 class="footer-title">Categorías</h4>
-    <ul class="footer-links">
-      <li><a href="../tienda.html?categoria=hombre">Hombre</a></li>
-      <li><a href="../tienda.html?categoria=mujer">Mujer</a></li>
-      <li><a href="../tienda.html?categoria=accesorios">Accesorios</a></li>
-      <li><a href="../tienda.html?categoria=new">New Collection</a></li>
-      <li><a href="../tienda.html?categoria=sale">Sale</a></li>
-    </ul>
-  </div>
-  <div>
-    <h4 class="footer-title">Ayuda</h4>
-    <ul class="footer-links">
-      <li><a href="envios.html">Envíos</a></li>
-      <li><a href="cambios.html">Cambios y devoluciones</a></li>
-      <li><a href="faq.html" class="active">Preguntas frecuentes</a></li>
-      <li><a href="contacto.html">Contacto</a></li>
-    </ul>
-  </div>
-  <div>
-    <h4 class="footer-title">Newsletter</h4>
-    <p class="footer-text">10% OFF en tu primera compra</p>
-    <div class="newsletter-input">
-      <input type="email" placeholder="tu@email.com"/>
-      <button><i class="fas fa-arrow-right"></i></button>
-    </div>
-  </div>
-</footer>
-<div class="footer-bottom">
-  <span>© 2026 Bara & Co · Ing. Olmos 139 – Jesús María</span>
-  <div class="legal-info">
-    <a href="terminos.html">Términos y condiciones</a>
-    <a href="privacidad.html">Política de privacidad</a>
-  </div>
-</div>
 
-<!-- WHATSAPP FLOAT -->
-<div class="whatsapp-float" onclick="window.open('https://wa.me/5493525614281?text=Hola!%20Quiero%20consultar%20sobre%20un%20producto','_blank')">
-  <i class="fab fa-whatsapp"></i>
-  <span class="whatsapp-tooltip">Consultar por WhatsApp</span>
-</div>
+  <button class="wa-float" onclick="window.open('https://wa.me/5493525614281?text=Hola!%20Tengo%20una%20consulta','_blank')">
+    <i class="fab fa-whatsapp"></i>
+  </button>
 
-<!-- JS GLOBALES -->
-<script src="../js/main.js"></script>
-<script src="../js/carrito-ui.js"></script>
-<script src="../js/search.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/carrito-ui.js"></script>
+  <script src="js/search.js"></script>
 
-<!-- JS específico de FAQ -->
-<script>
-  function toggleFaq(element) {
-    const answer = element.nextElementSibling;
-    const icon = element.querySelector('i');
-    
-    answer.classList.toggle('show');
-    element.classList.toggle('active');
-    
-    if (answer.classList.contains('show')) {
-      icon.style.transform = 'rotate(180deg)';
-    } else {
-      icon.style.transform = 'rotate(0deg)';
-    }
-  }
-</script>
+  <script>
+    document.querySelectorAll('.faq-question').forEach((button) => {
+      button.addEventListener('click', () => {
+        const item = button.closest('.faq-item');
+        const isOpen = item.classList.contains('active');
+
+        document.querySelectorAll('.faq-item').forEach((faq) => {
+          faq.classList.remove('active');
+        });
+
+        if (!isOpen) {
+          item.classList.add('active');
+        }
+      });
+    });
+  </script>
 </body>
 </html>
