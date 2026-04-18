@@ -1,5 +1,60 @@
 [
   {
+    "id": "baggy-sastrero-1776548746361",
+    "nombre": "Baggy Sastrero",
+    "precio": 60000,
+    "precioAnterior": null,
+    "categoria": "new",
+    "subcategoria": "",
+    "descripcion": "",
+    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1776548720/bara/productos/otkmu9yqenead75veyyo.webp",
+    "imagenes": [
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1776548720/bara/productos/otkmu9yqenead75veyyo.webp",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1776548728/bara/productos/supt2mojimnyfhubbgjq.webp",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1776548736/bara/productos/swshzwbqgod3qqrrnyp0.webp",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1776548746/bara/productos/gnfbdzntoctvqqudrumk.webp"
+    ],
+    "tallesDisponibles": [
+      "36",
+      "38",
+      "40",
+      "42",
+      "44"
+    ],
+    "colores": [
+      {
+        "nombre": "Gris",
+        "codigo": "#9E9E9E",
+        "stock": 0
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Gris__36": 1,
+      "Gris__38": 1,
+      "Gris__40": 1,
+      "Gris__42": 1,
+      "Gris__44": 1
+    },
+    "stockTalles": null,
+    "stock": 5,
+    "sku": "BAGGY-SASTRERO",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "satrero-baggy-noir-1776470105266",
     "nombre": "Satrero Baggy Noir",
     "precio": 60000,
