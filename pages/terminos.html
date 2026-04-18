@@ -1,86 +1,528 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Términos y condiciones · Bara & Co</title>
 
-  <link rel="stylesheet" href="css/global.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
 
   <style>
-    body {
-      background: #0b0b09;
-      color: #ede9e1;
-      font-family: 'Inter', sans-serif;
+    :root{
+      --bg:#0e0e0c;
+      --surface:#161614;
+      --border:rgba(255,255,255,.07);
+      --text:#f0ece4;
+      --muted:#7a7872;
+      --accent:#c9a96e;
+      --adk:#9e7a3e;
+      --white:#fff;
+      --serif:'Playfair Display', serif;
+      --sans:'Inter', sans-serif;
+      --ease:cubic-bezier(.16,1,.3,1);
     }
 
-    .container {
-      max-width: 900px;
-      margin: 120px auto 80px;
-      padding: 0 20px;
+    *{ box-sizing:border-box; margin:0; padding:0; }
+    html{ scroll-behavior:smooth; }
+    body{
+      background:var(--bg);
+      color:var(--text);
+      font-family:var(--sans);
+      font-size:15px;
+      line-height:1.7;
+      -webkit-font-smoothing:antialiased;
+      overflow-x:hidden;
     }
 
-    h1 {
-      font-size: 42px;
-      margin-bottom: 30px;
+    a{ color:inherit; text-decoration:none; }
+    img{ display:block; max-width:100%; }
+
+    #header{
+      position:fixed;
+      top:0;
+      left:0;
+      right:0;
+      z-index:200;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:0 48px;
+      height:80px;
+      background:rgba(14,14,12,.93);
+      backdrop-filter:blur(20px);
+      border-bottom:1px solid var(--border);
     }
 
-    h2 {
-      margin-top: 30px;
-      margin-bottom: 10px;
-      color: #c9a96e;
+    .logo-header{
+      height:80px;
+      width:auto;
+      object-fit:contain;
+      display:block;
     }
 
-    p {
-      color: #b8b2a8;
-      line-height: 1.8;
-      margin-bottom: 12px;
+    .header-nav ul{
+      display:flex;
+      gap:36px;
+      list-style:none;
+    }
+
+    .header-nav a{
+      font-size:11px;
+      font-weight:500;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      color:var(--muted);
+      position:relative;
+      transition:color .25s;
+    }
+
+    .header-nav a::after{
+      content:'';
+      position:absolute;
+      bottom:-4px;
+      left:0;
+      right:0;
+      height:1px;
+      background:var(--accent);
+      transform:scaleX(0);
+      transform-origin:left;
+      transition:transform .3s var(--ease);
+    }
+
+    .header-nav a:hover,
+    .header-nav a.active{
+      color:var(--text);
+    }
+
+    .header-nav a:hover::after,
+    .header-nav a.active::after{
+      transform:scaleX(1);
+    }
+
+    .header-icons{
+      display:flex;
+      align-items:center;
+      gap:20px;
+    }
+
+    .header-icons i{
+      font-size:16px;
+      color:var(--muted);
+      cursor:pointer;
+      transition:color .25s;
+    }
+
+    .header-icons i:hover{
+      color:var(--accent);
+    }
+
+    .cart-icon-wrap{
+      position:relative;
+      cursor:pointer;
+    }
+
+    .cart-badge{
+      position:absolute;
+      top:-7px;
+      right:-9px;
+      background:var(--accent);
+      color:var(--bg);
+      font-size:9px;
+      font-weight:700;
+      width:17px;
+      height:17px;
+      border-radius:50%;
+      display:none;
+      place-items:center;
+    }
+
+    .cart-badge.on{ display:grid; }
+
+    .shipping-bar{
+      margin-top:80px;
+      background:var(--accent);
+      color:var(--bg);
+      text-align:center;
+      font-size:11px;
+      font-weight:600;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      padding:10px 16px;
+    }
+
+    .page-hero{
+      height:180px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      border-bottom:1px solid var(--border);
+      position:relative;
+      overflow:hidden;
+    }
+
+    .page-hero::before{
+      content:'';
+      position:absolute;
+      inset:0;
+      background:radial-gradient(ellipse at center, rgba(201,169,110,.07) 0%, transparent 65%);
+      pointer-events:none;
+    }
+
+    .page-eyebrow{
+      font-size:9px;
+      letter-spacing:.35em;
+      text-transform:uppercase;
+      color:var(--accent);
+      margin-bottom:10px;
+      position:relative;
+      z-index:1;
+    }
+
+    .page-title{
+      font-family:var(--serif);
+      font-size:clamp(32px,5vw,52px);
+      font-weight:400;
+      line-height:1;
+      position:relative;
+      z-index:1;
+    }
+
+    .legal-wrap{
+      max-width:980px;
+      margin:0 auto;
+      padding:64px 48px 100px;
+    }
+
+    .back-link{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      font-size:12px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      color:var(--accent);
+      margin-bottom:24px;
+    }
+
+    .legal-card{
+      background:var(--surface);
+      border:1px solid var(--border);
+      padding:36px 32px;
+    }
+
+    .legal-card p{
+      color:var(--muted);
+      line-height:1.9;
+      margin-bottom:14px;
+    }
+
+    .legal-card h2{
+      font-family:var(--serif);
+      font-size:28px;
+      font-weight:400;
+      margin:28px 0 14px;
+      color:var(--text);
+    }
+
+    .legal-card h2:first-of-type{
+      margin-top:0;
+    }
+
+    .legal-card a{
+      color:var(--accent);
+    }
+
+    footer{
+      padding:60px 48px 36px;
+      border-top:1px solid var(--border);
+      display:grid;
+      grid-template-columns:1.4fr 1fr 1fr 1.2fr;
+      gap:44px;
+      background:#11110f;
+    }
+
+    .logo-footer{
+      height:70px;
+      width:auto;
+      object-fit:contain;
+      display:block;
+      filter:brightness(0) invert(1);
+    }
+
+    .foot-tag{
+      margin-top:10px;
+      font-size:13px;
+      color:var(--muted);
+      line-height:1.7;
+      max-width:220px;
+    }
+
+    .foot-social{
+      display:flex;
+      gap:14px;
+      margin-top:16px;
+    }
+
+    .foot-social i{
+      font-size:16px;
+      cursor:pointer;
+      color:var(--muted);
+      transition:color .22s;
+    }
+
+    .foot-social i:hover{
+      color:var(--accent);
+    }
+
+    .foot-col h4{
+      font-size:9px;
+      letter-spacing:.2em;
+      text-transform:uppercase;
+      color:var(--muted);
+      margin-bottom:16px;
+    }
+
+    .foot-col ul{
+      list-style:none;
+    }
+
+    .foot-col li + li{
+      margin-top:8px;
+    }
+
+    .foot-col a{
+      font-size:13px;
+      color:rgba(240,236,228,.65);
+      transition:color .22s;
+    }
+
+    .foot-col a:hover,
+    .foot-col a.active{
+      color:var(--accent);
+    }
+
+    .nl-form{
+      display:flex;
+      margin-top:4px;
+    }
+
+    .nl-form input{
+      flex:1;
+      background:rgba(255,255,255,.04);
+      border:1px solid var(--border);
+      border-right:none;
+      color:var(--text);
+      padding:9px 12px;
+      font-size:12px;
+      font-family:var(--sans);
+      outline:none;
+    }
+
+    .nl-form button{
+      background:var(--accent);
+      border:none;
+      cursor:pointer;
+      padding:9px 14px;
+      color:var(--bg);
+    }
+
+    .foot-bot{
+      padding:18px 48px;
+      border-top:1px solid var(--border);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      font-size:11px;
+      color:var(--muted);
+      flex-wrap:wrap;
+      gap:8px;
+      background:#11110f;
+    }
+
+    .foot-links{
+      display:flex;
+      gap:18px;
+      flex-wrap:wrap;
+    }
+
+    .foot-links a{
+      color:var(--muted);
+      transition:color .2s;
+    }
+
+    .foot-links a:hover{
+      color:var(--text);
+    }
+
+    .wa-float{
+      position:fixed;
+      bottom:26px;
+      right:26px;
+      z-index:300;
+      width:50px;
+      height:50px;
+      border-radius:50%;
+      background:#25d366;
+      border:none;
+      cursor:pointer;
+      display:grid;
+      place-items:center;
+      box-shadow:0 4px 18px rgba(37,211,102,.35);
+    }
+
+    .wa-float i{
+      font-size:22px;
+      color:#fff;
+    }
+
+    @media (max-width:900px){
+      #header{ padding:0 20px; }
+      .header-nav{ display:none; }
+      .legal-wrap{ padding:40px 20px 70px; }
+      .legal-card{ padding:24px 20px; }
+      footer{
+        grid-template-columns:1fr;
+        padding:40px 20px 24px;
+      }
+      .foot-bot{
+        padding:16px 20px 24px;
+        flex-direction:column;
+        align-items:flex-start;
+      }
     }
   </style>
 </head>
-
 <body>
 
-<header>
-  <a href="index.html">← Volver</a>
-</header>
+  <header id="header">
+    <a href="../index.html" class="logo">
+      <img src="../images/LogoB&D.png" alt="Bara & Co" class="logo-header"/>
+    </a>
 
-<div class="container">
-  <h1>Términos y condiciones</h1>
+    <nav class="header-nav">
+      <ul>
+        <li><a href="../index.html">Inicio</a></li>
+        <li><a href="../tienda.html">Tienda</a></li>
+        <li><a href="../lookbook.html">Lookbook</a></li>
+        <li><a href="../contacto.html">Contacto</a></li>
+      </ul>
+    </nav>
 
-  <p>El presente documento establece los términos y condiciones de uso del sitio web de Bara & Co.</p>
+    <div class="header-icons">
+      <i class="fas fa-search" id="searchIcon"></i>
+      <div class="cart-icon-wrap" onclick="toggleCart?.()">
+        <i class="fas fa-shopping-bag"></i>
+        <span class="cart-badge cart-count">0</span>
+      </div>
+    </div>
+  </header>
 
-  <h2>1. Uso del sitio</h2>
-  <p>El usuario se compromete a utilizar el sitio de forma lícita y conforme a la normativa vigente en la República Argentina.</p>
+  <div class="shipping-bar">Envíos a todo el país · Atención personalizada · Comprá online</div>
 
-  <h2>2. Productos</h2>
-  <p>Los productos ofrecidos están sujetos a disponibilidad de stock. Bara & Co se reserva el derecho de modificar precios sin previo aviso.</p>
+  <section class="page-hero">
+    <div class="page-eyebrow">Legal</div>
+    <h1 class="page-title">Términos y condiciones</h1>
+  </section>
 
-  <h2>3. Compras</h2>
-  <p>Al realizar una compra, el usuario acepta los precios, condiciones de envío y políticas vigentes al momento de la operación.</p>
+  <main class="legal-wrap">
+    <a href="../index.html" class="back-link">
+      <i class="fas fa-arrow-left"></i>
+      Volver al inicio
+    </a>
 
-  <h2>4. Pagos</h2>
-  <p>Los pagos se procesan mediante plataformas externas (ej: MercadoPago). Bara & Co no almacena datos de tarjetas.</p>
+    <section class="legal-card">
+      <p>El presente documento establece los términos y condiciones de uso del sitio web de Bara & Co.</p>
 
-  <h2>5. Envíos</h2>
-  <p>Los tiempos de entrega son estimados y pueden variar según la ubicación del usuario y el operador logístico.</p>
+      <h2>1. Uso del sitio</h2>
+      <p>El usuario se compromete a utilizar el sitio de forma lícita y conforme a la normativa vigente en la República Argentina.</p>
 
-  <h2>6. Cambios y devoluciones</h2>
-  <p>Los cambios pueden solicitarse dentro de los 30 días posteriores a la recepción del producto, respetando las condiciones indicadas en la sección correspondiente.</p>
+      <h2>2. Productos</h2>
+      <p>Los productos ofrecidos están sujetos a disponibilidad de stock. Bara & Co se reserva el derecho de modificar precios, descripciones, promociones y disponibilidad sin previo aviso.</p>
 
-  <h2>7. Propiedad intelectual</h2>
-  <p>Todo el contenido del sitio (imágenes, textos, diseño) es propiedad de Bara & Co y no puede ser utilizado sin autorización.</p>
+      <h2>3. Compras</h2>
+      <p>Al realizar una compra, el usuario acepta los precios, condiciones de envío y políticas vigentes al momento de la operación.</p>
 
-  <h2>8. Responsabilidad</h2>
-  <p>Bara & Co no se responsabiliza por daños derivados del uso indebido del sitio.</p>
+      <h2>4. Pagos</h2>
+      <p>Los pagos se procesan mediante plataformas de terceros. Bara & Co no almacena datos completos de tarjetas de crédito o débito.</p>
 
-  <h2>9. Modificaciones</h2>
-  <p>Nos reservamos el derecho de modificar estos términos en cualquier momento.</p>
+      <h2>5. Envíos</h2>
+      <p>Los plazos de entrega son estimados y pueden variar según la ubicación del usuario, disponibilidad logística y situaciones ajenas a la marca.</p>
 
-  <h2>10. Contacto</h2>
-  <p>Para consultas: <a href="mailto:bara.and.co.jm@gmail.com">bara.and.co.jm@gmail.com</a></p>
+      <h2>6. Cambios y devoluciones</h2>
+      <p>Los cambios o devoluciones podrán solicitarse dentro del plazo informado en la sección correspondiente del sitio, siempre que el producto cumpla las condiciones publicadas al momento de la compra.</p>
 
-</div>
+      <h2>7. Propiedad intelectual</h2>
+      <p>Todo el contenido del sitio, incluyendo imágenes, textos, identidad visual, piezas gráficas y diseño, es propiedad de Bara & Co o cuenta con autorización para su uso.</p>
 
+      <h2>8. Responsabilidad</h2>
+      <p>Bara & Co no será responsable por daños derivados del uso indebido del sitio, interrupciones temporales del servicio o errores ocasionados por terceros proveedores.</p>
+
+      <h2>9. Modificaciones</h2>
+      <p>Nos reservamos el derecho de actualizar estos términos en cualquier momento. La versión publicada en el sitio será la vigente.</p>
+
+      <h2>10. Contacto</h2>
+      <p>Para consultas relacionadas con estos términos, podés escribir a <a href="mailto:bara.and.co.jm@gmail.com">bara.and.co.jm@gmail.com</a>.</p>
+    </section>
+  </main>
+
+  <footer>
+    <div>
+      <img src="../images/logoN&D.png" alt="Bara & Co" class="logo-footer"/>
+      <p class="foot-tag">Indumentaria urbana con personalidad. Diseño y confort para tu día a día.</p>
+      <div class="foot-social">
+        <i class="fab fa-instagram" onclick="window.open('https://instagram.com/bara.and.co','_blank')"></i>
+        <i class="fab fa-facebook-f"></i>
+        <i class="fab fa-tiktok"></i>
+      </div>
+    </div>
+
+    <div class="foot-col">
+      <h4>Categorías</h4>
+      <ul>
+        <li><a href="../tienda.html?categoria=hombre">Hombre</a></li>
+        <li><a href="../tienda.html?categoria=mujer">Mujer</a></li>
+        <li><a href="../tienda.html?categoria=accesorios">Accesorios</a></li>
+        <li><a href="../tienda.html?categoria=sale">Sale</a></li>
+      </ul>
+    </div>
+
+    <div class="foot-col">
+      <h4>Ayuda</h4>
+      <ul>
+        <li><a href="../envios.html">Envíos</a></li>
+        <li><a href="../cambios.html">Cambios y devoluciones</a></li>
+        <li><a href="../faq.html">Preguntas frecuentes</a></li>
+        <li><a href="../contacto.html">Contacto</a></li>
+      </ul>
+    </div>
+
+    <div class="foot-col">
+      <h4>Newsletter</h4>
+      <p class="foot-tag">10% OFF en tu primera compra.</p>
+      <form class="nl-form">
+        <input type="email" placeholder="tu@email.com">
+        <button type="submit"><i class="fas fa-arrow-right"></i></button>
+      </form>
+    </div>
+  </footer>
+
+  <div class="foot-bot">
+    <span>© 2026 Bara & Co · Ing. Olmos 139 – Jesús María</span>
+    <div class="foot-links">
+      <a href="terminos.html">Términos y condiciones</a>
+      <a href="privacidad.html">Política de privacidad</a>
+    </div>
+  </div>
+
+  <button class="wa-float" onclick="window.open('https://wa.me/5493525614281?text=Hola!%20Tengo%20una%20consulta','_blank')">
+    <i class="fab fa-whatsapp"></i>
+  </button>
+
+  <script src="../js/main.js"></script>
+  <script src="../js/carrito-ui.js"></script>
+  <script src="../js/search.js"></script>
 </body>
 </html>
