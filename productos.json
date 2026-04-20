@@ -1,5 +1,64 @@
 [
   {
+    "id": "mini-frunce-strass-1776719629232",
+    "nombre": "Mini Frunce Strass",
+    "precio": 25000,
+    "precioAnterior": null,
+    "categoria": "new",
+    "subcategoria": "",
+    "descripcion": "",
+    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1776719529/bara/productos/wayzg0oesznpskw4kywb.webp",
+    "imagenes": [
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1776719529/bara/productos/wayzg0oesznpskw4kywb.webp",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1776719561/bara/productos/wnnfzxb6qwlo8dxjwdyz.webp",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1776719580/bara/productos/sftmsqxzhpeaccwj08as.webp",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1776719607/bara/productos/gtmnmxptfi9pwd8j8zhu.webp"
+    ],
+    "tallesDisponibles": [
+      "Único"
+    ],
+    "colores": [
+      {
+        "nombre": "Negro",
+        "codigo": "#111111",
+        "stock": 0
+      },
+      {
+        "nombre": "Marrón",
+        "codigo": "#795548",
+        "stock": 0
+      },
+      {
+        "nombre": "Azul marino",
+        "codigo": "#1A237E",
+        "stock": 0
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Negro__Único": 1,
+      "Marrón__Único": 1,
+      "Azul marino__Único": 1
+    },
+    "stockTalles": null,
+    "stock": 3,
+    "sku": "MINI-FRUNCE-STRASS",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "remera-tul-corpi-o-stras-1776549948959",
     "nombre": "Remera Tul Corpiño Stras",
     "precio": 20000,
