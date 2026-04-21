@@ -344,7 +344,7 @@
     "nombre": "Baggy Sastrero",
     "precio": 60000,
     "precioAnterior": null,
-    "categoria": "new",
+    "categoria": "hombre",
     "subcategoria": "",
     "descripcion": "",
     "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1776548720/bara/productos/otkmu9yqenead75veyyo.webp",
@@ -378,7 +378,14 @@
       "Gris__42": 1,
       "Gris__44": 1
     },
-    "stockTalles": null,
+    "stockTalles": {
+      "36": 1,
+      "38": 1,
+      "40": 1,
+      "42": 1,
+      "44": 1,
+      "46": 1
+    },
     "stock": 5,
     "sku": "BAGGY-SASTRERO",
     "marca": null,
