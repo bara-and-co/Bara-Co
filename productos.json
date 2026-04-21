@@ -179,7 +179,7 @@
     "nombre": "Mini Frunce Strass",
     "precio": 25000,
     "precioAnterior": null,
-    "categoria": "new",
+    "categoria": "mujer",
     "subcategoria": "",
     "descripcion": "",
     "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1776719529/bara/productos/wayzg0oesznpskw4kywb.webp",
@@ -217,7 +217,14 @@
       "Marrón__Único": 1,
       "Azul marino__Único": 1
     },
-    "stockTalles": null,
+    "stockTalles": {
+      "36": 1,
+      "38": 1,
+      "40": 1,
+      "42": 1,
+      "44": 1,
+      "46": 1
+    },
     "stock": 3,
     "sku": "MINI-FRUNCE-STRASS",
     "marca": null,
