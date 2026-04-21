@@ -238,7 +238,7 @@
     "nombre": "Remera Tul Corpiño Stras",
     "precio": 20000,
     "precioAnterior": null,
-    "categoria": "new",
+    "categoria": "mujer",
     "subcategoria": "",
     "descripcion": "",
     "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1776549945/bara/productos/iaip3mvvbztbrg4kppqa.png",
@@ -273,7 +273,14 @@
       "Marrón__Único": 1,
       "Rojo__Único": 1
     },
-    "stockTalles": null,
+    "stockTalles": {
+      "36": 1,
+      "38": 1,
+      "40": 1,
+      "42": 1,
+      "44": 1,
+      "46": 1
+    },
     "stock": 3,
     "sku": "REMERA-TUL-CORPIÑO-STRAS",
     "marca": null,
