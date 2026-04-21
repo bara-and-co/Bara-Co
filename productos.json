@@ -294,7 +294,7 @@
     "nombre": "Capa Tul Stras",
     "precio": 20000,
     "precioAnterior": null,
-    "categoria": "new",
+    "categoria": "mujer",
     "subcategoria": "",
     "descripcion": "",
     "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1776549751/bara/productos/uppiqvbjuzhh2wvgwdx7.png",
@@ -323,7 +323,14 @@
       "Marrón__Único": 1,
       "Bordo__Único": 1
     },
-    "stockTalles": null,
+    "stockTalles": {
+      "36": 1,
+      "38": 1,
+      "40": 1,
+      "42": 1,
+      "44": 1,
+      "46": 1
+    },
     "stock": 2,
     "sku": "CAPA-TUL-STRAS",
     "marca": null,
