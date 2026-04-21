@@ -1,5 +1,68 @@
 [
   {
+    "id": "jean-skater-cult-1776813802461",
+    "nombre": "Jean Skater Cult",
+    "precio": 75000,
+    "precioAnterior": null,
+    "categoria": "hombre",
+    "subcategoria": "",
+    "descripcion": "",
+    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1776813727/bara/productos/xgt62cvg4vxq6fhy4lgp.webp",
+    "imagenes": [
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1776813727/bara/productos/xgt62cvg4vxq6fhy4lgp.webp",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1776813767/bara/productos/pseguis49rz0i5jxw61o.webp",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1776813801/bara/productos/dsdcqhga0nkwwalvryle.webp"
+    ],
+    "tallesDisponibles": [
+      "38",
+      "40",
+      "42",
+      "44",
+      "46",
+      "48"
+    ],
+    "colores": [
+      {
+        "nombre": "Azul",
+        "codigo": "#1E88E5",
+        "stock": 0
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Azul__38": 1,
+      "Azul__40": 1,
+      "Azul__42": 1,
+      "Azul__44": 1,
+      "Azul__46": 1,
+      "Azul__48": 1
+    },
+    "stockTalles": {
+      "36": 1,
+      "38": 1,
+      "40": 1,
+      "42": 1,
+      "44": 1,
+      "46": 1
+    },
+    "stock": 6,
+    "sku": "JEAN-SKATER-CULT",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "baggy-risk-1776813374500",
     "nombre": "Baggy Risk",
     "precio": 83000,
