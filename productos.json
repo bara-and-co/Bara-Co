@@ -1,5 +1,65 @@
 [
   {
+    "id": "baggy-risk-1776813374500",
+    "nombre": "Baggy Risk",
+    "precio": 83000,
+    "precioAnterior": null,
+    "categoria": "hombre",
+    "subcategoria": "",
+    "descripcion": "",
+    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1776813292/bara/productos/lcczizxs1t2vxkoxt8zp.webp",
+    "imagenes": [
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1776813292/bara/productos/lcczizxs1t2vxkoxt8zp.webp",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1776813302/bara/productos/tdqabhb6we1spwio8fke.webp",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1776813350/bara/productos/i1fs3sbsmtmzupxsh320.webp",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1776813366/bara/productos/lybmxtaiahxr905hlnei.webp"
+    ],
+    "tallesDisponibles": [
+      "38",
+      "40",
+      "42",
+      "44"
+    ],
+    "colores": [
+      {
+        "nombre": "Azul",
+        "codigo": "#1E88E5",
+        "stock": 0
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Azul__38": 1,
+      "Azul__40": 1,
+      "Azul__42": 1,
+      "Azul__44": 1
+    },
+    "stockTalles": {
+      "36": 1,
+      "38": 1,
+      "40": 1,
+      "42": 1,
+      "44": 1,
+      "46": 1
+    },
+    "stock": 4,
+    "sku": "BAGGY-RISK",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "sueter-rayas-trensado-1776723975890",
     "nombre": "Sueter Rayas Trensado",
     "precio": 45000,
