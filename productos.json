@@ -463,7 +463,7 @@
     "nombre": "Dual Super Baggy Camuflado",
     "precio": 55000,
     "precioAnterior": null,
-    "categoria": "new",
+    "categoria": "hombre",
     "subcategoria": "",
     "descripcion": "",
     "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1776469200/bara/productos/irxb8pnigivclfuvyhso.webp",
@@ -486,16 +486,7 @@
     "activo": true,
     "destacado": false,
     "outlet": false,
-    "stockMap": {
-      "Negro__S": 0,
-      "Negro__M": 1,
-      "Negro__L": 0,
-      "Negro__XL": 1,
-      "Gris__S": 1,
-      "Gris__M": 0,
-      "Gris__L": 1,
-      "Gris__XL": null
-    },
+    "stockMap": {},
     "stockTalles": {
       "36": 1,
       "38": 1,
