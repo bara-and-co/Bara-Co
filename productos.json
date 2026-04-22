@@ -1,5 +1,65 @@
 [
   {
+    "id": "baggy-brown-1776816553681",
+    "nombre": "Baggy Brown",
+    "precio": 80000,
+    "precioAnterior": null,
+    "categoria": "hombre",
+    "subcategoria": "",
+    "descripcion": "",
+    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1776816468/bara/productos/ycfmo4ia05auqojz9xbu.webp",
+    "imagenes": [
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1776816468/bara/productos/ycfmo4ia05auqojz9xbu.webp",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1776816480/bara/productos/ssiwyvxkfqhwzwvvsqxs.webp",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1776816496/bara/productos/g9u924xvmjxyv0gjqgoz.webp",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1776816522/bara/productos/mp7gyqlcqrkfkd2kzco4.webp"
+    ],
+    "tallesDisponibles": [
+      "40",
+      "42",
+      "44",
+      "46"
+    ],
+    "colores": [
+      {
+        "nombre": "Brown",
+        "codigo": "#e0ae63",
+        "stock": 0
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Brown__40": 1,
+      "Brown__42": 1,
+      "Brown__44": 1,
+      "Brown__46": 1
+    },
+    "stockTalles": {
+      "36": 1,
+      "38": 1,
+      "40": 1,
+      "42": 1,
+      "44": 1,
+      "46": 1
+    },
+    "stock": 4,
+    "sku": "BAGGY-BROWN",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "jean-maxi-balloon-1776814560501",
     "nombre": "Jean Maxi Balloon",
     "precio": 85000,
