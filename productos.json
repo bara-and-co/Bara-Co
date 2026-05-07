@@ -1,5 +1,71 @@
 [
   {
+    "id": "buzo-argentina-1778193964237",
+    "nombre": "Buzo Argentina",
+    "precio": 60000,
+    "precioAnterior": null,
+    "categoria": "hombre",
+    "subcategoria": "",
+    "descripcion": "",
+    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1778193926/bara/productos/a1efkvuv5vxhpmpzn8ic.webp",
+    "imagenes": [
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1778193926/bara/productos/a1efkvuv5vxhpmpzn8ic.webp",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1778193933/bara/productos/veviot79ncs2uge0eiug.webp",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1778193944/bara/productos/vnmoe8alimnimibfqhyk.webp",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1778193954/bara/productos/w2mcp2nhaelo3yzet0fa.webp",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1778193963/bara/productos/eorebggo3wbcjxosn3jj.webp"
+    ],
+    "tallesDisponibles": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colores": [
+      {
+        "nombre": "Negro",
+        "codigo": "#111111",
+        "stock": 0
+      },
+      {
+        "nombre": "Blanco",
+        "codigo": "#FFFFFF",
+        "stock": 0
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Negro__S": 1,
+      "Negro__M": null,
+      "Negro__L": 2,
+      "Negro__XL": null,
+      "Negro__XXL": 1,
+      "Blanco__S": null,
+      "Blanco__M": 1,
+      "Blanco__L": 2,
+      "Blanco__XL": 1,
+      "Blanco__XXL": null
+    },
+    "stockTalles": null,
+    "stock": 8,
+    "sku": "BUZO-ARGENTINA",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "jean-straight-1776893524306",
     "nombre": "Jean Straight",
     "precio": 75000,
