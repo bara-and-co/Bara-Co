@@ -1,13 +1,13 @@
 [
   {
     "id": "of_1776180852875",
-    "nombre": "Promo lanzamiento 15 off",
+    "nombre": "HOT SALE 30 % OFF",
     "descripcion": "",
     "badge": "🏷️ % Off",
     "tipo": "pct",
     "n": 3,
     "m": 2,
-    "valor": 15,
+    "valor": 20,
     "todasCategorias": true,
     "categorias": [
       "new",
