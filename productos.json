@@ -4803,7 +4803,6 @@
       "https://i.ibb.co/27F83rb7/IMG-8499.jpg"
     ],
     "tallesDisponibles": [
-      "40",
       "44"
     ],
     "colores": [
@@ -4817,13 +4816,10 @@
     "destacado": false,
     "outlet": false,
     "stockMap": {
-      "Beige__40": 1,
       "Beige__44": 1
     },
-    "stockTalles": {
-      "XL": 2
-    },
-    "stock": 2,
+    "stockTalles": null,
+    "stock": 1,
     "sku": "BAGGY-RECTO-ARBOL",
     "marca": null,
     "tags": null,
