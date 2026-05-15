@@ -1,5 +1,57 @@
 [
   {
+    "id": "pantalon-oxido-recortes-1778860572022",
+    "nombre": "Pantalon Oxido Recortes",
+    "precio": 75000,
+    "precioAnterior": null,
+    "categoria": "hombre",
+    "subcategoria": "",
+    "descripcion": "",
+    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1778860565/bara/productos/yurozdxeetd7savigmsn.jpg",
+    "imagenes": [
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1778860565/bara/productos/yurozdxeetd7savigmsn.jpg"
+    ],
+    "tallesDisponibles": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colores": [
+      {
+        "nombre": "oxido",
+        "codigo": "#d99b26",
+        "stock": 5
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "oxido__S": 1,
+      "oxido__M": 1,
+      "oxido__L": 1,
+      "oxido__XL": 1,
+      "oxido__XXL": 1
+    },
+    "stockTalles": null,
+    "stock": 5,
+    "sku": "PANTALON-OXIDO-RECORTES",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "pantalom-cierres-1778860434562",
     "nombre": "Pantalom Cierres",
     "precio": 75000,
