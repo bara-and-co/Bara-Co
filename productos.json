@@ -1,5 +1,55 @@
 [
   {
+    "id": "baggy-quilla-1778860342766",
+    "nombre": "Baggy Quilla",
+    "precio": 75000,
+    "precioAnterior": null,
+    "categoria": "hombre",
+    "subcategoria": "",
+    "descripcion": "",
+    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1778860336/bara/productos/j9cvge7pprd3lzo79ym5.jpg",
+    "imagenes": [
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1778860336/bara/productos/j9cvge7pprd3lzo79ym5.jpg"
+    ],
+    "tallesDisponibles": [
+      "S",
+      "M",
+      "L",
+      "XXL"
+    ],
+    "colores": [
+      {
+        "nombre": "Gris",
+        "codigo": "#9E9E9E",
+        "stock": 4
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Gris__S": 1,
+      "Gris__M": 1,
+      "Gris__L": 1,
+      "Gris__XXL": 1
+    },
+    "stockTalles": null,
+    "stock": 4,
+    "sku": "BAGGY-QUILLA",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "buzo-argentina-1778193964237",
     "nombre": "Buzo Argentina",
     "precio": 60000,
