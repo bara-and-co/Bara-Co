@@ -1,5 +1,49 @@
 [
   {
+    "id": "maradona-1779147831433",
+    "nombre": "Maradona",
+    "precio": 27000,
+    "precioAnterior": null,
+    "categoria": "hombre",
+    "subcategoria": "Remeras",
+    "descripcion": "",
+    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1779147829/bara/productos/hw5hrnnkljzvce3ri3ow.webp",
+    "imagenes": [
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1779147829/bara/productos/hw5hrnnkljzvce3ri3ow.webp"
+    ],
+    "tallesDisponibles": [
+      "L"
+    ],
+    "colores": [
+      {
+        "nombre": "Negro",
+        "codigo": "#111111",
+        "stock": 0
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Negro__L": 1
+    },
+    "stockTalles": null,
+    "stock": 1,
+    "sku": "MARADONA",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "museo-copas-1779147753993",
     "nombre": "Museo Copas",
     "precio": 27000,
