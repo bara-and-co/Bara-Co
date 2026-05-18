@@ -1,5 +1,49 @@
 [
   {
+    "id": "museo-copas-1779147753993",
+    "nombre": "Museo Copas",
+    "precio": 27000,
+    "precioAnterior": null,
+    "categoria": "hombre",
+    "subcategoria": "Remeras",
+    "descripcion": "",
+    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1779147690/bara/productos/l1nwxfwysydztar1kniv.webp",
+    "imagenes": [
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1779147690/bara/productos/l1nwxfwysydztar1kniv.webp"
+    ],
+    "tallesDisponibles": [
+      "M"
+    ],
+    "colores": [
+      {
+        "nombre": "Negro",
+        "codigo": "#111111",
+        "stock": 0
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Negro__M": 1
+    },
+    "stockTalles": null,
+    "stock": 1,
+    "sku": "MUSEO-COPAS",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "arcade-1779147654766",
     "nombre": "Arcade",
     "precio": 27000,
