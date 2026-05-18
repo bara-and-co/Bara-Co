@@ -1,5 +1,49 @@
 [
   {
+    "id": "tetris-retro-1779147029348",
+    "nombre": "Tetris Retro",
+    "precio": 27000,
+    "precioAnterior": null,
+    "categoria": "hombre",
+    "subcategoria": "Remeras",
+    "descripcion": "",
+    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1779146921/bara/productos/xbyukk8m0nwqni0ulbt4.webp",
+    "imagenes": [
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1779146921/bara/productos/xbyukk8m0nwqni0ulbt4.webp"
+    ],
+    "tallesDisponibles": [
+      "L"
+    ],
+    "colores": [
+      {
+        "nombre": "Negro",
+        "codigo": "#111111",
+        "stock": 0
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Negro__L": 1
+    },
+    "stockTalles": null,
+    "stock": 1,
+    "sku": "TETRIS-RETRO",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "pantalon-oxido-recortes-1778860572022",
     "nombre": "Pantalon Oxido Recortes",
     "precio": 75000,
