@@ -1,5 +1,51 @@
 [
   {
+    "id": "fulbo-1779148155440",
+    "nombre": "Fulbo",
+    "precio": 27000,
+    "precioAnterior": null,
+    "categoria": "hombre",
+    "subcategoria": "Remeras",
+    "descripcion": "",
+    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1779148153/bara/productos/surjp5taqmqwhie2adda.webp",
+    "imagenes": [
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1779148153/bara/productos/surjp5taqmqwhie2adda.webp"
+    ],
+    "tallesDisponibles": [
+      "L",
+      "XL"
+    ],
+    "colores": [
+      {
+        "nombre": "Negro",
+        "codigo": "#111111",
+        "stock": 0
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Negro__L": 1,
+      "Negro__XL": 1
+    },
+    "stockTalles": null,
+    "stock": 2,
+    "sku": "FULBO",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "huella-argentina-1779148081832",
     "nombre": "Huella Argentina",
     "precio": 27000,
