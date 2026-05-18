@@ -1,5 +1,49 @@
 [
   {
+    "id": "nasa-black-1779147525677",
+    "nombre": "Nasa Black",
+    "precio": 27000,
+    "precioAnterior": null,
+    "categoria": "hombre",
+    "subcategoria": "Remeras",
+    "descripcion": "",
+    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1779147466/bara/productos/efmayj3sl6ljlnokjy3s.jpg",
+    "imagenes": [
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1779147466/bara/productos/efmayj3sl6ljlnokjy3s.jpg"
+    ],
+    "tallesDisponibles": [
+      "XL"
+    ],
+    "colores": [
+      {
+        "nombre": "Negro",
+        "codigo": "#111111",
+        "stock": 0
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Negro__XL": 1
+    },
+    "stockTalles": null,
+    "stock": 1,
+    "sku": "NASA-BLACK",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "nasa-color-1779147423008",
     "nombre": "Nasa Color",
     "precio": 27000,
