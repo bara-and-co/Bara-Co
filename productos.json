@@ -1,5 +1,55 @@
 [
   {
+    "id": "huella-argentina-1779148081832",
+    "nombre": "Huella Argentina",
+    "precio": 27000,
+    "precioAnterior": null,
+    "categoria": "hombre",
+    "subcategoria": "Remeras",
+    "descripcion": "",
+    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1779148010/bara/productos/yxgndpsb16j4legzeyzg.jpg",
+    "imagenes": [
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1779148010/bara/productos/yxgndpsb16j4legzeyzg.jpg"
+    ],
+    "tallesDisponibles": [
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colores": [
+      {
+        "nombre": "Negro",
+        "codigo": "#111111",
+        "stock": 0
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Negro__M": 1,
+      "Negro__L": 1,
+      "Negro__XL": 1,
+      "Negro__XXL": 1
+    },
+    "stockTalles": null,
+    "stock": 4,
+    "sku": "HUELLA-ARGENTINA",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "humo-argentina-1779147973925",
     "nombre": "Humo Argentina",
     "precio": 27000,
