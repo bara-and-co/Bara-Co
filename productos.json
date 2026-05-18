@@ -1,5 +1,69 @@
 [
   {
+    "id": "nasa-color-1779147423008",
+    "nombre": "Nasa Color",
+    "precio": 27000,
+    "precioAnterior": null,
+    "categoria": "hombre",
+    "subcategoria": "Remeras",
+    "descripcion": "",
+    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1779147333/bara/productos/of3vru0zk7vchgg4tpgq.webp",
+    "imagenes": [
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1779147333/bara/productos/of3vru0zk7vchgg4tpgq.webp"
+    ],
+    "tallesDisponibles": [
+      "M",
+      "L",
+      "XL"
+    ],
+    "colores": [
+      {
+        "nombre": "Negro",
+        "codigo": "#111111",
+        "stock": 0
+      },
+      {
+        "nombre": "Blanco",
+        "codigo": "#FFFFFF",
+        "stock": 0
+      },
+      {
+        "nombre": "Rosa",
+        "codigo": "#F48FB1",
+        "stock": 0
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Negro__M": null,
+      "Negro__L": null,
+      "Negro__XL": 1,
+      "Blanco__M": 1,
+      "Blanco__L": null,
+      "Blanco__XL": null,
+      "Rosa__M": null,
+      "Rosa__L": 1,
+      "Rosa__XL": null
+    },
+    "stockTalles": null,
+    "stock": 3,
+    "sku": "NASA-COLOR",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "pacman-2-1779147286419",
     "nombre": "Pacman 2",
     "precio": 27000,
