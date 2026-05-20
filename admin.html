@@ -1571,13 +1571,38 @@
       box-shadow: 0 8px 24px rgba(26,74,138,.4);
     }
 
+    /* SNIPPET BOX */
+    .mundial-snippet-box {
+      margin-top: 12px;
+      background: var(--bg); border: 1px solid var(--border);
+      border-radius: var(--radius); overflow: hidden;
+    }
+    .mundial-snippet-head {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 12px 14px; cursor: pointer; font-size: 12px; font-weight: 600;
+      color: var(--muted); gap: 8px;
+      transition: background .2s;
+    }
+    .mundial-snippet-head:hover { background: rgba(0,0,0,.03); }
+    .mundial-snippet-box.open .mundial-snippet-head .fa-chevron-down { transform: rotate(180deg); }
+    .mundial-snippet-body {
+      display: none; padding: 0 14px 14px;
+    }
+    .mundial-snippet-box.open .mundial-snippet-body { display: block; }
+    .mundial-code-block {
+      background: #1a1a17; color: #e8e4dd;
+      border-radius: 6px; padding: 12px 14px;
+      font-family: monospace; font-size: 10px; line-height: 1.6;
+      overflow-x: auto; white-space: pre;
+      max-height: 180px; overflow-y: auto;
+    }
+
     @media(max-width:640px){
       .mundial-estilo-grid { grid-template-columns:repeat(2,1fr); }
       .mundial-status-card { flex-direction: column; align-items: flex-start; }
       .mundial-status-right { width: 100%; }
       .mundial-activate-btn { width: 100%; justify-content: center; }
     }
-  </style>
 </head>
 <body>
 
@@ -1935,6 +1960,21 @@
             <i class="fas fa-save"></i> Guardar cambios del banner
           </button>
           <textarea id="mundialConfigOutput" style="display:none;" readonly></textarea>
+
+          <!-- INSTRUCCIONES PARA PEGAR EN LA TIENDA -->
+          <div class="mundial-snippet-box" id="mundialSnippetBox">
+            <div class="mundial-snippet-head" onclick="this.parentElement.classList.toggle('open')">
+              <span><i class="fas fa-code"></i> ¿Cómo conectar el banner a la tienda?</span>
+              <i class="fas fa-chevron-down" style="transition:transform .2s;"></i>
+            </div>
+            <div class="mundial-snippet-body">
+              <p style="font-size:12px;color:var(--muted);margin-bottom:10px;">Pegá este código en tu <strong>tienda.html</strong> justo antes de <code>&lt;/body&gt;</code>. Solo hay que hacerlo una vez.</p>
+              <div class="mundial-code-block" id="mundialCodeSnippet"></div>
+              <button class="btn btn-ghost btn-sm" style="margin-top:8px;width:100%;" onclick="mundialCopiarSnippet()">
+                <i class="fas fa-copy"></i> Copiar código para pegar en tienda.html
+              </button>
+            </div>
+          </div>
         </div>
 
       </div><!-- /mundial-grid -->
@@ -5339,17 +5379,78 @@ function mundialActualizarEstado() {
 function mundialToggleActivar() {
   mundialConfig.activo = !mundialConfig.activo;
   mundialActualizarEstado();
-  localStorage.setItem(MUNDIAL_KEY, JSON.stringify(mundialConfig));
-  const msg = mundialConfig.activo
-    ? '🇦🇷 ¡Banner activado! Ya se muestra en tu tienda'
-    : 'Banner desactivado. Ya no se muestra en la tienda';
-  toast(msg, mundialConfig.activo ? 'ok' : 'err');
+  mundialPublicarGitHub(mundialConfig.activo
+    ? '🇦🇷 ¡Banner activado! Ya se está publicando en tu tienda...'
+    : 'Banner desactivado. Publicando cambios...'
+  );
 }
 
 function selDonde(btn) {
   document.querySelectorAll('.mundial-donde-btn').forEach(b => b.classList.remove('sel'));
   btn.classList.add('sel');
   mundialConfig.donde = btn.dataset.donde;
+  mundialActualizarEstado();
+}
+
+async function mundialPublicarGitHub(msgExito) {
+  const token = localStorage.getItem('bc_gh_token');
+  const repo  = localStorage.getItem('bc_gh_repo') || 'bara-and-co/Bara-Co';
+
+  // Guardar siempre en localStorage primero
+  localStorage.setItem(MUNDIAL_KEY, JSON.stringify(mundialConfig));
+
+  if (!token) {
+    toast('⚠️ Configurá tu token de GitHub en ⚙️ Configuración para publicar el banner en la tienda', 'err');
+    return;
+  }
+
+  // Mostrar estado de carga en botón guardar
+  const saveBtn = document.querySelector('.mundial-save-btn');
+  const origTxt = saveBtn ? saveBtn.innerHTML : '';
+  if (saveBtn) { saveBtn.disabled = true; saveBtn.innerHTML = '<div class="spinner"></div> Publicando en tienda...'; }
+
+  try {
+    const headers = {
+      Authorization: `token ${token}`,
+      Accept: 'application/vnd.github.v3+json',
+      'Content-Type': 'application/json'
+    };
+    const api = `https://api.github.com/repos/${repo}/contents/banner-mundial.json`;
+
+    // Obtener SHA si existe
+    const getR = await fetch(api, { headers });
+    const sha  = getR.ok ? (await getR.json()).sha : null;
+
+    const b64 = btoa(unescape(encodeURIComponent(JSON.stringify(mundialConfig, null, 2))));
+    const now = new Date().toLocaleString('es-AR');
+
+    const putR = await fetch(api, {
+      method: 'PUT',
+      headers,
+      body: JSON.stringify({
+        message: `Admin: banner mundial — ${now}`,
+        content: b64,
+        ...(sha ? { sha } : {})
+      })
+    });
+
+    if (!putR.ok) {
+      const e = await putR.json().catch(() => ({}));
+      throw new Error(e.message || `Error ${putR.status}`);
+    }
+
+    toast(msgExito || '✅ Banner publicado en la tienda', 'ok');
+  } catch(e) {
+    toast('Guardado localmente. Error GitHub: ' + e.message, 'err');
+  } finally {
+    if (saveBtn) { saveBtn.disabled = false; saveBtn.innerHTML = origTxt; }
+  }
+}
+
+function mundialGuardar() {
+  const dondeBtn = document.querySelector('.mundial-donde-btn.sel');
+  if (dondeBtn) mundialConfig.donde = dondeBtn.dataset.donde;
+  mundialPublicarGitHub('✅ ¡Banner guardado y publicado en la tienda!');
   mundialActualizarEstado();
 }
 
@@ -5486,15 +5587,6 @@ function mundialActualizarPreview() {
   }
 }
 
-function mundialGuardar() {
-  // Capturar estado actual de donde
-  const dondeBtn = document.querySelector('.mundial-donde-btn.sel');
-  if (dondeBtn) mundialConfig.donde = dondeBtn.dataset.donde;
-  localStorage.setItem(MUNDIAL_KEY, JSON.stringify(mundialConfig));
-  mundialActualizarEstado();
-  toast('✅ Cambios guardados correctamente', 'ok');
-}
-
 function mundialReset() {
   mundialConfig = {
     activo: false, donde: 'ambas', estilo:'clasico',
@@ -5509,12 +5601,63 @@ function mundialReset() {
   toast('Banner reiniciado', 'ok');
 }
 
+function mundialGetSnippet() {
+  const repo = localStorage.getItem('bc_gh_repo') || 'bara-and-co/Bara-Co';
+  return `<!-- 🇦🇷 BANNER MUNDIAL - pegar antes de </body> -->
+<div id="banner-mundial-wrap"></div>
+<script>
+(async function() {
+  try {
+    const r = await fetch('/banner-mundial.json?t=' + Date.now());
+    if (!r.ok) return;
+    const c = await r.json();
+    if (!c.activo) return;
+    const pag = window.location.pathname;
+    const enInicio = pag === '/' || pag.includes('index');
+    const enTienda = pag.includes('tienda');
+    if (c.donde === 'inicio'  && !enInicio) return;
+    if (c.donde === 'tienda'  && !enTienda) return;
+    // Inyectar banner
+    const wrap = document.getElementById('banner-mundial-wrap');
+    if (!wrap) return;
+    wrap.innerHTML = \`<div style="width:100%;background:linear-gradient(135deg,#0d2952,#1a4a8a,#75aadb);padding:32px 5%;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;position:relative;overflow:hidden;">
+      <div>
+        <div style="color:#f5c842;font-size:11px;font-weight:700;letter-spacing:.15em;margin-bottom:8px;">🇦🇷 SELECCIÓN ARGENTINA · MUNDIAL 2026</div>
+        <div style="color:#fff;font-size:clamp(24px,4vw,48px);font-weight:900;line-height:1.05;margin-bottom:6px;">\${c.eslogan}</div>
+        <div style="color:rgba(255,255,255,.75);font-size:14px;margin-bottom:16px;">\${c.subtitulo}</div>
+        <a href="tienda.html" style="display:inline-flex;align-items:center;gap:8px;background:#f5c842;color:#0d2952;font-weight:700;padding:10px 24px;border-radius:24px;text-decoration:none;font-size:13px;">\${c.cta} →</a>
+      </div>
+    </div>\`;
+  } catch(e) { console.log('Banner mundial:', e); }
+})();
+<\/script>
+<!-- FIN BANNER MUNDIAL -->`;
+}
+
+function mundialCopiarSnippet() {
+  const snippet = mundialGetSnippet();
+  navigator.clipboard.writeText(snippet).then(() => {
+    toast('✅ Código copiado. Pegalo en tienda.html justo antes de </body>', 'ok');
+  }).catch(() => {
+    const ta = document.createElement('textarea');
+    ta.value = snippet;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    toast('Código copiado', 'ok');
+  });
+}
+
 // Inicializar cuando se muestra la sección
 const _origSwitchPageTab = window.switchPageTab;
 window.switchPageTab = function(btn, secId) {
   _origSwitchPageTab(btn, secId);
   if (secId === 'secMundial') {
     mundialInit();
+    // Mostrar snippet de código
+    const codeEl = document.getElementById('mundialCodeSnippet');
+    if (codeEl) codeEl.textContent = mundialGetSnippet();
   }
 };
 </script>
