@@ -1461,8 +1461,121 @@
     .mbn-elegante .mbn-badge { background:rgba(245,200,66,.15); }
     .mbn-elegante .mbn-eslogan { text-shadow:0 0 40px rgba(117,170,219,.6), 0 2px 20px rgba(0,0,0,.6); }
 
+    /* ─── TARJETA DE ESTADO GRANDE ─── */
+    .mundial-status-card {
+      background: var(--surface);
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+      transition: border-color .3s, box-shadow .3s;
+    }
+    .mundial-status-card.activo {
+      border-color: #1a4a8a;
+      box-shadow: 0 0 0 3px rgba(26,74,138,.1);
+      background: linear-gradient(135deg, rgba(26,74,138,.04), rgba(117,170,219,.04));
+    }
+    .mundial-status-left {
+      display: flex; align-items: center; gap: 14px;
+    }
+    .mundial-status-dot {
+      width: 14px; height: 14px; border-radius: 50%;
+      background: #ccc; flex-shrink: 0;
+      transition: background .3s;
+    }
+    .mundial-status-dot.on {
+      background: #2d8a5e;
+      box-shadow: 0 0 0 4px rgba(45,138,94,.2);
+      animation: pulse-dot 1.8s ease-in-out infinite;
+    }
+    @keyframes pulse-dot {
+      0%,100% { box-shadow: 0 0 0 4px rgba(45,138,94,.2); }
+      50%      { box-shadow: 0 0 0 8px rgba(45,138,94,.05); }
+    }
+    .mundial-status-label {
+      font-weight: 700; font-size: 16px; color: var(--text);
+    }
+    .mundial-status-sub {
+      font-size: 12px; color: var(--muted); margin-top: 2px;
+    }
+    .mundial-status-right {
+      display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+    }
+
+    /* DONDE MOSTRAR */
+    .mundial-donde-wrap { }
+    .mundial-donde-label {
+      font-size: 10px; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--muted); margin-bottom: 7px;
+    }
+    .mundial-donde-opts {
+      display: flex; gap: 6px;
+    }
+    .mundial-donde-btn {
+      display: flex; flex-direction: column; align-items: center; gap: 4px;
+      padding: 8px 14px; border: 1.5px solid var(--border);
+      border-radius: var(--radius); background: var(--surface);
+      color: var(--muted); cursor: pointer; font-family: var(--sans);
+      font-size: 11px; font-weight: 600; transition: all .2s;
+      min-width: 72px;
+    }
+    .mundial-donde-btn i { font-size: 16px; }
+    .mundial-donde-btn:hover { border-color: #75aadb; color: #1a4a8a; }
+    .mundial-donde-btn.sel {
+      background: #1a4a8a; color: #fff; border-color: #1a4a8a;
+    }
+
+    /* BOTÓN ACTIVAR/DESACTIVAR */
+    .mundial-activate-btn {
+      display: flex; align-items: center; gap: 10px;
+      padding: 14px 28px; border: none; cursor: pointer;
+      font-family: var(--sans); font-size: 15px; font-weight: 700;
+      border-radius: 10px; transition: all .25s var(--ease);
+      background: #1a4a8a; color: #fff;
+      box-shadow: 0 4px 16px rgba(26,74,138,.3);
+      letter-spacing: .01em; white-space: nowrap;
+    }
+    .mundial-activate-btn:hover {
+      background: #0d2952; transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(26,74,138,.4);
+    }
+    .mundial-activate-btn.desactivar {
+      background: rgba(192,57,43,.1); color: var(--red);
+      border: 1.5px solid rgba(192,57,43,.3);
+      box-shadow: none;
+    }
+    .mundial-activate-btn.desactivar:hover {
+      background: rgba(192,57,43,.18); transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(192,57,43,.15);
+    }
+    .mundial-activate-icon { font-size: 18px; }
+
+    /* BOTÓN GUARDAR GRANDE */
+    .mundial-save-btn {
+      width: 100%; margin-top: 16px;
+      padding: 14px; border: none; cursor: pointer;
+      font-family: var(--sans); font-size: 14px; font-weight: 700;
+      border-radius: 10px; transition: all .2s;
+      background: linear-gradient(135deg, #1a4a8a, #2a6cc7);
+      color: #fff; display: flex; align-items: center;
+      justify-content: center; gap: 8px;
+      box-shadow: 0 4px 16px rgba(26,74,138,.3);
+    }
+    .mundial-save-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(26,74,138,.4);
+    }
+
     @media(max-width:640px){
       .mundial-estilo-grid { grid-template-columns:repeat(2,1fr); }
+      .mundial-status-card { flex-direction: column; align-items: flex-start; }
+      .mundial-status-right { width: 100%; }
+      .mundial-activate-btn { width: 100%; justify-content: center; }
     }
   </style>
 </head>
@@ -1640,12 +1753,42 @@
         <div class="mundial-header-left">
           <div class="mundial-stars">★★★</div>
           <h2 class="mundial-title">Banner Selección Argentina</h2>
-          <p class="mundial-sub">Creá un banner especial para los productos de la Selección y generá más ventas durante el Mundial</p>
+          <p class="mundial-sub">Diseñá tu banner mundialero y publicalo en tu tienda con un clic</p>
         </div>
         <div class="mundial-header-actions">
           <button class="btn btn-ghost btn-sm" onclick="mundialReset()"><i class="fas fa-undo"></i> Reiniciar</button>
-          <button class="btn btn-primary" style="background:linear-gradient(135deg,#1a4a8a,#2a6cc7);" onclick="mundialGuardar()">
-            <i class="fas fa-save"></i> Guardar banner
+        </div>
+      </div>
+
+      <!-- TARJETA DE ESTADO GRANDE (ACTIVAR / DESACTIVAR / DONDE) -->
+      <div class="mundial-status-card" id="mundialStatusCard">
+        <div class="mundial-status-left">
+          <div class="mundial-status-dot" id="mundialStatusDot"></div>
+          <div>
+            <div class="mundial-status-label" id="mundialStatusLabel">Banner desactivado</div>
+            <div class="mundial-status-sub" id="mundialStatusSub">El banner no se muestra en ningún lado todavía</div>
+          </div>
+        </div>
+        <div class="mundial-status-right">
+          <!-- DONDE MOSTRAR -->
+          <div class="mundial-donde-wrap">
+            <div class="mundial-donde-label">¿Dónde mostrarlo?</div>
+            <div class="mundial-donde-opts">
+              <button class="mundial-donde-btn" data-donde="inicio" onclick="selDonde(this)">
+                <i class="fas fa-home"></i><span>Inicio</span>
+              </button>
+              <button class="mundial-donde-btn sel" data-donde="ambas" onclick="selDonde(this)">
+                <i class="fas fa-globe"></i><span>Inicio y Tienda</span>
+              </button>
+              <button class="mundial-donde-btn" data-donde="tienda" onclick="selDonde(this)">
+                <i class="fas fa-store"></i><span>Tienda</span>
+              </button>
+            </div>
+          </div>
+          <!-- BOTÓN ACTIVAR -->
+          <button class="mundial-activate-btn" id="mundialActivateBtn" onclick="mundialToggleActivar()">
+            <span class="mundial-activate-icon" id="mundialActivateIcon"><i class="fas fa-power-off"></i></span>
+            <span id="mundialActivateTxt">Activar banner</span>
           </button>
         </div>
       </div>
@@ -1785,15 +1928,13 @@
             <!-- Banner se genera dinámicamente -->
           </div>
           <div class="mundial-preview-hint">
-            <i class="fas fa-info-circle"></i> Así se verá en tu tienda. Los efectos de confeti y estrellas se animan en la tienda real.
+            <i class="fas fa-info-circle"></i> Así se verá en tu tienda. Los efectos se animan en la tienda real.
           </div>
-          <div style="margin-top:16px;background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:14px;">
-            <div class="mundial-section-title" style="margin-bottom:10px;"><i class="fas fa-code"></i> Config JSON para copiar</div>
-            <textarea id="mundialConfigOutput" class="form-textarea" style="min-height:100px;font-family:monospace;font-size:11px;color:var(--muted);" readonly></textarea>
-            <button class="btn btn-ghost btn-sm" style="margin-top:8px;" onclick="mundialCopiarConfig()">
-              <i class="fas fa-copy"></i> Copiar configuración
-            </button>
-          </div>
+          <!-- BOTÓN GUARDAR GRANDE -->
+          <button class="mundial-save-btn" onclick="mundialGuardar()">
+            <i class="fas fa-save"></i> Guardar cambios del banner
+          </button>
+          <textarea id="mundialConfigOutput" style="display:none;" readonly></textarea>
         </div>
 
       </div><!-- /mundial-grid -->
@@ -5111,6 +5252,8 @@ function updateMostrarEnStyle() {
 const MUNDIAL_KEY = 'bc_banner_mundial';
 
 let mundialConfig = {
+  activo: false,
+  donde: 'ambas',
   estilo: 'clasico',
   eslogan: '¡Vamos Argentina! 🇦🇷',
   subtitulo: 'Vestite con los colores de la Selección',
@@ -5130,10 +5273,11 @@ function mundialInit() {
     try {
       const parsed = JSON.parse(saved);
       mundialConfig = { ...mundialConfig, ...parsed };
-      mundialAplicarConfigUI();
     } catch(e) {}
   }
+  mundialAplicarConfigUI();
   mundialActualizarPreview();
+  mundialActualizarEstado();
 }
 
 function mundialAplicarConfigUI() {
@@ -5141,13 +5285,11 @@ function mundialAplicarConfigUI() {
   document.querySelectorAll('.mundial-estilo-card').forEach(c => {
     c.classList.toggle('sel', c.dataset.estilo === mundialConfig.estilo);
   });
-  // Eslogan
-  document.querySelectorAll('.mundial-eslogan-chip').forEach(c => {
-    const match = c.textContent.trim();
-    const esloganClean = mundialConfig.eslogan.replace(/\s*[\u{1F1E0}-\u{1F1FF}\u{1F300}-\u{1F9FF}⭐🌟★🏆🎊✨💙🤍]\s*/gu, '').trim();
-    const chipClean = match.replace(/\s*[\u{1F1E0}-\u{1F1FF}\u{1F300}-\u{1F9FF}⭐🌟★🏆🎊✨💙🤍]\s*/gu, '').trim();
-    c.classList.toggle('sel', esloganClean.includes(chipClean) || chipClean.includes(esloganClean));
+  // Donde
+  document.querySelectorAll('.mundial-donde-btn').forEach(b => {
+    b.classList.toggle('sel', b.dataset.donde === mundialConfig.donde);
   });
+  // Subtítulo / CTA
   if (document.getElementById('mundialSubtitulo')) document.getElementById('mundialSubtitulo').value = mundialConfig.subtitulo;
   if (document.getElementById('mundialCTA')) document.getElementById('mundialCTA').value = mundialConfig.cta;
   // Descuento
@@ -5162,6 +5304,53 @@ function mundialAplicarConfigUI() {
   if (document.getElementById('mundialEstrellas')) document.getElementById('mundialEstrellas').checked = mundialConfig.estrellas;
   if (document.getElementById('mundialBrillo')) document.getElementById('mundialBrillo').checked = mundialConfig.brillo;
   if (document.getElementById('mundialCountdownToggle')) document.getElementById('mundialCountdownToggle').checked = mundialConfig.countdown;
+}
+
+function mundialActualizarEstado() {
+  const c = mundialConfig;
+  const dot   = document.getElementById('mundialStatusDot');
+  const label = document.getElementById('mundialStatusLabel');
+  const sub   = document.getElementById('mundialStatusSub');
+  const btn   = document.getElementById('mundialActivateBtn');
+  const txt   = document.getElementById('mundialActivateTxt');
+  const card  = document.getElementById('mundialStatusCard');
+
+  const dondeMap = { inicio:'la página de inicio', tienda:'la tienda', ambas:'inicio y tienda' };
+
+  if (c.activo) {
+    dot.classList.add('on');
+    label.textContent = '🟢 Banner activo';
+    label.style.color = '#2d8a5e';
+    sub.textContent   = `Se está mostrando en ${dondeMap[c.donde] || 'ambas páginas'}`;
+    btn.classList.add('desactivar');
+    txt.textContent   = 'Desactivar banner';
+    card.classList.add('activo');
+  } else {
+    dot.classList.remove('on');
+    label.textContent = 'Banner desactivado';
+    label.style.color = '';
+    sub.textContent   = 'El banner no se muestra en ningún lado todavía';
+    btn.classList.remove('desactivar');
+    txt.textContent   = 'Activar banner';
+    card.classList.remove('activo');
+  }
+}
+
+function mundialToggleActivar() {
+  mundialConfig.activo = !mundialConfig.activo;
+  mundialActualizarEstado();
+  localStorage.setItem(MUNDIAL_KEY, JSON.stringify(mundialConfig));
+  const msg = mundialConfig.activo
+    ? '🇦🇷 ¡Banner activado! Ya se muestra en tu tienda'
+    : 'Banner desactivado. Ya no se muestra en la tienda';
+  toast(msg, mundialConfig.activo ? 'ok' : 'err');
+}
+
+function selDonde(btn) {
+  document.querySelectorAll('.mundial-donde-btn').forEach(b => b.classList.remove('sel'));
+  btn.classList.add('sel');
+  mundialConfig.donde = btn.dataset.donde;
+  mundialActualizarEstado();
 }
 
 function selMundialEstilo(card) {
@@ -5193,7 +5382,6 @@ function mundialToggleDescuento(on) {
 }
 
 function mundialCountdown() {
-  // Mundial 2026: 11 de junio de 2026
   const target = new Date('2026-06-11T00:00:00');
   const now = new Date();
   const diff = target - now;
@@ -5221,7 +5409,6 @@ function mundialActualizarPreview() {
   const c = mundialConfig;
   const { dias, horas, mins, segs } = mundialCountdown();
 
-  // Generar confeti HTML
   const colores = ['#75aadb','#ffffff','#1a4a8a','#f5c842','#b0d0f0'];
   let confetiHTML = '';
   if (c.confeti) {
@@ -5235,7 +5422,6 @@ function mundialActualizarPreview() {
     }
   }
 
-  // Generar estrellas HTML
   let estrellasHTML = '';
   if (c.estrellas) {
     const pos = [[10,20],[25,60],[80,15],[65,70],[45,35],[90,55],[15,80],[55,10]];
@@ -5247,7 +5433,6 @@ function mundialActualizarPreview() {
     });
   }
 
-  // Countdown HTML
   const cdHTML = c.countdown ? `
     <div class="mbn-countdown">
       <span class="mbn-cd-title">🏆 Mundial 2026</span>
@@ -5260,7 +5445,6 @@ function mundialActualizarPreview() {
       <div class="mbn-cd-unit"><div class="mbn-cd-num">${String(segs).padStart(2,'0')}</div><div class="mbn-cd-lbl">Seg</div></div>
     </div>` : '';
 
-  // Descuento badge
   const discHTML = c.descuento ? `
     <div class="mbn-descuento">
       <div class="disc-num">${c.descPct}%</div>
@@ -5290,7 +5474,6 @@ function mundialActualizarPreview() {
   const container = document.getElementById('mundialPreviewContainer');
   if (container) container.innerHTML = bannerHTML;
 
-  // Actualizar countdown cada segundo
   if (c.countdown && !window._mundialCDInterval) {
     window._mundialCDInterval = setInterval(() => {
       if (document.getElementById('secMundial')?.classList.contains('active')) {
@@ -5301,40 +5484,29 @@ function mundialActualizarPreview() {
     clearInterval(window._mundialCDInterval);
     window._mundialCDInterval = null;
   }
-
-  // Config JSON
-  const configJSON = JSON.stringify(c, null, 2);
-  const output = document.getElementById('mundialConfigOutput');
-  if (output) output.value = configJSON;
 }
 
 function mundialGuardar() {
+  // Capturar estado actual de donde
+  const dondeBtn = document.querySelector('.mundial-donde-btn.sel');
+  if (dondeBtn) mundialConfig.donde = dondeBtn.dataset.donde;
   localStorage.setItem(MUNDIAL_KEY, JSON.stringify(mundialConfig));
-  toast('🇦🇷 Banner guardado correctamente. ¡Vamos Argentina!', 'ok');
+  mundialActualizarEstado();
+  toast('✅ Cambios guardados correctamente', 'ok');
 }
 
 function mundialReset() {
   mundialConfig = {
-    estilo:'clasico', eslogan:'¡Vamos Argentina! 🇦🇷',
+    activo: false, donde: 'ambas', estilo:'clasico',
+    eslogan:'¡Vamos Argentina! 🇦🇷',
     subtitulo:'Vestite con los colores de la Selección', cta:'Ver colección',
     descuento:false, descPct:15, descBadge:'OFF MUNDIAL',
     confeti:true, estrellas:true, brillo:false, countdown:true
   };
   mundialAplicarConfigUI();
   mundialActualizarPreview();
+  mundialActualizarEstado();
   toast('Banner reiniciado', 'ok');
-}
-
-function mundialCopiarConfig() {
-  const output = document.getElementById('mundialConfigOutput');
-  if (!output) return;
-  navigator.clipboard.writeText(output.value).then(() => {
-    toast('¡Configuración copiada! Pegala en tu tienda.', 'ok');
-  }).catch(() => {
-    output.select();
-    document.execCommand('copy');
-    toast('Config copiada', 'ok');
-  });
 }
 
 // Inicializar cuando se muestra la sección
