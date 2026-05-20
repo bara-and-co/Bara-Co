@@ -1258,16 +1258,211 @@
 
   
 
+    /* ─── MUNDIAL BANNER BUILDER ─── */
+    @import url('https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&display=swap');
+
+    .mundial-nav-btn.active {
+      color: #1a4a8a !important;
+      border-bottom-color: #75aadb !important;
+    }
+
+    .mundial-wrapper { padding:0; }
+
+    .mundial-header {
+      display:flex; align-items:flex-start; justify-content:space-between;
+      margin-bottom:24px; gap:16px; flex-wrap:wrap;
+    }
+    .mundial-stars {
+      font-size:18px; color:#f5c842; letter-spacing:4px; margin-bottom:4px;
+      text-shadow: 0 0 10px rgba(245,200,66,.5);
+    }
+    .mundial-title {
+      font-family: var(--serif); font-size:28px; font-weight:600;
+      background: linear-gradient(135deg, #1a4a8a, #75aadb);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .mundial-sub { font-size:13px; color:var(--muted); margin-top:4px; }
+    .mundial-header-actions { display:flex; gap:8px; align-items:center; flex-shrink:0; }
+
+    .mundial-grid {
+      display:grid; grid-template-columns:360px 1fr; gap:20px; align-items:start;
+    }
+    @media(max-width:900px){
+      .mundial-grid { grid-template-columns:1fr; }
+    }
+
+    .mundial-config-panel { display:flex; flex-direction:column; gap:12px; }
+    .mundial-preview-panel { position:sticky; top:80px; }
+
+    .mundial-section {
+      background:var(--surface); border:1px solid var(--border);
+      border-radius:var(--radius); padding:16px;
+    }
+    .mundial-section-title {
+      font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase;
+      color:var(--muted); margin-bottom:12px; display:flex; align-items:center; gap:6px;
+    }
+
+    /* ESTILOS VISUALES */
+    .mundial-estilo-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; }
+    .mundial-estilo-card {
+      border:1.5px solid var(--border); border-radius:var(--radius);
+      padding:8px; cursor:pointer; text-align:center; transition:all .2s;
+    }
+    .mundial-estilo-card:hover { border-color:#75aadb; }
+    .mundial-estilo-card.sel { border-color:#1a4a8a; background:rgba(26,74,138,.05); }
+    .mundial-estilo-card span { font-size:10px; font-weight:600; color:var(--muted); }
+    .mundial-estilo-preview {
+      width:100%; height:36px; border-radius:4px; margin-bottom:6px;
+    }
+    .clasico-prev  { background:linear-gradient(135deg,#1a4a8a 50%,#75aadb); }
+    .fuego-prev    { background:linear-gradient(135deg,#1a1a1a,#b8340a,#f5c842); }
+    .elegante-prev { background:linear-gradient(135deg,#0d1f3c,#1a4a8a); border:1px solid rgba(245,200,66,.3); }
+    .retro-prev    { background:repeating-linear-gradient(45deg,#75aadb,#75aadb 4px,#fff 4px,#fff 8px); }
+
+    /* ESLOGAN CHIPS */
+    .mundial-eslogan-opts { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:10px; }
+    .mundial-eslogan-chip {
+      padding:6px 12px; border-radius:20px; font-size:12px; font-weight:500;
+      border:1px solid var(--border); background:var(--surface); color:var(--muted);
+      cursor:pointer; transition:all .2s;
+    }
+    .mundial-eslogan-chip:hover { border-color:#75aadb; color:#1a4a8a; }
+    .mundial-eslogan-chip.sel { background:#1a4a8a; color:#fff; border-color:#1a4a8a; }
+    .mundial-custom-row { margin-top:4px; }
+
+    /* PREVIEW */
+    .mundial-preview-label {
+      font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.12em;
+      color:var(--muted); margin-bottom:10px;
+    }
+    .mundial-preview-container {
+      border-radius:12px; overflow:hidden;
+      box-shadow:0 8px 40px rgba(26,74,138,.2);
+      aspect-ratio:16/5; position:relative; background:#1a4a8a;
+    }
+    .mundial-preview-hint {
+      font-size:11px; color:var(--muted); margin-top:8px;
+      display:flex; align-items:center; gap:5px;
+    }
+
+    /* BANNER INTERNO (render) */
+    .mbn { width:100%; height:100%; position:relative; overflow:hidden; display:flex; align-items:center; }
+
+    /* Estilos por tipo */
+    .mbn-clasico {
+      background: linear-gradient(135deg, #0d2952 0%, #1a4a8a 40%, #75aadb 100%);
+    }
+    .mbn-fuego {
+      background: linear-gradient(135deg, #0a0a0a 0%, #1a2a0a 20%, #1a4a8a 55%, #75aadb 100%);
+    }
+    .mbn-elegante {
+      background: linear-gradient(135deg, #060f1e 0%, #0d2952 60%, #1a4a8a 100%);
+    }
+    .mbn-retro {
+      background: #1a4a8a;
+    }
+
+    .mbn-stripe {
+      position:absolute; top:0; bottom:0; width:40%; right:0;
+      clip-path:polygon(15% 0,100% 0,100% 100%,0 100%);
+    }
+    .mbn-clasico .mbn-stripe  { background:rgba(117,170,219,.25); }
+    .mbn-fuego .mbn-stripe    { background:rgba(245,200,66,.12); }
+    .mbn-elegante .mbn-stripe { background:rgba(245,200,66,.08); }
+    .mbn-retro .mbn-stripe    { background:repeating-linear-gradient(45deg,rgba(255,255,255,.07),rgba(255,255,255,.07) 5px,transparent 5px,transparent 10px); width:100%; clip-path:none; }
+
+    .mbn-content {
+      position:relative; z-index:2; padding:0 5%;
+      flex:1; display:flex; flex-direction:column; justify-content:center;
+    }
+    .mbn-badge {
+      display:inline-flex; align-items:center; gap:5px;
+      background:rgba(245,200,66,.2); border:1px solid rgba(245,200,66,.5);
+      color:#f5c842; font-size:8px; font-weight:700; letter-spacing:.15em;
+      text-transform:uppercase; padding:3px 8px; border-radius:20px;
+      margin-bottom:6px; width:fit-content;
+    }
+    .mbn-eslogan {
+      color:#fff; line-height:1.05; font-family:'Anton','Bebas Neue',var(--serif);
+      letter-spacing:.02em; font-size:clamp(14px,3.5vw,32px);
+      text-shadow:0 2px 20px rgba(0,0,0,.4);
+      margin-bottom:4px;
+    }
+    .mbn-sub {
+      color:rgba(255,255,255,.75); font-size:clamp(8px,1.2vw,12px); margin-bottom:8px;
+    }
+    .mbn-cta {
+      display:inline-flex; align-items:center; gap:5px;
+      background:#f5c842; color:#0d2952; font-weight:700;
+      font-size:clamp(7px,1vw,11px); padding:5px 12px; border-radius:20px;
+      letter-spacing:.05em; text-transform:uppercase; width:fit-content;
+    }
+    .mbn-descuento {
+      position:absolute; top:8px; right:8px; z-index:5;
+      background:linear-gradient(135deg,#e63946,#c1121f);
+      color:#fff; border-radius:50%; width:56px; height:56px;
+      display:flex; flex-direction:column; align-items:center; justify-content:center;
+      font-weight:700; line-height:1; box-shadow:0 4px 16px rgba(230,57,70,.5);
+    }
+    .mbn-descuento .disc-num { font-size:18px; font-family:'Anton',sans-serif; }
+    .mbn-descuento .disc-txt { font-size:7px; letter-spacing:.05em; opacity:.9; }
+
+    .mbn-countdown {
+      position:absolute; bottom:0; left:0; right:0; z-index:4;
+      background:rgba(0,0,0,.35); backdrop-filter:blur(4px);
+      display:flex; align-items:center; justify-content:center;
+      gap:16px; padding:5px 0; font-size:9px;
+    }
+    .mbn-cd-unit { text-align:center; color:#fff; }
+    .mbn-cd-num { font-family:'Anton',sans-serif; font-size:16px; line-height:1; color:#f5c842; }
+    .mbn-cd-lbl { font-size:7px; letter-spacing:.1em; text-transform:uppercase; opacity:.7; }
+    .mbn-cd-sep { color:#f5c842; font-size:16px; font-family:'Anton',sans-serif; margin-top:-4px; }
+    .mbn-cd-title { font-size:8px; letter-spacing:.1em; color:rgba(255,255,255,.6); text-transform:uppercase; border-right:1px solid rgba(255,255,255,.2); padding-right:12px; }
+
+    /* Confeti (CSS puro en el preview) */
+    .mbn-confeti { position:absolute; inset:0; overflow:hidden; pointer-events:none; z-index:1; }
+    .mbn-confeti span {
+      position:absolute; top:-10px; width:6px; height:10px;
+      animation: confeti-fall linear infinite;
+      border-radius:2px;
+    }
+    @keyframes confeti-fall {
+      0%   { transform:translateY(-10px) rotate(0deg); opacity:1; }
+      100% { transform:translateY(200px) rotate(720deg); opacity:0; }
+    }
+
+    /* Estrellas */
+    .mbn-estrellas { position:absolute; inset:0; pointer-events:none; z-index:1; }
+    .mbn-estrellas span {
+      position:absolute; color:rgba(245,200,66,.5);
+      animation:estrella-float ease-in-out infinite;
+      font-size:12px;
+    }
+    @keyframes estrella-float {
+      0%,100% { transform:translateY(0) scale(1); opacity:.4; }
+      50%      { transform:translateY(-8px) scale(1.2); opacity:.8; }
+    }
+
+    /* Brillo dorado */
+    .mbn-brillo::after {
+      content:'';
+      position:absolute; inset:0;
+      background:linear-gradient(105deg,transparent 40%,rgba(245,200,66,.15) 50%,transparent 60%);
+      animation:brillo-sweep 2.5s ease-in-out infinite;
+      pointer-events:none; z-index:3;
+    }
+    @keyframes brillo-sweep {
+      0%   { transform:translateX(-100%); }
+      100% { transform:translateX(200%); }
+    }
+
+    /* Elegante: estrellas doradas decorativas */
+    .mbn-elegante .mbn-badge { background:rgba(245,200,66,.15); }
+    .mbn-elegante .mbn-eslogan { text-shadow:0 0 40px rgba(117,170,219,.6), 0 2px 20px rgba(0,0,0,.6); }
+
     @media(max-width:640px){
-      .topbar { padding:0 16px; flex-wrap:wrap; height:auto; padding:12px; gap:10px; }
-      .topbar-left, .topbar-right { width:100%; justify-content:space-between; }
-      .page { padding:20px 14px; }
-      .prod-grid { grid-template-columns:repeat(2,1fr); gap:10px; }
-      .form-grid { grid-template-columns:1fr; }
-      .cat-tabs { display:none; }
-      .stats-panel { grid-template-columns:1fr 1fr; }
-      .preview-card { display:none; }
-      .modal-tabs { overflow-x: auto; white-space: nowrap; }
+      .mundial-estilo-grid { grid-template-columns:repeat(2,1fr); }
     }
   </style>
 </head>
@@ -1387,6 +1582,10 @@
       <i class="fas fa-bolt"></i> Ofertas
       <span id="ofertasActivasBadge" style="display:none;background:var(--green);color:#fff;font-size:9px;font-weight:700;padding:1px 6px;border-radius:10px;margin-left:2px;">0</span>
     </button>
+    <button class="page-nav-btn mundial-nav-btn" onclick="switchPageTab(this,'secMundial')" style="position:relative;overflow:hidden;">
+      <span style="font-size:15px;">🇦🇷</span> Banner Mundial
+      <span style="background:linear-gradient(90deg,#75aadb,#ffffff);color:#1a4a8a;font-size:9px;font-weight:700;padding:1px 6px;border-radius:10px;margin-left:2px;letter-spacing:.05em;">¡VAMOS!</span>
+    </button>
   </div>
 
   <!-- ══════════════ SECCIÓN PRODUCTOS ══════════════ -->
@@ -1431,6 +1630,175 @@
     <!-- Grid -->
     <div class="prod-grid" id="prodGrid"></div>
   </div>
+
+  <!-- ══════════════ SECCIÓN MUNDO MUNDIAL 🇦🇷 ══════════════ -->
+  <div class="page-section" id="secMundial">
+    <div class="mundial-wrapper">
+
+      <!-- HEADER -->
+      <div class="mundial-header">
+        <div class="mundial-header-left">
+          <div class="mundial-stars">★★★</div>
+          <h2 class="mundial-title">Banner Selección Argentina</h2>
+          <p class="mundial-sub">Creá un banner especial para los productos de la Selección y generá más ventas durante el Mundial</p>
+        </div>
+        <div class="mundial-header-actions">
+          <button class="btn btn-ghost btn-sm" onclick="mundialReset()"><i class="fas fa-undo"></i> Reiniciar</button>
+          <button class="btn btn-primary" style="background:linear-gradient(135deg,#1a4a8a,#2a6cc7);" onclick="mundialGuardar()">
+            <i class="fas fa-save"></i> Guardar banner
+          </button>
+        </div>
+      </div>
+
+      <!-- GRID PRINCIPAL -->
+      <div class="mundial-grid">
+
+        <!-- PANEL IZQUIERDO: CONFIGURACIÓN -->
+        <div class="mundial-config-panel">
+
+          <!-- SECCIÓN: ESTILO VISUAL -->
+          <div class="mundial-section">
+            <div class="mundial-section-title"><i class="fas fa-palette"></i> Estilo visual</div>
+            <div class="mundial-estilo-grid" id="mundialEstiloGrid">
+              <div class="mundial-estilo-card sel" data-estilo="clasico" onclick="selMundialEstilo(this)">
+                <div class="mundial-estilo-preview clasico-prev"></div>
+                <span>Clásico</span>
+              </div>
+              <div class="mundial-estilo-card" data-estilo="fuego" onclick="selMundialEstilo(this)">
+                <div class="mundial-estilo-preview fuego-prev"></div>
+                <span>Fuego</span>
+              </div>
+              <div class="mundial-estilo-card" data-estilo="elegante" onclick="selMundialEstilo(this)">
+                <div class="mundial-estilo-preview elegante-prev"></div>
+                <span>Elegante</span>
+              </div>
+              <div class="mundial-estilo-card" data-estilo="retro" onclick="selMundialEstilo(this)">
+                <div class="mundial-estilo-preview retro-prev"></div>
+                <span>Retro</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- SECCIÓN: ESLOGAN -->
+          <div class="mundial-section">
+            <div class="mundial-section-title"><i class="fas fa-comment-alt"></i> Eslogan del banner</div>
+            <div class="mundial-eslogan-opts">
+              <div class="mundial-eslogan-chip sel" onclick="selEslogan(this,'¡Vamos Argentina! 🇦🇷')">¡Vamos Argentina!</div>
+              <div class="mundial-eslogan-chip" onclick="selEslogan(this,'Dale Campeón 🏆')">Dale Campeón</div>
+              <div class="mundial-eslogan-chip" onclick="selEslogan(this,'De la mano de Leo ⭐')">De la mano de Leo</div>
+              <div class="mundial-eslogan-chip" onclick="selEslogan(this,'Tres Estrellas 🌟🌟🌟')">Tres Estrellas</div>
+              <div class="mundial-eslogan-chip" onclick="selEslogan(this,'Albiceleste para siempre 💙🤍')">Albiceleste</div>
+              <div class="mundial-eslogan-chip" onclick="selEslogan(this,'Mundial 2026 🏆')">Mundial 2026</div>
+            </div>
+            <div class="mundial-custom-row">
+              <input type="text" class="form-input" id="mundialEsloganInput" placeholder="O escribí tu propio eslogan..." oninput="mundialEsloganCustom(this.value)"/>
+            </div>
+          </div>
+
+          <!-- SECCIÓN: SUBTÍTULO / CTA -->
+          <div class="mundial-section">
+            <div class="mundial-section-title"><i class="fas fa-mouse-pointer"></i> Subtítulo y llamada a la acción</div>
+            <div class="form-row" style="margin-bottom:10px;">
+              <label class="form-label">Subtítulo</label>
+              <input type="text" class="form-input" id="mundialSubtitulo" value="Vestite con los colores de la Selección" oninput="mundialActualizarPreview()"/>
+            </div>
+            <div class="form-row" style="margin-bottom:0;">
+              <label class="form-label">Texto del botón</label>
+              <input type="text" class="form-input" id="mundialCTA" value="Ver colección" oninput="mundialActualizarPreview()"/>
+            </div>
+          </div>
+
+          <!-- SECCIÓN: DESCUENTO ESPECIAL -->
+          <div class="mundial-section">
+            <div class="mundial-section-title"><i class="fas fa-percent"></i> Descuento especial (opcional)</div>
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+              <label class="toggle">
+                <input type="checkbox" id="mundialDescuentoToggle" onchange="mundialToggleDescuento(this.checked)"/>
+                <div class="t-track"></div><div class="t-thumb"></div>
+              </label>
+              <span style="font-size:13px;">Mostrar badge de descuento</span>
+            </div>
+            <div id="mundialDescuentoFields" style="display:none;">
+              <div class="form-grid">
+                <div class="form-row" style="margin:0;">
+                  <label class="form-label">Descuento</label>
+                  <div style="display:flex;align-items:center;gap:6px;">
+                    <input type="number" class="form-input" id="mundialDescPct" value="15" min="1" max="80" oninput="mundialActualizarPreview()"/>
+                    <span style="font-size:18px;font-weight:700;color:var(--accent);">%</span>
+                  </div>
+                </div>
+                <div class="form-row" style="margin:0;">
+                  <label class="form-label">Texto badge</label>
+                  <input type="text" class="form-input" id="mundialDescBadge" value="OFF MUNDIAL" oninput="mundialActualizarPreview()"/>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- SECCIÓN: CONFETI / EFECTOS -->
+          <div class="mundial-section">
+            <div class="mundial-section-title"><i class="fas fa-magic"></i> Efectos especiales</div>
+            <div style="display:flex;flex-direction:column;gap:10px;">
+              <label style="display:flex;align-items:center;gap:10px;cursor:pointer;">
+                <label class="toggle">
+                  <input type="checkbox" id="mundialConfeti" checked onchange="mundialActualizarPreview()"/>
+                  <div class="t-track"></div><div class="t-thumb"></div>
+                </label>
+                <span style="font-size:13px;">🎊 Confeti animado celeste y blanco</span>
+              </label>
+              <label style="display:flex;align-items:center;gap:10px;cursor:pointer;">
+                <label class="toggle">
+                  <input type="checkbox" id="mundialEstrellas" checked onchange="mundialActualizarPreview()"/>
+                  <div class="t-track"></div><div class="t-thumb"></div>
+                </label>
+                <span style="font-size:13px;">⭐ Estrellas flotantes</span>
+              </label>
+              <label style="display:flex;align-items:center;gap:10px;cursor:pointer;">
+                <label class="toggle">
+                  <input type="checkbox" id="mundialBrillo" onchange="mundialActualizarPreview()"/>
+                  <div class="t-track"></div><div class="t-thumb"></div>
+                </label>
+                <span style="font-size:13px;">✨ Efecto brillo dorado</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- SECCIÓN: COUNTDOWN -->
+          <div class="mundial-section">
+            <div class="mundial-section-title"><i class="fas fa-hourglass-half"></i> Countdown al Mundial</div>
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+              <label class="toggle">
+                <input type="checkbox" id="mundialCountdownToggle" checked onchange="mundialActualizarPreview()"/>
+                <div class="t-track"></div><div class="t-thumb"></div>
+              </label>
+              <span style="font-size:13px;">Mostrar cuenta regresiva</span>
+            </div>
+            <div class="form-hint"><i class="fas fa-info-circle"></i> Cuenta regresiva automática al inicio del Mundial 2026 (11 de junio)</div>
+          </div>
+
+        </div><!-- /config panel -->
+
+        <!-- PANEL DERECHO: PREVIEW EN VIVO -->
+        <div class="mundial-preview-panel">
+          <div class="mundial-preview-label">Vista previa del banner</div>
+          <div class="mundial-preview-container" id="mundialPreviewContainer">
+            <!-- Banner se genera dinámicamente -->
+          </div>
+          <div class="mundial-preview-hint">
+            <i class="fas fa-info-circle"></i> Así se verá en tu tienda. Los efectos de confeti y estrellas se animan en la tienda real.
+          </div>
+          <div style="margin-top:16px;background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:14px;">
+            <div class="mundial-section-title" style="margin-bottom:10px;"><i class="fas fa-code"></i> Config JSON para copiar</div>
+            <textarea id="mundialConfigOutput" class="form-textarea" style="min-height:100px;font-family:monospace;font-size:11px;color:var(--muted);" readonly></textarea>
+            <button class="btn btn-ghost btn-sm" style="margin-top:8px;" onclick="mundialCopiarConfig()">
+              <i class="fas fa-copy"></i> Copiar configuración
+            </button>
+          </div>
+        </div>
+
+      </div><!-- /mundial-grid -->
+    </div>
+  </div><!-- /secMundial -->
 
   <!-- ══════════════ SECCIÓN OFERTAS ══════════════ -->
   <div class="page-section" id="secOfertas">
@@ -4734,6 +5102,250 @@ function updateMostrarEnStyle() {
     </div>
   </div>
 </div>
+
+<script>
+/* ═══════════════════════════════════════════════════════
+   SISTEMA BANNER MUNDIAL 🇦🇷
+═══════════════════════════════════════════════════════ */
+
+const MUNDIAL_KEY = 'bc_banner_mundial';
+
+let mundialConfig = {
+  estilo: 'clasico',
+  eslogan: '¡Vamos Argentina! 🇦🇷',
+  subtitulo: 'Vestite con los colores de la Selección',
+  cta: 'Ver colección',
+  descuento: false,
+  descPct: 15,
+  descBadge: 'OFF MUNDIAL',
+  confeti: true,
+  estrellas: true,
+  brillo: false,
+  countdown: true
+};
+
+function mundialInit() {
+  const saved = localStorage.getItem(MUNDIAL_KEY);
+  if (saved) {
+    try {
+      const parsed = JSON.parse(saved);
+      mundialConfig = { ...mundialConfig, ...parsed };
+      mundialAplicarConfigUI();
+    } catch(e) {}
+  }
+  mundialActualizarPreview();
+}
+
+function mundialAplicarConfigUI() {
+  // Estilo
+  document.querySelectorAll('.mundial-estilo-card').forEach(c => {
+    c.classList.toggle('sel', c.dataset.estilo === mundialConfig.estilo);
+  });
+  // Eslogan
+  document.querySelectorAll('.mundial-eslogan-chip').forEach(c => {
+    const match = c.textContent.trim();
+    const esloganClean = mundialConfig.eslogan.replace(/\s*[\u{1F1E0}-\u{1F1FF}\u{1F300}-\u{1F9FF}⭐🌟★🏆🎊✨💙🤍]\s*/gu, '').trim();
+    const chipClean = match.replace(/\s*[\u{1F1E0}-\u{1F1FF}\u{1F300}-\u{1F9FF}⭐🌟★🏆🎊✨💙🤍]\s*/gu, '').trim();
+    c.classList.toggle('sel', esloganClean.includes(chipClean) || chipClean.includes(esloganClean));
+  });
+  if (document.getElementById('mundialSubtitulo')) document.getElementById('mundialSubtitulo').value = mundialConfig.subtitulo;
+  if (document.getElementById('mundialCTA')) document.getElementById('mundialCTA').value = mundialConfig.cta;
+  // Descuento
+  if (document.getElementById('mundialDescuentoToggle')) {
+    document.getElementById('mundialDescuentoToggle').checked = mundialConfig.descuento;
+    document.getElementById('mundialDescuentoFields').style.display = mundialConfig.descuento ? 'block' : 'none';
+    if (mundialConfig.descPct) document.getElementById('mundialDescPct').value = mundialConfig.descPct;
+    if (mundialConfig.descBadge) document.getElementById('mundialDescBadge').value = mundialConfig.descBadge;
+  }
+  // Efectos
+  if (document.getElementById('mundialConfeti')) document.getElementById('mundialConfeti').checked = mundialConfig.confeti;
+  if (document.getElementById('mundialEstrellas')) document.getElementById('mundialEstrellas').checked = mundialConfig.estrellas;
+  if (document.getElementById('mundialBrillo')) document.getElementById('mundialBrillo').checked = mundialConfig.brillo;
+  if (document.getElementById('mundialCountdownToggle')) document.getElementById('mundialCountdownToggle').checked = mundialConfig.countdown;
+}
+
+function selMundialEstilo(card) {
+  document.querySelectorAll('.mundial-estilo-card').forEach(c => c.classList.remove('sel'));
+  card.classList.add('sel');
+  mundialConfig.estilo = card.dataset.estilo;
+  mundialActualizarPreview();
+}
+
+function selEslogan(chip, texto) {
+  document.querySelectorAll('.mundial-eslogan-chip').forEach(c => c.classList.remove('sel'));
+  chip.classList.add('sel');
+  mundialConfig.eslogan = texto;
+  if (document.getElementById('mundialEsloganInput')) document.getElementById('mundialEsloganInput').value = '';
+  mundialActualizarPreview();
+}
+
+function mundialEsloganCustom(val) {
+  if (!val.trim()) return;
+  document.querySelectorAll('.mundial-eslogan-chip').forEach(c => c.classList.remove('sel'));
+  mundialConfig.eslogan = val;
+  mundialActualizarPreview();
+}
+
+function mundialToggleDescuento(on) {
+  mundialConfig.descuento = on;
+  document.getElementById('mundialDescuentoFields').style.display = on ? 'block' : 'none';
+  mundialActualizarPreview();
+}
+
+function mundialCountdown() {
+  // Mundial 2026: 11 de junio de 2026
+  const target = new Date('2026-06-11T00:00:00');
+  const now = new Date();
+  const diff = target - now;
+  if (diff <= 0) return { dias:0, horas:0, mins:0, segs:0 };
+  const dias  = Math.floor(diff / (1000*60*60*24));
+  const horas = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
+  const mins  = Math.floor((diff % (1000*60*60)) / (1000*60));
+  const segs  = Math.floor((diff % (1000*60)) / 1000);
+  return { dias, horas, mins, segs };
+}
+
+function mundialActualizarPreview() {
+  mundialConfig.estilo    = document.querySelector('.mundial-estilo-card.sel')?.dataset.estilo || mundialConfig.estilo;
+  mundialConfig.subtitulo = document.getElementById('mundialSubtitulo')?.value || mundialConfig.subtitulo;
+  mundialConfig.cta       = document.getElementById('mundialCTA')?.value || mundialConfig.cta;
+  mundialConfig.confeti   = document.getElementById('mundialConfeti')?.checked ?? mundialConfig.confeti;
+  mundialConfig.estrellas = document.getElementById('mundialEstrellas')?.checked ?? mundialConfig.estrellas;
+  mundialConfig.brillo    = document.getElementById('mundialBrillo')?.checked ?? mundialConfig.brillo;
+  mundialConfig.countdown = document.getElementById('mundialCountdownToggle')?.checked ?? mundialConfig.countdown;
+  if (mundialConfig.descuento) {
+    mundialConfig.descPct   = parseInt(document.getElementById('mundialDescPct')?.value) || 15;
+    mundialConfig.descBadge = document.getElementById('mundialDescBadge')?.value || 'OFF MUNDIAL';
+  }
+
+  const c = mundialConfig;
+  const { dias, horas, mins, segs } = mundialCountdown();
+
+  // Generar confeti HTML
+  const colores = ['#75aadb','#ffffff','#1a4a8a','#f5c842','#b0d0f0'];
+  let confetiHTML = '';
+  if (c.confeti) {
+    for (let i=0;i<18;i++) {
+      const color = colores[i % colores.length];
+      const left  = (i * 5.5 + Math.random()*4) % 100;
+      const delay = (i * 0.3) % 2.5;
+      const dur   = 1.8 + (i % 5) * 0.3;
+      const rot   = i % 2 === 0 ? 'scaleX(-1)' : '';
+      confetiHTML += `<span style="left:${left}%;animation-duration:${dur}s;animation-delay:${delay}s;background:${color};transform:${rot};"></span>`;
+    }
+  }
+
+  // Generar estrellas HTML
+  let estrellasHTML = '';
+  if (c.estrellas) {
+    const pos = [[10,20],[25,60],[80,15],[65,70],[45,35],[90,55],[15,80],[55,10]];
+    pos.forEach(([x,y], i) => {
+      const delay = i * 0.4;
+      const dur = 2 + (i % 3) * 0.5;
+      const size = 10 + (i%3)*4;
+      estrellasHTML += `<span style="left:${x}%;top:${y}%;animation-duration:${dur}s;animation-delay:${delay}s;font-size:${size}px;">⭐</span>`;
+    });
+  }
+
+  // Countdown HTML
+  const cdHTML = c.countdown ? `
+    <div class="mbn-countdown">
+      <span class="mbn-cd-title">🏆 Mundial 2026</span>
+      <div class="mbn-cd-unit"><div class="mbn-cd-num">${dias}</div><div class="mbn-cd-lbl">Días</div></div>
+      <span class="mbn-cd-sep">:</span>
+      <div class="mbn-cd-unit"><div class="mbn-cd-num">${String(horas).padStart(2,'0')}</div><div class="mbn-cd-lbl">Hs</div></div>
+      <span class="mbn-cd-sep">:</span>
+      <div class="mbn-cd-unit"><div class="mbn-cd-num">${String(mins).padStart(2,'0')}</div><div class="mbn-cd-lbl">Min</div></div>
+      <span class="mbn-cd-sep">:</span>
+      <div class="mbn-cd-unit"><div class="mbn-cd-num">${String(segs).padStart(2,'0')}</div><div class="mbn-cd-lbl">Seg</div></div>
+    </div>` : '';
+
+  // Descuento badge
+  const discHTML = c.descuento ? `
+    <div class="mbn-descuento">
+      <div class="disc-num">${c.descPct}%</div>
+      <div class="disc-txt">${c.descBadge}</div>
+    </div>` : '';
+
+  const brilloClass = c.brillo ? ' mbn-brillo' : '';
+
+  const bannerHTML = `
+    <div class="mbn mbn-${c.estilo}${brilloClass}">
+      <div class="mbn-stripe"></div>
+      ${c.confeti ? `<div class="mbn-confeti">${confetiHTML}</div>` : ''}
+      ${c.estrellas ? `<div class="mbn-estrellas">${estrellasHTML}</div>` : ''}
+      <div class="mbn-content">
+        <div class="mbn-badge">🇦🇷 Selección Argentina · Mundial 2026</div>
+        <div class="mbn-eslogan">${c.eslogan}</div>
+        <div class="mbn-sub">${c.subtitulo}</div>
+        <div class="mbn-cta">
+          <i class="fas fa-arrow-right" style="font-size:8px;"></i>
+          ${c.cta}
+        </div>
+      </div>
+      ${discHTML}
+      ${cdHTML}
+    </div>`;
+
+  const container = document.getElementById('mundialPreviewContainer');
+  if (container) container.innerHTML = bannerHTML;
+
+  // Actualizar countdown cada segundo
+  if (c.countdown && !window._mundialCDInterval) {
+    window._mundialCDInterval = setInterval(() => {
+      if (document.getElementById('secMundial')?.classList.contains('active')) {
+        mundialActualizarPreview();
+      }
+    }, 1000);
+  } else if (!c.countdown && window._mundialCDInterval) {
+    clearInterval(window._mundialCDInterval);
+    window._mundialCDInterval = null;
+  }
+
+  // Config JSON
+  const configJSON = JSON.stringify(c, null, 2);
+  const output = document.getElementById('mundialConfigOutput');
+  if (output) output.value = configJSON;
+}
+
+function mundialGuardar() {
+  localStorage.setItem(MUNDIAL_KEY, JSON.stringify(mundialConfig));
+  toast('🇦🇷 Banner guardado correctamente. ¡Vamos Argentina!', 'ok');
+}
+
+function mundialReset() {
+  mundialConfig = {
+    estilo:'clasico', eslogan:'¡Vamos Argentina! 🇦🇷',
+    subtitulo:'Vestite con los colores de la Selección', cta:'Ver colección',
+    descuento:false, descPct:15, descBadge:'OFF MUNDIAL',
+    confeti:true, estrellas:true, brillo:false, countdown:true
+  };
+  mundialAplicarConfigUI();
+  mundialActualizarPreview();
+  toast('Banner reiniciado', 'ok');
+}
+
+function mundialCopiarConfig() {
+  const output = document.getElementById('mundialConfigOutput');
+  if (!output) return;
+  navigator.clipboard.writeText(output.value).then(() => {
+    toast('¡Configuración copiada! Pegala en tu tienda.', 'ok');
+  }).catch(() => {
+    output.select();
+    document.execCommand('copy');
+    toast('Config copiada', 'ok');
+  });
+}
+
+// Inicializar cuando se muestra la sección
+const _origSwitchPageTab = window.switchPageTab;
+window.switchPageTab = function(btn, secId) {
+  _origSwitchPageTab(btn, secId);
+  if (secId === 'secMundial') {
+    mundialInit();
+  }
+};
+</script>
 
 </body>
 </html>
