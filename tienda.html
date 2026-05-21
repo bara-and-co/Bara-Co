@@ -431,7 +431,7 @@
   <nav class="nav-menu">
     <ul>
       <li><a href="index.html">Inicio</a></li>
-      <li><a href="/" class="active">Tienda</a></li>
+      <li><a href="tienda.html" class="active">Tienda</a></li>
       <li><a href="lookbook.html">Lookbook</a></li>
       <li><a href="contacto.html">Contacto</a></li>
     </ul>
@@ -448,7 +448,7 @@
 
 <nav class="mobile-nav" id="mobileNav">
   <a href="index.html">Inicio</a>
-  <a href="/" class="active">Tienda</a>
+  <a href="tienda.html" class="active">Tienda</a>
   <a href="lookbook.html">Lookbook</a>
   <a href="contacto.html">Contacto</a>
 </nav>
@@ -487,8 +487,8 @@
       <button class="filter-tab" data-f="hombre">Hombre</button>
       <button class="filter-tab" data-f="mujer">Mujer</button>
       <button class="filter-tab" data-f="accesorios">Accesorios</button>
-      <button class="filter-tab" data-f="argentina" style="color:#75aadb;border-color:#75aadb99;">🇦🇷 Argentina</button>
       <button class="filter-tab" data-f="sale">Sale</button>
+      <button class="filter-tab" data-f="argentina" style="color:#75aadb;border-color:#75aadb99;">🇦🇷 Argentina</button>
       <button class="filter-tab" data-f="outlet" style="color:#e07b39;border-color:#e07b39aa;">🏷️ Outlet</button>
     </div>
     <div class="subcat-tabs" id="subcatTabs" style="display:none"></div>
@@ -580,9 +580,9 @@
       <li><a href="tienda.html?categoria=hombre">Hombre</a></li>
       <li><a href="tienda.html?categoria=mujer">Mujer</a></li>
       <li><a href="tienda.html?categoria=accesorios">Accesorios</a></li>
-      <li><a href="tienda.html?categoria=argentina" style="color:#75aadb;">🇦🇷 Argentina</a></li>
       <li><a href="tienda.html?categoria=new">New Collection</a></li>
       <li><a href="tienda.html?categoria=sale">Sale</a></li>
+      <li><a href="tienda.html?categoria=argentina" style="color:#75aadb;">🇦🇷 Argentina</a></li>
       <li><a href="tienda.html?categoria=outlet" style="color:#e07b39;">🏷️ Outlet</a></li>
     </ul>
   </div>
@@ -677,30 +677,12 @@ const CAT_CONFIG = {
   accesorios: { label:'Complementos',    title:'Accesorios',     cta:'Explorar',  img:'images/fondo%20hero.png' },
 };
 
-// Detecta productos de la cápsula Argentina sin cambiar su categoría principal.
-// Podés marcarlos desde el admin con argentina:true o cargarlos con origen/pais:"Argentina".
-function esProductoArgentina(p) {
-  if (!p) return false;
-  const normalizar = v => String(v || '')
-    .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '')
-    .trim()
-    .toLowerCase();
-
-  const tags = Array.isArray(p.tags)
-    ? p.tags.map(normalizar)
-    : normalizar(p.tags).split(',').map(s => s.trim()).filter(Boolean);
-
-  const origen = normalizar(p.origen || p.pais || p.country || p.procedencia);
-
-  return p.argentina === true
-    || p.esArgentina === true
-    || p.capsulaArgentina === true
-    || p.categoria === 'argentina'
-    || origen === 'argentina'
-    || origen === 'ar'
-    || tags.includes('argentina')
-    || tags.includes('ar');
+// Producto dentro de la cápsula Argentina.
+// No cambia su categoría principal: solo suma un filtro/sector especial.
+function isArgentinaProduct(p) {
+  const origen = String(p.origen || p.pais || p.country || '').trim().toLowerCase();
+  const tags = Array.isArray(p.tags) ? p.tags.map(t => String(t).toLowerCase()) : [];
+  return p.argentina === true || origen === 'argentina' || tags.includes('argentina') || tags.includes('ar');
 }
 
 // ========== CARGAR PRODUCTOS ==========
@@ -713,7 +695,7 @@ async function cargarProductos() {
     renderCatLanding();
     actualizarContador();
     const cat = new URLSearchParams(window.location.search).get('categoria');
-    if (cat && ['hombre','mujer','accesorios','new','sale','outlet','argentina'].includes(cat)) filterBy(cat);
+    if (cat && ['hombre','mujer','accesorios','new','sale','argentina','outlet'].includes(cat)) filterBy(cat);
   } catch(e) {
     document.getElementById('prodCount').textContent = 'Error al cargar';
     renderCatLanding();
@@ -728,8 +710,6 @@ function renderCatLanding() {
   const allCats = [...cats];
   // Agregar outlet si hay
   const hasOutlet = productos.some(p => p.outlet || p.precioAnterior);
-  const argentinaItems = productos.filter(esProductoArgentina);
-  const hasArgentina = argentinaItems.length > 0;
   
   let html = '';
   allCats.forEach(cat => {
@@ -749,6 +729,21 @@ function renderCatLanding() {
       </div>`;
   });
 
+  const argentinaItems = productos.filter(isArgentinaProduct);
+  if (argentinaItems.length) {
+    const firstArg = argentinaItems.find(p => p.imagen);
+    const argImg = firstArg ? firstArg.imagen : 'images/fondo%20hero.png';
+    html += `
+      <div class="cat-big-card" onclick="filterBy('argentina')" style="grid-column:1/-1;aspect-ratio:21/6;background:#071426;">
+        <img src="${argImg}" alt="Cápsula Argentina" loading="lazy"/>
+        <div class="cat-big-info">
+          <p class="cat-big-label" style="color:#75aadb">Selección nacional · ${argentinaItems.length} productos</p>
+          <h2 class="cat-big-title">Cápsula <em style="font-style:italic;color:#75aadb">Argentina</em></h2>
+          <span class="cat-big-cta">Ver cápsula &nbsp;<i class="fas fa-arrow-right" style="font-size:9px"></i></span>
+        </div>
+      </div>`;
+  }
+
   if (hasOutlet) {
     html += `
       <div class="cat-big-card" onclick="filterBy('outlet')" style="grid-column:1/-1;aspect-ratio:21/6;">
@@ -760,25 +755,11 @@ function renderCatLanding() {
         </div>
       </div>`;
   }
-
-  if (hasArgentina) {
-    const firstAr = argentinaItems.find(p => p.imagen);
-    const imgAr = firstAr ? firstAr.imagen : 'images/fondo%20hero.png';
-    html += `
-      <div class="cat-big-card" onclick="filterBy('argentina')" style="grid-column:1/-1;aspect-ratio:21/6;">
-        <img src="${imgAr}" alt="Cápsula Argentina" loading="lazy"/>
-        <div class="cat-big-info">
-          <p class="cat-big-label" style="color:#75aadb">Selección nacional · ${argentinaItems.length} piezas</p>
-          <h2 class="cat-big-title">Cápsula <em style="font-style:italic;color:#75aadb">Argentina</em></h2>
-          <span class="cat-big-cta">Ver cápsula &nbsp;<i class="fas fa-arrow-right" style="font-size:9px"></i></span>
-        </div>
-      </div>`;
-  }
   container.innerHTML = html;
 }
 
 // ========== CONSTRUIR CARD ==========
-function buildCard(p, sectionKey = '') {
+function buildCard(p) {
   const stockReal = (() => {
     if (p.stockMap && typeof p.stockMap === 'object') {
       const vals = Object.values(p.stockMap).filter(v => v !== null && v !== undefined);
@@ -799,8 +780,8 @@ function buildCard(p, sectionKey = '') {
   const descuento = p.precioAnterior ? Math.round((1 - p.precio/p.precioAnterior)*100) : 0;
   const cats      = [p.categoria];
   if (p.precioAnterior) cats.push('sale');
+  if (isArgentinaProduct(p)) cats.push('argentina');
   if (p.outlet) cats.push('outlet');
-  if (esProductoArgentina(p)) cats.push('argentina');
 
   const precioHtml = p.precioAnterior
     ? `<del>$${p.precioAnterior.toLocaleString('es-AR')}</del> $${p.precio.toLocaleString('es-AR')}`
@@ -832,7 +813,6 @@ function buildCard(p, sectionKey = '') {
       data-cat="${cats.join(' ')}"
       data-subcat="${(p.subcategoria||'').replace(/"/g,'&quot;')}"
       data-id="${p.id}"
-      data-section="${sectionKey || p.categoria || ''}"
       data-precio="${p.precio}"
       data-fecha="${p.fechaCreacion||p.id}"
       data-descuento="${descuento}"
@@ -851,7 +831,7 @@ function buildCard(p, sectionKey = '') {
         </div>
       </div>
       <div class="prod-info">
-        <p class="prod-cat">${p.outlet?'<span style="color:#e07b39">Outlet · </span>':''}${p.subcategoria||p.categoria}</p>
+        <p class="prod-cat">${isArgentinaProduct(p)?'<span style="color:#75aadb">Argentina · </span>':''}${p.outlet?'<span style="color:#e07b39">Outlet · </span>':''}${p.subcategoria||p.categoria}</p>
         <h3 class="prod-name">${p.nombre}</h3>
         <p class="prod-price">${precioHtml}${agotado?'<span class="agotado-label">Sin stock</span>':''}</p>
       </div>
@@ -870,15 +850,16 @@ function renderizarProductos() {
     html += `<div class="cat-heading" data-cat-head="${cat}"><h2>${nombres[cat]}</h2></div>`;
     items.forEach(p => { html += buildCard(p); });
   });
+  const argentinaItems = productos.filter(isArgentinaProduct);
+  if (argentinaItems.length) {
+    html += `<div class="cat-heading" data-cat-head="argentina" style="border-top:1px solid rgba(117,170,219,.25);"><h2>Cápsula <em style="font-style:italic;color:#75aadb">Argentina</em></h2></div>`;
+    argentinaItems.forEach(p => { html += buildCard(p); });
+  }
+
   const outletItems = productos.filter(p => p.outlet || p.precioAnterior);
   if (outletItems.length) {
     html += `<div class="cat-heading" data-cat-head="outlet" style="border-top:1px solid rgba(224,123,57,.2);"><h2>Outlet <em style="font-style:italic;color:var(--accent)">&amp; Sale</em></h2></div>`;
     outletItems.forEach(p => { html += buildCard(p); });
-  }
-  const argentinaItems = productos.filter(esProductoArgentina);
-  if (argentinaItems.length) {
-    html += `<div class="cat-heading" data-cat-head="argentina" style="border-top:1px solid rgba(117,170,219,.22);"><h2>Cápsula <em style="font-style:italic;color:#75aadb">Argentina</em></h2></div>`;
-    argentinaItems.forEach(p => { html += buildCard(p, 'argentina'); });
   }
   grid.innerHTML = html;
 }
@@ -916,7 +897,7 @@ function filterBySub(subcat) {
 }
 function renderSubcatTabs(categoria) {
   const container = document.getElementById('subcatTabs');
-  if (['all','sale','outlet','argentina'].includes(categoria) || !categoria) { container.style.display='none'; return; }
+  if (['all','sale','argentina','outlet'].includes(categoria) || !categoria) { container.style.display='none'; return; }
   const subcats = [...new Set(productos.filter(p => p.categoria === categoria && p.subcategoria).map(p => p.subcategoria))].sort();
   if (!subcats.length) { container.style.display='none'; return; }
   container.innerHTML = `<button class="subcat-tab active" data-s="all" onclick="filterBySub('all')">Todas</button>`;
@@ -934,18 +915,7 @@ function aplicarFiltro(filtro, subcat='all') {
   cards.forEach(card => {
     const cats = (card.dataset.cat||'').split(' ');
     const cardSubcat = card.dataset.subcat||'';
-    const section = card.dataset.section || '';
-
-    let mostrar;
-    if (filtro === 'argentina') {
-      // Para la cápsula mostramos solo el bloque AR, evitando duplicar productos que ya existen en Hombre/Mujer/Accesorios.
-      mostrar = section === 'argentina';
-    } else {
-      mostrar = filtro === 'all' || cats.includes(filtro);
-      // Los duplicados del bloque AR no deben aparecer cuando filtrás categorías normales.
-      if (section === 'argentina') mostrar = false;
-    }
-
+    let mostrar = filtro === 'all' || cats.includes(filtro);
     if (mostrar && subcat !== 'all') mostrar = cardSubcat === subcat;
     card.classList.toggle('hidden', !mostrar);
     if (mostrar) visibles++;
