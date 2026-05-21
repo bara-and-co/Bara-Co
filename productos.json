@@ -1,5 +1,50 @@
 [
   {
+    "id": "gorra-argentina-gastada-1779396829014",
+    "nombre": "Gorra Argentina Gastada",
+    "precio": 15000,
+    "precioAnterior": null,
+    "categoria": "accesorios",
+    "subcategoria": "Gorras",
+    "descripcion": "",
+    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1779396815/bara/productos/pzp8x6bnowjzwvhkajy1.jpg",
+    "imagenes": [
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1779396815/bara/productos/pzp8x6bnowjzwvhkajy1.jpg"
+    ],
+    "tallesDisponibles": [
+      "Único"
+    ],
+    "colores": [
+      {
+        "nombre": "Azul",
+        "codigo": "#1E88E5",
+        "stock": 0
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "argentina": false,
+    "stockMap": {
+      "Azul__Único": 1
+    },
+    "stockTalles": null,
+    "stock": 1,
+    "sku": "GORRA-ARGENTINA-GASTADA",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "pashmina-1779376990785",
     "nombre": "Pashmina",
     "precio": 25000,
