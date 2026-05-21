@@ -677,7 +677,7 @@ const CAT_CONFIG = {
   accesorios: { label:'Complementos',    title:'Accesorios',     cta:'Explorar',  img:'images/fondo%20hero.png' },
 };
 
-// Productos seleccionados para la Cápsula Argentina.
+// Productos seleccionados para la Colección Argentina.
 // No modifica la categoría original del producto: solo agrega un filtro/sector adicional.
 function esArgentina(p) {
   const texto = v => String(v || '').toLowerCase();
@@ -751,11 +751,11 @@ function renderCatLanding() {
     const imgAr = firstAr ? firstAr.imagen : 'images/fondo%20hero.png';
     html += `
       <div class="cat-big-card" onclick="filterBy('argentina')" style="grid-column:1/-1;aspect-ratio:21/6;">
-        <img src="${imgAr}" alt="Cápsula Argentina" loading="lazy"/>
+        <img src="${imgAr}" alt="Colección Argentina" loading="lazy"/>
         <div class="cat-big-info">
           <p class="cat-big-label" style="color:#75aadb">Selección nacional · ${countAr} productos</p>
-          <h2 class="cat-big-title">Cápsula <em style="font-style:italic;color:#75aadb">Argentina</em></h2>
-          <span class="cat-big-cta">Ver cápsula &nbsp;<i class="fas fa-arrow-right" style="font-size:9px"></i></span>
+          <h2 class="cat-big-title">Colección <em style="font-style:italic;color:#75aadb">Argentina</em></h2>
+          <span class="cat-big-cta">Ver Colección &nbsp;<i class="fas fa-arrow-right" style="font-size:9px"></i></span>
         </div>
       </div>`;
   }
@@ -861,7 +861,7 @@ function renderizarProductos() {
   }
   const argentinaItems = productos.filter(esArgentina);
   if (argentinaItems.length) {
-    html += `<div class="cat-heading" data-cat-head="argentina" style="border-top:1px solid rgba(117,170,219,.22);"><h2>Cápsula <em style="font-style:italic;color:#75aadb">Argentina</em></h2></div>`;
+    html += `<div class="cat-heading" data-cat-head="argentina" style="border-top:1px solid rgba(117,170,219,.22);"><h2>Colección <em style="font-style:italic;color:#75aadb">Argentina</em></h2></div>`;
     argentinaItems.forEach(p => { html += buildCard(p); });
   }
   grid.innerHTML = html;
