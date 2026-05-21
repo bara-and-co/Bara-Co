@@ -4,7 +4,7 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Tienda · Bara & Co</title>
-  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="/css/global.css">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
   
@@ -428,13 +428,13 @@
 <div class="cur-ring" id="curRing"></div>
 
 <header id="header">
-  <a href="index.html"><img src="images/LogoB&D.png" alt="Bara & Co" class="logo-img"/></a>
+  <a href="/"><img src="images/LogoB&D.png" alt="Bara & Co" class="logo-img"/></a>
   <nav class="nav-menu">
     <ul>
-      <li><a href="index.html">Inicio</a></li>
+      <li><a href="/">Inicio</a></li>
       <li><a href="/" class="active">Tienda</a></li>
-      <li><a href="lookbook.html">Lookbook</a></li>
-      <li><a href="contacto.html">Contacto</a></li>
+      <li><a href="/lookbook.html">Lookbook</a></li>
+      <li><a href="/contacto.html">Contacto</a></li>
     </ul>
   </nav>
   <div class="header-icons">
@@ -448,10 +448,10 @@
 </header>
 
 <nav class="mobile-nav" id="mobileNav">
-  <a href="index.html">Inicio</a>
+  <a href="/">Inicio</a>
   <a href="/" class="active">Tienda</a>
-  <a href="lookbook.html">Lookbook</a>
-  <a href="contacto.html">Contacto</a>
+  <a href="/lookbook.html">Lookbook</a>
+  <a href="/contacto.html">Contacto</a>
 </nav>
 
 <div class="shipping-bar">Envíos a todo el país · Retiro en local · Ing. Olmos 139, Jesús María · Compra segura</div>
@@ -578,30 +578,30 @@
   <div>
     <h4 class="footer-title">Categorías</h4>
     <ul class="footer-links">
-      <li><a href="tienda.html?categoria=hombre">Hombre</a></li>
-      <li><a href="tienda.html?categoria=mujer">Mujer</a></li>
-      <li><a href="tienda.html?categoria=accesorios">Accesorios</a></li>
-      <li><a href="tienda.html?categoria=new">New Collection</a></li>
-      <li><a href="tienda.html?categoria=argentina" style="color:#75aadb;">🇦🇷 Argentina</a></li>
-      <li><a href="tienda.html?categoria=sale">Sale</a></li>
-      <li><a href="tienda.html?categoria=outlet" style="color:#e07b39;">🏷️ Outlet</a></li>
+      <li><a href="/tienda/?categoria=hombre">Hombre</a></li>
+      <li><a href="/tienda/?categoria=mujer">Mujer</a></li>
+      <li><a href="/tienda/?categoria=accesorios">Accesorios</a></li>
+      <li><a href="/tienda/?categoria=new">New Collection</a></li>
+      <li><a href="/tienda/?categoria=argentina" style="color:#75aadb;">🇦🇷 Argentina</a></li>
+      <li><a href="/tienda/?categoria=sale">Sale</a></li>
+      <li><a href="/tienda/?categoria=outlet" style="color:#e07b39;">🏷️ Outlet</a></li>
     </ul>
   </div>
   <div>
     <h4 class="footer-title">Ayuda</h4>
     <ul class="footer-links">
-      <li><a href="envios.html">Envíos</a></li>
-      <li><a href="cambios.html">Cambios y devoluciones</a></li>
-      <li><a href="faq.html">Preguntas frecuentes</a></li>
-      <li><a href="contacto.html">Contacto</a></li>
+      <li><a href="/envios.html">Envíos</a></li>
+      <li><a href="/cambios.html">Cambios y devoluciones</a></li>
+      <li><a href="/faq.html">Preguntas frecuentes</a></li>
+      <li><a href="/contacto.html">Contacto</a></li>
     </ul>
   </div>
 </footer>
 <div class="footer-bottom">
   <span>© 2026 Bara & Co · Ing. Olmos 139 – Jesús María</span>
   <div class="legal-info">
-    <a href="pages/terminos.html">Términos y condiciones</a>
-    <a href="pages/privacidad.html">Política de privacidad</a>
+    <a href="/pages/terminos.html">Términos y condiciones</a>
+    <a href="/pages/privacidad.html">Política de privacidad</a>
   </div>
 </div>
 
@@ -636,9 +636,9 @@
   </table>
 </div>
 
-<script src="js/main.js"></script>
-<script src="js/carrito-ui.js"></script>
-<script src="js/search.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/carrito-ui.js"></script>
+<script src="/js/search.js"></script>
 
 <script>
 // ── CURSOR ──
@@ -1160,7 +1160,7 @@ function getOfertaBadgeForProduct(p) {
         <div style="color:#f5c842;font-size:11px;font-weight:700;letter-spacing:.15em;margin-bottom:8px;">🇦🇷 SELECCIÓN ARGENTINA · MUNDIAL 2026</div>
         <div style="color:#fff;font-size:clamp(24px,4vw,48px);font-weight:900;line-height:1.05;margin-bottom:6px;">${c.eslogan}</div>
         <div style="color:rgba(255,255,255,.75);font-size:14px;margin-bottom:16px;">${c.subtitulo}</div>
-        <a href="tienda.html?categoria=argentina" style="display:inline-flex;align-items:center;gap:8px;background:#f5c842;color:#0d2952;font-weight:700;padding:10px 24px;border-radius:24px;text-decoration:none;font-size:13px;">${c.cta} →</a>
+        <a href="/tienda/?categoria=argentina" style="display:inline-flex;align-items:center;gap:8px;background:#f5c842;color:#0d2952;font-weight:700;padding:10px 24px;border-radius:24px;text-decoration:none;font-size:13px;">${c.cta} →</a>
       </div>
     </div>`;
   } catch(e) { console.log('Banner mundial:', e); }
