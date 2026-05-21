@@ -420,16 +420,6 @@
     .cat-outlet-stat-num { font-family:var(--serif); font-size:32px; font-weight:300; color:var(--accent); line-height:1; margin-bottom:4px; }
     .cat-outlet-stat-label { font-size:9px; letter-spacing:.15em; text-transform:uppercase; color:var(--muted); }
 
-    .cat-argentina-tile { background:#06111f; }
-    .cat-argentina-tile::before { background-image:radial-gradient(ellipse 80% 60% at 70% 50%,rgba(117,170,219,.18) 0%,transparent 70%); }
-    .cat-argentina-tile .cat-outlet-deco-num { color:rgba(117,170,219,.12); }
-    .cat-argentina-tile .cat-outlet-eyebrow { color:rgba(117,170,219,.7); }
-    .cat-argentina-tile .cat-outlet-h em { color:#75aadb; }
-    .cat-argentina-tile .cat-outlet-btn-primary { background:#75aadb; color:#06111f; }
-    .cat-argentina-tile .cat-outlet-btn-ghost { border-color:rgba(117,170,219,.35); color:rgba(117,170,219,.85); }
-    .cat-argentina-tile .cat-outlet-stat-num { color:#75aadb; }
-
-
     /* ── MARQUEE ── */
     .marquee-wrap { overflow:hidden; border-top:1px solid var(--border); border-bottom:1px solid var(--border); padding:18px 0; }
     .marquee-track { display:flex; white-space:nowrap; animation:marqueeRoll 24s linear infinite; }
@@ -750,13 +740,11 @@
 <div class="ann-bar" id="annBar">
   <div class="ann-track" id="annTrack">
     <span class="ann-item">Precios especiales · Últimas unidades <span class="ann-sep"></span></span>
-    <span class="ann-item"><a href="/tienda/?categoria=outlet">Ver Outlet &amp; Sale →</a> <span class="ann-sep"></span></span>
-    <span class="ann-item"><a href="tienda.html?categoria=argentina">Colección Argentina →</a> <span class="ann-sep"></span></span>
+    <span class="ann-item"><a href="tienda.html?categoria=outlet">Ver Outlet &amp; Sale →</a> <span class="ann-sep"></span></span>
     <span class="ann-item">Hasta 40% OFF en prendas seleccionadas <span class="ann-sep"></span></span>
     <span class="ann-item">Stock limitado · No te lo pierdas <span class="ann-sep"></span></span>
     <span class="ann-item">Precios especiales · Últimas unidades <span class="ann-sep"></span></span>
-    <span class="ann-item"><a href="/tienda/?categoria=outlet">Ver Outlet &amp; Sale →</a> <span class="ann-sep"></span></span>
-    <span class="ann-item"><a href="tienda.html?categoria=argentina">Colección Argentina →</a> <span class="ann-sep"></span></span>
+    <span class="ann-item"><a href="tienda.html?categoria=outlet">Ver Outlet &amp; Sale →</a> <span class="ann-sep"></span></span>
     <span class="ann-item">Hasta 40% OFF en prendas seleccionadas <span class="ann-sep"></span></span>
     <span class="ann-item">Stock limitado · No te lo pierdas <span class="ann-sep"></span></span>
   </div>
@@ -781,7 +769,7 @@
   <nav class="nav-menu">
     <ul>
       <li><a href="/" class="nav-link active">Inicio</a></li>
-      <li><a href="/tienda/" class="nav-link">Tienda</a></li>
+      <li><a href="tienda.html" class="nav-link">Tienda</a></li>
       <li><a href="lookbook.html" class="nav-link">Lookbook</a></li>
       <li><a href="contacto.html" class="nav-link">Contacto</a></li>
     </ul>
@@ -801,7 +789,7 @@
 <!-- MOBILE NAV -->
 <nav class="mobile-nav" id="mobileNav">
   <a href="/" class="active">Inicio</a>
-  <a href="/tienda/">Tienda</a>
+  <a href="tienda.html">Tienda</a>
   <a href="lookbook.html">Lookbook</a>
   <a href="contacto.html">Contacto</a>
 </nav>
@@ -844,7 +832,7 @@
     <!-- Logo enorme -->
     <img src="images/LogoB&D.png" alt="Bara & Co" class="hero-h1">
     <p class="hero-sub">Esencia urbana · Confort atemporal</p>
-    <a class="hero-cta" href="/tienda/">Descubrir colección <i class="fas fa-arrow-right"></i></a>
+    <a class="hero-cta" href="tienda.html">Descubrir colección <i class="fas fa-arrow-right"></i></a>
   </div>
   <div class="scroll-hint" id="scrollHint">
     <span>Scroll</span>
@@ -875,7 +863,7 @@
 
 <!-- CATEGORÍAS -->
 <div class="cat-strip">
-  <div class="cat-tile" onclick="location.href='/tienda/?categoria=mujer'">
+  <div class="cat-tile" onclick="location.href='tienda.html?categoria=mujer'">
     <img src="images/Mujer.webp" alt="Mujer" loading="lazy"/>
     <div class="cat-tile-overlay">
       <p class="cat-tile-label">Colección</p>
@@ -883,7 +871,7 @@
       <span class="cat-tile-link">Ver todo <i class="fas fa-arrow-right"></i></span>
     </div>
   </div>
-  <div class="cat-tile" onclick="location.href='/tienda/?categoria=hombre'">
+  <div class="cat-tile" onclick="location.href='tienda.html?categoria=hombre'">
     <img src="images/Hombre.webp" alt="Hombre" loading="lazy"/>
     <div class="cat-tile-overlay">
       <p class="cat-tile-label">Colección</p>
@@ -891,7 +879,7 @@
       <span class="cat-tile-link">Ver todo <i class="fas fa-arrow-right"></i></span>
     </div>
   </div>
-  <div class="cat-tile" onclick="location.href='/tienda/?categoria=accesorios'">
+  <div class="cat-tile" onclick="location.href='tienda.html?categoria=accesorios'">
     <img src="accesorios/cinto.png" alt="Accesorios" loading="lazy"/>
     <div class="cat-tile-overlay">
       <p class="cat-tile-label">Colección</p>
@@ -900,7 +888,7 @@
     </div>
   </div>
   <!-- OUTLET TILE (se mantiene pero sin stats dinámicos) -->
-  <div class="cat-outlet-tile" onclick="location.href='/tienda/?categoria=outlet'" id="outletTile">
+  <div class="cat-outlet-tile" onclick="location.href='tienda.html?categoria=outlet'" id="outletTile">
     <div class="cat-outlet-inner">
       <div class="cat-outlet-deco">
         <span class="cat-outlet-deco-num">%</span>
@@ -911,8 +899,8 @@
         <h2 class="cat-outlet-h">Outlet <em>&amp; Sale</em><br/>de temporada</h2>
         <p class="cat-outlet-desc">Prendas seleccionadas con descuentos reales. Stock limitado — una vez agotado, no se repone.</p>
         <div class="cat-outlet-btns">
-          <a class="cat-outlet-btn-primary" href="/tienda/?categoria=outlet">Ver el outlet <i class="fas fa-arrow-right"></i></a>
-          <a class="cat-outlet-btn-ghost" href="/tienda/?categoria=sale">Solo sale <i class="fas fa-tag"></i></a>
+          <a class="cat-outlet-btn-primary" href="tienda.html?categoria=outlet">Ver el outlet <i class="fas fa-arrow-right"></i></a>
+          <a class="cat-outlet-btn-ghost" href="tienda.html?categoria=sale">Solo sale <i class="fas fa-tag"></i></a>
         </div>
       </div>
       <div class="cat-outlet-stats" id="outletStats">
@@ -932,33 +920,34 @@
     </div>
   </div>
 
-  <!-- Colección ARGENTINA TILE -->
-  <div class="cat-outlet-tile cat-argentina-tile" onclick="location.href='tienda.html?categoria=argentina'" id="argentinaTile">
+
+  <!-- CÁPSULA ARGENTINA -->
+  <div class="cat-outlet-tile" onclick="location.href='tienda.html?categoria=argentina#productos'" id="argentinaTile" style="background:#071426;">
     <div class="cat-outlet-inner">
       <div class="cat-outlet-deco">
-        <span class="cat-outlet-deco-num">AR</span>
-        <div class="cat-outlet-deco-line"></div>
+        <span class="cat-outlet-deco-num" style="color:rgba(117,170,219,.12);">AR</span>
+        <div class="cat-outlet-deco-line" style="background:linear-gradient(to bottom,rgba(117,170,219,.45),transparent);"></div>
       </div>
       <div class="cat-outlet-text">
-        <p class="cat-outlet-eyebrow">Bara &amp; Co · Selección nacional</p>
-        <h2 class="cat-outlet-h">Colección <em>Argentina</em><br/>edición especial</h2>
-        <p class="cat-outlet-desc">Productos seleccionados con identidad argentina. Un acceso rápido para encontrar todo lo nacional dentro de la tienda.</p>
+        <p class="cat-outlet-eyebrow" style="color:#75aadb;">Bara &amp; Co · Selección nacional</p>
+        <h2 class="cat-outlet-h">Cápsula <em style="color:#75aadb;">Argentina</em><br/>edición especial</h2>
+        <p class="cat-outlet-desc">Productos seleccionados con identidad argentina. Una sección curada para encontrar rápido todo lo nacional dentro de la tienda.</p>
         <div class="cat-outlet-btns">
-          <a class="cat-outlet-btn-primary" href="tienda.html?categoria=argentina">Ver Colección <i class="fas fa-arrow-right"></i></a>
-          <a class="cat-outlet-btn-ghost" href="tienda.html?categoria=argentina">Comprar nacional <i class="fas fa-flag"></i></a>
+          <a class="cat-outlet-btn-primary" href="tienda.html?categoria=argentina#productos" style="background:#75aadb;color:#071426;">Ver cápsula <i class="fas fa-arrow-right"></i></a>
+          <a class="cat-outlet-btn-ghost" href="tienda.html?categoria=argentina#productos" style="border-color:rgba(117,170,219,.35);color:#75aadb;">Comprar nacional <i class="fas fa-flag"></i></a>
         </div>
       </div>
       <div class="cat-outlet-stats">
-        <div class="cat-outlet-stat">
-          <p class="cat-outlet-stat-num">AR</p>
+        <div class="cat-outlet-stat" style="border-color:rgba(117,170,219,.18);background:rgba(117,170,219,.05);">
+          <p class="cat-outlet-stat-num" style="color:#75aadb;">AR</p>
           <p class="cat-outlet-stat-label">Productos</p>
         </div>
-        <div class="cat-outlet-stat">
-          <p class="cat-outlet-stat-num">Curado</p>
+        <div class="cat-outlet-stat" style="border-color:rgba(117,170,219,.18);background:rgba(117,170,219,.05);">
+          <p class="cat-outlet-stat-num" style="color:#75aadb;">Curado</p>
           <p class="cat-outlet-stat-label">Selección</p>
         </div>
-        <div class="cat-outlet-stat">
-          <p class="cat-outlet-stat-num">Stock</p>
+        <div class="cat-outlet-stat" style="border-color:rgba(117,170,219,.18);background:rgba(117,170,219,.05);">
+          <p class="cat-outlet-stat-num" style="color:#75aadb;">Stock</p>
           <p class="cat-outlet-stat-label">Disponible</p>
         </div>
       </div>
@@ -982,13 +971,13 @@
   <div>
     <h4 class="footer-title">Categorías</h4>
     <ul class="footer-links">
-      <li><a href="/tienda/?categoria=hombre">Hombre</a></li>
-      <li><a href="/tienda/?categoria=mujer">Mujer</a></li>
-      <li><a href="/tienda/?categoria=accesorios">Accesorios</a></li>
-      <li><a href="/tienda/?categoria=new">New Collection</a></li>
+      <li><a href="tienda.html?categoria=hombre">Hombre</a></li>
+      <li><a href="tienda.html?categoria=mujer">Mujer</a></li>
+      <li><a href="tienda.html?categoria=accesorios">Accesorios</a></li>
+      <li><a href="tienda.html?categoria=new">New Collection</a></li>
+      <li><a href="tienda.html?categoria=sale">Sale</a></li>
       <li><a href="tienda.html?categoria=argentina">Argentina</a></li>
-      <li><a href="/tienda/?categoria=sale">Sale</a></li>
-      <li><a href="/tienda/?categoria=outlet">Outlet</a></li>
+      <li><a href="tienda.html?categoria=outlet">Outlet</a></li>
     </ul>
   </div>
   <div>
@@ -1097,10 +1086,10 @@ window.addEventListener('scroll', function() {
 
 // ── CLICK EN MITADES DEL HERO ──
 document.getElementById('panelLeft').addEventListener('click', function() {
-  window.location.href = '/tienda/?categoria=mujer';
+  window.location.href = 'tienda.html?categoria=mujer';
 });
 document.getElementById('panelRight').addEventListener('click', function() {
-  window.location.href = '/tienda/?categoria=hombre';
+  window.location.href = 'tienda.html?categoria=hombre';
 });
 
 // ── MOBILE MENU ──
@@ -1169,7 +1158,7 @@ function _ocBuildSlide(o, idx, page) {
   const imgHtml  = o.imagen
     ? `<div class="oc-img"><img src="${o.imagen}" alt="${o.nombre}" loading="lazy"/></div>` : '';
   const noImg    = o.imagen ? '' : 'oc-no-img';
-  const ctaHref  = page==='tienda' ? '#productos' : '/tienda/';
+  const ctaHref  = page==='tienda' ? '#productos' : 'tienda.html';
   const ctaLabel = page==='tienda' ? 'Ver productos <i class="fas fa-arrow-down" style="font-size:8px"></i>' : 'Ver tienda <i class="fas fa-arrow-right" style="font-size:8px"></i>';
   const hexToRgb = h => { const r=parseInt(h.slice(1,3),16),g=parseInt(h.slice(3,5),16),b=parseInt(h.slice(5,7),16); return `${r},${g},${b}`; };
   const rgb = hexToRgb(accent);
@@ -1290,7 +1279,7 @@ function cargarOfertasInicio() {
         <div style="color:#f5c842;font-size:11px;font-weight:700;letter-spacing:.15em;margin-bottom:8px;">🇦🇷 SELECCIÓN ARGENTINA · MUNDIAL 2026</div>
         <div style="color:#fff;font-size:clamp(24px,4vw,48px);font-weight:900;line-height:1.05;margin-bottom:6px;">${c.eslogan}</div>
         <div style="color:rgba(255,255,255,.75);font-size:14px;margin-bottom:16px;">${c.subtitulo}</div>
-        <a href="tienda.html?categoria=argentina" style="display:inline-flex;align-items:center;gap:8px;background:#f5c842;color:#0d2952;font-weight:700;padding:10px 24px;border-radius:24px;text-decoration:none;font-size:13px;">${c.cta} →</a>
+        <a href="tienda.html?categoria=argentina#productos" style="display:inline-flex;align-items:center;gap:8px;background:#f5c842;color:#0d2952;font-weight:700;padding:10px 24px;border-radius:24px;text-decoration:none;font-size:13px;">${c.cta} →</a>
       </div>
     </div>`;
   } catch(e) { console.log('Banner mundial:', e); }
