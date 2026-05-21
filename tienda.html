@@ -175,7 +175,6 @@
     .filter-tab:hover { border-color:var(--accent); color:var(--accent); }
     .filter-tab.active { background:var(--accent); border-color:var(--accent); color:var(--bg); }
     .filter-tab[data-f="outlet"].active { background:#e07b39; border-color:#e07b39; color:#fff; }
-    .filter-tab[data-f="argentina"].active { background:#75aadb; border-color:#75aadb; color:#071426; }
     .subcat-tabs { display:flex; gap:6px; flex-wrap:wrap; padding-top:8px; border-top:1px solid var(--border); animation:fadeIn .2s ease; }
     .subcat-tab { padding:5px 14px; border:1px solid var(--border); background:none; color:var(--muted); font-family:var(--sans); font-size:10px; font-weight:500; letter-spacing:.08em; text-transform:uppercase; cursor:pointer; border-radius:20px; transition:all .2s; }
     .subcat-tab:hover { border-color:var(--accent); color:var(--accent); }
@@ -431,7 +430,7 @@
   <nav class="nav-menu">
     <ul>
       <li><a href="index.html">Inicio</a></li>
-      <li><a href="tienda.html" class="active">Tienda</a></li>
+      <li><a href="/" class="active">Tienda</a></li>
       <li><a href="lookbook.html">Lookbook</a></li>
       <li><a href="contacto.html">Contacto</a></li>
     </ul>
@@ -448,7 +447,7 @@
 
 <nav class="mobile-nav" id="mobileNav">
   <a href="index.html">Inicio</a>
-  <a href="tienda.html" class="active">Tienda</a>
+  <a href="/" class="active">Tienda</a>
   <a href="lookbook.html">Lookbook</a>
   <a href="contacto.html">Contacto</a>
 </nav>
@@ -488,7 +487,6 @@
       <button class="filter-tab" data-f="mujer">Mujer</button>
       <button class="filter-tab" data-f="accesorios">Accesorios</button>
       <button class="filter-tab" data-f="sale">Sale</button>
-      <button class="filter-tab" data-f="argentina" style="color:#75aadb;border-color:#75aadb99;">🇦🇷 Argentina</button>
       <button class="filter-tab" data-f="outlet" style="color:#e07b39;border-color:#e07b39aa;">🏷️ Outlet</button>
     </div>
     <div class="subcat-tabs" id="subcatTabs" style="display:none"></div>
@@ -582,7 +580,6 @@
       <li><a href="tienda.html?categoria=accesorios">Accesorios</a></li>
       <li><a href="tienda.html?categoria=new">New Collection</a></li>
       <li><a href="tienda.html?categoria=sale">Sale</a></li>
-      <li><a href="tienda.html?categoria=argentina" style="color:#75aadb;">🇦🇷 Argentina</a></li>
       <li><a href="tienda.html?categoria=outlet" style="color:#e07b39;">🏷️ Outlet</a></li>
     </ul>
   </div>
@@ -677,14 +674,6 @@ const CAT_CONFIG = {
   accesorios: { label:'Complementos',    title:'Accesorios',     cta:'Explorar',  img:'images/fondo%20hero.png' },
 };
 
-// Producto dentro de la cápsula Argentina.
-// No cambia su categoría principal: solo suma un filtro/sector especial.
-function isArgentinaProduct(p) {
-  const origen = String(p.origen || p.pais || p.country || '').trim().toLowerCase();
-  const tags = Array.isArray(p.tags) ? p.tags.map(t => String(t).toLowerCase()) : [];
-  return p.argentina === true || origen === 'argentina' || tags.includes('argentina') || tags.includes('ar');
-}
-
 // ========== CARGAR PRODUCTOS ==========
 async function cargarProductos() {
   try {
@@ -695,7 +684,7 @@ async function cargarProductos() {
     renderCatLanding();
     actualizarContador();
     const cat = new URLSearchParams(window.location.search).get('categoria');
-    if (cat && ['hombre','mujer','accesorios','new','sale','argentina','outlet'].includes(cat)) filterBy(cat);
+    if (cat && ['hombre','mujer','accesorios','new','sale','outlet'].includes(cat)) filterBy(cat);
   } catch(e) {
     document.getElementById('prodCount').textContent = 'Error al cargar';
     renderCatLanding();
@@ -728,21 +717,6 @@ function renderCatLanding() {
         </div>
       </div>`;
   });
-
-  const argentinaItems = productos.filter(isArgentinaProduct);
-  if (argentinaItems.length) {
-    const firstArg = argentinaItems.find(p => p.imagen);
-    const argImg = firstArg ? firstArg.imagen : 'images/fondo%20hero.png';
-    html += `
-      <div class="cat-big-card" onclick="filterBy('argentina')" style="grid-column:1/-1;aspect-ratio:21/6;background:#071426;">
-        <img src="${argImg}" alt="Cápsula Argentina" loading="lazy"/>
-        <div class="cat-big-info">
-          <p class="cat-big-label" style="color:#75aadb">Selección nacional · ${argentinaItems.length} productos</p>
-          <h2 class="cat-big-title">Cápsula <em style="font-style:italic;color:#75aadb">Argentina</em></h2>
-          <span class="cat-big-cta">Ver cápsula &nbsp;<i class="fas fa-arrow-right" style="font-size:9px"></i></span>
-        </div>
-      </div>`;
-  }
 
   if (hasOutlet) {
     html += `
@@ -780,7 +754,6 @@ function buildCard(p) {
   const descuento = p.precioAnterior ? Math.round((1 - p.precio/p.precioAnterior)*100) : 0;
   const cats      = [p.categoria];
   if (p.precioAnterior) cats.push('sale');
-  if (isArgentinaProduct(p)) cats.push('argentina');
   if (p.outlet) cats.push('outlet');
 
   const precioHtml = p.precioAnterior
@@ -831,7 +804,7 @@ function buildCard(p) {
         </div>
       </div>
       <div class="prod-info">
-        <p class="prod-cat">${isArgentinaProduct(p)?'<span style="color:#75aadb">Argentina · </span>':''}${p.outlet?'<span style="color:#e07b39">Outlet · </span>':''}${p.subcategoria||p.categoria}</p>
+        <p class="prod-cat">${p.outlet?'<span style="color:#e07b39">Outlet · </span>':''}${p.subcategoria||p.categoria}</p>
         <h3 class="prod-name">${p.nombre}</h3>
         <p class="prod-price">${precioHtml}${agotado?'<span class="agotado-label">Sin stock</span>':''}</p>
       </div>
@@ -850,12 +823,6 @@ function renderizarProductos() {
     html += `<div class="cat-heading" data-cat-head="${cat}"><h2>${nombres[cat]}</h2></div>`;
     items.forEach(p => { html += buildCard(p); });
   });
-  const argentinaItems = productos.filter(isArgentinaProduct);
-  if (argentinaItems.length) {
-    html += `<div class="cat-heading" data-cat-head="argentina" style="border-top:1px solid rgba(117,170,219,.25);"><h2>Cápsula <em style="font-style:italic;color:#75aadb">Argentina</em></h2></div>`;
-    argentinaItems.forEach(p => { html += buildCard(p); });
-  }
-
   const outletItems = productos.filter(p => p.outlet || p.precioAnterior);
   if (outletItems.length) {
     html += `<div class="cat-heading" data-cat-head="outlet" style="border-top:1px solid rgba(224,123,57,.2);"><h2>Outlet <em style="font-style:italic;color:var(--accent)">&amp; Sale</em></h2></div>`;
@@ -897,7 +864,7 @@ function filterBySub(subcat) {
 }
 function renderSubcatTabs(categoria) {
   const container = document.getElementById('subcatTabs');
-  if (['all','sale','argentina','outlet'].includes(categoria) || !categoria) { container.style.display='none'; return; }
+  if (['all','sale','outlet'].includes(categoria) || !categoria) { container.style.display='none'; return; }
   const subcats = [...new Set(productos.filter(p => p.categoria === categoria && p.subcategoria).map(p => p.subcategoria))].sort();
   if (!subcats.length) { container.style.display='none'; return; }
   container.innerHTML = `<button class="subcat-tab active" data-s="all" onclick="filterBySub('all')">Todas</button>`;
@@ -1157,7 +1124,7 @@ function getOfertaBadgeForProduct(p) {
         <div style="color:#f5c842;font-size:11px;font-weight:700;letter-spacing:.15em;margin-bottom:8px;">🇦🇷 SELECCIÓN ARGENTINA · MUNDIAL 2026</div>
         <div style="color:#fff;font-size:clamp(24px,4vw,48px);font-weight:900;line-height:1.05;margin-bottom:6px;">${c.eslogan}</div>
         <div style="color:rgba(255,255,255,.75);font-size:14px;margin-bottom:16px;">${c.subtitulo}</div>
-        <a href="tienda.html?categoria=argentina#productos" style="display:inline-flex;align-items:center;gap:8px;background:#f5c842;color:#0d2952;font-weight:700;padding:10px 24px;border-radius:24px;text-decoration:none;font-size:13px;">${c.cta} →</a>
+        <a href="tienda.html" style="display:inline-flex;align-items:center;gap:8px;background:#f5c842;color:#0d2952;font-weight:700;padding:10px 24px;border-radius:24px;text-decoration:none;font-size:13px;">${c.cta} →</a>
       </div>
     </div>`;
   } catch(e) { console.log('Banner mundial:', e); }
