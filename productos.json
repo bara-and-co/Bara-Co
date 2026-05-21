@@ -1,5 +1,49 @@
 [
   {
+    "id": "pashmina-1779376990785",
+    "nombre": "Pashmina",
+    "precio": 25000,
+    "precioAnterior": null,
+    "categoria": "accesorios",
+    "subcategoria": "",
+    "descripcion": "",
+    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1779376987/bara/productos/ghmmhxcb6yedkocqwi5t.jpg",
+    "imagenes": [
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1779376987/bara/productos/ghmmhxcb6yedkocqwi5t.jpg"
+    ],
+    "tallesDisponibles": [
+      "Único"
+    ],
+    "colores": [
+      {
+        "nombre": "Azul",
+        "codigo": "#1E88E5",
+        "stock": 0
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Azul__Único": 1
+    },
+    "stockTalles": null,
+    "stock": 1,
+    "sku": "PASHMINA",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "fulbo-1779148155440",
     "nombre": "Fulbo",
     "precio": 27000,
