@@ -169,6 +169,7 @@
     ],
     "activo": true,
     "destacado": false,
+    "argentina": true,
     "outlet": false,
     "stockMap": {
       "Negro__S": 1,
