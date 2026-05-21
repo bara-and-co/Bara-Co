@@ -168,7 +168,7 @@
       }
     ],
     "activo": true,
-    "destacado": false,
+    "destacado": true,
     "argentina": true,
     "outlet": false,
     "stockMap": {
