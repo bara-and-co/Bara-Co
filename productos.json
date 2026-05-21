@@ -69,7 +69,7 @@
     "activo": true,
     "destacado": false,
     "outlet": false,
-    "argentina": false,
+    "argentina": true,
     "stockMap": {
       "Azul__Único": 1
     },
