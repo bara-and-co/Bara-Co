@@ -387,6 +387,37 @@
     }
     @media (max-width:600px) { .filter-tabs{gap:4px;} .filter-tab{padding:7px 13px;font-size:9px;} .trust-item span{display:none;} .trust-item{padding:12px;} .sort-select{font-size:9px;padding:7px 24px 7px 10px;} }
     @media (max-width:480px) { .cat-section-grid,.prod-grid.active{grid-template-columns:1fr;} footer{grid-template-columns:1fr;gap:28px;} }
+  
+    /* ── BANNER MUNDIAL ── */
+    #banner-mundial-wrap {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      z-index: 4;
+    }
+    #banner-mundial-wrap > div {
+      padding: 20px 5% !important;
+      background: linear-gradient(135deg,rgba(13,41,82,.88),rgba(26,74,138,.88),rgba(117,170,219,.6)) !important;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+    @media(max-width:640px) {
+      #banner-mundial-wrap > div {
+        padding: 14px 4% !important;
+        gap: 8px !important;
+      }
+      #banner-mundial-wrap > div > div > div:nth-child(2) {
+        font-size: clamp(16px,5vw,24px) !important;
+        margin-bottom: 4px !important;
+      }
+      #banner-mundial-wrap > div > div > div:nth-child(3) {
+        font-size: 12px !important;
+        margin-bottom: 10px !important;
+      }
+      #banner-mundial-wrap > div > div > a {
+        padding: 7px 16px !important;
+        font-size: 12px !important;
+      }
+    }
   </style>
 </head>
 <body>
@@ -443,6 +474,7 @@
     <a href="#productos" class="shop-cta">Ver colección &nbsp;<i class="fas fa-arrow-down"></i></a>
   </div>
   <div class="scroll-hint"><span>Scroll</span><div class="scroll-hint-line"></div></div>
+  <div id="banner-mundial-wrap"></div>
 </div>
 
 <!-- FILTROS -->
@@ -1071,8 +1103,7 @@ function getOfertaBadgeForProduct(p) {
   return null;
 }
 </script>
-  <!-- 🇦🇷 BANNER MUNDIAL - pegar antes de </body> -->
-<div id="banner-mundial-wrap"></div>
+  <!-- 🇦🇷 BANNER MUNDIAL -->
 <script>
 (async function() {
   try {
