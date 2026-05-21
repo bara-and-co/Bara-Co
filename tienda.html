@@ -174,9 +174,8 @@
     .filter-tab { padding:8px 18px; border:1px solid var(--border); background:none; color:var(--muted); font-family:var(--sans); font-size:10px; font-weight:500; letter-spacing:.1em; text-transform:uppercase; cursor:pointer; transition:all .22s; }
     .filter-tab:hover { border-color:var(--accent); color:var(--accent); }
     .filter-tab.active { background:var(--accent); border-color:var(--accent); color:var(--bg); }
-    .filter-tab[data-f="argentina"] { color:#75aadb; border-color:rgba(117,170,219,.65); }
-    .filter-tab[data-f="argentina"].active { background:#75aadb; border-color:#75aadb; color:#06111f; }
     .filter-tab[data-f="outlet"].active { background:#e07b39; border-color:#e07b39; color:#fff; }
+    .filter-tab[data-f="argentina"].active { background:#75aadb; border-color:#75aadb; color:#071426; }
     .subcat-tabs { display:flex; gap:6px; flex-wrap:wrap; padding-top:8px; border-top:1px solid var(--border); animation:fadeIn .2s ease; }
     .subcat-tab { padding:5px 14px; border:1px solid var(--border); background:none; color:var(--muted); font-family:var(--sans); font-size:10px; font-weight:500; letter-spacing:.08em; text-transform:uppercase; cursor:pointer; border-radius:20px; transition:all .2s; }
     .subcat-tab:hover { border-color:var(--accent); color:var(--accent); }
@@ -488,7 +487,7 @@
       <button class="filter-tab" data-f="hombre">Hombre</button>
       <button class="filter-tab" data-f="mujer">Mujer</button>
       <button class="filter-tab" data-f="accesorios">Accesorios</button>
-      <button class="filter-tab" data-f="argentina">🇦🇷 Argentina</button>
+      <button class="filter-tab" data-f="argentina" style="color:#75aadb;border-color:#75aadb99;">🇦🇷 Argentina</button>
       <button class="filter-tab" data-f="sale">Sale</button>
       <button class="filter-tab" data-f="outlet" style="color:#e07b39;border-color:#e07b39aa;">🏷️ Outlet</button>
     </div>
@@ -581,8 +580,8 @@
       <li><a href="tienda.html?categoria=hombre">Hombre</a></li>
       <li><a href="tienda.html?categoria=mujer">Mujer</a></li>
       <li><a href="tienda.html?categoria=accesorios">Accesorios</a></li>
-      <li><a href="tienda.html?categoria=new">New Collection</a></li>
       <li><a href="tienda.html?categoria=argentina" style="color:#75aadb;">🇦🇷 Argentina</a></li>
+      <li><a href="tienda.html?categoria=new">New Collection</a></li>
       <li><a href="tienda.html?categoria=sale">Sale</a></li>
       <li><a href="tienda.html?categoria=outlet" style="color:#e07b39;">🏷️ Outlet</a></li>
     </ul>
@@ -670,10 +669,6 @@ let activeFilter = null; // null = landing view
 let activeSubcat = 'all';
 let activeSort   = 'default';
 
-function isArgentinaProduct(p) {
-  return p && (p.argentina === true || String(p.origen || '').trim().toLowerCase() === 'argentina');
-}
-
 // Config de categorías para las big cards
 const CAT_CONFIG = {
   new:        { label:'Nueva colección', title:'New Collection', cta:'Descubrir', img:'images/fondo%20hero.png' },
@@ -681,6 +676,32 @@ const CAT_CONFIG = {
   mujer:      { label:'Moda femenina',   title:'Mujer',          cta:'Ver todo',  img:'images/fondo%20hero.png' },
   accesorios: { label:'Complementos',    title:'Accesorios',     cta:'Explorar',  img:'images/fondo%20hero.png' },
 };
+
+// Detecta productos de la cápsula Argentina sin cambiar su categoría principal.
+// Podés marcarlos desde el admin con argentina:true o cargarlos con origen/pais:"Argentina".
+function esProductoArgentina(p) {
+  if (!p) return false;
+  const normalizar = v => String(v || '')
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .trim()
+    .toLowerCase();
+
+  const tags = Array.isArray(p.tags)
+    ? p.tags.map(normalizar)
+    : normalizar(p.tags).split(',').map(s => s.trim()).filter(Boolean);
+
+  const origen = normalizar(p.origen || p.pais || p.country || p.procedencia);
+
+  return p.argentina === true
+    || p.esArgentina === true
+    || p.capsulaArgentina === true
+    || p.categoria === 'argentina'
+    || origen === 'argentina'
+    || origen === 'ar'
+    || tags.includes('argentina')
+    || tags.includes('ar');
+}
 
 // ========== CARGAR PRODUCTOS ==========
 async function cargarProductos() {
@@ -692,7 +713,7 @@ async function cargarProductos() {
     renderCatLanding();
     actualizarContador();
     const cat = new URLSearchParams(window.location.search).get('categoria');
-    if (cat && ['hombre','mujer','accesorios','new','argentina','sale','outlet'].includes(cat)) filterBy(cat);
+    if (cat && ['hombre','mujer','accesorios','new','sale','outlet','argentina'].includes(cat)) filterBy(cat);
   } catch(e) {
     document.getElementById('prodCount').textContent = 'Error al cargar';
     renderCatLanding();
@@ -705,9 +726,10 @@ function renderCatLanding() {
   // Categorías disponibles con productos
   const cats = Object.keys(CAT_CONFIG).filter(c => productos.some(p => p.categoria === c));
   const allCats = [...cats];
-  // Agregar cápsula Argentina y outlet si hay
-  const hasArgentina = productos.some(isArgentinaProduct);
+  // Agregar outlet si hay
   const hasOutlet = productos.some(p => p.outlet || p.precioAnterior);
+  const argentinaItems = productos.filter(esProductoArgentina);
+  const hasArgentina = argentinaItems.length > 0;
   
   let html = '';
   allCats.forEach(cat => {
@@ -727,20 +749,6 @@ function renderCatLanding() {
       </div>`;
   });
 
-  if (hasArgentina) {
-    const arCount = productos.filter(isArgentinaProduct).length;
-    const firstAr = productos.find(p => isArgentinaProduct(p) && p.imagen);
-    html += `
-      <div class="cat-big-card" onclick="filterBy('argentina')" style="grid-column:1/-1;aspect-ratio:21/6;">
-        ${firstAr ? `<img src="${firstAr.imagen}" alt="Cápsula Argentina" loading="lazy"/>` : `<img src="images/fondo%20hero.png" alt="Cápsula Argentina" loading="lazy"/>`}
-        <div class="cat-big-info">
-          <p class="cat-big-label" style="color:#75aadb">Selección nacional · ${arCount} productos</p>
-          <h2 class="cat-big-title">Cápsula <em style="font-style:italic;color:#75aadb">Argentina</em></h2>
-          <span class="cat-big-cta">Ver cápsula &nbsp;<i class="fas fa-arrow-right" style="font-size:9px"></i></span>
-        </div>
-      </div>`;
-  }
-
   if (hasOutlet) {
     html += `
       <div class="cat-big-card" onclick="filterBy('outlet')" style="grid-column:1/-1;aspect-ratio:21/6;">
@@ -752,11 +760,25 @@ function renderCatLanding() {
         </div>
       </div>`;
   }
+
+  if (hasArgentina) {
+    const firstAr = argentinaItems.find(p => p.imagen);
+    const imgAr = firstAr ? firstAr.imagen : 'images/fondo%20hero.png';
+    html += `
+      <div class="cat-big-card" onclick="filterBy('argentina')" style="grid-column:1/-1;aspect-ratio:21/6;">
+        <img src="${imgAr}" alt="Cápsula Argentina" loading="lazy"/>
+        <div class="cat-big-info">
+          <p class="cat-big-label" style="color:#75aadb">Selección nacional · ${argentinaItems.length} piezas</p>
+          <h2 class="cat-big-title">Cápsula <em style="font-style:italic;color:#75aadb">Argentina</em></h2>
+          <span class="cat-big-cta">Ver cápsula &nbsp;<i class="fas fa-arrow-right" style="font-size:9px"></i></span>
+        </div>
+      </div>`;
+  }
   container.innerHTML = html;
 }
 
 // ========== CONSTRUIR CARD ==========
-function buildCard(p) {
+function buildCard(p, sectionKey = '') {
   const stockReal = (() => {
     if (p.stockMap && typeof p.stockMap === 'object') {
       const vals = Object.values(p.stockMap).filter(v => v !== null && v !== undefined);
@@ -778,7 +800,7 @@ function buildCard(p) {
   const cats      = [p.categoria];
   if (p.precioAnterior) cats.push('sale');
   if (p.outlet) cats.push('outlet');
-  if (isArgentinaProduct(p)) cats.push('argentina');
+  if (esProductoArgentina(p)) cats.push('argentina');
 
   const precioHtml = p.precioAnterior
     ? `<del>$${p.precioAnterior.toLocaleString('es-AR')}</del> $${p.precio.toLocaleString('es-AR')}`
@@ -810,6 +832,7 @@ function buildCard(p) {
       data-cat="${cats.join(' ')}"
       data-subcat="${(p.subcategoria||'').replace(/"/g,'&quot;')}"
       data-id="${p.id}"
+      data-section="${sectionKey || p.categoria || ''}"
       data-precio="${p.precio}"
       data-fecha="${p.fechaCreacion||p.id}"
       data-descuento="${descuento}"
@@ -847,15 +870,15 @@ function renderizarProductos() {
     html += `<div class="cat-heading" data-cat-head="${cat}"><h2>${nombres[cat]}</h2></div>`;
     items.forEach(p => { html += buildCard(p); });
   });
-  const argentinaItems = productos.filter(isArgentinaProduct);
-  if (argentinaItems.length) {
-    html += `<div class="cat-heading" data-cat-head="argentina" style="border-top:1px solid rgba(117,170,219,.25);"><h2>Cápsula <em style="font-style:italic;color:#75aadb">Argentina</em></h2></div>`;
-    argentinaItems.forEach(p => { html += buildCard(p); });
-  }
   const outletItems = productos.filter(p => p.outlet || p.precioAnterior);
   if (outletItems.length) {
     html += `<div class="cat-heading" data-cat-head="outlet" style="border-top:1px solid rgba(224,123,57,.2);"><h2>Outlet <em style="font-style:italic;color:var(--accent)">&amp; Sale</em></h2></div>`;
     outletItems.forEach(p => { html += buildCard(p); });
+  }
+  const argentinaItems = productos.filter(esProductoArgentina);
+  if (argentinaItems.length) {
+    html += `<div class="cat-heading" data-cat-head="argentina" style="border-top:1px solid rgba(117,170,219,.22);"><h2>Cápsula <em style="font-style:italic;color:#75aadb">Argentina</em></h2></div>`;
+    argentinaItems.forEach(p => { html += buildCard(p, 'argentina'); });
   }
   grid.innerHTML = html;
 }
@@ -893,7 +916,7 @@ function filterBySub(subcat) {
 }
 function renderSubcatTabs(categoria) {
   const container = document.getElementById('subcatTabs');
-  if (['all','argentina','sale','outlet'].includes(categoria) || !categoria) { container.style.display='none'; return; }
+  if (['all','sale','outlet','argentina'].includes(categoria) || !categoria) { container.style.display='none'; return; }
   const subcats = [...new Set(productos.filter(p => p.categoria === categoria && p.subcategoria).map(p => p.subcategoria))].sort();
   if (!subcats.length) { container.style.display='none'; return; }
   container.innerHTML = `<button class="subcat-tab active" data-s="all" onclick="filterBySub('all')">Todas</button>`;
@@ -911,7 +934,18 @@ function aplicarFiltro(filtro, subcat='all') {
   cards.forEach(card => {
     const cats = (card.dataset.cat||'').split(' ');
     const cardSubcat = card.dataset.subcat||'';
-    let mostrar = filtro === 'all' || cats.includes(filtro);
+    const section = card.dataset.section || '';
+
+    let mostrar;
+    if (filtro === 'argentina') {
+      // Para la cápsula mostramos solo el bloque AR, evitando duplicar productos que ya existen en Hombre/Mujer/Accesorios.
+      mostrar = section === 'argentina';
+    } else {
+      mostrar = filtro === 'all' || cats.includes(filtro);
+      // Los duplicados del bloque AR no deben aparecer cuando filtrás categorías normales.
+      if (section === 'argentina') mostrar = false;
+    }
+
     if (mostrar && subcat !== 'all') mostrar = cardSubcat === subcat;
     card.classList.toggle('hidden', !mostrar);
     if (mostrar) visibles++;
@@ -1153,7 +1187,7 @@ function getOfertaBadgeForProduct(p) {
         <div style="color:#f5c842;font-size:11px;font-weight:700;letter-spacing:.15em;margin-bottom:8px;">🇦🇷 SELECCIÓN ARGENTINA · MUNDIAL 2026</div>
         <div style="color:#fff;font-size:clamp(24px,4vw,48px);font-weight:900;line-height:1.05;margin-bottom:6px;">${c.eslogan}</div>
         <div style="color:rgba(255,255,255,.75);font-size:14px;margin-bottom:16px;">${c.subtitulo}</div>
-        <a href="tienda.html?categoria=argentina" style="display:inline-flex;align-items:center;gap:8px;background:#f5c842;color:#0d2952;font-weight:700;padding:10px 24px;border-radius:24px;text-decoration:none;font-size:13px;">${c.cta} →</a>
+        <a href="tienda.html?categoria=argentina#productos" style="display:inline-flex;align-items:center;gap:8px;background:#f5c842;color:#0d2952;font-weight:700;padding:10px 24px;border-radius:24px;text-decoration:none;font-size:13px;">${c.cta} →</a>
       </div>
     </div>`;
   } catch(e) { console.log('Banner mundial:', e); }
