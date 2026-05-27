@@ -1,5 +1,72 @@
 [
   {
+    "id": "buzo-sol-1779918002804",
+    "nombre": "Buzo Sol",
+    "precio": 40000,
+    "precioAnterior": null,
+    "categoria": "new",
+    "subcategoria": "",
+    "descripcion": "",
+    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1779917927/bara/productos/rwfa9iourzplldzsnc5l.webp",
+    "imagenes": [
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1779917927/bara/productos/rwfa9iourzplldzsnc5l.webp",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1779917938/bara/productos/tacnep9xp0ngtc2dlpud.webp",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1779917971/bara/productos/dzrafslvwkmdez6evxmj.webp"
+    ],
+    "tallesDisponibles": [
+      "M",
+      "L",
+      "XL"
+    ],
+    "colores": [
+      {
+        "nombre": "Crema",
+        "codigo": "#F5F0E8",
+        "stock": 0
+      },
+      {
+        "nombre": "Camel",
+        "codigo": "#C19A6B",
+        "stock": 0
+      },
+      {
+        "nombre": "Celeste",
+        "codigo": "#81D4FA",
+        "stock": 0
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "argentina": true,
+    "stockMap": {
+      "Crema__M": null,
+      "Crema__L": null,
+      "Crema__XL": 1,
+      "Camel__M": 1,
+      "Camel__L": null,
+      "Camel__XL": null,
+      "Celeste__M": null,
+      "Celeste__L": 1,
+      "Celeste__XL": null
+    },
+    "stockTalles": null,
+    "stock": 3,
+    "sku": "BUZO-SOL",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "gorra-argentina-gastada-1779396829014",
     "nombre": "Gorra Argentina Gastada",
     "precio": 15000,
