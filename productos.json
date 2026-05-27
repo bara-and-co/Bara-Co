@@ -1,5 +1,68 @@
 [
   {
+    "id": "buzo-star-1779918438309",
+    "nombre": "Buzo Star",
+    "precio": 60000,
+    "precioAnterior": null,
+    "categoria": "new",
+    "subcategoria": "",
+    "descripcion": "",
+    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1779918411/bara/productos/mi6t9dumne7op6cnseo7.webp",
+    "imagenes": [
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1779918411/bara/productos/mi6t9dumne7op6cnseo7.webp",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1779918424/bara/productos/fubthtfyv2ymyh488htq.webp",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1779918435/bara/productos/w0jirzsodjehvd50undo.webp"
+    ],
+    "tallesDisponibles": [
+      "XL",
+      "XXL"
+    ],
+    "colores": [
+      {
+        "nombre": "Negro",
+        "codigo": "#111111",
+        "stock": 0
+      },
+      {
+        "nombre": "Marrón",
+        "codigo": "#795548",
+        "stock": 0
+      },
+      {
+        "nombre": "Celeste",
+        "codigo": "#81D4FA",
+        "stock": 0
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "argentina": true,
+    "stockMap": {
+      "Negro__XL": null,
+      "Negro__XXL": 1,
+      "Marrón__XL": 1,
+      "Marrón__XXL": null,
+      "Celeste__XL": 1,
+      "Celeste__XXL": null
+    },
+    "stockTalles": null,
+    "stock": 3,
+    "sku": "BUZO-STAR",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "buzo-pasion-1779918228224",
     "nombre": "Buzo Pasion",
     "precio": 60000,
