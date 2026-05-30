@@ -289,7 +289,7 @@
   {
     "id": "fulbo-1779148155440",
     "nombre": "Fulbo",
-    "precio": 27000,
+    "precio": 25000,
     "precioAnterior": null,
     "categoria": "hombre",
     "subcategoria": "Remeras",
@@ -311,8 +311,8 @@
     ],
     "activo": true,
     "destacado": false,
-    "argentina": true,
     "outlet": false,
+    "argentina": true,
     "stockMap": {
       "Negro__L": 1,
       "Negro__XL": 1
