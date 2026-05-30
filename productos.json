@@ -483,7 +483,7 @@
   {
     "id": "museo-copas-1779147753993",
     "nombre": "Museo Copas",
-    "precio": 27000,
+    "precio": 25000,
     "precioAnterior": null,
     "categoria": "hombre",
     "subcategoria": "Remeras",
@@ -504,8 +504,8 @@
     ],
     "activo": true,
     "destacado": false,
-    "argentina": true,
     "outlet": false,
+    "argentina": true,
     "stockMap": {
       "Negro__M": 1
     },
