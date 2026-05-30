@@ -336,7 +336,7 @@
   {
     "id": "huella-argentina-1779148081832",
     "nombre": "Huella Argentina",
-    "precio": 27000,
+    "precio": 25000,
     "precioAnterior": null,
     "categoria": "hombre",
     "subcategoria": "Remeras",
@@ -360,8 +360,8 @@
     ],
     "activo": true,
     "destacado": false,
-    "argentina": true,
     "outlet": false,
+    "argentina": true,
     "stockMap": {
       "Negro__M": 1,
       "Negro__L": 1,
