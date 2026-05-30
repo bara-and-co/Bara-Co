@@ -387,7 +387,7 @@
   {
     "id": "humo-argentina-1779147973925",
     "nombre": "Humo Argentina",
-    "precio": 27000,
+    "precio": 25000,
     "precioAnterior": null,
     "categoria": "hombre",
     "subcategoria": "Remeras",
@@ -411,8 +411,8 @@
     ],
     "activo": true,
     "destacado": true,
-    "argentina": true,
     "outlet": false,
+    "argentina": true,
     "stockMap": {
       "Negro__S": 1,
       "Negro__M": 1,
