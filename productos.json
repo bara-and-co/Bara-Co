@@ -438,7 +438,7 @@
   {
     "id": "maradona-1779147831433",
     "nombre": "Maradona",
-    "precio": 27000,
+    "precio": 25000,
     "precioAnterior": null,
     "categoria": "hombre",
     "subcategoria": "Remeras",
@@ -459,8 +459,8 @@
     ],
     "activo": true,
     "destacado": false,
-    "argentina": true,
     "outlet": false,
+    "argentina": true,
     "stockMap": {
       "Negro__L": 1
     },
