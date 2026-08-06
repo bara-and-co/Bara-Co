@@ -701,37 +701,6 @@
 
     @keyframes fadeUp  { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:none} }
     @keyframes fadeIn  { from{opacity:0} to{opacity:1} }
-  
-    /* ── BANNER MUNDIAL ── */
-    #banner-mundial-wrap {
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      z-index: 4;
-    }
-    #banner-mundial-wrap > div {
-      padding: 20px 5% !important;
-      background: linear-gradient(135deg,rgba(13,41,82,.88),rgba(26,74,138,.88),rgba(117,170,219,.6)) !important;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-    }
-    @media(max-width:640px) {
-      #banner-mundial-wrap > div {
-        padding: 14px 4% !important;
-        gap: 8px !important;
-      }
-      #banner-mundial-wrap > div > div > div:nth-child(2) {
-        font-size: clamp(16px,5vw,24px) !important;
-        margin-bottom: 4px !important;
-      }
-      #banner-mundial-wrap > div > div > div:nth-child(3) {
-        font-size: 12px !important;
-        margin-bottom: 10px !important;
-      }
-      #banner-mundial-wrap > div > div > a {
-        padding: 7px 16px !important;
-        font-size: 12px !important;
-      }
-    }
   </style>
 </head>
 <body class="inicio">
@@ -838,7 +807,6 @@
     <span>Scroll</span>
     <div class="scroll-hint-line"></div>
   </div>
-  <div id="banner-mundial-wrap"></div>
 </section>
 
 <!-- MARQUEE -->
@@ -919,40 +887,6 @@
       </div>
     </div>
   </div>
-
-
-  <!-- Colección ARGENTINA -->
-  <div class="cat-outlet-tile" onclick="location.href='tienda.html?categoria=argentina#productos'" id="argentinaTile" style="background:#071426;">
-    <div class="cat-outlet-inner">
-      <div class="cat-outlet-deco">
-        <span class="cat-outlet-deco-num" style="color:rgba(117,170,219,.12);">AR</span>
-        <div class="cat-outlet-deco-line" style="background:linear-gradient(to bottom,rgba(117,170,219,.45),transparent);"></div>
-      </div>
-      <div class="cat-outlet-text">
-        <p class="cat-outlet-eyebrow" style="color:#75aadb;">Bara &amp; Co · Selección nacional</p>
-        <h2 class="cat-outlet-h">Colección <em style="color:#75aadb;">Argentina</em><br/>edición especial</h2>
-        <p class="cat-outlet-desc">Productos seleccionados con identidad argentina. Una sección curada para encontrar rápido todo lo nacional dentro de la tienda.</p>
-        <div class="cat-outlet-btns">
-          <a class="cat-outlet-btn-primary" href="tienda.html?categoria=argentina#productos" style="background:#75aadb;color:#071426;">Ver Colección <i class="fas fa-arrow-right"></i></a>
-          <a class="cat-outlet-btn-ghost" href="tienda.html?categoria=argentina#productos" style="border-color:rgba(117,170,219,.35);color:#75aadb;">Comprar nacional <i class="fas fa-flag"></i></a>
-        </div>
-      </div>
-      <div class="cat-outlet-stats">
-        <div class="cat-outlet-stat" style="border-color:rgba(117,170,219,.18);background:rgba(117,170,219,.05);">
-          <p class="cat-outlet-stat-num" style="color:#75aadb;">AR</p>
-          <p class="cat-outlet-stat-label">Productos</p>
-        </div>
-        <div class="cat-outlet-stat" style="border-color:rgba(117,170,219,.18);background:rgba(117,170,219,.05);">
-          <p class="cat-outlet-stat-num" style="color:#75aadb;">Curado</p>
-          <p class="cat-outlet-stat-label">Selección</p>
-        </div>
-        <div class="cat-outlet-stat" style="border-color:rgba(117,170,219,.18);background:rgba(117,170,219,.05);">
-          <p class="cat-outlet-stat-num" style="color:#75aadb;">Stock</p>
-          <p class="cat-outlet-stat-label">Disponible</p>
-        </div>
-      </div>
-    </div>
-  </div>
 </div>
 
 <!-- SECCIONES ELIMINADAS: Novedades y Outlet (ya no están) -->
@@ -976,7 +910,6 @@
       <li><a href="tienda.html?categoria=accesorios">Accesorios</a></li>
       <li><a href="tienda.html?categoria=new">New Collection</a></li>
       <li><a href="tienda.html?categoria=sale">Sale</a></li>
-      <li><a href="tienda.html?categoria=argentina">Argentina</a></li>
       <li><a href="tienda.html?categoria=outlet">Outlet</a></li>
     </ul>
   </div>
@@ -1258,33 +1191,5 @@ function cargarOfertasInicio() {
     });
 }
 </script>
-  <!-- 🇦🇷 BANNER MUNDIAL -->
-<script>
-(async function() {
-  try {
-    const r = await fetch('/banner-mundial.json?t=' + Date.now());
-    if (!r.ok) return;
-    const c = await r.json();
-    if (!c.activo) return;
-    const pag = window.location.pathname;
-    const enInicio = pag === '/' || pag.includes('index');
-    const enTienda = pag.includes('tienda');
-    if (c.donde === 'inicio'  && !enInicio) return;
-    if (c.donde === 'tienda'  && !enTienda) return;
-    // Inyectar banner
-    const wrap = document.getElementById('banner-mundial-wrap');
-    if (!wrap) return;
-    wrap.innerHTML = `<div style="width:100%;background:linear-gradient(135deg,#0d2952,#1a4a8a,#75aadb);padding:32px 5%;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;position:relative;overflow:hidden;">
-      <div>
-        <div style="color:#f5c842;font-size:11px;font-weight:700;letter-spacing:.15em;margin-bottom:8px;">🇦🇷 SELECCIÓN ARGENTINA · MUNDIAL 2026</div>
-        <div style="color:#fff;font-size:clamp(24px,4vw,48px);font-weight:900;line-height:1.05;margin-bottom:6px;">${c.eslogan}</div>
-        <div style="color:rgba(255,255,255,.75);font-size:14px;margin-bottom:16px;">${c.subtitulo}</div>
-        <a href="tienda.html?categoria=argentina#productos" style="display:inline-flex;align-items:center;gap:8px;background:#f5c842;color:#0d2952;font-weight:700;padding:10px 24px;border-radius:24px;text-decoration:none;font-size:13px;">${c.cta} →</a>
-      </div>
-    </div>`;
-  } catch(e) { console.log('Banner mundial:', e); }
-})();
-</script>
-<!-- FIN BANNER MUNDIAL -->
 </body>
 </html>
