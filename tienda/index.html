@@ -388,6 +388,32 @@
     @media (max-width:600px) { .filter-tabs{gap:4px;} .filter-tab{padding:7px 13px;font-size:9px;} .trust-item span{display:none;} .trust-item{padding:12px;} .sort-select{font-size:9px;padding:7px 24px 7px 10px;} }
     @media (max-width:480px) { .cat-section-grid,.prod-grid.active{grid-template-columns:1fr;} footer{grid-template-columns:1fr;gap:28px;} }
   </style>
+
+  <!-- Actualización de caché del sitio: no modifica la interfaz -->
+  <script>
+  (() => {
+    if (!('serviceWorker' in navigator)) return;
+
+    window.addEventListener('load', async () => {
+      try {
+        const keys = await caches.keys();
+        await Promise.all(
+          keys
+            .filter(key => key.startsWith('bara-co-') && key !== 'bara-co-v3-20260806')
+            .map(key => caches.delete(key))
+        );
+
+        const registration = await navigator.serviceWorker.register(
+          '/service-worker.js?v=20260806-3',
+          { updateViaCache: 'none' }
+        );
+        await registration.update();
+      } catch (_) {
+        // El sitio sigue funcionando aunque el navegador no permita Service Worker.
+      }
+    });
+  })();
+  </script>
 </head>
 <body>
 
