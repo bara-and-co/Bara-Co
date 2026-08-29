@@ -1465,7 +1465,10 @@
       "https://res.cloudinary.com/djk1znvr7/image/upload/v1776390277/bara/productos/fl3wjlnhkmuv6rxgrynl.jpg",
       "https://res.cloudinary.com/djk1znvr7/image/upload/v1776390285/bara/productos/rihpvtertw2ubfhtozm6.jpg"
     ],
-    "tallesDisponibles": [],
+    "tallesDisponibles": [
+      "M",
+      "XL"
+    ],
     "colores": [
       {
         "nombre": "Negro",
@@ -1476,24 +1479,20 @@
         "nombre": "Marrón",
         "codigo": "#795548",
         "stock": 0
-      },
-      {
-        "nombre": "Celeste",
-        "codigo": "#81D4FA",
-        "stock": 0
       }
     ],
     "activo": true,
     "destacado": false,
     "outlet": false,
+    "argentina": false,
     "stockMap": {
-      "Gris__40": 1,
-      "Gris__42": 1,
-      "Gris__44": 1,
-      "Gris__46": 1
+      "Negro__M": null,
+      "Negro__XL": 1,
+      "Marrón__M": 1,
+      "Marrón__XL": null
     },
     "stockTalles": null,
-    "stock": 6,
+    "stock": 2,
     "sku": "BUZO-OVERSIZE",
     "marca": null,
     "tags": null,
