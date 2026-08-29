@@ -2525,7 +2525,7 @@
         "stock": 0
       }
     ],
-    "activo": true,
+    "activo": false,
     "destacado": false,
     "outlet": false,
     "stockMap": {
@@ -2640,9 +2640,8 @@
       "https://res.cloudinary.com/djk1znvr7/image/upload/v1776292128/bara/productos/rzhaabovll4tj4owondb.jpg"
     ],
     "tallesDisponibles": [
-      "L",
-      "XL",
-      "XXL"
+      "M",
+      "XL"
     ],
     "colores": [
       {
@@ -2651,32 +2650,23 @@
         "stock": 3
       },
       {
-        "nombre": "Beige",
-        "codigo": "#D4B896",
-        "stock": 0
-      },
-      {
-        "nombre": "Bordo",
-        "codigo": "#7B1C2A",
+        "nombre": "Camel",
+        "codigo": "#C19A6B",
         "stock": 0
       }
     ],
     "activo": true,
     "destacado": false,
     "outlet": false,
+    "argentina": false,
     "stockMap": {
-      "Negro__L": null,
-      "Negro__XL": null,
-      "Negro__XXL": 1,
-      "Beige__L": null,
-      "Beige__XL": 1,
-      "Beige__XXL": null,
-      "Bordo__L": 1,
-      "Bordo__XL": null,
-      "Bordo__XXL": null
+      "Negro__M": null,
+      "Negro__XL": 1,
+      "Camel__M": 1,
+      "Camel__XL": null
     },
     "stockTalles": null,
-    "stock": 3,
+    "stock": 2,
     "sku": "BUZO-PIEL-NEGRO",
     "marca": null,
     "tags": null,
