@@ -1402,8 +1402,8 @@
   {
     "id": "dual-super-baggy-camuflado-1776469247537",
     "nombre": "Dual Super Baggy Camuflado",
-    "precio": 55000,
-    "precioAnterior": null,
+    "precio": 40000,
+    "precioAnterior": 55000,
     "categoria": "hombre",
     "subcategoria": "",
     "descripcion": "",
@@ -1427,7 +1427,13 @@
     "activo": true,
     "destacado": false,
     "outlet": false,
-    "stockMap": {},
+    "argentina": false,
+    "stockMap": {
+      "Negro__M": null,
+      "Negro__XL": 1,
+      "Marrón__M": 1,
+      "Marrón__XL": null
+    },
     "stockTalles": {
       "36": 1,
       "38": 1,
