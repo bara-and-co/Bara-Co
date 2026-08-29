@@ -309,7 +309,7 @@
         "stock": 0
       }
     ],
-    "activo": true,
+    "activo": false,
     "destacado": false,
     "outlet": false,
     "argentina": false,
@@ -2123,7 +2123,7 @@
       "Único"
     ],
     "colores": [],
-    "activo": true,
+    "activo": false,
     "destacado": false,
     "outlet": false,
     "stockMap": {
@@ -2886,7 +2886,7 @@
       "XL"
     ],
     "colores": [],
-    "activo": false,
+    "activo": true,
     "destacado": false,
     "outlet": false,
     "stockMap": {
@@ -4723,7 +4723,7 @@
         "stock": 1
       }
     ],
-    "activo": false,
+    "activo": true,
     "destacado": false,
     "outlet": false,
     "stockMap": {
@@ -7567,7 +7567,7 @@
         "stock": 1
       }
     ],
-    "activo": true,
+    "activo": false,
     "destacado": false,
     "outlet": false,
     "stockMap": {
