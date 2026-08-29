@@ -981,8 +981,8 @@
   {
     "id": "sueter-rayas-trensado-1776723975890",
     "nombre": "Sueter Rayas Trensado",
-    "precio": 45000,
-    "precioAnterior": null,
+    "precio": 30000,
+    "precioAnterior": 45000,
     "categoria": "mujer",
     "subcategoria": "",
     "descripcion": "",
@@ -1021,20 +1021,14 @@
     "activo": true,
     "destacado": false,
     "outlet": false,
+    "argentina": false,
     "stockMap": {
       "Negro__Único": 1,
       "Blanco__Único": 1,
       "Beige__Único": 1,
       "Marrón__Único": 1
     },
-    "stockTalles": {
-      "36": 1,
-      "38": 1,
-      "40": 1,
-      "42": 1,
-      "44": 1,
-      "46": 1
-    },
+    "stockTalles": null,
     "stock": 4,
     "sku": "SUETER-RAYAS-TRENSADO",
     "marca": null,
