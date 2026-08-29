@@ -1171,8 +1171,8 @@
   {
     "id": "mini-frunce-strass-1776719629232",
     "nombre": "Mini Frunce Strass",
-    "precio": 25000,
-    "precioAnterior": null,
+    "precio": 15000,
+    "precioAnterior": 25000,
     "categoria": "mujer",
     "subcategoria": "",
     "descripcion": "",
