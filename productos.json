@@ -2886,7 +2886,7 @@
       "XL"
     ],
     "colores": [],
-    "activo": true,
+    "activo": false,
     "destacado": false,
     "outlet": false,
     "stockMap": {
@@ -4723,7 +4723,7 @@
         "stock": 1
       }
     ],
-    "activo": true,
+    "activo": false,
     "destacado": false,
     "outlet": false,
     "stockMap": {
