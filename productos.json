@@ -1,5 +1,202 @@
 [
   {
+    "id": "buzo-star-1779918438309",
+    "nombre": "Buzo Star",
+    "precio": 60000,
+    "precioAnterior": null,
+    "categoria": "new",
+    "subcategoria": "",
+    "descripcion": "",
+    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1779918411/bara/productos/mi6t9dumne7op6cnseo7.webp",
+    "imagenes": [
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1779918411/bara/productos/mi6t9dumne7op6cnseo7.webp",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1779918424/bara/productos/fubthtfyv2ymyh488htq.webp",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1779918435/bara/productos/w0jirzsodjehvd50undo.webp"
+    ],
+    "tallesDisponibles": [
+      "XL",
+      "XXL"
+    ],
+    "colores": [
+      {
+        "nombre": "Negro",
+        "codigo": "#111111",
+        "stock": 0
+      },
+      {
+        "nombre": "Marrón",
+        "codigo": "#795548",
+        "stock": 0
+      },
+      {
+        "nombre": "Celeste",
+        "codigo": "#81D4FA",
+        "stock": 0
+      }
+    ],
+    "activo": false,
+    "destacado": false,
+    "outlet": false,
+    "argentina": true,
+    "stockMap": {
+      "Negro__XL": null,
+      "Negro__XXL": 1,
+      "Marrón__XL": 1,
+      "Marrón__XXL": null,
+      "Celeste__XL": 1,
+      "Celeste__XXL": null
+    },
+    "stockTalles": null,
+    "stock": 3,
+    "sku": "BUZO-STAR",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
+    "id": "buzo-pasion-1779918228224",
+    "nombre": "Buzo Pasion",
+    "precio": 60000,
+    "precioAnterior": null,
+    "categoria": "new",
+    "subcategoria": "",
+    "descripcion": "",
+    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1779918196/bara/productos/h3cfuwrxusf8kwrbhdbf.webp",
+    "imagenes": [
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1779918196/bara/productos/h3cfuwrxusf8kwrbhdbf.webp",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1779918206/bara/productos/xwe5ggtnernomuiyteoo.webp",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1779918219/bara/productos/zpuctppbccgzx3e5faix.webp"
+    ],
+    "tallesDisponibles": [
+      "M",
+      "XL",
+      "XXL"
+    ],
+    "colores": [
+      {
+        "nombre": "Negro",
+        "codigo": "#111111",
+        "stock": 0
+      },
+      {
+        "nombre": "Beige",
+        "codigo": "#D4B896",
+        "stock": 0
+      },
+      {
+        "nombre": "Celeste",
+        "codigo": "#81D4FA",
+        "stock": 0
+      }
+    ],
+    "activo": false,
+    "destacado": false,
+    "outlet": false,
+    "argentina": true,
+    "stockMap": {
+      "Negro__M": null,
+      "Negro__XL": 1,
+      "Negro__XXL": null,
+      "Beige__M": 1,
+      "Beige__XL": null,
+      "Beige__XXL": null,
+      "Celeste__M": null,
+      "Celeste__XL": null,
+      "Celeste__XXL": 1
+    },
+    "stockTalles": null,
+    "stock": 3,
+    "sku": "BUZO-PASION",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
+    "id": "buzo-sol-1779918002804",
+    "nombre": "Buzo Sol",
+    "precio": 40000,
+    "precioAnterior": null,
+    "categoria": "new",
+    "subcategoria": "",
+    "descripcion": "",
+    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1779917927/bara/productos/rwfa9iourzplldzsnc5l.webp",
+    "imagenes": [
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1779917927/bara/productos/rwfa9iourzplldzsnc5l.webp",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1779917938/bara/productos/tacnep9xp0ngtc2dlpud.webp",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1779917971/bara/productos/dzrafslvwkmdez6evxmj.webp"
+    ],
+    "tallesDisponibles": [
+      "M",
+      "L",
+      "XL"
+    ],
+    "colores": [
+      {
+        "nombre": "Crema",
+        "codigo": "#F5F0E8",
+        "stock": 0
+      },
+      {
+        "nombre": "Camel",
+        "codigo": "#C19A6B",
+        "stock": 0
+      },
+      {
+        "nombre": "Celeste",
+        "codigo": "#81D4FA",
+        "stock": 0
+      }
+    ],
+    "activo": false,
+    "destacado": false,
+    "outlet": false,
+    "argentina": true,
+    "stockMap": {
+      "Crema__M": null,
+      "Crema__L": null,
+      "Crema__XL": 1,
+      "Camel__M": 1,
+      "Camel__L": null,
+      "Camel__XL": null,
+      "Celeste__M": null,
+      "Celeste__L": 1,
+      "Celeste__XL": null
+    },
+    "stockTalles": null,
+    "stock": 3,
+    "sku": "BUZO-SOL",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "pashmina-1779376990785",
     "nombre": "Pashmina",
     "precio": 25000,
@@ -1046,8 +1243,8 @@
   {
     "id": "remera-tul-corpi-o-stras-1776549948959",
     "nombre": "Remera Tul Corpiño Stras",
-    "precio": 20000,
-    "precioAnterior": null,
+    "precio": 10000,
+    "precioAnterior": 20000,
     "categoria": "mujer",
     "subcategoria": "",
     "descripcion": "",
@@ -1078,78 +1275,15 @@
     "activo": true,
     "destacado": false,
     "outlet": false,
+    "argentina": false,
     "stockMap": {
       "Negro__Único": 1,
       "Marrón__Único": 1,
       "Rojo__Único": 1
     },
-    "stockTalles": {
-      "36": 1,
-      "38": 1,
-      "40": 1,
-      "42": 1,
-      "44": 1,
-      "46": 1
-    },
+    "stockTalles": null,
     "stock": 3,
     "sku": "REMERA-TUL-CORPIÑO-STRAS",
-    "marca": null,
-    "tags": null,
-    "fabrica": null,
-    "cuidados": null,
-    "temporada": null,
-    "genero": null,
-    "peso": null,
-    "origen": null,
-    "proveedor": null,
-    "notas": null,
-    "costo": null,
-    "link": null
-  },
-  {
-    "id": "capa-tul-stras-1776549753270",
-    "nombre": "Capa Tul Stras",
-    "precio": 20000,
-    "precioAnterior": null,
-    "categoria": "mujer",
-    "subcategoria": "",
-    "descripcion": "",
-    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1776549751/bara/productos/uppiqvbjuzhh2wvgwdx7.png",
-    "imagenes": [
-      "https://res.cloudinary.com/djk1znvr7/image/upload/v1776549751/bara/productos/uppiqvbjuzhh2wvgwdx7.png"
-    ],
-    "tallesDisponibles": [
-      "Único"
-    ],
-    "colores": [
-      {
-        "nombre": "Marrón",
-        "codigo": "#795548",
-        "stock": 0
-      },
-      {
-        "nombre": "Bordo",
-        "codigo": "#7B1C2A",
-        "stock": 0
-      }
-    ],
-    "activo": true,
-    "destacado": false,
-    "outlet": false,
-    "stockMap": {
-      "Marrón__Único": 1,
-      "Bordo__Único": 1
-    },
-    "stockTalles": {
-      "36": 1,
-      "38": 1,
-      "40": 1,
-      "42": 1,
-      "44": 1,
-      "46": 1
-    },
-    "stock": 2,
-    "sku": "CAPA-TUL-STRAS",
     "marca": null,
     "tags": null,
     "fabrica": null,
@@ -1576,7 +1710,7 @@
       "Único"
     ],
     "colores": [],
-    "activo": false,
+    "activo": true,
     "destacado": false,
     "outlet": false,
     "stockMap": {
@@ -2339,7 +2473,7 @@
       "XL"
     ],
     "colores": [],
-    "activo": true,
+    "activo": false,
     "destacado": false,
     "outlet": false,
     "stockMap": {
@@ -4176,7 +4310,7 @@
         "stock": 1
       }
     ],
-    "activo": true,
+    "activo": false,
     "destacado": false,
     "outlet": false,
     "stockMap": {
@@ -7020,7 +7154,7 @@
         "stock": 1
       }
     ],
-    "activo": false,
+    "activo": true,
     "destacado": false,
     "outlet": false,
     "stockMap": {
