@@ -2510,10 +2510,10 @@
   {
     "id": "sueter-capucha-1776121605456",
     "nombre": "Sueter Capucha",
-    "precio": 55000,
-    "precioAnterior": null,
+    "precio": 35000,
+    "precioAnterior": 55000,
     "categoria": "hombre",
-    "subcategoria": "Sweaters",
+    "subcategoria": "",
     "descripcion": "",
     "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1776121585/bara/productos/x6amcjq7qk90ubzejooq.jpg",
     "imagenes": [
@@ -2555,9 +2555,10 @@
     "activo": true,
     "destacado": false,
     "outlet": false,
+    "argentina": false,
     "stockMap": {
       "Negro__L": 1,
-      "Negro__XL": null,
+      "Negro__XL": 1,
       "Negro__XXL": null,
       "Crema__L": null,
       "Crema__XL": 1,
@@ -2573,7 +2574,12 @@
       "Azul marino__XXL": null
     },
     "stockTalles": {
-      "XL": 1
+      "36": 1,
+      "38": 1,
+      "40": 1,
+      "42": 1,
+      "44": 1,
+      "46": 1
     },
     "stock": 6,
     "sku": "SUETER-CAPUCHA",
