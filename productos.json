@@ -4462,7 +4462,7 @@
     "precio": 30000,
     "precioAnterior": null,
     "categoria": "mujer",
-    "subcategoria": "Bodies",
+    "subcategoria": "",
     "descripcion": "",
     "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1775080415/bzqfoibacimvj6l3wszq.webp",
     "imagenes": [
@@ -4478,24 +4478,24 @@
         "nombre": "Gris",
         "codigo": "#9E9E9E",
         "stock": 0
-      },
-      {
-        "nombre": "Naranja",
-        "codigo": "#FB8C00",
-        "stock": 0
       }
     ],
     "activo": true,
     "destacado": false,
     "outlet": false,
+    "argentina": false,
     "stockMap": {
-      "Gris__Único": 1,
-      "Naranja__Único": 1
+      "Gris__Único": 1
     },
     "stockTalles": {
-      "XL": 2
+      "36": 1,
+      "38": 1,
+      "40": 1,
+      "42": 1,
+      "44": 1,
+      "46": 1
     },
-    "stock": 2,
+    "stock": 1,
     "sku": "BODY-TUL-ESTAMPADO",
     "marca": null,
     "tags": null,
