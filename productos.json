@@ -1,5 +1,68 @@
 [
   {
+    "id": "buzo-star-1779918438309",
+    "nombre": "Buzo Star",
+    "precio": 60000,
+    "precioAnterior": null,
+    "categoria": "new",
+    "subcategoria": "",
+    "descripcion": "",
+    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1779918411/bara/productos/mi6t9dumne7op6cnseo7.webp",
+    "imagenes": [
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1779918411/bara/productos/mi6t9dumne7op6cnseo7.webp",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1779918424/bara/productos/fubthtfyv2ymyh488htq.webp",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1779918435/bara/productos/w0jirzsodjehvd50undo.webp"
+    ],
+    "tallesDisponibles": [
+      "XL",
+      "XXL"
+    ],
+    "colores": [
+      {
+        "nombre": "Negro",
+        "codigo": "#111111",
+        "stock": 0
+      },
+      {
+        "nombre": "Marrón",
+        "codigo": "#795548",
+        "stock": 0
+      },
+      {
+        "nombre": "Celeste",
+        "codigo": "#81D4FA",
+        "stock": 0
+      }
+    ],
+    "activo": false,
+    "destacado": false,
+    "outlet": false,
+    "argentina": true,
+    "stockMap": {
+      "Negro__XL": null,
+      "Negro__XXL": 1,
+      "Marrón__XL": 1,
+      "Marrón__XXL": null,
+      "Celeste__XL": 1,
+      "Celeste__XXL": null
+    },
+    "stockTalles": null,
+    "stock": 3,
+    "sku": "BUZO-STAR",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "buzo-pasion-1779918228224",
     "nombre": "Buzo Pasion",
     "precio": 60000,
@@ -1397,8 +1460,8 @@
   {
     "id": "buzo-oversize-1776390304814",
     "nombre": "Buzo Oversize",
-    "precio": 65000,
-    "precioAnterior": null,
+    "precio": 40000,
+    "precioAnterior": 65000,
     "categoria": "hombre",
     "subcategoria": "Buzos",
     "descripcion": "",
@@ -1434,7 +1497,14 @@
       "Marrón__M": 1,
       "Marrón__XL": null
     },
-    "stockTalles": null,
+    "stockTalles": {
+      "36": 1,
+      "38": 1,
+      "40": 1,
+      "42": 1,
+      "44": 1,
+      "46": 1
+    },
     "stock": 2,
     "sku": "BUZO-OVERSIZE",
     "marca": null,
@@ -1598,48 +1668,6 @@
     },
     "stock": 1,
     "sku": "GORRA-VACA",
-    "marca": null,
-    "tags": null,
-    "fabrica": null,
-    "cuidados": null,
-    "temporada": null,
-    "genero": null,
-    "peso": null,
-    "origen": null,
-    "proveedor": null,
-    "notas": null,
-    "costo": null,
-    "link": null
-  },
-  {
-    "id": "gorra-cebra-1776309020297",
-    "nombre": "Gorra Cebra",
-    "precio": 25000,
-    "precioAnterior": null,
-    "categoria": "accesorios",
-    "subcategoria": "",
-    "descripcion": "",
-    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1776309011/bara/productos/qcdkro0dv2hzoy0uifeq.webp",
-    "imagenes": [
-      "https://res.cloudinary.com/djk1znvr7/image/upload/v1776309011/bara/productos/qcdkro0dv2hzoy0uifeq.webp",
-      "https://res.cloudinary.com/djk1znvr7/image/upload/v1776309020/bara/productos/loamal8vtglvhi9r3rzp.webp"
-    ],
-    "tallesDisponibles": [
-      "Único"
-    ],
-    "colores": [],
-    "activo": true,
-    "destacado": false,
-    "outlet": false,
-    "stockMap": {
-      "Gris__Único": 1,
-      "Celeste__Único": 1
-    },
-    "stockTalles": {
-      "Único": 2
-    },
-    "stock": 2,
-    "sku": "GORRA-CEBRA",
     "marca": null,
     "tags": null,
     "fabrica": null,
@@ -1996,73 +2024,6 @@
     "link": null
   },
   {
-    "id": "camisaco-pa-o-1776296919483",
-    "nombre": "Camisaco Paño",
-    "precio": 73000,
-    "precioAnterior": null,
-    "categoria": "hombre",
-    "subcategoria": "Camperas",
-    "descripcion": "",
-    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1776296903/bara/productos/woe0wwylmxygr0zr4pqp.jpg",
-    "imagenes": [
-      "https://res.cloudinary.com/djk1znvr7/image/upload/v1776296903/bara/productos/woe0wwylmxygr0zr4pqp.jpg",
-      "https://res.cloudinary.com/djk1znvr7/image/upload/v1776296915/bara/productos/d4xdzgjqsovz51euqvpx.jpg"
-    ],
-    "tallesDisponibles": [
-      "M",
-      "L",
-      "XL"
-    ],
-    "colores": [
-      {
-        "nombre": "Negro",
-        "codigo": "#111111",
-        "stock": 0
-      },
-      {
-        "nombre": "Gris",
-        "codigo": "#9E9E9E",
-        "stock": 0
-      },
-      {
-        "nombre": "Crema",
-        "codigo": "#F5F0E8",
-        "stock": 0
-      }
-    ],
-    "activo": false,
-    "destacado": false,
-    "outlet": false,
-    "stockMap": {
-      "Negro__M": 1,
-      "Negro__L": 0,
-      "Negro__XL": null,
-      "Gris__M": null,
-      "Gris__L": 1,
-      "Gris__XL": null,
-      "Crema__M": null,
-      "Crema__L": 1,
-      "Crema__XL": 1
-    },
-    "stockTalles": {
-      "XL": 1
-    },
-    "stock": 3,
-    "sku": "CAMISACO-PAÑO",
-    "marca": null,
-    "tags": null,
-    "fabrica": null,
-    "cuidados": null,
-    "temporada": null,
-    "genero": null,
-    "peso": null,
-    "origen": null,
-    "proveedor": null,
-    "notas": null,
-    "costo": null,
-    "link": null
-  },
-  {
     "id": "buzo-king-frisa-1776295338483",
     "nombre": "Buzo King Frisa",
     "precio": 55000,
@@ -2119,60 +2080,6 @@
     },
     "stock": 4,
     "sku": "BUZO-KING-FRISA",
-    "marca": null,
-    "tags": null,
-    "fabrica": null,
-    "cuidados": null,
-    "temporada": null,
-    "genero": null,
-    "peso": null,
-    "origen": null,
-    "proveedor": null,
-    "notas": null,
-    "costo": null,
-    "link": null
-  },
-  {
-    "id": "buzo-piel-negro-1776292222020",
-    "nombre": "Buzo Piel Negro",
-    "precio": 40000,
-    "precioAnterior": null,
-    "categoria": "hombre",
-    "subcategoria": "Buzos",
-    "descripcion": "",
-    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1776292128/bara/productos/rzhaabovll4tj4owondb.jpg",
-    "imagenes": [
-      "https://res.cloudinary.com/djk1znvr7/image/upload/v1776292128/bara/productos/rzhaabovll4tj4owondb.jpg"
-    ],
-    "tallesDisponibles": [
-      "M",
-      "XL"
-    ],
-    "colores": [
-      {
-        "nombre": "Negro",
-        "codigo": "#111111",
-        "stock": 3
-      },
-      {
-        "nombre": "Camel",
-        "codigo": "#C19A6B",
-        "stock": 0
-      }
-    ],
-    "activo": true,
-    "destacado": false,
-    "outlet": false,
-    "argentina": false,
-    "stockMap": {
-      "Negro__M": null,
-      "Negro__XL": 1,
-      "Camel__M": 1,
-      "Camel__XL": null
-    },
-    "stockTalles": null,
-    "stock": 2,
-    "sku": "BUZO-PIEL-NEGRO",
     "marca": null,
     "tags": null,
     "fabrica": null,
