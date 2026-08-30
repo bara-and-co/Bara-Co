@@ -3466,47 +3466,6 @@
     "link": null
   },
   {
-    "id": "pa-uelo-vi-1775690418255",
-    "nombre": "Pañuelo VI",
-    "precio": 17000,
-    "precioAnterior": null,
-    "categoria": "accesorios",
-    "subcategoria": "",
-    "descripcion": "",
-    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1775690415/bara/productos/lqeevcvrdoynij51lrha.jpg",
-    "imagenes": [
-      "https://res.cloudinary.com/djk1znvr7/image/upload/v1775690415/bara/productos/lqeevcvrdoynij51lrha.jpg"
-    ],
-    "tallesDisponibles": [
-      "Único"
-    ],
-    "colores": [],
-    "activo": true,
-    "destacado": false,
-    "outlet": false,
-    "stockMap": {
-      "Negro__Único": 1,
-      "Beige__Único": 1
-    },
-    "stockTalles": {
-      "Único": 1
-    },
-    "stock": 1,
-    "sku": "PAÑUELO-VI",
-    "marca": null,
-    "tags": null,
-    "fabrica": null,
-    "cuidados": null,
-    "temporada": null,
-    "genero": null,
-    "peso": null,
-    "origen": null,
-    "proveedor": null,
-    "notas": null,
-    "costo": null,
-    "link": null
-  },
-  {
     "id": "pa-uelo-v-1775690356512",
     "nombre": "Pañuelo V",
     "precio": 17000,
@@ -3534,47 +3493,6 @@
     },
     "stock": 1,
     "sku": "PAÑUELO-V",
-    "marca": null,
-    "tags": null,
-    "fabrica": null,
-    "cuidados": null,
-    "temporada": null,
-    "genero": null,
-    "peso": null,
-    "origen": null,
-    "proveedor": null,
-    "notas": null,
-    "costo": null,
-    "link": null
-  },
-  {
-    "id": "pa-uelo-iv-1775690293864",
-    "nombre": "Pañuelo IV",
-    "precio": 17000,
-    "precioAnterior": null,
-    "categoria": "accesorios",
-    "subcategoria": "",
-    "descripcion": "",
-    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1775690291/bara/productos/epuh81pqfdcdipgyj5qz.png",
-    "imagenes": [
-      "https://res.cloudinary.com/djk1znvr7/image/upload/v1775690291/bara/productos/epuh81pqfdcdipgyj5qz.png"
-    ],
-    "tallesDisponibles": [
-      "Único"
-    ],
-    "colores": [],
-    "activo": true,
-    "destacado": false,
-    "outlet": false,
-    "stockMap": {
-      "Negro__Único": 1,
-      "Beige__Único": 1
-    },
-    "stockTalles": {
-      "Único": 1
-    },
-    "stock": 1,
-    "sku": "PAÑUELO-IV",
     "marca": null,
     "tags": null,
     "fabrica": null,
@@ -3657,47 +3575,6 @@
     },
     "stock": 1,
     "sku": "PAÑUELO-II",
-    "marca": null,
-    "tags": null,
-    "fabrica": null,
-    "cuidados": null,
-    "temporada": null,
-    "genero": null,
-    "peso": null,
-    "origen": null,
-    "proveedor": null,
-    "notas": null,
-    "costo": null,
-    "link": null
-  },
-  {
-    "id": "pa-uelo-1775689605975",
-    "nombre": "Pañuelo I",
-    "precio": 17000,
-    "precioAnterior": null,
-    "categoria": "accesorios",
-    "subcategoria": "",
-    "descripcion": "",
-    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1775689598/bara/productos/yj6hzxis1dvxkftkrkk0.jpg",
-    "imagenes": [
-      "https://res.cloudinary.com/djk1znvr7/image/upload/v1775689598/bara/productos/yj6hzxis1dvxkftkrkk0.jpg"
-    ],
-    "tallesDisponibles": [
-      "Único"
-    ],
-    "colores": [],
-    "activo": true,
-    "destacado": false,
-    "outlet": false,
-    "stockMap": {
-      "Negro__Único": 1,
-      "Beige__Único": 1
-    },
-    "stockTalles": {
-      "Único": 1
-    },
-    "stock": 1,
-    "sku": "PAÑUELO",
     "marca": null,
     "tags": null,
     "fabrica": null,
@@ -4260,10 +4137,10 @@
   {
     "id": "sueter-nordico-1775659927660",
     "nombre": "Sueter Nordico",
-    "precio": 60000,
-    "precioAnterior": null,
+    "precio": 40000,
+    "precioAnterior": 60000,
     "categoria": "hombre",
-    "subcategoria": "Sweaters",
+    "subcategoria": "",
     "descripcion": "",
     "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1775659903/bara/productos/genjdijhn9epf3gcxere.webp",
     "imagenes": [
@@ -4289,14 +4166,20 @@
     "activo": true,
     "destacado": false,
     "outlet": false,
+    "argentina": false,
     "stockMap": {
       "Negro__S": null,
       "Negro__M": null,
       "Negro__L": 1,
-      "Negro__XL": null
+      "Negro__XL": 1
     },
     "stockTalles": {
-      "XL": 2
+      "36": 1,
+      "38": 1,
+      "40": 1,
+      "42": 1,
+      "44": 1,
+      "46": 1
     },
     "stock": 4,
     "sku": "SUETER-NORDICO",
