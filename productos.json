@@ -2345,10 +2345,10 @@
   {
     "id": "campera-combinada-bordada-1776177320679",
     "nombre": "Campera Combinada Bordada",
-    "precio": 70000,
-    "precioAnterior": null,
+    "precio": 45000,
+    "precioAnterior": 70000,
     "categoria": "hombre",
-    "subcategoria": "Sweaters",
+    "subcategoria": "",
     "descripcion": "",
     "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1776177287/bara/productos/i1osi4g6ujtx1uogqghr.jpg",
     "imagenes": [
@@ -2376,21 +2376,19 @@
     "activo": true,
     "destacado": false,
     "outlet": false,
+    "argentina": false,
     "stockMap": {
-      "Negro__S": null,
+      "Negro__S": 1,
       "Negro__M": 1,
       "Negro__L": 1,
-      "Negro__XL": null,
+      "Negro__XL": 1,
       "Crema__S": 1,
-      "Crema__M": null,
+      "Crema__M": 1,
       "Crema__L": null,
       "Crema__XL": 1
     },
     "stockTalles": {
-      "S": null,
-      "M": 2,
-      "L": null,
-      "XL": 1
+      "Único": 1
     },
     "stock": 4,
     "sku": "CAMPERA-COMBINADA-BORDADA",
