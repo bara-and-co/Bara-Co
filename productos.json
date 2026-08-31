@@ -4510,10 +4510,10 @@
   {
     "id": "body-escote-redondo-1775075135723",
     "nombre": "Body escote Redondo",
-    "precio": 33000,
-    "precioAnterior": null,
+    "precio": 20000,
+    "precioAnterior": 30000,
     "categoria": "mujer",
-    "subcategoria": "Bodies",
+    "subcategoria": "",
     "descripcion": "",
     "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1775075097/bfqysytawzocwhdmbgvs.webp",
     "imagenes": [
@@ -4534,11 +4534,12 @@
     "activo": true,
     "destacado": false,
     "outlet": false,
+    "argentina": false,
     "stockMap": {
       "Negro__Único": 1
     },
     "stockTalles": {
-      "XL": 2
+      "Único": 1
     },
     "stock": 1,
     "sku": "BODY-ESCOTE-REDONDO",
