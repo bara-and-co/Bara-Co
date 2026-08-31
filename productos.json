@@ -4153,10 +4153,10 @@
   {
     "id": "top-frunce-diamante-1775094403390",
     "nombre": "Top Frunce diamante",
-    "precio": 25000,
-    "precioAnterior": null,
+    "precio": 20000,
+    "precioAnterior": 25000,
     "categoria": "mujer",
-    "subcategoria": "Tops",
+    "subcategoria": "",
     "descripcion": "Top Frunce Diamante",
     "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1775086164/bladlamb1q2liuswrzxq.webp",
     "imagenes": [
@@ -4176,13 +4176,14 @@
     "activo": true,
     "destacado": false,
     "outlet": false,
+    "argentina": false,
     "stockMap": {
       "Negro__Único": 1
     },
     "stockTalles": {
-      "XL": 2
+      "Único": 1
     },
-    "stock": 2,
+    "stock": 1,
     "sku": "TOP-FRUNCE-DIAMANTE",
     "marca": null,
     "tags": null,
