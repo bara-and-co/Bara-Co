@@ -3829,8 +3829,8 @@
   {
     "id": "kate-1775682142189",
     "nombre": "Kate",
-    "precio": 60000,
-    "precioAnterior": null,
+    "precio": 40000,
+    "precioAnterior": 60000,
     "categoria": "hombre",
     "subcategoria": "Camperas",
     "descripcion": "",
