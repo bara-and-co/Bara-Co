@@ -3879,10 +3879,10 @@
   {
     "id": "lupin-1775681779727",
     "nombre": "Lupin",
-    "precio": 65000,
-    "precioAnterior": null,
+    "precio": 40000,
+    "precioAnterior": 60000,
     "categoria": "hombre",
-    "subcategoria": "Sweaters",
+    "subcategoria": "",
     "descripcion": "",
     "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1775681738/bara/productos/fhffzldmikkwfjwcifcp.webp",
     "imagenes": [
@@ -3911,6 +3911,7 @@
     "activo": true,
     "destacado": false,
     "outlet": false,
+    "argentina": false,
     "stockMap": {
       "Negro__S": 1,
       "Negro__M": 1,
@@ -3922,7 +3923,7 @@
       "Verde__XL": null
     },
     "stockTalles": {
-      "XL": 2
+      "Único": 1
     },
     "stock": 4,
     "sku": "LUPIN",
