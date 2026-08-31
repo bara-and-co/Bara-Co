@@ -4251,8 +4251,8 @@
   {
     "id": "top-cuello-buche-manga-oxford-1775082547535",
     "nombre": "Top Cuello Buche Manga Oxford",
-    "precio": 30000,
-    "precioAnterior": null,
+    "precio": 20000,
+    "precioAnterior": 30000,
     "categoria": "mujer",
     "subcategoria": "",
     "descripcion": "",
@@ -4280,12 +4280,7 @@
       "Marrón__Único": 1
     },
     "stockTalles": {
-      "36": 1,
-      "38": 1,
-      "40": 1,
-      "42": 1,
-      "44": 1,
-      "46": 1
+      "Único": 1
     },
     "stock": 2,
     "sku": "TOP-CUELLO-BUCHE-MANGA-OXFORD",
