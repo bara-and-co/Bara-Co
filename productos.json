@@ -22,6 +22,11 @@
         "nombre": "Blanco",
         "codigo": "#FFFFFF",
         "stock": 0
+      },
+      {
+        "nombre": "ladrillo",
+        "codigo": "#ea6309",
+        "stock": 0
       }
     ],
     "activo": true,
@@ -31,14 +36,14 @@
     "stockMap": {
       "Blanco__L": null,
       "Blanco__XL": null,
-      "Blanco__XXL": 1
+      "Blanco__XXL": 1,
+      "ladrillo__L": 1,
+      "ladrillo__XL": 1,
+      "ladrillo__XXL": null
     },
     "stockTalles": {
       "S": null,
-      "M": null,
-      "L": null,
-      "XL": null,
-      "XXL": null
+      "L": null
     },
     "stock": 3,
     "sku": "SUDADERA-SNTS",
