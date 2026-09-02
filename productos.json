@@ -1,5 +1,56 @@
 [
   {
+    "id": "remera-square-1788390934955",
+    "nombre": "Remera Square",
+    "precio": 25000,
+    "precioAnterior": null,
+    "categoria": "hombre",
+    "subcategoria": "",
+    "descripcion": "",
+    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1788390879/bara/productos/fp2ybrgxiodumrbzbucx.jpg",
+    "imagenes": [
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1788390879/bara/productos/fp2ybrgxiodumrbzbucx.jpg"
+    ],
+    "tallesDisponibles": [
+      "M"
+    ],
+    "colores": [
+      {
+        "nombre": "Gris",
+        "codigo": "#9E9E9E",
+        "stock": 0
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "argentina": false,
+    "stockMap": {
+      "Gris__M": 1
+    },
+    "stockTalles": {
+      "S": null,
+      "M": null,
+      "L": null,
+      "XL": null,
+      "XXL": null
+    },
+    "stock": 1,
+    "sku": "REMERA-SQUARE",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "chomba-snts-1788277522657",
     "nombre": "Chomba SNTS",
     "precio": 45000,
