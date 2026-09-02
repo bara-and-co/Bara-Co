@@ -564,8 +564,8 @@
   {
     "id": "pacman-1-1779147147011",
     "nombre": "Pacman 1",
-    "precio": 27000,
-    "precioAnterior": null,
+    "precio": 20000,
+    "precioAnterior": 27000,
     "categoria": "hombre",
     "subcategoria": "Remeras",
     "descripcion": "",
@@ -586,6 +586,7 @@
     "activo": true,
     "destacado": false,
     "outlet": false,
+    "argentina": false,
     "stockMap": {
       "Negro__M": null
     },
