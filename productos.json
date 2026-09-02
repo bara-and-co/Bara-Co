@@ -1,5 +1,69 @@
 [
   {
+    "id": "sudadera-snts-1788391731902",
+    "nombre": "Sudadera SNTS",
+    "precio": 25000,
+    "precioAnterior": null,
+    "categoria": "new",
+    "subcategoria": "Remeras",
+    "descripcion": "",
+    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1788391702/bara/productos/vvdex1itosdzk0yutwiw.jpg",
+    "imagenes": [
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1788391702/bara/productos/vvdex1itosdzk0yutwiw.jpg",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1788391712/bara/productos/pitblczg6s1dd1ewphrd.jpg"
+    ],
+    "tallesDisponibles": [
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colores": [
+      {
+        "nombre": "Blanco",
+        "codigo": "#FFFFFF",
+        "stock": 0
+      },
+      {
+        "nombre": "ladrillo",
+        "codigo": "#ea6309",
+        "stock": 0
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "argentina": false,
+    "stockMap": {
+      "Blanco__L": null,
+      "Blanco__XL": null,
+      "Blanco__XXL": 1,
+      "ladrillo__L": 1,
+      "ladrillo__XL": 1,
+      "ladrillo__XXL": null
+    },
+    "stockTalles": {
+      "S": null,
+      "M": null,
+      "L": null,
+      "XL": null,
+      "XXL": null
+    },
+    "stock": 3,
+    "sku": "SUDADERA-SNTS",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "remera-square-1788390934955",
     "nombre": "Remera Square",
     "precio": 25000,
