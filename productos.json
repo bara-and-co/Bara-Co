@@ -168,21 +168,21 @@
     "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1788272298/bara/productos/xuw4fnljjrudhunrpex2.webp",
     "imagenes": [
       "https://res.cloudinary.com/djk1znvr7/image/upload/v1788272298/bara/productos/xuw4fnljjrudhunrpex2.webp",
-      "https://res.cloudinary.com/djk1znvr7/image/upload/v1788272314/bara/productos/x6qfyy4fxlx2gtkc8h3u.webp"
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1788392522/bara/productos/gfzbxpzbmy9bmdeqh4y0.webp"
     ],
     "tallesDisponibles": [
       "S",
-      "L"
+      "M"
     ],
     "colores": [
       {
-        "nombre": "Crema",
-        "codigo": "#F5F0E8",
+        "nombre": "Negro",
+        "codigo": "#111111",
         "stock": 0
       },
       {
-        "nombre": "Chocolate",
-        "codigo": "#613d26",
+        "nombre": "ladrillo",
+        "codigo": "#ea6309",
         "stock": 0
       }
     ],
@@ -191,16 +191,14 @@
     "outlet": false,
     "argentina": false,
     "stockMap": {
-      "Crema__S": null,
-      "Crema__L": 1,
-      "Chocolate__S": 1,
-      "Chocolate__L": null
+      "Negro__S": null,
+      "Negro__M": 1,
+      "ladrillo__S": 1,
+      "ladrillo__M": null
     },
     "stockTalles": {
       "S": null,
-      "M": 2,
-      "L": null,
-      "XL": 1
+      "L": null
     },
     "stock": 2,
     "sku": "CHOMBA-ASCENDACY",
