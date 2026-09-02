@@ -703,8 +703,8 @@
   {
     "id": "pantalom-cierres-1778860434562",
     "nombre": "Pantalom Cierres",
-    "precio": 75000,
-    "precioAnterior": null,
+    "precio": 50000,
+    "precioAnterior": 75000,
     "categoria": "hombre",
     "subcategoria": "",
     "descripcion": "",
@@ -729,6 +729,7 @@
     "activo": true,
     "destacado": false,
     "outlet": false,
+    "argentina": false,
     "stockMap": {
       "Gris__S": 1,
       "Gris__M": 1,
@@ -736,7 +737,13 @@
       "Gris__XL": 1,
       "Gris__XXL": 1
     },
-    "stockTalles": null,
+    "stockTalles": {
+      "S": null,
+      "M": null,
+      "L": null,
+      "XL": null,
+      "XXL": null
+    },
     "stock": 5,
     "sku": "PANTALOM-CIERRES",
     "marca": null,
