@@ -654,8 +654,8 @@
   {
     "id": "pantalon-oxido-recortes-1778860572022",
     "nombre": "Pantalon Oxido Recortes",
-    "precio": 75000,
-    "precioAnterior": null,
+    "precio": 50000,
+    "precioAnterior": 75000,
     "categoria": "hombre",
     "subcategoria": "",
     "descripcion": "",
@@ -670,24 +670,21 @@
       "XL",
       "XXL"
     ],
-    "colores": [
-      {
-        "nombre": "oxido",
-        "codigo": "#d99b26",
-        "stock": 5
-      }
-    ],
+    "colores": [],
     "activo": true,
     "destacado": false,
     "outlet": false,
+    "argentina": false,
     "stockMap": {
-      "oxido__S": 1,
-      "oxido__M": 1,
-      "oxido__L": 1,
-      "oxido__XL": 1,
-      "oxido__XXL": 1
+      "Negro__L": 1
     },
-    "stockTalles": null,
+    "stockTalles": {
+      "S": null,
+      "M": null,
+      "L": null,
+      "XL": null,
+      "XXL": null
+    },
     "stock": 5,
     "sku": "PANTALON-OXIDO-RECORTES",
     "marca": null,
@@ -695,7 +692,7 @@
     "fabrica": null,
     "cuidados": null,
     "temporada": null,
-    "genero": null,
+    "genero": "unisex",
     "peso": null,
     "origen": null,
     "proveedor": null,
