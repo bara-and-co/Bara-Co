@@ -355,8 +355,8 @@
   {
     "id": "arcade-1779147654766",
     "nombre": "Arcade",
-    "precio": 27000,
-    "precioAnterior": null,
+    "precio": 20000,
+    "precioAnterior": 27000,
     "categoria": "hombre",
     "subcategoria": "Remeras",
     "descripcion": "",
@@ -383,6 +383,7 @@
     "activo": true,
     "destacado": false,
     "outlet": false,
+    "argentina": false,
     "stockMap": {
       "Negro__L": 1,
       "Negro__XXL": null,
