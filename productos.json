@@ -7,10 +7,10 @@
     "categoria": "new",
     "subcategoria": "Remeras",
     "descripcion": "",
-    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1788391702/bara/productos/vvdex1itosdzk0yutwiw.jpg",
+    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1788392250/bara/productos/s2u6znwhlvz2rjjx71dp.jpg",
     "imagenes": [
-      "https://res.cloudinary.com/djk1znvr7/image/upload/v1788391702/bara/productos/vvdex1itosdzk0yutwiw.jpg",
-      "https://res.cloudinary.com/djk1znvr7/image/upload/v1788391712/bara/productos/pitblczg6s1dd1ewphrd.jpg"
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1788392250/bara/productos/s2u6znwhlvz2rjjx71dp.jpg",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1788392260/bara/productos/j8ptr70iasjk95cs6w2z.jpg"
     ],
     "tallesDisponibles": [
       "L",
@@ -22,11 +22,6 @@
         "nombre": "Blanco",
         "codigo": "#FFFFFF",
         "stock": 0
-      },
-      {
-        "nombre": "ladrillo",
-        "codigo": "#ea6309",
-        "stock": 0
       }
     ],
     "activo": true,
@@ -36,10 +31,7 @@
     "stockMap": {
       "Blanco__L": null,
       "Blanco__XL": null,
-      "Blanco__XXL": 1,
-      "ladrillo__L": 1,
-      "ladrillo__XL": 1,
-      "ladrillo__XXL": null
+      "Blanco__XXL": 1
     },
     "stockTalles": {
       "S": null,
