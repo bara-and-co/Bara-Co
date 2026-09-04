@@ -1,5 +1,89 @@
 [
   {
+    "id": "campera-puffer-1788537671684",
+    "nombre": "Campera Puffer",
+    "precio": 40000,
+    "precioAnterior": 70000,
+    "categoria": "mujer",
+    "subcategoria": "Camperas",
+    "descripcion": "",
+    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1788537621/bara/productos/bxjkgwguis75ezefmr4u.jpg",
+    "imagenes": [
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1788537621/bara/productos/bxjkgwguis75ezefmr4u.jpg",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1788537646/bara/productos/gzb61jhg7st4hd410kk8.jpg",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1788537657/bara/productos/fbrjckv2hxbu2zscxgqd.jpg",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1788537665/bara/productos/yxneqhsneavqctdpm5qw.jpg"
+    ],
+    "tallesDisponibles": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "colores": [
+      {
+        "nombre": "Bordo",
+        "codigo": "#7B1C2A",
+        "stock": 0
+      },
+      {
+        "nombre": "Rosa",
+        "codigo": "#F48FB1",
+        "stock": 0
+      },
+      {
+        "nombre": "Naranja",
+        "codigo": "#FB8C00",
+        "stock": 0
+      },
+      {
+        "nombre": "Lila",
+        "codigo": "#CE93D8",
+        "stock": 0
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "argentina": false,
+    "stockMap": {
+      "Bordo__S": 1,
+      "Bordo__M": null,
+      "Bordo__L": null,
+      "Bordo__XL": null,
+      "Rosa__S": null,
+      "Rosa__M": 2,
+      "Rosa__L": null,
+      "Rosa__XL": null,
+      "Naranja__S": null,
+      "Naranja__M": null,
+      "Naranja__L": 2,
+      "Naranja__XL": null,
+      "Lila__S": null,
+      "Lila__M": null,
+      "Lila__L": null,
+      "Lila__XL": 1
+    },
+    "stockTalles": {
+      "S": null,
+      "L": null
+    },
+    "stock": 6,
+    "sku": "CAMPERA-PUFFER",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "sudadera-snts-1788391731902",
     "nombre": "Sudadera SNTS",
     "precio": 25000,
