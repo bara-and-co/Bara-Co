@@ -1,5 +1,53 @@
 [
   {
+    "id": "campera-retro-eco-1788623732505",
+    "nombre": "Campera Retro Eco",
+    "precio": 60000,
+    "precioAnterior": 90000,
+    "categoria": "hombre",
+    "subcategoria": "",
+    "descripcion": "",
+    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1788623712/bara/productos/siaukyhmci3qpz46w0bc.jpg",
+    "imagenes": [
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1788623712/bara/productos/siaukyhmci3qpz46w0bc.jpg"
+    ],
+    "tallesDisponibles": [
+      "S"
+    ],
+    "colores": [
+      {
+        "nombre": "Negro",
+        "codigo": "#111111",
+        "stock": 0
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "argentina": false,
+    "stockMap": {
+      "Negro__S": 1
+    },
+    "stockTalles": {
+      "S": null,
+      "L": null
+    },
+    "stock": 1,
+    "sku": "CAMPERA-RETRO-ECO",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "campera-puffer-techno-1788622771021",
     "nombre": "Campera Puffer Techno",
     "precio": 45000,
