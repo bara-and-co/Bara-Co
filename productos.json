@@ -1,5 +1,44 @@
 [
   {
+    "id": "billetera-patente-1788877501250",
+    "nombre": "Billetera Patente",
+    "precio": 15000,
+    "precioAnterior": null,
+    "categoria": "accesorios",
+    "subcategoria": "Billeteras",
+    "descripcion": "Billetera realizada en TELA CANVAS.",
+    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1788877498/bara/productos/cezvcnokwz6lxchwdi5i.webp",
+    "imagenes": [
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1788877498/bara/productos/cezvcnokwz6lxchwdi5i.webp"
+    ],
+    "tallesDisponibles": [
+      "Único"
+    ],
+    "colores": [],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "argentina": false,
+    "stockMap": {},
+    "stockTalles": {
+      "Único": 1
+    },
+    "stock": 1,
+    "sku": "BILLETERA-PATENTE",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "belletera-margaritas-1788877344645",
     "nombre": "Belletera Margaritas",
     "precio": 15000,
