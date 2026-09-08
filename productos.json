@@ -2226,12 +2226,14 @@
     ],
     "activo": true,
     "destacado": false,
-    "outlet": false,
+    "outlet": true,
     "argentina": false,
     "stockMap": {
       "Negro__Único": 2
     },
-    "stockTalles": null,
+    "stockTalles": {
+      "Único": 1
+    },
     "stock": 2,
     "sku": "CHALECO-SNAKE",
     "marca": null,
