@@ -2343,14 +2343,16 @@
     ],
     "activo": true,
     "destacado": false,
-    "outlet": false,
+    "outlet": true,
     "argentina": false,
     "stockMap": {
       "Negro__Único": 1,
       "Marrón__Único": 1,
       "Rojo__Único": 1
     },
-    "stockTalles": null,
+    "stockTalles": {
+      "Único": 1
+    },
     "stock": 3,
     "sku": "REMERA-TUL-CORPIÑO-STRAS",
     "marca": null,
