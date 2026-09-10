@@ -1,5 +1,56 @@
 [
   {
+    "id": "campera-boxy-1789049549776",
+    "nombre": "Campera Boxy",
+    "precio": 50000,
+    "precioAnterior": 70000,
+    "categoria": "hombre",
+    "subcategoria": "Camperas",
+    "descripcion": "",
+    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1789049547/bara/productos/y7ktpnnqclywoph5c1gg.jpg",
+    "imagenes": [
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1789049547/bara/productos/y7ktpnnqclywoph5c1gg.jpg"
+    ],
+    "tallesDisponibles": [
+      "L"
+    ],
+    "colores": [
+      {
+        "nombre": "Verde",
+        "codigo": "#43A047",
+        "stock": 0
+      },
+      {
+        "nombre": "Celeste",
+        "codigo": "#81D4FA",
+        "stock": 0
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "argentina": false,
+    "stockMap": {
+      "Verde__L": 1,
+      "Celeste__L": 1
+    },
+    "stockTalles": null,
+    "stock": 2,
+    "sku": "CAMPERA-BOXY",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "billetea-zigzag-1788878123249",
     "nombre": "Billetea ZigZag",
     "precio": 15000,
