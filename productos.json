@@ -1,5 +1,57 @@
 [
   {
+    "id": "baggy-croco-1789429189529",
+    "nombre": "Baggy Croco",
+    "precio": 65000,
+    "precioAnterior": null,
+    "categoria": "hombre",
+    "subcategoria": "Pantalones",
+    "descripcion": "",
+    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1789429179/bara/productos/taifcd4odhb4jrxluj5w.jpg",
+    "imagenes": [
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1789429179/bara/productos/taifcd4odhb4jrxluj5w.jpg",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1789429187/bara/productos/iy4duhtyicocqecejdnj.jpg"
+    ],
+    "tallesDisponibles": [
+      "38",
+      "40",
+      "42",
+      "44"
+    ],
+    "colores": [
+      {
+        "nombre": "Gris",
+        "codigo": "#9E9E9E",
+        "stock": 0
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "argentina": false,
+    "stockMap": {
+      "Gris__38": 1,
+      "Gris__40": 1,
+      "Gris__42": 1,
+      "Gris__44": 1
+    },
+    "stockTalles": null,
+    "stock": 4,
+    "sku": "BAGGY-CROCO",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "campera-boxy-1789049549776",
     "nombre": "Campera Boxy",
     "precio": 50000,
