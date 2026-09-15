@@ -1,5 +1,59 @@
 [
   {
+    "id": "baggy-nube-batick-1789484040629",
+    "nombre": "Baggy Nube Batick",
+    "precio": 65000,
+    "precioAnterior": null,
+    "categoria": "hombre",
+    "subcategoria": "Pantalones",
+    "descripcion": "",
+    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1789484017/bara/productos/udwzv0r9euzncuiwrise.jpg",
+    "imagenes": [
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1789484017/bara/productos/udwzv0r9euzncuiwrise.jpg",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1789484030/bara/productos/rhntegmolxpbgaawecz4.jpg"
+    ],
+    "tallesDisponibles": [
+      "38",
+      "40",
+      "42",
+      "44",
+      "46"
+    ],
+    "colores": [
+      {
+        "nombre": "Beige",
+        "codigo": "#D4B896",
+        "stock": 0
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "argentina": false,
+    "stockMap": {
+      "Beige__38": 1,
+      "Beige__40": 1,
+      "Beige__42": 1,
+      "Beige__44": 1,
+      "Beige__46": 1
+    },
+    "stockTalles": null,
+    "stock": 5,
+    "sku": "BAGGY-NUBE-BATICK",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "baggy-croco-1789429189529",
     "nombre": "Baggy Croco",
     "precio": 65000,
