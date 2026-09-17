@@ -1,5 +1,53 @@
 [
   {
+    "id": "baggy-trival-arenado-1789657894957",
+    "nombre": "Baggy Trival Arenado",
+    "precio": 50000,
+    "precioAnterior": null,
+    "categoria": "hombre",
+    "subcategoria": "Pantalones",
+    "descripcion": "",
+    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1789657863/bara/productos/lilwozjtx7dw7ybzwm7i.jpg",
+    "imagenes": [
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1789657863/bara/productos/lilwozjtx7dw7ybzwm7i.jpg",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1789657880/bara/productos/oy3yjt1boqp3mk0uoagi.jpg"
+    ],
+    "tallesDisponibles": [
+      "42",
+      "44"
+    ],
+    "colores": [
+      {
+        "nombre": "Celeste",
+        "codigo": "#81D4FA",
+        "stock": 0
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "argentina": false,
+    "stockMap": {
+      "Celeste__42": null,
+      "Celeste__44": null
+    },
+    "stockTalles": null,
+    "stock": null,
+    "sku": "BAGGY-TRIVAL-ARENADO",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "baggy-gray-1789517440382",
     "nombre": "Baggy Gray",
     "precio": 50000,
