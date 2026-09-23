@@ -1,5 +1,52 @@
 [
   {
+    "id": "baggy-whaite-1790173171338",
+    "nombre": "Baggy Whaite",
+    "precio": 50000,
+    "precioAnterior": null,
+    "categoria": "hombre",
+    "subcategoria": "Pantalones",
+    "descripcion": "",
+    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1790172987/bara/productos/fzafia9t1dwia5zkgvjo.webp",
+    "imagenes": [
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1790172987/bara/productos/fzafia9t1dwia5zkgvjo.webp"
+    ],
+    "tallesDisponibles": [
+      "42",
+      "44"
+    ],
+    "colores": [
+      {
+        "nombre": "Blanco",
+        "codigo": "#FFFFFF",
+        "stock": 0
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "argentina": false,
+    "stockMap": {
+      "Blanco__42": 1,
+      "Blanco__44": 1
+    },
+    "stockTalles": null,
+    "stock": 2,
+    "sku": "BAGGY-WHAITE",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "campera-jeans-negra-con-brillos-1790171078289",
     "nombre": "Campera Jeans Negra con Brillos",
     "precio": 80000,
