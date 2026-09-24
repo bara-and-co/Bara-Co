@@ -1439,7 +1439,7 @@
         "stock": 0
       }
     ],
-    "activo": true,
+    "activo": false,
     "destacado": false,
     "outlet": false,
     "argentina": false,
@@ -1770,7 +1770,7 @@
   {
     "id": "arcade-1779147654766",
     "nombre": "Arcade",
-    "precio": 20000,
+    "precio": 15000,
     "precioAnterior": 27000,
     "categoria": "hombre",
     "subcategoria": "Remeras",
@@ -1805,7 +1805,11 @@
       "Blanco__L": null,
       "Blanco__XXL": 1
     },
-    "stockTalles": null,
+    "stockTalles": {
+      "38": null,
+      "40": null,
+      "42": null
+    },
     "stock": 2,
     "sku": "ARCADE",
     "marca": null,
