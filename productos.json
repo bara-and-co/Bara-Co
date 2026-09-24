@@ -1,5 +1,60 @@
 [
   {
+    "id": "conjunto-trial-1790293515325",
+    "nombre": "conjunto Trial",
+    "precio": 100000,
+    "precioAnterior": null,
+    "categoria": "hombre",
+    "subcategoria": "Conjuntos",
+    "descripcion": "",
+    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1790293482/bara/productos/ahfjacivjqsafr1cf3w6.jpg",
+    "imagenes": [
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1790293482/bara/productos/ahfjacivjqsafr1cf3w6.jpg",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1790293504/bara/productos/iwf87znbmtvhkapjqfoa.jpg",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1790293511/bara/productos/qw99objpzwpvf0rdgw0r.jpg"
+    ],
+    "tallesDisponibles": [
+      "40",
+      "42",
+      "44"
+    ],
+    "colores": [
+      {
+        "nombre": "Beige",
+        "codigo": "#D4B896",
+        "stock": 0
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "argentina": false,
+    "stockMap": {
+      "Beige__40": 1,
+      "Beige__42": 1,
+      "Beige__44": 0
+    },
+    "stockTalles": {
+      "38": null,
+      "40": null,
+      "42": null
+    },
+    "stock": 3,
+    "sku": "CONJUNTO-TRIAL",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "campera-boxy-oxido-1790174671173",
     "nombre": "Campera Boxy Oxido",
     "precio": 50000,
@@ -3981,7 +4036,7 @@
       "XL"
     ],
     "colores": [],
-    "activo": true,
+    "activo": false,
     "destacado": false,
     "outlet": false,
     "stockMap": {
