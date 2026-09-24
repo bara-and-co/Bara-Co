@@ -3101,7 +3101,7 @@
     ],
     "activo": true,
     "destacado": false,
-    "outlet": false,
+    "outlet": true,
     "argentina": false,
     "stockMap": {
       "Negro__S": 0,
@@ -3113,7 +3113,11 @@
       "Gris__L": 1,
       "Gris__XL": null
     },
-    "stockTalles": null,
+    "stockTalles": {
+      "38": null,
+      "40": null,
+      "42": null
+    },
     "stock": 4,
     "sku": "CONJUNTO-PLUSH-MDT",
     "marca": null,
