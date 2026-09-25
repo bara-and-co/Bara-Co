@@ -446,7 +446,122 @@
     }
     @media (max-width:600px) { .filter-tabs{gap:4px;} .filter-tab{padding:7px 13px;font-size:9px;} .trust-item span{display:none;} .trust-item{padding:12px;} .sort-select{font-size:9px;padding:7px 24px 7px 10px;} }
     @media (max-width:480px) { .cat-section-grid,.prod-grid.active{grid-template-columns:1fr;} footer{grid-template-columns:1fr;gap:28px;} }
-  </style>
+  
+    /* ── COLECCIÓN PRIMAVERA 2026 · VERANO 2027 ── */
+    .pv-collection {
+      position:relative;
+      width:100%;
+      overflow:hidden;
+      background:#0b0b09;
+      border-top:1px solid rgba(201,169,110,.12);
+      border-bottom:1px solid rgba(201,169,110,.12);
+    }
+    .pv-collection-head {
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:24px;
+      padding:30px 48px 22px;
+    }
+    .pv-kicker {
+      font-size:9px;
+      letter-spacing:.34em;
+      text-transform:uppercase;
+      color:var(--accent);
+      margin-bottom:8px;
+    }
+    .pv-title {
+      font-family:var(--serif);
+      font-size:clamp(28px,3.5vw,48px);
+      line-height:1;
+      font-weight:300;
+      color:var(--text);
+    }
+    .pv-title em {
+      font-style:italic;
+      color:var(--accent);
+    }
+    .pv-link {
+      flex-shrink:0;
+      display:inline-flex;
+      align-items:center;
+      gap:9px;
+      font-size:9px;
+      letter-spacing:.2em;
+      text-transform:uppercase;
+      color:rgba(255,255,255,.7);
+      border-bottom:1px solid rgba(255,255,255,.28);
+      padding-bottom:4px;
+      transition:.25s;
+    }
+    .pv-link:hover { color:var(--accent); border-color:var(--accent); }
+
+    .pv-marquee {
+      width:100%;
+      overflow:hidden;
+      padding-bottom:30px;
+    }
+    .pv-track {
+      display:flex;
+      width:max-content;
+      gap:10px;
+      padding-left:10px;
+      animation:pvInfinite 48s linear infinite;
+      will-change:transform;
+    }
+    .pv-marquee:hover .pv-track { animation-play-state:paused; }
+    .pv-card {
+      flex:0 0 clamp(180px,15vw,260px);
+      aspect-ratio:3/4;
+      overflow:hidden;
+      background:#151512;
+      position:relative;
+    }
+    .pv-card img {
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      object-position:center;
+      display:block;
+      filter:brightness(.84);
+      transition:transform .7s var(--ease), filter .3s ease;
+    }
+    .pv-card:hover img {
+      transform:scale(1.035);
+      filter:brightness(.96);
+    }
+    .pv-card::after {
+      content:'';
+      position:absolute;
+      inset:0;
+      pointer-events:none;
+      box-shadow:inset 0 0 0 1px rgba(255,255,255,.035);
+    }
+
+    @keyframes pvInfinite {
+      from { transform:translateX(0); }
+      to   { transform:translateX(calc(-50% - 5px)); }
+    }
+
+    @media(max-width:700px){
+      .pv-collection-head{
+        padding:24px 18px 18px;
+        align-items:flex-start;
+        flex-direction:column;
+        gap:14px;
+      }
+      .pv-title{font-size:clamp(27px,9vw,40px);}
+      .pv-card{flex-basis:58vw;}
+      .pv-track{animation-duration:38s;}
+      .pv-marquee{padding-bottom:22px;}
+    }
+
+    @media(prefers-reduced-motion:reduce){
+      .pv-track{animation:none;}
+      .pv-marquee{overflow-x:auto;}
+    }
+
+</style>
 
   <!-- Actualización de caché del sitio: no modifica la interfaz -->
   <script>
@@ -533,7 +648,7 @@
   <div class="filters-left">
     <div class="filter-tabs">
       <button class="filter-tab" data-f="all">Todos</button>
-      <button class="filter-tab" data-f="new">New Collection</button>
+      <button class="filter-tab" data-f="new">Colección PV 26/27</button>
       <button class="filter-tab" data-f="hombre">Hombre</button>
       <button class="filter-tab" data-f="mujer">Mujer</button>
       <button class="filter-tab" data-f="unisex">Unisex</button>
@@ -737,6 +852,44 @@ function productoPerteneceA(p, cat) {
   return p.categoria === cat;
 }
 
+
+function initPVCarouselTienda() {
+  const tracks = document.querySelectorAll('[data-pv-track]');
+  if (!tracks.length) return;
+
+  let imgs = productos
+    .filter(p => p && p.activo !== false && p.imagen)
+    .map(p => p.imagen)
+    .filter((src, i, arr) => src && arr.indexOf(src) === i)
+    .slice(0,9);
+
+  const fallback = [
+    'images/Mujer.webp',
+    'images/Hombre.webp',
+    'images/Unisex.jpg',
+    'images/modeloportizq-_1_.webp',
+    'images/modeloderecha.webp',
+    'images/fondo-hero.webp'
+  ];
+
+  if (!imgs.length) imgs = fallback.slice();
+  let seed = 0;
+  while (imgs.length < 9) {
+    imgs.push(fallback[seed % fallback.length]);
+    seed++;
+  }
+  imgs = imgs.slice(0,9);
+
+  const loop = [...imgs, ...imgs];
+  tracks.forEach(track => {
+    track.innerHTML = loop.map((src, i) => `
+      <div class="pv-card" onclick="event.stopPropagation();filterBy('new')" role="button" tabindex="0" aria-label="Ver colección Primavera 2026 Verano 2027">
+        <img src="${src}" alt="Colección Primavera 2026 Verano 2027 ${i % 9 + 1}" loading="lazy">
+      </div>
+    `).join('');
+  });
+}
+
 // ========== CARGAR PRODUCTOS ==========
 async function cargarProductos() {
   try {
@@ -757,26 +910,36 @@ async function cargarProductos() {
 // ========== LANDING DE CATEGORÍAS ==========
 function renderCatLanding() {
   const container = document.getElementById('catCards');
-  // Categorías disponibles con productos
-  const cats = Object.keys(CAT_CONFIG).filter(c => productos.some(p => productoPerteneceA(p, c)));
-  const allCats = [...cats];
-  // Agregar outlet si hay
+
+  const order = ['mujer','hombre','unisex','accesorios'];
   const hasOutlet = productos.some(p => p.outlet || p.precioAnterior);
-  
-  let html = '';
-  allCats.forEach(cat => {
+
+  let html = `
+    <section class="pv-collection" style="grid-column:1/-1" aria-label="Colección Primavera 2026 Verano 2027">
+      <div class="pv-collection-head">
+        <div>
+          <p class="pv-kicker">Nueva temporada · SS 26/27</p>
+          <h2 class="pv-title">Colección <em>Primavera 2026</em> · <em>Verano 2027</em></h2>
+        </div>
+        <a class="pv-link" href="javascript:void(0)" onclick="event.stopPropagation();filterBy('new')">Ver colección <i class="fas fa-arrow-right"></i></a>
+      </div>
+      <div class="pv-marquee">
+        <div class="pv-track" data-pv-track></div>
+      </div>
+    </section>`;
+
+  order.forEach(cat => {
     const cfg = CAT_CONFIG[cat];
+    if (!cfg) return;
     const count = productos.filter(p => productoPerteneceA(p, cat)).length;
-    // Intentar obtener imagen del primer producto de esa categoría
     const firstProd = productos.find(p => productoPerteneceA(p, cat) && p.imagen);
     const imgSrc = firstProd ? firstProd.imagen : cfg.img;
-    const isWide = cat === 'accesorios';
-    const extraStyle = isWide ? ' style="grid-column:1/-1;aspect-ratio:21/6;"' : '';
+
     html += `
-      <div class="cat-big-card" onclick="filterBy('${cat}')"${extraStyle}>
+      <div class="cat-big-card" onclick="filterBy('${cat}')">
         <img src="${imgSrc}" alt="${cfg.title}" loading="lazy"/>
         <div class="cat-big-info">
-          <p class="cat-big-label">${cfg.label} · ${count} piezas</p>
+          <p class="cat-big-label">${cfg.label}${count ? ` · ${count} piezas` : ''}</p>
           <h2 class="cat-big-title">${cfg.title}</h2>
           <span class="cat-big-cta">${cfg.cta} &nbsp;<i class="fas fa-arrow-right" style="font-size:9px"></i></span>
         </div>
@@ -794,7 +957,9 @@ function renderCatLanding() {
         </div>
       </div>`;
   }
+
   container.innerHTML = html;
+  initPVCarouselTienda();
 }
 
 // ========== CONSTRUIR CARD ==========
