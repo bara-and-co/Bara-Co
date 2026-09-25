@@ -156,12 +156,68 @@
     /* ── HERO ── */
     .shop-hero { height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; position:relative; overflow:hidden; background:#000; border-bottom:1px solid var(--border); }
     .shop-hero-bg { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 30%; opacity:.5; filter:brightness(.6); }
-    .shop-hero-content { position:relative; z-index:2; }
-    .shop-eyebrow { font-size:9px; letter-spacing:.45em; text-transform:uppercase; color:var(--accent); margin-bottom:16px; font-family:var(--sans); opacity:0; animation:fadeUp .8s var(--ease) .3s forwards; }
-    .shop-title { font-family:var(--serif); font-size:clamp(64px,9vw,110px); font-weight:300; line-height:.95; margin-bottom:18px; opacity:0; animation:fadeUp .9s var(--ease) .45s forwards; }
+    .shop-hero-content {
+      position:relative;
+      z-index:2;
+      width:min(92vw, 980px);
+      padding-inline:18px;
+    }
+    .shop-eyebrow {
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:10px 18px;
+      border-radius:999px;
+      border:1px solid rgba(201,169,110,.30);
+      background:rgba(10,10,10,.24);
+      backdrop-filter:blur(8px);
+      -webkit-backdrop-filter:blur(8px);
+      font-size:clamp(11px,.92vw,14px);
+      letter-spacing:.34em;
+      text-transform:uppercase;
+      color:rgba(232,213,168,.96);
+      text-shadow:0 1px 14px rgba(0,0,0,.38);
+      margin:0 auto 22px;
+      font-family:var(--sans);
+      opacity:0;
+      animation:fadeUp .8s var(--ease) .3s forwards;
+    }
+    .shop-title { font-family:var(--serif); font-size:clamp(64px,9vw,110px); font-weight:300; line-height:.95; margin-bottom:18px; opacity:0; animation:fadeUp .9s var(--ease) .45s forwards; text-shadow:0 2px 24px rgba(0,0,0,.25); }
     .shop-title em { font-style:italic; color:var(--accent); }
-    .shop-sub { font-size:11px; letter-spacing:.22em; text-transform:uppercase; color:rgba(255,255,255,.7); opacity:0; animation:fadeUp .8s var(--ease) .6s forwards; }
-    .shop-cta { display:inline-flex; align-items:center; gap:10px; margin-top:38px; font-size:10px; letter-spacing:.22em; text-transform:uppercase; color:var(--white); border-bottom:1px solid rgba(255,255,255,.35); padding-bottom:4px; transition:border-color .3s,color .3s; opacity:0; animation:fadeUp .8s var(--ease) .75s forwards; }
+    .shop-sub {
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:10px 16px;
+      margin-top:4px;
+      border-radius:999px;
+      background:rgba(10,10,10,.20);
+      backdrop-filter:blur(6px);
+      -webkit-backdrop-filter:blur(6px);
+      font-size:clamp(12px,.98vw,14px);
+      letter-spacing:.20em;
+      text-transform:uppercase;
+      color:rgba(255,255,255,.92);
+      text-shadow:0 1px 14px rgba(0,0,0,.42);
+      opacity:0;
+      animation:fadeUp .8s var(--ease) .6s forwards;
+    }
+    .shop-cta {
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      margin-top:24px;
+      font-size:11px;
+      letter-spacing:.20em;
+      text-transform:uppercase;
+      color:#f4f4f1;
+      border-bottom:1px solid rgba(255,255,255,.62);
+      text-shadow:0 1px 12px rgba(0,0,0,.35);
+      padding-bottom:5px;
+      transition:border-color .3s,color .3s;
+      opacity:0;
+      animation:fadeUp .8s var(--ease) .75s forwards;
+    }
     .shop-cta:hover { color:var(--accent); border-color:var(--accent); }
     .scroll-hint { position:absolute; bottom:36px; left:50%; transform:translateX(-50%); z-index:3; display:flex; flex-direction:column; align-items:center; gap:10px; color:rgba(255,255,255,.4); font-size:8px; letter-spacing:.3em; text-transform:uppercase; opacity:0; animation:fadeIn 1s 1.2s var(--ease) forwards; }
     .scroll-hint-line { width:1px; height:52px; background:rgba(255,255,255,.15); position:relative; overflow:hidden; }
@@ -479,6 +535,7 @@
       <button class="filter-tab" data-f="new">New Collection</button>
       <button class="filter-tab" data-f="hombre">Hombre</button>
       <button class="filter-tab" data-f="mujer">Mujer</button>
+      <button class="filter-tab" data-f="unisex">Unisex</button>
       <button class="filter-tab" data-f="accesorios">Accesorios</button>
       <button class="filter-tab" data-f="sale">Sale</button>
       <button class="filter-tab" data-f="outlet" style="color:#e07b39;border-color:#e07b39aa;">🏷️ Outlet</button>
@@ -571,6 +628,7 @@
     <ul class="footer-links">
       <li><a href="tienda.html?categoria=hombre">Hombre</a></li>
       <li><a href="tienda.html?categoria=mujer">Mujer</a></li>
+      <li><a href="tienda.html?categoria=unisex">Unisex</a></li>
       <li><a href="tienda.html?categoria=accesorios">Accesorios</a></li>
       <li><a href="tienda.html?categoria=new">New Collection</a></li>
       <li><a href="tienda.html?categoria=sale">Sale</a></li>
@@ -665,8 +723,18 @@ const CAT_CONFIG = {
   new:        { label:'Nueva colección', title:'New Collection', cta:'Descubrir', img:'images/fondo%20hero.png' },
   hombre:     { label:'Moda masculina',  title:'Hombre',         cta:'Ver todo',  img:'images/fondo%20hero.png' },
   mujer:      { label:'Moda femenina',   title:'Mujer',          cta:'Ver todo',  img:'images/fondo%20hero.png' },
+  unisex:     { label:'Para todos',       title:'Unisex',         cta:'Ver todo',  img:'images/fondo%20hero.png', virtual:true },
   accesorios: { label:'Complementos',    title:'Accesorios',     cta:'Explorar',  img:'images/fondo%20hero.png' },
 };
+
+// Hombre, Mujer y Unisex funcionan como públicos de la prenda.
+// Productos antiguos sin `genero` conservan compatibilidad usando `categoria`.
+function productoPerteneceA(p, cat) {
+  if (cat === 'hombre') return p.genero ? p.genero === 'masculino' : p.categoria === 'hombre';
+  if (cat === 'mujer')  return p.genero ? p.genero === 'femenino'  : p.categoria === 'mujer';
+  if (cat === 'unisex') return p.genero === 'unisex';
+  return p.categoria === cat;
+}
 
 // ========== CARGAR PRODUCTOS ==========
 async function cargarProductos() {
@@ -678,7 +746,7 @@ async function cargarProductos() {
     renderCatLanding();
     actualizarContador();
     const cat = new URLSearchParams(window.location.search).get('categoria');
-    if (cat && ['hombre','mujer','accesorios','new','sale','outlet'].includes(cat)) filterBy(cat);
+    if (cat && ['hombre','mujer','unisex','accesorios','new','sale','outlet'].includes(cat)) filterBy(cat);
   } catch(e) {
     document.getElementById('prodCount').textContent = 'Error al cargar';
     renderCatLanding();
@@ -689,7 +757,7 @@ async function cargarProductos() {
 function renderCatLanding() {
   const container = document.getElementById('catCards');
   // Categorías disponibles con productos
-  const cats = Object.keys(CAT_CONFIG).filter(c => productos.some(p => p.categoria === c));
+  const cats = Object.keys(CAT_CONFIG).filter(c => productos.some(p => productoPerteneceA(p, c)));
   const allCats = [...cats];
   // Agregar outlet si hay
   const hasOutlet = productos.some(p => p.outlet || p.precioAnterior);
@@ -697,9 +765,9 @@ function renderCatLanding() {
   let html = '';
   allCats.forEach(cat => {
     const cfg = CAT_CONFIG[cat];
-    const count = productos.filter(p => p.categoria === cat).length;
+    const count = productos.filter(p => productoPerteneceA(p, cat)).length;
     // Intentar obtener imagen del primer producto de esa categoría
-    const firstProd = productos.find(p => p.categoria === cat && p.imagen);
+    const firstProd = productos.find(p => productoPerteneceA(p, cat) && p.imagen);
     const imgSrc = firstProd ? firstProd.imagen : cfg.img;
     html += `
       <div class="cat-big-card" onclick="filterBy('${cat}')">
@@ -746,7 +814,16 @@ function buildCard(p) {
   })();
   const agotado = p.agotado || (stockReal !== null && stockReal === 0);
   const descuento = p.precioAnterior ? Math.round((1 - p.precio/p.precioAnterior)*100) : 0;
-  const cats      = [p.categoria];
+  const cats = [];
+  // Para Hombre/Mujer manda `genero`; `categoria` queda como fallback legacy.
+  if (['hombre','mujer'].includes(p.categoria)) {
+    if (!p.genero) cats.push(p.categoria);
+  } else {
+    cats.push(p.categoria);
+  }
+  if (p.genero === 'masculino') cats.push('hombre');
+  if (p.genero === 'femenino')  cats.push('mujer');
+  if (p.genero === 'unisex')    cats.push('unisex');
   if (p.precioAnterior) cats.push('sale');
   if (p.outlet) cats.push('outlet');
 
@@ -798,7 +875,7 @@ function buildCard(p) {
         </div>
       </div>
       <div class="prod-info">
-        <p class="prod-cat">${p.outlet?'<span style="color:#e07b39">Outlet · </span>':''}${p.subcategoria||p.categoria}</p>
+        <p class="prod-cat">${p.outlet?'<span style="color:#e07b39">Outlet · </span>':''}${p.subcategoria||p.categoria}${p.genero==='unisex'?' · Unisex':''}</p>
         <h3 class="prod-name">${p.nombre}</h3>
         <p class="prod-price">${precioHtml}${agotado?'<span class="agotado-label">Sin stock</span>':''}</p>
       </div>
@@ -859,7 +936,7 @@ function filterBySub(subcat) {
 function renderSubcatTabs(categoria) {
   const container = document.getElementById('subcatTabs');
   if (['all','sale','outlet'].includes(categoria) || !categoria) { container.style.display='none'; return; }
-  const subcats = [...new Set(productos.filter(p => p.categoria === categoria && p.subcategoria).map(p => p.subcategoria))].sort();
+  const subcats = [...new Set(productos.filter(p => productoPerteneceA(p, categoria) && p.subcategoria).map(p => p.subcategoria))].sort();
   if (!subcats.length) { container.style.display='none'; return; }
   container.innerHTML = `<button class="subcat-tab active" data-s="all" onclick="filterBySub('all')">Todas</button>`;
   subcats.forEach(s => {
@@ -882,6 +959,11 @@ function aplicarFiltro(filtro, subcat='all') {
     if (mostrar) visibles++;
   });
   document.querySelectorAll('.cat-heading').forEach(head => {
+    // En Unisex no mostramos encabezados heredados Hombre/Mujer.
+    if (filtro === 'unisex') {
+      head.classList.add('hidden');
+      return;
+    }
     let tiene = false;
     let next = head.nextElementSibling;
     while (next && !next.classList.contains('cat-heading')) {
