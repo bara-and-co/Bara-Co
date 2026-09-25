@@ -231,10 +231,23 @@
       text-align:center; color:var(--white);
       pointer-events:none; transition:opacity .3s;
       width:100%;
+      max-width:min(92vw, 920px);
+      padding-inline:18px;
     }
     .hero-pre {
-      font-size:9px; letter-spacing:.45em; text-transform:uppercase;
-      color:var(--accent); margin-bottom:18px; font-family:var(--sans);
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:10px 18px;
+      border-radius:999px;
+      border:1px solid rgba(201,169,110,.32);
+      background:rgba(10,10,10,.22);
+      backdrop-filter:blur(8px);
+      -webkit-backdrop-filter:blur(8px);
+      font-size:clamp(11px, .92vw, 14px);
+      letter-spacing:.34em; text-transform:uppercase;
+      color:rgba(232,213,168,.96);
+      text-shadow:0 1px 14px rgba(0,0,0,.34);
+      margin:0 auto 24px;
+      font-family:var(--sans);
       opacity:0; animation:fadeUp .8s var(--ease) 2.1s forwards;
     }
     .hero-h1 {
@@ -250,16 +263,22 @@
     }
     .hero-h1 em { font-style:italic; color:#e8d5a8; font-weight:300; }
     .hero-sub {
-      margin-top:22px; font-size:11px; letter-spacing:.22em;
-      text-transform:uppercase; color:rgba(201,169,110,.55);
+      margin-top:26px;
+      font-size:clamp(12px, .95vw, 14px);
+      letter-spacing:.20em;
+      text-transform:uppercase;
+      color:rgba(232,213,168,.86);
+      text-shadow:0 1px 14px rgba(0,0,0,.42);
       opacity:0; animation:fadeUp .8s var(--ease) 2.25s forwards;
     }
     .hero-center a, .hero-center button { pointer-events:auto; }
     .hero-cta {
-      margin-top:40px; display:inline-flex; align-items:center; gap:12px;
-      font-size:10px; letter-spacing:.22em; text-transform:uppercase;
-      color:#e8d5a8; border-bottom:1px solid rgba(201,169,110,.45);
-      padding-bottom:4px; cursor:pointer; pointer-events:all;
+      margin-top:28px; display:inline-flex; align-items:center; gap:12px;
+      font-size:11px; letter-spacing:.20em; text-transform:uppercase;
+      color:#f1dfb2;
+      border-bottom:1px solid rgba(232,213,168,.72);
+      text-shadow:0 1px 12px rgba(0,0,0,.35);
+      padding-bottom:5px; cursor:pointer; pointer-events:all;
       opacity:0; animation:fadeUp .8s var(--ease) 2.4s forwards;
       transition:border-color .3s,color .3s;
     }
@@ -812,7 +831,7 @@
   <!-- Mitades con event listeners en JS -->
   <div class="hero-half hero-half-left" id="panelLeft" role="link" aria-label="Ver colección Mujer" tabindex="0">
     <div class="hero-image-wrapper">
-      <img src="images/modeloportizq.webp" alt="Mujer" loading="eager"/>
+      <img src="images/modeloportizq-_1_.webp" alt="Mujer" loading="eager"/>
     </div>
     <span class="hero-label">Mujer</span>
   </div>
