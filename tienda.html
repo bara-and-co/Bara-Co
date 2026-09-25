@@ -185,11 +185,13 @@
     .shop-title { font-family:var(--serif); font-size:clamp(64px,9vw,110px); font-weight:300; line-height:.95; margin-bottom:18px; opacity:0; animation:fadeUp .9s var(--ease) .45s forwards; text-shadow:0 2px 24px rgba(0,0,0,.25); }
     .shop-title em { font-style:italic; color:var(--accent); }
     .shop-sub {
-      display:inline-flex;
+      display:flex;
+      width:max-content;
+      max-width:92vw;
       align-items:center;
       justify-content:center;
       padding:10px 16px;
-      margin-top:4px;
+      margin:4px auto 0;
       border-radius:999px;
       background:rgba(10,10,10,.20);
       backdrop-filter:blur(6px);
@@ -203,10 +205,11 @@
       animation:fadeUp .8s var(--ease) .6s forwards;
     }
     .shop-cta {
-      display:inline-flex;
+      display:flex;
+      width:max-content;
       align-items:center;
       gap:10px;
-      margin-top:24px;
+      margin:24px auto 0;
       font-size:11px;
       letter-spacing:.20em;
       text-transform:uppercase;
@@ -482,7 +485,6 @@
     <ul>
       <li><a href="index.html">Inicio</a></li>
       <li><a href="/" class="active">Tienda</a></li>
-      <li><a href="lookbook.html">Lookbook</a></li>
       <li><a href="contacto.html">Contacto</a></li>
     </ul>
   </nav>
@@ -499,7 +501,6 @@
 <nav class="mobile-nav" id="mobileNav">
   <a href="index.html">Inicio</a>
   <a href="/" class="active">Tienda</a>
-  <a href="lookbook.html">Lookbook</a>
   <a href="contacto.html">Contacto</a>
 </nav>
 
@@ -769,8 +770,10 @@ function renderCatLanding() {
     // Intentar obtener imagen del primer producto de esa categoría
     const firstProd = productos.find(p => productoPerteneceA(p, cat) && p.imagen);
     const imgSrc = firstProd ? firstProd.imagen : cfg.img;
+    const isWide = cat === 'accesorios';
+    const extraStyle = isWide ? ' style="grid-column:1/-1;aspect-ratio:21/6;"' : '';
     html += `
-      <div class="cat-big-card" onclick="filterBy('${cat}')">
+      <div class="cat-big-card" onclick="filterBy('${cat}')"${extraStyle}>
         <img src="${imgSrc}" alt="${cfg.title}" loading="lazy"/>
         <div class="cat-big-info">
           <p class="cat-big-label">${cfg.label} · ${count} piezas</p>
