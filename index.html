@@ -721,7 +721,122 @@
 
     @keyframes fadeUp  { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:none} }
     @keyframes fadeIn  { from{opacity:0} to{opacity:1} }
-  </style>
+  
+    /* ── COLECCIÓN PRIMAVERA 2026 · VERANO 2027 ── */
+    .pv-collection {
+      position:relative;
+      width:100%;
+      overflow:hidden;
+      background:#0b0b09;
+      border-top:1px solid rgba(201,169,110,.12);
+      border-bottom:1px solid rgba(201,169,110,.12);
+    }
+    .pv-collection-head {
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:24px;
+      padding:30px 48px 22px;
+    }
+    .pv-kicker {
+      font-size:9px;
+      letter-spacing:.34em;
+      text-transform:uppercase;
+      color:var(--accent);
+      margin-bottom:8px;
+    }
+    .pv-title {
+      font-family:var(--serif);
+      font-size:clamp(28px,3.5vw,48px);
+      line-height:1;
+      font-weight:300;
+      color:var(--text);
+    }
+    .pv-title em {
+      font-style:italic;
+      color:var(--accent);
+    }
+    .pv-link {
+      flex-shrink:0;
+      display:inline-flex;
+      align-items:center;
+      gap:9px;
+      font-size:9px;
+      letter-spacing:.2em;
+      text-transform:uppercase;
+      color:rgba(255,255,255,.7);
+      border-bottom:1px solid rgba(255,255,255,.28);
+      padding-bottom:4px;
+      transition:.25s;
+    }
+    .pv-link:hover { color:var(--accent); border-color:var(--accent); }
+
+    .pv-marquee {
+      width:100%;
+      overflow:hidden;
+      padding-bottom:30px;
+    }
+    .pv-track {
+      display:flex;
+      width:max-content;
+      gap:10px;
+      padding-left:10px;
+      animation:pvInfinite 48s linear infinite;
+      will-change:transform;
+    }
+    .pv-marquee:hover .pv-track { animation-play-state:paused; }
+    .pv-card {
+      flex:0 0 clamp(180px,15vw,260px);
+      aspect-ratio:3/4;
+      overflow:hidden;
+      background:#151512;
+      position:relative;
+    }
+    .pv-card img {
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      object-position:center;
+      display:block;
+      filter:brightness(.84);
+      transition:transform .7s var(--ease), filter .3s ease;
+    }
+    .pv-card:hover img {
+      transform:scale(1.035);
+      filter:brightness(.96);
+    }
+    .pv-card::after {
+      content:'';
+      position:absolute;
+      inset:0;
+      pointer-events:none;
+      box-shadow:inset 0 0 0 1px rgba(255,255,255,.035);
+    }
+
+    @keyframes pvInfinite {
+      from { transform:translateX(0); }
+      to   { transform:translateX(calc(-50% - 5px)); }
+    }
+
+    @media(max-width:700px){
+      .pv-collection-head{
+        padding:24px 18px 18px;
+        align-items:flex-start;
+        flex-direction:column;
+        gap:14px;
+      }
+      .pv-title{font-size:clamp(27px,9vw,40px);}
+      .pv-card{flex-basis:58vw;}
+      .pv-track{animation-duration:38s;}
+      .pv-marquee{padding-bottom:22px;}
+    }
+
+    @media(prefers-reduced-motion:reduce){
+      .pv-track{animation:none;}
+      .pv-marquee{overflow-x:auto;}
+    }
+
+</style>
 
   <!-- Actualización de caché del sitio: no modifica la interfaz -->
   <script>
@@ -785,7 +900,6 @@
     <ul>
       <li><a href="/" class="nav-link active">Inicio</a></li>
       <li><a href="tienda.html" class="nav-link">Tienda</a></li>
-      <li><a href="lookbook.html" class="nav-link">Lookbook</a></li>
       <li><a href="contacto.html" class="nav-link">Contacto</a></li>
     </ul>
   </nav>
@@ -805,7 +919,6 @@
 <nav class="mobile-nav" id="mobileNav">
   <a href="/" class="active">Inicio</a>
   <a href="tienda.html">Tienda</a>
-  <a href="lookbook.html">Lookbook</a>
   <a href="contacto.html">Contacto</a>
 </nav>
 
@@ -831,7 +944,7 @@
   <!-- Mitades con event listeners en JS -->
   <div class="hero-half hero-half-left" id="panelLeft" role="link" aria-label="Ver colección Mujer" tabindex="0">
     <div class="hero-image-wrapper">
-      <img src="images/modeloportizq.webp" alt="Mujer" loading="eager"/>
+      <img src="images/modeloportizq-_1_.webp" alt="Mujer" loading="eager"/>
     </div>
     <span class="hero-label">Mujer</span>
   </div>
@@ -852,6 +965,21 @@
   <div class="scroll-hint" id="scrollHint">
     <span>Scroll</span>
     <div class="scroll-hint-line"></div>
+  </div>
+</section>
+
+
+<!-- COLECCIÓN PRIMAVERA 2026 · VERANO 2027 -->
+<section class="pv-collection" aria-label="Colección Primavera 2026 Verano 2027">
+  <div class="pv-collection-head">
+    <div>
+      <p class="pv-kicker">Nueva temporada · SS 26/27</p>
+      <h2 class="pv-title">Colección <em>Primavera 2026</em> · <em>Verano 2027</em></h2>
+    </div>
+    <a class="pv-link" href="tienda.html?categoria=new">Ver colección <i class="fas fa-arrow-right"></i></a>
+  </div>
+  <div class="pv-marquee">
+    <div class="pv-track" data-pv-track></div>
   </div>
 </section>
 
@@ -1245,6 +1373,60 @@ function cargarOfertasInicio() {
     });
 }
 </script>
+
+<script>
+(function(){
+  async function initPVCarousel(){
+    const tracks = document.querySelectorAll('[data-pv-track]');
+    if (!tracks.length) return;
+
+    let imgs = [];
+    try {
+      const r = await fetch('productos.json?t=' + Date.now());
+      if (r.ok) {
+        const productosPV = (await r.json()).filter(p => p && p.activo !== false && p.imagen);
+        imgs = productosPV
+          .map(p => p.imagen)
+          .filter((src, i, arr) => src && arr.indexOf(src) === i)
+          .slice(0,9);
+      }
+    } catch(e) {}
+
+    const fallback = [
+      'images/Mujer.webp',
+      'images/Hombre.webp',
+      'images/Unisex.jpg',
+      'images/modeloportizq-_1_.webp',
+      'images/modeloderecha.webp',
+      'images/fondo-hero.webp'
+    ];
+
+    if (!imgs.length) imgs = fallback.slice();
+    let seed = 0;
+    while (imgs.length < 9) {
+      imgs.push(fallback[seed % fallback.length]);
+      seed++;
+    }
+    imgs = imgs.slice(0,9);
+
+    const loop = [...imgs, ...imgs];
+    tracks.forEach(track => {
+      track.innerHTML = loop.map((src, i) => `
+        <a class="pv-card" href="tienda.html?categoria=new" aria-label="Ver colección Primavera 2026 Verano 2027">
+          <img src="${src}" alt="Colección Primavera 2026 Verano 2027 ${i % 9 + 1}" loading="lazy">
+        </a>
+      `).join('');
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initPVCarousel);
+  } else {
+    initPVCarousel();
+  }
+})();
+</script>
+
 </body>
 </html>
 <!-- force-deploy-20260807 -->
