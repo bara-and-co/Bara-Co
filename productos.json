@@ -6757,7 +6757,7 @@
         "stock": 2
       }
     ],
-    "activo": true,
+    "activo": false,
     "destacado": false,
     "outlet": false,
     "stockMap": {
@@ -6826,7 +6826,7 @@
         "stock": 2
       }
     ],
-    "activo": true,
+    "activo": false,
     "destacado": false,
     "outlet": false,
     "stockMap": {
@@ -6910,7 +6910,7 @@
         "stock": 1
       }
     ],
-    "activo": true,
+    "activo": false,
     "destacado": false,
     "outlet": false,
     "stockMap": {
@@ -7114,14 +7114,14 @@
       "https://i.ibb.co/jtNN3kK/camisasatennegraconsaco.webp"
     ],
     "tallesDisponibles": [
-      "XL",
+      "S",
       "XXL"
     ],
     "colores": [
       {
-        "nombre": "Negro",
-        "codigo": "#111111",
-        "stock": 1
+        "nombre": "Gris",
+        "codigo": "#9E9E9E",
+        "stock": 0
       },
       {
         "nombre": "Dorado",
@@ -7132,17 +7132,17 @@
     "activo": true,
     "destacado": true,
     "outlet": false,
+    "argentina": false,
     "stockMap": {
-      "Negro__XL": 1,
-      "Negro__XXL": null,
-      "Dorado__XL": null,
+      "Gris__S": 1,
+      "Gris__XXL": null,
+      "Dorado__S": null,
       "Dorado__XXL": 1
     },
     "stockTalles": {
-      "S": null,
-      "M": null,
-      "L": null,
-      "XL": null
+      "38": null,
+      "40": null,
+      "42": null
     },
     "stock": 2,
     "sku": "CAMISA-SATÉN",
