@@ -1938,24 +1938,12 @@
       "https://res.cloudinary.com/djk1znvr7/image/upload/v1779147333/bara/productos/of3vru0zk7vchgg4tpgq.webp"
     ],
     "tallesDisponibles": [
-      "M",
-      "L",
-      "XL"
+      "L"
     ],
     "colores": [
       {
         "nombre": "Negro",
         "codigo": "#111111",
-        "stock": 0
-      },
-      {
-        "nombre": "Blanco",
-        "codigo": "#FFFFFF",
-        "stock": 0
-      },
-      {
-        "nombre": "Rosa",
-        "codigo": "#F48FB1",
         "stock": 0
       }
     ],
@@ -1964,18 +1952,14 @@
     "outlet": false,
     "argentina": false,
     "stockMap": {
-      "Negro__M": null,
-      "Negro__L": null,
-      "Negro__XL": 1,
-      "Blanco__M": 1,
-      "Blanco__L": null,
-      "Blanco__XL": null,
-      "Rosa__M": null,
-      "Rosa__L": 1,
-      "Rosa__XL": null
+      "Negro__L": 1
     },
-    "stockTalles": null,
-    "stock": 3,
+    "stockTalles": {
+      "38": null,
+      "40": null,
+      "42": null
+    },
+    "stock": 1,
     "sku": "NASA-COLOR",
     "marca": null,
     "tags": null,
