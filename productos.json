@@ -7233,8 +7233,8 @@
   {
     "id": "pantalon-drift-1772019305811",
     "nombre": "Pantalon Drift",
-    "precio": 60000,
-    "precioAnterior": null,
+    "precio": 40000,
+    "precioAnterior": 60000,
     "categoria": "hombre",
     "subcategoria": "Pantalones",
     "descripcion": "",
@@ -7244,7 +7244,6 @@
       "https://i.ibb.co/WWwqdcz3/Pantalon-Drift.webp"
     ],
     "tallesDisponibles": [
-      "40",
       "44"
     ],
     "colores": [
@@ -7257,14 +7256,15 @@
     "activo": true,
     "destacado": false,
     "outlet": false,
+    "argentina": false,
     "stockMap": {
-      "Jean__40": null,
-      "Jean__44": null
+      "Jean__44": 1
     },
     "stockTalles": {
-      "XL": 1
+      "42": 1,
+      "46": 1
     },
-    "stock": 2,
+    "stock": 1,
     "sku": "PANTALON-DRIFT",
     "marca": null,
     "tags": [
