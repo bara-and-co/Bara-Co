@@ -1969,141 +1969,6 @@
     "link": null
   },
   {
-    "id": "pacman-2-1779147286419",
-    "nombre": "Pacman 2",
-    "precio": 20000,
-    "precioAnterior": 27000,
-    "categoria": "hombre",
-    "subcategoria": "Remeras",
-    "descripcion": "",
-    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1779147284/bara/productos/ayz8rzmrqgezvheogocy.webp",
-    "imagenes": [
-      "https://res.cloudinary.com/djk1znvr7/image/upload/v1779147284/bara/productos/ayz8rzmrqgezvheogocy.webp"
-    ],
-    "tallesDisponibles": [
-      "XL"
-    ],
-    "colores": [
-      {
-        "nombre": "Negro",
-        "codigo": "#111111",
-        "stock": 0
-      }
-    ],
-    "activo": false,
-    "destacado": false,
-    "outlet": false,
-    "argentina": false,
-    "stockMap": {
-      "Negro__XL": 1
-    },
-    "stockTalles": null,
-    "stock": 1,
-    "sku": "PACMAN-2",
-    "marca": null,
-    "tags": null,
-    "fabrica": null,
-    "cuidados": null,
-    "temporada": null,
-    "genero": null,
-    "peso": null,
-    "origen": null,
-    "proveedor": null,
-    "notas": null,
-    "costo": null,
-    "link": null
-  },
-  {
-    "id": "pacman-1-1779147147011",
-    "nombre": "Pacman 1",
-    "precio": 20000,
-    "precioAnterior": 27000,
-    "categoria": "hombre",
-    "subcategoria": "Remeras",
-    "descripcion": "",
-    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1779147076/bara/productos/s3qru2enpyakhzv5t1qk.webp",
-    "imagenes": [
-      "https://res.cloudinary.com/djk1znvr7/image/upload/v1779147076/bara/productos/s3qru2enpyakhzv5t1qk.webp"
-    ],
-    "tallesDisponibles": [
-      "M"
-    ],
-    "colores": [
-      {
-        "nombre": "Negro",
-        "codigo": "#111111",
-        "stock": 0
-      }
-    ],
-    "activo": false,
-    "destacado": false,
-    "outlet": false,
-    "argentina": false,
-    "stockMap": {
-      "Negro__M": null
-    },
-    "stockTalles": null,
-    "stock": 1,
-    "sku": "PACMAN-1",
-    "marca": null,
-    "tags": null,
-    "fabrica": null,
-    "cuidados": null,
-    "temporada": null,
-    "genero": null,
-    "peso": null,
-    "origen": null,
-    "proveedor": null,
-    "notas": null,
-    "costo": null,
-    "link": null
-  },
-  {
-    "id": "tetris-retro-1779147029348",
-    "nombre": "Tetris Retro",
-    "precio": 20000,
-    "precioAnterior": 27000,
-    "categoria": "hombre",
-    "subcategoria": "Remeras",
-    "descripcion": "",
-    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1779146921/bara/productos/xbyukk8m0nwqni0ulbt4.webp",
-    "imagenes": [
-      "https://res.cloudinary.com/djk1znvr7/image/upload/v1779146921/bara/productos/xbyukk8m0nwqni0ulbt4.webp"
-    ],
-    "tallesDisponibles": [
-      "L"
-    ],
-    "colores": [
-      {
-        "nombre": "Negro",
-        "codigo": "#111111",
-        "stock": 0
-      }
-    ],
-    "activo": false,
-    "destacado": false,
-    "outlet": false,
-    "argentina": false,
-    "stockMap": {
-      "Negro__L": 1
-    },
-    "stockTalles": null,
-    "stock": 1,
-    "sku": "TETRIS-RETRO",
-    "marca": null,
-    "tags": null,
-    "fabrica": null,
-    "cuidados": null,
-    "temporada": null,
-    "genero": null,
-    "peso": null,
-    "origen": null,
-    "proveedor": null,
-    "notas": null,
-    "costo": null,
-    "link": null
-  },
-  {
     "id": "pantalon-oxido-recortes-1778860572022",
     "nombre": "Pantalon Oxido Recortes",
     "precio": 45000,
@@ -4915,7 +4780,7 @@
         "stock": 0
       }
     ],
-    "activo": true,
+    "activo": false,
     "destacado": false,
     "outlet": false,
     "stockMap": {
@@ -4986,7 +4851,7 @@
         "stock": 0
       }
     ],
-    "activo": true,
+    "activo": false,
     "destacado": false,
     "outlet": false,
     "stockMap": {
@@ -5439,7 +5304,7 @@
         "stock": 1
       }
     ],
-    "activo": true,
+    "activo": false,
     "destacado": false,
     "outlet": false,
     "argentina": false,
@@ -6315,7 +6180,7 @@
         "stock": 0
       }
     ],
-    "activo": true,
+    "activo": false,
     "destacado": false,
     "outlet": false,
     "stockMap": {
@@ -8010,7 +7875,7 @@
         "stock": 0
       }
     ],
-    "activo": true,
+    "activo": false,
     "destacado": false,
     "outlet": false,
     "stockMap": {
