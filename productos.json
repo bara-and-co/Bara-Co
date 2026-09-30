@@ -11371,7 +11371,7 @@
       "42"
     ],
     "colores": [],
-    "activo": true,
+    "activo": false,
     "destacado": false,
     "outlet": false,
     "stockMap": {
@@ -11511,7 +11511,7 @@
         "stock": 0
       }
     ],
-    "activo": true,
+    "activo": false,
     "destacado": false,
     "outlet": false,
     "stockMap": {
@@ -11784,8 +11784,8 @@
   {
     "id": "pantalon-jean-0541",
     "nombre": "Pantalon jean 0541",
-    "precio": 70000,
-    "precioAnterior": null,
+    "precio": 40000,
+    "precioAnterior": 70000,
     "categoria": "hombre",
     "subcategoria": "Pantalones",
     "descripcion": "",
@@ -11804,11 +11804,13 @@
     "activo": true,
     "destacado": false,
     "outlet": false,
+    "argentina": false,
     "stockMap": {
-      "Negro__44": 2
+      "Azul__S": null,
+      "Azul__M": 1
     },
     "stockTalles": {
-      "S": null,
+      "S": 1,
       "M": null,
       "L": null,
       "XL": null
@@ -11899,7 +11901,7 @@
         "stock": 0
       }
     ],
-    "activo": true,
+    "activo": false,
     "destacado": false,
     "outlet": false,
     "stockMap": {
