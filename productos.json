@@ -2534,8 +2534,8 @@
   {
     "id": "baggy-risk-1776813374500",
     "nombre": "Baggy Risk",
-    "precio": 83000,
-    "precioAnterior": null,
+    "precio": 60000,
+    "precioAnterior": 80000,
     "categoria": "hombre",
     "subcategoria": "",
     "descripcion": "",
@@ -2549,7 +2549,6 @@
     "tallesDisponibles": [
       "38",
       "40",
-      "42",
       "44"
     ],
     "colores": [
@@ -2562,18 +2561,14 @@
     "activo": true,
     "destacado": false,
     "outlet": false,
+    "argentina": false,
     "stockMap": {
       "Azul__38": 1,
       "Azul__40": 1,
-      "Azul__42": 1,
       "Azul__44": 1
     },
     "stockTalles": {
-      "36": 1,
-      "38": 1,
-      "40": 1,
       "42": 1,
-      "44": 1,
       "46": 1
     },
     "stock": 4,
