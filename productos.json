@@ -8008,7 +8008,7 @@
         "stock": 0
       }
     ],
-    "activo": true,
+    "activo": false,
     "destacado": false,
     "outlet": false,
     "stockMap": {
@@ -8108,7 +8108,7 @@
         "stock": 0
       }
     ],
-    "activo": true,
+    "activo": false,
     "destacado": false,
     "outlet": false,
     "stockMap": {
@@ -10245,8 +10245,8 @@
   {
     "id": "sweater-arraial",
     "nombre": "Sweater ARRAIAL",
-    "precio": 65000,
-    "precioAnterior": null,
+    "precio": 40000,
+    "precioAnterior": 65000,
     "categoria": "hombre",
     "subcategoria": "Buzos",
     "descripcion": "",
@@ -10260,11 +10260,6 @@
     ],
     "colores": [
       {
-        "nombre": "Crema",
-        "codigo": "#F5F0E8",
-        "stock": 0
-      },
-      {
         "nombre": "Azul",
         "codigo": "#1E88E5",
         "stock": 0
@@ -10273,17 +10268,16 @@
     "activo": true,
     "destacado": false,
     "outlet": false,
+    "argentina": false,
     "stockMap": {
-      "Crema__S": 1,
-      "Crema__M": null,
       "Azul__S": null,
       "Azul__M": 1
     },
     "stockTalles": {
-      "S": null,
-      "M": null
+      "42": 1,
+      "46": 1
     },
-    "stock": 2,
+    "stock": 1,
     "sku": "SWEATER-ARRAIAL",
     "marca": null,
     "tags": null,
