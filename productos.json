@@ -7832,8 +7832,8 @@
   {
     "id": "kunai-baggy-1771873097430",
     "nombre": "KUNAI – BAGGY",
-    "precio": 75000,
-    "precioAnterior": null,
+    "precio": 40000,
+    "precioAnterior": 75000,
     "categoria": "hombre",
     "subcategoria": "Pantalones",
     "descripcion": "",
@@ -7862,6 +7862,7 @@
     "activo": true,
     "destacado": false,
     "outlet": false,
+    "argentina": false,
     "stockMap": {
       "Jean__38": 1,
       "Jean__40": 1,
@@ -7870,10 +7871,8 @@
       "Jean__46": 1
     },
     "stockTalles": {
-      "S": null,
-      "M": null,
-      "L": null,
-      "XL": null
+      "42": 1,
+      "46": 1
     },
     "stock": 5,
     "sku": "KUNAI-–-BAGGY",
