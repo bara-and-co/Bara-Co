@@ -7182,8 +7182,8 @@
   {
     "id": "pantalon-elipse-1772019558555",
     "nombre": "Pantalon Elipse",
-    "precio": 60000,
-    "precioAnterior": null,
+    "precio": 40000,
+    "precioAnterior": 60000,
     "categoria": "hombre",
     "subcategoria": "Pantalones",
     "descripcion": "",
@@ -7195,8 +7195,7 @@
       "https://i.ibb.co/F4FGq9xJ/Gemini-Generated-Image-r8p6k4r8p6k4r8p6.png"
     ],
     "tallesDisponibles": [
-      "42",
-      "46"
+      "42"
     ],
     "colores": [
       {
@@ -7213,14 +7212,14 @@
     "activo": true,
     "destacado": false,
     "outlet": false,
+    "argentina": false,
     "stockMap": {
       "Crema__42": null,
-      "Crema__46": 1,
-      "Marrón__42": 1,
-      "Marrón__46": null
+      "Marrón__42": 1
     },
     "stockTalles": {
-      "XL": 1
+      "42": 1,
+      "46": 1
     },
     "stock": 2,
     "sku": "PANTALON-ELIPSE",
