@@ -1,5 +1,53 @@
 [
   {
+    "id": "conjunto-trial-hojas-1790779698401",
+    "nombre": "Conjunto Trial Hojas",
+    "precio": 100000,
+    "precioAnterior": null,
+    "categoria": "hombre",
+    "subcategoria": "",
+    "descripcion": "",
+    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1790779687/bara/productos/wdcz2dnr4s9wwjodghpy.jpg",
+    "imagenes": [
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1790779687/bara/productos/wdcz2dnr4s9wwjodghpy.jpg",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1790779696/bara/productos/oeodmjzpxeexsjzgwoht.jpg"
+    ],
+    "tallesDisponibles": [
+      "40",
+      "42"
+    ],
+    "colores": [
+      {
+        "nombre": "Gris oscuro",
+        "codigo": "#424242",
+        "stock": 0
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "argentina": false,
+    "stockMap": {
+      "Gris oscuro__40": 1,
+      "Gris oscuro__42": null
+    },
+    "stockTalles": null,
+    "stock": 1,
+    "sku": "CONJUNTO-TRIAL-HOJAS",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "conjunto-trial-1790293515325",
     "nombre": "conjunto Trial",
     "precio": 100000,
@@ -14,6 +62,7 @@
       "https://res.cloudinary.com/djk1znvr7/image/upload/v1790293511/bara/productos/qw99objpzwpvf0rdgw0r.jpg"
     ],
     "tallesDisponibles": [
+      "40",
       "42",
       "44"
     ],
@@ -29,11 +78,16 @@
     "outlet": false,
     "argentina": false,
     "stockMap": {
+      "Beige__40": 1,
       "Beige__42": 1,
-      "Beige__44": 1
+      "Beige__44": 0
     },
-    "stockTalles": null,
-    "stock": 2,
+    "stockTalles": {
+      "38": null,
+      "40": null,
+      "42": null
+    },
+    "stock": 3,
     "sku": "CONJUNTO-TRIAL",
     "marca": null,
     "tags": null,
@@ -1969,6 +2023,141 @@
     "link": null
   },
   {
+    "id": "pacman-2-1779147286419",
+    "nombre": "Pacman 2",
+    "precio": 20000,
+    "precioAnterior": 27000,
+    "categoria": "hombre",
+    "subcategoria": "Remeras",
+    "descripcion": "",
+    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1779147284/bara/productos/ayz8rzmrqgezvheogocy.webp",
+    "imagenes": [
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1779147284/bara/productos/ayz8rzmrqgezvheogocy.webp"
+    ],
+    "tallesDisponibles": [
+      "XL"
+    ],
+    "colores": [
+      {
+        "nombre": "Negro",
+        "codigo": "#111111",
+        "stock": 0
+      }
+    ],
+    "activo": false,
+    "destacado": false,
+    "outlet": false,
+    "argentina": false,
+    "stockMap": {
+      "Negro__XL": 1
+    },
+    "stockTalles": null,
+    "stock": 1,
+    "sku": "PACMAN-2",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
+    "id": "pacman-1-1779147147011",
+    "nombre": "Pacman 1",
+    "precio": 20000,
+    "precioAnterior": 27000,
+    "categoria": "hombre",
+    "subcategoria": "Remeras",
+    "descripcion": "",
+    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1779147076/bara/productos/s3qru2enpyakhzv5t1qk.webp",
+    "imagenes": [
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1779147076/bara/productos/s3qru2enpyakhzv5t1qk.webp"
+    ],
+    "tallesDisponibles": [
+      "M"
+    ],
+    "colores": [
+      {
+        "nombre": "Negro",
+        "codigo": "#111111",
+        "stock": 0
+      }
+    ],
+    "activo": false,
+    "destacado": false,
+    "outlet": false,
+    "argentina": false,
+    "stockMap": {
+      "Negro__M": null
+    },
+    "stockTalles": null,
+    "stock": 1,
+    "sku": "PACMAN-1",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
+    "id": "tetris-retro-1779147029348",
+    "nombre": "Tetris Retro",
+    "precio": 20000,
+    "precioAnterior": 27000,
+    "categoria": "hombre",
+    "subcategoria": "Remeras",
+    "descripcion": "",
+    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1779146921/bara/productos/xbyukk8m0nwqni0ulbt4.webp",
+    "imagenes": [
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1779146921/bara/productos/xbyukk8m0nwqni0ulbt4.webp"
+    ],
+    "tallesDisponibles": [
+      "L"
+    ],
+    "colores": [
+      {
+        "nombre": "Negro",
+        "codigo": "#111111",
+        "stock": 0
+      }
+    ],
+    "activo": false,
+    "destacado": false,
+    "outlet": false,
+    "argentina": false,
+    "stockMap": {
+      "Negro__L": 1
+    },
+    "stockTalles": null,
+    "stock": 1,
+    "sku": "TETRIS-RETRO",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "pantalon-oxido-recortes-1778860572022",
     "nombre": "Pantalon Oxido Recortes",
     "precio": 45000,
@@ -2934,7 +3123,7 @@
         "stock": 0
       }
     ],
-    "activo": false,
+    "activo": true,
     "destacado": false,
     "outlet": false,
     "argentina": false,
@@ -2997,7 +3186,7 @@
         "stock": 2
       }
     ],
-    "activo": false,
+    "activo": true,
     "destacado": false,
     "outlet": true,
     "argentina": false,
@@ -3606,7 +3795,7 @@
         "stock": 0
       }
     ],
-    "activo": false,
+    "activo": true,
     "destacado": false,
     "outlet": false,
     "stockMap": {
@@ -4780,7 +4969,7 @@
         "stock": 0
       }
     ],
-    "activo": false,
+    "activo": true,
     "destacado": false,
     "outlet": false,
     "stockMap": {
@@ -4851,7 +5040,7 @@
         "stock": 0
       }
     ],
-    "activo": false,
+    "activo": true,
     "destacado": false,
     "outlet": false,
     "stockMap": {
@@ -5071,7 +5260,7 @@
         "stock": 1
       }
     ],
-    "activo": false,
+    "activo": true,
     "destacado": false,
     "outlet": false,
     "stockMap": {
@@ -5130,7 +5319,7 @@
         "stock": 1
       }
     ],
-    "activo": false,
+    "activo": true,
     "destacado": false,
     "outlet": false,
     "stockMap": {
@@ -5191,7 +5380,7 @@
         "stock": 1
       }
     ],
-    "activo": false,
+    "activo": true,
     "destacado": false,
     "outlet": false,
     "stockMap": {
@@ -5304,7 +5493,7 @@
         "stock": 1
       }
     ],
-    "activo": false,
+    "activo": true,
     "destacado": false,
     "outlet": false,
     "argentina": false,
@@ -5508,7 +5697,7 @@
         "stock": 0
       }
     ],
-    "activo": false,
+    "activo": true,
     "destacado": false,
     "outlet": false,
     "argentina": false,
@@ -6130,16 +6319,17 @@
     "activo": true,
     "destacado": false,
     "outlet": false,
-    "argentina": false,
     "stockMap": {
       "Celeste__38": 1,
       "Celeste__40": 1,
-      "Celeste__42": null,
-      "Celeste__44": null,
-      "Celeste__46": null
+      "Celeste__42": 1,
+      "Celeste__44": 1,
+      "Celeste__46": 1
     },
-    "stockTalles": null,
-    "stock": 2,
+    "stockTalles": {
+      "XL": 2
+    },
+    "stock": 5,
     "sku": "BAGGY-SKATER-CELESTE",
     "marca": null,
     "tags": null,
@@ -6180,7 +6370,7 @@
         "stock": 0
       }
     ],
-    "activo": false,
+    "activo": true,
     "destacado": false,
     "outlet": false,
     "stockMap": {
@@ -7875,7 +8065,7 @@
         "stock": 0
       }
     ],
-    "activo": false,
+    "activo": true,
     "destacado": false,
     "outlet": false,
     "stockMap": {
@@ -7975,7 +8165,7 @@
         "stock": 0
       }
     ],
-    "activo": false,
+    "activo": true,
     "destacado": false,
     "outlet": false,
     "stockMap": {
@@ -8013,7 +8203,8 @@
     ],
     "tallesDisponibles": [
       "S",
-      "M"
+      "M",
+      "L"
     ],
     "colores": [
       {
@@ -8030,17 +8221,16 @@
     "activo": true,
     "destacado": false,
     "outlet": false,
-    "argentina": false,
     "stockMap": {
       "Gris__S": 1,
       "Gris__M": null,
+      "Gris__L": null,
       "Azul marino__S": null,
-      "Azul marino__M": 1
+      "Azul marino__M": 1,
+      "Azul marino__L": null
     },
-    "stockTalles": {
-      "Único": 1
-    },
-    "stock": 2,
+    "stockTalles": null,
+    "stock": 3,
     "sku": "REMERA-OVER-PRINT-STONE",
     "marca": null,
     "tags": null,
@@ -9076,7 +9266,7 @@
       "Único"
     ],
     "colores": [],
-    "activo": false,
+    "activo": true,
     "destacado": false,
     "outlet": true,
     "stockMap": {
@@ -10122,6 +10312,7 @@
       "https://d22fxaf9t8d39k.cloudfront.net/63916cc7ca35026ef56aa0ca267d1043c9ca7fb0513e69e535a82aeea68bf7fa404368.jpg"
     ],
     "tallesDisponibles": [
+      "S",
       "M"
     ],
     "colores": [
@@ -10139,15 +10330,17 @@
     "activo": true,
     "destacado": false,
     "outlet": false,
-    "argentina": false,
     "stockMap": {
+      "Crema__S": 1,
       "Crema__M": null,
+      "Azul__S": null,
       "Azul__M": 1
     },
     "stockTalles": {
-      "Único": 1
+      "S": null,
+      "M": null
     },
-    "stock": 1,
+    "stock": 2,
     "sku": "SWEATER-ARRAIAL",
     "marca": null,
     "tags": null,
@@ -11356,6 +11549,56 @@
     "link": null
   },
   {
+    "id": "pantalon-custom-face",
+    "nombre": "Pantalon CUSTOM FACE",
+    "precio": 90000,
+    "precioAnterior": 130000,
+    "categoria": "hombre",
+    "subcategoria": "Pantalones",
+    "descripcion": "",
+    "imagen": "https://i.ibb.co/bR65cwR6/Gemini-Generated-Image-rreyrhrreyrhrrey.png",
+    "imagenes": [
+      "https://i.ibb.co/bR65cwR6/Gemini-Generated-Image-rreyrhrreyrhrrey.png",
+      "https://i.ibb.co/N6yw6zSq/Pantalon-CUSTOM-FACE.webp"
+    ],
+    "tallesDisponibles": [
+      "44"
+    ],
+    "colores": [
+      {
+        "nombre": "Negro",
+        "codigo": "#111111",
+        "stock": 0
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {
+      "Negro__44": 2
+    },
+    "stockTalles": {
+      "S": 1,
+      "M": 1,
+      "L": 1,
+      "XL": 1
+    },
+    "stock": 10,
+    "sku": "PANTALON-CUSTOM-FACE",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "pantalon-custom-faces",
     "nombre": "Pantalon CUSTOM FACES",
     "precio": 80000,
@@ -12033,6 +12276,50 @@
     "link": null
   },
   {
+    "id": "pantalon-cargo-gris",
+    "nombre": "Pantalon cargo Gris",
+    "precio": 70000,
+    "precioAnterior": null,
+    "categoria": "hombre",
+    "subcategoria": "Pantalones",
+    "descripcion": "",
+    "imagen": "https://i.ibb.co/TBxBR7W2/Pantalon-cargo-Gris.webp",
+    "imagenes": [
+      "https://i.ibb.co/TBxBR7W2/Pantalon-cargo-Gris.webp"
+    ],
+    "tallesDisponibles": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "colores": [],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "stockMap": {},
+    "stockTalles": {
+      "S": null,
+      "M": null,
+      "L": null,
+      "XL": null
+    },
+    "stock": 10,
+    "sku": "PANTALON-CARGO-GRIS",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "pantalon-camuflado",
     "nombre": "Pantalon CAMUFLADO",
     "precio": 25000,
@@ -12150,7 +12437,9 @@
       "https://d22fxaf9t8d39k.cloudfront.net/c6628a3210b1324d76a0e43c6b72f9b63750c2b2de76236d67f5710bb059bcef404368.jpg"
     ],
     "tallesDisponibles": [
-      "M"
+      "S",
+      "M",
+      "L"
     ],
     "colores": [
       {
@@ -12162,12 +12451,18 @@
     "activo": true,
     "destacado": false,
     "outlet": false,
-    "argentina": false,
     "stockMap": {
-      "Negro__M": 1
+      "Negro__S": 1,
+      "Negro__M": 1,
+      "Negro__L": 1
     },
-    "stockTalles": null,
-    "stock": 1,
+    "stockTalles": {
+      "S": null,
+      "M": null,
+      "L": null,
+      "XL": null
+    },
+    "stock": 3,
     "sku": "CAMPERA-JEAN",
     "marca": null,
     "tags": null,
@@ -12210,7 +12505,7 @@
     ],
     "sku": "BODY",
     "stock": 10,
-    "activo": false
+    "activo": true
   },
   {
     "id": "top-verde",
@@ -12225,20 +12520,33 @@
       "https://d22fxaf9t8d39k.cloudfront.net/9ed84011c0f7f607432c187f40ec36f82b414e84b3d28269fc42305dd6efed95404368.jpg"
     ],
     "tallesDisponibles": [
-      "Único"
+      "S",
+      "M",
+      "L",
+      "XL"
     ],
     "colores": [],
     "activo": true,
     "destacado": false,
     "outlet": true,
-    "argentina": false,
     "stockMap": {
-      "Negro__M": 1
+      "Negro__S": 1,
+      "Negro__M": 1,
+      "Negro__L": 0,
+      "Crema__S": 1,
+      "Crema__M": null,
+      "Crema__L": 1,
+      "Verde oliva__S": 1,
+      "Verde oliva__M": null,
+      "Verde oliva__L": null
     },
     "stockTalles": {
-      "Único": 1
+      "S": null,
+      "M": null,
+      "L": null,
+      "XL": 1
     },
-    "stock": 1,
+    "stock": 10,
     "sku": "TOP-VERDE",
     "marca": null,
     "tags": null,
@@ -12447,7 +12755,7 @@
       "XL"
     ],
     "colores": [],
-    "activo": false,
+    "activo": true,
     "destacado": false,
     "outlet": false,
     "stockMap": {
