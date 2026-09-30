@@ -10257,7 +10257,6 @@
       "https://d22fxaf9t8d39k.cloudfront.net/63916cc7ca35026ef56aa0ca267d1043c9ca7fb0513e69e535a82aeea68bf7fa404368.jpg"
     ],
     "tallesDisponibles": [
-      "S",
       "M"
     ],
     "colores": [
@@ -10275,17 +10274,15 @@
     "activo": true,
     "destacado": false,
     "outlet": false,
+    "argentina": false,
     "stockMap": {
-      "Crema__S": 1,
       "Crema__M": null,
-      "Azul__S": null,
       "Azul__M": 1
     },
     "stockTalles": {
-      "S": null,
-      "M": null
+      "Único": 1
     },
-    "stock": 2,
+    "stock": 1,
     "sku": "SWEATER-ARRAIAL",
     "marca": null,
     "tags": null,
@@ -11494,56 +11491,6 @@
     "link": null
   },
   {
-    "id": "pantalon-custom-face",
-    "nombre": "Pantalon CUSTOM FACE",
-    "precio": 90000,
-    "precioAnterior": 130000,
-    "categoria": "hombre",
-    "subcategoria": "Pantalones",
-    "descripcion": "",
-    "imagen": "https://i.ibb.co/bR65cwR6/Gemini-Generated-Image-rreyrhrreyrhrrey.png",
-    "imagenes": [
-      "https://i.ibb.co/bR65cwR6/Gemini-Generated-Image-rreyrhrreyrhrrey.png",
-      "https://i.ibb.co/N6yw6zSq/Pantalon-CUSTOM-FACE.webp"
-    ],
-    "tallesDisponibles": [
-      "44"
-    ],
-    "colores": [
-      {
-        "nombre": "Negro",
-        "codigo": "#111111",
-        "stock": 0
-      }
-    ],
-    "activo": true,
-    "destacado": false,
-    "outlet": false,
-    "stockMap": {
-      "Negro__44": 2
-    },
-    "stockTalles": {
-      "S": 1,
-      "M": 1,
-      "L": 1,
-      "XL": 1
-    },
-    "stock": 10,
-    "sku": "PANTALON-CUSTOM-FACE",
-    "marca": null,
-    "tags": null,
-    "fabrica": null,
-    "cuidados": null,
-    "temporada": null,
-    "genero": null,
-    "peso": null,
-    "origen": null,
-    "proveedor": null,
-    "notas": null,
-    "costo": null,
-    "link": null
-  },
-  {
     "id": "pantalon-custom-faces",
     "nombre": "Pantalon CUSTOM FACES",
     "precio": 80000,
@@ -12635,7 +12582,7 @@
       "XL"
     ],
     "colores": [],
-    "activo": true,
+    "activo": false,
     "destacado": false,
     "outlet": false,
     "stockMap": {
