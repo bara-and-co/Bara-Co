@@ -2407,11 +2407,13 @@
     "outlet": false,
     "argentina": false,
     "stockMap": {
-      "Gris oscuro__40": 1,
-      "Gris oscuro__42": null
+      "Celeste__40": null,
+      "Celeste__42": null,
+      "#cc2929__40": null,
+      "#cc2929__42": null
     },
     "stockTalles": {
-      "42": null,
+      "42": 1,
       "46": 1
     },
     "stock": 4,
