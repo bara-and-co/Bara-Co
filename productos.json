@@ -7603,18 +7603,8 @@
     ],
     "colores": [
       {
-        "nombre": "Negro",
-        "codigo": "#111111",
-        "stock": 0
-      },
-      {
         "nombre": "Blanco",
         "codigo": "#FFFFFF",
-        "stock": 0
-      },
-      {
-        "nombre": "Gris",
-        "codigo": "#9E9E9E",
         "stock": 0
       },
       {
@@ -7633,15 +7623,9 @@
     "outlet": false,
     "argentina": false,
     "stockMap": {
-      "Negro__M": 1,
-      "Negro__L": null,
-      "Negro__XL": 0,
       "Blanco__M": null,
       "Blanco__L": 1,
       "Blanco__XL": null,
-      "Gris__M": 1,
-      "Gris__L": null,
-      "Gris__XL": null,
       "Camel__M": null,
       "Camel__L": 1,
       "Camel__XL": null,
