@@ -3099,7 +3099,7 @@
         "stock": 0
       }
     ],
-    "activo": true,
+    "activo": false,
     "destacado": false,
     "outlet": false,
     "argentina": false,
@@ -3162,7 +3162,7 @@
         "stock": 2
       }
     ],
-    "activo": true,
+    "activo": false,
     "destacado": false,
     "outlet": true,
     "argentina": false,
@@ -6268,8 +6268,8 @@
   {
     "id": "baggy-skater-celeste-1775054078355",
     "nombre": "Baggy Skater Celeste",
-    "precio": 65000,
-    "precioAnterior": null,
+    "precio": 55000,
+    "precioAnterior": 65000,
     "categoria": "hombre",
     "subcategoria": "Pantalones",
     "descripcion": "",
@@ -6279,11 +6279,8 @@
       "https://i.ibb.co/7xYVY0HD/IMG-8498.jpg"
     ],
     "tallesDisponibles": [
-      "38",
       "40",
-      "42",
-      "44",
-      "46"
+      "42"
     ],
     "colores": [
       {
@@ -6295,17 +6292,16 @@
     "activo": true,
     "destacado": false,
     "outlet": false,
+    "argentina": false,
     "stockMap": {
-      "Celeste__38": 1,
       "Celeste__40": 1,
-      "Celeste__42": 1,
-      "Celeste__44": 1,
-      "Celeste__46": 1
+      "Celeste__42": 1
     },
     "stockTalles": {
-      "XL": 2
+      "42": 1,
+      "46": 1
     },
-    "stock": 5,
+    "stock": 2,
     "sku": "BAGGY-SKATER-CELESTE",
     "marca": null,
     "tags": null,
