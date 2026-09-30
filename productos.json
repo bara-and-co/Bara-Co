@@ -2478,8 +2478,8 @@
   {
     "id": "jean-skater-cult-1776813802461",
     "nombre": "Jean Skater Cult",
-    "precio": 75000,
-    "precioAnterior": null,
+    "precio": 55000,
+    "precioAnterior": 75000,
     "categoria": "hombre",
     "subcategoria": "",
     "descripcion": "",
@@ -2490,12 +2490,10 @@
       "https://res.cloudinary.com/djk1znvr7/image/upload/v1776813801/bara/productos/dsdcqhga0nkwwalvryle.webp"
     ],
     "tallesDisponibles": [
-      "38",
       "40",
       "42",
       "44",
-      "46",
-      "48"
+      "46"
     ],
     "colores": [
       {
@@ -2507,20 +2505,15 @@
     "activo": true,
     "destacado": false,
     "outlet": false,
+    "argentina": false,
     "stockMap": {
-      "Azul__38": 1,
       "Azul__40": 1,
       "Azul__42": 1,
       "Azul__44": 1,
-      "Azul__46": 1,
-      "Azul__48": 1
+      "Azul__46": null
     },
     "stockTalles": {
-      "36": 1,
-      "38": 1,
-      "40": 1,
       "42": 1,
-      "44": 1,
       "46": 1
     },
     "stock": 6,
