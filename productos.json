@@ -10325,8 +10325,8 @@
   {
     "id": "remera-authentic",
     "nombre": "Remera AUTHENTIC",
-    "precio": 25000,
-    "precioAnterior": null,
+    "precio": 15000,
+    "precioAnterior": 25000,
     "categoria": "hombre",
     "subcategoria": "Remeras",
     "descripcion": "",
@@ -10344,8 +10344,10 @@
     "activo": true,
     "destacado": false,
     "outlet": false,
+    "argentina": false,
     "stockMap": {
-      "Blanco__L": 1
+      "Azul__S": null,
+      "Azul__M": 1
     },
     "stockTalles": {
       "S": null,
@@ -10355,6 +10357,7 @@
     },
     "stock": 10,
     "sku": "REMERA-AUTHENTIC",
+    "marca": null,
     "tags": null,
     "fabrica": null,
     "cuidados": null,
