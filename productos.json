@@ -12338,9 +12338,7 @@
       "https://d22fxaf9t8d39k.cloudfront.net/c6628a3210b1324d76a0e43c6b72f9b63750c2b2de76236d67f5710bb059bcef404368.jpg"
     ],
     "tallesDisponibles": [
-      "S",
-      "M",
-      "L"
+      "M"
     ],
     "colores": [
       {
@@ -12354,9 +12352,7 @@
     "outlet": false,
     "argentina": false,
     "stockMap": {
-      "Negro__S": null,
-      "Negro__M": 1,
-      "Negro__L": null
+      "Negro__M": 1
     },
     "stockTalles": null,
     "stock": 1,
