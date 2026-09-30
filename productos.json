@@ -12373,8 +12373,8 @@
   {
     "id": "campera-jean",
     "nombre": "Campera Jean",
-    "precio": 60000,
-    "precioAnterior": null,
+    "precio": 40000,
+    "precioAnterior": 60000,
     "categoria": "hombre",
     "subcategoria": "Camperas",
     "descripcion": "",
@@ -12397,16 +12397,17 @@
     "activo": true,
     "destacado": false,
     "outlet": false,
+    "argentina": false,
     "stockMap": {
       "Negro__S": 1,
       "Negro__M": 1,
       "Negro__L": 1
     },
     "stockTalles": {
-      "S": null,
-      "M": null,
-      "L": null,
-      "XL": null
+      "S": 1,
+      "M": 0,
+      "L": 1,
+      "XL": 2
     },
     "stock": 3,
     "sku": "CAMPERA-JEAN",
@@ -12701,7 +12702,7 @@
       "XL"
     ],
     "colores": [],
-    "activo": true,
+    "activo": false,
     "destacado": false,
     "outlet": false,
     "stockMap": {
