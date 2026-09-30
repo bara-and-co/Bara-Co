@@ -8148,8 +8148,7 @@
     ],
     "tallesDisponibles": [
       "S",
-      "M",
-      "L"
+      "M"
     ],
     "colores": [
       {
@@ -8166,16 +8165,17 @@
     "activo": true,
     "destacado": false,
     "outlet": false,
+    "argentina": false,
     "stockMap": {
       "Gris__S": 1,
       "Gris__M": null,
-      "Gris__L": null,
       "Azul marino__S": null,
-      "Azul marino__M": 1,
-      "Azul marino__L": null
+      "Azul marino__M": 1
     },
-    "stockTalles": null,
-    "stock": 3,
+    "stockTalles": {
+      "Único": 1
+    },
+    "stock": 2,
     "sku": "REMERA-OVER-PRINT-STONE",
     "marca": null,
     "tags": null,
