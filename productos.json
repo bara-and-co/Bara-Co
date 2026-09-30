@@ -2325,8 +2325,8 @@
   {
     "id": "jean-straight-1776893524306",
     "nombre": "Jean Straight",
-    "precio": 75000,
-    "precioAnterior": null,
+    "precio": 55000,
+    "precioAnterior": 75000,
     "categoria": "hombre",
     "subcategoria": "",
     "descripcion": "",
@@ -2339,26 +2339,35 @@
     ],
     "tallesDisponibles": [
       "40",
-      "42",
-      "44"
+      "42"
     ],
     "colores": [
       {
         "nombre": "Celeste",
         "codigo": "#81D4FA",
         "stock": 0
+      },
+      {
+        "nombre": "#cc2929",
+        "codigo": "#cc2929",
+        "stock": 0
       }
     ],
     "activo": true,
     "destacado": false,
     "outlet": false,
+    "argentina": false,
     "stockMap": {
       "Celeste__40": null,
       "Celeste__42": null,
-      "Celeste__44": null
+      "#cc2929__40": null,
+      "#cc2929__42": null
     },
-    "stockTalles": null,
-    "stock": null,
+    "stockTalles": {
+      "42": null,
+      "46": 1
+    },
+    "stock": 1,
     "sku": "JEAN-STRAIGHT",
     "marca": null,
     "tags": null,
