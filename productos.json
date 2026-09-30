@@ -7199,11 +7199,6 @@
     ],
     "colores": [
       {
-        "nombre": "Crema",
-        "codigo": "#F5F0E8",
-        "stock": 0
-      },
-      {
         "nombre": "Marrón",
         "codigo": "#795548",
         "stock": 1
@@ -7214,14 +7209,13 @@
     "outlet": false,
     "argentina": false,
     "stockMap": {
-      "Crema__42": null,
       "Marrón__42": 1
     },
     "stockTalles": {
       "42": 1,
       "46": 1
     },
-    "stock": 2,
+    "stock": 1,
     "sku": "PANTALON-ELIPSE",
     "marca": null,
     "tags": null,
