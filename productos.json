@@ -3069,7 +3069,7 @@
         "stock": 0
       }
     ],
-    "activo": true,
+    "activo": false,
     "destacado": false,
     "outlet": false,
     "argentina": false,
@@ -3132,7 +3132,7 @@
         "stock": 2
       }
     ],
-    "activo": true,
+    "activo": false,
     "destacado": false,
     "outlet": true,
     "argentina": false,
@@ -3741,7 +3741,7 @@
         "stock": 0
       }
     ],
-    "activo": true,
+    "activo": false,
     "destacado": false,
     "outlet": false,
     "stockMap": {
@@ -5206,7 +5206,7 @@
         "stock": 1
       }
     ],
-    "activo": true,
+    "activo": false,
     "destacado": false,
     "outlet": false,
     "stockMap": {
@@ -5265,7 +5265,7 @@
         "stock": 1
       }
     ],
-    "activo": true,
+    "activo": false,
     "destacado": false,
     "outlet": false,
     "stockMap": {
@@ -5326,7 +5326,7 @@
         "stock": 1
       }
     ],
-    "activo": true,
+    "activo": false,
     "destacado": false,
     "outlet": false,
     "stockMap": {
@@ -5643,7 +5643,7 @@
         "stock": 0
       }
     ],
-    "activo": true,
+    "activo": false,
     "destacado": false,
     "outlet": false,
     "argentina": false,
@@ -6265,17 +6265,16 @@
     "activo": true,
     "destacado": false,
     "outlet": false,
+    "argentina": false,
     "stockMap": {
       "Celeste__38": 1,
       "Celeste__40": 1,
-      "Celeste__42": 1,
-      "Celeste__44": 1,
-      "Celeste__46": 1
+      "Celeste__42": null,
+      "Celeste__44": null,
+      "Celeste__46": null
     },
-    "stockTalles": {
-      "XL": 2
-    },
-    "stock": 5,
+    "stockTalles": null,
+    "stock": 2,
     "sku": "BAGGY-SKATER-CELESTE",
     "marca": null,
     "tags": null,
@@ -8111,7 +8110,7 @@
         "stock": 0
       }
     ],
-    "activo": true,
+    "activo": false,
     "destacado": false,
     "outlet": false,
     "stockMap": {
@@ -9212,7 +9211,7 @@
       "Único"
     ],
     "colores": [],
-    "activo": true,
+    "activo": false,
     "destacado": false,
     "outlet": true,
     "stockMap": {
@@ -12451,7 +12450,7 @@
     ],
     "sku": "BODY",
     "stock": 10,
-    "activo": true
+    "activo": false
   },
   {
     "id": "top-verde",
