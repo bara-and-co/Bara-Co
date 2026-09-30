@@ -2346,11 +2346,6 @@
         "nombre": "Celeste",
         "codigo": "#81D4FA",
         "stock": 0
-      },
-      {
-        "nombre": "#cc2929",
-        "codigo": "#cc2929",
-        "stock": 0
       }
     ],
     "activo": true,
@@ -2358,13 +2353,11 @@
     "outlet": false,
     "argentina": false,
     "stockMap": {
-      "Celeste__40": null,
-      "Celeste__42": null,
-      "#cc2929__40": null,
-      "#cc2929__42": null
+      "Celeste__40": 1,
+      "Celeste__42": 1
     },
     "stockTalles": {
-      "42": null,
+      "42": 1,
       "46": 1
     },
     "stock": 1,
