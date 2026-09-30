@@ -14,7 +14,6 @@
       "https://res.cloudinary.com/djk1znvr7/image/upload/v1790293511/bara/productos/qw99objpzwpvf0rdgw0r.jpg"
     ],
     "tallesDisponibles": [
-      "40",
       "42",
       "44"
     ],
@@ -30,16 +29,11 @@
     "outlet": false,
     "argentina": false,
     "stockMap": {
-      "Beige__40": 1,
       "Beige__42": 1,
-      "Beige__44": 0
+      "Beige__44": 1
     },
-    "stockTalles": {
-      "38": null,
-      "40": null,
-      "42": null
-    },
-    "stock": 3,
+    "stockTalles": null,
+    "stock": 2,
     "sku": "CONJUNTO-TRIAL",
     "marca": null,
     "tags": null,
