@@ -2423,8 +2423,8 @@
   {
     "id": "jean-maxi-balloon-1776814560501",
     "nombre": "Jean Maxi Balloon",
-    "precio": 85000,
-    "precioAnterior": null,
+    "precio": 55000,
+    "precioAnterior": 85000,
     "categoria": "hombre",
     "subcategoria": "",
     "descripcion": "",
@@ -2436,8 +2436,7 @@
       "https://res.cloudinary.com/djk1znvr7/image/upload/v1776814560/bara/productos/jx98ron43ysh6yjgtaby.webp"
     ],
     "tallesDisponibles": [
-      "40",
-      "42"
+      "40"
     ],
     "colores": [
       {
@@ -2451,13 +2450,11 @@
     "outlet": false,
     "argentina": false,
     "stockMap": {
-      "Gris__40": 1,
-      "Gris__42": null
+      "Gris__40": 1
     },
     "stockTalles": {
-      "38": null,
-      "40": null,
-      "42": null
+      "42": null,
+      "46": 1
     },
     "stock": 1,
     "sku": "JEAN-MAXI-BALLOON",
