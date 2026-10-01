@@ -1546,7 +1546,7 @@
         "stock": 0
       }
     ],
-    "activo": true,
+    "activo": false,
     "destacado": false,
     "outlet": false,
     "argentina": false,
@@ -1616,7 +1616,7 @@
         "stock": 0
       }
     ],
-    "activo": true,
+    "activo": false,
     "destacado": false,
     "outlet": false,
     "argentina": false,
@@ -3051,7 +3051,7 @@
         "stock": 0
       }
     ],
-    "activo": true,
+    "activo": false,
     "destacado": false,
     "outlet": false,
     "argentina": false,
@@ -6337,7 +6337,7 @@
         "stock": 0
       }
     ],
-    "activo": true,
+    "activo": false,
     "destacado": false,
     "outlet": false,
     "argentina": false,
@@ -6492,13 +6492,16 @@
     ],
     "activo": true,
     "destacado": false,
-    "outlet": false,
+    "outlet": true,
     "argentina": false,
     "stockMap": {
       "Azul__Único": 1
     },
     "stockTalles": {
-      "Único": 1
+      "S": 1,
+      "M": 0,
+      "L": 1,
+      "XL": 2
     },
     "stock": 1,
     "sku": "BLAZER-RAYAS",
