@@ -1,5 +1,59 @@
 [
   {
+    "id": "vestido-marylin-tramado-1791068284462",
+    "nombre": "Vestido Marylin Tramado",
+    "precio": 35000,
+    "precioAnterior": null,
+    "categoria": "mujer",
+    "subcategoria": "Vestidos",
+    "descripcion": "",
+    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1791068242/bara/productos/wnwqlexrixsjd46cjlub.webp",
+    "imagenes": [
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1791068242/bara/productos/wnwqlexrixsjd46cjlub.webp",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1791068250/bara/productos/wi3o4b9hsit0jwvkzkvz.webp",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1791068266/bara/productos/qhcmln0qkmi80yxbdojr.webp",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1791068280/bara/productos/zcllvukidmx3kvugz6kx.webp"
+    ],
+    "tallesDisponibles": [
+      "Único"
+    ],
+    "colores": [
+      {
+        "nombre": "Negro",
+        "codigo": "#111111",
+        "stock": 0
+      },
+      {
+        "nombre": "Blanco",
+        "codigo": "#FFFFFF",
+        "stock": 0
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "argentina": false,
+    "stockMap": {
+      "Negro__Único": 1,
+      "Blanco__Único": 1
+    },
+    "stockTalles": null,
+    "stock": 2,
+    "sku": "VESTIDO-MARYLIN-TRAMADO",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "musculosa-pico-encaje-1791067887772",
     "nombre": "Musculosa Pico Encaje",
     "precio": 25000,
