@@ -196,18 +196,12 @@
     "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1790861003/bara/productos/lyf6llobhatxzw6nhqdf.jpg",
     "imagenes": [
       "https://res.cloudinary.com/djk1znvr7/image/upload/v1790861003/bara/productos/lyf6llobhatxzw6nhqdf.jpg",
-      "https://res.cloudinary.com/djk1znvr7/image/upload/v1790865955/bara/productos/cgxxpmk7huobkt9v7dyr.jpg",
       "https://res.cloudinary.com/djk1znvr7/image/upload/v1790865963/bara/productos/dcksvvnyjtk9xct63mw7.jpg"
     ],
     "tallesDisponibles": [
       "Único"
     ],
     "colores": [
-      {
-        "nombre": "Negro",
-        "codigo": "#111111",
-        "stock": 0
-      },
       {
         "nombre": "Blanco",
         "codigo": "#FFFFFF",
@@ -224,7 +218,6 @@
     "outlet": false,
     "argentina": false,
     "stockMap": {
-      "Negro__Único": 1,
       "Blanco__Único": 1,
       "Crema__Único": 1
     },
@@ -234,7 +227,7 @@
       "L": 1,
       "XL": 2
     },
-    "stock": 3,
+    "stock": 2,
     "sku": "VESTIDO-ENCAJE-JUDY-JAPONES",
     "marca": null,
     "tags": null,
@@ -12709,7 +12702,7 @@
     ],
     "sku": "BODY",
     "stock": 10,
-    "activo": true
+    "activo": false
   },
   {
     "id": "top-verde",
@@ -12908,7 +12901,7 @@
     ],
     "sku": "SHORT-CINTURON",
     "stock": 10,
-    "activo": true
+    "activo": false
   },
   {
     "id": "short-nova",
@@ -12938,7 +12931,7 @@
     ],
     "sku": "SHORT-NOVA",
     "stock": 10,
-    "activo": true
+    "activo": false
   },
   {
     "id": "remera-disco",
