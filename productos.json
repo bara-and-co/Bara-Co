@@ -1,5 +1,52 @@
 [
   {
+    "id": "vestido-snake-1791064790059",
+    "nombre": "Vestido Snake",
+    "precio": 35000,
+    "precioAnterior": null,
+    "categoria": "mujer",
+    "subcategoria": "Vestidos",
+    "descripcion": "",
+    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1791064774/bara/productos/pbij3grd7hv72zrcbopl.webp",
+    "imagenes": [
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1791064774/bara/productos/pbij3grd7hv72zrcbopl.webp",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1791064782/bara/productos/hlagp51idqtqzb54ffjk.webp",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1791064788/bara/productos/mmaehp6cbr5pfom6bgfa.webp"
+    ],
+    "tallesDisponibles": [
+      "Único"
+    ],
+    "colores": [
+      {
+        "nombre": "Blanco",
+        "codigo": "#FFFFFF",
+        "stock": 0
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "argentina": false,
+    "stockMap": {
+      "Blanco__Único": 1
+    },
+    "stockTalles": null,
+    "stock": 1,
+    "sku": "VESTIDO-SNAKE",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "bucaramanga-1791041087760",
     "nombre": "Bucaramanga",
     "precio": 70000,
