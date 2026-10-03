@@ -2735,7 +2735,6 @@
     "tallesDisponibles": [
       "40",
       "42",
-      "44",
       "46"
     ],
     "colores": [
@@ -2752,12 +2751,13 @@
     "stockMap": {
       "Azul__40": 1,
       "Azul__42": 1,
-      "Azul__44": 1,
       "Azul__46": null
     },
     "stockTalles": {
-      "42": 1,
-      "46": 1
+      "S": 1,
+      "M": 0,
+      "L": 1,
+      "XL": 2
     },
     "stock": 6,
     "sku": "JEAN-SKATER-CULT",
