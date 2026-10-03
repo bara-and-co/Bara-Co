@@ -1,17 +1,17 @@
 [
   {
-    "id": "bucaramanga-1791040932918",
+    "id": "bucaramanga-1791041087760",
     "nombre": "Bucaramanga",
     "precio": 70000,
     "precioAnterior": null,
     "categoria": "accesorios",
     "subcategoria": "Zapatillas",
     "descripcion": "",
-    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1791040912/bara/productos/qmcoxpxqfmrty8l1c4gn.webp",
+    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1791041071/bara/productos/y6kjmjn7gffmsp13ieos.webp",
     "imagenes": [
-      "https://res.cloudinary.com/djk1znvr7/image/upload/v1791040912/bara/productos/qmcoxpxqfmrty8l1c4gn.webp",
-      "https://res.cloudinary.com/djk1znvr7/image/upload/v1791040921/bara/productos/xlctglugcs2jbkvj5epb.webp",
-      "https://res.cloudinary.com/djk1znvr7/image/upload/v1791040928/bara/productos/z0j1mnwcwkfn3ef1wdmo.webp"
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1791041071/bara/productos/y6kjmjn7gffmsp13ieos.webp",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1791041076/bara/productos/xhhgzcem9nc7mkr8vrjb.webp",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1791041082/bara/productos/xp1ukoiiburnwlzkkp4i.webp"
     ],
     "tallesDisponibles": [
       "40",
@@ -41,19 +41,14 @@
       "Negro__42": 1,
       "Negro__44": 1,
       "Negro__41": 2,
-      "Negro__43": 2,
+      "Negro__43": 1,
       "Blanco__40": 1,
       "Blanco__42": 1,
       "Blanco__44": 1,
       "Blanco__41": 2,
-      "Blanco__43": 2
+      "Blanco__43": 1
     },
-    "stockTalles": {
-      "S": 1,
-      "M": 0,
-      "L": 1,
-      "XL": 2
-    },
+    "stockTalles": null,
     "stock": 10,
     "sku": "BUCARAMANGA",
     "marca": null,
