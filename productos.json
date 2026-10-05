@@ -1,5 +1,51 @@
 [
   {
+    "id": "body-irregular-tull-stras-1791241661374",
+    "nombre": "Body Irregular Tull Stras",
+    "precio": 30000,
+    "precioAnterior": null,
+    "categoria": "mujer",
+    "subcategoria": "Bodies",
+    "descripcion": "",
+    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1791241609/bara/productos/in9clbdj6188am7bgah2.webp",
+    "imagenes": [
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1791241609/bara/productos/in9clbdj6188am7bgah2.webp",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1791241616/bara/productos/ch5fgcqyzzjihowmfl82.webp"
+    ],
+    "tallesDisponibles": [
+      "Único"
+    ],
+    "colores": [
+      {
+        "nombre": "Negro",
+        "codigo": "#111111",
+        "stock": 0
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "argentina": false,
+    "stockMap": {
+      "Negro__Único": 1
+    },
+    "stockTalles": null,
+    "stock": 1,
+    "sku": "BODY-IRREGULAR-TULL-STRAS",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "body-mystic-1791241413163",
     "nombre": "Body Mystic",
     "precio": 30000,
