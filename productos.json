@@ -1,5 +1,58 @@
 [
   {
+    "id": "baggy-nevado-con-cadena-1791329420727",
+    "nombre": "Baggy Nevado con Cadena",
+    "precio": 60000,
+    "precioAnterior": null,
+    "categoria": "unisex",
+    "subcategoria": "Pantalones",
+    "descripcion": "",
+    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1791329230/bara/productos/ilzvm8vb47okiw1pasal.jpg",
+    "imagenes": [
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1791329230/bara/productos/ilzvm8vb47okiw1pasal.jpg"
+    ],
+    "tallesDisponibles": [
+      "36",
+      "38",
+      "40",
+      "42",
+      "44"
+    ],
+    "colores": [
+      {
+        "nombre": "Gris",
+        "codigo": "#9E9E9E",
+        "stock": 0
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "argentina": false,
+    "stockMap": {
+      "Gris__36": 1,
+      "Gris__38": 1,
+      "Gris__40": 1,
+      "Gris__42": 1,
+      "Gris__44": 1
+    },
+    "stockTalles": null,
+    "stock": 5,
+    "sku": "BAGGY-NEVADO-CON-CADENA",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "baggy-pink-1791327268078",
     "nombre": "Baggy Pink",
     "precio": 50000,
