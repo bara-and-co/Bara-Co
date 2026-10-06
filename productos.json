@@ -1,5 +1,74 @@
 [
   {
+    "id": "baggy-anomaly-1791321002957",
+    "nombre": "Baggy Anomaly",
+    "precio": 85000,
+    "precioAnterior": null,
+    "categoria": "unisex",
+    "subcategoria": "Pantalones",
+    "descripcion": "",
+    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1791320965/bara/productos/yt2jdswjavrsdlknf00f.jpg",
+    "imagenes": [
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1791320965/bara/productos/yt2jdswjavrsdlknf00f.jpg",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1791320985/bara/productos/x8skn5gicppk8nqop47r.webp",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1791320994/bara/productos/mvfhsfpulubhm9tvnk6n.webp",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1791321002/bara/productos/qdlgmbih822dcsecidno.webp"
+    ],
+    "tallesDisponibles": [
+      "36",
+      "38",
+      "40",
+      "42",
+      "44",
+      "46"
+    ],
+    "colores": [
+      {
+        "nombre": "Negro",
+        "codigo": "#111111",
+        "stock": 0
+      },
+      {
+        "nombre": "Blanco",
+        "codigo": "#FFFFFF",
+        "stock": 0
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "argentina": false,
+    "stockMap": {
+      "Negro__36": 1,
+      "Negro__38": 1,
+      "Negro__40": 1,
+      "Negro__42": null,
+      "Negro__44": null,
+      "Negro__46": null,
+      "Blanco__36": null,
+      "Blanco__38": null,
+      "Blanco__40": null,
+      "Blanco__42": 2,
+      "Blanco__44": 1,
+      "Blanco__46": 1
+    },
+    "stockTalles": null,
+    "stock": 7,
+    "sku": "BAGGY-ANOMALY",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "vestido-largo-marylin-1791242408630",
     "nombre": "Vestido Largo Marylin",
     "precio": 55000,
