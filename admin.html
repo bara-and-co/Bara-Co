@@ -2126,6 +2126,7 @@
               <option value="new">✨ New Collection</option>
               <option value="hombre">👔 Hombre</option>
               <option value="mujer">👗 Mujer</option>
+              <option value="unisex">⚥ Unisex</option>
               <option value="accesorios">👜 Accesorios</option>
             </select>
           </div>
@@ -2904,6 +2905,7 @@ function renderGrid() {
     new:'badge-new', 
     hombre:'badge-hom', 
     mujer:'badge-muj', 
+    unisex:'badge-uni',
     accesorios:'badge-acc',
     lentes:'badge-lentes',
     bijouterie:'badge-bijou',
@@ -2917,6 +2919,7 @@ function renderGrid() {
     new:'New', 
     hombre:'Hombre', 
     mujer:'Mujer', 
+    unisex:'Unisex',
     accesorios:'Acces.',
     lentes:'Lentes',
     bijouterie:'Bijou',
@@ -2942,7 +2945,7 @@ function renderGrid() {
       filterCat === 'argentina' ? isArgentinaProduct(p) :
       filterCat === 'hombre' ? (p.genero ? p.genero === 'masculino' : p.categoria === 'hombre') :
       filterCat === 'mujer' ? (p.genero ? p.genero === 'femenino' : p.categoria === 'mujer') :
-      filterCat === 'unisex' ? (p.genero === 'unisex') :
+      filterCat === 'unisex' ? (p.genero === 'unisex' || p.categoria === 'unisex') :
       p.categoria === filterCat || p.subcategoria === filterCat
     ))
   );
@@ -3831,6 +3834,7 @@ function updateSubcategorias() {
       'Camperas', 'Blazers', 'Cardigans', 'Buzos', 'Sweaters',
       'Shorts', 'Bermudas', 'Conjuntos', 'Lencería / Ropa interior'
     ],
+    unisex: ['Camperas', 'Remeras', 'Camisas', 'Musculosa', 'Pantalones', 'Joggings', 'Buzos', 'Sweaters', 'Conjuntos', 'Bermudas', 'Shorts'],
     accesorios: ['Abanicos', 'Gorras', 'Cintos', 'Pilusos', 'Lentes de sol', 'Bijouterie hombre', 'Bijouterie mujer', 'Billeteras', 'Riñoneras', 'Medias', 'Boxers', 'Zapatillas'],
     new: ['Camperas', 'Remeras', 'Pantalones', 'Vestidos', 'Conjuntos', 'Tops', 'Buzos', 'Accesorios']
   };
@@ -4949,8 +4953,8 @@ function toggleStockField(show) {
   document.getElementById('stockField').style.display = show ? 'block' : 'none';
 }
 
-const TODAS_CATS = ['new','hombre','mujer','accesorios','lentes','bijouterie','billeteras','medias','boxers','zapatillas','sale'];
-const CAT_LABELS = { new:'✨ New', hombre:'👔 Hombre', mujer:'👗 Mujer', accesorios:'👜 Accesorios', lentes:'🕶️ Lentes', bijouterie:'💍 Bijouterie', billeteras:'👝 Billeteras', medias:'🧦 Medias', boxers:'🩲 Boxers', zapatillas:'👟 Zapatillas', sale:'🏷️ Sale' };
+const TODAS_CATS = ['new','hombre','mujer','unisex','accesorios','lentes','bijouterie','billeteras','medias','boxers','zapatillas','sale'];
+const CAT_LABELS = { new:'✨ New', hombre:'👔 Hombre', mujer:'👗 Mujer', unisex:'⚥ Unisex', accesorios:'👜 Accesorios', lentes:'🕶️ Lentes', bijouterie:'💍 Bijouterie', billeteras:'👝 Billeteras', medias:'🧦 Medias', boxers:'🩲 Boxers', zapatillas:'👟 Zapatillas', sale:'🏷️ Sale' };
 
 function renderCatPills() {
   const wrap = document.getElementById('catPillsWrap');
