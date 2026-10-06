@@ -1,5 +1,55 @@
 [
   {
+    "id": "baggy-almafuerte-1791330328531",
+    "nombre": "Baggy Almafuerte",
+    "precio": 60000,
+    "precioAnterior": null,
+    "categoria": "unisex",
+    "subcategoria": "Pantalones",
+    "descripcion": "",
+    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1791330302/bara/productos/qvusokprzrmj8wbd2v3a.jpg",
+    "imagenes": [
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1791330302/bara/productos/qvusokprzrmj8wbd2v3a.jpg",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1791330322/bara/productos/zi28e76ms1k52kkagj47.webp"
+    ],
+    "tallesDisponibles": [
+      "42",
+      "44"
+    ],
+    "colores": [
+      {
+        "nombre": "Gris",
+        "codigo": "#9E9E9E",
+        "stock": 0
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "argentina": false,
+    "stockMap": {
+      "Gris__42": 1,
+      "Gris__44": null
+    },
+    "stockTalles": {
+      "Único": 1
+    },
+    "stock": 1,
+    "sku": "BAGGY-ALMAFUERTE",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "baggy-nevado-con-cadena-1791329420727",
     "nombre": "Baggy Nevado con Cadena",
     "precio": 60000,
