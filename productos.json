@@ -1,5 +1,57 @@
 [
   {
+    "id": "baggy-versalles-1791323175172",
+    "nombre": "Baggy Versalles",
+    "precio": 70000,
+    "precioAnterior": null,
+    "categoria": "unisex",
+    "subcategoria": "Pantalones",
+    "descripcion": "",
+    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1791323157/bara/productos/ihibnmeorglrtmvunep3.jpg",
+    "imagenes": [
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1791323157/bara/productos/ihibnmeorglrtmvunep3.jpg",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1791323168/bara/productos/vhhoneatsccdnlrrsank.jpg"
+    ],
+    "tallesDisponibles": [
+      "36",
+      "38",
+      "42",
+      "44"
+    ],
+    "colores": [
+      {
+        "nombre": "Celeste",
+        "codigo": "#81D4FA",
+        "stock": 0
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "argentina": false,
+    "stockMap": {
+      "Celeste__36": 1,
+      "Celeste__38": 1,
+      "Celeste__42": 1,
+      "Celeste__44": 1
+    },
+    "stockTalles": null,
+    "stock": 4,
+    "sku": "BAGGY-VERSALLES",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "baggy-anomaly-1791321002957",
     "nombre": "Baggy Anomaly",
     "precio": 85000,
