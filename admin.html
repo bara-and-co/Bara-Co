@@ -3825,6 +3825,14 @@ function addCustomColor() {}
 function updateSubcategorias() {
   const cat = document.getElementById('fCat').value;
   const subSelect = document.getElementById('fSub');
+
+  // Mantener categoría y público sincronizados para prendas Unisex.
+  // Evita que una prenda guardada como categoría "unisex" quede sin `genero`
+  // y luego no sea detectada por filtros antiguos de la tienda.
+  if (cat === 'unisex') {
+    const generoSelect = document.getElementById('fGenero');
+    if (generoSelect) generoSelect.value = 'unisex';
+  }
   const options = {
     hombre: ['Camperas', 'Remeras', 'Camisas', 'Musculosa', 'Pantalones', 'Buzos', 'Sweaters', 'Conjuntos', 'Bermudas', 'Shorts'],
     mujer: [
