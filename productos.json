@@ -1,5 +1,68 @@
 [
   {
+    "id": "remera-mwt-over-1791416739541",
+    "nombre": "Remera MWT Over",
+    "precio": 30000,
+    "precioAnterior": null,
+    "categoria": "unisex",
+    "subcategoria": "Remeras",
+    "descripcion": "",
+    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1791416698/bara/productos/kpvzz2ewyifmrgcj20mg.jpg",
+    "imagenes": [
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1791416698/bara/productos/kpvzz2ewyifmrgcj20mg.jpg",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1791416704/bara/productos/avhqyj0tstreib0mmxok.webp",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1791416710/bara/productos/ivhtsp5hryhwvklsseaw.webp",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1791416717/bara/productos/eumz5mlhw4n8qpqiieen.webp",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1791416723/bara/productos/sfa99lre4foilvwlvx9g.webp"
+    ],
+    "tallesDisponibles": [
+      "M",
+      "L",
+      "XL"
+    ],
+    "colores": [
+      {
+        "nombre": "Negro",
+        "codigo": "#111111",
+        "stock": 0
+      },
+      {
+        "nombre": "Marrón",
+        "codigo": "#795548",
+        "stock": 0
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "argentina": false,
+    "stockMap": {
+      "Negro__M": 1,
+      "Negro__L": null,
+      "Negro__XL": null,
+      "Marrón__M": null,
+      "Marrón__L": 1,
+      "Marrón__XL": 1
+    },
+    "stockTalles": {
+      "Único": 1
+    },
+    "stock": 3,
+    "sku": "REMERA-MWT-OVER",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "chomba-tejida-rayada-1791414573054",
     "nombre": "Chomba Tejida Rayada",
     "precio": 40000,
