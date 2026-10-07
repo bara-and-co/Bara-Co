@@ -10,7 +10,8 @@
     "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1791330302/bara/productos/qvusokprzrmj8wbd2v3a.jpg",
     "imagenes": [
       "https://res.cloudinary.com/djk1znvr7/image/upload/v1791330302/bara/productos/qvusokprzrmj8wbd2v3a.jpg",
-      "https://res.cloudinary.com/djk1znvr7/image/upload/v1791330322/bara/productos/zi28e76ms1k52kkagj47.webp"
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1791330322/bara/productos/zi28e76ms1k52kkagj47.webp",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1791382672/bara/productos/pzsns5pd6bpiaptto6g1.jpg"
     ],
     "tallesDisponibles": [
       "42",
@@ -31,7 +32,9 @@
       "Gris__42": 1,
       "Gris__44": null
     },
-    "stockTalles": null,
+    "stockTalles": {
+      "Único": 1
+    },
     "stock": 1,
     "sku": "BAGGY-ALMAFUERTE",
     "marca": null,
