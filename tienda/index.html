@@ -848,7 +848,7 @@ const CAT_CONFIG = {
 function productoPerteneceA(p, cat) {
   if (cat === 'hombre') return p.genero ? p.genero === 'masculino' : p.categoria === 'hombre';
   if (cat === 'mujer')  return p.genero ? p.genero === 'femenino'  : p.categoria === 'mujer';
-  if (cat === 'unisex') return p.genero === 'unisex';
+  if (cat === 'unisex') return p.genero === 'unisex' || p.categoria === 'unisex';
   return p.categoria === cat;
 }
 
@@ -1053,8 +1053,8 @@ function buildCard(p) {
 // ========== RENDERIZAR ==========
 function renderizarProductos() {
   const grid = document.getElementById('prodGrid');
-  const cats = ['new','hombre','mujer','accesorios'];
-  const nombres = { new:'New Collection', hombre:'Hombre', mujer:'Mujer', accesorios:'Accesorios' };
+  const cats = ['new','hombre','mujer','unisex','accesorios'];
+  const nombres = { new:'New Collection', hombre:'Hombre', mujer:'Mujer', unisex:'Unisex', accesorios:'Accesorios' };
   let html = '';
   cats.forEach(cat => {
     const items = productos.filter(p => p.categoria === cat);
