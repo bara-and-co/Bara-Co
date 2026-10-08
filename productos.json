@@ -1,5 +1,76 @@
 [
   {
+    "id": "camisa-lino-beyond-1791472279983",
+    "nombre": "Camisa Lino  Beyond",
+    "precio": 45000,
+    "precioAnterior": null,
+    "categoria": "hombre",
+    "subcategoria": "Camisas",
+    "descripcion": "",
+    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1791472266/bara/productos/tmgshrnv1zsxdksrzgyd.jpg",
+    "imagenes": [
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1791472266/bara/productos/tmgshrnv1zsxdksrzgyd.jpg",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1791472272/bara/productos/my74m1pzqq1toyunmzr9.jpg",
+      "__loading__blob:https://baraandco.com.ar/a1323524-c37c-4a86-9afa-b488a998ecba"
+    ],
+    "tallesDisponibles": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "colores": [
+      {
+        "nombre": "Negro",
+        "codigo": "#111111",
+        "stock": 0
+      },
+      {
+        "nombre": "Beige",
+        "codigo": "#D4B896",
+        "stock": 0
+      },
+      {
+        "nombre": "Verde oliva",
+        "codigo": "#827717",
+        "stock": 0
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "argentina": false,
+    "stockMap": {
+      "Negro__S": null,
+      "Negro__M": null,
+      "Negro__L": 1,
+      "Negro__XL": null,
+      "Beige__S": 1,
+      "Beige__M": 0,
+      "Beige__L": 0,
+      "Beige__XL": 1,
+      "Verde oliva__S": null,
+      "Verde oliva__M": 1,
+      "Verde oliva__L": null,
+      "Verde oliva__XL": null
+    },
+    "stockTalles": null,
+    "stock": 4,
+    "sku": "CAMISA-LINO--BEYOND",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "remera-mwt-over-1791416739541",
     "nombre": "Remera MWT Over",
     "precio": 30000,
