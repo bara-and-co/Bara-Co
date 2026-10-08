@@ -1910,8 +1910,8 @@
       "https://res.cloudinary.com/djk1znvr7/image/upload/v1789516066/bara/productos/h24pckye8mbykppzeaxx.jpg"
     ],
     "tallesDisponibles": [
-      "38",
-      "40"
+      "40",
+      "42"
     ],
     "colores": [
       {
@@ -1925,10 +1925,15 @@
     "outlet": false,
     "argentina": false,
     "stockMap": {
-      "Gris__38": 1,
-      "Gris__40": 1
+      "Gris__40": 1,
+      "Gris__42": 1
     },
-    "stockTalles": null,
+    "stockTalles": {
+      "S": null,
+      "M": null,
+      "L": null,
+      "XL": null
+    },
     "stock": 2,
     "sku": "JEAN-UPS-GRIS",
     "marca": null,
