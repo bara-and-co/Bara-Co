@@ -1773,7 +1773,7 @@
     "precio": 100000,
     "precioAnterior": null,
     "categoria": "hombre",
-    "subcategoria": "",
+    "subcategoria": "Conjuntos",
     "descripcion": "",
     "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1790779687/bara/productos/wdcz2dnr4s9wwjodghpy.jpg",
     "imagenes": [
@@ -1781,8 +1781,7 @@
       "https://res.cloudinary.com/djk1znvr7/image/upload/v1790779696/bara/productos/oeodmjzpxeexsjzgwoht.jpg"
     ],
     "tallesDisponibles": [
-      "40",
-      "42"
+      "44"
     ],
     "colores": [
       {
@@ -1796,10 +1795,14 @@
     "outlet": false,
     "argentina": false,
     "stockMap": {
-      "Gris oscuro__40": 1,
-      "Gris oscuro__42": null
+      "Gris oscuro__44": 1
     },
-    "stockTalles": null,
+    "stockTalles": {
+      "S": null,
+      "M": null,
+      "L": null,
+      "XL": null
+    },
     "stock": 1,
     "sku": "CONJUNTO-TRIAL-HOJAS",
     "marca": null,
