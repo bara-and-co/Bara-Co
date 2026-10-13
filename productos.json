@@ -10,7 +10,8 @@
     "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1791931614/bara/productos/bu5q7wnk6dz3thuqbhck.webp",
     "imagenes": [
       "https://res.cloudinary.com/djk1znvr7/image/upload/v1791931614/bara/productos/bu5q7wnk6dz3thuqbhck.webp",
-      "https://res.cloudinary.com/djk1znvr7/image/upload/v1791931619/bara/productos/qfa4m63nwpkaxgvcjzym.webp"
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1791931781/bara/productos/gzmupxfrutdi3k5eabba.webp",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1791931787/bara/productos/m8mxkqp53gnjb1tywqlt.webp"
     ],
     "tallesDisponibles": [
       "Único"
@@ -25,6 +26,11 @@
         "nombre": "Crema",
         "codigo": "#F5F0E8",
         "stock": 0
+      },
+      {
+        "nombre": "Marrón",
+        "codigo": "#795548",
+        "stock": 0
       }
     ],
     "activo": true,
@@ -33,10 +39,11 @@
     "argentina": false,
     "stockMap": {
       "Negro__Único": 1,
-      "Crema__Único": 1
+      "Crema__Único": 1,
+      "Marrón__Único": 1
     },
     "stockTalles": null,
-    "stock": 2,
+    "stock": 3,
     "sku": "BODY-ENCAJE-CRUZADO-JAZMÍN",
     "marca": null,
     "tags": null,
