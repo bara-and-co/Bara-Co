@@ -6171,7 +6171,7 @@
         "stock": 0
       }
     ],
-    "activo": true,
+    "activo": false,
     "destacado": false,
     "outlet": false,
     "stockMap": {
@@ -6375,21 +6375,13 @@
       "https://res.cloudinary.com/djk1znvr7/image/upload/v1776177292/bara/productos/azvsxyzjonktz0ya9dsu.jpg"
     ],
     "tallesDisponibles": [
-      "S",
-      "M",
-      "L",
-      "XL"
+      "M"
     ],
     "colores": [
       {
-        "nombre": "Negro",
-        "codigo": "#111111",
-        "stock": 1
-      },
-      {
-        "nombre": "Crema",
-        "codigo": "#F5F0E8",
-        "stock": 2
+        "nombre": "Beige",
+        "codigo": "#D4B896",
+        "stock": 0
       }
     ],
     "activo": true,
@@ -6397,19 +6389,10 @@
     "outlet": false,
     "argentina": false,
     "stockMap": {
-      "Negro__S": 1,
-      "Negro__M": 1,
-      "Negro__L": 1,
-      "Negro__XL": 1,
-      "Crema__S": 1,
-      "Crema__M": 1,
-      "Crema__L": null,
-      "Crema__XL": 1
+      "Beige__M": 1
     },
-    "stockTalles": {
-      "Único": 1
-    },
-    "stock": 4,
+    "stockTalles": null,
+    "stock": 1,
     "sku": "CAMPERA-COMBINADA-BORDADA",
     "marca": null,
     "tags": null,
