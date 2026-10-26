@@ -1,5 +1,59 @@
 [
   {
+    "id": "remera-chacago-1793055139920",
+    "nombre": "Remera Chacago",
+    "precio": 25000,
+    "precioAnterior": null,
+    "categoria": "hombre",
+    "subcategoria": "Remeras",
+    "descripcion": "",
+    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1793055136/bara/productos/squzabgfbjzgb0rxkaml.jpg",
+    "imagenes": [
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1793055136/bara/productos/squzabgfbjzgb0rxkaml.jpg"
+    ],
+    "tallesDisponibles": [
+      "M",
+      "L"
+    ],
+    "colores": [
+      {
+        "nombre": "Blanco",
+        "codigo": "#FFFFFF",
+        "stock": 0
+      },
+      {
+        "nombre": "Rojo",
+        "codigo": "#E53935",
+        "stock": 0
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "argentina": false,
+    "stockMap": {
+      "Blanco__M": 1,
+      "Blanco__L": null,
+      "Rojo__M": null,
+      "Rojo__L": 1
+    },
+    "stockTalles": null,
+    "stock": 2,
+    "sku": "REMERA-CHACAGO",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "remeta-hilo-calada-1792682174697",
     "nombre": "Remeta Hilo Calada",
     "precio": 55000,
