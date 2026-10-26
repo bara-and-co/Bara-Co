@@ -1,5 +1,60 @@
 [
   {
+    "id": "remera-ba-1793055383498",
+    "nombre": "Remera BA",
+    "precio": 25000,
+    "precioAnterior": null,
+    "categoria": "hombre",
+    "subcategoria": "Remeras",
+    "descripcion": "",
+    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1793055375/bara/productos/hee5sqmwt93pniovnesc.webp",
+    "imagenes": [
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1793055375/bara/productos/hee5sqmwt93pniovnesc.webp",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1793055380/bara/productos/yyby425yrlvcs2fhfmnw.webp"
+    ],
+    "tallesDisponibles": [
+      "L",
+      "XL"
+    ],
+    "colores": [
+      {
+        "nombre": "Negro",
+        "codigo": "#111111",
+        "stock": 0
+      },
+      {
+        "nombre": "Rojo",
+        "codigo": "#E53935",
+        "stock": 0
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "argentina": false,
+    "stockMap": {
+      "Negro__L": null,
+      "Negro__XL": 1,
+      "Rojo__L": 1,
+      "Rojo__XL": null
+    },
+    "stockTalles": null,
+    "stock": 2,
+    "sku": "REMERA-BA",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "remera-chacago-1793055139920",
     "nombre": "Remera Chacago",
     "precio": 25000,
