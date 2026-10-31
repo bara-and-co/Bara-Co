@@ -4292,7 +4292,7 @@
         "stock": 0
       }
     ],
-    "activo": true,
+    "activo": false,
     "destacado": false,
     "outlet": false,
     "argentina": false,
@@ -4344,7 +4344,7 @@
         "stock": 0
       }
     ],
-    "activo": true,
+    "activo": false,
     "destacado": false,
     "outlet": false,
     "argentina": false,
@@ -8050,7 +8050,7 @@
         "stock": 0
       }
     ],
-    "activo": true,
+    "activo": false,
     "destacado": false,
     "outlet": false,
     "argentina": false,
@@ -11849,7 +11849,7 @@
   {
     "id": "campera-jean-clasica",
     "nombre": "Campera JEAN clásica",
-    "precio": 75000,
+    "precio": 50000,
     "precioAnterior": null,
     "categoria": "hombre",
     "subcategoria": "Camperas",
@@ -11871,11 +11871,12 @@
     "activo": true,
     "destacado": false,
     "outlet": false,
+    "argentina": false,
     "stockMap": {
       "Celeste__XL": 2
     },
     "stockTalles": {
-      "XL": 2
+      "42": null
     },
     "stock": 2,
     "sku": "CAMPERA-JEAN-CLASICA",
@@ -14822,7 +14823,7 @@
         "stock": 0
       }
     ],
-    "activo": true,
+    "activo": false,
     "destacado": false,
     "outlet": false,
     "argentina": false,
