@@ -1,5 +1,67 @@
 [
   {
+    "id": "bermuda-rustica-1794954835573",
+    "nombre": "Bermuda Rustica",
+    "precio": 35000,
+    "precioAnterior": null,
+    "categoria": "hombre",
+    "subcategoria": "Bermudas",
+    "descripcion": "",
+    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1794954817/bara/productos/fwxdbh2qbeiytjx10fhv.webp",
+    "imagenes": [
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1794954817/bara/productos/fwxdbh2qbeiytjx10fhv.webp",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1794954828/bara/productos/fht7gyvidj8ewgqz9nok.webp",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1794954833/bara/productos/a12g5y6wqjtudhwcfged.webp"
+    ],
+    "tallesDisponibles": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "colores": [
+      {
+        "nombre": "Negro",
+        "codigo": "#111111",
+        "stock": 0
+      },
+      {
+        "nombre": "Gris",
+        "codigo": "#9E9E9E",
+        "stock": 0
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "argentina": false,
+    "stockMap": {
+      "Negro__S": 1,
+      "Negro__M": 1,
+      "Negro__L": 1,
+      "Negro__XL": 1,
+      "Gris__S": 1,
+      "Gris__M": 1,
+      "Gris__L": 1,
+      "Gris__XL": 1
+    },
+    "stockTalles": null,
+    "stock": 8,
+    "sku": "BERMUDA-RUSTICA",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "remera-day-1793057040644",
     "nombre": "Remera Day",
     "precio": 3000,
