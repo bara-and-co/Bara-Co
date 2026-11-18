@@ -1,5 +1,47 @@
 [
   {
+    "id": "chicago-roja-negro-1795041949970",
+    "nombre": "Chicago Roja Negro",
+    "precio": 30000,
+    "precioAnterior": null,
+    "categoria": "accesorios",
+    "subcategoria": "Gorras",
+    "descripcion": "",
+    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1795041896/bara/productos/hlq7t2hqqlxtyvy8wsx2.webp",
+    "imagenes": [
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1795041896/bara/productos/hlq7t2hqqlxtyvy8wsx2.webp"
+    ],
+    "tallesDisponibles": [
+      "Único"
+    ],
+    "colores": [],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "argentina": false,
+    "stockMap": {
+      "Rosa__L": 1,
+      "Rosa__XL": 1
+    },
+    "stockTalles": {
+      "Único": 1
+    },
+    "stock": 2,
+    "sku": "CHICAGO-ROJA-NEGRO",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": "unisex",
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "short-canarias-1794956608159",
     "nombre": "Short Canarias",
     "precio": 30000,
