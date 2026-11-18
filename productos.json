@@ -1,5 +1,47 @@
 [
   {
+    "id": "chicago-negra-rojo-1795042109022",
+    "nombre": "Chicago Negra Rojo",
+    "precio": 30000,
+    "precioAnterior": null,
+    "categoria": "accesorios",
+    "subcategoria": "Gorras",
+    "descripcion": "",
+    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1795042106/bara/productos/jjjf3umwooptqugbiqoq.webp",
+    "imagenes": [
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1795042106/bara/productos/jjjf3umwooptqugbiqoq.webp"
+    ],
+    "tallesDisponibles": [
+      "Único"
+    ],
+    "colores": [],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "argentina": false,
+    "stockMap": {
+      "Rosa__L": 1,
+      "Rosa__XL": 1
+    },
+    "stockTalles": {
+      "Único": 1
+    },
+    "stock": 2,
+    "sku": "CHICAGO-NEGRA-ROJO",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "chicago-roja-azul-1795042027573",
     "nombre": "Chicago Roja Azul",
     "precio": 30000,
