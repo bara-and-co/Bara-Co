@@ -1,5 +1,52 @@
 [
   {
+    "id": "gorra-jean-negra-1795097498205",
+    "nombre": "Gorra Jean Negra",
+    "precio": 30000,
+    "precioAnterior": null,
+    "categoria": "accesorios",
+    "subcategoria": "Gorras",
+    "descripcion": "",
+    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1795097483/bara/productos/ir4fncijurafcylkzmq6.webp",
+    "imagenes": [
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1795097483/bara/productos/ir4fncijurafcylkzmq6.webp"
+    ],
+    "tallesDisponibles": [
+      "Único"
+    ],
+    "colores": [
+      {
+        "nombre": "Negro",
+        "codigo": "#111111",
+        "stock": 0
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "argentina": false,
+    "stockMap": {
+      "Negro__Único": 1
+    },
+    "stockTalles": {
+      "Único": 1
+    },
+    "stock": 1,
+    "sku": "GORRA-JEAN-NEGRA",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "gorra-jean-azul-1795097412908",
     "nombre": "Gorra Jean Azul",
     "precio": 30000,
