@@ -1,5 +1,52 @@
 [
   {
+    "id": "gorra-jean-azul-1795097412908",
+    "nombre": "Gorra Jean Azul",
+    "precio": 30000,
+    "precioAnterior": null,
+    "categoria": "accesorios",
+    "subcategoria": "Gorras",
+    "descripcion": "",
+    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1795097409/bara/productos/i6iiqcluqgv48l5alwjz.webp",
+    "imagenes": [
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1795097409/bara/productos/i6iiqcluqgv48l5alwjz.webp"
+    ],
+    "tallesDisponibles": [
+      "Único"
+    ],
+    "colores": [
+      {
+        "nombre": "Azul",
+        "codigo": "#1E88E5",
+        "stock": 0
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "argentina": false,
+    "stockMap": {
+      "Azul__Único": 1
+    },
+    "stockTalles": {
+      "Único": 1
+    },
+    "stock": 1,
+    "sku": "GORRA-JEAN-AZUL",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "gorra-jean-celeste-1795097064418",
     "nombre": "Gorra Jean Celeste",
     "precio": 20000,
