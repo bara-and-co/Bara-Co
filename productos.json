@@ -1,5 +1,52 @@
 [
   {
+    "id": "pulsera-chapos-1795705722062",
+    "nombre": "PULSERA CHAPOS",
+    "precio": 15000,
+    "precioAnterior": null,
+    "categoria": "accesorios",
+    "subcategoria": "Bijouterie hombre",
+    "descripcion": "",
+    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1795705720/bara/productos/uupta6lzanpomufywiwy.webp",
+    "imagenes": [
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1795705720/bara/productos/uupta6lzanpomufywiwy.webp"
+    ],
+    "tallesDisponibles": [
+      "Único"
+    ],
+    "colores": [
+      {
+        "nombre": "Dorado",
+        "codigo": "#C9A96E",
+        "stock": 0
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "argentina": false,
+    "stockMap": {
+      "Dorado__Único": 1
+    },
+    "stockTalles": {
+      "Único": 1
+    },
+    "stock": 1,
+    "sku": "PULSERA-CHAPOS",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "pulsera-escobar-1795705310013",
     "nombre": "PULSERA ESCOBAR",
     "precio": 20000,
