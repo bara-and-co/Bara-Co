@@ -7,10 +7,12 @@
     "categoria": "accesorios",
     "subcategoria": "Billeteras",
     "descripcion": "",
-    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1795734102/bara/productos/btxcvv0tnxckzlguohld.webp",
+    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1795734273/bara/productos/nalb4kxsrufom80oz1ux.webp",
     "imagenes": [
-      "https://res.cloudinary.com/djk1znvr7/image/upload/v1795734102/bara/productos/btxcvv0tnxckzlguohld.webp",
-      "https://res.cloudinary.com/djk1znvr7/image/upload/v1795734112/bara/productos/furudfaw9bvd02zq2xqx.webp"
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1795734273/bara/productos/nalb4kxsrufom80oz1ux.webp",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1795734280/bara/productos/igkt5mm9d2pvshssgl6m.webp",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1795734286/bara/productos/ajt14md9wz0m7pa1dio7.webp",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1795734294/bara/productos/pdwrdyup5uvuhls8tgrg.webp"
     ],
     "tallesDisponibles": [
       "Único"
@@ -24,7 +26,7 @@
       "Negro__Único": 1
     },
     "stockTalles": {
-      "Único": 1
+      "Único": 2
     },
     "stock": 1,
     "sku": "BILLETERA-SPIDER",
