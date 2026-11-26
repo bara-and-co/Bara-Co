@@ -1,5 +1,47 @@
 [
   {
+    "id": "billetera-spider-1795734114830",
+    "nombre": "BILLETERA SPIDER",
+    "precio": 20000,
+    "precioAnterior": null,
+    "categoria": "accesorios",
+    "subcategoria": "Billeteras",
+    "descripcion": "",
+    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1795734102/bara/productos/btxcvv0tnxckzlguohld.webp",
+    "imagenes": [
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1795734102/bara/productos/btxcvv0tnxckzlguohld.webp",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1795734112/bara/productos/furudfaw9bvd02zq2xqx.webp"
+    ],
+    "tallesDisponibles": [
+      "Único"
+    ],
+    "colores": [],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "argentina": false,
+    "stockMap": {
+      "Negro__Único": 1
+    },
+    "stockTalles": {
+      "Único": 1
+    },
+    "stock": 1,
+    "sku": "BILLETERA-SPIDER",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "anillo-chior-1795730066657",
     "nombre": "ANILLO CHIOR",
     "precio": 20000,
