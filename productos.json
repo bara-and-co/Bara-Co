@@ -1,5 +1,53 @@
 [
   {
+    "id": "billetera-stich-azul-1795735047464",
+    "nombre": "BILLETERA STICH AZUL",
+    "precio": 20000,
+    "precioAnterior": null,
+    "categoria": "accesorios",
+    "subcategoria": "Billeteras",
+    "descripcion": "",
+    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1795735038/bara/productos/jk0qfscnsr6lu1t4qewp.webp",
+    "imagenes": [
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1795735038/bara/productos/jk0qfscnsr6lu1t4qewp.webp",
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1795735045/bara/productos/uncmi8ogxszuh4johwgo.webp"
+    ],
+    "tallesDisponibles": [
+      "Único"
+    ],
+    "colores": [
+      {
+        "nombre": "Azul",
+        "codigo": "#1E88E5",
+        "stock": 0
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "argentina": false,
+    "stockMap": {
+      "Azul__Único": 1
+    },
+    "stockTalles": {
+      "Único": 1
+    },
+    "stock": 1,
+    "sku": "BILLETERA-STICH-AZUL",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "billetera-geometria-1795734569325",
     "nombre": "BILLETERA GEOMETRIA",
     "precio": 20000,
