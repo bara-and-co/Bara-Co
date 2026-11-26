@@ -1,5 +1,56 @@
 [
   {
+    "id": "anillo-pdr-1795729308432",
+    "nombre": "ANILLO PDR",
+    "precio": 20000,
+    "precioAnterior": null,
+    "categoria": "accesorios",
+    "subcategoria": "Bijouterie hombre",
+    "descripcion": "",
+    "imagen": "https://res.cloudinary.com/djk1znvr7/image/upload/v1795729302/bara/productos/m6shnkwowuvdem2s7xac.jpg",
+    "imagenes": [
+      "https://res.cloudinary.com/djk1znvr7/image/upload/v1795729302/bara/productos/m6shnkwowuvdem2s7xac.jpg"
+    ],
+    "tallesDisponibles": [],
+    "colores": [
+      {
+        "nombre": "Dorado",
+        "codigo": "#C9A96E",
+        "stock": 0
+      },
+      {
+        "nombre": "Plateado",
+        "codigo": "#B0BEC5",
+        "stock": 0
+      }
+    ],
+    "activo": true,
+    "destacado": false,
+    "outlet": false,
+    "argentina": false,
+    "stockMap": {
+      "Dorado__Único": 1,
+      "Plateado__Único": 1
+    },
+    "stockTalles": {
+      "Único": 1
+    },
+    "stock": 2,
+    "sku": "ANILLO-PDR",
+    "marca": null,
+    "tags": null,
+    "fabrica": null,
+    "cuidados": null,
+    "temporada": null,
+    "genero": null,
+    "peso": null,
+    "origen": null,
+    "proveedor": null,
+    "notas": null,
+    "costo": null,
+    "link": null
+  },
+  {
     "id": "anillo-mny-1795728899742",
     "nombre": "ANILLO MNY",
     "precio": 20000,
